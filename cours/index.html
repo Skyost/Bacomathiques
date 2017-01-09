@@ -1,0 +1,28 @@
+---
+layout: default
+title: "Index des cours"
+navbarpos: 2
+---
+
+<h1>Liste des cours</h1>
+<p>Vous trouverez ci-dessous un tableau contenant la liste des cours disponibles sur ce site web ainsi qu'une briève description.</p>
+
+<table class="table table-bordered table-hover table-striped">
+	<thead>
+		<tr>
+			<th>Cours</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% assign pages = (site.pages | sort: 'chapter') %}
+		{% for page in site.pages %}
+			{% if page.lesson %}
+				<tr>
+					<td><a href="{{ page.url }}">{{ page.title }}</a></td>
+					<td>{{ page.excerpt }}</td>
+				</tr>
+			{% endif %}
+		{% endfor %}
+	</tbody>
+</table>

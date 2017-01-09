@@ -1,0 +1,48 @@
+<head>
+	<meta charset="utf-8"/>
+	<title>{% if page.fulltitle %}{{ page.fulltitle }}{% else %}{{ page.title }} | {{ site.title }} {% endif %}</title>
+
+	<!-- Description -->
+	<meta name="description" content="{% if page.excerpt %}{{page.excerpt}}{% else %}{{site.tagline}}{% endif %}"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	
+	<!-- Google+ -->
+	<link rel="publisher" href="https://plus.google.com/{{site.social.googleplus}}"/>
+	<meta itemprop="name" content="{% if page.fulltitle %}{{ page.fulltitle }}{% else %}{{ page.title }} | {{ site.title }} {% endif %}"/>
+	<meta itemprop="description" content="{% if page.excerpt %}{{ page.excerpt }}{% else %}{{ site.tagline }}{% endif %}"/>
+	<meta itemprop="image" content="{% if page.image %}{{ site.url }}{{ page.image }}{% else %}{{ site.url }}{{ site.social.preview }}{% endif %}"/>
+	
+	<!-- Facebook -->
+	<meta property="og:type" content="website"/>
+	<meta property="og:title" content="{% if page.fulltitle %}{{ page.fulltitle }}{% else %}{{ page.title }} | {{ site.title }} {% endif %}"/>
+	<meta property="og:site_name" content="{{ site.title }} "/>
+	<meta property="og:url" content="{{ site.url }}{{ page.url }}"/>
+	<meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt }}{% else %}{{ site.tagline }}{% endif %}"/>
+	<meta property="og:image" content="{% if page.image %}{{ site.url }}{{ page.image }}{% else %}{{ site.url }}{{ site.social.preview }}{% endif %}"/>
+	
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:title" content="{% if page.fulltitle %}{{ page.fulltitle }}{% else %}{{ page.title }} | {{ site.title }} {% endif %}"/>
+	<meta name="twitter:site" content="{{ site.social.twitter }}"/>
+	<meta name="twitter:creator" content="{{ site.social.twitter }}"/>
+	<meta name="twitter:url" content="{{ site.url }}{{ page.url }}"/>
+	<meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt }}{% else %}{{ site.tagline }}{% endif %}"/>
+	<meta name="twitter:image" content="{{ site.url }}{{ site.social.preview }}"/>
+	
+	<!-- Styles -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="/assets/css/navbar-fixed-side.min.css"/>
+	
+	<link rel="stylesheet" href="/assets/css/style.css"/>
+	{% if page.lesson == true %}
+		<link rel="stylesheet" href="/assets/css/lesson.css"/>
+	{% endif %}
+	<link rel="stylesheet" href="/assets/css/{{ page.layout }}.css"/>
+	{% if page.css %}
+		{% for sheet in page.css %}
+			<link rel="stylesheet" href="{{ sheet }}"/>
+		{% endfor %}
+	{% endif %}
+	<link rel="icon" type="image/png" href="/assets/img/favicon.png"/>
+
+</head>

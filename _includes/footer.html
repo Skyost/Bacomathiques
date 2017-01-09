@@ -1,0 +1,25 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+{% if page.maths == true %}
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML&locale=fr"></script>
+	
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/function-plot/1.17.3/function-plot.js"></script>
+	
+	<script type="text/javascript" src="/assets/js/maths.js"></script>
+{% endif %}
+
+{% if page.lesson == true %}
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.print/1.5.0/jQuery.print.min.js"></script>
+	
+	<script type="text/javascript" src="/assets/js/toc.min.js"></script>
+	
+	<script type="text/javascript" src="/assets/js/lesson.js"></script>
+{% endif %}
+
+{% if page.js %}
+	{% for script in page.js %}
+		<script type="text/javascript" src="{{ script }}"></script>
+	{% endfor %}
+{% endif %}

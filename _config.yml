@@ -1,0 +1,25 @@
+# Site settings
+title: "Bacomathiques"
+tagline: "Cours et annales de mathématiques gratuits pour le BAC !"
+url: "http://localhost:4000"
+
+# Social
+social:
+  preview: "/assets/img/social.png"
+  twitter: "Skyost_"
+  googleplus: "Skyost"
+  github: "Skyost"
+  disqus: "bacomathiques"
+
+# HTML Compresser
+compress_html:
+  clippings: all
+  blanklines: true
+
+# SASS options
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Production
+exclude: [".scss", "README.md"]

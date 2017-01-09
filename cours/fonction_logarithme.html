@@ -1,0 +1,183 @@
+---
+layout: default
+title: "Chapitre II - La fonction logarithme népérien"
+excerpt: "Cours sur la fonction logarithme : définition, propriétés, formules, dérivée, sens de variation, ..."
+maths: true
+lesson: true
+js: ["/assets/js/lessons/fonction_logarithme.js"]
+annals: [
+	"2016/antilles-guyane/specifique",
+	"2016/liban/specifique"
+]
+comments: true
+chapter: 2
+---
+<h1>Chapitre II - {{ title }}</h1>
+
+{% include default/export.html %}
+
+<section>
+
+	<h2 id="proprietes">Propriétés du logarithme népérien</h2>
+
+	<section>
+		
+		<h3 id="definition">Définition</h3>
+		<p>Le logarithme népérien est une fonction qui est définie sur $]0;+\infty[$ par :</p>
+		
+		<span class="bubble formula">$x \mapsto ln(x)$</span>
+		
+		<p>Et on a la relation fondamentale suivante pour tout $x$ et $y$ <strong>strictement positifs</strong> :</p>
+		
+		<span class="bubble formula">$ln(x) = y \iff x = e^y$</span>
+		
+		<p>Ainsi, a tout réel <strong>strictement positif</strong> $x$, la fonction logarithme népérien y associe <strong>son unique antécédent</strong> $y$
+		par rapport à <a href="fonction_exponentielle.html">la fonction exponentielle</a>.
+		<br/>De même pour la fonction exponentielle. On dit que ces fonctions sont des <strong>bijections réciproques</strong> (à la manière de $sin(x)$ et $arcsin(x)$ ou
+		$cos(x)$ et $arccos(x)$).</p>
+		
+		<div class="bubble tip">
+			<p>Cette relation peut sembler compliquer à assimiler mais il n'en est rien ! Prenons $x = 0$, on a :
+			<br/>$e^0 = 1$ (tout réel mis à la puissance zéro vaut un), la relation précédente nous donne $ln(1) = 0$.</p>
+			<p class="last">Si on prend maintenant $x = 1$, on a :
+			<br/>$e^1 = e$, on a donc $ln(e) = 1$.</p>
+		</div>
+		
+		<p>Les relations suivantes sont par conséquent disponibles :</p>
+		
+		<div class="bubble formula">
+			<p>Pour tout réel $x$ <strong>strictement positif</strong>, on a :</p>
+			<p>$e^{ln(x)} = x$</p>
+			<p>Et pour tout réel $x$, on a :</p>
+			<p class="last">$ln(e^x) = x$</p>
+		</div>
+		
+	</section>
+	<section>
+		
+		<h3 id="relations">Relations algébriques</h3>
+		<p>Le logarithme népérien a plusieurs propriétés intéressantes qu'il faut connaître. Ainsi, pour tout $a$ et $b$ <strong>strictement positifs</strong> :</p>
+		
+		<ul class="bubble formula">
+			<li>$ln(a*b) = ln(a) + ln(b)$</li>
+			<li>$ln(a^n) = n*ln(a)$ pour $n \in \mathbb{Z}$</li>
+			<li>$ln(\frac{a}{b}) = ln(a) - ln(b)$ (déduite des deux relations précédentes)</li>
+			<li>$ln(\frac{1}{b}) = -ln(b)$ (déduite de la relation précédente)</li>
+			<li class="last">$ln(\sqrt[p]{a}) = \frac{1}{p}*ln(a)$ pour $p \in \mathbb{N}^*$</li>
+		</ul>
+		
+	</section>
+	<section>
+		
+		<h3 id="representation">Représentation graphique</h3>
+		<p>Voici une représentation graphique de la fonction logarithme népérien :</p>
+		
+		<span id="representation-1" class="plot"></span>
+		
+		<p>On voit sur ce graphique plusieurs propriétés données précédemment : $ln(1) = 0$ et $ln(e) = 1$ par exemple.
+		On trace maintenant le graphe de la fonction logarithme népérien, avec celui de la fonction exponentielle. On trace également la droite d'équation
+		$y = x$ :</p>
+		
+		<span id="representation-2" class="plot"></span>
+		
+		<p>On remarque plusieurs choses : le graphe de la fonction logarithme népérien est le symétrique de celui de la fonction exponentielle par rapport à la
+		droite $y = x$ et on voit que la fonction logarithme népérien croît moins vite que la fonction puissance qui elle même croît moins vite que la fonction exponentielle.
+		Cette propriété est importante : c'est la <strong>croissance comparée</strong>.</p>
+		
+	</section>
+
+</section>
+<section>
+
+	<h2 id="etude">Étude de la fonction</h2>
+	
+	<section>
+	
+		<h3 id="limites">Limites</h3>
+		<p>Les limites de la fonction logarithme népérien aux bornes de son ensemble de définition sont :</p>
+		
+		<ul class="bubble formula">
+			<li>$\lim\limits_{\substack{x \rightarrow 0 \\ x>0}} ln(x) = -\infty$</li>
+			<li class="last">$\lim\limits_{\substack{x \rightarrow +\infty}} ln(x) = +\infty$</li>
+		</ul>
+		
+		<p>Il faut aussi savoir que la fonction puissance "l'emporte" sur le logarithme népérien (voir la partie <a href="#representation"><q>Représentation graphique</q></a>) :</p>
+		
+		<ul class="bubble formula">
+			<li>$\lim\limits_{\substack{x \rightarrow +\infty}} \frac{ln(x)}{x} = 0$</li>
+			<li class="last">$\lim\limits_{\substack{x \rightarrow +\infty}} x*ln(x) = 0$</li>
+		</ul>
+		
+		<p>Une autre limite est à connaître (ainsi que sa démonstration) :</p>
+		
+		<div class="bubble formula">
+			<p><strong>Démonstration de $\lim\limits_{\substack{x \rightarrow 0}} \frac{ln(1 + x)}{x} = 1$ :</strong></p>
+			<p class="last">La fonction logarithme népérien est définie et continue en $x = 1$, on peut donc écrire :
+			<br/>$ln'(1) = \lim\limits_{\substack{x \rightarrow 1}} \frac{ln(x) - ln(1)}{x - 1}$
+			<br/>Ce qui est équivalent à (car on a $ln(1) = 0$ et $ln'(1) = 1$) :
+			<br/>$1 = \lim\limits_{\substack{x \rightarrow 1}} \frac{ln(x)}{x - 1}$
+			<br/>On pose $y = x-1$ ce qui nous donne finalement :
+			<br/>$\lim\limits_{\substack{y \rightarrow 0}} \frac{ln(y - 1)}{y} = 1$</p>
+		</div>
+	
+	</section>
+	
+	<section>
+	
+		<h3 id="derivee">Dérivée</h3>
+		<p>Soit une fonction $u$ dérivable et <strong>strictement positive</strong> sur un interval $I$, on a pour tout $x$ appartenant à cet interval :</p>
+		
+		<span class="bubble formula">$ln'(u(x)) = \frac{u'(x)}{u(x)}$</span>
+		
+		<p>Ainsi, si on a $u(x) = x$ (avec $x \in ]0;+\infty[$) :
+		
+		<span class="bubble formula">$ln'(x) = \frac{1}{x}$</span>
+	
+	</section>
+	
+	<section>
+	
+		<h3 id="variations">Variations</h3>
+		<p>Avec la dérivée trouvée précédemment ainsi que les limites données, il est désormais possible d'obtenir les variations de la fonction logarithme népérien :</p>
+		
+		<figure class="bubble formula math-table">
+			
+			<img src="/assets/img/lessons/fonction_logarithme/variations.svg" title="Tableau de variation de la fonction logarithme népérien" alt="Tableau de variation de la fonction logarithme népérien"/>
+			
+			<figcaption>
+				<p class="last">On remarque qu'avec le tableau de variation, il est possible d'obtenir le signe de la fonction (avec le théorème des valeurs
+				intermédiaires).
+				<br/>Ainsi, sur $]0;1[$, $ln(x)$ est <strong>strictement négative</strong> et sur $]1;+\infty[$,
+				$ln(x)$ est <strong>strictement positive</strong> et, comme vu précédemment, $ln(1) = 0$.</p>
+			</figcaption>
+			
+		</figure>
+	
+	</section>
+
+</section>
+<section>
+
+	<h2>Le logarithme décimal</h2>
+	<p>Le <strong>logarithme décimal</strong> (principalement utilisé en physique-chimie) est défini sur $]0;+\infty[$ par :</p>
+	
+	<span class="bubble formula">$log(x) = \frac{ln(x)}{ln(10)}$</span>
+	
+	<p>Et on a les propriétés suivantes :</p>
+	
+	<ul class="bubble formula">
+		<li>$log(10) = 1$</li>
+		<li class="last">$log(10^n) = n$ pour $n \in \mathbb{Z}$</li>
+	</ul>
+	
+	<div class="bubble tip">
+		<p>Ces formules peuvent se retrouver très facilement ! En effet, pour la première :
+		<br/>$log(10) = \frac{ln(10)}{ln(10)} = 1$.</p>
+		<p class="last">Et pour la seconde :
+		<br/>$log(10^n) = \frac{n*ln(10)}{ln(10)} = n*\frac{ln(10)}{ln(10)} = n$.</p>
+	</div>
+	
+	<p>C'est tout pour ce chapitre. N'oubliez de pas de faire les annales (liens ci-dessous) et de poser des questions (les commentaires sont là pour ça) si vous
+	avez des questions.</p>
+
+</section>

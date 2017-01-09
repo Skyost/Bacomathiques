@@ -1,0 +1,142 @@
+---
+layout: default
+title: "Chapitre I - La fonction exponentielle"
+excerpt: "Cours sur la fonction exponentielle."
+maths: true
+lesson: true
+js: ["/assets/js/lessons/fonction_exponentielle.js"]
+annals: [
+	"2016/antilles-guyane/specifique",
+	"2016/liban/specifique"
+]
+comments: true
+chapter: 1
+---
+<h1>Chapitre I - {{ title }}</h1>
+
+{% include default/export.html %}
+
+<section>
+
+	<h2 id="proprietes">Propriétés de la fonction exponentielle</h2>
+
+	<section>
+		
+		<h3 id="definition">Définition</h3>
+		<p>La fonction exponentielle notée $e^x$ (ou parfois $exp(x)$) est l'unique fonction $f$ définie sur $\mathbb{R}$ remplissant les critères suivants :</p>
+		
+		<ul class="bubble formula">
+			<li>$f$ est dérivable sur $\mathbb{R}$ et $f'$ = $f$</li>
+			<li>$f > 0$ sur $\mathbb{R}$</li>
+			<li class="last">$f(0) = e^0 = 1$</li>
+		</ul>
+		
+		<div class="bubble tip">
+			<p>Comme la fonction exponentielle est composé d'un réel ($e \approx 2,718 $) et d'un exposant ($x$), <strong>les propriétés des exposants</strong> sont disponibles,
+			comme par exemple (liste non exhaustive) pour $x, y \in \mathbb{R}$ :</p>
+			<ul>
+				<li>$e^{x+y} = e^x * e^y$</li>
+				<li>$e^{x-y} = \frac{e^x}{e^y}$</li>
+				<li>$e^{-x} = \frac{1}{e^x}$</li>
+				<li>$(e^x)^y = e^{x * y}$</li>
+			</ul>
+			<p class="last">Et bien entendu, $e^0 = 1$.</p>
+		</div>
+		
+	</section>
+	<section>
+		
+		<h3 id="relations">Relations algébriques</h3>
+		<p>La fonction exponentielle a plusieurs propriétés algébriques qu'il faut connaître. Ainsi, pour tout réel $x$ et $y$ :</p>
+		
+		<ul class="bubble formula">
+			<li>$e^x = e^y \iff x = y$</li>
+			<li class="last">$e^x < e^y \iff x < y$</li>
+		</ul>
+		
+	</section>
+	<section>
+		
+		<h3 id="representation">Représentation graphique</h3>
+		<p>Voici une représentation graphique de la fonction exponentielle (courbe bleue) et de sa tangente au point d'abscisse $0$ :</p>		
+		
+		<span id="representation-1" class="plot"></span>
+		
+		<p>On voit plusieurs propriétés données précédemment : la fonction est <strong>strictement positive</strong>, $e^0 = 1$, etc... Mais également d'autres propriétés que
+		verrons par la suite comme les limites aux bornes de l'ensemble de définition. La <strong>tangente</strong> en $x = 0$ est $y = x + 1$.</p>
+		
+	</section>
+
+</section>
+<section>
+
+	<h2 id="etude">Étude de la fonction</h2>
+	
+	<section>
+	
+		<h3 id="limites">Limites</h3>
+		<p>Les limites de la fonction exponentielle aux bornes de son ensemble de définition sont :</p>
+		
+		<ul class="bubble formula">
+			<li>$\lim\limits_{\substack{x \rightarrow -\infty}} e^x = 0$</li>
+			<li class="last">$\lim\limits_{\substack{x \rightarrow +\infty}} e^x = +\infty$</li>
+		</ul>
+		
+		<p>Il faut aussi savoir que la fonction exponentielle "l'emporte sur" (elle croît plus vite que) la fonction puissance :</p>
+		
+		<ul class="bubble formula">
+			<li>$\lim\limits_{\substack{x \rightarrow +\infty}} \frac{e^x}{x} = +\infty$</li>
+			<li>$\lim\limits_{\substack{x \rightarrow +\infty}} x*e^x = 0$</li>
+			<li class="last">$\lim\limits_{\substack{x \rightarrow 0}}\frac{e^x - 1}{x} = exp'(0) = e^0 = 1$</li>
+		</ul>
+		
+		<p>Une autre limite est à connaître (ainsi que sa démonstration) :</p>
+		
+		<div class="bubble formula">
+			<p><strong>Démonstration de $\lim\limits_{\substack{x \rightarrow 0}} \frac{ln(1 + x)}{x} = 1$ :</strong></p>
+			<p class="last">La fonction logarithme népérien est définie et continue en $x = 1$, on peut donc écrire :
+			<br/>$ln'(1) = \lim\limits_{\substack{x \rightarrow 1}} \frac{ln(x) - ln(1)}{x - 1}$
+			<br/>Ce qui est équivalent à (car on a $ln(1) = 0$ et $ln'(1) = 1$) :
+			<br/>$1 = \lim\limits_{\substack{x \rightarrow 1}} \frac{ln(x)}{x - 1}$
+			<br/>On pose $y = x-1$ ce qui nous donne finalement :
+			<br/>$\lim\limits_{\substack{y \rightarrow 0}} \frac{ln(y - 1)}{y} = 1$</p>
+		</div>
+	
+	</section>
+	
+	<section>
+	
+		<h3 id="derivee">Dérivée</h3>
+		<p>Soit une fonction $u$ dérivable sur un interval $I$, on a pour tout $x$ appartenant à cet interval :</p>
+		
+		<span class="bubble formula">$(e^{u(x)})' = u'(x)e^{u(x)}$</span>
+		
+		<p>Ainsi, si on a $u(x) = x$ (avec $x \in \mathbb{R}$) :
+		
+		<span class="bubble formula">$({e^x})' = e^x$</span>
+		
+		<p>Cette propriété a été donnée dans la section <a href="#definition"><q>Définition</q></a>.</p>
+	
+	</section>
+	
+	<section>
+	
+		<h3 id="variations">Variations</h3>
+		<p>Avec la dérivée trouvée précédemment, il est désormais possible d'obtenir les variations de la fonction exponentielle :</p>
+		
+		<figure class="bubble formula math-table">
+			
+			<img src="/assets/img/lessons/fonction_exponentielle/variations.svg" title="Tableau de variation de la fonction logarithme exponentielle" alt="Tableau de variation de la fonction logarithme exponentielle"/>
+			
+			<figcaption>
+				<p class="last">On remarque sur le tableau de variation que la fonction exponentielle est strictement positive sur $\mathbb{R}$.</p>
+			</figcaption>
+			
+		</figure>
+		
+		<p>C'est tout pour ce chapitre. N'oubliez pas qu'il est très complémentaire avec celui portant sur <a href="fonction_logarithme.html">la fonction logarithme</a> !
+		N'hésitez pas à poser des questions dans les commentaires et à faire des annales (liens disponibles ci-dessous).</p>
+	
+	</section>
+	
+</section>

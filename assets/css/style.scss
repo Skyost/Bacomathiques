@@ -1,0 +1,51 @@
+---
+---
+
+/* GENERAL STYLES */
+
+@import url('https://fonts.googleapis.com/css?family=Merriweather|Open+Sans|Handlee');
+
+h1, h2, h3 {
+	font-family: 'Open Sans', sans-serif;
+}
+
+body {
+	font-family: 'Merriweather', serif;
+	letter-spacing: 0.01rem;
+	font-size: 14px;
+	line-height: 1.75em;
+	color: #222222;
+}
+
+figure figcaption {
+	margin-top: 14px;
+}
+
+/* CLEARFIX */
+
+.clearfix {
+	overflow: auto;
+	zoom: 1;
+}
+
+/* IMAGES */
+
+figure, img {
+	max-width: 100%;
+}
+
+/* LINKS */
+
+a:hover {
+	text-decoration: none;
+}
+
+/* QUOTES */
+
+q:before {
+	content: '« ';
+}
+
+q:after {
+	content: ' »';
+}

@@ -1,0 +1,53 @@
+<ul id="export" class="no-print">
+	<li id="export-pdf" title="Exporter en PDF"></li>
+	<li id="export-print" title="Imprimer"></li>
+	<li id="export-social" title="Partager" data-toggle="modal" data-target="#modal-social"></li>
+	<li id="export-caveats" title="Apporter une correction" data-toggle="modal" data-target="#modal-caveats"></li>
+</ul>
+
+<div class="modal fade" id="modal-social" tabindex="-1" role="dialog" aria-labelledby="modal-social-label">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="modal-social-label">Partager</h4>
+			</div>
+			<div class="modal-body">
+				<p>Vous pouvez partager cette page sur les réseaux sociaux :</p>
+				<ul class="social">
+					<li><a class="social-twitter" href="https://twitter.com/intent/tweet?text=Retrouvez%20le%20cours%20intitul%C3%A9%20%22{{ page.title }}%22%20sur%20Bacomathique%20!&url={{ site.url }}{{ page.url }}" target="_blank"></a></li>
+					<li><a class="social-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}&t=" target="_blank"></a></li>
+					<li><a class="social-googleplus" href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" target="_blank"></a></li>
+					<li><a class="social-tumblr" href="http://www.tumblr.com/share?v=3&u={{ site.url }}{{ page.url }}&t=&s=" target="_blank"></a></li>
+					<li><a class="social-mail" href="mailto:?subject=&body=Retrouvez%20le%20cours%20intitul%C3%A9%20%22{{ page.title }}%22%20sur%20Bacomathique%20!%20{{ site.url }}{{ page.url }}" target="_blank"></a></li>
+				</ul>
+				<p>Sinon, vous pouvez directement copier-coller le lien vers ce cours dans votre presse-papier :</p>
+				<input type="text" value="{{ site.url }}{{ page.url }}" style="width: 100%;" readonly></input>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modal-caveats" tabindex="-1" role="dialog" aria-labelledby="modal-social-label">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="modal-caveats-label">Apporter une correction</h4>
+			</div>
+			<div class="modal-body">
+				<p>Pour apporter une correction à un cours, vous avez deux solutions :</p>
+				<ul>
+					<li>Vous <a href="/about.html#contact">me contactez</a> en m'indiquant où se trouve la faute ou l'amélioration que vous souhaitez apporter.</li>
+					<li>Vous modifiez directement le <a href="https://github.com/{{ site.social.github }}/{{ site.title }}/edit/master{{ page.url }}">code source</a> de la page.</li>
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+			</div>
+		</div>
+	</div>
+</div>

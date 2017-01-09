@@ -1,0 +1,10 @@
+<div id="annals" class="bubble clearfix">
+	<h2>Annales en rapport avec le sujet</h2>
+	<ul>
+		{% for annal in page.annals %}
+			{% assign parts = annal | split: "/" %}
+			<li><strong>{{ parts[1] | replace: "-", " " }} {{ parts[2] }} {{ parts[0] }}</strong> [<a href="/assets/pdf/annales/{{ annal }}/enonce.pdf">Énoncé</a>] [<a href="/assets/pdf/annales/{{ annal }}/correction.pdf">Corrigé</a>]</li>
+		{% endfor %}
+	</ul>
+	<p>Sujets et corrigés fournis par <a href="http://maths-france.fr/Terminale/TerminaleS/ProblemesBac/index.php" target="_blank">Math France</a>.</p>
+</div>

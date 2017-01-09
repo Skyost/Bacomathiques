@@ -1,0 +1,34 @@
+---
+layout: default
+title: "Résultats de la recherche"
+css: ["assets/css/search.css"]
+js: ["https://cdnjs.cloudflare.com/ajax/libs/lunr.js/0.7.2/lunr.min.js", "/assets/js/search.js"]
+---
+<h1>Résultats de la recherche</h1>
+
+<p>Votre recherche a retourné les résultats suivants :</p>
+
+<span class="glyphicon glyphicon-refresh"></span>
+
+<ul style="display: none;"></ul>
+
+<script type='text/javascript'>
+	var pages = {
+		{% for page in site.pages %}
+			{% if page.lesson %}
+				'{{ page.url | slugify }}': {
+					'title': '{{ page.title | xml_escape }}',
+					'excerpt': '{{ page.excerpt }}',
+					'content': {{ page.content | strip_html | strip_newlines | truncatewords: 10 | jsonify }},
+					'url': '{{ page.url | xml_escape }}'
+				},
+			{% endif %}
+		{% endfor %}
+		'index-des-cours-html': {
+			'title': 'Index des cours',
+			'excerpt': 'Index des cours disponibles sur {{ site.title }}.',
+			'content': 'Retrouvez ici la liste des cours.',
+			'url': '/cours/'
+		}
+	};
+</script>
