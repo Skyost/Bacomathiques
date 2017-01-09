@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/Skyost/Bacomathiques/master/assets/img/logo.svg" alt="Icône" width="40"/> Bacomathiques
+# Bacomathiques
 
 ## Qu'est-ce-que Bacomathiques ?
 
