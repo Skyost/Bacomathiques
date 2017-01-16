@@ -2,7 +2,6 @@ $(document).ready(function() {
 	functionPlot({
 		title: 'Le logarithme néperien',
 		target: '#representation-1',
-		disableZoom: true,
 		grid: true,
 		data: [
 			{
@@ -15,7 +14,6 @@ $(document).ready(function() {
 	functionPlot({
 		title: 'Relation de symétrie',
 		target: '#representation-2',
-		disableZoom: true,
 		grid: true,
 		data: [
 			{

@@ -2,7 +2,6 @@ $(document).ready(function() {
 	functionPlot({
 		title: 'La fonction exponentielle',
 		target: '#representation-1',
-		disableZoom: true,
 		grid: true,
 		data: [
 			{
