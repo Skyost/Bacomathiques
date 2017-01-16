@@ -31,13 +31,12 @@
 	
 	<!-- Styles -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="/assets/css/navbar-fixed-side.min.css"/>
 	
 	<link rel="stylesheet" href="/assets/css/style.css"/>
-	{% if page.lesson == true %}
+	<link rel="stylesheet" href="/assets/css/{{ page.layout }}.css"/>
+	{% if page.lesson %}
 		<link rel="stylesheet" href="/assets/css/lesson.css"/>
 	{% endif %}
-	<link rel="stylesheet" href="/assets/css/{{ page.layout }}.css"/>
 	{% if page.css %}
 		{% for sheet in page.css %}
 			<link rel="stylesheet" href="{{ sheet }}"/>

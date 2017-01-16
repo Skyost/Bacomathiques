@@ -1,20 +1,22 @@
 ---
 ---
 
+@import 'colors';
+
 /* NAVBAR LICENSE */
 
 #license {
 	width: 100%;
 	text-align: center;
 	margin: 16px 0 8px 0;
-}
-
-#license img {
-	opacity: 0.5;
-}
-
-#license img:hover {
-	opacity: 0.8;
+	
+	img {
+		opacity: 0.5;
+	}
+	
+	img:hover {
+		opacity: 0.8;
+	}
 }
 
 /* EXPORT */
@@ -22,7 +24,7 @@
 /** Social : **/
 
 @font-face {
-	font-family: 'si';
+	font-family: 'SocialIcon';
 	src: url('../fonts/socicon.eot');
 	src: url('../fonts/socicon.eot?#iefix') format('embedded-opentype'),
 		url('../fonts/socicon.woff') format('woff'),
@@ -33,10 +35,12 @@
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
+
 	@font-face {
-		font-family:si;
+		font-family: 'SocialIcon';
 		src: url('../fonts/socicon.svg') format(svg);
 	}
+	
 }
 
 .social {
@@ -45,51 +49,51 @@
 	padding: 0;
 	list-style: none;
 	margin-bottom: 14px;
-}
+	
+	li {
+		display: inline-block;
+		zoom: 1;
+		
+		a {
+			font-family: 'SocialIcon' !important;
+			font-style: normal;
+			font-weight: 400;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			-ms-box-sizing: border-box;
+			-o-box-sizing: border-box;
+			box-sizing: border-box;
 
-.social li {
-	display: inline-block;
-	zoom: 1;
-}
+			-o-transition: 0.1s;
+			-ms-transition: 0.1s;
+			-moz-transition: 0.1s;
+			-webkit-transition: 0.1s;
+			transition: 0.1s;
+			-webkit-transition-property: transform;
+			transition-property: transform;
+			-webkit-transform: translateZ(0);
+			transform: translateZ(0);
 
-.social li a {
-	font-family: si!important;
-	font-style: normal;
-	font-weight: 400;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	-o-box-sizing: border-box;
-	box-sizing: border-box;
-
-	-o-transition: 0.1s;
-	-ms-transition: 0.1s;
-	-moz-transition: 0.1s;
-	-webkit-transition: 0.1s;
-	transition: 0.1s;
-	-webkit-transition-property: transform;
-	transition-property: transform;
-	-webkit-transform: translateZ(0);
-	transform: translateZ(0);
-
-	overflow: hidden;
-	text-decoration: none;
-	text-align: center;
-	display: block;
-	position: relative;
-	z-index: 1;
-	width: 32px;
-	height: 32px;
-	line-height: 32px;
-	font-size: 17px;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	margin-right: 4px;
-	color: #ffffff;
-	background-color: none;
+			overflow: hidden;
+			text-decoration: none;
+			text-align: center;
+			display: block;
+			position: relative;
+			z-index: 1;
+			width: 32px;
+			height: 32px;
+			line-height: 32px;
+			font-size: 17px;
+			-webkit-border-radius: 10px;
+			-moz-border-radius: 10px;
+			border-radius: 10px;
+			margin-right: 4px;
+			color: #ffffff;
+			background-color: none;
+		}
+	}
 }
 
 .social-twitter:hover, .social-facebook:hover, .social-googleplus:hover, .social-tumblr:hover, .social-mail:hover {
@@ -99,7 +103,7 @@
 /*** Twitter : ***/
 
 .social-twitter {
-	background-color: #4da7de;
+	background-color: $social-twitter-color;
 }
 
 .social-twitter:before {
@@ -109,7 +113,7 @@
 /*** Facebook : ***/
 
 .social-facebook {
-	background-color: #3e5b98;
+	background-color: $social-facebook-color;
 }
 
 .social-facebook:before {
@@ -119,7 +123,7 @@
 /*** Google+ : ***/
 
 .social-googleplus {
-	background-color: #dd4b39;
+	background-color: $social-googleplus-color;
 }
 
 .social-googleplus:before {
@@ -129,7 +133,7 @@
 /*** Tumblr : ***/
 
 .social-tumblr {
-	background-color: #45556c;
+	background-color: $social-tumblr-color;
 }
 
 .social-tumblr:before {
@@ -139,7 +143,7 @@
 /*** Mail : ***/
 
 .social-mail {
-	background-color: #000000;
+	background-color: $social-mail-color;
 }
 
 .social-mail:before {
@@ -154,15 +158,15 @@
 	margin-top: 1em;
 	padding-bottom: 1em;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-#export li {
-	display: inline-block;
-	margin-left: 7px;
-	cursor: pointer;
-	background-size: 20px 20px;
-	height: 20px;
-	width: 20px;
+	
+	li {
+		display: inline-block;
+		margin-left: 7px;
+		cursor: pointer;
+		background-size: 20px 20px;
+		height: 20px;
+		width: 20px;
+	}
 }
 
 #export-pdf {
@@ -199,13 +203,13 @@ ul.bubble {
 /* FORMULAS & TIPS */
 
 .formula {
-	border-color: #3583d6;
-	background-color: #ebf3fb;
+	border-color: $formula-border-color;
+	background-color: $formula-background-color;
 }
 
 .tip {
-	border-color: #26a65b;
-	background-color: #dcf3d8;
+	border-color: $tip-border-color;
+	background-color: $tip-background-color;
 }
 
 .formula .last, .tip .last {
@@ -214,6 +218,10 @@ ul.bubble {
 
 .formula ul li, ul.formula li, .tip ul li, ul.tip li {
 	margin-bottom: 10px;
+}
+
+.MathJax {
+	outline-width: 0;
 }
 
 /* PLOTS */
@@ -230,20 +238,20 @@ ul.bubble {
 
 /** Headers : **/
 
-article h1 {
-	text-align: center;
-	color: #912c21;
-	font-size: 38px;
-}
-
-article h2 {
-	color: #1c567d;
-	font-size: 32px;
-}
-
-article h3 {
-	color: #2980b9;
-	font-size: 26px;
+article {
+	h1 {
+		text-align: center;
+		color: $lesson-h1;
+		font-size: 38px;
+	}
+	h2 {
+		color: $lesson-h2;
+		font-size: 32px;
+	}
+	h3 {
+		color: $lesson-h3;
+		font-size: 26px;
+	}
 }
 
 /** Math table : **/
@@ -256,24 +264,22 @@ article h3 {
 /** Annals : **/
 
 #annals {
-	border-color: #e74c3c;
-	background-color: #fceae9;
-}
-
-#annals h2 {
-	margin-top: 0;
-	font-size: 24px;
-}
-
-#annals ul li strong {
-	text-transform: uppercase;
-}
-
-#annals p {
-	float: right;
-	margin-bottom: 0;
-	font-style: italic;
-	font-size: 0.8em;
+	border-color: $annal-border-color;
+	background-color: $annal-background-color;
+	
+	h2 {
+		margin-top: 0;
+		font-size: 24px;
+	}
+	ul li strong {
+		text-transform: uppercase;
+	}
+	p {
+		float: right;
+		margin-bottom: 0;
+		font-style: italic;
+		font-size: 0.8em;
+	}
 }
 
 /* COMMENTS */

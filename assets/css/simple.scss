@@ -1,17 +1,21 @@
 ---
 ---
 
+@import 'colors';
+
+$mobile-max-width: 767px;
+
 html {
-	background-color: #2c3e50;
+	background-color: $simple-main-color;
 	height: 100%;
 }
 
 body {
 	min-height: 100%;
-	background-color: #2c3e50;
+	background-color: $simple-main-color;
 	margin-top: 28px;
 	
-	@media(max-width: 767px) {
+	@media(max-width: $mobile-max-width) {
 		margin-top: 0 !important;
 	}
 }
@@ -23,28 +27,27 @@ header {
 	height: 280px;
 	display: flex;
 	align-items: center;
-}
-
-header h1 {
-	margin: auto;
-	font-family: 'Handlee', cursive;
-	color: #2c3e50;
-	font-size: 6.15vw;
 	
-	@media(max-width: 767px) {
-		font-size: 12vw;
+	h1 {
+		margin: auto;
+		font-family: 'Handlee', cursive;
+		color: $simple-main-color;
+		font-size: 6.15vw;
+		
+		@media(max-width: $mobile-max-width) {
+			font-size: 12vw;
+		}
 	}
-}
-
-header h1:before {
-	content: '';
-	display: inline-block;
-	vertical-align: -0.1em;
-	height: 0.9em;
-	width: 0.9em;
-	background-size: 0.9em 0.9em;
-	background-image: url('../img/logo.svg');
-	margin-right: 0.2em;
+	h1:before {
+		content: '';
+		display: inline-block;
+		vertical-align: -0.1em;
+		height: 0.9em;
+		width: 0.9em;
+		background-size: 0.9em 0.9em;
+		background-image: url('../img/logo.svg');
+		margin-right: 0.2em;
+	}
 }
 
 .navbar {
@@ -56,7 +59,7 @@ header h1:before {
 	padding: 0;
 	border-radius: 10px 10px 0 0;
 	
-	@media(max-width: 767px) {
+	@media(max-width: $mobile-max-width) {
 		border-radius: 0 !important;
 	}
 }
@@ -72,12 +75,12 @@ article, footer {
 
 footer {
 	margin-top: 28px;
-	border-top: 1px solid LemonChiffon;
+	border-top: 1px solid $footer-border-color;
 	padding: 14px;
-	background-color: LightYellow;
-	color: #797979;
-}
-
-footer p {
-	margin-bottom: 0;
+	background-color: $footer-background-color;
+	color: $footer-text-color;
+	
+	p {
+		margin-bottom: 0;
+	}
 }

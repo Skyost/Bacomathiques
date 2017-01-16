@@ -2,6 +2,7 @@
 ######################
 _site
 serve.bat
+.sass-cache
 
 # OS generated files #
 ######################

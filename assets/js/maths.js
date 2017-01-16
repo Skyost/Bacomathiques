@@ -15,6 +15,8 @@ $(document).ready(function() {
 				'TeX'
 			], 
 			extensions: ['handle-floats.js']
-		}
+		},
+		messageStyle: 'none',
+		showMathMenu: false
 	});
 });
