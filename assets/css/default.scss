@@ -2,6 +2,7 @@
 ---
 
 @import 'colors';
+@import 'utils';
 @import url('navbar-fixed-side.min.css');
 
 /* NAVIGATION BAR */
@@ -30,7 +31,11 @@ nav {
 		font-family: 'Handlee', cursive;
 		font-size: 1.6em;
 		color: white !important;
-		padding: 0.5em 0 0.5em 6px;
+		padding: 0.5em 0 0.5em 10px;
+		
+		@media(max-width: $mobile-max-width) {
+			padding-top: 0.35em;
+		}
 	}
 	.navbar-brand:before {
 		content: '';

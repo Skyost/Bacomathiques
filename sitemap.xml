@@ -1,0 +1,16 @@
+---
+layout: compress
+sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {% for page in site.pages %}
+		{% if page.layout != nil %}
+			{% if page.sitemap != false %}
+				<url>
+					<loc>{{ site.url }}{{ page.url | remove: 'index.html' }}</loc>
+				</url>
+			{% endif %}
+		{% endif %}
+	{% endfor %}
+</urlset>

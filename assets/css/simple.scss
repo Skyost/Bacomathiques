@@ -2,8 +2,7 @@
 ---
 
 @import 'colors';
-
-$mobile-max-width: 767px;
+@import 'utils';
 
 html {
 	background-color: $simple-main-color;
