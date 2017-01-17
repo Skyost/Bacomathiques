@@ -1,7 +1,7 @@
 # Site settings
 title: "Bacomathiques"
 tagline: "Cours et annales de mathématiques gratuits pour le BAC !"
-url: "http://localhost:4000"
+url: "https://bacomathiqu.es"
 
 # Social
 social:
