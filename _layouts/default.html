@@ -78,6 +78,14 @@ layout: compress
 						{% endif %}
 	
 						{{ content }}
+						
+						{% if page.lesson %}
+						
+							<a id="back-to-top" href="#" class="btn btn-primary" role="button" title="Cliquez pour retourner en haut de la page" data-toggle="tooltip" data-placement="left">
+								<span class="glyphicon glyphicon-chevron-up"></span>
+							</a>
+						
+						{% endif %}
 		
 					</article>
 					

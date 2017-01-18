@@ -196,6 +196,11 @@
 	border-style: solid;
 }
 
+.bubble table {
+	background-color: white;
+	max-width: 75%;
+}
+
 ul.bubble {
 	padding-left: 28px;
 }
@@ -259,6 +264,23 @@ article {
 .math-table img {
 	background-color: white;
 	min-width: 40%;
+}
+
+/** Back to top button : **/
+
+#back-to-top {
+	background-color: $main-color;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+	opacity: 0.5;
+}
+
+#back-to-top:hover {
+	background-color: $main-color-darker;
+	opacity: 0.8;
 }
 
 /** Annals : **/

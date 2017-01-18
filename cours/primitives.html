@@ -1,0 +1,142 @@
+---
+layout: default
+title: "Chapitre III - Les primitives de fonctions continues"
+excerpt: "Cours sur les primitives de fonctions continues : primitives usuelles, opérations sur les primitives, ..."
+maths: true
+lesson: true
+annals: [
+	"2016/antilles-guyane/specifique",
+	"2016/liban/specifique"
+]
+comments: true
+chapter: 2
+---
+<section>
+
+	<h2 id="definition">Définition</h2>
+	<p>Soit $f$ un fonction définie sur un intervalle $I$, on appelle <strong>primitive</strong> de $f$, tout fonction $F$ définie sur $I$ et qui vérifie pour tout $x \in I$ :</p>
+	
+	<span class="bubble formula">$F'(x) = f(x)$</span>
+	
+	<p><strong>Note :</strong> Une primitive est toujours définie à une constante près.</p>
+	
+	<div class="bubble tip">
+		<p>En effet. Si on considère la fonction définie pour $x \in R$ : $f(x) = 2x$.
+		<br/>Alors, $F_{1}(x) = x^2 + 1$ est primitive de la fonction $f$ (car $F'(x) = 2x = f(x)$).</p>
+		<p>Mais $F_{1}(x)$ <strong>n'est pas la seule primitive</strong> de $f$ !
+		<br/>On peut citer par exemple $F_{2}(x) = x^2 + 10$ et $F_{3}(x) = x^2 + 3$ qui sont également des primitives de $f$.</p>
+		<p class="last">C'est pour cette raison que l'ont dit que les primitives sont définies à une constante près (lorsque l'on dérive, la constante devient nulle).</p>
+	</div>
+	
+	<p>Ainsi, toute <strong>fonction continue</strong> sur un intervalle $I$ admet <strong>une infinité de primitives</strong> sur $I$ de la forme suivante :</p>
+	
+	<span class="bubble formula">$x \mapsto F(x) + k$ avec $k \in \mathbb{R}$ (voir l'encadré précédent pour plus de détails)</span>
+
+</section>
+<section>
+
+	<h2 id="primitives-usuelles">Primitive de fonctions usuelles</h2>
+	<p>Le tableau suivant est à connaître (mais il peut être obtenu en prenant celui des dérivées usuelles à l'envers) :</p>
+
+	<div class="bubble tip">
+		<table class="table table-bordered table-hover last">
+			<thead>
+				<tr>
+					<th>Domaine de définition</th>
+					<th>Fonction</th>
+					<th>Primitive</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>$x \in \mathbb{R}$</td>
+					<td>$f(x) = k$, $k \in \mathbb{R}$</td>
+					<td>$F(x) = kx$</td>
+				</tr>
+				<tr>
+					<td>$x \in \mathbb{R}$</td>
+					<td>$g(x) = e^x$</td>
+					<td>$G(x) = e^x$</td>
+				</tr>
+				<tr>
+					<td>$x \in \mathbb{R}^{*}_{+}$</td>
+					<td>$h(x) = \frac{1}{x}$</td>
+					<td>$H(x) = ln(x)$</td>
+				</tr>
+				<tr>
+					<td>$x \in \mathbb{R}^{*}_{+}$</td>
+					<td>$i(x) = \frac{1}{\sqrt{x}}$</td>
+					<td>$I(x) = 2\sqrt{x}$</td>
+				</tr>
+				<tr>
+					<td>$x \in \mathbb{R}^{*}_{+}$</td>
+					<td>$j(x) = x^a$, $a \in \mathbb{R}$ et $a \neq -1$</td>
+					<td>$J(x) = \frac{1}{a + 1} x^{a + 1}$</td>
+				</tr>
+				<tr>
+					<td>$x \in \mathbb{R}$</td>
+					<td>$k(x) = sin(x)$</td>
+					<td>$K(x) = -cos(x)$</td>
+				</tr>
+				<tr>
+					<td>$x \in \mathbb{R}$</td>
+					<td>$l(x) = cos(x)$</td>
+					<td>$L(x) = sin(x)$</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+</section>
+<section>
+
+	<h2 id="operations-primitives">Opérations sur les primitives</h2>
+	<p>Le tableau suivant est également à connaître (mais il peut être obtenu en prenant celui des dérivées usuelles à l'envers) :</p>
+	
+	<div class="bubble tip">
+		<table class="table table-bordered table-hover last">
+			<thead>
+				<tr>
+					<th>Conditions</th>
+					<th>Fonction</th>
+					<th>Primitive</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td></td>
+					<td>$f(x) = u'(x)e^{u(x)}$</td>
+					<td>$F(x) = e^{u(x)}$</td>
+				</tr>
+				<tr>
+					<td>On peut retirer la valeur absolue si $u(x) > 0$ sur son intervalle de définition.</td>
+					<td>$f(x) = \frac{u'(x)}{u(x)}$</td>
+					<td>$F(x) = ln(|u(x)|)$</td>
+				</tr>
+				<tr>
+					<td>$u(x) > 0$</td>
+					<td>$f(x) = \frac{u'(x)}{\sqrt{u(x)}}$</td>
+					<td>$F(x) = 2\sqrt{u(x)}$</td>
+				</tr>
+				<tr>
+					<td>$a \in \mathbb{R}$, $a \neq -1$</td>
+					<td>$f(x) = u'(x)(u(x))^a$</td>
+					<td>$F(x) = \frac{1}{a + 1} (u(x))^{a + 1}$</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>$f(x) = u'(x)sin(u(x))$</td>
+					<td>$F(x) = -cos(u(x))$</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>$f(x) = u'(x)cos(u(x))$</td>
+					<td>$F(x) = sin(u(x))$</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<p class="no-print">C'est tout pour ce chapitre. Si vous n'avez pas assimilé un concept, n'hésitez pas à poster un commentaire et surtout, faîtes des annales.</p>
+	</div>
+
+</section>

@@ -1,4 +1,6 @@
-$(document).ready(function() {	
+$(document).ready(function() {
+	// TABLE OF CONTENTS
+	
 	var h2Index = 1;
 	var h3Index = 1;
 	$('article h2, article h3').each(function() {
@@ -18,6 +20,8 @@ $(document).ready(function() {
 	});
 	$('#nav-toc-contents ul').addClass('dropdown-menu');
 	
+	// EXPORT SETTINGS
+	
 	var exportTitle = $($('h1').get(0)).text();
 	$('#export-pdf').click(function() {
 		window.open('/assets/pdf/lessons/' + exportTitle + '.pdf', '_blank', '');
@@ -27,6 +31,27 @@ $(document).ready(function() {
 			title: exportTitle
 		});
 	});
+	
+	// BACK TO TOP BUTTON
+	
+	$(window).scroll(function() {
+		if($(this).scrollTop() > 50) {
+			$('#back-to-top').fadeIn();
+		}
+		else {
+			$('#back-to-top').fadeOut();
+		}
+	});
+	// scroll body to 0px on click
+	$('#back-to-top').click(function() {
+		$('#back-to-top').tooltip('hide');
+		$('body, html').animate({
+			scrollTop: 0
+		}, 800);
+		return false;
+	});
+	
+	$('#back-to-top').tooltip('show');
 });
 
 /**
