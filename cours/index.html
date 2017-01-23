@@ -17,7 +17,7 @@ navbarpos: 2
 	</thead>
 	<tbody>
 		{% assign pages = (site.pages | sort: 'chapter') %}
-		{% for page in site.pages %}
+		{% for page in pages %}
 			{% if page.lesson %}
 				<tr>
 					<td><a href="{{ page.url }}">{{ page.title }}</a></td>

@@ -32,9 +32,10 @@ header {
 		font-family: 'Handlee', cursive;
 		color: $simple-main-color;
 		font-size: 6.15vw;
+		transition: font-size 0.5s ease;
 		
 		@media(max-width: $mobile-max-width) {
-			font-size: 12vw;
+			font-size: 12vw !important;
 		}
 	}
 	h1:before {
@@ -47,6 +48,10 @@ header {
 		background-image: url('../img/logo.svg');
 		margin-right: 0.2em;
 	}
+}
+
+header:hover h1 {
+	font-size: 7vw;
 }
 
 .navbar {
@@ -63,9 +68,14 @@ header {
 	}
 }
 
-article h2 {
-	padding-bottom: 4px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+article {
+	h2 {
+		padding-bottom: 4px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	}
+	.label {
+		font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+	}
 }
 
 article, footer {
