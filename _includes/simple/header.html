@@ -20,13 +20,53 @@
 				{% for sitepage in pages %}
 					{% if sitepage.navbarpos %}
 						<li
-							{% if sitepage.title == page.title %}
-								 class="active"
+							{% if sitepage.path == page.path %}
+								class="active"
 							{% endif %}
-						><a href="{{ sitepage.url }}">{{ sitepage.title }}</a></li>
+						>
+							<a href="{{ sitepage.url }}">{{ sitepage.title }}</a>
+						</li>
 					{% endif %}
 				{% endfor %}
 			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a class="dropdown-toggle" href="/cours8" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Accès direct à un cours <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li data-toggle="modal" data-target="#modal-search"><a href="#"><span class="glyphicon glyphicon-search"></span> Rechercher un cours...</a></li>
+						<li role="separator" class="divider"></li>
+						<li class="dropdown-header"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Index des cours</li>
+						{% assign pages = (site.pages | sort: 'chapter') %}
+						{% for page in pages %}
+							{% if page.lesson %}
+								<li><a href="{{ page.url }}">{{ page.title }}</a></li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="modal-search" tabindex="-1" role="dialog" aria-labelledby="modal-search-label">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="modal-search-label">Rechercher un cours</h4>
+				</div>
+				<div class="modal-body clearfix">
+					<p>Entrez ci-dessous les termes recherchés :</p>
+					<form id="search-box" class="navbar-form navbar-left" action="/search.html" method="get">
+						<input type="text" name="keywords" placeholder="Chercher un cours..."/>
+						<input type="submit" value="Rechercher !" style="display: none;">
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+					<button type="button" class="btn btn-primary" onclick="$('#search-box').submit();">Rechercher !</button>
+				</div>
+			</div>
 		</div>
 	</div>
 </nav>

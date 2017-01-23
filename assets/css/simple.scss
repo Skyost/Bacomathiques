@@ -4,6 +4,8 @@
 @import 'colors';
 @import 'utils';
 
+/* DEFAULT STYLES */
+
 html {
 	background-color: $simple-main-color;
 	height: 100%;
@@ -19,11 +21,15 @@ body {
 	}
 }
 
+/* SPECIFIC STYLES */
+
+/** Header : **/
+
 header {
 	text-align: center;
 	border-radius: 10px 10px 0 0;
 	background-image: url('../img/header.png');
-	height: 280px;
+	height: 43vh;
 	display: flex;
 	align-items: center;
 	
@@ -54,8 +60,19 @@ header:hover h1 {
 	font-size: 7vw;
 }
 
+/** Navbar : **/
+
 .navbar {
 	border-radius: 0 !important;
+}
+
+#search-box {
+	width: 100%;
+	
+	input[type="text"] {
+		padding: 0 10px 0 10px;
+		width: 100%;
+	}
 }
 
 #content {
@@ -68,6 +85,8 @@ header:hover h1 {
 	}
 }
 
+/** Article : **/
+
 article {
 	h2 {
 		padding-bottom: 4px;
@@ -78,11 +97,14 @@ article {
 	}
 }
 
+/** Footer : **/
+
 article, footer {
 	padding: 0 14px 0 14px;
 }
 
 footer {
+	@include main-font;
 	margin-top: 28px;
 	border-top: 1px solid $footer-border-color;
 	padding: 14px;

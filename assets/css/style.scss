@@ -4,18 +4,24 @@
 /* GENERAL STYLES */
 
 @import 'colors';
-@import url('https://fonts.googleapis.com/css?family=Merriweather|Open+Sans|Handlee');
+@import 'utils';
+@import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans|Handlee');
 
 h1, h2, h3 {
 	font-family: 'Open Sans', sans-serif;
 }
 
 body {
-	font-family: 'Merriweather', serif;
-	letter-spacing: 0.01rem;
-	font-size: 14px;
-	line-height: 1.75em;
+	font-size: 16px;
 	color: $main-text-color;
+}
+
+nav {
+	font-size: 14px !important;
+}
+
+article, .modal {
+	@include main-font;
 }
 
 figure figcaption {
