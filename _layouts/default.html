@@ -41,13 +41,16 @@ layout: compress
 									<li class="dropdown">
 										{% if page.lesson %}
 											<a class="dropdown-toggle" data-toggle="dropdown" href="{{ page.url }}"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> {{ page.title }} <b class="caret"></b></a>
-											<div id="nav-toc-contents"></div>
+											<ul class="dropdown-menu">
+												<!-- Will be completed in JavaScript. -->
+											</ul>
 										{% else %}
 											<a class="dropdown-toggle" data-toggle="dropdown" href="/cours/"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Index des cours <b class="caret"></b></a>
 											<ul class="dropdown-menu">
-												{% for page in site.pages %}
+												{% assign pages = (site.pages | sort: 'chapter') %}
+												{% for page in pages %}
 													{% if page.lesson %}
-														<li><a href="{{ page.url }}">{{ page.title }}</a></li>
+														<li class="toc-h2 a"><a href="{{ page.url }}">{{ page.title }}</a></li>
 													{% endif %}
 												{% endfor %}
 											</ul>

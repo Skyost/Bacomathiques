@@ -14,11 +14,12 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#nav-toc-contents').toc({
+	var menu = $('.nav .dropdown-menu');
+	menu.toc({
 		selectors: 'h2,h3',
 		container: 'article'
 	});
-	$('#nav-toc-contents ul').addClass('dropdown-menu');
+	menu.html($('.nav .dropdown-menu ul').html());
 	
 	// EXPORT SETTINGS
 	

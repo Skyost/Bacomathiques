@@ -91,6 +91,10 @@ nav {
 /** Table of contents : **/
 
 nav {
+	.toc-h2 a {
+		font-weight: bold;
+		font-size: 13px;
+	}
 	.toc-h3 a {
 		padding-left: 42px !important;
 		font-size: 0.85em;

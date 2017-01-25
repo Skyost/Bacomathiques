@@ -65,4 +65,40 @@ $(document).ready(function() {
 			}
 		]
 	});
+	
+	functionPlot({
+		title: 'Intégrale sur [-1.5;1.5] de x²',
+		target: '#representation-5',
+		grid: true,
+		data: [
+			{
+				title: 'x^2',
+				fn: 'x^2',
+				range: [-1.5, 1.5],
+				closed: true
+			},
+			{
+				title: 'x^2',
+				fn: 'x^2'
+			}
+		]
+	});
+	
+	functionPlot({
+		title: 'Intégrale sur [-1.5;1.5] de x^3',
+		target: '#representation-6',
+		grid: true,
+		data: [
+			{
+				title: 'x^3',
+				fn: 'x^3',
+				range: [-1.5, 1.5],
+				closed: true
+			},
+			{
+				title: 'x^3',
+				fn: 'x^3'
+			}
+		]
+	});
 });
