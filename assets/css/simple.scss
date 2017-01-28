@@ -28,10 +28,13 @@ body {
 header {
 	text-align: center;
 	border-radius: 10px 10px 0 0;
-	background-image: url('../img/header.png');
 	height: 43vh;
 	display: flex;
 	align-items: center;
+	
+	// Paralax :
+	background-image: url('../img/header.png');
+	background-attachment: fixed;
 	
 	h1 {
 		margin: auto;

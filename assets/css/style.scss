@@ -28,6 +28,19 @@ figure figcaption {
 	margin-top: 14px;
 }
 
+/* RESPONSIVE YOUTUBE VIDEOS */
+
+.video-responsive {
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	width: 60%;
+	height: auto;
+	margin-bottom: 10px;
+	
+	@media(max-width: $mobile-max-width) {
+		width: 90%;
+	}
+}
+
 /* CLEARFIX */
 
 .clearfix {
