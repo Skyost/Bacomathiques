@@ -20,7 +20,7 @@ body {
 	background-image: url('../img/background.png');
 	
 	@media(max-width: $mobile-max-width) {
-		margin-top: 0 !important;
+		padding-top: 0 !important;
 	}
 }
 
