@@ -7,14 +7,17 @@
 /* DEFAULT STYLES */
 
 html {
-	background-color: $simple-main-color;
-	height: 100%;
+	min-height: 100%;
+}
+
+body, .row, #content {
+	min-height: 96vh;
 }
 
 body {
-	min-height: 100%;
+	padding-top: 4vh;
 	background-color: $simple-main-color;
-	margin-top: 28px;
+	background-image: url('../img/background.png');
 	
 	@media(max-width: $mobile-max-width) {
 		margin-top: 0 !important;
@@ -31,10 +34,7 @@ header {
 	height: 43vh;
 	display: flex;
 	align-items: center;
-	
-	// Paralax :
 	background-image: url('../img/header.png');
-	background-attachment: fixed;
 	
 	h1 {
 		margin: auto;
@@ -79,12 +79,14 @@ header:hover h1 {
 }
 
 #content {
+	position: relative;
 	background-color: white;
-	padding: 0;
+	padding: 0 0 100px 0;
 	border-radius: 10px 10px 0 0;
 	
 	@media(max-width: $mobile-max-width) {
 		border-radius: 0 !important;
+		padding-bottom: 200px;
 	}
 }
 
@@ -108,7 +110,8 @@ article, footer {
 
 footer {
 	@include main-font;
-	margin-top: 28px;
+	position: absolute;
+	bottom: 0;
 	border-top: 1px solid $footer-border-color;
 	padding: 14px;
 	background-color: $footer-background-color;

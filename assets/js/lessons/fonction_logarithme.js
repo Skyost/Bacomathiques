@@ -1,8 +1,18 @@
 $(document).ready(function() {
-	functionPlot({
+	createPlots(computeDimension());
+});
+
+$(window).resize(function() {
+	createPlots(computeDimension());
+});
+
+function createPlots(dimensions) {
+		functionPlot({
 		title: 'Le logarithme néperien',
 		target: '#representation-1',
 		grid: true,
+		height: dimensions.height,
+		width: dimensions.width,
 		data: [
 			{
 				title: 'ln(x)',
@@ -15,6 +25,8 @@ $(document).ready(function() {
 		title: 'Relation de symétrie',
 		target: '#representation-2',
 		grid: true,
+		height: dimensions.height,
+		width: dimensions.width,
 		data: [
 			{
 				title: 'exp(x)',
@@ -30,4 +42,4 @@ $(document).ready(function() {
 			}
 		]
 	});
-});
+}

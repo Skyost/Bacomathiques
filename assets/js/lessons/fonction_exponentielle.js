@@ -1,8 +1,18 @@
 $(document).ready(function() {
+	createPlots(computeDimension());
+});
+
+$(window).resize(function() {
+	createPlots(computeDimension());
+});
+
+function createPlots(dimensions) {
 	functionPlot({
 		title: 'La fonction exponentielle',
 		target: '#representation-1',
 		grid: true,
+		height: dimensions.height,
+		width: dimensions.width,
 		data: [
 			{
 				title: 'exp(x)',
@@ -14,4 +24,4 @@ $(document).ready(function() {
 			}
 		]
 	});
-});
+}

@@ -2,6 +2,7 @@
 ---
 
 @import 'colors';
+@import 'utils';
 
 /* NAVBAR LICENSE */
 
@@ -292,6 +293,7 @@ article {
 #annals {
 	border-color: $annal-border-color;
 	background-color: $annal-background-color;
+	@include main-font;
 	
 	h2 {
 		margin-top: 0;

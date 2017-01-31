@@ -1,8 +1,18 @@
 $(document).ready(function() {
+	createPlots(computeDimension());
+});
+
+$(window).resize(function() {
+	createPlots(computeDimension());
+});
+
+function createPlots(dimensions) {
 	functionPlot({
 		title: 'L\'Unité d\'Aire (U.A.)',
 		target: '#representation-1',
 		grid: true,
+		height: dimensions.height,
+		width: dimensions.width,
 		data: [
 			{
 				fn: '1',
@@ -16,6 +26,8 @@ $(document).ready(function() {
 		title: 'Intégrale sur [-2;2] de x²+x-2',
 		target: '#representation-2',
 		grid: true,
+		height: dimensions.height,
+		width: dimensions.width,
 		data: [
 			{
 				title: 'x^2+x-2',
@@ -34,6 +46,8 @@ $(document).ready(function() {
 		title: 'Intégrale positive',
 		target: '#representation-3',
 		grid: true,
+		height: dimensions.height,
+		width: dimensions.width,
 		data: [
 			{
 				title: 'x',
@@ -52,6 +66,8 @@ $(document).ready(function() {
 		title: 'Intégrale négative',
 		target: '#representation-4',
 		grid: true,
+		height: dimensions.height,
+		width: dimensions.width,
 		data: [
 			{
 				title: 'x',
@@ -70,6 +86,8 @@ $(document).ready(function() {
 		title: 'Intégrale sur [-1.5;1.5] de x²',
 		target: '#representation-5',
 		grid: true,
+		height: dimensions.height,
+		width: dimensions.width,
 		data: [
 			{
 				title: 'x^2',
@@ -88,6 +106,8 @@ $(document).ready(function() {
 		title: 'Intégrale sur [-1.5;1.5] de x^3',
 		target: '#representation-6',
 		grid: true,
+		height: dimensions.height,
+		width: dimensions.width,
 		data: [
 			{
 				title: 'x^3',
@@ -101,4 +121,4 @@ $(document).ready(function() {
 			}
 		]
 	});
-});
+}
