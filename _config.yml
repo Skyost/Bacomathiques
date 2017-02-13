@@ -15,6 +15,12 @@ social:
 compress_html:
   clippings: all
   blanklines: true
+  
+content_license:
+  name: "Creative Commons BY-NC 4.0"
+  acronym: "CC BY NC"
+  image: "/assets/img/license.svg"
+  url: "https://creativecommons.org/licenses/by-nc/4.0/deed.fr"
 
 # SASS options
 sass:
