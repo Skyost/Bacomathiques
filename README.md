@@ -6,7 +6,7 @@ Bacomathiques est un petit site web qui contient tout ce que vous avez besoin po
 
 ## Les contenus
 
-* Des cours en norme avec [le programme](http://media.education.gouv.fr/file/special_8_men/98/4/mathematiques_S_195984.pdf) de Terminale S.
+* Des cours en accord avec [le programme](http://media.education.gouv.fr/file/special_8_men/98/4/mathematiques_S_195984.pdf) de Terminale S.
 * Des exemples intuitifs et la possibilité de télécharger et imprimer les cours gratuitement pour les relire chez soi !
 * Des annales des précédents sujets du BAC de mathématiques à télécharger.
 * Le plus important : tout est gratuit. Même pas besoin de compte, tout est à disposition de tout le monde !

@@ -372,15 +372,18 @@ chapter: 1
 		<p><strong>Exemple :</strong> Soit une suite $u_n$ définie par $u_n$ : $\begin{cases} u_0 = 4\\ u_{n+1} = \frac{4u_n + 17}{u_n + 4}\end{cases}$.
 		On souhaite montrer que pour tout $n \in \mathbb{N}$, on a $4 \leq u_n \leq 5$.</p>
 		<p>On note $P_n$ la propriété $P_n$ : $4 \leq u_n \leq 5$.</p>
+		<p>On constate également que $u_{n+1} = \frac{4u_n + 17}{u_n + 4} = \frac{4(u_n + 4) + 1}{u_n + 4} = 4 + \frac{1}{u_n + 4}$.</p>
 		<p><strong>Initialisation :</strong> On teste la propriété au rang $0$ :</p>
 		<p>$H_0$ : $4 \leq u_0 \leq 5 \iff 4 \leq 4 \leq 5$. C'est vrai.</p>
 		<p>La propriété est vraie au rang $0$, on souhaite vérifier que la propriété est vraie au rang $n+1$.</p>
 		<p><strong>Hérédité :</strong></p>
-		<p>On a $u_{n+1} = \frac{4u_n + 17}{u_n + 4}$. Or d'après $P_n$ : $4 \leq u_n \leq 5$. Donc on a :</p>
-		<p>$\frac{4 \times 4 + 17}{4 + 4} \geq u_{n+1} \geq \frac{4 \times 5 + 17}{5 + 4}$ (comme $u_n$ est décroissante, on change le signe de l'inégalité)</p>
-		<p>$\iff \frac{33}{8} \geq u_{n+1} \geq \frac{37}{9}$</p>
-		<p>Or $\frac{33}{8} = 4.125 < 5$ et $\frac{37}{9} \approx 4.111 > 4$. On a donc bien :</p>
-		<p>$5 \geq u_{n+1} \geq 4$</p>
+		<p>D'après $P_n$ : $4 \leq u_n \leq 5$. Donc on a :</p>
+		<p>$\iff 4 \leq u_n \leq 5$</p>
+		<p>$\iff 4 + 4 \leq u_n + 4 \leq 5 + 4$</p>
+		<p>$\iff \frac{1}{9} \leq \frac{1}{u_n + 4} \leq \frac{1}{8}$ (la fonction inverse est décroissante sur $\mathbb{R}^+$ donc on change l'inégalité)</p>
+		<p>$\iff 4 + \frac{1}{9} \leq 4 + \frac{1}{u_n + 4} \leq 4 + \frac{1}{8}$</p>
+		<p>Or $4 + \frac{1}{9} \approx 4.111 > 4$ et $4 + \frac{1}{8} = 4.125 < 5$. On a donc bien :</p>
+		<p>$4 \leq u_{n+1} \leq 5$</p>
 		<p><strong>Conclusion :</strong></p>
 		<p class="last">La propriété est initialisée et héréditaire. Ainsi, $P_n$ est vraie pour tout $n \in \mathbb{N}$.</p>
 	</div>
