@@ -45,7 +45,7 @@ chapter: 1
 		
 		<p class="bubble formula">$u_{n+1} = u_n + r$ avec $r \in \mathbb{R}$.</p>
 		
-		<p>Le réel $r$ est la <strong>raison</strong> de la suite (si $r > 0$, $u_n$ est strictement croissante, si $r < 0$, $u_n$ est strictement décroissante et si $r = 0$, $u_n$ est constante).
+		<p>Le réel $r$ est la <strong>raison</strong> de la suite (si $r \gt 0$, $u_n$ est strictement croissante, si $r \lt 0$, $u_n$ est strictement décroissante et si $r = 0$, $u_n$ est constante).
 		Toute suite arithmétique a pour terme général :</p>
 		
 		<div class="bubble formula">
@@ -79,7 +79,7 @@ chapter: 1
 		
 		<p class="bubble formula">$v_{n+1} = v_n \times q$ avec $q \in \mathbb{R}$.</p>
 		
-		<p>Le réel $q$ est la <strong>raison</strong> de la suite (si $q > 1$, $v_n$ est strictement croissante, si $0 < q < 1$, $v_n$ est déstrictement croissante et si $q = 1$ ou $0$, $v_n$ est constante).
+		<p>Le réel $q$ est la <strong>raison</strong> de la suite (si $q \gt 1$, $v_n$ est strictement croissante, si $0 \lt q \lt 1$, $v_n$ est déstrictement croissante et si $q = 1$ ou $0$, $v_n$ est constante).
 		Toute suite géométrique a pour terme général :</p>
 		
 		<div class="bubble formula">
@@ -134,7 +134,7 @@ chapter: 1
 		
 		<h3 id="limites">Limites</h3>
 		
-		<p>On dit qu'une suite $u_n$ <strong>converge</strong> vers une limite finie $l$ si pour tout $\epsilon > 0$, on a $|u_n - l| < \epsilon$.
+		<p>On dit qu'une suite $u_n$ <strong>converge</strong> vers une limite finie $l$ si pour tout $\epsilon \gt 0$, on a $|u_n - l| \lt \epsilon$.
 		Ce terme est un peu technique mais cela signifie qu'il existe une infinité de réels entre $u_n$ et $l$. On dit que $u_n$ est <strong>convergente</strong> et note alors :</p>
 		
 		<p class="bubble formula">$\lim\limits_{n \rightarrow +\infty} u_n = l$</p>
@@ -147,8 +147,8 @@ chapter: 1
 		
 		<div class="bubble tip">
 			<p>Il est possible d'écrire une définition semblable à celle de la convergence.</p>
-			<p>Ainsi, si $u_n$ diverge vers $+\infty$ quand $n$ tend vers +$\infty$, cela signifie que pour tout réel $h$ et à partir d'un certain rang $M$, on aura $u_M > h$.</p>
-			<p class="last">Et si $u_n$ diverge vers $-\infty$ quand $n$ tend vers +$\infty$, cela signifie que pour tout réel $h$ et à partir d'un certain rang $m$, on aura $u_m < h$.</p>
+			<p>Ainsi, si $u_n$ diverge vers $+\infty$ quand $n$ tend vers +$\infty$, cela signifie que pour tout réel $h$ et à partir d'un certain rang $M$, on aura $u_M \gt h$.</p>
+			<p class="last">Et si $u_n$ diverge vers $-\infty$ quand $n$ tend vers +$\infty$, cela signifie que pour tout réel $h$ et à partir d'un certain rang $m$, on aura $u_m \lt h$.</p>
 		</div>
 		
 		<table class="table table-bordered table-hover last">
@@ -160,8 +160,8 @@ chapter: 1
 			<tbody>
 				<tr>
 					<td>Si on a pour $q \in \mathbb{R}$...</td>
-					<td>$-1 < q < 1$</td>
-					<td>$1 < q$</td>
+					<td>$-1 \lt q \lt 1$</td>
+					<td>$1 \lt q$</td>
 					<td>$q \leq -1$</td>
 					<td>$q = 1$</td>
 				</tr>
@@ -232,10 +232,10 @@ chapter: 1
 				<tr>
 					<td>Si la limite de $u_n$ quand $n$ tend vers $+\infty$ est...</td>
 					<td>$l$</td>
-					<td>$l > 0$</td>
-					<td>$l > 0$</td>
-					<td>$l < 0$</td>
-					<td>$l < 0$</td>
+					<td>$l \gt 0$</td>
+					<td>$l \gt 0$</td>
+					<td>$l \lt 0$</td>
+					<td>$l \lt 0$</td>
 					<td>$+\infty$</td>
 					<td>$+\infty$</td>
 					<td>$-\infty$</td>
@@ -291,10 +291,10 @@ chapter: 1
 					<td>Et la limite de $v_n$ quand $n$ tend vers $+\infty$ est...</td>
 					<td>$l' \neq 0$</td>
 					<td>$\pm \infty$</td>
-					<td>$l' > 0$</td>
-					<td>$l' < 0$</td>
-					<td>$l' > 0$</td>
-					<td>$l' < 0$</td>
+					<td>$l' \gt 0$</td>
+					<td>$l' \lt 0$</td>
+					<td>$l' \gt 0$</td>
+					<td>$l' \lt 0$</td>
 					<td>$\pm \infty$</td>
 					<td>$0^+_-$</td>
 					<td>$0$</td>
@@ -323,8 +323,8 @@ chapter: 1
 		<p>Soient une suite $u_n$ et deux réels $m$ et $M$ :</p>
 		
 		<ul class="bubble formula">
-			<li>On dit que que $m$ est un <strong>minorant</strong> de $u_n$ si : $u_n > m$.</li>
-			<li>On dit que que $M$ est un <strong>majorant</strong> de $u_n$ si : $u_n < M$.</li>
+			<li>On dit que que $m$ est un <strong>minorant</strong> de $u_n$ si : $u_n \gt m$.</li>
+			<li>On dit que que $M$ est un <strong>majorant</strong> de $u_n$ si : $u_n \lt M$.</li>
 			<li>On dit que que $u_n$ est <strong>bornée</strong> si elle est à la fois majorée et minorée.</li>
 			<li>Si $u_n$ est croissante et est majorée, alors elle est convergente. Si elle n'est pas majorée, $u_n$ diverge vers $+\infty$.</li>
 			<li class="last">Si $u_n$ est décroissante et est minorée, alors elle est convergente. Si elle n'est pas minorée, $u_n$ diverge vers $-\infty$.</li>
@@ -338,15 +338,15 @@ chapter: 1
 		
 		<h3 id="encadrement">Encadrement</h3>
 		
-		<p>Soient deux suites $u_n$ et $v_n$ telles que $u_n < v_n$ à partir d'un certain rang. On a :</p>
+		<p>Soient deux suites $u_n$ et $v_n$ telles que $u_n \lt v_n$ à partir d'un certain rang. On a :</p>
 		
 		<ul class="bubble formula">
 			<li>$\lim\limits_{n \rightarrow +\infty} u_n = +\infty$, alors $\lim\limits_{n \rightarrow +\infty} v_n = +\infty$.</li>
 			<li>$\lim\limits_{n \rightarrow +\infty} v_n = -\infty$, alors $\lim\limits_{n \rightarrow +\infty} u_n = -\infty$.</li>
-			<li class="last">$\lim\limits_{n \rightarrow +\infty} u_n = l$ et $\lim\limits_{n \rightarrow +\infty} v_n = l'$ alors $l < l'$.</li>
+			<li class="last">$\lim\limits_{n \rightarrow +\infty} u_n = l$ et $\lim\limits_{n \rightarrow +\infty} v_n = l'$ alors $l \lt l'$.</li>
 		</ul>
 		
-		<p>Soient deux suites $u_n$, $v_n$ et $w_n$ telles que $u_n < v_n < w_n$ à partir d'un certain rang et que $u_n$ et $w_n$ convergent vers le réel $l$. Alors :</p>
+		<p>Soient deux suites $u_n$, $v_n$ et $w_n$ telles que $u_n \lt v_n \lt w_n$ à partir d'un certain rang et que $u_n$ et $w_n$ convergent vers le réel $l$. Alors :</p>
 		
 		<p class="bubble formula">$\lim\limits_{n \rightarrow +\infty} v_n = l$</p>
 		
@@ -382,7 +382,7 @@ chapter: 1
 		<p>$\iff 4 + 4 \leq u_n + 4 \leq 5 + 4$</p>
 		<p>$\iff \frac{1}{9} \leq \frac{1}{u_n + 4} \leq \frac{1}{8}$ (la fonction inverse est décroissante sur $\mathbb{R}^+$ donc on change l'inégalité)</p>
 		<p>$\iff 4 + \frac{1}{9} \leq 4 + \frac{1}{u_n + 4} \leq 4 + \frac{1}{8}$</p>
-		<p>Or $4 + \frac{1}{9} \approx 4.111 > 4$ et $4 + \frac{1}{8} = 4.125 < 5$. On a donc bien :</p>
+		<p>Or $4 + \frac{1}{9} \approx 4.111 \gt 4$ et $4 + \frac{1}{8} = 4.125 \lt 5$. On a donc bien :</p>
 		<p>$4 \leq u_{n+1} \leq 5$</p>
 		<p><strong>Conclusion :</strong></p>
 		<p class="last">La propriété est initialisée et héréditaire. Ainsi, $P_n$ est vraie pour tout $n \in \mathbb{N}$.</p>
