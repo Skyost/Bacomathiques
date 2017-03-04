@@ -1,0 +1,240 @@
+---
+layout: default
+title: "Chapitre II - Les fonctions trigonométriques"
+excerpt: "Cours sur les fonctions trigonométriques : sinus, cosinus, périodicité, formules, ..."
+maths: true
+lesson: true
+js: ["/assets/js/lessons/fonctions_trigonometriques.js"]
+annals: [
+	"2016/pondichery/specifique",
+	"2016/nouvelle-caledonie/specifique"
+]
+comments: true
+chapter: 2
+---
+<section>
+
+	<h2 id="sinus-cosinus">Sinus et cosinus</h2>
+
+	<section>
+		
+		<h3 id="definition">Définition</h3>
+		<p>Dans tout le cours, le plan sera muni dans repère orthonormé $(O,\ \vec\imath ;\ \vec\jmath)$.
+		Il sera également muni d'un cercle appelé <strong>cercle trigonométrique</strong> $\cal{C}$ de centre $O$ et de rayon 1 orienté dans le sens inverse des aiguilles
+		d'une montre (c'est le <strong>sens direct</strong>) :</p>
+		
+		<span id="representation-1" class="plot"></span>
+		
+		<p>Soit $M$ un point quelconque d'abscisse $x$ et d'ordonnée $y$ situé sur le cercle $\cal{C}$. Les coordonnées de $M$ sont :</p>
+		
+		<ul class="bubble formula">
+			<li>L'abscisse de $M$ appelée <strong>cosinus</strong> est notée $cos(x)$.</li>
+			<li>L'ordonnée de $M$ appelée <strong>sinus</strong> est notée $sin(x)$.</li>
+			<li class="last">Pour tout $x \in \mathbb{R}$, on aura $-1 \leq cos(x) \leq 1$ et $-1 \leq sin(x) \leq 1$.</li>
+		</ul>
+		
+	</section>
+	<section>
+	
+		<h3 id="periodicite">Périodicité</h3>
+		<p>Les fonctions sinus et cosinus sont périodiques de période $2\pi$. Ainsi pour tout $x$ réel et $k$ entier relatif :</p>
+		
+		<ul class="bubble formula">
+			<li>$cos(x) = cos(x + 2k\pi)$</li>
+			<li class="last">$sin(x) = sin(x + 2k\pi)$</li>
+		</ul>
+		
+		<p>Concrètement, cela signifie que $cos(x) = cos(x + 2\pi) = cos(x + 4\pi) = \text{ ... } = cos(x + 2k\pi)$ et idem pour $sin(x)$.</p>
+	
+	</section>
+	<section>
+		
+		<h3 id="formules">Formules de trigonométrie</h3>
+		<p>On a les relations suivantes pour tout $x \in \mathbb{R}$ :</p>
+		
+		<ul class="bubble formula">
+			<li>$cos(-x) = cos(x)$ (la fonction cosinus est <strong>paire</strong>)</li>
+			<li>$sin(-x) = -sin(x)$ (la fonction sinus est <strong>impaire</strong>)</li>
+			<li>$cos(x + \pi) = -cos(x)$</li>
+			<li>$sin(x + \pi) = -sin(x)$</li>
+			<li>$cos(x - \pi) = -cos(x)$</li>
+			<li>$sin(x - \pi) = sin(x)$</li>
+			<li>$cos(\frac{\pi}{2} - x) = sin(x)$</li>
+			<li>$sin(\frac{\pi}{2} - x) = cos(x)$</li>
+			<li>$cos(x + \frac{\pi}{2}) = -sin(x)$</li>
+			<li>$sin(x + \frac{\pi}{2}) = cos(x)$</li>
+			<li>$cos(x + y) = cos(x) * cos(y) - sin(x) * sin(y)$</li>
+			<li>$sin(x + y) = sin(x) * cos(y) + cos(x) * sin(y)$</li>
+			<li class="last">$cos(x)^2 + sin(x)^2 = 1$</li>
+		</ul>
+		
+		<div class="bubble tip">
+			<p>Il n'est aucunement demandé de mémoriser ces formules (sauf les trois dernières). Cependant, il doit être possible de les retrouver à l'aide du cercle trigonométrique.
+			Ainsi, prenons l'exemple de $cos(x + \pi)$ :</p>
+			
+			<span id="representation-2" class="plot"></span>
+			
+			<p class="last">On remarque que l'ordonnée reste la même (le sinus est le même). Cependant, on a bien une abscisse opposée.
+			On a retrouvé la formule $cos(x + \pi) = -cos(x)$.</p>
+		</div>
+		
+	</section>
+	<section>
+		
+		<h3 id="resolution-equations">Résolution d'équations</h3>
+		<p>Il est possible de résoudre des équations incluant des sinus et des cosinus. Ainsi, soient $x$ et $y$ deux réels et $k$ un entier relatif. On a les relations suivantes :</p>
+		
+		<ul class="bubble formula">
+			<li>$cos(x) = cos(y) \iff \begin{cases} y = x + 2k\pi \\ ou \\ y = -x + 2k\pi\end{cases}$</li>
+			<li class="last">$sin(x) = sin(y) \iff \begin{cases} y = x + 2k\pi \\ ou \\ y = \pi - x + 2k\pi\end{cases}$</li>
+		</ul>
+		
+		<p class="bubble tip">Comme précédemment, ces formules peuvent se retrouver à l'aide du cercle trigonométrique.</p>
+		
+	</section>
+	<section>
+	
+		<h3 id="fonctions-reciproques">Fonctions réciproques</h3>
+		<p>Soient $x$, $y$ $\in \mathbb{R}$, on admettra qu'il existe une <strong>fonction réciproque</strong> à $cos(x)$ (notée $arccos(x)$) et une
+		<strong>fonction réciproque</strong> à $sin(x)$ (notée $sin(x)$). On a les relations suivantes :</p>
+		
+		<ul class="bubble formula">
+			<li>$cos(x) = y \iff x = arccos(y)$</li>
+			<li class="last">$sin(x) = y \iff x = sin(y)$</li>
+		</ul>
+		
+		<p>Cela signifie que à tout réel $x$, la fonction $arccos(x)$ y associe son <strong>antécédent</strong> $y$ par rapport à $cos(x)$ (pareil pour $arcsin(x)$ avec $sin(x)$).</p>
+	
+	</section>
+
+</section>
+<section>
+
+	<h2 id="etude">Étude des fonctions trigonométriques</h2>
+	
+	<section>
+	
+		<h3 id="derivee">Dérivée</h3>
+		<p>Soit une fonction $u$ dérivable sur un interval $I$, on a pour tout $x$ appartenant à cet interval :</p>
+		
+		<ul class="bubble formula">
+			<li>$cos'(u(x)) = u'(x) * -sin(u(x))$</li>
+			<li class="last">$sin'(u(x)) = u'(x) * cos(u(x))$</li>
+		</ul>
+		
+		<p>Ainsi, si on a $u(x) = x$ :</p>
+		
+		<ul class="bubble formula">
+			<li>$cos'(x) = -sin(x)$</li>
+			<li class="last">$sin'(x) = cos(x)$</li>
+		</ul>
+	
+	</section>
+	<section>
+	
+		<h3 id="signe-variations">Signe et variations</h3>
+		<p>L'étude du signe des dérivées des fonctions trigonométriques permettent d'obtenir les variations de celles-ci.
+		Voici donc le signe et la variation de ces fonctions. Tout d'abord celui de la fonction cosinus :</p>
+		
+		<figure class="bubble formula math-table">
+		
+			<img src="/assets/img/lessons/fonctions_trigonometriques/variations_cos.svg" title="Tableau de variation de la fonction cosinus" alt="Tableau de variation de la fonction cosinus"/>
+		
+			<figcaption>
+				<p class="last">Veuillez noter que ce tableau est périodique de période $2\pi$.</p>
+			</figcaption>
+		
+		</figure>
+		
+		<p>Voici maintenant celui de la fonction sinus :</p>
+		
+		<figure class="bubble formula math-table">
+		
+			<img src="/assets/img/lessons/fonctions_trigonometriques/variations_sin.svg" title="Tableau de variation de la fonction sinus" alt="Tableau de variation de la fonction sinus"/>
+		
+			<figcaption>
+				<p class="last">Ce tableau est également périodique de période $2\pi$.</p>
+			</figcaption>
+		
+		</figure>
+	
+	</section>
+	<section>
+	
+		<h3 id="limite">Limite</h3>
+		
+		<p>Les fonctions trigonométriques ont pour particularité de <strong>ne pas admettre de limite</strong> en $\pm\infty$.
+		Ceci provenant du fait que ces fonctions sont périodiques et que leur valeur oscille entre $-1$ et $1$.</p>
+	
+	</section>
+	<section>
+	
+		<h3 id="valeurs-remarquables">Valeurs remarquables</h3>
+		
+		<p>Voici un tableau regroupant quelques valeurs remarquables de sinus et de cosinus :</p>
+		
+		<div class="bubble formula">
+			<table class="table table-bordered table-hover last">
+				<thead>
+					<tr>
+						<th>Valeur de $x$ (à $2k\pi$ près, $k \in \mathbb{Z}$)</th>
+						<th>Valeur de $cos(x)$</th>
+						<th>Valeur de $sin(x)$</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>$0$</td>
+						<td>$1$</td>
+						<td>$0$</td>
+					</tr>
+					<tr>
+						<td>$\frac{\pi}{6}$</td>
+						<td>$\frac{\sqrt{3}}{2}$</td>
+						<td>$\frac{1}{2}$</td>
+					</tr>
+					<tr>
+						<td>$\frac{\pi}{4}$</td>
+						<td>$\frac{\sqrt{2}}{2}$</td>
+						<td>$\frac{\sqrt{2}}{2}$</td>
+					</tr>
+					<tr>
+						<td>$\frac{\pi}{3}$</td>
+						<td>$\frac{1}{2}$</td>
+						<td>$\frac{\sqrt{3}}{2}$</td>
+					</tr>
+					<tr>
+						<td>$\frac{\pi}{2}$</td>
+						<td>$0$</td>
+						<td>$1$</td>
+					</tr>
+					<tr>
+						<td>$\frac{2\pi}{3}$</td>
+						<td>$-\frac{1}{2}$</td>
+						<td>$\frac{\sqrt{3}}{2}$</td>
+					</tr>
+					<tr>
+						<td>$\frac{3\pi}{4}$</td>
+						<td>$-\frac{\sqrt{2}}{2}$</td>
+						<td>$\frac{\sqrt{2}}{2}$</td>
+					</tr>
+					<tr>
+						<td>$\frac{5\pi}{6}$</td>
+						<td>$-\frac{\sqrt{3}}{2}$</td>
+						<td>$\frac{1}{2}$</td>
+					</tr>
+					<tr>
+						<td>$\pi$</td>
+						<td>$-1$</td>
+						<td>$0$</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<p class="no-print">C'est tout pour ce chapitre sur les fonctions trigonométriques. N'oubliez pas de poser des questions dans l'espace commentaires ci-dessous
+		et n'hésitez pas à travailler les sujets d'annales.</p>
+	
+	</section>
+	
+</section>
