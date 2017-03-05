@@ -7,7 +7,7 @@ $(window).resize(function() {
 });
 
 function createPlots(dimensions) {
-		functionPlot({
+	functionPlot({
 		title: 'Le logarithme néperien',
 		target: '#representation-1',
 		grid: true,

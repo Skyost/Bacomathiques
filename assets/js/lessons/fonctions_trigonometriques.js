@@ -98,4 +98,32 @@ function createPlots(dimensions) {
 			},
 		]
 	});
+	
+	functionPlot({
+		title: 'La fonction cosinus',
+		target: '#representation-3',
+		grid: true,
+		height: dimensions.height,
+		width: dimensions.width,
+		data: [
+			{
+				title: 'cos(x)',
+				fn: 'cos(x)'
+			}
+		]
+	});
+	
+	functionPlot({
+		title: 'La fonctions sinus',
+		target: '#representation-4',
+		grid: true,
+		height: dimensions.height,
+		width: dimensions.width,
+		data: [
+			{
+				title: 'sin(x)',
+				fn: 'sin(x)'
+			}
+		]
+	});
 }
