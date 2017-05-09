@@ -14,27 +14,20 @@ body, .row, #content {
 	min-height: 96vh;
 }
 
-body {
-	padding-top: 4vh;
-	background-color: $simple-main-color;
-	background-image: url('../img/background.png');
-	
-	@media(max-width: $mobile-max-width) {
-		padding-top: 0 !important;
-	}
-}
-
 /* SPECIFIC STYLES */
 
 /** Header : **/
 
 header {
 	text-align: center;
-	border-radius: 10px 10px 0 0;
-	height: 43vh;
+	height: 400px;
 	display: flex;
 	align-items: center;
 	background-image: url('../img/header.png');
+	
+	@media(max-width: $mobile-max-width) {
+		height: 200px;
+	}
 	
 	h1 {
 		margin: auto;
@@ -82,10 +75,8 @@ header:hover h1 {
 	position: relative;
 	background-color: white;
 	padding: 0 0 100px 0;
-	border-radius: 10px 10px 0 0;
 	
 	@media(max-width: $mobile-max-width) {
-		border-radius: 0 !important;
 		padding-bottom: 200px;
 	}
 }
@@ -111,6 +102,7 @@ article, footer {
 
 footer {
 	@include main-font;
+	width: 100%;
 	position: absolute;
 	bottom: 0;
 	border-top: 1px solid $footer-border-color;
