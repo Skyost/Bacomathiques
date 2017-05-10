@@ -25,7 +25,7 @@ $(document).ready(function() {
 	
 	var exportTitle = $($('h1').get(0)).text();
 	$('#export-pdf').click(function() {
-		window.open('/assets/pdf/lessons/' + exportTitle + '.pdf', '_blank', '');
+		window.open('/assets/pdf/lessons/' + encodeURI(exportTitle.replace('é', 'e')) + '.pdf', '_blank', '');
 	});
 	$('#export-print').click(function() {
 		$('article').print({
