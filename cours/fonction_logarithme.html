@@ -59,7 +59,7 @@ chapter: 5
 			<li>$ln(a^n) = n \times ln(a)$ pour $n \in \mathbb{Z}$</li>
 			<li>$ln(\frac{a}{b}) = ln(a) - ln(b)$ (déduite des deux relations précédentes)</li>
 			<li>$ln(\frac{1}{b}) = -ln(b)$ (déduite de la relation précédente)</li>
-			<li class="last">$ln(\sqrt[p]{a}) = \frac{1}{p} \times ln(a)$ pour $p \in \mathbb{N}^ \times $</li>
+			<li class="last">$ln(\sqrt[p]{a}) = \frac{1}{p} \times ln(a)$ pour $p \in \mathbb{N}^* $</li>
 		</ul>
 		
 	</section>
@@ -93,7 +93,7 @@ chapter: 5
 		<p>Les limites de la fonction logarithme népérien aux bornes de son ensemble de définition sont :</p>
 		
 		<ul class="bubble formula">
-			<li>$\lim\limits_{\substack{x \rightarrow 0 \\ x>0}} ln(x) = -\infty$</li>
+			<li>$\lim\limits_{\substack{x \rightarrow 0 \\ x \gt 0}} ln(x) = -\infty$</li>
 			<li class="last">$\lim\limits_{\substack{x \rightarrow +\infty}} ln(x) = +\infty$</li>
 		</ul>
 		
@@ -101,7 +101,7 @@ chapter: 5
 		
 		<ul class="bubble formula">
 			<li>$\lim\limits_{\substack{x \rightarrow +\infty}} \frac{ln(x)}{x} = 0$</li>
-			<li class="last">$\lim\limits_{\substack{x \rightarrow +\infty}} x \times ln(x) = 0$</li>
+			<li class="last">$\lim\limits_{\substack{x \rightarrow 0 \\ x \gt 0}} x \times ln(x) = 0$</li>
 		</ul>
 		
 		<p>Une autre limite est à connaître (ainsi que sa démonstration) :</p>
@@ -121,7 +121,7 @@ chapter: 5
 	<section>
 	
 		<h3 id="derivee">Dérivée</h3>
-		<p>Soit une fonction $u$ dérivable et <strong>strictement positive</strong> sur un interval $I$, on a pour tout $x$ appartenant à cet interval :</p>
+		<p>Soit une fonction $u$ dérivable et <strong>strictement positive</strong> sur un intervalle $I$, on a pour tout $x$ appartenant à cet intervalle :</p>
 		
 		<span class="bubble formula">$ln'(u(x)) = \frac{u'(x)}{u(x)}$</span>
 		
