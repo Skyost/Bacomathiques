@@ -26,6 +26,7 @@ nav {
 		background-color: $main-color;
 		border-bottom: 1px solid rgba(0, 0, 0, 0.075);
 	}
+	
 	.navbar-brand {
 		text-align: center;
 		font-family: 'Handlee', cursive;
@@ -37,6 +38,7 @@ nav {
 			padding-top: 0.35em;
 		}
 	}
+	
 	.navbar-brand:before {
 		content: '';
 		display: inline-block;
@@ -55,9 +57,11 @@ nav {
 	.navbar-toggle {
 		border-color: white !important;
 	}
+	
 	.navbar-toggle:hover {
 		background-color: $main-color-darker !important;
 	}
+	
 	.icon-bar {
 		background-color: white !important;
 	}
@@ -77,12 +81,14 @@ nav {
 		width: 20%;
 		margin: 0 3% 0 5%;
 	}
+	
 	input {
 		padding: 14px 0 14px 0;
 		border: none;
 		height: 100%;
 		width: 80%;
 	}
+	
 	input:focus {
 		outline-width: 0;
 	}
@@ -95,13 +101,20 @@ nav {
 		font-weight: bold;
 		font-size: 13px;
 	}
+	
 	.toc-h3 a {
 		padding-left: 42px !important;
 		font-size: 0.85em;
 	}
+	
+	.toc-lesson a {
+		font-size: 0.85em;
+	}
+	
 	.dropdown-menu a {
 		white-space: normal;
 	}
+	
 	.toc-active {
 		background-color: rgba(0, 0, 0, 0.075);
 	}

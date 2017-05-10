@@ -40,6 +40,7 @@ header {
 			font-size: 12vw !important;
 		}
 	}
+	
 	h1:before {
 		content: '';
 		display: inline-block;
@@ -88,6 +89,7 @@ article {
 		padding-bottom: 4px;
 		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	}
+	
 	.label {
 		font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 		text-transform: uppercase;

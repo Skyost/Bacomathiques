@@ -37,6 +37,9 @@ layout: compress
 										<li>
 											<a href="/cours/" class="big-padding"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> Index des cours</a>
 										</li>
+										<li>
+											<a href="#" class="big-padding" data-toggle="modal" data-target="#modal-directaccess"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> Accès direct à un cours</a>
+										</li>
 									{% endif %}
 									<li class="dropdown">
 										{% if page.lesson %}
@@ -50,7 +53,7 @@ layout: compress
 												{% assign pages = (site.pages | sort: 'chapter') %}
 												{% for page in pages %}
 													{% if page.lesson %}
-														<li class="toc-h2 a"><a href="{{ page.url }}">{{ page.title }}</a></li>
+														<li class="toc-lesson a"><a href="{{ page.url }}">{{ page.title }}</a></li>
 													{% endif %}
 												{% endfor %}
 											</ul>
@@ -98,6 +101,10 @@ layout: compress
 					
 					{% if page.comments %}
 						{% include default/comments.html %}
+					{% endif %}
+					
+					{% if page.lesson %}
+						{% include default/direct_access.html %}
 					{% endif %}
 					
 				</div>
