@@ -156,8 +156,8 @@
 #export {
 	width: 100%;
 	text-align: right;
-	margin-top: 1em;
-	padding-bottom: 1em;
+	margin-top: 14px;
+	padding-bottom: 14px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	
 	li {
@@ -320,4 +320,29 @@ article {
 
 #modal-directaccess li {
 	height: 3em;
+}
+
+/* ANCHORS */
+
+h2:hover .anchor, h3:hover .anchor {
+	opacity: 0.5;
+}
+
+.anchor {
+	transition: opacity 0.3s ease;
+	display: inline-block;
+	opacity: 0;
+	background-image: url('../img/anchor.svg');
+}
+
+h2 .anchor {
+	height: 20px;
+	width: 20px;
+	background-size: 20px 20px;
+}
+
+h3 .anchor {
+	height: 16px;
+	width: 16px;
+	background-size: 16px 16px;
 }

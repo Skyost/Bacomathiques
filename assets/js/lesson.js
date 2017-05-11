@@ -6,11 +6,11 @@ $(document).ready(function() {
 	$('article h2, article h3').each(function() {
 		var title = $(this);
 		if(title.prop('tagName') == 'H3') {
-			title.text((h3Index++) + '. ' + title.text());
+			title.html((h3Index++) + '. ' + title.html() + ' ' + '<a class="anchor" href="#' + $(this).attr('id') + '"></a>');
 		}
 		else {
 			h3Index = 1;
-			title.text(romanize(h2Index++) + ' - ' + title.text());
+			title.html(romanize(h2Index++) + ' - ' + title.html() + ' ' + '<a class="anchor" href="#' + $(this).attr('id') + '"></a>');
 		}
 	});
 
@@ -54,6 +54,8 @@ $(document).ready(function() {
 	});
 	
 	$('#back-to-top').tooltip('show');
+	
+	// ANCHORS NEXT TO H2 & H3
 });
 
 /**
