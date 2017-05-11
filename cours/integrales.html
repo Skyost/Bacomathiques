@@ -39,11 +39,11 @@ chapter: 7
 		Soient deux réels $a$ et $b$ avec une fonction $f$ <strong>continue</strong> sur un intervalle $I$ (on note $F$ la primitive de cette fonction).
 		Alors l'intégrale de la fonction $f$ entre les bornes $a$ et $b$ est donnée par la formule suivante :</p>
 		
-		<span class="bubble formula">$\int_{a}^{b} f(x) \, \mathrm{d}x = \left[ F(x) \right]_a^b = F(a) - F(b)$</span>
+		<p class="bubble formula">$\int_{a}^{b} f(x) \, \mathrm{d}x = \left[ F(x) \right]_a^b = F(a) - F(b)$</p>
 		
 		<div class="bubble tip">
 			<p><strong>Exemple :</strong> On veut calculer l'aire entre la courbe d'une fonction $f$ définie par $f(x) = 2x + 1$ et l'axe des abscisses sur l'intervalle $[1;4]$ :</p>
-			<p><strong>1<sup>ère</sup> étape :</strong> On cherche une primitive de $f$. On trouve $F(x) = x^2 + x = x(x + 1)$.
+			<p><strong>1<sup>ère</sup> étape :</strong> On cherche une primitive de $f$. On trouve $F(x) = x^2 + x = x(x + 1)$.</p>
 			<p class="last"><strong>2<sup>nde</sup> étape :</strong> On calcule l'intégrale.
 			On a $\int_{1}^{4} 2x + 1 \, \mathrm{d}x = \left[ x(x + 1) \right]_1^4 = 4(4 + 1) - 1(1 + 1) = 3 - 20 = 18$ U.A.</p>
 		</div>
@@ -59,7 +59,7 @@ chapter: 7
 			<li>Si $f \gt 0$ sur $[a; b]$, alors $\int_{a}^{b} f(x) \, \mathrm{d}x \gt 0$</li>
 			<li>Si $f \lt 0$ sur $[a; b]$, alors $\int_{a}^{b} f(x) \, \mathrm{d}x \lt 0$</li>
 			<li>Soit $c \in \mathbb{R}$ avec $a \lt c \lt b$. Si $f \gt 0$ sur $[a;c]$ et si $f \lt 0$ sur $[b;c]$ (ou inversement si
-			$f \lt 0$ sur $[a;c]$ et si $f \gt 0$ sur $[b;c]$), on ne connait pas le signe de l'intégrale.
+			$f \lt 0$ sur $[a;c]$ et si $f \gt 0$ sur $[b;c]$), on ne connaît pas le signe de l'intégrale.
 			Le signe dépend de l'aire qui sera la plus "grande".</li>
 			<li>Si $a = b$, alors $\int_{a}^{b} f(x) \, \mathrm{d}x = 0$.</li>
 			<li>Soit $g$ une fonction définie sur $I$ avec $f \gt g$ sur $I$, alors $\int_{a}^{b} f(x) \, \mathrm{d}x \gt \int_{a}^{b} g(x) \, \mathrm{d}x$.</li>
@@ -67,7 +67,7 @@ chapter: 7
 		
 		<div class="bubble tip">
 			<p><strong>Exemple :</strong> On veut calculer l'aire sous la courbe d'une fonction $f$ définie par $f(x) = x$ sur l'intervalle $[-2;2]$ :</p>
-			<p><strong>1<sup>ère</sup> étape :</strong> On cherche une primitive de $f$. On trouve $F(x) = \frac{x^2}{2}$.
+			<p><strong>1<sup>ère</sup> étape :</strong> On cherche une primitive de $f$. On trouve $F(x) = \frac{x^2}{2}$.</p>
 			<p class="last"><strong>2<sup>nde</sup> étape :</strong> On calcule l'intégrale.
 			On a $\int_{-2}^{2} x \, \mathrm{d}x = \left[ \frac{x^2}{2} \right]_{-2}^2 = \frac{4}{2} - \frac{4}{2} = 0$ U.A. (logique car l'aire au dessus de la courbe de la fonction $f$
 			sur $[-2;0]$ est égale à l'aire sous la courbe de $f$ sur $[0;2]$.</p>
@@ -115,13 +115,13 @@ chapter: 7
 		<h3 id="chasles">Relation de Chasles</h3>
 		<p>Soient trois réels $a$, $b$, $c$ et une fonction $f$ <strong>continue</strong> sur un intervalle $I$. La relation de Chasles nous donne la propriété suivante :</p>
 		
-		<span class="bubble formula">$\int_{a}^{b} f(x) \, \mathrm{d}x = \int_{a}^{c} f(x) \, \mathrm{d}x + \int_{c}^{b} f(x) \, \mathrm{d}x$</span>
+		<p class="bubble formula">$\int_{a}^{b} f(x) \, \mathrm{d}x = \int_{a}^{c} f(x) \, \mathrm{d}x + \int_{c}^{b} f(x) \, \mathrm{d}x$</p>
 		
 		<div class="bubble tip">
 			<p><strong>Exemple :</strong> On veut calculer l'aire entre la courbe d'une fonction $f$ définie par $f(x) = |x|$ et l'axe des abscisses sur l'intervalle $[-2;4]$
 			(<em>Rappel : la fonction valeur absolue est définie par $x \mapsto -x$ sur $]-\infty;0]$ et par $x \mapsto x$ sur $[0;+\infty[$</em>).</p>
 			<p><strong>1<sup>ère</sup> étape :</strong> On sépare l'intégrale à l'aide de la relation de Chasles :
-			$I = \int_{-2}^{4} |x| \, \mathrm{d}x = \int_{-2}^{0} -x \, \mathrm{d}x + \int_{0}^{4} x \, \mathrm{d}x$.
+			$I = \int_{-2}^{4} |x| \, \mathrm{d}x = \int_{-2}^{0} -x \, \mathrm{d}x + \int_{0}^{4} x \, \mathrm{d}x$.</p>
 			<p class="last"><strong>2<sup>nde</sup> étape :</strong> On calcule l'intégrale.
 			On a $I = \int_{-2}^{0} -x \, \mathrm{d}x + \int_{0}^{4} x \, \mathrm{d}x = \left[ -\frac{x^2}{2} \right]_{-2}^0 + \left[ \frac{x^2}{2} \right]_0^4 = 0 - (-\frac{2^2}{2}) + ((\frac{4^2}{2}) - 0) = 10$ U.A.</p>
 		</div>
@@ -138,11 +138,11 @@ chapter: 7
 		<h3 id="pairs-impaires">Intégrales de fonctions paires et impaires</h3>
 		<p>Soit $f$ une <strong>fonction paire</strong> (comme $x \mapsto x^2$) définie sur $I$, on a la relation suivante pour tout $a \in I$ ($-a$ doit être dans $I$) :</p>
 		
-		<span class="bubble formula">$\int_{-a}^{a} f(x) \, \mathrm{d}x = 2 \times \int_{0}^{a} f(x) \, \mathrm{d}x = 2 \times \int_{-a}^{0} f(x) \, \mathrm{d}x$</span>
+		<p class="bubble formula">$\int_{-a}^{a} f(x) \, \mathrm{d}x = 2 \times \int_{0}^{a} f(x) \, \mathrm{d}x = 2 \times \int_{-a}^{0} f(x) \, \mathrm{d}x$</p>
 		
 		<p>Si $f$ est une <strong>fonction impaire</strong> (comme $x \mapsto x^3$), on a la relation suivante :</p>
 		
-		<span class="bubble formula">$\int_{-a}^{a} f(x) \, \mathrm{d}x = 0$</span>
+		<p class="bubble formula">$\int_{-a}^{a} f(x) \, \mathrm{d}x = 0$</p>
 		
 		<div class="bubble tip">
 			<p>Ces deux relations peuvent se retrouver visuellement, pour les <strong>fonctions paires</strong>
@@ -164,7 +164,7 @@ chapter: 7
 		<p>Soit $f$ une <strong>fonction périodique</strong> de période $k$ (comme $x \mapsto cos(x)$ avec $k = 2\pi$) définie sur $I$,
 		on a la relation suivante pour tout $a \in I$ ($-a$ doit être dans $I$) :</p>
 		
-		<span class="bubble formula">$\int_{0}^{k} f(x) \, \mathrm{d}x = \int_{0}^{a + k} f(x) \, \mathrm{d}x$</span>
+		<p class="bubble formula">$\int_{0}^{k} f(x) \, \mathrm{d}x = \int_{0}^{a + k} f(x) \, \mathrm{d}x$</p>
 	
 	</section>
 	<section>
@@ -173,7 +173,7 @@ chapter: 7
 		<p>Soient $a$ et $b$ deux réels avec $a \leq b$ et $f$ une fonction <strong>continue</strong> sur $[a;b]$. La valeur moyenne de $f$ sur $[a;b]$ est donnée par la
 		formule suivante :</p>
 		
-		<span class="bubble formula">$\frac{1}{b-a}\int_{a}^{b} f(x) \, \mathrm{d}x$</span>
+		<p class="bubble formula">$\frac{1}{b-a}\int_{a}^{b} f(x) \, \mathrm{d}x$</p>
 	
 	</section>
 	<section>
@@ -182,7 +182,7 @@ chapter: 7
 		<p>Soient $a$ et $b$ deux réels avec $a \leq b$ et deux fonctions $f$ et $g$ <strong>continues</strong> sur $[a;b]$. Si on $f \gt g$ sur cet intervalle,
 		alors l'aire entre les deux courbes est donnée par la relation suivante :</p>
 		
-		<span class="bubble formula">$\int_{a}^{b} f(x) - g(x) \, \mathrm{d}x$</span>
+		<p class="bubble formula">$\int_{a}^{b} f(x) - g(x) \, \mathrm{d}x$</p>
 	
 	</section>
 	<section>
@@ -191,7 +191,7 @@ chapter: 7
 		<p>Soient une fonction $f$ <strong>continue</strong> sur un intervalle $I$ et un réel $a \in \mathbb{R}$.
 		La primitive de $f$ (notée $F$) qui vaut $0$ quand $x = a$ est donnée par la formule :</p>
 		
-		<span class="bubble formula">$F(x) = \int_{a}^{x} f(x) \, \mathrm{d}x$</span>
+		<p class="bubble formula">$F(x) = \int_{a}^{x} f(x) \, \mathrm{d}x$</p>
 	
 	</section>
 	

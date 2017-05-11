@@ -25,7 +25,8 @@ $(document).ready(function() {
 	
 	var exportTitle = $($('h1').get(0)).text();
 	$('#export-pdf').click(function() {
-		window.open('/assets/pdf/lessons/' + encodeURI(exportTitle.replace('é', 'e')) + '.pdf', '_blank', '');
+		pdfFile = replaceAll(replaceAll(exportTitle, 'é', 'e'), 'É', 'E')
+		window.open('/assets/pdf/lessons/' + encodeURI(pdfFile) + '.pdf', '_blank', '');
 	});
 	$('#export-print').click(function() {
 		$('article').print({
@@ -56,7 +57,7 @@ $(document).ready(function() {
 });
 
 /**
-* Found here : http://stackoverflow.com/a/9083076/3608831.
+* Found here : http://stackoverflow.com/a/9083076/3608831
 */
 function romanize(num) {
 	if(!+num)
@@ -70,4 +71,11 @@ function romanize(num) {
 	while(i--)
 		roman = (key[+digits.pop() + (i * 10)] || "") + roman;
 	return Array(+digits.join("") + 1).join("M") + roman;
+}
+
+/**
+* Found here : http://stackoverflow.com/a/1144788/3608831
+*/
+function replaceAll(str, find, replace) {
+	return str.replace(new RegExp(find, 'g'), replace);
 }
