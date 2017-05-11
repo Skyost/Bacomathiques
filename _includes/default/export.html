@@ -15,11 +15,11 @@
 			<div class="modal-body">
 				<p>Vous pouvez partager cette page sur les réseaux sociaux :</p>
 				<ul class="social">
-					<li><a class="social-twitter" href="https://twitter.com/intent/tweet?text=Retrouvez%20le%20cours%20intitul%C3%A9%20%22{{ page.title | replace " ", "%20" }}%22%20sur%20Bacomathique%20!&url={{ site.url }}{{ page.url }}" target="_blank"></a></li>
+					<li><a class="social-twitter" href="https://twitter.com/intent/tweet?text=Retrouvez%20le%20cours%20intitul%C3%A9%20%22{{ page.title | uri_escape }}%22%20sur%20{{ site.title }}%20!&url={{ site.url }}{{ page.url }}" target="_blank"></a></li>
 					<li><a class="social-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}&t=" target="_blank"></a></li>
 					<li><a class="social-googleplus" href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" target="_blank"></a></li>
 					<li><a class="social-tumblr" href="http://www.tumblr.com/share?v=3&u={{ site.url }}{{ page.url }}&t=&s=" target="_blank"></a></li>
-					<li><a class="social-mail" href="mailto:?subject=&body=Retrouvez%20le%20cours%20intitul%C3%A9%20%22{{ page.title | replace " ", "%20" }}%22%20sur%20Bacomathique%20!%20{{ site.url }}{{ page.url }}" target="_blank"></a></li>
+					<li><a class="social-mail" href="mailto:?subject=&body=Retrouvez%20le%20cours%20intitul%C3%A9%20%22{{ page.title | uri_escape }}%22%20sur%20{{ site.title }}%20!%20{{ site.url }}{{ page.url }}" target="_blank"></a></li>
 				</ul>
 				<p>Sinon, vous pouvez directement copier-coller le lien vers ce cours dans votre presse-papier :</p>
 				<input type="text" value="{{ site.url }}{{ page.url }}" style="width: 100%;" readonly/>

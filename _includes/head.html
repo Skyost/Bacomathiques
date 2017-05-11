@@ -4,15 +4,9 @@
 
 	<!-- Description -->
 	<meta name="description" content="{% if page.excerpt %}{{page.excerpt}}{% else %}{{site.tagline}}{% endif %}"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	
-	<!-- Google+ -->
-	<link rel="publisher" href="https://plus.google.com/{{site.social.googleplus}}"/>
-	<meta itemprop="name" content="{% if page.fulltitle %}{{ page.fulltitle }}{% else %}{{ page.title }} | {{ site.title }} {% endif %}"/>
-	<meta itemprop="description" content="{% if page.excerpt %}{{ page.excerpt }}{% else %}{{ site.tagline }}{% endif %}"/>
-	<meta itemprop="image" content="{% if page.image %}{{ site.url }}{{ page.image }}{% else %}{{ site.url }}{{ site.social.preview }}{% endif %}"/>
-	
-	<!-- Facebook -->
+	<!-- OpenGraph -->
 	<meta property="og:type" content="website"/>
 	<meta property="og:title" content="{% if page.fulltitle %}{{ page.fulltitle }}{% else %}{{ page.title }} | {{ site.title }} {% endif %}"/>
 	<meta property="og:site_name" content="{{ site.title }}"/>
@@ -30,6 +24,7 @@
 	<meta name="twitter:image" content="{{ site.url }}{{ site.social.preview }}"/>
 	
 	<!-- Styles -->
+	<meta name="theme-color" content="#4cdbc4"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
 	
 	<link rel="stylesheet" href="/assets/css/style.css"/>
@@ -64,6 +59,9 @@
 				},
 				'HTML-CSS': {
 					scale: 90,
+					linebreaks: {
+						automatic: true
+					},
 					webFont: 'Asana-Math',
 					preferredFont: 'Asana-Math', 
 					availableFonts: [
