@@ -27,8 +27,8 @@ chapter: 2
 		
 		<p class="bubble formula">$\lim\limits_{\substack{x \rightarrow a}} f(x) = f(a)$</p>
 		
-		<p>$f$ est dite continue sur $I$, on peut appliquer la formule ci-dessus à tout les réels de l'intervalle $I$.
-		<br/>On dit de manière générale qu'une fonction est continue sur un intervalle s'il est de tracer sa courbe représentative sur cet intervalle <q>sans lever le crayon</q>.</p>
+		<p>$f$ est dite continue sur $I$, si on peut appliquer la formule ci-dessus à tous les réels de l'intervalle $I$.
+		<br/>On dit de manière générale qu'une fonction est continue sur un intervalle s'il est possible de tracer sa courbe représentative sur cet intervalle <q>sans lever le crayon</q>.</p>
 		
 		<ul class="bubble formula">
 			<li>Toute somme, produit, composée ou quotient (avec le dénominateur ne s'annulant pas) de fonctions continues est également continue sur le même intervalle.</li>
@@ -49,7 +49,7 @@ chapter: 2
 		
 		<div class="bubble tip">
 			<p>Ce théorème est <strong>très important</strong> !</p>
-			<p>Voici un exemple : prenons $f(x) = x^3+x^2-x$ et prouvons qu'il existe au moins un réel $x_0 \in [0;3]$ tel que $f(x) = 5$.</p>
+			<p>Voici un exemple : prenons $f(x) = x^3+x^2-x$ et prouvons qu'il existe au moins un réel $x_0 \in [0;3]$ tel que $f(x_0) = 5$.</p>
 			<p>On a $f(0) = 0$ et $f(3) = 33$. D'après le théorème des valeurs intermédiaires, comme $f$ est continue sur $[0;3]$ et que $0 \lt 5 \lt 33$,
 			il existe un réel $x_0 \in [0,3]$ tel que $f(x_0) = 5$.</p>
 			<p class="last">On peut encore tenter d'affiner la précision : $f(1) = 1$ et $f(2) = 10$. On a bien $1 \lt 5 \lt 10$ donc $x_0 \in [1;2]$, etc...</p>
@@ -93,12 +93,10 @@ chapter: 2
 		<div class="bubble formula">
 			<p>La fonction $f$ est dérivable en $a$ si la limite ci-dessous existe et est finie :</p>
 			<p>$\lim\limits_{\substack{h \rightarrow 0}} \frac{f(a + h) - f(a)}{h}$</p>
-			<p>On en posant $x = a + h$ :</p>
+			<p>Ou en posant $x = a + h$ :</p>
 			<p>$\lim\limits_{\substack{x \rightarrow a}} \frac{f(x) - f(a)}{x-a}$</p>
 			<p class="last">Si cette limite existe et est finie, alors elle est égale au nombre dérivé de $f$ en $a$ noté $f'(a)$.</p>
 		</div>
-		
-		<p>Le nombre dérivé entre $x$ et $a$ est égal à $f'(a)$ si ce nombre existe.</p>
 		
 	</section>
 	<section>
@@ -106,7 +104,7 @@ chapter: 2
 		<h3 id="tangente">La tangente</h3>
 		<p>Soient $f$ une fonction définie sur un intervalle $I$ et un réel $a \in I$.
 		Si $f$ est dérivable en $a$, alors la courbe représentative de $f$ admet une tangente $\mathcal{T}$ au point de coordonnées $(a;f(a))$.
-		$f'(a)$ est le coefficient directeur de $\mathcal{T}$, et une équation de la tangente $\mathcal{T}$ est :</p>
+		$f'(a)$ est le coefficient directeur de $\mathcal{T}$, et une équation de $\mathcal{T}$ est :</p>
 		
 		<p class="bubble formula">$y = f'(a)(x-a)+f(a)$</p>
 		
@@ -114,16 +112,16 @@ chapter: 2
 			<p>Soit $f(x) = e^x$ (voir cours sur <a href="fonction_exponentielle">la fonction exponentielle</a>).</p>
 			<p>Cherchons une équation de la tangente au point d'abscisse $x = 0$ :</p>
 			<p>On a $f'(0) = \lim\limits_{\substack{x \rightarrow 0}} \frac{f(x) - f(0)}{x-0} = \lim\limits_{\substack{x \rightarrow 0}} \frac{e^x - 1}{x} = 1$
-			(voir paragraphe sur <a href="fonction_exponentielle.html#limites">les limites</a>).</p>
+			(voir paragraphe sur <a href="fonction_exponentielle.html#limites">les limites de la fonction exponentielle</a>).</p>
 			<p class="last">Ainsi, $f'(0) = 1$. Une équation de la tangente est donc $y = f'(0)(x-0)+f(0) = x + 1$ :
-			on retrouve ce qui a été constaté sur <a href="fonction_exponentielle.html#representation">la représentation graphique</a>.</p>
+			on retrouve ce qui a été constaté sur <a href="fonction_exponentielle.html#representation">la représentation graphique</a> de la fonction exponentielle.</p>
 		</div>
 		
 	</section>
 	<section>
 		
 		<h3 id="fonction-derivee">Fonction dérivée</h3>
-		<p>Soient $f$ une fonction dérivable sur un intervalle $I$ :</p>
+		<p>Soit $f$ une fonction dérivable sur un intervalle $I$ :</p>
 		
 		<p class="bubble formula">On appelle <strong>fonction dérivée</strong> de $f$ sur $I$ la fonction qui a tout réel $x \in I$ y associe $f'(x)$.</p>
 		
@@ -143,7 +141,7 @@ chapter: 2
 		<span id="representation-2" class="plot"></span>
 		
 		<p>Il est également possible d'en déduire diverses propriétés sur les extremums dits <q>locaux</q> (sur un certain intervalle) d'une fonction.
-		Soient $f$ dérivable sur $I$, et $a \in I$ et de dérivée $f'$ :</p>
+		Soient $f$ dérivable sur $I$ de dérivée $f'$, et $a \in I$ :</p>
 		
 		<ul class="bubble formula">
 			<li>Si $f$ admet un extremum local en $a$, alors $f'(a) = 0$ et le signe de $f'$ est différent avant et après $a$ et la réciproque :
@@ -325,7 +323,7 @@ chapter: 2
 		
 		<p class="bubble formula">$(g \circ f)' = (g' \circ f) \times f'$</p>
 		
-		<p class="no-print">C'est tout pour ce cours. N'oubliez pas de consulter les cours suivants pour bien assimiler tous les concepts et de travaillez les annales
+		<p class="no-print">C'est tout pour ce cours. N'oubliez pas de consulter les cours suivants pour bien assimiler tous les concepts et de travailler les annales
 		des précédents sujets du BAC. Il est également possible de poser des questions dans la section commentaires ci-dessous.</p>
 		
 	</section>

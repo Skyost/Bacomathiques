@@ -64,7 +64,7 @@ chapter: 1
 		<p class="bubble formula">$S = \frac{(\text{Premier terme } + \text{ Dernier terme}) \times (\text{Nombre de termes})}{2}$</p>
 		
 		<div class="bubble tip">
-			<p><strong>Astuce :</strong> Pour trouver le nombre de termes, on prends le rang jusqu'auquel on souhaite calculer cette somme.
+			<p><strong>Astuce :</strong> Pour trouver le nombre de termes, on prend le rang jusqu'auquel on souhaite calculer cette somme.
 			On y soustrait l'indice du premier terme et on y ajoute $1$.</p>
 			<p><strong>Exemple :</strong> Soit une suite $u_n$ définie par $u_n$ : $\begin{cases} u_1 = 10\\ u_{n+1} = u_n + 5\end{cases}$ pour $n \in \mathbb{N}$ et $n \geq 1$.</p>
 			<p>La raison $r$ est égale à $5$. Le premier terme est $u_1 = 10$ d'indice $p = 1$. Le terme général de cette suite est donc $u_n = u_1 + (n-1) \times r$.</p>
@@ -98,7 +98,7 @@ chapter: 1
 		<p class="bubble formula">$S = (\text{Premier terme}) \times \frac{1 - q^\text{Nombre de termes}}{1 - q}$</p>
 		
 		<div class="bubble tip">
-			<p><strong>Astuce :</strong> Pour trouver le nombre de termes, on prends le rang jusqu'auquel on souhaite calculer cette somme.
+			<p><strong>Astuce :</strong> Pour trouver le nombre de termes, on prend le rang jusqu'auquel on souhaite calculer cette somme.
 			On y soustrait l'indice du premier terme et on y ajoute $1$.</p>
 			<p><strong>Exemple :</strong> Soit une suite $v_n$ définie par $v_n$ : $\begin{cases} v_2 = 1\\ v_{n+1} = v_n \times 2\end{cases}$ pour $n \in \mathbb{N}$ et $n \geq 2$.</p>
 			<p>La raison $q$ est égale à $2$. Le premier terme est $v_2 = 1$ d'indice $p = 2$. Le terme général de cette suite est donc $v_n = v_2 \times q^{n-2}$.</p>
@@ -139,7 +139,7 @@ chapter: 1
 		<h3 id="limites">Limites</h3>
 		
 		<p>On dit qu'une suite $u_n$ <strong>converge</strong> vers une limite finie $l$ si pour tout $\epsilon \gt 0$, on a $|u_n - l| \lt \epsilon$.
-		Ce terme est un peu technique mais cela signifie qu'il existe une infinité de réels entre $u_n$ et $l$. On dit que $u_n$ est <strong>convergente</strong> et on note alors :</p>
+		Ce terme est un peu technique mais il signifie qu'il existe une infinité de réels entre $u_n$ et $l$. On dit que $u_n$ est <strong>convergente</strong> et on note alors :</p>
 		
 		<p class="bubble formula">$\lim\limits_{n \rightarrow +\infty} u_n = l$</p>
 		
@@ -327,8 +327,8 @@ chapter: 1
 		<p>Soient une suite $u_n$ et deux réels $m$ et $M$ :</p>
 		
 		<ul class="bubble formula">
-			<li>On dit que que $m$ est un <strong>minorant</strong> de $u_n$ si : $u_n \gt m$.</li>
-			<li>On dit que que $M$ est un <strong>majorant</strong> de $u_n$ si : $u_n \lt M$.</li>
+			<li>On dit que que $m$ est un <strong>minorant</strong> de $u_n$ si pour tout $n$ : $u_n \gt m$.</li>
+			<li>On dit que que $M$ est un <strong>majorant</strong> de $u_n$ si pour tout $n$ : $u_n \lt M$.</li>
 			<li>On dit que que $u_n$ est <strong>bornée</strong> si elle est à la fois majorée et minorée.</li>
 			<li>Si $u_n$ est croissante et est majorée, alors elle est convergente. Si elle n'est pas majorée, $u_n$ diverge vers $+\infty$.</li>
 			<li class="last">Si $u_n$ est décroissante et est minorée, alors elle est convergente. Si elle n'est pas minorée, $u_n$ diverge vers $-\infty$.</li>
@@ -345,9 +345,9 @@ chapter: 1
 		<p>Soient deux suites $u_n$ et $v_n$ telles que $u_n \lt v_n$ à partir d'un certain rang. On a :</p>
 		
 		<ul class="bubble formula">
-			<li>$\lim\limits_{n \rightarrow +\infty} u_n = +\infty$, alors $\lim\limits_{n \rightarrow +\infty} v_n = +\infty$.</li>
-			<li>$\lim\limits_{n \rightarrow +\infty} v_n = -\infty$, alors $\lim\limits_{n \rightarrow +\infty} u_n = -\infty$.</li>
-			<li class="last">$\lim\limits_{n \rightarrow +\infty} u_n = l$ et $\lim\limits_{n \rightarrow +\infty} v_n = l'$ alors $l \lt l'$.</li>
+			<li>Si $\lim\limits_{n \rightarrow +\infty} u_n = +\infty$, alors $\lim\limits_{n \rightarrow +\infty} v_n = +\infty$.</li>
+			<li>Si $\lim\limits_{n \rightarrow +\infty} v_n = -\infty$, alors $\lim\limits_{n \rightarrow +\infty} u_n = -\infty$.</li>
+			<li class="last">Si $\lim\limits_{n \rightarrow +\infty} u_n = l$ et $\lim\limits_{n \rightarrow +\infty} v_n = l'$ alors $l \lt l'$.</li>
 		</ul>
 		
 		<p>Soient deux suites $u_n$, $v_n$ et $w_n$ telles que $u_n \lt v_n \lt w_n$ à partir d'un certain rang et que $u_n$ et $w_n$ convergent vers le réel $l$. Alors :</p>
