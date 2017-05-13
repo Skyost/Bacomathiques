@@ -25,7 +25,7 @@ chapter: 10
 		<h3 id="conditionnelles">Probabilités conditionnelles</h3>
 		<p>Soient $A$ et $B$ deux événements avec $A$ de probabilité non nulle. Alors la probabilité conditionnelle de <strong>B sachant que est A réalisé</strong> est :</p>
 		
-		<p class="bubble formula">$p_{A}(B) = \frac{p(A \cap B)}{p(A)}$</p>
+		<p class="bubble formula">$\displaystyle{p_{A}(B) = \frac{p(A \cap B)}{p(A)}}$</p>
 				
 		<div class="bubble tip">
 			<p>En réalité, lorsque l'on dessine un arbre de probabilité (vu en classe de Première), $p_{A}{B}$ se lit sur les branches de l'arbre :</p>
@@ -70,7 +70,7 @@ chapter: 10
 		<p>Une variable aléatoire $X$ est une fonction (et plus précisément une application) qui, à chaque événement élémentaire de l'univers $\Omega$ y associe un nombre réel.
 		C'est à dire : $X : \Omega \mapsto \mathbb{R}$. L'ensemble des valeurs prises par $X$ est noté $X(\Omega)$.</p>
 		
-		<p>La loi de probabilité de $X$ attribue à chaque valeur $x_i$ la probabilité $p_i = p(X = x_i)$ de l'événement $X = x_i$, constitué de tous les événements
+		<p>La loi de probabilité de $X$ attribue à chaque valeur $x_i$ la probabilité $p_i = p(X = x_i)$ de l'événement $X = x_i$ constitué de tous les événements
 		élémentaires dont l'image par $X$ est $x_i$. Cette loi est généralement représentée dans un tableau :</p>
 		
 		<div class="bubble formula">
@@ -180,7 +180,7 @@ chapter: 10
 		<p>Ainsi, pour $X$ variable aléatoire suivant une loi binomiale de paramètres $n$ et $p$, on a :</p>
 		
 		<ul class="bubble formula">
-			<li>$p(X = k) = \binom{n}{k}p^k(1-p)^{n-k}$ pour tout $0 \leq k \leq n$, avec $\binom{n}{k}$ coefficient binomial (se lit $k$ parmi $n$)</li>
+			<li>$\displaystyle{p(X = k) = \binom{n}{k}p^k(1-p)^{n-k}}$ pour tout $0 \leq k \leq n$, avec $\displaystyle{\binom{n}{k}}$ coefficient binomial (se lit $k$ parmi $n$)</li>
 			<li>$E(X) = n \times p$</li>
 			<li class="last">$V(X) = np(1-p)$</li>
 		</ul>
@@ -208,7 +208,7 @@ chapter: 10
 		<ul class="bubble formula">
 			<li>$f$ est positive sur $\mathbb{R}$.</li>
 			<li>$f$ est continue sur $\mathbb{R}$ (sauf peut-être en certain points).</li>
-			<li class="last">L'aire du domaine délimité par la courbe représentative de $f$ et l'axe des abscisses est égale à 1.</li>
+			<li class="last">L'aire du domaine délimitée par la courbe représentative de $f$ et l'axe des abscisses est égale à 1.</li>
 		</ul>
 		
 		<span id="representation-1" class="plot"></span>
@@ -224,7 +224,7 @@ chapter: 10
 		
 		<p>On peut calculer l'espérance d'une variable aléatoire $X$ de densité $f$ sur un intervalle $[a;b]$ :</p>
 		
-		<p class="bubble formula">$E(X) = \int_{a}^{b} xf(x) \, \mathrm{d}x$</p>
+		<p class="bubble formula">$\displaystyle{E(X) = \int_{a}^{b} xf(x) \, \mathrm{d}x}$</p>
 		
 	</section>
 	<section>
@@ -238,17 +238,18 @@ chapter: 10
 		
 		<p>Si $X$ suit la loi uniforme énoncée précédemment, alors :</p>
 		
-		<p class="bubble formula">$p(c \leq X \leq d) = \int_{d}^{c} \frac{1}{b-a} \, \mathrm{d}x = \frac{d-c}{b-a}$ avec $c$ et $d$ réels tels que $a \leq c \leq d \leq b$</p>
+		<p class="bubble formula">$\displaystyle{p(c \leq X \leq d) = \int_{d}^{c} \frac{1}{b-a} \, \mathrm{d}x = \frac{d-c}{b-a}}$
+		avec $c$ et $d$ réels tels que $a \leq c \leq d \leq b$</p>
 		
 		<p>L'espérance de cette loi uniforme est :</p>
 		
-		<p class="bubble formula">$E(X) = \frac{a+b}{2}$</p>
+		<p class="bubble formula">$\displaystyle{E(X) = \frac{a+b}{2}}$</p>
 	
 	</section>
 	<section>
 	
 		<h3 id="exponentielle">Loi exponentielle</h3>
-		<p>Une variable aléatoire $X$ suit la loi exponentielle (ou loi de durée de vie sans vieillissement) de paramètre $\lambda$ (avec $\lambda$ réel et positif)
+		<p>Une variable aléatoire $X$ suit <strong>la loi exponentielle</strong> (ou loi de durée de vie sans vieillissement) de paramètre $\lambda$ (avec $\lambda$ réel et positif)
 		si elle admet pour densité la fonction $f$ définie par :</p>
 		
 		<p class="bubble formula">$f(x) : \left\{ \begin{array}{ll} 0 \text{ si } x \lt 0 \\ \lambda e^{-\lambda x} \text{ si } x \geq 0 \end{array} \right.$</p>
@@ -257,18 +258,18 @@ chapter: 10
 		
 		<p>Si $X$ suit la loi exponentielle énoncée précédemment, alors :</p>
 		
-		<p class="bubble formula">$p(a \leq X \leq b) = \int_{a}^{b} \lambda e^{-\lambda x} \, \mathrm{d}x$ avec $a$ et $b$ réels tels que $a \leq b$</p>
+		<p class="bubble formula">$\displaystyle{p(a \leq X \leq b) = \int_{a}^{b} \lambda e^{-\lambda x} \, \mathrm{d}x}$ avec $a$ et $b$ réels tels que $a \leq b$</p>
 		
 		<p>Les propriétés suivantes sont par conséquent disponibles :</p>
 		
 		<ul class="bubble formula">
-			<li>$p(X \leq a) = \int_{0}^{a} \lambda e^{-\lambda x} \, \mathrm{d}x = 1 - e^{-\lambda a}$</li>
+			<li>$\displaystyle{p(X \leq a) = \int_{0}^{a} \lambda e^{-\lambda x} \, \mathrm{d}x = 1 - e^{-\lambda a}}$</li>
 			<li class="last">$p(X \gt a) = 1 - p(X \leq a) = e^{-\lambda a}$</li>
 		</ul>
 		
 		<p>L'espérance de cette loi exponentielle est :</p>
 		
-		<p class="bubble formula">$E(X) = \frac{1}{\lambda}$</p>
+		<p class="bubble formula">$\displaystyle{E(X) = \frac{1}{\lambda}}$</p>
 		
 		<p>La loi exponentielle de paramètre $\lambda$ est dite <strong>"sans vieillissement"</strong> :</p>
 		
@@ -280,13 +281,13 @@ chapter: 10
 	<section>
 	
 		<h3 id="normale-centree">Loi normale centrée réduite</h3>
-		<p>Une variable aléatoire $X$ suit la loi normale centrée réduite (notée $\mathcal{N}(0;1)$) si elle admet pour densité la fonction $f$ définie par :</p>
+		<p>Une variable aléatoire $X$ suit <strong>la loi normale centrée réduite</strong> (notée $\mathcal{N}(0;1)$) si elle admet pour densité la fonction $f$ définie par :</p>
 		
-		<p class="bubble formula">$f(x) : \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$</p>
+		<p class="bubble formula">$\displaystyle{f(x) : \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}}$</p>
 		
 		<span id="representation-4" class="plot"></span>
 		
-		<p>Si $X$ suit la loi exponentielle énoncée précédemment, alors il pour tout réel $\alpha \in [0;1]$ il existe $u_{\alpha}$ tel que :</p>
+		<p>Si $X$ suit la loi exponentielle énoncée précédemment, alors pour tout réel $\alpha \in [0;1]$ il existe $u_{\alpha}$ tel que :</p>
 		
 		<div class="bubble formula">
 			<p>$p(-u_{\alpha} \leq X \leq u_{\alpha}) = 1-\alpha$</p>
@@ -313,7 +314,7 @@ chapter: 10
 	
 		<h3 id="normale-generale">Loi normale générale</h3>
 		<p>Une variable aléatoire $X$ suit la loi normale de paramètres $\mu$, $\sigma$ (notée $\mathcal{N}(\mu; \sigma^2)$ avec $\mu \in \mathbb{R}$ et $\sigma \in \mathbb{R}^{+}_{*}$)
-		si $\frac{X - \mu}{\sigma}$ suit la loi normale centrée réduite.</p>
+		si $\displaystyle{\frac{X - \mu}{\sigma}}$ suit la loi normale centrée réduite.</p>
 		
 		<span id="representation-5" class="plot"></span>
 		
@@ -332,7 +333,7 @@ chapter: 10
 			<li class="last">$V(X) = \sigma^2$</li>
 		</ul>
 		
-		<p>Comme pour loi normale centrée réduite, il faut utiliser la calculatrice pour déterminer les probabilités d'événements.</p>
+		<p>Comme pour la loi normale centrée réduite, il faut utiliser la calculatrice pour déterminer les probabilités d'événements.</p>
 		
 		<p class="no-print">C'est tout pour ce (long) chapitre. Si vous avez des questions l'espace commentaire est disponible ci-dessous.</p>
 	

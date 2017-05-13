@@ -61,10 +61,12 @@ chapter: 5
 		<ul class="bubble formula">
 			<li>$ln(a \times b) = ln(a) + ln(b)$</li>
 			<li>$ln(a^n) = n \times ln(a)$ pour $n \in \mathbb{Z}$</li>
-			<li>$ln(\frac{a}{b}) = ln(a) - ln(b)$ (déduite des deux relations précédentes)</li>
-			<li>$ln(\frac{1}{b}) = -ln(b)$ (déduite de la relation précédente)</li>
-			<li class="last">$ln(\sqrt[p]{a}) = \frac{1}{p} \times ln(a)$ pour $p \in \mathbb{N}^* $</li>
+			<li>$\displaystyle{ln\left(\frac{a}{b}\right) = ln(a) - ln(b)}$</li>
+			<li>$\displaystyle{ln\left(\frac{1}{b}\right) = -ln(b)}$</li>
+			<li class="last">$\displaystyle{ln(\sqrt[p]{a}) = \frac{1}{p} \times ln(a)}$ pour $p \in \mathbb{N}^*$</li>
 		</ul>
+		
+		<p>Certaines des ces propriétés peuvent se déduire les unes des autres.</p>
 		
 	</section>
 	<section>
@@ -104,20 +106,20 @@ chapter: 5
 		<p>Il faut aussi savoir que la fonction puissance "l'emporte" sur le logarithme népérien (voir la partie <a href="#representation"><q>Représentation graphique</q></a>) :</p>
 		
 		<ul class="bubble formula">
-			<li>$\lim\limits_{\substack{x \rightarrow +\infty}} \frac{ln(x)}{x} = 0$</li>
+			<li>$\displaystyle{\lim\limits_{\substack{x \rightarrow +\infty}} \frac{ln(x)}{x} = 0}$</li>
 			<li class="last">$\lim\limits_{\substack{x \rightarrow 0 \\ x \gt 0}} x \times ln(x) = 0$</li>
 		</ul>
 		
 		<p>Une autre limite est à connaître (ainsi que sa démonstration) :</p>
 		
 		<div class="bubble formula">
-			<p><strong>Démonstration de $\lim\limits_{\substack{x \rightarrow 0}} \frac{ln(1 + x)}{x} = 1$ :</strong></p>
+			<p><strong>Démonstration de $\displaystyle{\lim\limits_{\substack{x \rightarrow 0}} \frac{ln(1 + x)}{x} = 1}$ :</strong></p>
 			<p class="last">La fonction logarithme népérien est définie et continue en $x = 1$, on peut donc écrire :
-			<br/>$ln'(1) = \lim\limits_{\substack{x \rightarrow 1}} \frac{ln(x) - ln(1)}{x - 1}$
+			<br/>$\displaystyle{ln'(1) = \lim\limits_{\substack{x \rightarrow 1}} \frac{ln(x) - ln(1)}{x - 1}}$
 			<br/>Ce qui est équivalent à (car on a $ln(1) = 0$ et $ln'(1) = 1$) :
-			<br/>$1 = \lim\limits_{\substack{x \rightarrow 1}} \frac{ln(x)}{x - 1}$
+			<br/>$\displaystyle{1 = \lim\limits_{\substack{x \rightarrow 1}} \frac{ln(x)}{x - 1}}$
 			<br/>On pose $y = x-1$ ce qui nous donne finalement :
-			<br/>$\lim\limits_{\substack{y \rightarrow 0}} \frac{ln(y - 1)}{y} = 1$</p>
+			<br/>$\displaystyle{\lim\limits_{\substack{y \rightarrow 0}} \frac{ln(y - 1)}{y} = 1}$</p>
 		</div>
 	
 	</section>
@@ -127,11 +129,11 @@ chapter: 5
 		<h3 id="derivee">Dérivée</h3>
 		<p>Soit une fonction $u$ dérivable et <strong>strictement positive</strong> sur un intervalle $I$, on a pour tout $x$ appartenant à cet intervalle :</p>
 		
-		<p class="bubble formula">$ln'(u(x)) = \frac{u'(x)}{u(x)}$</p>
+		<p class="bubble formula">$\displaystyle{ln'(u(x)) = \frac{u'(x)}{u(x)}}$</p>
 		
 		<p>Ainsi, si on a $u(x) = x$ (avec $x \in ]0;+\infty[$) :</p>
 		
-		<p class="bubble formula">$ln'(x) = \frac{1}{x}$</p>
+		<p class="bubble formula">$\displaystyle{ln'(x) = \frac{1}{x}}$</p>
 	
 	</section>
 	
@@ -148,7 +150,8 @@ chapter: 5
 				<p class="last">On remarque qu'avec le tableau de variation, il est possible d'obtenir le signe de la fonction (avec le théorème des valeurs
 				intermédiaires).
 				<br/>Ainsi, sur $]0;1[$, $ln(x)$ est <strong>strictement négative</strong> et sur $]1;+\infty[$,
-				$ln(x)$ est <strong>strictement positive</strong> et, comme vu précédemment, $ln(1) = 0$.</p>
+				$ln(x)$ est <strong>strictement positive</strong> et, comme vu précédemment, $ln(1) = 0$.
+				<br/>On observe également les variations de la fonction : strictement croissante sur son ensemble de définition.</p>
 			</figcaption>
 			
 		</figure>
@@ -161,7 +164,7 @@ chapter: 5
 	<h2 id="logarithme-decimal">Le logarithme décimal</h2>
 	<p>Le <strong>logarithme décimal</strong> (principalement utilisé en physique-chimie) est défini sur $]0;+\infty[$ par :</p>
 	
-	<p class="bubble formula">$log(x) = \frac{ln(x)}{ln(10)}$</p>
+	<p class="bubble formula">$\displaystyle{log(x) = \frac{ln(x)}{ln(10)}}$</p>
 	
 	<p>Et on a les propriétés suivantes :</p>
 	

@@ -23,14 +23,14 @@ chapter: 8
 	<section>
 		
 		<h3 id="definition-ensemble">Qu'est-ce-que l'ensemble $\mathbb{C}$ ?</h3>
-		<p>Il existe un ensemble de nombres noté $\mathbb{C}$ qui contient l'ensemble $\mathbb{R}$ ainsi qu'un nombre $i$ vérifiant la propriété suivante :</p>
+		<p>Il existe un ensemble de nombres noté $\mathbb{C}$ qui contient l'ensemble $\mathbb{R}$ ainsi qu'un nombre $i \in \mathbb{C}$ vérifiant la propriété suivante :</p>
 		
 		<p class="bubble formula">$i^2 = -1$</p>
 		
 		<p>Cet ensemble est appelé <strong>ensemble des nombres complexes</strong> et obéit aux mêmes règles de calcul que l'ensemble $\mathbb{R}$.</p>
 		
 		<div class="bubble tip">
-			<p>Il peut être dûr de se représenter l'ensemble des nombres complexes, en voici un schema :</p>
+			<p>Il peut être dur de se représenter l'ensemble des nombres complexes, en voici un schéma :</p>
 			<figure>
 				<img src="/assets/img/lessons/nombres_complexes/ensembles.png"/>
 				<figcaption>
@@ -84,7 +84,7 @@ chapter: 8
 		<ul class="bubble formula">
 			<li>$\bar{\bar{z}} = z$</li>
 			<li>$\overline{z + z'} = \bar{z} + \bar{z'}$</li>
-			<li>$\bar{\frac{z}{z'}} = \frac{\bar{z}}{\bar{z'}}$ avec $z' \neq 0$</li>
+			<li>$\displaystyle{\bar{\frac{z}{z'}} = \frac{\bar{z}}{\bar{z'}}}$ avec $z' \neq 0$</li>
 			<li>$\bar{z^n} = (\bar{z})^n$ avec $n \in \mathbb{Z}$ et $z' \neq 0$ si $n \leq 0$</li>
 			<li class="last">$\overline{z \times z'} = \bar{z} \times \bar{z'}$</li>
 		</ul>
@@ -95,13 +95,6 @@ chapter: 8
 			<li>$z + \bar{z} = 2\operatorname{Re}(z)$</li>
 			<li class="last">$z - \bar{z} = 2i \times \operatorname{Re}(z)$</li>
 		</ul>
-		
-		<div class="bubble tip">
-			<p>Ces propriétés peuvent sembler compliquées mais heureusement il est possible de les retrouver par le calcul.
-			Par exemple, pour la première propriété du second encadré :</p>
-			<p>On pose $z = x+iz$, on a $z = x-iy$ :</p>
-			<p class="last">$z\bar{z} = (x+iy)(x-iy) = x^2 - ixy + ixy + y^2 = x^2 + y^2 = \sqrt{x^2 + y^2}^2 = |z|^2$.</p>
-		</div>
 		
 	</section>
 	
@@ -118,9 +111,16 @@ chapter: 8
 			<li>$z\bar{z} = |z|^2$</li>
 			<li>$|z| = |\bar{z}| = |-z|$</li>
 			<li>$|zz'| = |z| \times |z'|$</li>
-			<li>$|\frac{z}{z'}| = \frac{|z|}{|z'|}$ avec $z' \neq 0$</li>
+			<li>$\displaystyle{|\frac{z}{z'}| = \frac{|z|}{|z'|}}$ avec $z' \neq 0$</li>
 			<li class="last">$|z^n| = |z|^n$ avec $n \in \mathbb{Z}$ et $z' \neq 0$ si $n \leq 0$</li>
 		</ul>
+		
+		<div class="bubble tip">
+			<p>Ces propriétés peuvent sembler compliquées mais heureusement il est possible de les retrouver par le calcul.
+			Par exemple, pour la première propriété du second encadré :</p>
+			<p>On pose $z = x+iz$, on a $\bar{z} = x-iy$ :</p>
+			<p class="last">$z\bar{z} = (x+iy)(x-iy) = x^2 - ixy + ixy + y^2 = x^2 + y^2 = \sqrt{x^2 + y^2}^2 = |z|^2$.</p>
+		</div>
 		
 	</section>
 		
@@ -135,7 +135,7 @@ chapter: 8
 		
 		<p>Avec $\theta$ <strong>l'argument</strong> de $z$ (noté $\operatorname{arg}(z)$) qui doit vérifier les deux conditions suivantes :</p>
 		
-		<p class="bubble formula">$cos(\theta) = \frac{x}{|z|}$ et $sin(\theta) = \frac{y}{|z|}$</p>
+		<p class="bubble formula">$\displaystyle{cos(\theta) = \frac{x}{|z|}}$ et $\displaystyle{sin(\theta) = \frac{y}{|z|}}$</p>
 		
 		<p>Une fois la forme trigonométrique obtenue, on peut passer à la forme exponentielle, qui est :</p>
 		
@@ -171,7 +171,7 @@ chapter: 8
 			<span id="representation-1" class="plot"></span>
 			
 			<p><strong>Exemple 2 :</strong> On souhaite représenter le point $M'$ d'affixe $z' = \sqrt{2} \times e^{i\frac{\pi}{4}}$ dans le plan $(Oxy)$.
-			On a le module de $z$ : $|z| = \sqrt{2}$, et un argument de $z$ : $\theta = \frac{\pi}{4}$.
+			On a le module de $z$ : $|z'| = \sqrt{2}$, et un argument de $z'$ : $\theta = \frac{\pi}{4}$.
 			On va donc tracer le cercle de rayon $\sqrt{2}$ et placer dessus l'angle $\frac{\pi}{4}$ :</p>
 			
 			<span id="representation-2" class="plot"></span>
@@ -194,26 +194,26 @@ chapter: 8
 		
 		<div class="bubble formula">
 			<p><strong>Si $\Delta \gt 0$, il existe deux solution réelles :</strong></p>
-			<p>$z_1 = \frac{-b - \sqrt{\Delta}}{2a}$</p>
-			<p>$z_2 = \frac{-b + \sqrt{\Delta}}{2a}$</p>
+			<p>$\displaystyle{z_1 = \frac{-b - \sqrt{\Delta}}{2a}}$</p>
+			<p>$\displaystyle{z_2 = \frac{-b + \sqrt{\Delta}}{2a}}$</p>
 			
 			<p><strong>Si $\Delta = 0$, il existe une solution réelle :</strong></p>
-			<p>$z = \frac{-b}{2a}$</p>
+			<p>$\displaystyle{z = \frac{-b}{2a}}$</p>
 			
 			<p><strong>Si $\Delta \lt 0$, il existe deux solutions complexes conjuguées :</strong></p>
-			<p>$z_1 = \frac{-b - \sqrt{-\Delta}i}{2a}$</p>
-			<p>$z_2 = \frac{-b + \sqrt{-\Delta}i}{2a} = \bar{z_1}$</p>
+			<p>$\displaystyle{z_1 = \frac{-b - \sqrt{-\Delta}i}{2a}}$</p>
+			<p>$\displaystyle{z_2 = \frac{-b + \sqrt{-\Delta}i}{2a} = \bar{z_1}}$</p>
 		</div>
 		
 		<div class="bubble tip">
-			<p><strong>Exemple :</strong> On souhaite résoudre l'équation $-2z^2 + 4z = 10$.</p>
+			<p><strong>Exemple :</strong> On souhaite résoudre l'équation $-2z^2 + 4z = 10$ dans $\mathbb{C}$.</p>
 			<p><strong>1<sup>ère</sup> étape :</strong> On fait apparaître une équation du second degré : $-2z^2 + 4z - 10 = 0$.</p>
 			<p><strong>2<sup>nde</sup> étape :</strong> On calcule le discriminant : $\Delta = b^2 - 4ac = 16 - 80 = -64$.</p>
-			<p><strong>3<sup>ème</sup> étape :</strong> On "transforme" le discriminant négatif : $\Delta = 64i^2 = (8 \times i)^2$.</p>
+			<p><strong>3<sup>ème</sup> étape :</strong> On "transforme" le discriminant négatif : $\Delta = 64i^2 = (8i)^2$.</p>
 			<p class="last">
 				<strong>4<sup>ème</sup> étape :</strong> On trouve les solutions :
-				<br/>$z_1 = \frac{-b - \sqrt{-\Delta}i}{2a} = \frac{-4 - 8i}{2 \times 2} = 1 - 2i$
-				<br/>$z_2 = \frac{-b + \sqrt{-\Delta}i}{2a} = \frac{-4 + 8i}{2 \times 2} = 1 + 2i$
+				<br/>$z_1 = \frac{-b - \sqrt{-\Delta}i}{2a} = \frac{-4 - 8i}{2 \times -2} = 1 + 2i$
+				<br/>$z_2 = \frac{-b + \sqrt{-\Delta}i}{2a} = \frac{-4 + 8i}{2 \times -2} = 1 - 2i$
 			</p>
 		</div>
 		
@@ -222,13 +222,13 @@ chapter: 8
 	<section>
 		
 		<h3 id="geometrie">Géométrie avec les nombres complexes</h3>
-		<p>Il est possible de réaliser de la géométrie avec les nombres complexes. Ainsi, soient $A$, $B$, $C$ et $D$ des points d'affixe respectives $z_A$, $z_B$, $z_C$ et $z_D$ :</p>
+		<p>Il est possible de réaliser de la géométrie avec les nombres complexes. Ainsi, soient $A$, $B$, $C$ et $D$ des points d'affixes respectives $z_A$, $z_B$, $z_C$ et $z_D$ :</p>
 		
 		<div class="bubble formula">
 			<p><strong>La longueur $AB$ est :</strong> $|z_B - z_A|$.</p>
-			<p><strong>Le milieu du segment $[AB]$ est :</strong> le point $M$ d'affixe $z_{M} = \frac{z_A + z_B}{2}$.</p>
+			<p><strong>Le milieu du segment $[AB]$ est :</strong> le point $M$ d'affixe $\displaystyle{z_{M} = \frac{z_A + z_B}{2}}$.</p>
 			<p><strong>L'angle $(\vec{u}; \vec{AB})$ est :</strong> $\operatorname{arg}(z_B - z_A)$ (modulo $2\pi$).</p>
-			<p class="last"><strong>L'angle $(\vec{AB}; \vec{CD})$ est :</strong> $\operatorname{arg}(\frac{z_C - z_D}{z_B - z_A})$ (modulo $2\pi$).</p>
+			<p class="last"><strong>L'angle $(\vec{AB}; \vec{CD})$ est :</strong> $\displaystyle{\operatorname{arg}\left(\frac{z_C - z_D}{z_B - z_A}\right)}$ (modulo $2\pi$).</p>
 		</div>
 		
 	</section>
@@ -236,7 +236,7 @@ chapter: 8
 	<section>
 		
 		<h3 id="formules-trigonometriques">Complément : formules trigonométriques</h3>
-		<p>Il est possible de retrouver les formules trigonométriques vue en première à l'aide des nombres de complexes.
+		<p>Il est possible de retrouver les formules trigonométriques vues en Première à l'aide des nombres de complexes.
 		La démonstration suivante n'est pas à retenir mais peut être utile pour retrouver ces formules.</p>
 		
 		<div class="bubble formula">
@@ -250,7 +250,7 @@ chapter: 8
 				<li>$cos(a + b) = cos(a)cos(b) - sin(a)sin(b)$</li>
 				<li>$sin(a + b) = cos(a)sin(b) + cos(b)sin(a)$</li>
 			</ul>
-			<p class="last">Les formules vues en première ont donc bien été retrouvées.</p>
+			<p class="last">Les formules vues en Première ont donc bien été retrouvées.</p>
 		</div>
 		
 		<p class="no-print">C'est tout pour ce chapitre. Celui-ci peut sembler compliquer à cerner, n'hésitez donc pas à poser des questions (une section

@@ -32,12 +32,12 @@ chapter: 4
 		</ul>
 		
 		<div class="bubble tip">
-			<p>Comme la fonction exponentielle est composé d'un réel ($e \approx 2,718 $) et d'un exposant ($x$), <strong>les propriétés des exposants</strong> sont disponibles,
+			<p>Comme la fonction exponentielle est composé d'un réel ($e \approx 2,718 $) et d'un exposant ($x$), <strong>les opérations sur les exposants</strong> sont disponibles,
 			comme par exemple (liste non exhaustive) pour $x, y \in \mathbb{R}$ :</p>
 			<ul>
 				<li>$e^{x+y} = e^x \times e^y$</li>
-				<li>$e^{x-y} = \frac{e^x}{e^y}$</li>
-				<li>$e^{-x} = \frac{1}{e^x}$</li>
+				<li>$e^{x-y} = \displaystyle{\frac{e^x}{e^y}}$</li>
+				<li>$e^{-x} = \displaystyle{\frac{1}{e^x}}$</li>
 				<li>$(e^x)^y = e^{x \times y}$</li>
 			</ul>
 			<p class="last">Et bien entendu, $e^0 = 1$.</p>
@@ -47,7 +47,7 @@ chapter: 4
 	<section>
 		
 		<h3 id="relations">Relations algébriques</h3>
-		<p>La fonction exponentielle a plusieurs propriétés algébriques qu'il faut connaître. Ainsi, pour tout réel $x$ et $y$ :</p>
+		<p>La fonction exponentielle a plusieurs propriétés algébriques qu'il faut connaître. Ainsi, pour tous réels $x$ et $y$ :</p>
 		
 		<ul class="bubble formula">
 			<li>$e^x = e^y \iff x = y$</li>
@@ -85,9 +85,9 @@ chapter: 4
 		<p>Il faut aussi savoir que la fonction exponentielle "l'emporte sur" (elle croît plus vite que) la fonction puissance :</p>
 		
 		<ul class="bubble formula">
-			<li>$\lim\limits_{\substack{x \rightarrow +\infty}} \frac{e^x}{x} = +\infty$</li>
+			<li>$\displaystyle{\lim\limits_{\substack{x \rightarrow +\infty}} \frac{e^x}{x} = +\infty}$</li>
 			<li>$\lim\limits_{\substack{x \rightarrow -\infty}} x \times e^x = 0$</li>
-			<li class="last">$\lim\limits_{\substack{x \rightarrow 0}}\frac{e^x - 1}{x} = exp'(0) = e^0 = 1$</li>
+			<li class="last">$\displaystyle{\lim\limits_{\substack{x \rightarrow 0}}\frac{e^x - 1}{x} = exp'(0) = e^0 = 1}$</li>
 		</ul>
 	
 	</section>
@@ -117,7 +117,7 @@ chapter: 4
 			<img src="/assets/img/lessons/fonction_exponentielle/variations.svg" title="Tableau de variation de la fonction logarithme exponentielle" alt="Tableau de variation de la fonction logarithme exponentielle"/>
 			
 			<figcaption>
-				<p class="last">On remarque sur le tableau de variation que la fonction exponentielle est strictement positive sur $\mathbb{R}$.</p>
+				<p class="last">On remarque sur le tableau de variation que la fonction exponentielle est strictement positive et croissante sur $\mathbb{R}$.</p>
 			</figcaption>
 			
 		</figure>
