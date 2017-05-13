@@ -155,29 +155,31 @@ chapter: 1
 			<p class="last">Et si $u_n$ diverge vers $-\infty$ quand $n$ tend vers +$\infty$, cela signifie que pour tout réel $h$ et à partir d'un certain rang $m$, on aura $u_m \lt h$.</p>
 		</div>
 		
-		<table class="table table-bordered table-hover last">
-			<thead>
-				<tr>
-					<th colspan="5">Limite d'une suite géométrique</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Si on a pour $q \in \mathbb{R}$...</td>
-					<td>$-1 \lt q \lt 1$</td>
-					<td>$1 \lt q$</td>
-					<td>$q \leq -1$</td>
-					<td>$q = 1$</td>
-				</tr>
-				<tr>
-					<td>La suite $q^n$ a pour limite...</td>
-					<td>$0$</td>
-					<td>$+\infty$</td>
-					<td>Pas de limite</td>
-					<td>$1$</td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="table-responsive">
+			<table class="table table-bordered table-hover last">
+				<thead>
+					<tr>
+						<th colspan="5">Limite d'une suite géométrique</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Si on a pour $q \in \mathbb{R}$...</td>
+						<td>$-1 \lt q \lt 1$</td>
+						<td>$1 \lt q$</td>
+						<td>$q \leq -1$</td>
+						<td>$q = 1$</td>
+					</tr>
+					<tr>
+						<td>La suite $q^n$ a pour limite...</td>
+						<td>$0$</td>
+						<td>$+\infty$</td>
+						<td>Pas de limite</td>
+						<td>$1$</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 		
 		<p>À savoir que si une suite à une limite, alors cette limite est <strong>unique</strong>.</p>
 		
@@ -189,134 +191,140 @@ chapter: 1
 		
 		<p>Dans tout ce qui suit, $u_n$ et $v_n$ sont deux suites. Ces tableaux sont à connaître et sont requis pour pouvoir travailler sur les limites.</p>
 		
-		<table class="table table-bordered table-hover last">
-			<thead>
-				<tr>
-					<th colspan="7">Limite d'une somme</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Si la limite de $u_n$ quand $n$ tend vers $+\infty$ est...</td>
-					<td>$l$</td>
-					<td>$l$</td>
-					<td>$l$</td>
-					<td>$+\infty$</td>
-					<td>$-\infty$</td>
-					<td>$+\infty$</td>
-				</tr>
-				<tr>
-					<td>Et la limite de $v_n$ quand $n$ tend vers $+\infty$ est...</td>
-					<td>$l'$</td>
-					<td>$+\infty$</td>
-					<td>$-\infty$</td>
-					<td>$+\infty$</td>
-					<td>$-\infty$</td>
-					<td>$-\infty$</td>
-				</tr>
-				<tr>
-					<td>Alors la limite de $u_n + v_n$ quand $n$ tend vers $+\infty$ est...</td>
-					<td>$l + l'$</td>
-					<td>$+\infty$</td>
-					<td>$-\infty$</td>
-					<td>$+\infty$</td>
-					<td>$-\infty$</td>
-					<td><strong>?</strong></td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="table-responsive">
+			<table class="table table-bordered table-hover last">
+				<thead>
+					<tr>
+						<th colspan="7">Limite d'une somme</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Si la limite de $u_n$ quand $n$ tend vers $+\infty$ est...</td>
+						<td>$l$</td>
+						<td>$l$</td>
+						<td>$l$</td>
+						<td>$+\infty$</td>
+						<td>$-\infty$</td>
+						<td>$+\infty$</td>
+					</tr>
+					<tr>
+						<td>Et la limite de $v_n$ quand $n$ tend vers $+\infty$ est...</td>
+						<td>$l'$</td>
+						<td>$+\infty$</td>
+						<td>$-\infty$</td>
+						<td>$+\infty$</td>
+						<td>$-\infty$</td>
+						<td>$-\infty$</td>
+					</tr>
+					<tr>
+						<td>Alors la limite de $u_n + v_n$ quand $n$ tend vers $+\infty$ est...</td>
+						<td>$l + l'$</td>
+						<td>$+\infty$</td>
+						<td>$-\infty$</td>
+						<td>$+\infty$</td>
+						<td>$-\infty$</td>
+						<td><strong>?</strong></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 		
-		<table class="table table-bordered table-hover last">
-			<thead>
-				<tr>
-					<th colspan="10">Limite d'un produit</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Si la limite de $u_n$ quand $n$ tend vers $+\infty$ est...</td>
-					<td>$l$</td>
-					<td>$l \gt 0$</td>
-					<td>$l \gt 0$</td>
-					<td>$l \lt 0$</td>
-					<td>$l \lt 0$</td>
-					<td>$+\infty$</td>
-					<td>$+\infty$</td>
-					<td>$-\infty$</td>
-					<td>$0$</td>
-				</tr>
-				<tr>
-					<td>Et la limite de $v_n$ quand $n$ tend vers $+\infty$ est...</td>
-					<td>$l'$</td>
-					<td>$+\infty$</td>
-					<td>$-\infty$</td>
-					<td>$+\infty$</td>
-					<td>$-\infty$</td>
-					<td>$+\infty$</td>
-					<td>$-\infty$</td>
-					<td>$-\infty$</td>
-					<td>$\pm \infty$</td>
-				</tr>
-				<tr>
-					<td>Alors la limite de $u_n \times v_n$ quand $n$ tend vers $+\infty$ est...</td>
-					<td>$l \times l'$</td>
-					<td>$+\infty$</td>
-					<td>$-\infty$</td>
-					<td>$-\infty$</td>
-					<td>$+\infty$</td>
-					<td>$+\infty$</td>
-					<td>$-\infty$</td>
-					<td>$+\infty$</td>
-					<td><strong>?</strong></td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="table-responsive">
+			<table class="table table-bordered table-hover last">
+				<thead>
+					<tr>
+						<th colspan="10">Limite d'un produit</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Si la limite de $u_n$ quand $n$ tend vers $+\infty$ est...</td>
+						<td>$l$</td>
+						<td>$l \gt 0$</td>
+						<td>$l \gt 0$</td>
+						<td>$l \lt 0$</td>
+						<td>$l \lt 0$</td>
+						<td>$+\infty$</td>
+						<td>$+\infty$</td>
+						<td>$-\infty$</td>
+						<td>$0$</td>
+					</tr>
+					<tr>
+						<td>Et la limite de $v_n$ quand $n$ tend vers $+\infty$ est...</td>
+						<td>$l'$</td>
+						<td>$+\infty$</td>
+						<td>$-\infty$</td>
+						<td>$+\infty$</td>
+						<td>$-\infty$</td>
+						<td>$+\infty$</td>
+						<td>$-\infty$</td>
+						<td>$-\infty$</td>
+						<td>$\pm \infty$</td>
+					</tr>
+					<tr>
+						<td>Alors la limite de $u_n \times v_n$ quand $n$ tend vers $+\infty$ est...</td>
+						<td>$l \times l'$</td>
+						<td>$+\infty$</td>
+						<td>$-\infty$</td>
+						<td>$-\infty$</td>
+						<td>$+\infty$</td>
+						<td>$+\infty$</td>
+						<td>$-\infty$</td>
+						<td>$+\infty$</td>
+						<td><strong>?</strong></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 		
-		<table class="table table-bordered table-hover last">
-			<thead>
-				<tr>
-					<th colspan="10">Limite d'un quotient</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Si la limite de $u_n$ quand $n$ tend vers $+\infty$ est...</td>
-					<td>$l$</td>
-					<td>$l$</td>
-					<td>$+\infty$</td>
-					<td>$+\infty$</td>
-					<td>$-\infty$</td>
-					<td>$-\infty$</td>
-					<td>$\pm \infty$</td>
-					<td>$l$</td>
-					<td>$0$</td>
-				</tr>
-				<tr>
-					<td>Et la limite de $v_n$ quand $n$ tend vers $+\infty$ est...</td>
-					<td>$l' \neq 0$</td>
-					<td>$\pm \infty$</td>
-					<td>$l' \gt 0$</td>
-					<td>$l' \lt 0$</td>
-					<td>$l' \gt 0$</td>
-					<td>$l' \lt 0$</td>
-					<td>$\pm \infty$</td>
-					<td>$0^+_-$</td>
-					<td>$0$</td>
-				</tr>
-				<tr>
-					<td>Alors la limite de $\frac{u_n}{v_n}$ quand $n$ tend vers $+\infty$ est...</td>
-					<td>$\displaystyle{\frac{l}{l'}}$</td>
-					<td>$0$</td>
-					<td>$+\infty$</td>
-					<td>$-\infty$</td>
-					<td>$-\infty$</td>
-					<td>$+\infty$</td>
-					<td><strong>?</strong></td>
-					<td>$\pm \infty$</td>
-					<td><strong>?</strong></td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="table-responsive">
+			<table class="table table-bordered table-hover last">
+				<thead>
+					<tr>
+						<th colspan="10">Limite d'un quotient</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Si la limite de $u_n$ quand $n$ tend vers $+\infty$ est...</td>
+						<td>$l$</td>
+						<td>$l$</td>
+						<td>$+\infty$</td>
+						<td>$+\infty$</td>
+						<td>$-\infty$</td>
+						<td>$-\infty$</td>
+						<td>$\pm \infty$</td>
+						<td>$l$</td>
+						<td>$0$</td>
+					</tr>
+					<tr>
+						<td>Et la limite de $v_n$ quand $n$ tend vers $+\infty$ est...</td>
+						<td>$l' \neq 0$</td>
+						<td>$\pm \infty$</td>
+						<td>$l' \gt 0$</td>
+						<td>$l' \lt 0$</td>
+						<td>$l' \gt 0$</td>
+						<td>$l' \lt 0$</td>
+						<td>$\pm \infty$</td>
+						<td>$0^+_-$</td>
+						<td>$0$</td>
+					</tr>
+					<tr>
+						<td>Alors la limite de $\frac{u_n}{v_n}$ quand $n$ tend vers $+\infty$ est...</td>
+						<td>$\displaystyle{\frac{l}{l'}}$</td>
+						<td>$0$</td>
+						<td>$+\infty$</td>
+						<td>$-\infty$</td>
+						<td>$-\infty$</td>
+						<td>$+\infty$</td>
+						<td><strong>?</strong></td>
+						<td>$\pm \infty$</td>
+						<td><strong>?</strong></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 		
 	</section>
 	
