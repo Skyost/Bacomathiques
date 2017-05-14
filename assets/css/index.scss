@@ -1,0 +1,23 @@
+---
+---
+@import 'utils';
+
+#menu-lessons {
+	position: relative;
+	float: right;
+	margin-left: 10px;
+	
+	.glyphicon-bookmark {
+		position: absolute;
+		top: 15px;
+		right: 15px;
+	}
+	
+	.panel-heading {
+		text-transform: uppercase;
+	}
+	
+	@media(max-width: $mobile-max-width) {
+		display: none;
+	}
+}

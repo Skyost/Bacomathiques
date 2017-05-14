@@ -2,6 +2,7 @@
 layout: simple
 title: "Accueil"
 navbarpos: 1
+css: ["/assets/css/index.css"]
 ---
 
 <h2><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Bienvenue sur {{ site.title }} !</h2>
@@ -12,6 +13,20 @@ navbarpos: 1
 	<p><q>Bac-o-math-iques</q> (ou plus simplement {{ site.title }}) est un petit site web qui contient tout ce que vous avez besoin pour réussir
 	votre BAC de mathématiques en toute tranquillité !</p>
 
+</section>
+
+<section id="menu-lessons" class="panel panel-default">
+	<div class="panel-heading"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> Liste des cours</div>
+	<div class="panel-body">
+		<ul>
+			{% assign pages = (site.pages | sort: 'chapter') %}
+			{% for page in pages %}
+				{% if page.lesson %}
+					<li><a href="{{ page.url }}">{{ page.title }}</a></li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</div>
 </section>
 
 <section>
