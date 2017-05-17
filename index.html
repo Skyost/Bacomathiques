@@ -2,77 +2,124 @@
 layout: simple
 title: "Accueil"
 navbarpos: 1
-css: ["/assets/css/index.css"]
+css: [
+	"https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.1/css/hover-min.css",
+	"/assets/css/index.css"
+]
 ---
 
-<h2><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Bienvenue sur {{ site.title }} !</h2>
-
-<section>
-
-	<h3>Qu'est-ce-que {{ site.title }} ?</h3>
-	<p><q>Bac-o-math-iques</q> (ou plus simplement {{ site.title }}) est un petit site web qui contient tout ce que vous avez besoin pour réussir
-	votre BAC de mathématiques en toute tranquillité !</p>
-
-</section>
-
-<section id="menu-lessons" class="panel panel-default">
-	<div class="panel-heading"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> Liste des cours</div>
-	<div class="panel-body">
-		<ul>
-			{% assign pages = (site.pages | sort: 'chapter') %}
-			{% for page in pages %}
-				{% if page.lesson %}
-					<li><a href="{{ page.url }}">{{ page.title }}</a></li>
-				{% endif %}
-			{% endfor %}
-		</ul>
-	</div>
-</section>
-
-<section>
-
-	<h3>Les contenus</h3>
-	<ul>
-		<li>Des cours en accord avec <a href="http://media.education.gouv.fr/file/special_8_men/98/4/mathematiques_S_195984.pdf">le programme</a> de Terminale S.</li>
-		<li>Des exemples intuitifs et la possibilité de télécharger et imprimer les cours gratuitement pour les relire chez soi !</li>
-		<li>Des annales des précédents sujets du BAC de mathématiques à télécharger.</li>
-		<li>Le plus important : tout est gratuit. Même pas besoin de compte, tout est à disposition de tout le monde !</li>
-		<li><em>Des vidéos explicatives du cours avec des exemples visuels !</em> <span class="label label-info">Bientôt disponible</span></li>
-		<li>Veuillez noter que le site WEB vient d'ouvrir, et que de nouveaux contenus seront rajoutés, et en particulier les cours de spécialité qui arrivent très bientôt !</li>
-	</ul>
-
-</section>
-
-<section>
-
-	<h3>Alors pourquoi attendre ?</h3>
-	<p>Accédez dès maintenant à <a href="/cours/">l'index des cours</a>.</p>
-
-</section>
-
-<section>
-
-	<h3>Chaîne YouTube</h3>
-	<p><a href="https://www.youtube.com/channel/UCmSSf75fsn1e6wOTV9R1Y9Q">{{ site.title }} est sur YouTube !</a>
-	Chaque cours disponible sur le site sera également disponible en version vidéo sur YouTube.</p>
-	
-	<!--
-	<div class="video-responsive">
-		<div class="embed-responsive embed-responsive-16by9">
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/NTf1WAi2mig?showinfo=0" allowfullscreen></iframe>
+<div class="col-md-12 first">
+	<div class="row">
+		<div class="col-md-6 col-xs-12">
+			<section id="main-section">
+					
+				<h2>Bienvenue sur {{ site.title }} !</h2>
+				<p><q>Bac-o-math-iques</q> (ou plus simplement {{ site.title }}) est un petit site web qui contient tout ce que vous avez besoin pour réussir
+				votre BAC de mathématiques en toute tranquillité !</p>
+				
+				<p>Veuillez noter que le site WEB vient juste d'ouvrir, et que de nouveaux contenus seront rajoutés,
+				en particulier les cours de spécialité qui arrivent très bientôt !</p>
+				
+				<img class="black-logo-image" src="assets/img/logo.svg"/>
+						
+			</section>
+		</div>
+				
+		<div class="col-md-6 col-xs-12">
+			<section id="menu-lessons" class="panel panel-default">
+			
+				<div class="panel-heading"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> Liste des cours</div>
+				<div class="panel-body">
+					<ul>
+						{% assign pages = (site.pages | sort: 'chapter') %}
+						{% for page in pages %}
+							{% if page.lesson %}
+								<li><a href="{{ page.url }}">{{ page.title }}</a></li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</div>
+				
+			</section>
 		</div>
 	</div>
-	-->
-	
-	<p><em>Veuillez noter que la chaîne YouTube n'a pas encore de date d'ouverture.
-	En effet, tourner des vidéos prends beaucoup plus de temps que d'écrire un cours; les vidéos seront ainsi ajoutées une fois que tous les cours seront écrits.</em></p>
+</div>
 
-</section>
+<div class="col-md-12">
+	<section>
 
-<section>
+		<h2>Les contenus</h2>
+		
+		<div id="row-contents" class="row">
+			<div class="col-md-4 col-xs-12">
+				<figure>
+					<img src="assets/img/index/approved.svg" class="hvr-pulse"/>
+				
+					<figcaption>Des cours en accord avec le programme de Terminale S.</figcaption>
+				</figure>
+			</div>
+			<div class="col-md-4 col-xs-12 middle">
+				<figure>
+					<img src="assets/img/index/book.svg" class="hvr-pulse"/>
+				
+					<figcaption>Des exemples intuitifs et la possibilité de télécharger et imprimer les cours gratuitement pour les relire chez soi !</figcaption>
+				</figure>
+			</div>
+			<div class="col-md-4 col-xs-12">
+				<figure>
+					<img src="assets/img/index/laptop.svg" class="hvr-pulse"/>
+				
+					<figcaption>Le plus important : tout est gratuit. Même pas besoin de compte, tout est à disposition de tout le monde !</figcaption>
+				</figure>
+			</div>
+		</div>
+		
+		<p><em>Également des annales des précédents sujets du BAC de mathématiques à télécharger (avec leur correction), et bientôt
+		des vidéos explicatives du cours avec des exemples visuels !</em></p>
+		
+		<p><strong>Et bien plus !</strong></p>
 
-	<h3>À propos de {{ site.title }}</h3>
-	<p>Par qui a été crée ce site web ? Sous quelle licence sont disponibles les contenus ? Quelles sont les technologies utilisées pour concevoir le site web ?
-	Toutes les réponses à ces questions sont disponibles dans la page <a href="/about.html"><q>À propos</q></a>.</p>
+	</section>
+</div>
 
-</section>
+<div class="col-md-12">
+	<section>
+
+		<h2>Alors pourquoi attendre ?</h2>
+		<p>Accédez dès maintenant à <a href="/cours/">l'index des cours</a> !</p>
+
+	</section>
+</div>
+
+<div class="col-md-12">
+	<section>
+
+		<h2>Chaîne YouTube</h2>
+		<p><a href="https://www.youtube.com/channel/UCmSSf75fsn1e6wOTV9R1Y9Q">{{ site.title }} est sur YouTube !</a>
+		Chaque cours disponible sur le site sera également disponible en version vidéo sur YouTube.</p>
+		
+		<!--
+		<div class="video-responsive">
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/NTf1WAi2mig?showinfo=0" allowfullscreen></iframe>
+			</div>
+		</div>
+		-->
+		
+		<img id="youtube-image" src="assets/img/index/youtube.svg" class="hvr-bounce-out"/>
+		
+		<p><em>Veuillez noter que la chaîne YouTube n'a pas encore de date d'ouverture.
+		En effet, tourner des vidéos prends beaucoup plus de temps que d'écrire un cours; les vidéos seront ainsi ajoutées une fois que tous les cours seront écrits.</em></p>
+
+	</section>
+</div>
+
+<div class="col-md-12">
+	<section>
+
+		<h2>À propos de {{ site.title }}</h2>
+		<p>Par qui a été crée ce site web ? Sous quelle licence sont disponibles les contenus ? Quelles sont les technologies utilisées pour concevoir le site web ?
+		Toutes les réponses à ces questions sont disponibles dans la page <a href="/about.html"><q>À propos</q></a>.</p>
+
+	</section>
+</div>

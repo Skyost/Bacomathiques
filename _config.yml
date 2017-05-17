@@ -19,7 +19,7 @@ compress_html:
 content_license:
   name: "Creative Commons BY-NC 4.0"
   acronym: "CC BY NC"
-  image: "/assets/img/license.svg"
+  image: "/assets/img/lessons/license.svg"
   url: "https://creativecommons.org/licenses/by-nc/4.0/deed.fr"
 
 # SASS options

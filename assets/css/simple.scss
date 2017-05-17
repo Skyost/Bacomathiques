@@ -10,7 +10,11 @@ html {
 	min-height: 100%;
 }
 
-body, .row, #content {
+body {
+	padding: 0 !important;
+}
+
+body, #content {
 	min-height: 96vh;
 }
 
@@ -85,21 +89,37 @@ header:hover h1 {
 /** Article : **/
 
 article {
+	padding-top: 40px !important;
+
 	h2 {
 		padding-bottom: 4px;
-		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	}
 	
 	.label {
 		font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 		text-transform: uppercase;
 	}
+	
+	.col-md-12 {
+		text-align: center;
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
+		padding: 20px 0 30px 0;
+	}
+	
+	.col-md-12.first {
+		padding-top: 0;
+		border-top: 0;
+	}
 }
 
 /** Footer : **/
 
 article, footer {
-	padding: 0 14px 0 14px;
+	padding: 0 100px 0 100px;
+	
+	@media(max-width: $tablets-max-width) {
+		padding: 0 50px 0 50px;
+	}
 }
 
 footer {
@@ -115,4 +135,15 @@ footer {
 	p {
 		margin-bottom: 0;
 	}
+}
+
+/** Gray Bacomathiques image : **/
+
+.black-logo-image {
+	filter: grayscale(100%);
+	display: block;
+	margin: auto;
+	margin-top: 30px;
+	opacity: 0.3;
+	height: 100px;
 }

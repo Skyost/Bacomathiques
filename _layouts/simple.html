@@ -8,19 +8,19 @@ adsense: true
 {% include head.html %}
 	<body class="container-fluid">
 	
-		<div class="row">
-			<div id="content">
+		<div id="content">
 			
 				{% include simple/header.html %}
 				<article>
-					{{ content }}
+					<div class="row">
+						{{ content }}
+					</div>
 				</article>
 				<ins class="adsbygoogle" data-ad-client="ca-pub-7167241518798106" data-ad-slot="2930816076" data-ad-format="auto"></ins>
 				{% include simple/footer.html %}
 				
 				{% include footer.html %}
 			
-			</div>
 		</div>
 		
 	</body>
