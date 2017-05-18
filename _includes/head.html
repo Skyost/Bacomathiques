@@ -24,7 +24,7 @@
 	<meta name="twitter:image" content="{{ site.url }}{{ site.social.preview }}"/>
 	
 	<!-- Styles -->
-	<meta name="theme-color" content="#4cdbc4"/>
+	<meta name="theme-color" content="{% if page.layout == 'simple' %}#4cdbc4{% else %}#3583d6{% endif %}"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
 	
 	<link rel="stylesheet" href="/assets/css/style.css"/>

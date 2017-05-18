@@ -164,9 +164,9 @@
 		display: inline-block;
 		margin-left: 7px;
 		cursor: pointer;
-		background-size: 20px 20px;
-		height: 20px;
-		width: 20px;
+		background-size: 24px 24px;
+		height: 24px;
+		width: 24px;
 	}
 }
 
@@ -195,6 +195,7 @@
 	padding: 14px;
 	border-width: 0 0 0 7px;
 	border-style: solid;
+	page-break-inside: avoid;
 }
 
 .bubble table {
@@ -250,17 +251,28 @@ ul.bubble {
 
 article {
 	h1 {
+		margin-top: 50px;
 		text-align: center;
 		color: $lesson-h1;
 		font-size: 38px;
+		
+		@media(max-width: $mobile-max-width) {
+			margin-top: 60px;
+			margin-bottom: 60px;
+		}
 	}
 	h2 {
 		color: $lesson-h2;
 		font-size: 32px;
+		page-break-after: avoid;
 	}
 	h3 {
 		color: $lesson-h3;
 		font-size: 26px;
+		page-break-after: avoid;
+	}
+	table {
+		page-break-inside: avoid;
 	}
 }
 
@@ -345,4 +357,17 @@ h3 .anchor {
 	height: 16px;
 	width: 16px;
 	background-size: 16px 16px;
+}
+
+/* PRINT OPTIONS */
+
+@page {
+	size:  auto;
+	margin: 20mm;
+}
+
+@media print {
+	body {
+		-webkit-print-color-adjust: exact;
+	}
 }

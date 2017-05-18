@@ -90,8 +90,13 @@ header:hover h1 {
 
 article {
 	padding-top: 40px !important;
-
+	
 	h2 {
+		display: none; // We just need to have a title for each article
+	}
+
+	h3 {
+		font-size: 30px;
 		padding-bottom: 4px;
 	}
 	
