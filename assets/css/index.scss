@@ -30,19 +30,28 @@
 	margin: 60px 0 60px 0;
 }
 
-#youtube-image {
-	opacity: 0.6;
-	height: 128px;
-	margin-top: 20px;
-}
-
-article ul {
-	list-style-type: none;
-	padding-left: 16px;
+article {
+	.article-image {
+		height: 128px;
+		margin-top: 20px;
+	}
 	
-	li:before {
-		content: "—";
-		margin-right: 10px;
+	#youtube-image {
+		opacity: 0.6;
+	}
+	
+	#interrogation-image {
+		opacity: 0.2;
+	}
+
+	ul {
+		list-style-type: none;
+		padding-left: 16px;
+		
+		li:before {
+			content: "—";
+			margin-right: 10px;
+		}
 	}
 }
 
@@ -76,7 +85,7 @@ article ul {
 .col-md-10 {
 	text-align: left;
 	
-	@media(max-width: $mobile-max-width) {
+	@media(max-width: $tablets-max-width) {
 		text-align: center;
 	}
 }
