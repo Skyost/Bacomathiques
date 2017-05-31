@@ -51,7 +51,7 @@ adsense: true
 										{% else %}
 											<a class="dropdown-toggle" data-toggle="dropdown" href="/cours/"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Index des cours <b class="caret"></b></a>
 											<ul class="dropdown-menu">
-												{% assign pages = (site.pages | sort: 'chapter') %}
+												{% assign pages = site.pages | sort: 'chapter' %}
 												{% for page in pages %}
 													{% if page.lesson %}
 														<li class="toc-lesson a"><a href="{{ page.url }}">{{ page.title }}</a></li>

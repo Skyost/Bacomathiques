@@ -31,7 +31,7 @@ css: [
 				<div class="panel-heading"><h3><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> Liste des cours</h3></div>
 				<div class="panel-body">
 					<ul>
-						{% assign pages = (site.pages | sort: 'chapter') %}
+						{% assign pages = site.pages | sort: 'chapter' %}
 						{% for page in pages %}
 							{% if page.lesson %}
 								<li><a href="{{ page.url }}">{{ page.title }}</a></li>
