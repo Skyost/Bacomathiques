@@ -207,7 +207,7 @@
 	background-color: white;
 }
 
-ul.bubble {
+ul.bubble, ol.bubble {
 	padding-left: 28px;
 }
 
@@ -227,7 +227,7 @@ ul.bubble {
 	margin-bottom: 0 !important;
 }
 
-.formula ul li, ul.formula li, .tip ul li, ul.tip li {
+.formula ul li, ul.formula li, .tip ul li, ul.tip li, .formula ol li, ol.formula li, .tip ol li, ol.tip li {
 	margin-bottom: 10px;
 }
 
