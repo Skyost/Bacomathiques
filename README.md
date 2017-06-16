@@ -11,7 +11,7 @@
 *  Des annales des précédents sujets du BAC de mathématiques à télécharger.
 *  Le plus important : tout est gratuit. Même pas besoin de compte, tout est à disposition de tout le monde !
 *  _Des vidéos explicatives du cours avec des exemples visuels !_ (Bientôt disponible !)
-*  Veuillez noter que le site WEB vient d'ouvrir, et que de nouveaux contenus seront rajoutés, et en particulier les cours de spécialité qui arrivent très bientôt !
+*  Veuillez noter que le site WEB vient d'ouvrir, et que de nouveaux contenus seront rajoutés, et en particulier les vidéos YouTube qui arrivent très bientôt !
 
 ### Alors pourquoi attendre ?
 
