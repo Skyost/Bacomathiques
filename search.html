@@ -19,8 +19,8 @@ sitemap: false
 			{% if page.lesson %}
 				'{{ page.url | slugify }}': {
 					title: "{{ page.title | xml_escape }}",
-					excerpt: "{{ page.excerpt }}",
-					content: "{{ page.content | xml_escape | strip_html | strip_newlines | truncatewords: 10 | textilize }}",
+					excerpt: "{{ page.excerpt | strip_html }}",
+					content: "{{ page.content | strip_html | xml_escape | strip_newlines | truncatewords: 10 | textilize }}",
 					url: "{{ page.url | xml_escape }}"
 				},
 			{% endif %}

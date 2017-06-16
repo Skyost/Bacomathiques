@@ -1,0 +1,42 @@
+---
+---
+@import 'colors';
+
+h1 {
+	margin: 30px 0 30px 0;
+	text-align: center;
+	color: $main-color-darker;
+	font-size: 38px;
+}
+
+.lessons-row {
+	margin-top: 30px;
+}
+
+.panel-heading {
+	display: table;
+	text-align: center;
+	width: 100.2%;
+	background-color: $main-color !important;
+	min-height: 70px;
+	
+	span {
+		display: table-cell; 
+		vertical-align: middle;
+	}
+}
+
+.panel-body {
+	min-height: 270px;
+	border-color: $main-color !important;
+}
+
+.panel-footer {
+	border-color: $main-color !important;
+	border-top-color: #dddddd !important;
+
+	a {
+		float: right;
+		text-transform: uppercase;
+	}
+}
