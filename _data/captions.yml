@@ -1,0 +1,41 @@
+suites:
+  content: "Les suites sont utilisées dans bien des domaines, notamment celui des fractales."
+
+continuite_derivabilite:
+  content: "Ce chapitre a beaucoup d'applications, notamment dans l'étude de fonctions et la physique."
+
+fonctions_trigonometriques:
+  content: "On retrouve les fonctions trigonométriques dans le son et l'accoustique."
+
+fonction_exponentielle:
+  content: "Les fonctions exponentielles sont notamment utilisées dans l'étude des croissances."
+
+fonction_logarithme:
+  content: "Le logarithme népérien peut être utilisé pour simplifier de longs calculs."
+
+primitives:
+  content: "Les primitives servent à calculer des aires (intégrales)."
+
+integrales:
+  content: "Les intégrales sont utilisées dans beaucoup de domaines, particulièrement dans le calcul d'aire et même de volume."
+
+nombres_complexes:
+  content: "Ce chapitre un peu abstrait possède notamment des applications en électronique."
+
+geometrie_espace:
+  content: "La géométrie dans l'espace s'applique dans beaucoup de domaines : la modélisation 3D par exemple."
+
+probabilites:
+  content: "Les probabilités peuvent servir à comprendre les jeux de hasard, par exemple, pourquoi avons-nous plus de chances de perdre que de gagner ?"
+
+echantillonnage_estimation:
+  content: "Les notions de ce chapitre sont utilisées dans l'industrie mais aussi plus généralement dans la collecte de données."
+
+algorithmique:
+  content: "On retrouve les algorithmes en informatique mais également en robotique."
+
+arithmetique:
+  content: "L'arithmétique sert beaucoup en cryptographie (avec les cartes bancaires, le web mais également avec le domaine militaire)."
+
+matrices:
+  content: "Les matrices peuvent être utilisées par exemple dans le domaine de la photographie et du traitement d'images."

@@ -7,8 +7,6 @@ navbarpos: 2
 ---
 
 <h1>Liste des cours</h1>
-<p>Vous trouverez ci-dessous un tableau contenant la liste des cours disponibles sur ce site web ainsi qu'une briève description.
-<br/><strong>N'oubliez pas que le site WEB vient juste d'ouvrir, du contenu sera rajouté, et en particulier les vidéos YouTube qui arrivent très bientôt !</strong></p>
 
 {% assign pages = site.pages | sort: 'chapter' %}
 {% assign currentLessonCount = 0 %}
@@ -21,7 +19,15 @@ navbarpos: 2
 			<div class="col-sm-12 col-md-4">
 				<div class="panel panel-primary">
 					<div class="panel-heading"><span>{{ page.title }}</span></div>
-					<div class="panel-body">{{ page.excerpt }}</div>
+					<div class="panel-body">
+						<div class="panel-image">
+							{% assign id = page.path | replace: 'cours/', '' | replace: '.html', '' %}
+							<span class="preview" style="background-image: url('/assets/img/previews/{{ id }}.jpg')"></span>
+							<span class="overlay"></span>
+							<span class="caption">{{ site.data.captions[id].content }}</span>
+						</div>
+						<p>{{ page.excerpt }}</p>
+					</div>
 					<div class="panel-footer clearfix">
 						<a href="{{ page.url }}">Lien vers ce cours</a>
 					</div>

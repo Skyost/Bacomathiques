@@ -2,6 +2,10 @@
 ---
 @import 'colors';
 
+/* PAGE CONTENT */
+
+/** Title : **/
+
 h1 {
 	margin: 30px 0 30px 0;
 	text-align: center;
@@ -9,9 +13,13 @@ h1 {
 	font-size: 38px;
 }
 
+/** Lessons row : **/
+
 .lessons-row {
 	margin-top: 30px;
 }
+
+/** Panels : **/
 
 .panel-heading {
 	display: table;
@@ -27,16 +35,71 @@ h1 {
 }
 
 .panel-body {
-	min-height: 270px;
+	padding: 0;
+	min-height: 400px;
 	border-color: $main-color !important;
+	
+	.panel-image {
+		position: relative;
+		
+		.preview {
+			display: block;
+			height: 130px;
+			width: 100%;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+		
+		.overlay {
+			position: absolute;
+			display: none;
+			top: 0;
+			height: 100%;
+			width: 100%;
+			opacity: 0.7;
+			background-color: black;
+		}
+		
+		.caption {
+			position: absolute;
+			display: none;
+			top: 50%;
+			transform: translateY(-50%);
+			color: white;
+			width: 100%;
+			text-align: center;
+			padding: 0 5px 0 5px;
+		}
+	
+	}
+	
+	.panel-image:hover {
+		.overlay, .caption {
+			display: block;
+		}
+	}
+	
+	p {
+		padding: 15px;
+	}
 }
 
 .panel-footer {
 	border-color: $main-color !important;
-	border-top-color: #dddddd !important;
+	border-top-color: rgba(0, 0, 0, 0.1) !important;
 
 	a {
 		float: right;
 		text-transform: uppercase;
+	}
+}
+
+.thumbnail {
+	width: 348px;
+	padding: 0;
+	
+	img {
+		margin: 0;
 	}
 }
