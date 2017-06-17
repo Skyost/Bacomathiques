@@ -6,6 +6,10 @@
 
 /* DEFAULT STYLES */
 
+::selection {
+	background-color: $simple-selection-color;
+}
+
 html {
 	min-height: 100%;
 }

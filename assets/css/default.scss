@@ -9,6 +9,10 @@
 
 /** General styles : **/
 
+::selection {
+	background-color: $lesson-selection-color;
+}
+
 nav {
 	border: none !important;
 	font-family: 'Open Sans', sans-serif;
