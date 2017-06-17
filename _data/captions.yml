@@ -2,10 +2,10 @@ suites:
   content: "Les suites sont utilisées dans bien des domaines, notamment celui des fractales."
 
 continuite_derivabilite:
-  content: "Ce chapitre a beaucoup d'applications, notamment dans l'étude de fonctions et la physique."
+  content: "Ce chapitre a beaucoup d'applications, notamment dans l'étude de fonctions et dans la physique."
 
 fonctions_trigonometriques:
-  content: "On retrouve les fonctions trigonométriques dans le son et l'accoustique."
+  content: "On retrouve les fonctions trigonométriques dans le son et l'acoustique."
 
 fonction_exponentielle:
   content: "Les fonctions exponentielles sont notamment utilisées dans l'étude des croissances."

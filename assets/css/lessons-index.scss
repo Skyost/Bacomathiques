@@ -58,30 +58,36 @@ h1 {
 		
 		.overlay {
 			position: absolute;
-			display: none;
+			display: block;
 			top: 0;
 			height: 100%;
 			width: 100%;
-			opacity: 0.7;
+			opacity: 0;
 			background-color: black;
+			transition: opacity 0.3s ease;
 		}
 		
 		.caption {
 			position: absolute;
-			display: none;
+			display: block;
 			top: 50%;
 			transform: translateY(-50%);
 			color: white;
 			width: 100%;
 			text-align: center;
 			padding: 0 5px 0 5px;
+			opacity: 0;
+			transition: opacity 0.3s ease;
 		}
 	
 	}
 	
 	.panel-image:hover {
-		.overlay, .caption {
-			display: block;
+		.overlay {
+			opacity: 0.7;
+		}
+		.caption {
+			opacity: 1;
 		}
 	}
 	
