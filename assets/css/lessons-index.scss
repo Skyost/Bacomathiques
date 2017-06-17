@@ -1,6 +1,7 @@
 ---
 ---
 @import 'colors';
+@import 'utils';
 
 /* PAGE CONTENT */
 
@@ -31,6 +32,10 @@ h1 {
 	span {
 		display: table-cell; 
 		vertical-align: middle;
+	}
+	
+	@media(max-width: 1160px) {
+		min-height: 95px;
 	}
 }
 
@@ -82,6 +87,22 @@ h1 {
 	
 	p {
 		padding: 15px;
+	}
+	
+	@media(max-width: 1330px) {
+		min-height: 500px;
+	}
+	
+	@media(max-width: 1160px) {
+		min-height: 550px;
+	}
+	
+	@media(max-width: 1048px) {
+		min-height: 570px;
+	}
+	
+	@media(max-width: $mobile-max-width) {
+		min-height: 400px;
 	}
 }
 
