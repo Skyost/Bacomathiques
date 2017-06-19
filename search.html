@@ -2,7 +2,7 @@
 layout: default
 title: "Résultats de la recherche"
 css: ["assets/css/search.css"]
-js: ["https://cdnjs.cloudflare.com/ajax/libs/lunr.js/0.7.2/lunr.min.js", "/assets/js/search.js"]
+js: ["https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.0.1/lunr.min.js", "/assets/js/search.js"]
 sitemap: false
 ---
 <h1>Résultats de la recherche</h1>
@@ -20,7 +20,7 @@ sitemap: false
 				'{{ page.url | slugify }}': {
 					title: "{{ page.title | xml_escape }}",
 					excerpt: "{{ page.excerpt | strip_html }}",
-					content: "{{ page.content | strip_html | xml_escape | strip_newlines | truncatewords: 10 | textilize }}",
+					content: "{{ page.content | strip_html | xml_escape | strip_newlines | truncatewords: 20 | textilize }}",
 					url: "{{ page.url | xml_escape }}"
 				},
 			{% endif %}
@@ -28,7 +28,7 @@ sitemap: false
 		'index-des-cours-html': {
 			title: 'Index des cours',
 			excerpt: 'Index des cours disponibles sur {{ site.title }}.',
-			content: 'Retrouvez ici la liste des cours.',
+			content: 'Retrouvez ici la liste des cours ainsi qu\'une brève description et une petite illustration.',
 			url: '/cours/'
 		}
 	};

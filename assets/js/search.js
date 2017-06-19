@@ -11,19 +11,18 @@ $(document).ready(function() {
 		});
 		this.field('excerpt');
 		this.field('content');
+		
+		for(var page in pages) {
+			this.add({
+				'id': page,
+				'title': pages[page].title,
+				'excerpt': pages[page].excerpt,
+				'content': pages[page].content
+			});
+		}
 	});
-
-	for(var page in pages) { // Add the data to lunr
-		idx.add({
-			'id': page,
-			'title': pages[page].title,
-			'excerpt': pages[page].excerpt,
-			'content': pages[page].content
-		});
-
-		var results = idx.search(searchTerm); // Get lunr to perform a search
-		displaySearchResults(results, pages);
-	}
+	var results = idx.search(searchTerm);
+	displaySearchResults(results, pages);
 });
 
 /**
