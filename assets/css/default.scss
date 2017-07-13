@@ -91,6 +91,10 @@ article {
 		height: 6px;
 	}
 	
+	@media(max-width: $mobile-max-width) {
+		padding-bottom: 8px;
+	}
+	
 	@media(max-width: $tablets-max-width) {
 		
 		.nav-item:hover:after {
