@@ -4,19 +4,69 @@
 @import 'colors';
 @import 'utils';
 
-/* NAVBAR LICENSE */
+/* ANCHORS */
 
-#license {
-	width: 100%;
-	text-align: center;
-	margin: 16px 0 8px 0;
+.anchorjs-link {
+	transition: margin-left 0.25s linear;
+	margin-left: -0.5em !important;
+}
+
+.anchorjs-link:link, .anchorjs-link:active, anchorjs-link:visited {
+	color: #95a5a6;
+	text-decoration: none;
+}
+
+.anchorjs-link:hover {
+	color: #7f8c8d;
+}
+
+*:hover > .anchorjs-link {
+	margin-left: 0 !important;
+}
+
+/* SIDEBARS */
+
+#nav-lessons, #nav-toc {
+	font-weight: lighter;
+	margin-top: 30px;
 	
-	img {
-		opacity: 0.5;
+	a:link, a:active, a:visited {
+		color: $nav-link-color;
+		text-decoration: none;
+	}
+}
+
+#nav-lessons ul {
+	font-size: 13px;
+	
+	li:before {
+		color: $nav-link-color;
 	}
 	
-	img:hover {
-		opacity: 0.8;
+	.active {
+		font-weight: bold;
+	}
+}
+
+#nav-toc {
+	top: 0;
+	
+	.toc-h2 a {
+		text-transform: uppercase;
+		font-size: 13px;
+	}
+	
+	.toc-h3 a {
+		padding-left: 42px !important;
+		font-size: 0.85em;
+	}
+	
+	.dropdown-menu a {
+		white-space: normal;
+	}
+	
+	.toc-active {
+		font-weight: bold;
 	}
 }
 
@@ -24,131 +74,68 @@
 
 /** Social : **/
 
-@font-face {
-	font-family: 'SocialIcon';
-	src: url('../fonts/socicon.eot');
-	src: url('../fonts/socicon.eot?#iefix') format('embedded-opentype'),
-		url('../fonts/socicon.woff') format('woff'),
-		url('../fonts/socicon.ttf') format('truetype'),
-		url('../fonts/socicon.svg#icomoonregular') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-
-	@font-face {
-		font-family: 'SocialIcon';
-		src: url('../fonts/socicon.svg') format(svg);
-	}
-	
-}
-
-.social {
-	overflow: hidden;
-	margin: 0;
-	padding: 0;
+.list-unstyled {
+	padding-left: 0;
 	list-style: none;
-	margin-bottom: 14px;
-	
-	li {
-		display: inline-block;
-		zoom: 1;
-		
-		a {
-			font-family: 'SocialIcon' !important;
-			font-style: normal;
-			font-weight: 400;
-			-webkit-font-smoothing: antialiased;
-			-moz-osx-font-smoothing: grayscale;
-			-webkit-box-sizing: border-box;
-			-moz-box-sizing: border-box;
-			-ms-box-sizing: border-box;
-			-o-box-sizing: border-box;
-			box-sizing: border-box;
+}
 
-			-o-transition: 0.1s;
-			-ms-transition: 0.1s;
-			-moz-transition: 0.1s;
-			-webkit-transition: 0.1s;
-			transition: 0.1s;
-			-webkit-transition-property: transform;
-			transition-property: transform;
-			-webkit-transform: translateZ(0);
-			transform: translateZ(0);
+.list-inline li {
+	display: inline-block;
+	padding-right: 5px;
+	padding-left: 5px;
+	margin-bottom: 10px;
+}
 
-			overflow: hidden;
-			text-decoration: none;
-			text-align: center;
-			display: block;
-			position: relative;
-			z-index: 1;
-			width: 32px;
-			height: 32px;
-			line-height: 32px;
-			font-size: 17px;
-			-webkit-border-radius: 10px;
-			-moz-border-radius: 10px;
-			border-radius: 10px;
-			margin-right: 4px;
-			color: #ffffff;
-			background-color: none;
-		}
+.social-icons.icon-circle .fa { 
+	border-radius: 50%;
+}
+
+.social-icons.icon-zoom .fa:hover, .social-icons.icon-zoom .fa:active { 
+ 	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	transform: scale(1.1); 
+}
+ 
+.social-icons {
+	.fa {
+		font-size: 1.8em;
+		width: 50px;
+		height: 50px;
+		line-height: 50px;
+		text-align: center;
+		color: rgba(255, 255, 255, 0.8);
+		-webkit-transition: all 0.3s ease-in-out;
+		-moz-transition: all 0.3s ease-in-out;
+		-ms-transition: all 0.3s ease-in-out;
+		-o-transition: all 0.3s ease-in-out;
+		transition: all 0.3s ease-in-out;
 	}
-}
+	
+	.fa:hover, .fa:active {
+		color: white;
+	}
 
-.social-twitter:hover, .social-facebook:hover, .social-googleplus:hover, .social-tumblr:hover, .social-mail:hover {
-	opacity: 0.8;
-}
-
-/*** Twitter : ***/
-
-.social-twitter {
-	background-color: $social-twitter-color;
-}
-
-.social-twitter:before {
-	content: '\e040';
-}
-
-/*** Facebook : ***/
-
-.social-facebook {
-	background-color: $social-facebook-color;
-}
-
-.social-facebook:before {
-	content: '\e041';
-}
-
-/*** Google+ : ***/
-
-.social-googleplus {
-	background-color: $social-googleplus-color;
-}
-
-.social-googleplus:before {
-	content: '\e042';
-}
-
-/*** Tumblr : ***/
-
-.social-tumblr {
-	background-color: $social-tumblr-color;
-}
-
-.social-tumblr:before {
-	content: '\e059';
-}
-
-/*** Mail : ***/
-
-.social-mail {
-	background-color: $social-mail-color;
-}
-
-.social-mail:before {
-	content: '\e01f';
+	.fa-envelope {
+		background-color: $social-mail-color;
+	}
+	
+	.fa-facebook {
+		background-color: $social-facebook-color;
+	}
+	
+	.fa-google-plus {
+		background-color: $social-googleplus-color;
+	}
+	
+	.fa-tumblr {
+		background-color: $social-tumblr-color;
+	}
+	
+	.fa-twitter {
+		background-color: $social-twitter-color;
+	}
 }
 
 /** Others : **/
@@ -156,9 +143,7 @@
 #export {
 	width: 100%;
 	text-align: right;
-	margin-top: 14px;
-	padding-bottom: 14px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	padding-top: 25px;
 	
 	li {
 		display: inline-block;
@@ -167,6 +152,10 @@
 		background-size: 24px 24px;
 		height: 24px;
 		width: 24px;
+	}
+	
+	@media(max-width: $mobile-max-width) {
+		padding-top: 0;
 	}
 }
 
@@ -201,6 +190,7 @@
 .bubble table {
 	background-color: white;
 	max-width: 75%;
+	overflow-y: hidden;
 }
 
 .bubble .plot svg {
@@ -209,6 +199,10 @@
 
 ul.bubble, ol.bubble {
 	padding-left: 28px;
+}
+
+table {
+	overflow-y: hidden;
 }
 
 /* FORMULAS & TIPS */
@@ -223,7 +217,7 @@ ul.bubble, ol.bubble {
 	background-color: $tip-background-color;
 }
 
-.formula .last, .tip .last {
+.formula > *:last-child, .tip > *:last-child, .formula > *:last-child *:last-child, .tip > *:last-child *:last-child {
 	margin-bottom: 0 !important;
 }
 
@@ -251,28 +245,40 @@ ul.bubble, ol.bubble {
 
 article {
 	h1 {
-		margin-top: 50px;
+		padding-top: 20px;
 		text-align: center;
 		color: $lesson-h1;
 		font-size: 38px;
 		
 		@media(max-width: $mobile-max-width) {
+			padding-top: 0;
 			margin-top: 60px;
 			margin-bottom: 60px;
 		}
 	}
+	
 	h2 {
 		color: $lesson-h2;
 		font-size: 32px;
+		padding: 15px 0 15px 0;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		margin: 20px 0 0 0;
 		page-break-after: avoid;
 	}
+	
 	h3 {
 		color: $lesson-h3;
 		font-size: 26px;
+		margin-top: 30px;
 		page-break-after: avoid;
 	}
+	
 	table {
 		page-break-inside: avoid;
+	}
+	
+	> section > p:nth-child(2) {
+		margin-top: 30px;
 	}
 }
 
@@ -286,6 +292,7 @@ article {
 /** Back to top button : **/
 
 #back-to-top {
+	z-index: 1;
 	background-color: $main-color;
     cursor: pointer;
     position: fixed;
@@ -305,7 +312,6 @@ article {
 #annals {
 	border-color: $annal-border-color;
 	background-color: $annal-background-color;
-	@include main-font;
 	
 	h2 {
 		margin-top: 0;
@@ -332,31 +338,6 @@ article {
 
 #modal-directaccess li {
 	height: 3em;
-}
-
-/* ANCHORS */
-
-h2:hover .anchor, h3:hover .anchor {
-	opacity: 0.5;
-}
-
-.anchor {
-	transition: opacity 0.3s ease;
-	display: inline-block;
-	opacity: 0;
-	background-image: url('../img/lessons/anchor.svg');
-}
-
-h2 .anchor {
-	height: 20px;
-	width: 20px;
-	background-size: 20px 20px;
-}
-
-h3 .anchor {
-	height: 16px;
-	width: 16px;
-	background-size: 16px 16px;
 }
 
 /* PRINT OPTIONS */

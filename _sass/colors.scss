@@ -4,6 +4,19 @@ $main-color: #3583d6;
 $main-color-darker: #2980b9;
 $main-text-color: #222222;
 
+/* SCROLLBARS */
+
+$scrollbar-thumb-background: #999999;
+$scrollbar-thumb-background-hover: #777777;
+$scrollbar-thumb-background-active: #424242;
+$scrollbar-thumb-border: white;
+
+$scrollbar-track-background: transparent;
+$scrollbar-track-background-active: transparent;
+$scrollbar-track-border: white;
+
+$scrollbar-corner-background: transparent;
+
 /* LESSON COLORS */
 
 /** Titles : **/
@@ -14,11 +27,15 @@ $lesson-h3: $main-color-darker;
 
 /** Social : **/
 
-$social-twitter-color: #4da7de;
-$social-facebook-color: #3e5b98;
-$social-googleplus-color: #dd4b39;
-$social-tumblr-color: #45556c;
-$social-mail-color: #000000;
+$social-twitter-color: #32ccfe;
+$social-facebook-color: #3c599f;
+$social-googleplus-color: #cf3d2e;
+$social-tumblr-color: #314e6c;
+$social-mail-color: #504e54;
+
+/** Navbar : **/
+
+$nav-link-color: #8c8c8c;
 
 /** Formulas, tips and annals : **/
 
@@ -38,6 +55,8 @@ $lesson-selection-color: #bfdfff;
 /* SIMPLE LAYOUT COLORS */
 
 $simple-main-color: #2c3e50;
+
+$index-glyphicon-color: #d0d6db;
 
 $footer-border-color: LemonChiffon;
 $footer-background-color: LightYellow;

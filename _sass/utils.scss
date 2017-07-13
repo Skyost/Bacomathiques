@@ -1,12 +1,6 @@
 /* BOOTSTRAP MOBILE WIDTH */
 
+$small-max-width: 575px;
 $mobile-max-width: 767px;
 $tablets-max-width: 991px;
-
-/* MAIN FONT */
-
-@mixin main-font {
-	font-family: 'Lato', serif;
-	letter-spacing: 0.01rem;
-	line-height: 1.5em;
-}
+$large-max-width: 1199px;

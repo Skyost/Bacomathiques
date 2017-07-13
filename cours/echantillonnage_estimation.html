@@ -1,9 +1,9 @@
 ---
-layout: default
+layout: lesson
 title: "Chapitre XI - Échantillonnage et estimation"
+caption: "Les notions de ce chapitre sont utilisées dans l'industrie mais aussi plus généralement dans la collecte de données."
 excerpt: "Ce cours vous servira à comprendre ce que sont l'échantillonnage et les estimations : qu'est-ce-que cela représente, théorème de Moivre-Laplace, intervalles de fluctuations, intervalles de confiance, ..."
 maths: true
-lesson: true
 annals: [
 	"2017/nouvelle-caledonie/specifique",
 	"2016/antilles-guyane/specifique",
@@ -17,7 +17,7 @@ chapter: 11
 ---
 <section>
 
-	<h2 id="definitions">Définitions</h2>
+	<h2>Définitions</h2>
 	<p>Lorsque l'on travaille sur une population de grande taille, il est rarement possible d'avoir accès à toutes les données de chacun des individus.
 	C'est pourquoi on prélève <strong>un échantillon</strong> de cette population : c'est <strong>l'échantillonnage</strong>.</p>
 	
@@ -29,9 +29,9 @@ chapter: 11
 </section>
 <section>
 
-	<h2 id="moivre-laplace">Théorème de Moivre-Laplace</h2>
+	<h2>Théorème de Moivre-Laplace</h2>
 	<p>Soient $n \in \mathbb{N}$ et $X_n$ une suite de variables aléatoires qui suivent la loi binomiale $\operatorname{B}(n; p)$
-	(voir <a href="probabilites.html#binomiale">chapitre précédent</a>). On définit alors la variable aléatoire $Z_n$ :</p>
+	(voir <a href="probabilites.html#5-loi-binomiale">chapitre précédent</a>). On définit alors la variable aléatoire $Z_n$ :</p>
 	
 	<p class="bubble formula">$\displaystyle{Z_n = \frac{X_n - np}{\sqrt{np(1-p)}}}$</p>
 	
@@ -45,7 +45,7 @@ chapter: 11
 </section>
 <section>
 
-	<h2 id="fluctuation">Intervalles de fluctuation</h2>
+	<h2>Intervalles de fluctuation</h2>
 	<p>Soient $Z$ une variable aléatoire suivant la loi normale centrée réduite, $\alpha$ un réel et $u_\alpha$ un réel positif vérifiant $p(-u_\alpha \leq Z \leq u_\alpha) = 1 - \alpha$.
 	On se donne également une variable aléatoire $X_n$ suivant une loi binomiale $\operatorname{B}(n; p)$ et on pose $I_n$ l'intervalle de fluctuation asymptotique au seuil $1-\alpha$ :</p>
 	
@@ -56,7 +56,7 @@ chapter: 11
 	<ul class="bubble formula">
 		<li>$n \geq 30$</li>
 		<li>$np \geq 5$</li>
-		<li class="last">$n(1-p) \geq 5$</li>
+		<li>$n(1-p) \geq 5$</li>
 	</ul>
 	
 	<p>En particulier, pour $\alpha = 0,05$, un intervalle de fluctuation au seuil de 95% de la fréquence d'apparition d'un caractère dans un échantillon aléatoire de taille $n$ est :</p>
@@ -69,7 +69,7 @@ chapter: 11
 		<p><strong>Exemple :</strong> Dans un lac dans lequel ne sont présents que deux types de poisson (truite et saumon),
 		un groupe de pêcheurs réussit à attraper 50 poissons dans une journée. On estime qu'il y a environ 40 truites et 10 saumons.</p>
 		
-		<p>Ils prélèvent au hasard 30 poissons de leur prise totale. Quel est l'intervalle de fluctuation asymptotique au seuil de 95% de la fréquence de saumons ?</p>
+		<p>Ils prélèvent au hasard 30 poissons de leur prise totale. Quel est l'intervalle de fluctuation asymptotique au seuil de 95% de la fréquence de saumon ?</p>
 		
 		<p><strong>Résolution :</strong> On a 50 poissons, la proportion de saumons est $p = \frac{10}{50} = 0,2$. La taille de l'échantillon est $n = 30$.</p>
 		
@@ -79,7 +79,7 @@ chapter: 11
 		
 		<p>$I = \left[0,2 - 1,96 \frac{\sqrt{0,2 \times 0,8}}{\sqrt{30}} ; 0,2 + 1,96 \frac{\sqrt{0,2 \times 0,8}}{\sqrt{30}} \right] \approx [0,057 ; 0,343]$</p>
 		
-		<p class="last">Ainsi, cela signifie que la fréquence $f$ a 95% de chances de se situer dans l'intervalle $I$.</p>
+		<p>Ainsi, cela signifie que la fréquence $f$ a 95% de chances de se situer dans l'intervalle $I$.</p>
 	</div>
 	
 	<p>Ce type d'intervalle peut servir à prendre des décisions. En effet, soit $I$ un intervalle de fluctuation asymptotique au seuil de 95%.
@@ -89,7 +89,7 @@ chapter: 11
 </section>
 <section>
 
-	<h2 id="confiance">Intervalles de confiance</h2>
+	<h2>Intervalles de confiance</h2>
 	<p>Soient une expérience de Bernoulli dont on veut estimer la probabilité de succès $p$ et $f_n$ la fréquence de succès après $n$ répétitions
 	indépendantes de l'épreuve. Alors $p$ a 95% de chances d'appartenir à l'intervalle $I_C$ suivant :</p>
 	
@@ -100,7 +100,7 @@ chapter: 11
 	<ul class="bubble formula">
 		<li>$n \geq 30$</li>
 		<li>$nf_n \geq 5$</li>
-		<li class="last">$n(1-f_n) \geq 5$</li>
+		<li>$n(1-f_n) \geq 5$</li>
 	</ul>
 	
 	<div class="bubble tip">
@@ -117,7 +117,7 @@ chapter: 11
 		
 		<p>$I_C = \left[0,6 - \frac{1}{\sqrt{30}} ; 0,6 + \frac{1}{\sqrt{30}} \right] \approx [0,417 ; 0,783]$</p>
 		
-		<p class="last"><strong>Remarque :</strong> Dans un jeu de cartes classique, on a autant de chances de tirer une carte rouge que de tirer une carte noire.
+		<p><strong>Remarque :</strong> Dans un jeu de cartes classique, on a autant de chances de tirer une carte rouge que de tirer une carte noire.
 		La <q>vraie</q> probabilité est donc de 0,5. Notre estimation est donc bonne car $0,5 \in I_C$.</p>
 	</div>
 	

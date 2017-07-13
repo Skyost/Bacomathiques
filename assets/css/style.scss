@@ -1,27 +1,20 @@
 ---
 ---
 
-/* GENERAL STYLES */
-
 @import 'colors';
 @import 'utils';
-@import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans|Handlee');
 
-h1, h2, h3 {
-	font-family: 'Open Sans', sans-serif;
-}
+@import url('https://fonts.googleapis.com/css?family=Handlee');
+
+/* GENERAL STYLES */
 
 body {
 	font-size: 16px;
 	color: $main-text-color;
 }
 
-nav {
-	font-size: 14px !important;
-}
-
-article, .modal {
-	@include main-font;
+.dropdown-header {
+	text-transform: uppercase;
 }
 
 figure figcaption {
@@ -46,55 +39,31 @@ figure figcaption {
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: #999999;
-	border: 0px none #ffffff;
+	background-color: $scrollbar-thumb-background;
+	border: 0px none $scrollbar-thumb-border;
 	border-radius: 0px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background-color: #777777;
+	background-color: $scrollbar-thumb-background-hover;
 }
 
 ::-webkit-scrollbar-thumb:active {
-	background-color: #424242;
+	background-color: $scrollbar-thumb-background-active;
 }
 
 ::-webkit-scrollbar-track {
-	background-color: transparent;
-	border: 0px none #ffffff;
+	background-color: $scrollbar-track-background;
+	border: 0px none $scrollbar-track-border;
 	border-radius: 0px;
 }
 
 ::-webkit-scrollbar-track:active {
-	background-color: transparent;
+	background-color: $scrollbar-track-background-active;
 }
 
 ::-webkit-scrollbar-corner {
-	background-color: transparent;
-}
-
-/* RESPONSIVE YOUTUBE VIDEOS */
-
-.video-responsive {
-	border: 1px solid rgba(0, 0, 0, 0.2);
-	width: 60%;
-	height: auto;
-	margin-bottom: 10px;
-	
-	iframe {
-		border-width: 0px;
-	}
-	
-	@media(max-width: $mobile-max-width) {
-		width: 90%;
-	}
-}
-
-/* CLEARFIX */
-
-.clearfix {
-	overflow: auto;
-	zoom: 1;
+	background-color: $scrollbar-corner-background;
 }
 
 /* IMAGES */
@@ -107,6 +76,29 @@ figure, img {
 
 a:hover {
 	text-decoration: none;
+}
+
+/* LISTS */
+
+ul {
+	list-style-type: none;
+	padding-left: 16px;
+	
+	li:before {
+		content: '—';
+		margin-right: 10px;
+	}
+}
+
+ul.no-style {
+	list-style-type: none;
+	padding-left: 0;
+	margin-bottom: 0;
+
+	li:before {
+		content: '';
+		margin-right: 0;
+	}
 }
 
 /* QUOTES */

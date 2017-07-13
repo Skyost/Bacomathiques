@@ -1,9 +1,9 @@
 ---
-layout: default
+layout: lesson
 title: "Chapitre IX - Géométrie dans l'espace"
+caption: "La géométrie dans l'espace s'applique dans beaucoup de domaines : la modélisation 3D par exemple."
 excerpt: "Ce cours sur la géométrie dans l'espace va vous servir à mieux comprendre différentes notions comme la coplanarité, le produit scalaire dans l'espace mais aussi les représentations paramétriques ou encore les intersections et orthogonalités, et bien plus !"
 maths: true
-lesson: true
 annals: [
 	"2017/nouvelle-caledonie/specifique",
 	"2017/pondichery/specifique",
@@ -17,11 +17,11 @@ chapter: 9
 ---
 <section>
 
-	<h2 id="vecteurs">Vecteurs de l'espace</h2>
+	<h2>Vecteurs de l'espace</h2>
 
 	<section>
 		
-		<h3 id="caracterisation-vecteurs">Caractérisation</h3>
+		<h3>Caractérisation</h3>
 		<p>Comme dans le plan, un vecteur de l'espace est caractérisé par <strong>une norme</strong> (sa <q>longueur</q>), <strong>un sens</strong> et <strong>une direction</strong>.</p>
 		
 		<p class="bubble formula">Soient $\vec{u}$ et $\vec{v}$ deux vecteurs de l'espace et $k$ un réel quelconque. Les opération $\vec{u} + \vec{v}$ et $k \times \vec{u}$ sont définies comme dans le plan.</p>
@@ -31,13 +31,13 @@ chapter: 9
 	</section>
 	<section>
 		
-		<h3 id="coplanarite">Coplanarité</h3>
+		<h3>Coplanarité</h3>
 		<p>Soient $\vec{u}$ et $\vec{v}$ deux vecteurs non colinéaires de l'espace et $\vec{w}$ un autre vecteur de l'espace.
 		Ces vecteurs sont dits <strong>coplanaires</strong> s'il existe des représentants de ces trois vecteurs dans un même plan.
 		
 		<div class="bubble formula">
 			<p>$\vec{u}$, $\vec{v}$ et $\vec{w}$ sont coplanaires s'il existe deux réels $a$ et $b$ tels que :</p>
-			<p class="last">$\vec{w} = a \times \vec{u} + b \times \vec{v}$</p>
+			<p>$\vec{w} = a \times \vec{u} + b \times \vec{v}$</p>
 		</div>
 		
 		<p>Dans l'espace, <strong>deux</strong> vecteurs sont <strong>toujours coplanaires</strong>.</p>
@@ -45,21 +45,21 @@ chapter: 9
 	</section>
 	<section>
 		
-		<h3 id="reperage">Repérage dans l'espace</h3>
+		<h3>Repérage dans l'espace</h3>
 		<p>Soient $\vec{i}$, $\vec{j}$ et $\vec{k}$ trois vecteurs non coplanaires de l'espace et $O$ un point de l'espace.
 		On se placera dans le repère $(O ; \vec{i} ; \vec{j} ; \vec{k})$.</p>
 		
 		<div class="bubble formula">
 			<p>Tout point $M$ peut alors être identifié dans ce repère par un unique triplet de réels $(x;y;z)$ tel que :</p>
 			<p>$\vec{OM} = x\vec{i} + y\vec{j} + z\vec{k}$.</p>
-			<p class="last">Les coordonnées de $M$ dans ce repère sont alors $(x;y;z)$ :
+			<p>Les coordonnées de $M$ dans ce repère sont alors $(x;y;z)$ :
 			$x$ est <strong>l'abscisse</strong>, $y$ est <strong>l'ordonnée</strong> et $z$ est <strong>la côte</strong> de $M$.</p>
 		</div>
 		
 		<ul class="bubble formula">
 			<li>Le repère est dit <strong>orthogonal</strong> si $\vec{i}$, $\vec{j}$ et $\vec{k}$ sont orthogonaux les uns par rapport aux autres.</li>
 			<li>Le repère est dit <strong>normé</strong> si $\vec{i}$, $\vec{j}$ et $\vec{k}$ ont la même norme.</li>
-			<li class="last">Le repère est dit <strong>orthonormé</strong> si les deux conditions précédentes sont réunies.</li>
+			<li>Le repère est dit <strong>orthonormé</strong> si les deux conditions précédentes sont réunies.</li>
 		</ul>
 		
 	</section>
@@ -67,11 +67,11 @@ chapter: 9
 </section>
 <section>
 
-	<h2 id="produit-scalaire">Produit scalaire dans l'espace</h2>
+	<h2>Produit scalaire dans l'espace</h2>
 
 	<section>
 		
-		<h3 id="caracterisation-produitscalaire">Caractérisation</h3>
+		<h3>Caractérisation</h3>
 		<p>Soient $\vec{u}$ et $\vec{v}$ deux vecteurs de l'espace et $A$, $B$ et $C$ trois points de l'espace.
 		Il existe un plan qui contient les points $A$, $B$ et $C$ tels que $\vec{u} = \vec{AB}$ et $\vec{v} = \vec{AC}$.
 		Le produit scalaire $\vec{u} \cdot \vec{v}$ est alors égal au produit scalaire $\vec{AB} \cdot \vec{AC}$ dans ce plan.</p>
@@ -81,7 +81,7 @@ chapter: 9
 	</section>
 	<section>
 		
-		<h3 id="calcul">Calcul du produit scalaire</h3>
+		<h3>Calcul du produit scalaire</h3>
 		<p>Soient $\vec{u} = (x;y;z)$ et $\vec{v} = (x';y';z')$ deux vecteurs de l'espace. On a la formule suivante :</p>
 		
 		<p class="bubble formula">$\vec{u} \cdot \vec{v} = xx' + yy' + zz'$</p>
@@ -91,51 +91,51 @@ chapter: 9
 </section>
 <section>
 
-	<h2 id="droites">Droites de l'espace</h2>
+	<h2>Droites de l'espace</h2>
 
 	<section>
 		
-		<h3 id="definition-droites">Définition</h3>
+		<h3>Définition</h3>
 		<p>Une droite passant par deux points $A$ et $B$ différents peut être définie par ces points. Ainsi la droite contenant les points $A$ et $B$
 		peut se nommer la droite $(AB)$.</p>
 				
 	</section>
 	<section>
 		
-		<h3 id="caracterisation-droites">Caractérisation</h3>
+		<h3>Caractérisation</h3>
 		<p>Plusieurs manières existent pour caractériser une droite de l'espace. Ainsi, soient $M(x;y;z)$ un point quelconque de l'espace, $D$ une droite de l'espace passant par un
 		point $A(x_A;y_A;z_A)$ et qui suit un vecteur $\vec{u} = (a;b;c)$ (on dit que $\vec{u}$ est <strong>vecteur directeur</strong> de $D$).
 		<br/>On peut caractériser $D$ de deux manières :</p>
 		
 		<ul class="bubble formula">
 			<li><strong>Caractérisation vectorielle :</strong> $M \in D \iff \vec{AM} = k\vec{u}$ avec $k \in \mathbb{R}$.</li>
-			<li class="last"><strong>Caractérisation par système d'équations paramétriques :</strong> $D : \begin{cases} x_A + ka \\ y_A + kb \\ z_A + kc \end{cases}$ avec $k \in \mathbb{R}$.</li>
+			<li><strong>Caractérisation par système d'équations paramétriques :</strong> $D : \begin{cases} x_A + ka \\ y_A + kb \\ z_A + kc \end{cases}$ avec $k \in \mathbb{R}$.</li>
 		</ul>
 		
 		<div class="bubble tip">
 			<p><strong>Comment déterminer une représentation paramétrique d'une droite ?</strong></p>
 			<p>Deux cas : soit on a directement un point de la droite ainsi qu'un vecteur directeur de cette droite. Dans ce cas, il faut appliquer la formule donnée précédemment.</p>
-			<p class="last">Soit on nous donne deux points de la droite, disons $A$ et $B$. Ce qui signifie que la droite est de vecteur directeur $\vec{AB}$ et passe par le point $A$.
+			<p>Soit on nous donne deux points de la droite, disons $A$ et $B$. Ce qui signifie que la droite est de vecteur directeur $\vec{AB}$ et passe par le point $A$.
 			Encore une fois on utilise la formule donnée précédemment une fois le vecteur $\vec{AB}$ calculé.</p>
 		</div>
 				
 	</section>
 	<section>
 		
-		<h3 id="intersection-droites">Intersection de deux droites</h3>
+		<h3>Intersection de deux droites</h3>
 		<p>Soient $D$ et $D'$ deux droites. On a les relations suivantes :</p>
 		
 		<ul class="bubble formula">
 			<li>Si $D$ et $D'$ ne sont pas coplanaires, leur intersection <strong>est vide</strong>.</li>
 			<li>Si $D$ et $D'$ sont coplanaires et parallèles, leur intersection <strong>est vide</strong>.</li>
 			<li>Si $D$ et $D'$ sont coplanaires et confondues, leur intersection <strong>est la droite $D$</strong>.</li>
-			<li class="last">Si $D$ et $D'$ sont coplanaires et non parallèles, leur intersection <strong>est un point</strong>.</li>
+			<li>Si $D$ et $D'$ sont coplanaires et non parallèles, leur intersection <strong>est un point</strong>.</li>
 		</ul>
 		
 	</section>
 	<section>
 		
-		<h3 id="orthogonalité-droites">Orthogonalité de deux droites</h3>
+		<h3>Orthogonalité de deux droites</h3>
 		<p>Soient $D$ et $D'$ deux droites :</p>
 		
 		<p class="bubble formula">$D$ et $D'$ sont <strong>orthogonales</strong> s'il existe une parallèle à $D$ qui est perpendiculaire à $D'$.</p>
@@ -145,38 +145,38 @@ chapter: 9
 </section>
 <section>
 
-	<h2 id="plans">Plans de l'espace</h2>
+	<h2>Plans de l'espace</h2>
 
 	<section>
 		
-		<h3 id="definition-plans">Définition</h3>
+		<h3>Définition</h3>
 		<p>Soient trois points $A$, $B$ et $C$ non alignés (les vecteurs $\vec{AB}$ et $\vec{AC}$ ne sont pas colinéaires).
 		Alors ces points forment un plan qui peut se nommer $(ABC)$.</p>
 		
 	</section>
 	<section>
 		
-		<h3 id="caracterisation-plans">Caractérisation</h3>
+		<h3>Caractérisation</h3>
 		<p>Plusieurs manières existent pour caractériser un plan de l'espace. Ainsi, soient $\vec{u}$ et $\vec{v}$ deux vecteurs non colinéaires de l'espace et $A(x_A;y_A;z_A)$ un point de l'espace.
 		Soit $P$ le plan contenant le point $A$ et défini par les vecteurs $u$ et $v$. On se donne un vecteur de l'espace $\vec{n} = (a;b;c)$ normal au plan $P$.
 		<br/>On peut caractériser $P$ de deux manières :</p>
 		
 		<ul class="bubble formula">
 			<li><strong>Caractérisation vectorielle :</strong> $M \in P \iff \vec{AM} = k\vec{u} + k\vec{v}$ avec $k \in \mathbb{R}$.</li>
-			<li class="last"><strong>Caractérisation par une équation cartésienne :</strong> $P$ admet une équation cartésienne de la forme $ax+by+cz = 0$.</li>
+			<li><strong>Caractérisation par une équation cartésienne :</strong> $P$ admet une équation cartésienne de la forme $ax+by+cz = 0$.</li>
 		</ul>
 		
 		<div class="bubble tip">
 			<p><strong>Comment déterminer une équation cartésienne d'un plan ?</strong></p>
 			<p>Deux cas : soit on a directement un point du plan ainsi qu'un vecteur normal à ce plan. Dans ce cas, il faut appliquer la formule donnée précédemment.</p>
-			<p class="last">Soit on a un point du plan et on précise que le plan doit être perpendiculaire à une droite dont la représentation paramétrique est donnée.
+			<p>Soit on a un point du plan et on précise que le plan doit être perpendiculaire à une droite dont la représentation paramétrique est donnée.
 			Dans ce cas le vecteur normal au plan sera un vecteur directeur de cette droite et il faudra encore une fois appliquer la formule donnée précédemment.</p>
 		</div>
 		
 	</section>
 	<section>
 		
-		<h3 id="intersections-plans">Intersections</h3>
+		<h3>Intersections</h3>
 		<p>Soient $P$ un plan de l'espace et $D$ une droite de l'espace :</p>
 		
 		<ul class="bubble formula">
@@ -200,26 +200,26 @@ chapter: 9
 	</section>
 	<section>
 		
-		<h3 id="orthogonalite-plans">Orthogonalités</h3>
+		<h3>Orthogonalités</h3>
 		<p>Soient $P$ un plan de l'espace et $D$ une droite de l'espace :</p>
 		
 		<p class="bubble formula">$D$ est orthogonale à $P$ si $D$ est orthogonale à toutes les droites de ce plan.</p>
 		
 		<div class="bubble tip">
 			<p>Plusieurs propriétés découlent de ceci :</p>
-			<ul class="last">
+			<ul>
 				<li>Si deux plans sont parallèles, alors toute droite orthogonale à l'un est orthogonale à l'autre.</li>
 				<li>Si deux plans sont orthogonaux à une même droite, alors ils sont alors parallèles.</li>
 				<li>Pour montrer qu'une droite est orthogonale à un plan, il suffit de montrer que cette droite est orthogonale à deux droites de ce plan.</li>
 				<li>Si deux droites sont parallèles, tout plan orthogonal à l'une est orthogonal à l'autre.</li>
-				<li class="last">Si deux droites sont orthogonales à un même plan, alors elles sont alors parallèles entre elles.</li>
+				<li>Si deux droites sont orthogonales à un même plan, alors elles sont alors parallèles entre elles.</li>
 			</ul>
 		</div>
 		
 	</section>
 	<section>
 		
-		<h3 id="plan-mediateur">Plan médiateur</h3>
+		<h3>Plan médiateur</h3>
 		<p>Soient $P$ un plan de l'espace, $A$ et $B$ deux points de l'espace :</p>
 		
 		<p class="bubble formula">$P$ est dit <strong>plan médiateur</strong> si $P$ est orthogonal au segment $[AB]$ et passe par le milieu de ce segment.</p>

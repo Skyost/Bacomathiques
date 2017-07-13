@@ -2,21 +2,33 @@
 layout: default
 title: "Résultats de la recherche"
 css: ["assets/css/search.css"]
-js: ["https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.0.1/lunr.min.js", "/assets/js/search.js"]
+js: [
+	"https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.2/lunr.min.js",
+	"https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.2/jquery.matchHeight-min.js",
+	"/assets/js/search.js"
+]
 sitemap: false
+adsense: true
 ---
-<h1>Résultats de la recherche</h1>
 
-<p>Votre recherche a retourné les résultats suivants :</p>
+<article>
 
-<span class="glyphicon glyphicon-refresh"></span>
+	<h1>Résultats de la recherche</h1>
+	<p>Votre recherche <strong><span id="keywords"></span></strong> a retourné <strong><span id="numbers">0</span></strong> résultat(s).</p>
+	
+	<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+	<span class="sr-only">Loading...</span>
 
-<ul style="display: none;"></ul>
+	<div class="row" style="display: none;"></div>
+	
+	<ins class="adsbygoogle" data-ad-client="ca-pub-7167241518798106" data-ad-slot="2776038870" data-ad-format="auto"></ins>
+
+</article>
 
 <script type='text/javascript'>
 	var pages = {
 		{% for page in site.pages %}
-			{% if page.lesson %}
+			{% if page.layout == 'lesson' %}
 				'{{ page.url | slugify }}': {
 					title: "{{ page.title | xml_escape }}",
 					excerpt: "{{ page.excerpt | strip_html }}",

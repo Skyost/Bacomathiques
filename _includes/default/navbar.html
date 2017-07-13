@@ -1,0 +1,28 @@
+<nav id="navbar" class="navbar navbar-toggleable-md navbar-inverse">
+	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar-nav" aria-controls="navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	
+	<ul class="navbar-content no-style">
+		<li class="navbar-content-brand"><a class="navbar-brand" href="/">{{ site.title }}</a></li>
+		
+		<li>
+			<div class="collapse navbar-collapse" id="navbar-nav">
+				<ul class="navbar-nav mr-auto no-style">
+					<li class="nav-item">
+						<a class="nav-link" href="/"><i class="fa fa-home" aria-hidden="true"></i> Accueil</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/cours/"><i class="fa fa-bookmark" aria-hidden="true"></i> Index des cours</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/about.html"><i class="fa fa-graduation-cap" aria-hidden="true"></i> À Propos</a>
+					</li>
+				</ul>
+				<ul class="navbar-nav no-style">
+					{% include search_menu.html %}
+				</ul>
+			</div>
+		</li>
+	</ul>
+</nav>

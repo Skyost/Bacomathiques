@@ -1,24 +1,48 @@
 ---
 ---
+
+@import 'colors';
 @import 'utils';
 
 /* SPECIFIC STYLES */
 
+#intro {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+#logo {
+	flex-grow: 1;
+	min-height: 100px;
+	opacity: 0.3;
+	filter: grayscale(100%);
+	
+	background-image: url('../img/logo.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 70px 70px;
+}
+
 #menu-lessons {
 	position: relative;
 	
-	.panel-heading {
+	.card-header {
 		text-transform: uppercase;
 	}
 	
-	.panel-heading h3 {
+	.card-header h3 {
 		line-height: 1.5em;
 		padding: 0;
 		margin: 0;
 		font-size: 16px;
 	}
 	
-	.glyphicon-bookmark {
+	.card-block ul {
+		margin-bottom: 0;
+	}
+	
+	.fa-bookmark {
 		position: absolute;
 		top: 15px;
 		right: 15px;
@@ -30,39 +54,10 @@
 	margin: 60px 0 60px 0;
 }
 
-article {
-	.article-image {
-		height: 128px;
-		margin-top: 20px;
-	}
-	
-	.youtube-image {
-		opacity: 0.6;
-	}
-	
-	.interrogation-image {
-		opacity: 0.2;
-	}
-
-	ul {
-		list-style-type: none;
-		padding-left: 16px;
-		
-		li:before {
-			content: "—";
-			margin-right: 10px;
-		}
-	}
-}
-
 /* COLUMNS */
 
 .col-md-4 {
 	padding: 0 25px 0 25px;
-	
-	figure img {
-		height: 72px;
-	}
 	
 	@media(max-width: $tablets-max-width) {
 		margin-bottom: 30px;
@@ -92,4 +87,15 @@ article {
 
 .col-md-12.first {
 	text-align: left;
+}
+
+/* ICONS */
+
+figure .fa {
+	color: $simple-main-color;
+}
+
+.col-fa .fa {
+	color: $index-glyphicon-color;
+	font-size: 8em;
 }

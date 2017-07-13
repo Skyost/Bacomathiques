@@ -1,9 +1,9 @@
 ---
-layout: default
+layout: lesson
 title: "Chapitre XIII - Arithmétique (Spécialité)"
+caption: "L'arithmétique sert beaucoup en cryptographie (avec les cartes bancaires, le web mais également avec le domaine militaire)."
 excerpt: "Ce cours de spécialité portant sur l'arithmétique va vous permettre de comprendre ce qu'est la divisibilité, les nombres premiers ou encore le PGCD, ce que représentent les congruences, les théorèmes de Bézout et de Gauss et plus !"
 maths: true
-lesson: true
 annals: [
 	"2017/liban/specialite",
 	"2017/pondichery/specialite",
@@ -17,11 +17,11 @@ chapter: 13
 ---
 <section>
 
-	<h2 id="divisibilite-congruence">Divisibilité et congruence</h2>
+	<h2>Divisibilité et congruence</h2>
 
 	<section>
 		
-		<h3 id="divisibilite">Divisibilité</h3>
+		<h3>Divisibilité</h3>
 		<p>Soient $a$ et $b$ deux entiers relatifs. On dit que $a$ est divisible par $b$ s'il existe un $k \in \mathbb{Z}$ tel que :</p>
 		
 		<p class="bubble formula">$a = k \times b$</p>
@@ -42,25 +42,25 @@ chapter: 13
 	</section>
 	<section>
 		
-		<h3 id="multiples">Les multiples</h3>
+		<h3>Les multiples</h3>
 		<p>Soient $a$ et $b$ deux entiers relatifs avec $b \neq 0$, $a$ est un multiple de $b$ si et seulement si $b$ est un diviseur de $a$.
 		On a les propriétés suivantes :</p>
 		
 		<ul class="bubble formula">
 			<li>Si $a$ est un multiple de $b$ alors $-a$ est un multiple de $b$.</li>
 			<li>La somme ainsi que la différence de certains multiples de $b$ est un multiple de $b$.</li>
-			<li class="last">Si $a$ est un multiple de $b$ alors pour $k \in \mathbb{Z}$, $k \times a$ est un multiple de $b$.</li>
+			<li>Si $a$ est un multiple de $b$ alors pour $k \in \mathbb{Z}$, $k \times a$ est un multiple de $b$.</li>
 		</ul>
 		
 	</section>
 	<section>
 		
-		<h3 id="congruences">Les congruences</h3>
+		<h3>Les congruences</h3>
 		<p>Soient $a$, $b$ et $n$ trois entiers avec $n \geq 2$. <strong>$a$ est congru à $b$ modulo $n$</strong> (noté $a \equiv b[n]$) si et seulement si :</p>
 		
 		<ul class="bubble formula">
 			<li>$(a - b)$ est multiple de $n$.</li>
-			<li class="last">$a$ et $b$ ont le même reste dans la division euclidienne par $n$.</li>
+			<li>$a$ et $b$ ont le même reste dans la division euclidienne par $n$.</li>
 		</ul>
 		
 		<p>Ces deux formules précédentes sont équivalentes : si on a la congruence alors ces formules sont toutes deux valables et réciproquement.</p>
@@ -74,7 +74,7 @@ chapter: 13
 			<li>Si $a \equiv b[n]$ et $c \equiv d[n]$ alors $a - c \equiv b - d[n]$.</li>
 			<li>Si $a \equiv b[n]$ et $c \equiv d[n]$ alors $a \times c \equiv b \times d[n]$.</li>
 			<li>Si $a \equiv b[n]$ alors $a \times c \equiv b \times c[n]$.</li>
-			<li class="last">Si $a \equiv b[n]$ alors $a^k \equiv b^k[n]$ pour $k \in \mathbb{N}^*$.</li>
+			<li>Si $a \equiv b[n]$ alors $a^k \equiv b^k[n]$ pour $k \in \mathbb{N}^*$.</li>
 		</ul>
 		
 		<div class="bubble tip">
@@ -88,7 +88,7 @@ chapter: 13
 			<br/>$\iff 2406^{2015} \equiv (5^{6})^{335} \times 5^5[7]$
 			<br/>$\iff 2406^{2015} \equiv (1)^{335} \times 5^5[7]$ (car $5^6 \equiv 1[7]$)
 			<br/>$\iff 2406^{2015} \equiv 5^5[7]$</p>
-			<p class="last">Le reste de la division euclidienne de $2406^{2015}$ par $7$ est donc $5^5 = 3125$.</p>
+			<p>Le reste de la division euclidienne de $2406^{2015}$ par $7$ est donc $5^5 = 3125$.</p>
 		</div>
 		
 	</section>
@@ -96,11 +96,11 @@ chapter: 13
 </section>
 <section>
 
-	<h2 id="pgcd-bezout">PGCD et théorème de Bézout</h2>
+	<h2>PGCD et théorème de Bézout</h2>
 
 	<section>
 		
-		<h3 id="pgcd">Le PGCD</h3>
+		<h3>Le PGCD</h3>
 		<p>Le Plus Grand Commun Diviseur de deux nombres entiers relatifs $a$ et $b$ (avec $a$ ou $b$ non nul) noté $PGCD(a;b)$ est le plus grand entier qui les divise simultanément.
 		Ainsi, on a les propriétés suivantes :</p>
 		
@@ -108,7 +108,7 @@ chapter: 13
 			<li>$PGCD(a;1) = 1$</li>
 			<li>$PGCD(a;0) = a$</li>
 			<li>$PGCD(k \times a; k \times b) = k \times PGCD(a;b)$ pour $k \in \mathbb{N}^*$</li>
-			<li class="last">Si $b$ divise $a$ alors $PGCD(a;b) = |b|$</li>
+			<li>Si $b$ divise $a$ alors $PGCD(a;b) = |b|$</li>
 		</ul>
 		
 		<p>Il existe une manière de déterminer le PGCD de deux entiers naturels non nuls $a$ et $b$ avec $b \lt a$ appelée <strong>Algorithme d'Euclide</strong>.
@@ -117,7 +117,7 @@ chapter: 13
 		<ol class="bubble formula">
 			<li>On fait la division euclidienne de $a$ par $b$ et on appelle $r$ le reste.</li>
 			<li>Si $r = 0$, alors $PGCD(a;b) = b$.</li>
-			<li class="last">Sinon on recommence l'étape 1 en remplaçant $a$ par $b$ et $b$ par $r$.</li>
+			<li>Sinon on recommence l'étape 1 en remplaçant $a$ par $b$ et $b$ par $r$.</li>
 		</ol>
 		
 		<p>On dit que deux nombres sont <strong>premiers entre eux</strong> si leur PGCD est égal à 1.
@@ -128,7 +128,7 @@ chapter: 13
 	</section>
 	<section>
 		
-		<h3 id="gauss">Théorème de Gauss</h3>
+		<h3>Théorème de Gauss</h3>
 		<p>Soient $a$, $b$ et $c$ trois entiers non nuls. Alors on a :</p>
 		
 		<p class="bubble formula">Si $c$ divise $ab$ et $c$ premier avec $a$, alors $c$ divise $b$.</p>
@@ -136,12 +136,12 @@ chapter: 13
 	</section>
 	<section>
 		
-		<h3 id="bezout">Théorème de Bézout</h3>
+		<h3>Théorème de Bézout</h3>
 		<p>Soient $a$ et $b$ deux entiers relatifs non nuls et $d$ leur PGCD. Il existe deux entiers relatifs $u$ et $v$ tels que :</p>
 		
 		<p class="bubble formula">$ua + vb = d$</p>
 		
-		<p>Une conséquence de ce théorème est que $a$ et $b$ sont premiers entre eux si et seulement si il existe $u$ et $v$ tels que :</p>
+		<p>Une conséquence de ce théorème est que $a$ et $b$ sont premiers entre eux si et seulement s'il existe $u$ et $v$ tels que :</p>
 		
 		<p class="bubble formula">$ua + vb = 1$</p>
 		
@@ -155,7 +155,7 @@ chapter: 13
 			<p>$250 = 150 \times 1 + 100 \iff 150 = 1 \times 250 - 1 \times 100$
 			<br/>$150 = 1 \times 100 + 50 \iff 50 = 150 - 1 \times 100$
 			<br/>$\iff 50 = 1 \times 250 - 1 \times 100 - 1 \times 100 = 1 \times 250 - 2 \times 100$</p>
-			<p class="last">On a par conséquent $u = 1$ et $v = -2$.</p>
+			<p>On a par conséquent $u = 1$ et $v = -2$.</p>
 		</div>
 		
 	</section>
@@ -163,11 +163,11 @@ chapter: 13
 </section>
 <section>
 
-	<h2 id="nombres-premiers">Les nombres premiers</h2>
+	<h2>Les nombres premiers</h2>
 
 	<section>
 		
-		<h3 id="definition">Définition</h3>
+		<h3>Définition</h3>
 		<p>Soit un entier naturel $n$ :</p>
 		
 		<p class="bubble formula">$n$ est dit <strong>premier</strong> s'il n'admet que deux diviseurs naturels : 1 et lui-même.</p>
@@ -177,12 +177,12 @@ chapter: 13
 	</section>
 	<section>
 	
-		<h3 id="proprietes">Propriétés</h3>
+		<h3>Propriétés</h3>
 		<p>Soit $n \in \mathbb{N}$ supérieur ou égal à 2, alors on a les propriétés suivantes :</p>
 		
 		<ul class="bubble formula">
 			<li>Si $n$ n'admet aucun diviseur premier inférieur ou égal à $\sqrt{n}$, alors $n$ est premier.</li>
-			<li class="last">Si $n$ n'est pas premier alors $n$ admet au moins un diviseur premier inférieur ou égal à $\sqrt{n}$.</li>
+			<li>Si $n$ n'est pas premier alors $n$ admet au moins un diviseur premier inférieur ou égal à $\sqrt{n}$.</li>
 		</ul>
 		
 		<p>Soient $a$ un entier relatif et $n$ un entier naturel. Alors :</p>
@@ -193,13 +193,13 @@ chapter: 13
 		
 		<ul class="bubble formula">
 			<li>Si $n$ est premier et divise $ab$ alors $n$ divise $a$ ou $n$ divise $b$.</li>
-			<li class="last">Si $a$, $b$ et $n$ sont premiers et $n$ divise $ab$ alors $n = a$ ou $n = b$.</li>
+			<li>Si $a$, $b$ et $n$ sont premiers et $n$ divise $ab$ alors $n = a$ ou $n = b$.</li>
 		</ul>
 	
 	</section>
 	<section>
 	
-		<h3 id="proprietes">Décomposition de nombres</h3>
+		<h3>Décomposition de nombres</h3>
 		<p>Soit $n \in \mathbb{N}$ supérieur ou égal à 2, alors $n$ peut s'écrire de la façon suivante :</p>
 		
 		<p class="bubble formula">$n = p_{1}^{\alpha_1} \times p_{2}^{\alpha_2} \times \text{ ... } \times p_{n}^{\alpha_n}$
@@ -214,7 +214,7 @@ chapter: 13
 			<br/>$50 = 2 \times 25$ (2 est le plus petit nombre premier qui divise 50)
 			<br/>$25 = 5 \times 5$ (5 est le plus petit nombre premier qui divise 25)
 			<br/>$5 = 5 \times 1$ (5 est un nombre premier, c'est terminé)</p>
-			<p class="last">On a donc $200 = 2 \times 100 = 2 \times (2 \times 50) = \text{...} = 2^3 \times 5^2$.</p>
+			<p>On a donc $200 = 2 \times 100 = 2 \times (2 \times 50) = \text{...} = 2^3 \times 5^2$.</p>
 		</div>
 	
 	</section>

@@ -5,36 +5,49 @@ excerpt: "Retrouvez ici la liste des cours ainsi qu'une brève description et un
 css: ['/assets/css/lessons-index.css']
 js: [
 	'https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.5/jquery.lazy.min.js',
+	'https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.2/jquery.matchHeight-min.js',
 	'/assets/js/lessons-index.js'
 ]
 navbarpos: 2
+adsense: true
 ---
 
-<h1>Liste des cours</h1>
+<article>
 
-{% assign pages = site.pages | sort: 'chapter' %}
-<div class="lessons-row row">
-{% for page in pages %}
-	{% if page.lesson %}
-			<div class="col-xs-12 col-sm-6 col-md-4">
-				<div class="panel panel-primary">
-					<div class="panel-heading"><span>{{ page.title }}</span></div>
-					<div class="panel-body">
-						<div class="panel-image">
-							{% assign id = page.path | replace: 'cours/', '' | replace: '.html', '' %}
-							<span class="preview" data-src="/assets/img/previews/{{ id }}.jpg"></span>
-							<span class="overlay"></span>
-							<span class="caption">{{ site.data.captions[id].content }}</span>
+	<h1>Liste des cours</h1>
+
+	{% assign pages = site.pages | sort: 'chapter' %}
+	<div class="lessons-row row">
+	{% for page in pages %}
+		{% if page.layout == 'lesson' %}
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="card">
+						<div class="card-header">
+							<h2>{{ page.title }}</h2>
 						</div>
-						<p>{{ page.excerpt }}</p>
-					</div>
-					<div class="panel-footer clearfix">
-						<a href="{{ page.url }}">Lien vers ce cours</a>
+						<div class="card-img">
+							{% assign id = page.path | replace: 'cours/', '' | replace: '.html', '' %}
+							<span class="preview" data-src="/assets/img/lessons/{{ id }}/preview.jpg"></span>
+							<span class="overlay"></span>
+							<span class="caption">{{ page.caption }}</span>
+						</div>
+						<div class="card-block">
+							<p class="card-text">{{ page.excerpt }}</p>
+						</div>
+						<div class="card-footer">
+							<a href="{{ page.url }}">Lien vers ce cours</a>
+						</div>
 					</div>
 				</div>
-			</div>
-	{% endif %}
-{% endfor %}
-</div>
+		{% endif %}
+	{% endfor %}
+	</div>
+	
+	<ins class="adsbygoogle" data-ad-client="ca-pub-7167241518798106" data-ad-slot="2776038870" data-ad-format="auto"></ins>
 
-<p>Les cours disponibles sont sous licence <a href="/about.html#licence" rel="license">{{ site.content_license.name }}</a>.</p>
+	<p id="footer" class="text-muted">
+		Les cours sont disponibles sous licence <a href="/about.html#licence" rel="license">{{ site.content_license.name }}</a>.
+		<br/>Généré le {{ site.time | date: "%d/%m/%Y" }} à {{ site.time | date: "%H:%M:%S" }}{% if site.github.build_revision %} | Révision {{ site.github.build_revision }}{% else %}.{% endif %}
+	</p>
+
+</article>

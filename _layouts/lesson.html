@@ -1,0 +1,49 @@
+---
+layout: default
+adsense: true
+meta-color: #3583d6
+---
+
+<div class="row">
+	<nav id="nav-lessons" class="col-sm-12 col-md-2 col-lg-3">
+		<ul class="hidden-md-down">
+			{% assign pages = site.pages | sort: 'chapter' %}
+			{% for sitepage in pages %}
+				{% if sitepage.layout == 'lesson' %}
+					<li><a {% if sitepage.path == page.path %}class="active"{% endif %} href="{{ sitepage.url }}">{{ sitepage.title }}</a></li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</nav>
+	
+	<div class="col-sm-12 col-md-8 col-lg-6">
+	
+		<article>
+			
+			<h1>{{ page.title }}</h1>
+			{% include lesson/export.html %}
+
+			{{ content }}
+			
+			<ins class="adsbygoogle no-print" data-ad-client="ca-pub-7167241518798106" data-ad-slot="2776038870" data-ad-format="auto"></ins>
+			
+			<a id="back-to-top" href="#" class="btn btn-primary no-print" role="button" title="Cliquez pour retourner en haut de la page" data-toggle="tooltip" data-placement="left">
+				<i class="fa fa-chevron-up" aria-hidden="true"></i>
+			</a>
+
+		</article>
+		
+		{% if page.annals %}
+			{% include lesson/annals.html %}
+		{% endif %}
+		
+		{% if page.comments %}
+			{% include lesson/comments.html %}
+		{% endif %}
+		
+		{% include lesson/direct_access.html %}
+		
+	</div>
+	
+	<nav id="nav-toc" class="col-sm-12 col-md-2 col-lg-3"></nav>
+</div>

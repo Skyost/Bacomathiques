@@ -1,39 +1,13 @@
 ---
 ---
 
-.glyphicon-refresh {
-	margin-top: 7px;
-	font-size: 42px;
+/* SOME STYLES SPECIFIC TO THIS PAGE */
 
-	-animation: spin .7s infinite linear;
-	-ms-animation: spin .7s infinite linear;
-	-webkit-animation: spinw .7s infinite linear;
-	-moz-animation: spinm .7s infinite linear;
-}
-
-@keyframes spin {
-	from {
-		transform: scale(1) rotate(0deg);
-	}
-	to {
-		transform: scale(1) rotate(360deg);
-	}
-}
-  
-@-webkit-keyframes spinw {
-	from {
-		-webkit-transform: rotate(0deg);
-	}
-	to {
-		-webkit-transform: rotate(360deg);
-	}
-}
-
-@-moz-keyframes spinm {
-	from {
-		-moz-transform: rotate(0deg);
-	}
-	to {
-		-moz-transform: rotate(360deg);
+.col-md-4 {
+	margin-bottom: 10px;
+	
+	.card-block h2 {
+		font-size: 1.5em;
+		margin-bottom: 40px;
 	}
 }

@@ -68,15 +68,15 @@ header:hover h1 {
 /** Navbar : **/
 
 .navbar {
-	border-radius: 0 !important;
-}
-
-#search-box {
-	width: 100%;
+	border-top: 1px solid rgba(0, 0, 0, 0.125);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 	
-	input[type="text"] {
-		padding: 0 10px 0 10px;
-		width: 100%;
+	.fa-graduation-cap {
+		color: rgba(0, 0, 0, 0.5);
+	}
+	
+	.fa-graduation-cap:before {
+		vertical-align: -3px;
 	}
 }
 
@@ -101,7 +101,7 @@ article {
 
 	h3 {
 		font-size: 30px;
-		padding-bottom: 4px;
+		padding: 10px 0 4px 0;
 	}
 	
 	.label {
@@ -132,7 +132,6 @@ article, footer {
 }
 
 footer {
-	@include main-font;
 	width: 100%;
 	position: absolute;
 	bottom: 0;
@@ -144,15 +143,4 @@ footer {
 	p {
 		margin-bottom: 0;
 	}
-}
-
-/** Gray Bacomathiques image : **/
-
-.black-logo-image {
-	filter: grayscale(100%);
-	display: block;
-	margin: auto;
-	margin-top: 30px;
-	opacity: 0.3;
-	height: 100px;
 }

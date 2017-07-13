@@ -1,9 +1,11 @@
 $(document).ready(function() {
 	var searchTerm = getQueryVariable('keywords');
 	if(!searchTerm) {
+		$('#keywords').text('vide');
 		displaySearchResults(0, 0);
 		return;
 	}
+	$('#keywords').text(searchTerm);
 	var idx = lunr(function() {
 		this.field('id');
 		this.field('title', {
@@ -47,22 +49,30 @@ function getQueryVariable(variable) {
 */
 
 function displaySearchResults(results, pages) {
-	var searchResults = $('article ul');
+	var searchResults = $('article .row');
 
-	if(results.length) { // Are there any results?
+	if(results.length) {
+		$('#numbers').text(results.length);
 		var appendString = '';
 
-		for(var i = 0; i < results.length; i++) {	// Iterate over the results
+		for(var i = 0; i < results.length; i++) {
 			var item = pages[results[i].ref];
-			appendString += '<li><a href="' + item.url + '"><h3>' + item.title + '</h3></a>';
-			appendString += '<p>' + item.excerpt + '</p></li>';
+			appendString += '<div class="col-xs-12 col-sm-6 col-md-4">';
+			appendString += '<div class="card">';
+			appendString += '<div class="card-block">';
+			appendString += '<h2>' + item.title + '</h2>';
+			appendString += '<p class="card-text">' + item.excerpt + '</p>';
+			appendString += '<a href="' + item.url + '" class="btn btn-primary">Lien vers la page</a>';
+			appendString += '</div>';
+			appendString += '</div>';
+			appendString += '</div>';
 		}
 
 		searchResults.html(appendString);
+		searchResults.css('display', '');
+		
+		$('.card-block h2').matchHeight();
+		$('.card-text').matchHeight();
 	}
-	else {
-		searchResults.html('<li>Aucun résultat.</li>');
-	}
-	$('.glyphicon-refresh').css('display', 'none');
-	searchResults.css('display', '');
+	$('.fa-spinner').css('display', 'none');
 }

@@ -1,9 +1,9 @@
 ---
-layout: default
+layout: lesson
 title: "Chapitre XIV - Les matrices (Spécialité)"
+caption: "Les matrices peuvent être utilisées par exemple dans le domaine de la photographie et du traitement d'images."
 excerpt: "Ce cours de spécialité qui a pour sujet les matrices va vous apprendre certaines définitions (types de matrices, inverses, ...), mais aussi à calculer avec les matrices (sommes, produits et puissance)<br/>Il contient également une partie sur l'étude asymptotique d'une marche aléatoire (avec convergence de suites de matrices, étude d'une marche aléatoire et bien plus)."
 maths: true
-lesson: true
 annals: [
 	"2017/centres-etrangers/specialite",
 	"2017/pondichery/specialite",
@@ -17,16 +17,16 @@ chapter: 14
 ---
 <section>
 
-	<h2 id="matrices">Les matrices</h2>
+	<h2>Les matrices</h2>
 
 	<section>
 		
-		<h3 id="matrices-definition">Définition</h3>
-		<p>Soient $m$ et $n$ deux entiers non nuls. Une matrice $A$ de taille $(m;n)$ est un tableau de réels tels que :</p>
+		<h3>Définition</h3>
+		<p>Soient $m$ et $n$ deux entiers non nuls. Une matrice $A$ de taille $(m;n)$ est un tableau de réels tel que :</p>
 		
 		<div class="bubble formula">
 			<p>$A = \begin{pmatrix}a_{1,1} & a_{1,2} & \text{...} & a_{1,n} \cr a_{2,1} & a_{2,2} & \text{...} & a_{2,n} \cr \vdots & \vdots & \ddots & \vdots \cr a_{m,1} & a_{m,2} & \text{...} & a_{m,n}\end{pmatrix}$</p>
-			<p class="last">Avec $a_{1,1}$, $a_{1,2}$, $a_{2,1}$, ..., $a_{m,n}$ coefficients réels de la matrice.</p>
+			<p>Avec $a_{1,1}$, $a_{1,2}$, $a_{2,1}$, ..., $a_{m,n}$ coefficients réels de la matrice.</p>
 		</div>
 		
 		<p>Selon leur taille, on peut avoir différents types de matrices :</p>
@@ -36,28 +36,28 @@ chapter: 14
 			<li>Une matrice $(m;1)$ est une <strong>matrice colonne</strong>.</li>
 			<li>Une matrice $A$ de taille $(n;n)$ est une <strong>matrice carrée d'ordre $n$</strong> et est notée $A_n$.</li>
 			<li>Une matrice $(m;n)$ dont tous les termes sont nuls est une <strong>matrice nulle</strong> et est notée $0_{m;n}$.</li>
-			<li class="last">Une matrice $(1;1)$ est une <strong>réel</strong>.</li>
+			<li>Une matrice $(1;1)$ est une <strong>réel</strong>.</li>
 		</ul>
 		
 	</section>
 	<section>
 		
-		<h3 id="types">Types de matrices carrées</h3>
+		<h3>Types de matrices carrées</h3>
 		<p>Il existe différentes matrices carrées remarquables outre celles données ci-dessus (on rappelle qu'une diagonale d'une matrice carrée d'ordre $n$
 		représente l'ensemble des coordonnées $(i;i)$ pour $i$ variant de $0$ à $n$) :</p>
 		
 		<ul class="bubble formula">
 			<li>Une matrice carrée dont tous les termes en dessous de la diagonale principale sont nuls est une <strong>matrice triangulaire supérieure</strong>.</li>
-			<li>Une matrice carrée dont tous les termes au dessus de la diagonale principale sont nuls est une <strong>matrice triangulaire inférieure</strong>.</li>
+			<li>Une matrice carrée dont tous les termes au-dessus de la diagonale principale sont nuls est une <strong>matrice triangulaire inférieure</strong>.</li>
 			<li>Si en plus les termes de la diagonale sont nuls, cette matrice est une <strong>matrice triangulaire inférieure stricte</strong> (ou <strong>matrice triangulaire supérieure stricte</strong>).</li>
 			<li>Une matrice carrée dont tous les termes qui ne sont pas sur la diagonale sont nuls est une <strong>matrice diagonale</strong>.</li>
-			<li class="last">Une matrice carrée dont tous les termes qui ne sont pas sur la diagonale sont nuls et qui sont égaux à $1$ sur la diagonale est une <strong>matrice identité</strong>.</li>
+			<li>Une matrice carrée dont tous les termes qui ne sont pas sur la diagonale sont nuls et qui sont égaux à $1$ sur la diagonale est une <strong>matrice identité</strong>.</li>
 		</ul>
 		
 	</section>
 	<section>
 		
-		<h3 id="expression-systeme">Expression d'un système</h3>
+		<h3>Expression d'un système</h3>
 		<p>Soient quatre réels $a$, $b$, $c$ et $d$ et deux autres réels $\alpha$ et $\beta$. Le système $\displaystyle{\begin{cases}ax + by = \alpha \cr cx + dy = \beta\end{cases}}$
 		d'inconnues $x$ et $y$ peut s'écrire matriciellement :</p>
 		
@@ -75,7 +75,7 @@ chapter: 14
 			<p>$\displaystyle{\begin{cases}2x + y = 1 \cr 4x + 3y = 4\end{cases} \iff \begin{pmatrix}2 & 1 \cr 4 & 3\end{pmatrix} \begin{pmatrix}x \cr y\end{pmatrix} = \begin{pmatrix}1 \cr 4\end{pmatrix}}$</p>
 			<p>Or l'inverse de $\displaystyle{\begin{pmatrix}2 & 1 \cr 4 & 3\end{pmatrix}}$ est $\displaystyle{\begin{pmatrix}\frac{3}{2} & -\frac{1}{2} \cr -2 & 1\end{pmatrix}}$.</p>
 			<p>D'où $\displaystyle{\begin{pmatrix}x \cr y\end{pmatrix} = \begin{pmatrix}\frac{3}{2} & -\frac{1}{2} \cr -2 & 1\end{pmatrix} \begin{pmatrix}1 \cr 4\end{pmatrix} = \begin{pmatrix}-\frac{1}{2} \cr 2\end{pmatrix}}$.</p>
-			<p class="last">Par égalité, on a $x = -\frac{1}{2}$ et $y = 2$.</p>
+			<p>Par égalité, on a $x = -\frac{1}{2}$ et $y = 2$.</p>
 		</div>
 		
 	</section>
@@ -83,14 +83,14 @@ chapter: 14
 </section>
 <section>
 
-	<h2 id="operations">Opérations</h2>
+	<h2>Opérations</h2>
 
 	<section>
 		
-		<h3 id="somme">Somme</h3>
+		<h3>Somme</h3>
 		<p>Soient $A$ et $B$ deux matrices de même taille. La somme de ces deux matrices (notée $A+B$) est une matrice telle que :</p>
 		
-		<p class="bubble formula">$A+B$ est la matrice de même taille dont les coefficients représentent la somme des coefficient de $A$
+		<p class="bubble formula">$A+B$ est la matrice de même taille dont les coefficients représentent la somme des coefficients de $A$
 		aux coefficients de $B$ qui ont les mêmes coordonnées.</p>
 		
 		<p class="bubble tip"><strong>Attention !</strong> Il n'est possible d'additionner que deux matrices de même taille.</p>
@@ -98,7 +98,7 @@ chapter: 14
 	</section>
 	<section>
 		
-		<h3 id="produits">Produits</h3>
+		<h3>Produits</h3>
 		<p>Soient $A$ une matrice et $\lambda$ un réel. Le produit de $A$ par $\lambda$ (noté $\lambda A$) est une matrice telle que :</p>
 		
 		<p class="bubble formula">$\lambda A$ est la matrice de même taille que $A$ dont les coefficients sont tous multipliés par $\lambda$.</p>
@@ -124,7 +124,7 @@ chapter: 14
 	</section>
 	<section>
 		
-		<h3 id="puissance">Puissance</h3>
+		<h3>Puissance</h3>
 		<p>Soit $A$ une matrice carrée d'ordre $n$ et $i$ un entier naturel :</p>
 		
 		<p class="bubble formula">$\displaystyle{A^i = \underbrace{ A \times \text{ ... } \times A }_{i \text{ fois}} = A^{i-1} \times A}$</p>
@@ -143,7 +143,7 @@ chapter: 14
 	</section>
 	<section>
 		
-		<h3 id="inverse">Inverse</h3>
+		<h3>Inverse</h3>
 		<p>Soit $A$ une matrice carrée d'ordre $n$. $A$ est dite inversible s'il existe une <strong>matrice inverse</strong> de $A$ (notée $A^{-1}$) telle que :</p>
 		
 		<p class="bubble formula">$A \times A^{-1} = A^{-1} \times A = I_n$</p>
@@ -159,13 +159,13 @@ chapter: 14
 			<p><strong>Plus généralement</strong>, l'inverse d'une matrice $A$ carrée d'ordre $2$, de coefficients $a$ et $b$ sur la ligne $1$
 			et de coefficients $c$ et $d$ sur la ligne $2$ est donné par la formule suivante :</p>
 			<p>$\displaystyle{A^{-1} = \frac{1}{ad - bc} \begin{pmatrix}d & -b \cr -c & a\end{pmatrix}}$</p>
-			<p class="last">$A$ n'est donc pas inversible si $ad - bc = 0$.</p>
+			<p>$A$ n'est donc pas inversible si $ad - bc = 0$.</p>
 		</div>
 		
 	</section>
 	<section>
 		
-		<h3 id="priorites-operations">Priorités et opérations</h3>
+		<h3>Priorités et opérations</h3>
 		<p>Soient trois matrices carrées $A$, $B$ et $C$ d'ordre $n$ et un réel $\lambda$, les égalités suivantes sont disponibles :</p>
 		
 		<ul class="bubble formula">
@@ -173,13 +173,13 @@ chapter: 14
 			<li>$A(B + C) = AB + AC$ (distributivité)</li>
 			<li>$AI_n = I_nA = A$</li>
 			<li>$A0_n = 0_nA = 0_n$</li>
-			<li class="last">$\lambda (AB) = (\lambda A)B = A(\lambda B)$</li>
+			<li>$\lambda (AB) = (\lambda A)B = A(\lambda B)$</li>
 		</ul>
 		
 		<div class="bubble tip">
 			<p><strong>Attention !</strong></p>
 			<p>Si on a une égalité du type $A \times B = 0$, cela n'implique pas forcément que $A = 0$ ou $B = 0$ !</p>
-			<p class="last">De plus, si on a $AB = AC$, on n'a pas forcément $B = C$.</p>
+			<p>De plus, si on a $AB = AC$, on n'a pas forcément $B = C$.</p>
 		</div>
 		
 		<p>Les priorités opératoires sont les mêmes que dans les <q>ensembles de nombres classiques</q> (la multiplication prime sur l'addition, etc...).</p>
@@ -189,11 +189,11 @@ chapter: 14
 </section>
 <section>
 		
-	<h2 id="marche-aleatoire">Étude asymptotique d’une marche aléatoire</h3>
+	<h2>Étude asymptotique d’une marche aléatoire</h2>
 	
 	<section>
 
-		<h3 id="suites">Suites de matrices colonnes</h3>
+		<h3>Suites de matrices colonnes</h3>
 		<p>Soit $U_n$ une suite de matrices colonnes de taille $(m;1)$. On a la propriété suivante :</p>
 		
 		<p class="bubble formula">$U_n$ converge vers une matrice $U$ si chacune des suites formées par les coefficients de $U_n$ convergent.
@@ -211,14 +211,14 @@ chapter: 14
 	</section>
 	<section>
 		
-		<h3 id="marche-aleatoire-defintions">Définitions</h3>
+		<h3>Définitions</h3>
 		<p>Voici quelques définitions qu'il faut maîtriser pour la suite :</p>
 		
 		<ul class="bubble formula">
 			<li>Une <strong>marche aléatoire</strong> représente l'évolution d'un système qui, au cours du temps, peut-être dans un certain nombre fini d'état.</li>
 			<li>Une <strong>matrice de transition</strong> est une matrice carrée dont le coefficient situé à la position $(i;j)$ est la probabilité que le système
 			soit, à un instant, dans l'état $j$ sachant qu'il était dans l'état $i$ à l'instant précédent.</li>
-			<li class="last">La <strong>matrice colonne des états de la marche aléatoire après $n$ étapes</strong> est la matrice colonne dont les coefficients sont les probabilités
+			<li>La <strong>matrice colonne des états de la marche aléatoire après $n$ étapes</strong> est la matrice colonne dont les coefficients sont les probabilités
 			que le système soit à l'état $i$ à l'instant $n$.</li>
 		</ul>
 		
@@ -237,14 +237,14 @@ chapter: 14
 			<p>La <strong>matrice colonne des états de la marche aléatoire après $n$ étapes</strong> est la matrice
 			$\displaystyle{P_n = \begin{pmatrix}a_n \cr b_n \cr c_n\end{pmatrix}}$ avec les suites :
 			$\displaystyle{\begin{cases} a_{n+1} = \frac{1}{4} b_n + \frac{1}{2} c_n\\ b_{n+1} = \frac{1}{3} a_n + \frac{1}{2} c_n \\ c_{n+1} = \frac{2}{3} a_n + \frac{3}{4} b_n\end{cases}}$.</p>
-			<p class="last">On remarque que $P_{n+1} = TP_n$ (ceci peut être démontré grâce à la <a href="probabilites.html#totales">formule des probabilités totales</a>
+			<p>On remarque que $P_{n+1} = TP_n$ (ceci peut être démontré grâce à la <a href="probabilites.html#2-formule-des-probabilités-totales">formule des probabilités totales</a>
 			appliquée au système à l'instant $n$).</p>
 		</div>
 		
 	</section>
 	<section>
 	
-		<h3 id="marche-aleatoire-proprietes">Propriétés</h3>
+		<h3>Propriétés</h3>
 		<p>Soient une marche aléatoire qui admet une matrice de transition $T$ ainsi qu'une matrice colonne de ses états après $n$ étapes $P_n$.
 		On a alors la relation de récurrence suivante (voir exemple précédent pour plus d'explications) :</p>
 		
@@ -255,20 +255,20 @@ chapter: 14
 		<p class="bubble formula">$P_{n} = T^nP_0$</p>
 		
 		<div class="bubble tip">
-			<p>Il faut savoir démontrer cette dernière formule. Pour cela procédons <a href="suites.html#recurrence">par récurrence</a> :</p>
+			<p>Il faut savoir démontrer cette dernière formule. Pour cela procédons <a href="suites.html#iii-raisonnement-par-récurrence">par récurrence</a> :</p>
 			<p>Soit $H_n$ la propriété définie par $H_n : P_{n} = T^nP_0$</p>
 			<p><strong>Initialisation :</strong> $P_0 = T^0P_0$ ce qui est vrai car une matrice à la puissance $0$ donne la matrice identité.</p>
 			<p><strong>Hérédité :</strong> Montrons que $H_{n+1}$ est vraie :
 			<br/>$P_{n+1} = TP_n$ (d'après la première formule)
 			<br/>$\iff P_{n+1} = T \times (T^nP_0)$ (d'après l'hypothèse de récurrence)
 			<br/>$\iff P_{n+1} = (T \times T^n)P_0 = T^{n+1}P_0$</p>
-			<p class="last"><strong>Conclusion :</strong> La propriété est initialisée et héréditaire. Ainsi, $H_n$ est vraie pour tout $n \in \mathbb{N}$.</p>
+			<p><strong>Conclusion :</strong> La propriété est initialisée et héréditaire. Ainsi, $H_n$ est vraie pour tout $n \in \mathbb{N}$.</p>
 		</div>
 	
 	</section>
 	<section>
 	
-		<h3 id="marche-aleatoire-etude">Étude d'une marche aléatoire</h3>
+		<h3>Étude d'une marche aléatoire</h3>
 		<p>Une marche aléatoire qui admet une matrice de transition $T$ ainsi qu'une matrice colonne de ses états après $n$ étapes $P_n$ converge si :</p>
 		
 		<p class="bubble formula">$P_n$ converge vers une matrice $P$. Si $P$ existe, elle est appelée <strong>état stable</strong> de la marche aléatoire.</p>

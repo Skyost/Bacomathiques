@@ -1,0 +1,42 @@
+<li class="nav-item dropdown">
+	<a id="navbar-nav-dropdown" class="nav-link dropdown-toggle" href="/cours/" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% if page.layout == 'default' or page.layout == 'lesson' %}<i class="fa fa-tag" aria-hidden="true"></i> {% endif %}Accès direct à un cours</a>
+	
+	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-nav-dropdown">
+		<a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-search"><i class="fa fa-search" aria-hidden="true"></i> Rechercher un cours...</a>
+		<div class="dropdown-divider"></div>
+		<span class="dropdown-header"><i class="fa fa-book" aria-hidden="true"></i> Liste des cours</span>
+		{% assign pages = (site.pages | sort: 'chapter') %}
+		{% for page in pages %}
+			{% if page.layout == 'lesson' %}
+				<a class="dropdown-item" href="{{ page.url }}">{{ page.title }}</a>
+			{% endif %}
+		{% endfor %}
+	</div>
+	
+	<div id="modal-search" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-search-label" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modal-search-label">Rechercher un cours</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Entrez ci-dessous les termes recherchés :</p>
+					<form class="navbar-form navbar-left" action="/search.html" method="get">
+						<div class="input-group">
+							<input type="search" class="form-control" name="keywords" placeholder="Chercher un cours...">
+							<span class="input-group-btn">
+								<button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+							</span>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</li>

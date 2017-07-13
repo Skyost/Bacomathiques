@@ -1,9 +1,9 @@
 ---
-layout: default
+layout: lesson
 title: "Chapitre I - Les suites"
+caption: "Les suites sont utilisées dans bien des domaines, notamment celui des fractales."
 excerpt: "Ce cours va vous apprendre ce qu'est une suite : suites arithmétiques, géométriques, définies par récurrence, ...<br/>Il va également vous apprendre à étudier ces suites : sens de variation, limites, majoration et minoration et plus !<br/>Le raisonnement par récurrence est également au programme de ce cours."
 maths: true
-lesson: true
 annals: [
 	"2017/nouvelle-caledonie/specifique",
 	"2017/pondichery/specifique",
@@ -17,11 +17,11 @@ chapter: 1
 ---
 <section>
 
-	<h2 id="suite">Qu'est-ce-que qu'une suite ?</h2>
+	<h2>Qu'est-ce-que qu'une suite ?</h2>
 	
 	<section>
 		
-		<h3 id="definition">Définition</h3>
+		<h3>Définition</h3>
 		<p>On appelle <strong>suite</strong> une fonction (et plus précisément application) de $\mathbb{N}$ dans $\mathbb{R}$ :
 		cette fonction va prendre des éléments d'un ensemble de départ $\mathbb{N}$ et va les amener dans un ensemble d'arrivée $\mathbb{R}$.</p>
 		
@@ -29,21 +29,21 @@ chapter: 1
 		
 		<ul class="bubble formula">
 			<li><strong>Par récurrence :</strong> On donne le premier terme de la suite ainsi que le terme au rang $n+1$.</li>
-			<li class="last"><strong>Par son terme général :</strong> On "explicite" la suite (comme pour les fonctions).</li>
+			<li><strong>Par son terme général :</strong> On "explicite" la suite (comme pour les fonctions).</li>
 		</ul>
 		
 		<div class="bubble tip">
 			<p><strong>Exemple :</strong> On définit les suites $u_n$ et $v_n$ ainsi :</p>
 			<p>$u_n = n$ pour tout $n \in \mathbb{N}$.</p>
 			<p>$v_n : \left\{ \begin{array}{ll} v_0 = 0 \\ v_{n+1} = v_n + 1 \end{array} \right.$.</p>
-			<p class="last">On remarque que bien que définies différemment, $u_n$ et $v_n$ sont égales.</p>
+			<p>On remarque que bien que définies différemment, $u_n$ et $v_n$ sont égales.</p>
 		</div>
 	
 	</section>
 	
 	<section>
 		
-		<h3 id="arithmetiques">Suites arithmétiques</h3>
+		<h3>Suites arithmétiques</h3>
 		
 		<p>Une suite $u_n$ est dite <strong>arithmétique</strong> si elle est de la forme :</p>
 		
@@ -56,7 +56,7 @@ chapter: 1
 			<p>On note $p$ le rang initial de la suite (celui à partir duquel la suite est définie) :</p>
 			<p>$u_n = u_p + (n-p) \times r$</p>
 			<p>Et si $u_n$ est définie à partir du rang $0$ (on a $p = 0$) :</p>
-			<p class="last">$u_n = u_0 + (n-0) \times r = u_0 + n \times r$</p>
+			<p>$u_n = u_0 + (n-0) \times r = u_0 + n \times r$</p>
 		</div>
 		
 		<p>La somme des termes d'une suite arithmétique est donnée par la formule suivante (on note $S$ cette somme) :</p>
@@ -70,14 +70,14 @@ chapter: 1
 			<p>La raison $r$ est égale à $5$. Le premier terme est $u_1 = 10$ d'indice $p = 1$. Le terme général de cette suite est donc $u_n = u_1 + (n-1) \times r$.</p>
 			<p>Par conséquent, on a : $u_n = 10 + (n-1) \times 5$. On souhaite calculer la somme des termes de cette suite jusqu'au rang $n$.
 			Par l'astuce précédente, il y a $n-1+p = n$ termes. On peut calculer la somme $S$ :</p>
-			<p class="last">$S = \frac{(u_1 + u_n) \times (n)}{2} = \frac{(20 + (n-1) \times 5)(n)}{2} = \frac{5n^2 + 15n}{2}$.</p>
+			<p>$S = \frac{(u_1 + u_n) \times (n)}{2} = \frac{(20 + (n-1) \times 5)(n)}{2} = \frac{5n^2 + 15n}{2}$.</p>
 		</div>
 		
 	</section>
 	
 	<section>
 		
-		<h3 id="geometriques">Suites géométriques</h3>
+		<h3>Suites géométriques</h3>
 		
 		<p>Une suite $v_n$ est dite <strong>géométrique</strong> si elle est de la forme :</p>
 		
@@ -90,7 +90,7 @@ chapter: 1
 			<p>On note $p$ le rang initial de la suite (celui à partir duquel la suite est définie) :</p>
 			<p>$v_n = v_p \times q^{n-p}$</p>
 			<p>Et si $v_n$ est définie à partir du rang $0$ (on a $p = 0$) :</p>
-			<p class="last">$v_n = v_0 \times q^{n-0} = v_0 \times q^n$</p>
+			<p>$v_n = v_0 \times q^{n-0} = v_0 \times q^n$</p>
 		</div>
 		
 		<p>La somme des termes d'une suite géométrique est donnée par la formule suivante (on note $S$ cette somme) :</p>
@@ -104,7 +104,7 @@ chapter: 1
 			<p>La raison $q$ est égale à $2$. Le premier terme est $v_2 = 1$ d'indice $p = 2$. Le terme général de cette suite est donc $v_n = v_2 \times q^{n-2}$.</p>
 			<p>Par conséquent, on a : $v_n = 2^{n-2}$. On souhaite calculer la somme des termes de cette suite jusqu'au rang $n$.
 			Par l'astuce précédente, il y a $n-1+p = n + 1$ termes. On peut calculer la somme $S$ :</p>
-			<p class="last">$S = v_2 \times \frac{1 - q^{n-1}}{1 - q} = -(1 - 2^{n-1}) = 2^{n-1} - 1$.</p>
+			<p>$S = v_2 \times \frac{1 - q^{n-1}}{1 - q} = -(1 - 2^{n-1}) = 2^{n-1} - 1$.</p>
 		</div>
 		
 	</section>
@@ -112,11 +112,11 @@ chapter: 1
 </section>
 <section>
 
-	<h2 id="etude">Étude des suites</h2>
+	<h2>Étude des suites</h2>
 	
 	<section>
 		
-		<h3 id="variations">Sens de variation</h3>
+		<h3>Sens de variation</h3>
 		
 		<p>Une suite $u_n$ est <strong>croissante</strong> si on a :</p>
 		
@@ -136,7 +136,7 @@ chapter: 1
 	
 	<section>
 		
-		<h3 id="limites">Limites</h3>
+		<h3>Limites</h3>
 		
 		<p>On dit qu'une suite $u_n$ <strong>converge</strong> vers une limite finie $l$ si pour tout $\epsilon \gt 0$, on a $|u_n - l| \lt \epsilon$.
 		Ce terme est un peu technique mais il signifie qu'il existe une infinité de réels entre $u_n$ et $l$. On dit que $u_n$ est <strong>convergente</strong> et on note alors :</p>
@@ -152,34 +152,32 @@ chapter: 1
 		<div class="bubble tip">
 			<p>Il est possible d'écrire une définition semblable à celle de la convergence.</p>
 			<p>Ainsi, si $u_n$ diverge vers $+\infty$ quand $n$ tend vers +$\infty$, cela signifie que pour tout réel $h$ et à partir d'un certain rang $M$, on aura $u_M \gt h$.</p>
-			<p class="last">Et si $u_n$ diverge vers $-\infty$ quand $n$ tend vers +$\infty$, cela signifie que pour tout réel $h$ et à partir d'un certain rang $m$, on aura $u_m \lt h$.</p>
+			<p>Et si $u_n$ diverge vers $-\infty$ quand $n$ tend vers +$\infty$, cela signifie que pour tout réel $h$ et à partir d'un certain rang $m$, on aura $u_m \lt h$.</p>
 		</div>
 		
-		<div class="table-responsive">
-			<table class="table table-bordered table-hover last">
-				<thead>
-					<tr>
-						<th colspan="5">Limite d'une suite géométrique</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Si on a pour $q \in \mathbb{R}$...</td>
-						<td>$-1 \lt q \lt 1$</td>
-						<td>$1 \lt q$</td>
-						<td>$q \leq -1$</td>
-						<td>$q = 1$</td>
-					</tr>
-					<tr>
-						<td>La suite $q^n$ a pour limite...</td>
-						<td>$0$</td>
-						<td>$+\infty$</td>
-						<td>Pas de limite</td>
-						<td>$1$</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<table class="table table-bordered table-hover table-responsive">
+			<thead>
+				<tr>
+					<th colspan="5">Limite d'une suite géométrique</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Si on a pour $q \in \mathbb{R}$...</td>
+					<td>$-1 \lt q \lt 1$</td>
+					<td>$1 \lt q$</td>
+					<td>$q \leq -1$</td>
+					<td>$q = 1$</td>
+				</tr>
+				<tr>
+					<td>La suite $q^n$ a pour limite...</td>
+					<td>$0$</td>
+					<td>$+\infty$</td>
+					<td>Pas de limite</td>
+					<td>$1$</td>
+				</tr>
+			</tbody>
+		</table>
 		
 		<p>À savoir que si une suite à une limite, alors cette limite est <strong>unique</strong>.</p>
 		
@@ -187,150 +185,144 @@ chapter: 1
 	
 	<section>
 		
-		<h3 id="operations-limites">Opérations sur les limites</h3>
+		<h3>Opérations sur les limites</h3>
 		
 		<p>Dans tout ce qui suit, $u_n$ et $v_n$ sont deux suites. Ces tableaux sont à connaître et sont requis pour pouvoir travailler sur les limites.</p>
 		
-		<div class="table-responsive">
-			<table class="table table-bordered table-hover last">
-				<thead>
-					<tr>
-						<th colspan="7">Limite d'une somme</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Si la limite de $u_n$ quand $n$ tend vers $+\infty$ est...</td>
-						<td>$l$</td>
-						<td>$l$</td>
-						<td>$l$</td>
-						<td>$+\infty$</td>
-						<td>$-\infty$</td>
-						<td>$+\infty$</td>
-					</tr>
-					<tr>
-						<td>Et la limite de $v_n$ quand $n$ tend vers $+\infty$ est...</td>
-						<td>$l'$</td>
-						<td>$+\infty$</td>
-						<td>$-\infty$</td>
-						<td>$+\infty$</td>
-						<td>$-\infty$</td>
-						<td>$-\infty$</td>
-					</tr>
-					<tr>
-						<td>Alors la limite de $u_n + v_n$ quand $n$ tend vers $+\infty$ est...</td>
-						<td>$l + l'$</td>
-						<td>$+\infty$</td>
-						<td>$-\infty$</td>
-						<td>$+\infty$</td>
-						<td>$-\infty$</td>
-						<td><strong>?</strong></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		
-		<div class="table-responsive">
-			<table class="table table-bordered table-hover last">
-				<thead>
-					<tr>
-						<th colspan="10">Limite d'un produit</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Si la limite de $u_n$ quand $n$ tend vers $+\infty$ est...</td>
-						<td>$l$</td>
-						<td>$l \gt 0$</td>
-						<td>$l \gt 0$</td>
-						<td>$l \lt 0$</td>
-						<td>$l \lt 0$</td>
-						<td>$+\infty$</td>
-						<td>$+\infty$</td>
-						<td>$-\infty$</td>
-						<td>$0$</td>
-					</tr>
-					<tr>
-						<td>Et la limite de $v_n$ quand $n$ tend vers $+\infty$ est...</td>
-						<td>$l'$</td>
-						<td>$+\infty$</td>
-						<td>$-\infty$</td>
-						<td>$+\infty$</td>
-						<td>$-\infty$</td>
-						<td>$+\infty$</td>
-						<td>$-\infty$</td>
-						<td>$-\infty$</td>
-						<td>$\pm \infty$</td>
-					</tr>
-					<tr>
-						<td>Alors la limite de $u_n \times v_n$ quand $n$ tend vers $+\infty$ est...</td>
-						<td>$l \times l'$</td>
-						<td>$+\infty$</td>
-						<td>$-\infty$</td>
-						<td>$-\infty$</td>
-						<td>$+\infty$</td>
-						<td>$+\infty$</td>
-						<td>$-\infty$</td>
-						<td>$+\infty$</td>
-						<td><strong>?</strong></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		
-		<div class="table-responsive">
-			<table class="table table-bordered table-hover last">
-				<thead>
-					<tr>
-						<th colspan="10">Limite d'un quotient</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Si la limite de $u_n$ quand $n$ tend vers $+\infty$ est...</td>
-						<td>$l$</td>
-						<td>$l$</td>
-						<td>$+\infty$</td>
-						<td>$+\infty$</td>
-						<td>$-\infty$</td>
-						<td>$-\infty$</td>
-						<td>$\pm \infty$</td>
-						<td>$l$</td>
-						<td>$0$</td>
-					</tr>
-					<tr>
-						<td>Et la limite de $v_n$ quand $n$ tend vers $+\infty$ est...</td>
-						<td>$l' \neq 0$</td>
-						<td>$\pm \infty$</td>
-						<td>$l' \gt 0$</td>
-						<td>$l' \lt 0$</td>
-						<td>$l' \gt 0$</td>
-						<td>$l' \lt 0$</td>
-						<td>$\pm \infty$</td>
-						<td>$0^+_-$</td>
-						<td>$0$</td>
-					</tr>
-					<tr>
-						<td>Alors la limite de $\frac{u_n}{v_n}$ quand $n$ tend vers $+\infty$ est...</td>
-						<td>$\displaystyle{\frac{l}{l'}}$</td>
-						<td>$0$</td>
-						<td>$+\infty$</td>
-						<td>$-\infty$</td>
-						<td>$-\infty$</td>
-						<td>$+\infty$</td>
-						<td><strong>?</strong></td>
-						<td>$\pm \infty$</td>
-						<td><strong>?</strong></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<table class="table table-bordered table-hover table-responsive">
+			<thead>
+				<tr>
+					<th colspan="7">Limite d'une somme</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Si la limite de $u_n$ quand $n$ tend vers $+\infty$ est...</td>
+					<td>$l$</td>
+					<td>$l$</td>
+					<td>$l$</td>
+					<td>$+\infty$</td>
+					<td>$-\infty$</td>
+					<td>$+\infty$</td>
+				</tr>
+				<tr>
+					<td>Et la limite de $v_n$ quand $n$ tend vers $+\infty$ est...</td>
+					<td>$l'$</td>
+					<td>$+\infty$</td>
+					<td>$-\infty$</td>
+					<td>$+\infty$</td>
+					<td>$-\infty$</td>
+					<td>$-\infty$</td>
+				</tr>
+				<tr>
+					<td>Alors la limite de $u_n + v_n$ quand $n$ tend vers $+\infty$ est...</td>
+					<td>$l + l'$</td>
+					<td>$+\infty$</td>
+					<td>$-\infty$</td>
+					<td>$+\infty$</td>
+					<td>$-\infty$</td>
+					<td><strong>?</strong></td>
+				</tr>
+			</tbody>
+		</table>
+	
+		<table class="table table-bordered table-hover table-responsive">
+			<thead>
+				<tr>
+					<th colspan="10">Limite d'un produit</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Si la limite de $u_n$ quand $n$ tend vers $+\infty$ est...</td>
+					<td>$l$</td>
+					<td>$l \gt 0$</td>
+					<td>$l \gt 0$</td>
+					<td>$l \lt 0$</td>
+					<td>$l \lt 0$</td>
+					<td>$+\infty$</td>
+					<td>$+\infty$</td>
+					<td>$-\infty$</td>
+					<td>$0$</td>
+				</tr>
+				<tr>
+					<td>Et la limite de $v_n$ quand $n$ tend vers $+\infty$ est...</td>
+					<td>$l'$</td>
+					<td>$+\infty$</td>
+					<td>$-\infty$</td>
+					<td>$+\infty$</td>
+					<td>$-\infty$</td>
+					<td>$+\infty$</td>
+					<td>$-\infty$</td>
+					<td>$-\infty$</td>
+					<td>$\pm \infty$</td>
+				</tr>
+				<tr>
+					<td>Alors la limite de $u_n \times v_n$ quand $n$ tend vers $+\infty$ est...</td>
+					<td>$l \times l'$</td>
+					<td>$+\infty$</td>
+					<td>$-\infty$</td>
+					<td>$-\infty$</td>
+					<td>$+\infty$</td>
+					<td>$+\infty$</td>
+					<td>$-\infty$</td>
+					<td>$+\infty$</td>
+					<td><strong>?</strong></td>
+				</tr>
+			</tbody>
+		</table>
+	
+		<table class="table table-bordered table-hover table-responsive">
+			<thead>
+				<tr>
+					<th colspan="10">Limite d'un quotient</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Si la limite de $u_n$ quand $n$ tend vers $+\infty$ est...</td>
+					<td>$l$</td>
+					<td>$l$</td>
+					<td>$+\infty$</td>
+					<td>$+\infty$</td>
+					<td>$-\infty$</td>
+					<td>$-\infty$</td>
+					<td>$\pm \infty$</td>
+					<td>$l$</td>
+					<td>$0$</td>
+				</tr>
+				<tr>
+					<td>Et la limite de $v_n$ quand $n$ tend vers $+\infty$ est...</td>
+					<td>$l' \neq 0$</td>
+					<td>$\pm \infty$</td>
+					<td>$l' \gt 0$</td>
+					<td>$l' \lt 0$</td>
+					<td>$l' \gt 0$</td>
+					<td>$l' \lt 0$</td>
+					<td>$\pm \infty$</td>
+					<td>$0^+_-$</td>
+					<td>$0$</td>
+				</tr>
+				<tr>
+					<td>Alors la limite de $\frac{u_n}{v_n}$ quand $n$ tend vers $+\infty$ est...</td>
+					<td>$\displaystyle{\frac{l}{l'}}$</td>
+					<td>$0$</td>
+					<td>$+\infty$</td>
+					<td>$-\infty$</td>
+					<td>$-\infty$</td>
+					<td>$+\infty$</td>
+					<td><strong>?</strong></td>
+					<td>$\pm \infty$</td>
+					<td><strong>?</strong></td>
+				</tr>
+			</tbody>
+		</table>
 		
 	</section>
 	
 	<section>
 		
-		<h3 id="majoration-minoration-bornes">Majoration, minoration et bornes</h3>
+		<h3>Majoration, minoration et bornes</h3>
 		
 		<p>Soient une suite $u_n$ et deux réels $m$ et $M$ :</p>
 		
@@ -339,7 +331,7 @@ chapter: 1
 			<li>On dit que que $M$ est un <strong>majorant</strong> de $u_n$ si pour tout $n$ : $u_n \lt M$.</li>
 			<li>On dit que que $u_n$ est <strong>bornée</strong> si elle est à la fois majorée et minorée.</li>
 			<li>Si $u_n$ est croissante et est majorée, alors elle est convergente. Si elle n'est pas majorée, $u_n$ diverge vers $+\infty$.</li>
-			<li class="last">Si $u_n$ est décroissante et est minorée, alors elle est convergente. Si elle n'est pas minorée, $u_n$ diverge vers $-\infty$.</li>
+			<li>Si $u_n$ est décroissante et est minorée, alors elle est convergente. Si elle n'est pas minorée, $u_n$ diverge vers $-\infty$.</li>
 		</ul>
 		
 		<p>Toute suite convergente est également bornée.</p>
@@ -348,14 +340,14 @@ chapter: 1
 	
 	<section>
 		
-		<h3 id="encadrement">Encadrement</h3>
+		<h3>Encadrement</h3>
 		
 		<p>Soient deux suites $u_n$ et $v_n$ telles que $u_n \lt v_n$ à partir d'un certain rang. On a :</p>
 		
 		<ul class="bubble formula">
 			<li>Si $\lim\limits_{n \rightarrow +\infty} u_n = +\infty$, alors $\lim\limits_{n \rightarrow +\infty} v_n = +\infty$.</li>
 			<li>Si $\lim\limits_{n \rightarrow +\infty} v_n = -\infty$, alors $\lim\limits_{n \rightarrow +\infty} u_n = -\infty$.</li>
-			<li class="last">Si $\lim\limits_{n \rightarrow +\infty} u_n = l$ et $\lim\limits_{n \rightarrow +\infty} v_n = l'$ alors $l \lt l'$.</li>
+			<li>Si $\lim\limits_{n \rightarrow +\infty} u_n = l$ et $\lim\limits_{n \rightarrow +\infty} v_n = l'$ alors $l \lt l'$.</li>
 		</ul>
 		
 		<p>Soient deux suites $u_n$, $v_n$ et $w_n$ telles que $u_n \lt v_n \lt w_n$ à partir d'un certain rang et que $u_n$ et $w_n$ convergent vers le réel $l$. Alors :</p>
@@ -369,7 +361,7 @@ chapter: 1
 </section>
 <section>
 
-	<h2 id="recurrence">Raisonnement par récurrence</h2>
+	<h2>Raisonnement par récurrence</h2>
 	
 	<p>Si on souhaite montrer qu'une propriété est vraie pour tout $n \in \mathbb{N}$ à partir d'un certain rang $p$ :</p>
 	
@@ -397,7 +389,7 @@ chapter: 1
 		<p>Or $4 + \frac{1}{9} \approx 4.111 \gt 4$ et $4 + \frac{1}{8} = 4.125 \lt 5$. On a donc bien :</p>
 		<p>$4 \leq u_{n+1} \leq 5$</p>
 		<p><strong>Conclusion :</strong></p>
-		<p class="last">La propriété est initialisée et héréditaire. Ainsi, $P_n$ est vraie pour tout $n \in \mathbb{N}$.</p>
+		<p>La propriété est initialisée et héréditaire. Ainsi, $P_n$ est vraie pour tout $n \in \mathbb{N}$.</p>
 	</div>
 	
 	<p>Le raisonnement par récurrence est très utilisé en mathématiques et ne se limite pas qu'à l'étude des suites.</p>

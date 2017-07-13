@@ -3,4 +3,7 @@ $(document).ready(function() {
 		effect: 'fadeIn',
 		effectTime: 700
 	});
+	
+	$('.card-header').matchHeight();
+	$('.card-block').matchHeight();
 });

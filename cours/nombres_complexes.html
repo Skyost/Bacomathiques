@@ -1,9 +1,9 @@
 ---
-layout: default
+layout: lesson
 title: "Chapitre VIII - Les nombres complexes"
+caption: "Ce chapitre un peu abstrait possède notamment des applications en électronique."
 excerpt: "Ce cours sur une notion un peu abstraite que sont les nombres complexes contient tout ce dont vous avez besoin pour comprendre cet ensemble de nombres.<br/>Ainsi, vous pourrez (re)voir ce qu'est un conjugué, le module, la forme trigonométrique ou exponentielle, l'affixe, et plus encore !"
 maths: true
-lesson: true
 js: ["/assets/js/lessons/nombres_complexes.js"]
 annals: [
 	"2017/pondichery/specifique",
@@ -18,11 +18,11 @@ chapter: 8
 ---
 <section>
 
-	<h2 id="ensemble-complexe">L'ensemble des nombres complexes $\mathbb{C}$</h2>
+	<h2>L'ensemble des nombres complexes $\mathbb{C}$</h2>
 	
 	<section>
 		
-		<h3 id="definition-ensemble">Qu'est-ce-que l'ensemble $\mathbb{C}$ ?</h3>
+		<h3>Qu'est-ce-que l'ensemble $\mathbb{C}$ ?</h3>
 		<p>Il existe un ensemble de nombres noté $\mathbb{C}$ qui contient l'ensemble $\mathbb{R}$ ainsi qu'un nombre $i \in \mathbb{C}$ vérifiant la propriété suivante :</p>
 		
 		<p class="bubble formula">$i^2 = -1$</p>
@@ -34,7 +34,7 @@ chapter: 8
 			<figure>
 				<img src="/assets/img/lessons/nombres_complexes/ensembles.png"/>
 				<figcaption>
-					<p class="last">Comme vous le voyez ici, l'ensemble $\mathbb{C}$ contient l'ensemble $\mathbb{R}$ mais également des nombres qui ne sont pas
+					<p>Comme vous le voyez ici, l'ensemble $\mathbb{C}$ contient l'ensemble $\mathbb{R}$ mais également des nombres qui ne sont pas
 					réels ($i$, $1 + i$, etc...).</p>
 				</figcaption>
 			</figure>
@@ -44,7 +44,7 @@ chapter: 8
 	
 	<section>
 		
-		<h3 id="nombre-complexe">Qu'est ce qu'un nombre complexe ?</h3>
+		<h3>Qu'est ce qu'un nombre complexe ?</h3>
 		<p>Soient $x$ et $y$ deux réels. Le nombre complexe $z$ correspondant peut s'écrire sous cette forme :</p>
 		
 		<p class="bubble formula">$z = x+iy$</p>
@@ -58,7 +58,7 @@ chapter: 8
 	
 	<section>
 		
-		<h3 id="egalite">Égalité entre nombres complexes</h3>
+		<h3>Égalité entre nombres complexes</h3>
 		<p>Soient deux nombres complexes $z$ et $z'$. Ces deux nombres sont dits <strong>égaux</strong> si et seulement si :</p>
 		
 		<p class="bubble formula">$\operatorname{Re}(z) = \operatorname{Re}(z')$ et $\operatorname{Im}(z) = \operatorname{Im}(z')$</p>
@@ -70,11 +70,11 @@ chapter: 8
 </section>
 <section>
 
-	<h2 id="proprietes">Propriétés</h2>
+	<h2>Propriétés</h2>
 	
 	<section>
 		
-		<h3 id="conjugue">Conjugué</h3>
+		<h3>Conjugué</h3>
 		<p>Tout nombre complexe $z = x+iy$ admet un nombre complexe <strong>conjugué</strong> noté $\bar{z}$. Ce conjugué est le nombre complexe suivant :</p>
 		
 		<p class="bubble formula">$\bar{z} = x-iy$</p>
@@ -86,21 +86,21 @@ chapter: 8
 			<li>$\overline{z + z'} = \bar{z} + \bar{z'}$</li>
 			<li>$\displaystyle{\bar{\frac{z}{z'}} = \frac{\bar{z}}{\bar{z'}}}$ avec $z' \neq 0$</li>
 			<li>$\bar{z^n} = (\bar{z})^n$ avec $n \in \mathbb{Z}$ et $z' \neq 0$ si $n \leq 0$</li>
-			<li class="last">$\overline{z \times z'} = \bar{z} \times \bar{z'}$</li>
+			<li>$\overline{z \times z'} = \bar{z} \times \bar{z'}$</li>
 		</ul>
 		
 		<p>Pour tout $z \in \mathbb{C}$ :</p>
 		
 		<ul class="bubble formula">
 			<li>$z + \bar{z} = 2\operatorname{Re}(z)$</li>
-			<li class="last">$z - \bar{z} = 2i \times \operatorname{Re}(z)$</li>
+			<li>$z - \bar{z} = 2i \times \operatorname{Re}(z)$</li>
 		</ul>
 		
 	</section>
 	
 	<section>
 		
-		<h3 id="module">Module d'un nombre complexe</h3>
+		<h3>Module d'un nombre complexe</h3>
 		<p>On appelle <strong>module</strong> (noté $|z|$) d'un nombre complexe $z = x + iy$ le réel :</p>
 		
 		<p class="bubble formula">$|z| = \sqrt{x^2 + y^2}$</p>
@@ -112,23 +112,23 @@ chapter: 8
 			<li>$|z| = |\bar{z}| = |-z|$</li>
 			<li>$|zz'| = |z| \times |z'|$</li>
 			<li>$\displaystyle{|\frac{z}{z'}| = \frac{|z|}{|z'|}}$ avec $z' \neq 0$</li>
-			<li class="last">$|z^n| = |z|^n$ avec $n \in \mathbb{Z}$ et $z' \neq 0$ si $n \leq 0$</li>
+			<li>$|z^n| = |z|^n$ avec $n \in \mathbb{Z}$ et $z' \neq 0$ si $n \leq 0$</li>
 		</ul>
 		
 		<div class="bubble tip">
 			<p>Ces propriétés peuvent sembler compliquées mais heureusement il est possible de les retrouver par le calcul.
 			Par exemple, pour la première propriété du second encadré :</p>
 			<p>On pose $z = x+iz$, on a $\bar{z} = x-iy$ :</p>
-			<p class="last">$z\bar{z} = (x+iy)(x-iy) = x^2 - ixy + ixy + y^2 = x^2 + y^2 = \sqrt{x^2 + y^2}^2 = |z|^2$.</p>
+			<p>$z\bar{z} = (x+iy)(x-iy) = x^2 - ixy + ixy + y^2 = x^2 + y^2 = \sqrt{x^2 + y^2}^2 = |z|^2$.</p>
 		</div>
 		
 	</section>
 		
 	<section>
 		
-		<h3 id="forme-exponentielle">Forme trigonométrique et exponentielle</h3>
+		<h3>Forme trigonométrique et exponentielle</h3>
 		<p>Un nombre complexe $z = x+iy$ peut s'écrire sous deux formes la <strong>forme algébrique</strong> et la <strong>forme exponentielle</strong> (ou forme trigonométrique).
-		Pour obtenir la forme trigonométrique du nombre complexe, il faut tout d'abord obtenir le <a href="#module">module</a>.
+		Pour obtenir la forme trigonométrique du nombre complexe, il faut tout d'abord obtenir le <a href="#2-module-dun-nombre-complexe">module</a>.
 		La forme trigonométrique est ensuite donnée par la formule suivante :</p>
 		
 		<p class="bubble formula">$z = |z| \times (cos(\theta) + isin(\theta))$</p>
@@ -147,17 +147,17 @@ chapter: 8
 			<p><strong>2<sup>nde</sup> étape :</strong> On factorise par le module : $z = \sqrt{2} \times (\frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2})$.</p>
 			<p><strong>3<sup>ème</sup> étape :</strong> On calcule un argument : $cos(\theta) = \frac{\sqrt{2}}{2}$ et $sin(\theta) = \frac{\sqrt{2}}{2}$.
 			On a donc $\theta = \frac{\pi}{4}$ (car $cos(\frac{\pi}{4}) = sin(\frac{\pi}{4}) = \frac{\sqrt{2}}{2}$).</p>
-			<p class="last"><strong>4<sup>ème</sup> étape :</strong> On passe à la forme exponentielle : $z = \sqrt{2} \times e^{i\frac{\pi}{4}}$.</p>
+			<p><strong>4<sup>ème</sup> étape :</strong> On passe à la forme exponentielle : $z = \sqrt{2} \times e^{i\frac{\pi}{4}}$.</p>
 		</div>
 		
-		<p>On peut étendre l'égalité entre nombres complexes donnée <a href="#egalite">au début</a> : deux nombres complexes sont égaux si ils ont le <strong>même module</strong>
+		<p>On peut étendre l'égalité entre nombres complexes donnée <a href="#3-égalité-entre-nombres-complexes">au début</a> : deux nombres complexes sont égaux s'ils ont le <strong>même module</strong>
 		et le <strong>même argument (modulo $2\pi$)</strong>.</p>
 		
 	</section>
 	
 	<section>
 		
-		<h3 id="affixe-representation">Affixe et représentation</h3>
+		<h3>Affixe et représentation</h3>
 		<p>Un nombre complexe $z = x+iy$ peut être représenté dans le plan $(Oxy)$ par un point $M$ de coordonnées $M(x; y)$.
 		$z$ est alors appelé <strong>affixe</strong> du point $M$ (et réciproquement le point $M$ est <strong>l'image</strong> de $z$).</p>
 		
@@ -176,7 +176,7 @@ chapter: 8
 			
 			<span id="representation-2" class="plot"></span>
 			
-			<p class="last">On voit à l'aide de ces deux représentation que $z = z'$ (démontré dans l'exemple de la <a href="#forme-exponentielle">partie précédente</a>).</p>
+			<p>On voit à l'aide de ces deux représentation que $z = z'$ (démontré dans l'exemple de la <a href="#3-forme-trigonométrique-et-exponentielle">partie précédente</a>).</p>
 		</div>
 		
 	</section>
@@ -184,11 +184,11 @@ chapter: 8
 </section>
 <section>
 
-	<h2 id="calculs-particuliers">Calculs particuliers</h2>
+	<h2>Calculs particuliers</h2>
 	
 	<section>
 		
-		<h3 id="second-degre">Résolution d'équations du second degré</h3>
+		<h3>Résolution d'équations du second degré</h3>
 		<p>Soit $P(z) = az^2 + bz + c$ (avec $a, b, c \in \mathbb{R}$ et $a \neq 0$) un polynôme du second degré à coefficients réels.
 		On souhaite résoudre $P(z) = 0$ dans $\mathbb{C}$. On calcule le discriminant $\Delta = b^2 - 4ac$ et les solutions dépendent du signe de delta :</p>
 		
@@ -210,7 +210,7 @@ chapter: 8
 			<p><strong>1<sup>ère</sup> étape :</strong> On fait apparaître une équation du second degré : $-2z^2 + 4z - 10 = 0$.</p>
 			<p><strong>2<sup>nde</sup> étape :</strong> On calcule le discriminant : $\Delta = b^2 - 4ac = 16 - 80 = -64$.</p>
 			<p><strong>3<sup>ème</sup> étape :</strong> On "transforme" le discriminant négatif : $\Delta = 64i^2 = (8i)^2$.</p>
-			<p class="last">
+			<p>
 				<strong>4<sup>ème</sup> étape :</strong> On trouve les solutions :
 				<br/>$z_1 = \frac{-b - \sqrt{-\Delta}i}{2a} = \frac{-4 - 8i}{2 \times -2} = 1 + 2i$
 				<br/>$z_2 = \frac{-b + \sqrt{-\Delta}i}{2a} = \frac{-4 + 8i}{2 \times -2} = 1 - 2i$
@@ -221,21 +221,21 @@ chapter: 8
 	
 	<section>
 		
-		<h3 id="geometrie">Géométrie avec les nombres complexes</h3>
+		<h3>Géométrie avec les nombres complexes</h3>
 		<p>Il est possible de réaliser de la géométrie avec les nombres complexes. Ainsi, soient $A$, $B$, $C$ et $D$ des points d'affixes respectives $z_A$, $z_B$, $z_C$ et $z_D$ :</p>
 		
 		<div class="bubble formula">
 			<p><strong>La longueur $AB$ est :</strong> $|z_B - z_A|$.</p>
 			<p><strong>Le milieu du segment $[AB]$ est :</strong> le point $M$ d'affixe $\displaystyle{z_{M} = \frac{z_A + z_B}{2}}$.</p>
 			<p><strong>L'angle $(\vec{u}; \vec{AB})$ est :</strong> $\operatorname{arg}(z_B - z_A)$ (modulo $2\pi$).</p>
-			<p class="last"><strong>L'angle $(\vec{AB}; \vec{CD})$ est :</strong> $\displaystyle{\operatorname{arg}\left(\frac{z_C - z_D}{z_B - z_A}\right)}$ (modulo $2\pi$).</p>
+			<p><strong>L'angle $(\vec{AB}; \vec{CD})$ est :</strong> $\displaystyle{\operatorname{arg}\left(\frac{z_C - z_D}{z_B - z_A}\right)}$ (modulo $2\pi$).</p>
 		</div>
 		
 	</section>
 	
 	<section>
 		
-		<h3 id="formules-trigonometriques">Complément : formules trigonométriques</h3>
+		<h3>Complément : formules trigonométriques</h3>
 		<p>Il est possible de retrouver les formules trigonométriques vues en Première à l'aide des nombres de complexes.
 		La démonstration suivante n'est pas à retenir mais peut être utile pour retrouver ces formules.</p>
 		
@@ -250,7 +250,7 @@ chapter: 8
 				<li>$cos(a + b) = cos(a)cos(b) - sin(a)sin(b)$</li>
 				<li>$sin(a + b) = cos(a)sin(b) + cos(b)sin(a)$</li>
 			</ul>
-			<p class="last">Les formules vues en Première ont donc bien été retrouvées.</p>
+			<p>Les formules vues en Première ont donc bien été retrouvées.</p>
 		</div>
 		
 	</section>

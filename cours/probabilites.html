@@ -1,9 +1,9 @@
 ---
-layout: default
+layout: lesson
 title: "Chapitre X - Lois de probabilité"
+caption: "Les probabilités peuvent servir à comprendre les jeux de hasard, par exemple, pourquoi avons-nous plus de chances de perdre que de gagner ?"
 excerpt: "Ce cours sur les lois de probabilité vous servira à apprendre ce dont vous avez besoin sur les lois de probabilité discrètes (probabilités conditionnelles, formule des probabilités totales, variables aléatoires, loi binomiale, ...).<br/>Mais il contient aussi ce dont vous avez besoin sur les lois de probabilités continues (loi uniforme, exponentielle, normale, ...)."
 maths: true
-lesson: true
 js: ["/assets/js/lessons/probabilites.js"]
 annals: [
 	"2017/nouvelle-caledonie/specifique",
@@ -18,12 +18,12 @@ chapter: 10
 ---
 <section>
 
-	<h2 id="discretes">Lois de probabilité discrètes</h2>
+	<h2>Lois de probabilité discrètes</h2>
 
 	<section>
 		
-		<h3 id="conditionnelles">Probabilités conditionnelles</h3>
-		<p>Soient $A$ et $B$ deux événements avec $A$ de probabilité non nulle. Alors la probabilité conditionnelle de <strong>B sachant que est A réalisé</strong> est :</p>
+		<h3>Probabilités conditionnelles</h3>
+		<p>Soient $A$ et $B$ deux événements avec $A$ de probabilité non nulle. Alors la probabilité conditionnelle de <strong>$B$ sachant que $A$ est réalisé</strong> est :</p>
 		
 		<p class="bubble formula">$\displaystyle{p_{A}(B) = \frac{p(A \cap B)}{p(A)}}$</p>
 				
@@ -32,11 +32,11 @@ chapter: 10
 			
 			<img src="/assets/img/lessons/probabilites/arbre.svg" title="Arbre de probabilité" alt="Arbre de probabilité"/>
 			
-			<p class="last">Ici, on a $p_{A}{B} = \frac{6}{9}$.</p>
+			<p>Ici, on a $p_{A}{B} = \frac{6}{9}$.</p>
 		</div>
 		
 		<p>Deux événements $A$ et $B$ sont dits <strong>indépendants</strong> si la réalisation de l'un n'a aucune incidence sur la réalisation de l'autre et réciproquement.
-		C'est à dire :</p>
+		C'est-à-dire :</p>
 		
 		<p class="bubble formula">$p(A \cap B) = p(A) \times p(B)$</p>
 		
@@ -44,13 +44,13 @@ chapter: 10
 		
 		<ul class="bubble formula">
 			<li>$p_{A}{B} = p(B)$</li>
-			<li class="last">$p_{B}{A} = p(A)$</li>
+			<li>$p_{B}{A} = p(A)$</li>
 		</ul>
 		
 	</section>
 	<section>
 		
-		<h3 id="totales">Formule des probabilités totales</h3>
+		<h3>Formule des probabilités totales</h3>
 		<p>Soient $A_1, A_2, ..., A_n$ des événements qui partitionnent (qui recouvrent) l'univers $\Omega$, alors pour tout événement $B$ :</p>
 		
 		<p class="bubble formula">$p(B) = p(B \cap A_1) + p(B \cap A_2) + \text{ ... } + p(B \cap A_n)$</p>
@@ -60,44 +60,42 @@ chapter: 10
 			
 			<img src="/assets/img/lessons/probabilites/arbre.svg" title="Arbre de probabilité" alt="Arbre de probabilité"/>
 			
-			<p class="last">D'après la formule des probabilités totales, $p(B) = p(A \cap B) + p(\bar{A} \cap B) = \frac{38}{63}$.</p>
+			<p>D'après la formule des probabilités totales, $p(B) = p(A \cap B) + p(\bar{A} \cap B) = \frac{38}{63}$.</p>
 		</div>
 		
 	</section>
 	<section>
 		
-		<h3 id="variables-aleatoires">Variables aléatoires</h3>
+		<h3>Variables aléatoires</h3>
 		<p>Une variable aléatoire $X$ est une fonction (et plus précisément une application) qui, à chaque événement élémentaire de l'univers $\Omega$ y associe un nombre réel.
-		C'est à dire : $X : \Omega \mapsto \mathbb{R}$. L'ensemble des valeurs prises par $X$ est noté $X(\Omega)$.</p>
+		C'est-à-dire : $X : \Omega \mapsto \mathbb{R}$. L'ensemble des valeurs prises par $X$ est noté $X(\Omega)$.</p>
 		
 		<p>La loi de probabilité de $X$ attribue à chaque valeur $x_i$ la probabilité $p_i = p(X = x_i)$ de l'événement $X = x_i$ constitué de tous les événements
 		élémentaires dont l'image par $X$ est $x_i$. Cette loi est généralement représentée dans un tableau :</p>
 		
 		<div class="bubble formula">
-			<div class="table-responsive">
-				<table class="table table-bordered table-hover">
-					<thead>
-						<tr>
-							<th>$x_i$</th>
-							<th>$x_1$</th>
-							<th>$x_2$</th>
-							<th>...</th>
-							<th>$x_n$</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>$p(X = x_i)$</td>
-							<td>$p(X = x_1)$</td>
-							<td>$p(X = x_2)$</td>
-							<td>...</td>
-							<td>$p(X = x_n)$</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			<table class="table table-bordered table-hover table-responsive">
+				<thead>
+					<tr>
+						<th>$x_i$</th>
+						<th>$x_1$</th>
+						<th>$x_2$</th>
+						<th>...</th>
+						<th>$x_n$</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>$p(X = x_i)$</td>
+						<td>$p(X = x_1)$</td>
+						<td>$p(X = x_2)$</td>
+						<td>...</td>
+						<td>$p(X = x_n)$</td>
+					</tr>
+				</tbody>
+			</table>
 			
-			<p class="last">On a $p(X = x_1) + p(X = x_2) + \text{ ... } + p(X = x_n) = 1$.</p>
+			<p>On a $p(X = x_1) + p(X = x_2) + \text{ ... } + p(X = x_n) = 1$.</p>
 		</div>
 		
 		<p>L'espérance $E(X)$ de la variable aléatoire $X$ est un réel :</p>
@@ -108,7 +106,7 @@ chapter: 10
 		
 		<ul class="bubble formula">
 			<li>$V(X) = E(X^2) - E(X)^2$</li>
-			<li class="last">$\sigma(X) = \sqrt{V(X)}$</li>
+			<li>$\sigma(X) = \sqrt{V(X)}$</li>
 		</ul>
 		
 		<div class="bubble tip">
@@ -139,22 +137,22 @@ chapter: 10
 			
 			<p>On a :</p>
 			
-			<ul class="last">
+			<ul>
 				<li>$E(X) = -1 \times \frac{1}{4} + 0 \times \frac{1}{2} + 2 \times \frac{1}{8} + 6 \times \frac{1}{8} = \frac{3}{4}$</li>
 				<li>$V(X) = ((-1)^2 \times \frac{1}{4} + 0^2 \times \frac{1}{2} + 2^2 \times \frac{1}{8} + 6^2 \times \frac{1}{8}) - (\frac{3}{4})^2 = \frac{75}{16}$</li>
-				<li class="last">$\sigma(X) = \sqrt{\frac{75}{16}} \approx 2.165$</li>
+				<li>$\sigma(X) = \sqrt{\frac{75}{16}} \approx 2.165$</li>
 			</ul>
 		</div>
 		
 	</section>
 	<section>
 		
-		<h3 id="bernoulli">Épreuve et loi de Bernoulli</h3>
+		<h3>Épreuve et loi de Bernoulli</h3>
 		<p>Soit $p \in \mathbb{R}$ compris entre $0$ et $1$. Une épreuve de Bernoulli est une expérience aléatoire ne présentant que deux issues possibles :</p>
 		
 		<ul class="bubble formula">
 			<li><strong>Succès</strong>, obtenu avec la probabilité $p$.</li>
-			<li class="last"><strong>Échec</strong>, obtenu avec la probabilité $1-p$.</li>
+			<li><strong>Échec</strong>, obtenu avec la probabilité $1-p$.</li>
 		</ul>
 		
 		<p>Une variable aléatoire $X$ suit la loi de Bernoulli de paramètre $p$ si :</p>
@@ -162,20 +160,20 @@ chapter: 10
 		<ul class="bubble formula">
 			<li>$X(\Omega) =  {0;1}$</li>
 			<li>$p(X = 1) = p$ et $p(X = 0) = 1-p$</li>
-			<li class="last"><strong>Remarque :</strong> On voit que $0$ correspond à l'échec et que $1$ correspond au succès.</li>
+			<li><strong>Remarque :</strong> On voit que $0$ correspond à l'échec et que $1$ correspond au succès.</li>
 		</ul>
 		
 		<p>Si $X$ suit la loi de Bernoulli de paramètre $p$, on a les propriétés suivantes :</p>
 		
 		<ul class="bubble formula">
 			<li>$E(X) = p$</li>
-			<li class="last">$V(X) = p(1-p)$</li>
+			<li>$V(X) = p(1-p)$</li>
 		</ul>
 		
 	</section>
 	<section>
 		
-		<h3 id="binomiale">Loi binomiale</h3>
+		<h3>Loi binomiale</h3>
 		<p>On répète $n$ épreuves de Bernoulli identiques et indépendantes. On note $p$ la probabilité de succès à chaque épreuve et $X$ la variable aléatoire égale au nombre de succès
 		au cours de ces $n$ épreuves.</p>
 		
@@ -186,7 +184,7 @@ chapter: 10
 		<ul class="bubble formula">
 			<li>$\displaystyle{p(X = k) = \binom{n}{k}p^k(1-p)^{n-k}}$ pour tout $0 \leq k \leq n$, avec $\displaystyle{\binom{n}{k}}$ coefficient binomial (se lit $k$ parmi $n$)</li>
 			<li>$E(X) = n \times p$</li>
-			<li class="last">$V(X) = np(1-p)$</li>
+			<li>$V(X) = np(1-p)$</li>
 		</ul>
 		
 	</section>
@@ -194,11 +192,11 @@ chapter: 10
 </section>
 <section>
 
-	<h2 id="continues">Lois de probabilités continues</h2>
+	<h2>Lois de probabilités continues</h2>
 	
 	<section>
 	
-		<h3 id="difference">Différence discret / continu</h3>
+		<h3>Différence discret / continu</h3>
 		<p>Une variable aléatoire est dite <strong>discrète</strong> s'il est possible d'énumérer le nombre de valeurs prises par cette variable. Dès lors qu'une variable aléatoire
 		peut prendre comme valeur tous les nombres réels d'un certain intervalle de $\mathbb{R}$, il devient impossible de compter le nombre de valeurs prises
 		par cette variable et on parle alors de variable aléatoire <strong>continue</strong>.</p>
@@ -206,13 +204,13 @@ chapter: 10
 	</section>
 	<section>
 	
-		<h3 id="densite">Densité de probabilité</h3>
+		<h3>Densité de probabilité</h3>
 		<p>Soit $f : \mathbb{R} \mapsto \mathbb{R}$, $f$ est une fonction densité de probabilité si les conditions suivantes sont respectées :</p>		
 		
 		<ul class="bubble formula">
 			<li>$f$ est positive sur $\mathbb{R}$.</li>
-			<li>$f$ est continue sur $\mathbb{R}$ (sauf peut-être en certain points).</li>
-			<li class="last">L'aire du domaine délimitée par la courbe représentative de $f$ et l'axe des abscisses est égale à 1.</li>
+			<li>$f$ est continue sur $\mathbb{R}$ (sauf peut-être en certains points).</li>
+			<li>L'aire du domaine délimitée par la courbe représentative de $f$ et l'axe des abscisses est égale à 1.</li>
 		</ul>
 		
 		<span id="representation-1" class="plot"></span>
@@ -223,7 +221,7 @@ chapter: 10
 			<li>$p(X \in [a;b]) = p(X \in [a;b[) = p(X \in ]a;b]) = p(X \in ]a;b[)$</li>
 			<li>$p(X = x) = 0$ pour tout réel $x$</li>
 			<li>$p(a \leq X \leq b) = p(X \leq b) - p(X \leq a)$</li>
-			<li class="last">$p(X \leq a) + p(X \gt a) = 1$</li>
+			<li>$p(X \leq a) + p(X \gt a) = 1$</li>
 		</ul>
 		
 		<p>On peut calculer l'espérance d'une variable aléatoire $X$ de densité $f$ sur un intervalle $[a;b]$ :</p>
@@ -233,7 +231,7 @@ chapter: 10
 	</section>
 	<section>
 	
-		<h3 id="uniforme">Loi uniforme</h3>
+		<h3>Loi uniforme</h3>
 		<p>Une variable aléatoire $X$ suit la loi uniforme sur $[a;b]$ (avec $a$ et $b$ réels tels que $a \lt b$) si elle admet pour densité la fonction $f$ définie sur $[a;b]$ par :</p>
 		
 		<p class="bubble formula">$f(x) : \left\{ \begin{array}{ll} \frac{1}{b-a} \text{ si } x \in [a;b] \\ 0 \text{ sinon} \end{array} \right.$</p>
@@ -252,7 +250,7 @@ chapter: 10
 	</section>
 	<section>
 	
-		<h3 id="exponentielle">Loi exponentielle</h3>
+		<h3>Loi exponentielle</h3>
 		<p>Une variable aléatoire $X$ suit <strong>la loi exponentielle</strong> (ou loi de durée de vie sans vieillissement) de paramètre $\lambda$ (avec $\lambda$ réel et positif)
 		si elle admet pour densité la fonction $f$ définie par :</p>
 		
@@ -268,7 +266,7 @@ chapter: 10
 		
 		<ul class="bubble formula">
 			<li>$\displaystyle{p(X \leq a) = \int_{0}^{a} \lambda e^{-\lambda x} \, \mathrm{d}x = 1 - e^{-\lambda a}}$</li>
-			<li class="last">$p(X \gt a) = 1 - p(X \leq a) = e^{-\lambda a}$</li>
+			<li>$p(X \gt a) = 1 - p(X \leq a) = e^{-\lambda a}$</li>
 		</ul>
 		
 		<p>L'espérance de cette loi exponentielle est :</p>
@@ -284,7 +282,7 @@ chapter: 10
 	</section>
 	<section>
 	
-		<h3 id="normale-centree">Loi normale centrée réduite</h3>
+		<h3>Loi normale centrée réduite</h3>
 		<p>Une variable aléatoire $X$ suit <strong>la loi normale centrée réduite</strong> (notée $\mathcal{N}(0;1)$) si elle admet pour densité la fonction $f$ définie par :</p>
 		
 		<p class="bubble formula">$\displaystyle{f(x) : \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}}$</p>
@@ -297,9 +295,9 @@ chapter: 10
 			<p>$p(-u_{\alpha} \leq X \leq u_{\alpha}) = 1-\alpha$</p>
 			
 			<p><strong>Valeurs particulières :</strong></p>
-			<ul class="last">
+			<ul>
 				<li>$u_{0,05} \approx 1,959$</li>
-				<li class="last">$u_{0,01} \approx 2,575$</li>
+				<li>$u_{0,01} \approx 2,575$</li>
 			</ul>
 		</div>
 		
@@ -307,7 +305,7 @@ chapter: 10
 		
 		<ul class="bubble formula">
 			<li>$E(X) = 0$</li>
-			<li class="last">$V(X) = \sigma(X) = 1$</li>
+			<li>$V(X) = \sigma(X) = 1$</li>
 		</ul>
 		
 		<p>La fonction densité de probabilité de la loi normale centrée réduite n'admet pas de primitive avec les moyens usuels.
@@ -316,7 +314,7 @@ chapter: 10
 	</section>
 	<section>
 	
-		<h3 id="normale-generale">Loi normale générale</h3>
+		<h3>Loi normale générale</h3>
 		<p>Une variable aléatoire $X$ suit la loi normale de paramètres $\mu$, $\sigma$ (notée $\mathcal{N}(\mu; \sigma^2)$ avec $\mu \in \mathbb{R}$ et $\sigma \in \mathbb{R}^{+}_{*}$)
 		si $\displaystyle{\frac{X - \mu}{\sigma}}$ suit la loi normale centrée réduite.</p>
 		
@@ -327,14 +325,14 @@ chapter: 10
 		<ul class="bubble formula">
 			<li>$p(\mu - \sigma \leq X \leq \mu + \sigma) \approx 0,683$</li>
 			<li>$p(\mu - 2\sigma \leq X \leq \mu + 2\sigma) \approx 0,954$</li>
-			<li class="last">$p(\mu - 3\sigma \leq X \leq \mu + 3\sigma) \approx 0,997$</li>
+			<li>$p(\mu - 3\sigma \leq X \leq \mu + 3\sigma) \approx 0,997$</li>
 		</ul>
 		
 		<p>L'espérance $E(X)$ et la variance $V(X)$ de cette loi normale sont :</p>
 		
 		<ul class="bubble formula">
 			<li>$E(X) = \mu$</li>
-			<li class="last">$V(X) = \sigma^2$</li>
+			<li>$V(X) = \sigma^2$</li>
 		</ul>
 		
 		<p>Comme pour la loi normale centrée réduite, il faut utiliser la calculatrice pour déterminer les probabilités d'événements.</p>

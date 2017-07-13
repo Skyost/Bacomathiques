@@ -2,6 +2,7 @@
 title: "Bacomathiques"
 tagline: "Bacomathiques est un petit site web qui contient tout ce que vous avez besoin pour réussir votre BAC de mathématiques en toute tranquillité : cours de mathématiques gratuits, téléchargeables et imprimables, annales et corrigés des sujets précédents, etc..."
 url: "https://bacomathiqu.es"
+timezone: Europe/Paris
 
 # Social
 social:
@@ -19,7 +20,6 @@ compress_html:
 content_license:
   name: "Creative Commons BY-NC 4.0"
   acronym: "CC BY NC"
-  image: "/assets/img/lessons/license.svg"
   url: "https://creativecommons.org/licenses/by-nc/4.0/deed.fr"
 
 # SASS options
@@ -28,4 +28,4 @@ sass:
   style: compressed
 
 # Production
-exclude: [".scss", "README.md"]
+exclude: [".scss", "README.md", "CNAME"]

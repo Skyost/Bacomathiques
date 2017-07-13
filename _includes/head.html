@@ -24,15 +24,16 @@
 	<meta name="twitter:image" content="{{ site.url }}{{ site.social.preview }}"/>
 	
 	<!-- Styles -->
-	<meta name="theme-color" content="{% if page.layout == 'simple' %}#4cdbc4{% else %}#3583d6{% endif %}"/>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+	<meta name="theme-color" content="{{ layout.meta-color }}"/>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"/>
 	
 	<link rel="stylesheet" type="text/css" href="/assets/css/style.css"/>
+	{% if page.layout == 'lesson' %}
+		<link rel="stylesheet" type="text/css" href="/assets/css/default.css"/>
+	{% endif %}
 	<link rel="stylesheet" type="text/css" href="/assets/css/{{ page.layout }}.css"/>
 	
-	{% if page.lesson %}
-		<link rel="stylesheet" type="text/css" href="/assets/css/lesson.css"/>
-	{% endif %}
 	{% if page.css %}
 		{% for sheet in page.css %}
 			<link rel="stylesheet" type="text/css" href="{{ sheet }}"/>

@@ -2,38 +2,35 @@
 layout: simple
 title: "Accueil"
 navbarpos: 1
-css: [
-	"https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.1/css/hover-min.css",
-	"/assets/css/index.css"
-]
+css: ["/assets/css/index.css"]
 ---
 
 <div class="col-md-12 first">
 	<div class="row">
 		<div class="col-md-6 col-xs-12">
-			<section id="main-section">
+			<section id="intro">
+				<div>
+					<h3>Bienvenue sur {{ site.title }} !</h3>
+					<p><q>Bac-o-math-iques</q> (ou plus simplement {{ site.title }}) est un petit site web qui contient tout ce dont vous avez besoin pour réussir
+					votre BAC de mathématiques en toute tranquillité !</p>
 					
-				<h3>Bienvenue sur {{ site.title }} !</h3>
-				<p><q>Bac-o-math-iques</q> (ou plus simplement {{ site.title }}) est un petit site web qui contient tout ce que vous avez besoin pour réussir
-				votre BAC de mathématiques en toute tranquillité !</p>
+					<p>Veuillez noter que le site WEB vient juste d'ouvrir, et que de nouveaux contenus seront rajoutés,
+					en particulier les vidéos YouTube qui arrivent très bientôt !</p>
+				</div>
 				
-				<p>Veuillez noter que le site WEB vient juste d'ouvrir, et que de nouveaux contenus seront rajoutés,
-				en particulier les vidéos YouTube qui arrivent très bientôt !</p>
-				
-				<img class="black-logo-image" src="assets/img/logo.svg" alt="Bacomathiques"/>
-						
+				<div id="logo"></div>
 			</section>
 		</div>
 				
 		<div class="col-md-6 col-xs-12">
-			<section id="menu-lessons" class="panel panel-default">
+			<section id="menu-lessons" class="card">
 			
-				<div class="panel-heading"><h3><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> Liste des cours</h3></div>
-				<div class="panel-body">
+				<div class="card-header"><h3><i class="fa fa-bookmark" aria-hidden="true"></i> Liste des cours</h3></div>
+				<div class="card-block">
 					<ul>
 						{% assign pages = site.pages | sort: 'chapter' %}
 						{% for page in pages %}
-							{% if page.lesson %}
+							{% if page.layout == 'lesson' %}
 								<li><a href="{{ page.url }}">{{ page.title }}</a></li>
 							{% endif %}
 						{% endfor %}
@@ -53,21 +50,21 @@ css: [
 		<div id="row-contents" class="row">
 			<div class="col-md-4 col-xs-12">
 				<figure>
-					<img src="assets/img/index/approved.svg" class="hvr-pulse" alt="Approuvé"/>
+					<i class="fa fa-check-circle fa-5x"></i>
 				
 					<figcaption>Des cours en accord avec le programme de Terminale S.</figcaption>
 				</figure>
 			</div>
 			<div class="col-md-4 col-xs-12 middle">
 				<figure>
-					<img src="assets/img/index/book.svg" class="hvr-pulse" alt="Livre"/>
+					<i class="fa fa-book fa-5x"></i>
 				
 					<figcaption>Des exemples intuitifs et la possibilité de télécharger et imprimer les cours gratuitement pour les relire chez soi !</figcaption>
 				</figure>
 			</div>
 			<div class="col-md-4 col-xs-12">
 				<figure>
-					<img src="assets/img/index/laptop.svg" class="hvr-pulse" alt="Ordinateur"/>
+					<i class="fa fa-laptop fa-5x"></i>
 				
 					<figcaption>Le plus important : tout est gratuit. Même pas besoin de compte, tout est à disposition de tout le monde !</figcaption>
 				</figure>
@@ -83,14 +80,25 @@ css: [
 </div>
 
 <div class="col-md-12">
-	<section>
+	<section class="row">
 
-		<h3>Alors pourquoi attendre ?</h3>
-		<p>Accédez dès maintenant à <a href="/cours/">l'index des cours</a> !</p>
+		<div class="col-md-10 col-xs-12 vcenter">
+			<h3>Alors pourquoi attendre ?</h3>
+			<p>Vous êtes intéressé par des cours de mathématiques gratuits en ligne, accessibles à tout moment ? Accédez dès maintenant à <a href="/cours/">l'index des cours</a> !</p>
+			
+			<p>Vous y retrouverez la liste des cours disponibles sur le site ainsi qu'une brève description et une image d'illustration.
+			<strong>Nous vous souhaitons une bonne visite !</strong></p>
+		</div>
+		<div class="col-md-2 col-xs-12 col-fa d-flex align-items-center">
+			
+			<i class="fa fa-list-alt w-100" aria-hidden="true"></i>
+		
+		</div>
 
 	</section>
 </div>
 
+<!--
 <div class="col-md-12">
 	<section class="row">
 		
@@ -99,43 +107,36 @@ css: [
 			<p><a href="https://www.youtube.com/channel/UCmSSf75fsn1e6wOTV9R1Y9Q">{{ site.title }} est sur YouTube !</a>
 			Chaque cours disponible sur le site sera également disponible en version vidéo sur YouTube.</p>
 			
-			<!--
-			<div class="video-responsive">
-				<div class="embed-responsive embed-responsive-16by9">
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/NTf1WAi2mig?showinfo=0" allowfullscreen></iframe>
-				</div>
-			</div>
-			-->
-			
 			<p><em>Veuillez noter que la chaîne YouTube n'a pas encore de date d'ouverture.
-			En effet, tourner des vidéos prends beaucoup plus de temps que d'écrire un cours; les vidéos seront ainsi ajoutées une fois que tous les cours seront écrits.</em></p>
+			En effet, tourner des vidéos prend beaucoup plus de temps que d'écrire un cours; les vidéos seront ainsi ajoutées une fois que tous les cours seront écrits.</em></p>
 		</div>
 		<div class="col-md-2 col-xs-12">
 		
-			<img src="assets/img/index/youtube.svg" class="article-image youtube-image hvr-buzz-out" alt="YouTube"/>
+			<img src="assets/img/index/youtube.svg" class="article-image youtube-image" alt="YouTube"/>
 		
 		</div>
 
 	</section>
 </div>
+-->
 
 <div class="col-md-12">
 	<section class="row">
 	
-		<div class="col-md-2 hidden-sm hidden-xs">
+		<div class="col-md-2 hidden-sm-down col-fa d-flex align-items-center">
 		
-			<img src="assets/img/index/interrogation.svg" class="article-image interrogation-image hvr-buzz-out" alt="À propos"/>
+			<i class="fa fa-question-circle w-100" aria-hidden="true"></i>
 		
 		</div>
-		<div class="col-md-10 col-xs-12">
+		<div class="col-md-10 col-xs-12 vcenter">
 			<h3>À propos de {{ site.title }}</h3>
 			<p>Par qui a été crée ce site web ? Sous quelle licence sont disponibles les contenus ? Quelles sont les technologies utilisées pour concevoir le site web ?</p>
 			
 			<p>Toutes les réponses à ces questions sont disponibles dans la page <a href="/about.html"><q>À propos</q></a>.</p>
 		</div>
-		<div class="col-xs-12 hidden-md hidden-lg">
+		<div class="col-lg-12 hidden-md-up col-fa d-flex align-items-center">
 		
-			<img src="assets/img/index/interrogation.svg" class="article-image interrogation-image hvr-buzz-out" alt="À propos"/>
+			<i class="fa fa-question-circle w-100" aria-hidden="true"></i>
 		
 		</div>
 

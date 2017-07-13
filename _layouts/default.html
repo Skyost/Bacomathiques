@@ -1,6 +1,5 @@
 ---
 layout: compress
-adsense: true
 ---
 
 <!DOCTYPE html>
@@ -8,110 +7,12 @@ adsense: true
 {% include head.html %}
 	<body>
 	
+		{% include default/navbar.html %}
+	
 		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-3 col-lg-2">
-					<nav class="navbar navbar-default navbar-fixed-side">
-						<div class="container">
-							<div class="navbar-header">
-								<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
-									<span class="sr-only">Toggle navigation</span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-								</button>
-								<a class="navbar-brand" href="/index.html">{{ site.title }}</a>
-							</div>
-							<div class="collapse navbar-collapse">
-								<ul class="nav navbar-nav">
-									<li>
-										<form id="search-box" class="navbar-form navbar-left" action="/search.html" method="get">
-											<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-											<input type="text" name="keywords" placeholder="Chercher un cours..."/>
-											<input type="submit" value="Rechercher !" style="display: none;">
-										</form>
-									</li>
-									<li>
-										<a href="/index.html" class="big-padding"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Accueil</a>
-									</li>
-									{% if page.lesson %}
-										<li>
-											<a href="/cours/" class="big-padding"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> Index des cours</a>
-										</li>
-										<li>
-											<a href="#" class="big-padding" data-toggle="modal" data-target="#modal-directaccess"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> Accès direct à un cours</a>
-										</li>
-									{% endif %}
-									<li class="dropdown">
-										{% if page.lesson %}
-											<a class="dropdown-toggle" data-toggle="dropdown" href="{{ page.url }}"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> {{ page.title }} <b class="caret"></b></a>
-											<ul class="dropdown-menu">
-												<!-- Will be completed in JavaScript. -->
-											</ul>
-										{% else %}
-											<a class="dropdown-toggle" data-toggle="dropdown" href="/cours/"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Index des cours <b class="caret"></b></a>
-											<ul class="dropdown-menu">
-												{% assign pages = site.pages | sort: 'chapter' %}
-												{% for page in pages %}
-													{% if page.lesson %}
-														<li class="toc-lesson a"><a href="{{ page.url }}">{{ page.title }}</a></li>
-													{% endif %}
-												{% endfor %}
-											</ul>
-										{% endif %}
-									</li>
-									<li>
-										<a href="/about.html" class="big-padding"><span class="glyphicon glyphicon-education" aria-hidden="true"></span> À Propos</a>
-									</li>
-								</ul>
-								{% if page.lesson %}
-									<div id="license">
-										<a href="/about.html#licence" rel="license"><img src="{{ site.content_license.image }}" alt="{{ site.content_license.acronym }}" title="{{ site.content_license.acronym }}"/></a>
-									</div>
-								{% endif %}
-							</div>
-						</div>
-					</nav>
-				</div>
-				<div class="col-sm-9 col-lg-10">
-				
-					<article>
-	
-						{% if page.lesson %}
-						
-							<h1>{{ page.title }}</h1>
-							{% include default/export.html %}
-						
-						{% endif %}
-	
-						{{ content }}
-						
-						<ins class="adsbygoogle" data-ad-client="ca-pub-7167241518798106" data-ad-slot="2776038870" data-ad-format="auto"></ins>
-						
-						{% if page.lesson %}
-						
-							<a id="back-to-top" href="#" class="btn btn-primary" role="button" title="Cliquez pour retourner en haut de la page" data-toggle="tooltip" data-placement="left">
-								<span class="glyphicon glyphicon-chevron-up"></span>
-							</a>
-						
-						{% endif %}
-		
-					</article>
-					
-					{% if page.annals %}
-						{% include default/annals.html %}
-					{% endif %}
-					
-					{% if page.comments %}
-						{% include default/comments.html %}
-					{% endif %}
-					
-					{% if page.lesson %}
-						{% include default/direct_access.html %}
-					{% endif %}
-					
-				</div>
-			</div>
+			
+			{{ content }}
+			
 		</div>
 		
 		{% include footer.html %}
