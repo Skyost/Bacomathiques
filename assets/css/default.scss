@@ -89,21 +89,30 @@ article {
 	
 	.nav-item:hover:after {
 		height: 6px;
-	}
-	
-	@media(max-width: $mobile-max-width) {
-		padding-bottom: 8px;
-	}
-	
-	@media(max-width: $tablets-max-width) {
 		
-		.nav-item:hover:after {
+		@media(max-width: $tablets-max-width) {
 			height: 0px !important;
 		}
-		
 	}
 	
 	.nav-link {
 		text-transform: uppercase;
+		
+		@media(max-width: $tablets-max-width) {
+			font-size: 1em;
+			text-transform: none;
+		}
+	}
+	
+	@media(max-width: $tablets-max-width) {
+		
+		.fa {
+			display: none;
+		}
+		
+	}
+	
+	@media(max-width: $mobile-max-width) {
+		padding-bottom: 8px;
 	}
 }
