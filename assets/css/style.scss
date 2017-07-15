@@ -78,6 +78,18 @@ a:hover {
 	text-decoration: none;
 }
 
+@media(max-width: $tablets-max-width) {
+
+	.lesson-item {
+		white-space: normal;
+	}
+	
+}
+
+.lesson-item.current {
+	font-weight: bold;
+}
+
 /* LISTS */
 
 ul {

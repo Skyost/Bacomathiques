@@ -6,9 +6,9 @@
 		<div class="dropdown-divider"></div>
 		<span class="dropdown-header"><i class="fa fa-book" aria-hidden="true"></i> Liste des cours</span>
 		{% assign pages = (site.pages | sort: 'chapter') %}
-		{% for page in pages %}
-			{% if page.layout == 'lesson' %}
-				<a class="dropdown-item" href="{{ page.url }}">{{ page.title }}</a>
+		{% for lesson in pages %}
+			{% if lesson.layout == 'lesson' %}
+				<a class="dropdown-item lesson-item{% if lesson.path == page.path %} current{% endif %}" href="{{ lesson.url }}">{{ lesson.title }}</a>
 			{% endif %}
 		{% endfor %}
 	</div>

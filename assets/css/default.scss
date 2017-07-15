@@ -87,7 +87,11 @@ article {
 		transition: height linear 0.15s;
 	}
 	
-	.nav-item:hover:after {
+	.nav-item:hover .nav-link {
+		color: rgba(255, 255, 255, 0.75) !important;
+	}
+	
+	.nav-item:hover:after, .nav-item.active:after {
 		height: 6px;
 		
 		@media(max-width: $tablets-max-width) {
