@@ -13,10 +13,6 @@ body {
 	color: $main-text-color;
 }
 
-a:active {
-	text-decoration: none;
-}
-
 .dropdown-header {
 	text-transform: uppercase;
 }
@@ -78,7 +74,7 @@ figure, img {
 
 /* LINKS */
 
-a:hover {
+a:hover, a:active {
 	text-decoration: none;
 }
 

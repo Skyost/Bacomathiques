@@ -7,8 +7,9 @@
 /* ANCHORS */
 
 .anchorjs-link {
-	transition: margin-left 0.25s linear;
-	margin-left: -0.5em !important;
+	transition: all 0.25s linear;
+	margin-left: -0.3em !important;
+	opacity: 0;
 }
 
 .anchorjs-link:link, .anchorjs-link:active, anchorjs-link:visited {
@@ -21,6 +22,7 @@
 }
 
 *:hover > .anchorjs-link {
+	opacity: 1;
 	margin-left: 0 !important;
 }
 
