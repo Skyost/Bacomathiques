@@ -7,7 +7,7 @@ function computeDimension() {
 	
 	var ratio = height / width;
 	
-	if($(window).width() < 800) {
+	if($(window).width() < graphWidth + 200) {
 		width = $(window).width() / 1.5;
 		height = height * ratio;
 	}
