@@ -1,6 +1,8 @@
 ---
 layout: lesson
 title: "Chapitre XIV - Les matrices (Spécialité)"
+permalink: "/cours/matrices/"
+redirect_from: "/cours/matrices.html"
 caption: "Les matrices peuvent être utilisées par exemple dans le domaine de la photographie et du traitement d'images."
 excerpt: "Ce cours de spécialité qui a pour sujet les matrices va vous apprendre certaines définitions (types de matrices, inverses, ...), mais aussi à calculer avec les matrices (sommes, produits et puissance)<br/>Il contient également une partie sur l'étude asymptotique d'une marche aléatoire (avec convergence de suites de matrices, étude d'une marche aléatoire et bien plus)."
 maths: true
@@ -237,7 +239,7 @@ chapter: 14
 			<p>La <strong>matrice colonne des états de la marche aléatoire après $n$ étapes</strong> est la matrice
 			$\displaystyle{P_n = \begin{pmatrix}a_n \cr b_n \cr c_n\end{pmatrix}}$ avec les suites :
 			$\displaystyle{\begin{cases} a_{n+1} = \frac{1}{4} b_n + \frac{1}{2} c_n\\ b_{n+1} = \frac{1}{3} a_n + \frac{1}{2} c_n \\ c_{n+1} = \frac{2}{3} a_n + \frac{3}{4} b_n\end{cases}}$.</p>
-			<p>On remarque que $P_{n+1} = TP_n$ (ceci peut être démontré grâce à la <a href="probabilites.html#2-formule-des-probabilités-totales">formule des probabilités totales</a>
+			<p>On remarque que $P_{n+1} = TP_n$ (ceci peut être démontré grâce à la <a href="../probabilites/#2-formule-des-probabilités-totales">formule des probabilités totales</a>
 			appliquée au système à l'instant $n$).</p>
 		</div>
 		
@@ -255,7 +257,7 @@ chapter: 14
 		<p class="bubble formula">$P_{n} = T^nP_0$</p>
 		
 		<div class="bubble tip">
-			<p>Il faut savoir démontrer cette dernière formule. Pour cela procédons <a href="suites.html#iii-raisonnement-par-récurrence">par récurrence</a> :</p>
+			<p>Il faut savoir démontrer cette dernière formule. Pour cela procédons <a href="../suites/#iii-raisonnement-par-récurrence">par récurrence</a> :</p>
 			<p>Soit $H_n$ la propriété définie par $H_n : P_{n} = T^nP_0$</p>
 			<p><strong>Initialisation :</strong> $P_0 = T^0P_0$ ce qui est vrai car une matrice à la puissance $0$ donne la matrice identité.</p>
 			<p><strong>Hérédité :</strong> Montrons que $H_{n+1}$ est vraie :

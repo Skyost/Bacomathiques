@@ -63,12 +63,12 @@ article {
 	.navbar-brand:before {
 		content: '';
 		display: inline-block;
+		vertical-align: -0.1em;
+		height: 0.9em;
+		width: 0.9em;
+		background-size: 0.9em 0.9em;
 		background-image: url('../img/logo.svg');
-		background-size: 1.2em 1.2em;
-		height: 1.2em;
-		width: 1.2em;
-		vertical-align: -0.27em;
-		margin-right: 6px;
+		margin-right: 0.2em;
 	}
 	
 	.nav-item {

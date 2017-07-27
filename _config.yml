@@ -29,3 +29,6 @@ sass:
 
 # Production
 exclude: [".scss", "README.md", "CNAME"]
+
+# Gems
+gems: ["jekyll-redirect-from"]
