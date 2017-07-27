@@ -44,7 +44,7 @@
 	.toc-link:before {
 		display: inline-block;
 		content: '';
-		background-color: #EEE;
+		background-color: rgba(0, 0, 0, 0.075);
 		position: absolute;
 		left: 0;
 		top: 0;
@@ -67,11 +67,12 @@
 	}
 	
 	.is-active-link {
+		color: darken($main-color, 10%) !important;
 		font-weight: bold;
 	}
 	
 	.is-active-link:before {
-		background-color: lighten($main-color, 20%);
+		background-color: darken($main-color, 10%);
 	}
 	
 	a:link, a:active, a:visited {
