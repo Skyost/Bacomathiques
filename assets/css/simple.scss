@@ -50,14 +50,7 @@ header {
 	}
 	
 	h1:before {
-		content: '';
-		display: inline-block;
-		vertical-align: -0.1em;
-		height: 0.9em;
-		width: 0.9em;
-		background-size: 0.9em 0.9em;
-		background-image: url('../img/logo.svg');
-		margin-right: 0.2em;
+		@include logo-before();
 	}
 }
 

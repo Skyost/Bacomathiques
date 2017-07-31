@@ -8,6 +8,7 @@
 
 .anchorjs-link {
 	transition: all 0.25s linear;
+	vertical-align: -0.05em;
 	margin-left: -0.3em !important;
 	opacity: 0;
 }
@@ -52,7 +53,7 @@
 		width: 2px;
 	}
 	
-	.toc-list-item > .toc-list > .toc-list-item > .toc-link {
+	.toc-list > .toc-list-item > .toc-list > .toc-list-item > .toc-link {
 		padding-left: 40px;
 	}
 	
@@ -163,6 +164,12 @@
 		background-size: 24px 24px;
 		height: 24px;
 		width: 24px;
+		
+		@media(max-width: $mobile-max-width) {
+			background-size: 30px 30px;
+			height: 30px;
+			width: 30px;
+		}
 	}
 	
 	@media(max-width: $mobile-max-width) {

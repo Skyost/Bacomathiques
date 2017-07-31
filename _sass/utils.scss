@@ -4,3 +4,16 @@ $small-max-width: 575px;
 $mobile-max-width: 767px;
 $tablets-max-width: 991px;
 $large-max-width: 1199px;
+
+/* LOGO */
+
+@mixin logo-before() {
+	content: '';
+	display: inline-block;
+	vertical-align: -0.12em;
+	height: 0.9em;
+	width: 0.9em;
+	background-size: 0.9em 0.9em;
+	background-image: url('../img/logo.svg');
+	margin-right: 0.2em;
+}

@@ -9,10 +9,7 @@
 /** Title : **/
 
 h1 {
-	margin-bottom: 30px;
-	text-align: center;
-	color: $main-color-darker;
-	font-size: 38px;
+	display: none;
 }
 
 /** Lessons row : **/
@@ -28,12 +25,14 @@ h1 {
 	max-width: 1600px;
 
 	.card-header {
+		font-family: 'Handlee', cursive;
 		text-align: center;
-		background-color: $main-color;
+		background-color: lighten($main-color, 5%);
 		color: white;
 		
 		h2 {
-			font-size: 1em;
+			font-size: 1.5em;
+			font-weight: normal;
 			margin: 8px 0 8px 0;
 		}
 	}

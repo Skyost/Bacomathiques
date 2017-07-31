@@ -24,8 +24,8 @@ adsense: true
 		{% if page.layout == 'lesson' %}
 				<div class="col-xs-12 col-sm-6 col-md-4">
 					<div class="card">
-						<div class="card-header">
-							<h2>{{ page.title }}</h2>
+						<div class="card-header d-flex align-items-center">
+							<h2 class="w-100">{{ page.title }}</h2>
 						</div>
 						<div class="card-img">
 							{% assign id = page.path | replace: 'lessons/', '' | replace: '.html', '' %}
@@ -37,7 +37,7 @@ adsense: true
 							<p class="card-text">{{ page.excerpt }}</p>
 						</div>
 						<div class="card-footer">
-							<a href="{{ page.url }}">Lien vers ce cours</a>
+							<a href="{{ page.url }}"><i class="fa fa-share" aria-hidden="true"></i> Lien vers ce cours</a>
 						</div>
 					</div>
 				</div>

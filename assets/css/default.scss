@@ -61,19 +61,12 @@ article {
 	}
 	
 	.navbar-brand:before {
-		content: '';
-		display: inline-block;
-		vertical-align: -0.1em;
-		height: 0.9em;
-		width: 0.9em;
-		background-size: 0.9em 0.9em;
-		background-image: url('../img/logo.svg');
-		margin-right: 0.2em;
+		@include logo-before();
 	}
 	
 	.nav-item {
 		position: relative;
-		padding: 0 2px 8px 2px;
+		padding: 0 2px 7px 2px;
 	}
 	
 	.nav-item:after {
@@ -92,7 +85,7 @@ article {
 	}
 	
 	.nav-item:hover:after, .nav-item.active:after {
-		height: 6px;
+		height: 3px;
 		
 		@media(max-width: $tablets-max-width) {
 			height: 0px !important;

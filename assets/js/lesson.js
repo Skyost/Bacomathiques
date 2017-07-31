@@ -71,6 +71,7 @@ $(document).ready(function() {
 	
 	// NAVBAR
 	
+	var navBar = $('#navbar');
 	var navigation = $('#nav-toc');
 	navigation.css('max-width', navigation.width());
 	
@@ -80,7 +81,7 @@ $(document).ready(function() {
 			resetPosition(navigation);
 			return;
 		}
-		if($('#navbar').is(':in-viewport')) {
+		if(navBar.is(':in-viewport')) {
 			resetPosition(navigation);
 		}
 		else {
@@ -89,7 +90,7 @@ $(document).ready(function() {
 	});
 	
 	$(window).resize(function() {
-		if($('#navbar').is(':in-viewport')) {
+		if(navBar.is(':in-viewport')) {
 			navigation.css('max-width', '');
 			navigation.css('max-width', navigation.width());
 		}
