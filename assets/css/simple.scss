@@ -24,6 +24,10 @@ body, #content {
 
 .adsbygoogle {
 	margin-top: 80px;
+	
+	@media(max-width: $mobile-max-width) {
+		margin-top: 40px;
+	}
 }
 
 /* SPECIFIC STYLES */
