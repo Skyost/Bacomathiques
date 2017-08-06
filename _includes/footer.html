@@ -2,15 +2,6 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 
-{% if page.adsense or layout.adsense %}
-	<script async type="text/javascript" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	<script type="text/javascript">
-		$('.adsbygoogle').each(function() {
-			(adsbygoogle = window.adsbygoogle || []).push({});
-		});
-	</script>
-{% endif %}
-
 {% if page.maths %}
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/function-plot/1.18.1/function-plot.js"></script>
@@ -25,6 +16,17 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/3.0.2/tocbot.min.js"></script>
 		
 	<script type="text/javascript" src="/assets/js/lesson.js"></script>
+{% endif %}
+
+{% if page.adsense or layout.adsense %}
+	<script async type="text/javascript" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.adsbygoogle').each(function() {
+				(adsbygoogle = window.adsbygoogle || []).push({});
+			});
+		});
+	</script>
 {% endif %}
 
 {% if page.js %}

@@ -99,6 +99,17 @@ $(document).ready(function() {
 			resetPosition(navigation);
 		}
 	});
+	
+	// ADSENSE
+	
+	firstH2 = true;
+	$('article h2').each(function() {
+		if(firstH2) {
+			firstH2 = false;
+			return true;
+		}
+		$(this).before('<ins class="adsbygoogle no-print" style="margin-top: 40px;" data-ad-client="ca-pub-7167241518798106" data-ad-slot="2776038870" data-ad-format="auto"></ins>'); 
+	});
 });
 
 /**
