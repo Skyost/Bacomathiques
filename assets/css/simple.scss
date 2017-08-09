@@ -101,13 +101,15 @@ article {
 	}
 
 	h3 {
-		font-size: 30px;
+		color: $simple-main-color;
+		font-size: 2.3em;
 		padding: 10px 0 4px 0;
 	}
 	
-	.label {
-		font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-		text-transform: uppercase;
+	.stand-out {
+		color: $simple-main-color;
+		font-size: 1.2em;
+		font-weight: bold;
 	}
 	
 	.row.triple-col {
