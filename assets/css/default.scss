@@ -9,7 +9,7 @@
 /** Selection : **/
 
 ::selection {
-	background-color: $lesson-selection-color;
+	background-color: $default-selection-color;
 }
 
 /** Article : **/
@@ -38,20 +38,21 @@ article {
 			display: block;
 			text-align: center;
 			
-			@media(max-width: $mobile-max-width) {
-				text-align: left;
+			@media(max-width: $tablets-max-width) {
+				display: none;
 			}
 		}
 	}
 	
 	.navbar-brand {
 		font-family: 'Handlee', cursive;
-		font-size: 2.5em;
+		font-size: 4em;
 		color: white !important;
-		padding: 20px 0 20px 0;
+		padding: 0;
+		margin: 20px 0 20px 0;
 		
 		@media(max-width: $tablets-max-width) {
-			padding: 0;
+			margin: 0;
 			font-size: 2em;
 		}
 		
@@ -80,16 +81,16 @@ article {
 		transition: height linear 0.15s;
 	}
 	
-	.nav-item:hover .nav-link {
-		color: rgba(255, 255, 255, 0.75) !important;
-	}
-	
 	.nav-item:hover:after, .nav-item.active:after {
 		height: 3px;
 		
 		@media(max-width: $tablets-max-width) {
 			height: 0px !important;
 		}
+	}
+	
+	.nav-item.active .nav-link {
+		color: white;
 	}
 	
 	.nav-link {

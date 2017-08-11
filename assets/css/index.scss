@@ -38,8 +38,12 @@
 		font-size: 16px;
 	}
 	
-	.card-block ul {
-		margin-bottom: 0;
+	.card-block {
+		padding: 20px;
+	
+		ul {
+			margin-bottom: 0;
+		}
 	}
 	
 	.fa-bookmark {

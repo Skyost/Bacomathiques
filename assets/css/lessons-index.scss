@@ -77,6 +77,14 @@ h1 {
 	.card-footer {
 		text-align: right;
 		text-transform: uppercase;
+		
+		a {
+			color: $cards-link-color;
+		}
+		
+		a:hover {
+			color: darken($cards-link-color, 10%);
+		}
 	}
 	
 	.card-img:hover {

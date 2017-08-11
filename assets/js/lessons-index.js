@@ -5,5 +5,5 @@ $(document).ready(function() {
 	});
 	
 	$('.card-header').matchHeight();
-	$('.card-block').matchHeight();
+	$('.card-body').matchHeight();
 });

@@ -17,6 +17,20 @@ $scrollbar-track-border: white;
 
 $scrollbar-corner-background: transparent;
 
+/* DEFAULT COLORS */
+
+/** Cards : **/
+
+$cards-link-color: #16a085;
+
+/** Navbar : **/
+
+$nav-link-color: #8c8c8c;
+
+/** Selection : **/
+
+$default-selection-color: #bfdfff;
+
 /* LESSON COLORS */
 
 /** Titles : **/
@@ -33,10 +47,6 @@ $social-googleplus-color: #cf3d2e;
 $social-tumblr-color: #314e6c;
 $social-mail-color: #504e54;
 
-/** Navbar : **/
-
-$nav-link-color: #8c8c8c;
-
 /** Formulas, tips and annals : **/
 
 $formula-border-color: $main-color;
@@ -47,10 +57,6 @@ $tip-background-color: #dcf3d8;
 
 $annal-border-color: #e74c3c;
 $annal-background-color: #fceae9;
-
-/** Selection : **/
-
-$lesson-selection-color: #bfdfff;
 
 /* SIMPLE LAYOUT COLORS */
 
