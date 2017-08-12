@@ -78,11 +78,11 @@ h1 {
 		text-align: right;
 		text-transform: uppercase;
 		
-		a {
+		a, a:visited {
 			color: $cards-link-color;
 		}
 		
-		a:hover {
+		a:hover, a:active, a:focus {
 			color: darken($cards-link-color, 10%);
 		}
 	}
