@@ -3,11 +3,19 @@
 
 /* SOME STYLES SPECIFIC TO THIS PAGE */
 
-.col-md-4 {
-	margin-bottom: 10px;
+.card {
+	margin-bottom: 20px;
+}
+
+.card-header {
+	text-align: center;
 	
-	.card-block h2 {
-		font-size: 1.5em;
-		margin-bottom: 40px;
+	h2 {
+		font-size: 1.3em;
+		margin-bottom: 0;
 	}
+}
+
+.card-text {
+	margin-bottom: 24px;
 }

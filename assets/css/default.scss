@@ -101,7 +101,7 @@ article {
 	@media(max-width: $mobile-max-width) {
 		padding-bottom: 8px;
 		
-		.fa {
+		.nav-item > a > .fa {
 			display: none;
 		}
 	}
