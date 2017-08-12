@@ -37,10 +37,6 @@ article {
 		.navbar-content-brand {
 			display: block;
 			text-align: center;
-			
-			@media(max-width: $tablets-max-width) {
-				display: none;
-			}
 		}
 	}
 	
@@ -51,12 +47,12 @@ article {
 		padding: 0;
 		margin: 20px 0 20px 0;
 		
-		@media(max-width: $tablets-max-width) {
+		@media(max-width: $mobile-max-width) {
 			margin: 0;
 			font-size: 2em;
 		}
 		
-		@media(max-width: $mobile-max-width) {
+		@media(max-width: 360px) {
 			font-size: 1.5em;
 		}
 	}
@@ -84,7 +80,7 @@ article {
 	.nav-item:hover:after, .nav-item.active:after {
 		height: 3px;
 		
-		@media(max-width: $tablets-max-width) {
+		@media(max-width: $mobile-max-width) {
 			height: 0px !important;
 		}
 	}
@@ -96,21 +92,17 @@ article {
 	.nav-link {
 		text-transform: uppercase;
 		
-		@media(max-width: $tablets-max-width) {
+		@media(max-width: $mobile-max-width) {
 			font-size: 1em;
 			text-transform: none;
 		}
 	}
 	
-	@media(max-width: $tablets-max-width) {
+	@media(max-width: $mobile-max-width) {
+		padding-bottom: 8px;
 		
 		.fa {
 			display: none;
 		}
-		
-	}
-	
-	@media(max-width: $mobile-max-width) {
-		padding-bottom: 8px;
 	}
 }

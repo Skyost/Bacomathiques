@@ -32,8 +32,7 @@ $(document).ready(function() {
 		tocSelector: '#nav-toc',
 		contentSelector: 'article',
 		headingSelector: 'h2, h3',
-		extraListClasses: 'no-style',
-		includeHtml: true
+		extraListClasses: 'no-style'
 	});
 	
 	// EXPORT SETTINGS
