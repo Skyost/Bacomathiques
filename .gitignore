@@ -4,6 +4,8 @@ _site
 serve.bat
 .sass-cache
 _config_test.yml
+Gemfile
+Gemfile.lock
 
 # OS generated files #
 ######################
