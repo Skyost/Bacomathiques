@@ -46,7 +46,15 @@
 				<p>Pour apporter une correction à un cours, vous avez deux solutions :</p>
 				<ul>
 					<li>Vous pouvez <a href="/about.html#contact">me contacter</a> en m'indiquant où se trouve la faute ou l'amélioration que vous souhaitez apporter.</li>
-					<li>Vous pouvez modifier directement le <a href="https://github.com/{{ site.social.github }}/{{ site.title }}/edit/master{{ page.url }}">code source</a> de la page.</li>
+					<li>
+						Vous pouvez modifier directement le
+						{% if site.github.repository_url %}
+							<a href="{{ site.github.repository_url }}/edit/master/{{ page.path }}">code source</a>
+						{% else %}
+							code source
+						{% endif %}
+						de la page.
+					</li>
 				</ul>
 			</div>
 			<div class="modal-footer">

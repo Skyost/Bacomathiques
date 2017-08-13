@@ -51,8 +51,9 @@ css: ["https://cdnjs.cloudflare.com/ajax/libs/font-mfizz/2.4.1/font-mfizz.min.cs
 			</div>
 		</div>
 		
-		<p><em>Comme dit plus haut, le site utilise Jekyll ce qui lui procure d’excellentes performances en matière de temps de chargement,
-		puisque contrairement aux autres technologies, le contenu des pages n’est pas généré à chaque requête.</em></p>
+		<p><em>Comme dit plus haut, le site utilise Jekyll{% if site.github.versions.jekyll %} v{{ site.github.versions.jekyll }}{% endif %}
+		ce qui lui procure d’excellentes performances en matière de temps de chargement, puisque contrairement aux autres technologies,
+		le contenu des pages n’est pas généré à chaque requête.</em></p>
 	</section>
 </div>
 
