@@ -1,6 +1,5 @@
 ---
 ---
-
 @import 'colors';
 @import 'utils';
 
@@ -196,13 +195,30 @@
 /* BUBBLES */
 
 .bubble {
+	position: relative;
 	display: block;
 	border-radius: 4px;
 	margin: 14px 0 14px 0;
-	padding: 14px;
+	padding: 18px;
 	border-width: 0 0 0 7px;
 	border-style: solid;
 	page-break-inside: avoid;
+}
+
+.bubble:hover:before {
+	display: inline-block;
+}
+
+.bubble:before {
+	position: absolute;
+	display: none;
+	top: 0;
+	left: 0;
+	padding-right: 6px;
+	color: rgba(255, 255, 255, 0.8);
+	font-size: 10px;
+	text-transform: uppercase;
+	border-bottom-right-radius: 4px;
 }
 
 .bubble table {
@@ -230,9 +246,19 @@ table {
 	background-color: $formula-background-color;
 }
 
+.formula:before {
+	content: $bubble-text-formula;
+	background-color: $formula-border-color;
+}
+
 .tip {
 	border-color: $tip-border-color;
 	background-color: $tip-background-color;
+}
+
+.tip:before {
+	content: $bubble-text-tip;
+	background-color: $tip-border-color;
 }
 
 .formula > *:last-child, .tip > *:last-child, .formula > *:last-child *:last-child, .tip > *:last-child *:last-child {
@@ -328,22 +354,29 @@ article {
 /** Annals : **/
 
 #annals {
-	border-color: $annal-border-color;
-	background-color: $annal-background-color;
+	border-color: $annals-border-color;
+	background-color: $annals-background-color;
 	
 	h2 {
 		margin-top: 0;
 		font-size: 24px;
 	}
+	
 	ul li strong {
 		text-transform: uppercase;
 	}
+	
 	p {
 		float: right;
 		margin-bottom: 0;
 		font-style: italic;
 		font-size: 0.8em;
 	}
+}
+
+#annals:before {
+	content: $bubble-text-annals;
+	background-color: $annals-border-color;
 }
 
 /* COMMENTS */

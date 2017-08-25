@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /* BOOTSTRAP MOBILE WIDTH */
 
 $small-max-width: 575px;
@@ -17,3 +19,9 @@ $large-max-width: 1199px;
 	background-image: url('../img/logo.svg');
 	margin-right: 0.2em;
 }
+
+/* BUBBLES TEXT */
+
+$bubble-text-formula: 'Formule';
+$bubble-text-tip: 'Astuce';
+$bubble-text-annals: "S'entraîner";

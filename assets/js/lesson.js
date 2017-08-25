@@ -16,7 +16,7 @@ $(document).ready(function() {
 	
 	// ANCHORS
 	
-	anchors.add();
+	anchors.add('article h2, article h3');
 	
 	if(window.location.hash.length > 0) {
 		goToHash(undefined, window.location.hash);
