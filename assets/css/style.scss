@@ -13,10 +13,6 @@ body {
 	color: $main-text-color;
 }
 
-.dropdown-header {
-	text-transform: uppercase;
-}
-
 figure figcaption {
 	margin-top: 14px;
 }
@@ -65,6 +61,16 @@ figure figcaption {
 
 ::-webkit-scrollbar-corner {
 	background-color: $scrollbar-corner-background;
+}
+
+/* NAVBAR */
+
+.dropdown-header {
+	text-transform: uppercase;
+}
+
+#navbar-nav-dropdown:after {
+	vertical-align: 0.1em;
 }
 
 /* IMAGES */
