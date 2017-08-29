@@ -10,7 +10,6 @@
 
 body {
 	font-size: 16px;
-	color: $main-text-color;
 }
 
 figure figcaption {
@@ -39,24 +38,24 @@ figure figcaption {
 	background-color: $scrollbar-thumb-background;
 	border: 0px none $scrollbar-thumb-border;
 	border-radius: 0px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-	background-color: $scrollbar-thumb-background-hover;
-}
-
-::-webkit-scrollbar-thumb:active {
-	background-color: $scrollbar-thumb-background-active;
+	
+	&:hover {
+		background-color: $scrollbar-thumb-background-hover;
+	}
+	
+	&:active {
+		background-color: $scrollbar-thumb-background-active;
+	}
 }
 
 ::-webkit-scrollbar-track {
 	background-color: $scrollbar-track-background;
 	border: 0px none $scrollbar-track-border;
 	border-radius: 0px;
-}
-
-::-webkit-scrollbar-track:active {
-	background-color: $scrollbar-track-background-active;
+	
+	&:active {
+		background-color: $scrollbar-track-background-active;
+	}
 }
 
 ::-webkit-scrollbar-corner {

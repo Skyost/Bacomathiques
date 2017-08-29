@@ -1,8 +1,6 @@
 /* MAIN COLORS */
 
-$main-color: #3583d6;
-$main-color-darker: #2980b9;
-$main-text-color: #222222;
+$main-color: #3498db;
 
 /* SCROLLBARS */
 
@@ -18,6 +16,10 @@ $scrollbar-track-border: white;
 $scrollbar-corner-background: transparent;
 
 /* DEFAULT COLORS */
+
+/** Text : **/
+
+$default-text-color: #222222;
 
 /** Cards : **/
 
@@ -35,9 +37,9 @@ $default-selection-color: #bfdfff;
 
 /** Titles : **/
 
-$lesson-h1: #912c21;
-$lesson-h2: #1c567d;
-$lesson-h3: $main-color-darker;
+$lesson-h1-color: #912c21;
+$lesson-h2-color: #1c567d;
+$lesson-h3-color: #2980b9;
 
 /** Social : **/
 
@@ -60,12 +62,25 @@ $annals-background-color: #fceae9;
 
 /* SIMPLE LAYOUT COLORS */
 
-$simple-main-color: #2c3e50;
-
-$index-glyphicon-color: #d0d6db;
-
-$footer-border-color: LemonChiffon;
-$footer-background-color: LightYellow;
-$footer-text-color: #797979;
+/** Global colors : **/
 
 $simple-selection-color: #aef2e7;
+
+$header-paragraph-color: rgba(255, 255, 255, 0.7);
+
+$simple-text-color: rgba(0, 0, 0, 0.7);
+$section-2n-color: rgba(0, 0, 0, 0.05);
+
+$col-fa-color: rgba(0, 0, 0, 0.4);
+$figure-fa-color: #0f2e42;
+
+$h3-line-on-sides-color: #dddddd;
+
+/** Index colors : **/
+
+$postit-font-color: #333333;
+$postit-background-color: #ffd73f;
+$postit-pin-color: #c0392b;
+$postit-pin-stem-color: #aaaaaa;
+
+$fa-question-color: rgba(0, 0, 0, 0.1);

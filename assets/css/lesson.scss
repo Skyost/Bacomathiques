@@ -39,17 +39,17 @@
 		display: inline-block;
 		padding-left: 20px;
 		position: relative;
-	}
-	
-	.toc-link:before {
-		display: inline-block;
-		content: '';
-		background-color: rgba(0, 0, 0, 0.075);
-		position: absolute;
-		left: 0;
-		top: 0;
-		bottom: 0;
-		width: 2px;
+		
+		&:before {
+			display: inline-block;
+			content: '';
+			background-color: rgba(0, 0, 0, 0.075);
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			width: 2px;
+		}
 	}
 	
 	.toc-list > .toc-list-item > .toc-list > .toc-list-item > .toc-link {
@@ -69,10 +69,10 @@
 	.is-active-link {
 		color: darken($main-color, 10%) !important;
 		font-weight: bold;
-	}
-	
-	.is-active-link:before {
-		background-color: darken($main-color, 10%);
+		
+		&:before {
+			background-color: darken($main-color, 10%);
+		}
 	}
 	
 	a:link, a:active, a:visited {
@@ -122,10 +122,10 @@
 		-ms-transition: all 0.3s ease-in-out;
 		-o-transition: all 0.3s ease-in-out;
 		transition: all 0.3s ease-in-out;
-	}
-	
-	.fa:hover, .fa:active {
-		color: white;
+		
+		&:hover, &:active {
+			color: white;
+		}
 	}
 
 	.fa-envelope {
@@ -203,22 +203,22 @@
 	border-width: 0 0 0 7px;
 	border-style: solid;
 	page-break-inside: avoid;
-}
-
-.bubble:hover:before {
-	display: inline-block;
-}
-
-.bubble:before {
-	position: absolute;
-	display: none;
-	top: 0;
-	left: 0;
-	padding-right: 6px;
-	color: rgba(255, 255, 255, 0.8);
-	font-size: 10px;
-	text-transform: uppercase;
-	border-bottom-right-radius: 4px;
+	
+	&:before {
+		position: absolute;
+		display: none;
+		top: 0;
+		left: 0;
+		padding-right: 6px;
+		color: rgba(255, 255, 255, 0.8);
+		font-size: 10px;
+		text-transform: uppercase;
+		border-bottom-right-radius: 4px;
+	}
+	
+	&:hover:before {
+		display: inline-block;
+	}
 }
 
 .bubble table {
@@ -244,21 +244,21 @@ table {
 .formula {
 	border-color: $formula-border-color;
 	background-color: $formula-background-color;
-}
-
-.formula:before {
-	content: $bubble-text-formula;
-	background-color: $formula-border-color;
+	
+	&:before {
+		content: $bubble-text-formula;
+		background-color: $formula-border-color;
+	}
 }
 
 .tip {
 	border-color: $tip-border-color;
 	background-color: $tip-background-color;
-}
-
-.tip:before {
-	content: $bubble-text-tip;
-	background-color: $tip-border-color;
+	
+	&:before {
+		content: $bubble-text-tip;
+		background-color: $tip-border-color;
+	}
 }
 
 .formula > *:last-child, .tip > *:last-child, .formula > *:last-child *:last-child, .tip > *:last-child *:last-child {
@@ -291,7 +291,7 @@ article {
 	h1 {
 		padding-top: 20px;
 		text-align: center;
-		color: $lesson-h1;
+		color: $lesson-h1-color;
 		font-size: 38px;
 		
 		@media(max-width: $mobile-max-width) {
@@ -302,7 +302,7 @@ article {
 	}
 	
 	h2 {
-		color: $lesson-h2;
+		color: $lesson-h2-color;
 		font-size: 32px;
 		padding: 15px 0 15px 0;
 		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -311,7 +311,7 @@ article {
 	}
 	
 	h3 {
-		color: $lesson-h3;
+		color: $lesson-h3-color;
 		font-size: 26px;
 		margin-top: 30px;
 		page-break-after: avoid;
@@ -344,11 +344,11 @@ article {
     right: 20px;
     display: none;
 	opacity: 0.5;
-}
-
-#back-to-top:hover {
-	background-color: $main-color-darker;
-	opacity: 0.8;
+	
+	&:hover {
+		background-color: darken($main-color, 30%);
+		opacity: 0.8;
+	}
 }
 
 /** Annals : **/
@@ -372,11 +372,11 @@ article {
 		font-style: italic;
 		font-size: 0.8em;
 	}
-}
-
-#annals:before {
-	content: $bubble-text-annals;
-	background-color: $annals-border-color;
+	
+	&:before {
+		content: $bubble-text-annals;
+		background-color: $annals-border-color;
+	}
 }
 
 /* COMMENTS */

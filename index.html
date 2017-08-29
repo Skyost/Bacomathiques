@@ -6,118 +6,79 @@ fa: "fa-home"
 css: ["/assets/css/index.css"]
 ---
 
-<div class="col-md-12 first">
+<section class="container">
+
+	<h3>Les contenus</h3>
+	
 	<div class="row">
-		<div class="col-md-6 col-xs-12">
-			<section id="intro">
-				<div>
-					<h3>Bienvenue sur {{ site.title }} !</h3>
-					<p><q>Bac-o-math-iques</q> (ou plus simplement {{ site.title }}) est un petit site web qui contient tout ce dont vous avez besoin pour réussir
-					votre BAC de mathématiques en toute tranquillité !</p>
-					
-					<p>Veuillez noter que le site WEB vient juste d'ouvrir, et que de nouveaux contenus seront rajoutés,
-					en particulier les vidéos YouTube qui arrivent très bientôt !</p>
-				</div>
-				
-				<div id="logo"></div>
-			</section>
-		</div>
-				
-		<div class="col-md-6 col-xs-12">
-			<section id="menu-lessons" class="card">
+		<div class="col-md-4 col-xs-12">
+			<figure>
+				<i class="fa fa-check-circle fa-5x"></i>
 			
-				<div class="card-header"><h3><i class="fa fa-bookmark" aria-hidden="true"></i> Liste des cours</h3></div>
-				<div class="card-block">
-					<ul>
-						{% assign pages = site.pages | sort: 'chapter' %}
-						{% for page in pages %}
-							{% if page.layout == 'lesson' %}
-								<li><a href="{{ page.url }}">{{ page.title }}</a></li>
-							{% endif %}
-						{% endfor %}
-					</ul>
-				</div>
-				
-			</section>
+				<figcaption>Des cours en accord avec le programme de Terminale S.</figcaption>
+			</figure>
+		</div>
+		<div class="col-md-4 col-xs-12 middle">
+			<figure>
+				<i class="fa fa-book fa-5x"></i>
+			
+				<figcaption>Des exemples intuitifs et la possibilité de télécharger et imprimer les cours gratuitement pour les relire chez soi !</figcaption>
+			</figure>
+		</div>
+		<div class="col-md-4 col-xs-12">
+			<figure>
+				<i class="fa fa-laptop fa-5x"></i>
+			
+				<figcaption>Le plus important : tout est gratuit. Même pas besoin de compte, tout est à disposition de tout le monde !</figcaption>
+			</figure>
 		</div>
 	</div>
-</div>
-
-<div class="col-md-12">
-	<section>
-
-		<h3>Les contenus</h3>
-		
-		<div class="row triple-col">
-			<div class="col-md-4 col-xs-12">
-				<figure>
-					<i class="fa fa-check-circle fa-5x"></i>
-				
-					<figcaption>Des cours en accord avec le programme de Terminale S.</figcaption>
-				</figure>
-			</div>
-			<div class="col-md-4 col-xs-12 middle">
-				<figure>
-					<i class="fa fa-book fa-5x"></i>
-				
-					<figcaption>Des exemples intuitifs et la possibilité de télécharger et imprimer les cours gratuitement pour les relire chez soi !</figcaption>
-				</figure>
-			</div>
-			<div class="col-md-4 col-xs-12">
-				<figure>
-					<i class="fa fa-laptop fa-5x"></i>
-				
-					<figcaption>Le plus important : tout est gratuit. Même pas besoin de compte, tout est à disposition de tout le monde !</figcaption>
-				</figure>
-			</div>
-		</div>
-		
-		<p><em>Également des annales des précédents sujets du BAC de mathématiques à télécharger (avec leur correction), et bientôt
-		des vidéos explicatives du cours avec des exemples visuels !</em></p>
-		
-		<p class="stand-out">Et bien plus !</p>
-
-	</section>
-</div>
-
-<div class="col-md-12">
-	<section class="row">
-
-		<div class="col-md-10 col-xs-12 vcenter">
-			<h3>Alors pourquoi attendre ?</h3>
-			<p>Vous êtes intéressé par des cours de mathématiques gratuits en ligne, accessibles à tout moment ? Accédez dès maintenant à <a href="/cours/">l'index des cours</a> !</p>
-			
-			<p>Vous y retrouverez la liste des cours disponibles sur le site ainsi qu'une brève description et une image d'illustration.
-			<strong>Nous vous souhaitons une bonne visite !</strong></p>
-		</div>
-		<div class="col-md-2 col-xs-12 col-fa d-flex align-items-center">
-			
-			<i class="fa fa-list-alt w-100" aria-hidden="true"></i>
-		
-		</div>
-
-	</section>
-</div>
-
-<div class="col-md-12">
-	<section class="row">
 	
-		<div class="col-md-2 d-none d-md-flex col-fa align-items-center">
-		
-			<i class="fa fa-question-circle w-100" aria-hidden="true"></i>
-		
-		</div>
-		<div class="col-md-10 col-xs-12 vcenter">
-			<h3>À propos de {{ site.title }}</h3>
-			<p>Par qui a été crée ce site web ? Sous quelle licence sont disponibles les contenus ? Quelles sont les technologies utilisées pour concevoir le site web ?</p>
-			
-			<p>Toutes les réponses à ces questions sont disponibles dans la page <a href="/a-propos/"><q>À propos</q></a>.</p>
-		</div>
-		<div class="col-lg-12 d-flex d-md-none col-fa align-items-center">
-		
-			<i class="fa fa-question-circle w-100" aria-hidden="true"></i>
-		
-		</div>
+	<p><em>Également des annales des précédents sujets du BAC de mathématiques à télécharger (avec leur correction), et bientôt
+	des vidéos explicatives du cours avec des exemples visuels !</em></p>
+	
+	<p class="stand-out">Et bien plus !</p>
 
-	</section>
-</div>
+</section>
+
+<section>
+	<div class="container">
+		<h3>Alors pourquoi attendre ?</h3>
+		
+		<div class="row">
+			<div class="col-md-12 col-lg-6 d-flex align-items-center text-center text-md-left">
+				<div class="w-100">
+					<p>Vous êtes intéressé par des cours de mathématiques gratuits en ligne, accessibles à tout moment ? Accédez dès maintenant à <a href="/cours/">l'index des cours</a> !
+					Vous y retrouverez la liste des cours disponibles sur le site ainsi qu'une brève description et une image d'illustration.</p>
+			
+					<p class="stand-out">Nous vous souhaitons une bonne visite !</p>
+				</div>
+			</div>
+			<div class="col-md-12 col-lg-6 d-none d-md-block">
+				<div class="quote-container">
+					<i class="pin"></i>
+					<blockquote class="note yellow">
+						<h4>Liste des cours</h4>
+						<ul>
+							{% assign pages = site.pages | sort: 'chapter' %}
+							{% for lesson in pages %}
+								{% if lesson.layout == 'lesson' %}
+									<li><a href="{{ lesson.url }}">{{ lesson.title }}</a></li>
+								{% endif %}
+							{% endfor %}
+						</ul>
+					</blockquote>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="container">
+	<h3>À propos de {{ site.title }}</h3>
+	<p>Par qui a été crée ce site web ? Sous quelle licence sont disponibles les contenus ? Quelles sont les technologies utilisées pour concevoir le site web ?</p>
+
+	<p>Toutes les réponses à ces questions sont disponibles dans la page <a href="/a-propos/"><q>À propos</q></a>.</p>
+	
+	<i class="fa fa-question-circle" aria-hidden="true"></i>
+</section>

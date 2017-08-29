@@ -7,19 +7,16 @@ metacolor: 4cdbc4
 <!DOCTYPE html>
 <html lang="fr">
 {% include head.html %}
-	<body class="container-fluid">
+	<body>
 	
 		<div id="content">
 			
 				{% include simple/header.html %}
 				<article>
 					<h2>{{ page.title }}</h2>
-					<div class="row">
-						{{ content }}
-					</div>
+					{{ content }}
 				</article>
-				<ins class="adsbygoogle" data-ad-client="ca-pub-7167241518798106" data-ad-slot="2930816076" data-ad-format="auto"></ins>
-				{% include simple/footer.html %}
+				<!--<ins class="adsbygoogle" data-ad-client="ca-pub-7167241518798106" data-ad-slot="2930816076" data-ad-format="auto"></ins>-->
 				
 				{% include footer.html %}
 			

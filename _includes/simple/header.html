@@ -1,22 +1,14 @@
-<header>
-
-	<h1>{{ site.title }}</h1>
-
-</header>
-
-<nav class="navbar navbar-expand-md navbar-light bg-faded">
+<nav class="navbar navbar-expand-md navbar-dark">
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-nav" aria-controls="navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
-
-	<i class="navbar-brand fa fa-graduation-cap" aria-hidden="true"></i>
-
+	
 	<div class="collapse navbar-collapse" id="navbar-nav">
 		<ul class="navbar-nav mr-auto no-style">
 			{% assign pages = (site.pages | sort: 'navbarpos') %}
 			{% for sitepage in pages %}
 				{% if sitepage.navbarpos %}
-					<li class="nav-item{% if sitepage.path == page.path %} active{% endif %}"><a class="nav-link" href="{{ sitepage.url }}">{{ sitepage.title }}</a></li>
+					<li class="nav-item{% if sitepage.path == page.path %} active{% endif %}"><a class="nav-link" href="{{ sitepage.url }}"><i class="fa {{ sitepage.fa }}" aria-hidden="true"></i> {{ sitepage.title }}</a></li>
 				{% endif %}
 			{% endfor %}
 		</ul>
@@ -26,3 +18,13 @@
 		</ul>
 	</div>
 </nav>
+
+<header class="d-flex align-items-center">
+	<div class="w-100">
+		<h1>{{ site.title }}</h1>
+		<p class="container"><q>Bac-o-math-iques</q> (ou plus simplement <strong>{{ site.title }}</strong>) est un petit site web qui contient tout ce dont vous avez besoin pour réussir
+		votre BAC de mathématiques en toute tranquillité !</p>
+		<a href="/cours/" class="btn btn-outline-light btn-lg" role="button">Accéder à l'index des cours</a>
+	</div>
+</header>
+<hr class="triangle-rule"/>

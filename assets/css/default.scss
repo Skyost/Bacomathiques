@@ -6,9 +6,19 @@
 
 /* GENERAL STYLES */
 
+/** Default color : **/
+
+body {
+	color: $default-text-color;
+}
+
 /** Selection : **/
 
 ::selection {
+	background-color: $default-selection-color;
+}
+
+::-moz-selection {
 	background-color: $default-selection-color;
 }
 
@@ -24,7 +34,7 @@ article {
 
 #navbar {
 	font-size: 1.08em;
-	background-color: $main-color;
+	background-color: darken($main-color, 5%);
 	padding-bottom: 0;
 	
 	.navbar-content {
@@ -47,6 +57,10 @@ article {
 		padding: 0;
 		margin: 20px 0 20px 0;
 		
+		&:before {
+			@include logo-before();
+		}
+		
 		@media(max-width: $mobile-max-width) {
 			margin: 0;
 			font-size: 2em;
@@ -57,24 +71,20 @@ article {
 		}
 	}
 	
-	.navbar-brand:before {
-		@include logo-before();
-	}
-	
 	.nav-item {
 		position: relative;
 		padding: 0 2px 7px 2px;
-	}
-	
-	.nav-item:after {
-		content: '';
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		height: 0px;
-		width: 100%;
-		background-color: rgba(255, 255, 255, 0.75);
-		transition: height linear 0.15s;
+		
+		&:after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			height: 0px;
+			width: 100%;
+			background-color: rgba(255, 255, 255, 0.75);
+			transition: height linear 0.15s;
+		}
 	}
 	
 	.nav-item:hover:after, .nav-item.active:after {
