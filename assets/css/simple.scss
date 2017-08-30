@@ -29,10 +29,6 @@ article {
 
 	section:nth-of-type(2n) {
 		background-color: $section-2n-color;
-		
-		.sides-line {
-			background-color: $section-2n-color;
-		}
 	}
 }
 
@@ -129,24 +125,33 @@ article {
 		font-size: 1.5em;
 		margin-bottom: 50px;
 		text-transform: uppercase;
-		position: relative;
 		
-		.sides-line {
-			background: white;
-			padding: 0 15px;
+		display: table;
+		white-space: nowrap;
+		
+		&:before, &:after {
+			border-top: 1px solid $h3-line-on-sides-color;
+			content: '';
+			display: table-cell;
 			position: relative;
-			z-index: 1;
+			top: 0.6em;
+			width: 45%;
 		}
 		
 		&:before {
-			background: $h3-line-on-sides-color;
-			content: '';
-			display: block;
-			height: 1px;
-			position: absolute;
-			left: 0;
-			top: 50%;
-			width: 100%;
+			right: 1.5%;
+		}
+		
+		&:after {
+			left: 1.5%;
+		}
+		
+		@media(max-width: $mobile-max-width) {
+			white-space: normal;
+			
+			&:before, &:after {
+				top: 1.2em;
+			}
 		}
 	}
 }
