@@ -29,6 +29,10 @@ article {
 
 	section:nth-of-type(2n) {
 		background-color: $section-2n-color;
+		
+		.sides-line {
+			background-color: $section-2n-color;
+		}
 	}
 }
 
@@ -123,27 +127,26 @@ article {
 
 	h3 {
 		font-size: 1.5em;
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		text-transform: uppercase;
 		margin-bottom: 50px;
+		text-transform: uppercase;
+		position: relative;
 		
-		&:before, &:after {
-			background-color: $h3-line-on-sides-color;
-			content: '\a0';
-			flex-grow: 1;
-			height: 1px;
+		.sides-line {
+			background: white;
+			padding: 0 15px;
 			position: relative;
-			top: 0.6em;
+			z-index: 1;
 		}
-
+		
 		&:before {
-			margin-right: 15px;
-		}
-
-		&:after {
-			margin-left: 15px;
+			background: $h3-line-on-sides-color;
+			content: '';
+			display: block;
+			height: 1px;
+			position: absolute;
+			left: 0;
+			top: 50%;
+			width: 100%;
 		}
 	}
 }
