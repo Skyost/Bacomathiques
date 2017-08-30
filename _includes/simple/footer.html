@@ -1,4 +1,30 @@
 <footer>
-	<p><strong>{{ site.title }}</strong> est un service créé par <a href="https://www.skyost.eu">Hugo Delaunay</a>. Veuillez consulter la page <a href="/a-propos/"><q>À Propos</q></a>
-	pour connaitre les différentes technologies utilisées et les droits d'auteur.</p>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<h3>Créé avec <i class="fa fa-heart pulse" aria-hidden="true"></i></h3>
+				<p>Ce site WEB a été fait avec amour par Hugo Delaunay à l'aide de certaines technologies.</p>
+				<p>Vous pouvez consulter tout ça et également me contacter sur la page <q><a href="/a-propos/">À Propos</a></q>.
+			</div>
+			<div class="col-md-4">
+				<h3>Licence</h3>
+				<a rel="license" href="{{ site.content_license.url }}"><img src="{{ site.content_license.image }}" alt="{{ site.content_license.name }}" title="{{ site.content_license.name }}"/></a>
+				<p>Les cours sont mis à disposition selon les termes de la
+				<a rel="license" href="{{ site.content_license.url }}">{{ site.content_license.full_name }}</a>.</p>
+			</div>
+			<div class="col-md-4">
+				<h3>Navigation</h3>
+				<ul>
+					{% assign pages = (site.pages | sort: 'navbarpos') %}
+					{% for sitepage in pages %}
+						{% if sitepage.navbarpos %}
+							<li>
+								<a href="{{ sitepage.url }}">{{ sitepage.title }}</a>
+							</li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
 </footer>

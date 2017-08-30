@@ -8,19 +8,16 @@ metacolor: 3498db
 <html lang="fr">
 {% include head.html %}
 	<body>
-	
-		<div id="content">
-			
-				{% include simple/header.html %}
-				<article>
-					<h2>{{ page.title }}</h2>
-					{{ content }}
-				</article>
-				<ins class="adsbygoogle" data-ad-client="ca-pub-7167241518798106" data-ad-slot="2930816076" data-ad-format="auto"></ins>
-				
-				{% include footer.html %}
-			
-		</div>
+		{% include simple/header.html %}
 		
+		<article>
+			<h2>{{ page.title }}</h2>
+			{{ content }}
+		</article>
+		<ins class="adsbygoogle" data-ad-client="ca-pub-7167241518798106" data-ad-slot="2930816076" data-ad-format="auto"></ins>
+		
+		{% include simple/footer.html %}
+		
+		{% include footer.html %}
 	</body>
 </html>
