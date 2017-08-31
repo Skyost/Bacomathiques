@@ -57,20 +57,20 @@ h1 {
 			width: 100%;
 			opacity: 0;
 			background-color: black;
-			transition: opacity 0.3s ease;
+			@include vendor-prefix('transition', 'opacity 0.3s ease');
 		}
 		
 		.caption {
 			position: absolute;
 			display: block;
 			top: 50%;
-			transform: translateY(-50%);
 			color: white;
 			width: 100%;
 			text-align: center;
 			padding: 0 5px 0 5px;
 			opacity: 0;
-			transition: opacity 0.3s ease;
+			@include vendor-prefix('transform', 'translateY(-50%)');
+			@include vendor-prefix('transition', 'opacity 0.3s ease');
 		}
 		
 		&:hover {

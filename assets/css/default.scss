@@ -83,7 +83,7 @@ article {
 			height: 0px;
 			width: 100%;
 			background-color: rgba(255, 255, 255, 0.75);
-			transition: height linear 0.15s;
+			@include vendor-prefix('transition', 'height linear 0.15s');
 		}
 	}
 	

@@ -50,12 +50,8 @@
 }
 
 .yellow {
-	background: $postit-background-color;
-	-webkit-transform: rotate(2deg);
-	-moz-transform: rotate(2deg);
-	-o-transform: rotate(2deg);
-	-ms-transform: rotate(2deg);
-	transform: rotate(2deg);
+	background-color: $postit-background-color;
+	@include vendor-prefix('transform', 'rotate(2deg)');
 }
 
 .pin {
@@ -78,24 +74,14 @@
 		left: 0;
 		position: absolute;
 		top: 8px;
-
-		transform: rotate(57.5deg);
-		-moz-transform: rotate(57.5deg);
-		-webkit-transform: rotate(57.5deg);
-		-o-transform: rotate(57.5deg);
-		-ms-transform: rotate(57.5deg);
-
-		transform-origin: 50% 100%;
-		-moz-transform-origin: 50% 100%;
-		-webkit-transform-origin: 50% 100%;
-		-ms-transform-origin: 50% 100%;
-		-o-transform-origin: 50% 100%;
+		
+		@include vendor-prefix('transform', 'rotate(57.5deg)');
+		@include vendor-prefix('transform-origin', '50% 100%');
 	}
 	
 	&:after {
 		background-color: $postit-pin-color;
 		background-image: radial-gradient(25% 25%, circle, hsla(0, 0%, 100%, 0.3), hsla(0, 0%, 0%, 0.3));
-		border-radius: 50%;
 		box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.1), inset 3px 3px 3px hsla(0, 0%, 100%, 0.2), inset -3px -3px 3px hsla(0, 0%, 0%, 0.2), 23px 20px 3px hsla(0, 0%, 0%, 0.15);
 		content: '';
 		height: 12px;
@@ -103,6 +89,7 @@
 		position: absolute;
 		top: -10px;
 		width: 12px;
+		@include vendor-prefix('border-radius', '50%');
 	}
 }
 

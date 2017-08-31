@@ -25,3 +25,11 @@ $large-max-width: 1199px;
 $bubble-text-formula: 'Formule';
 $bubble-text-tip: 'Astuce';
 $bubble-text-annals: "S'entraîner";
+
+/* VENDOR PREFIXES */
+
+@mixin vendor-prefix($name, $value) {
+	@each $vendor in ('-webkit-', '-moz-', '-o-', '-ms-', '') {
+		#{$vendor}#{$name}: #{$value};
+	}
+}

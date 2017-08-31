@@ -37,7 +37,7 @@ figure figcaption {
 ::-webkit-scrollbar-thumb {
 	background-color: $scrollbar-thumb-background;
 	border: 0px none $scrollbar-thumb-border;
-	border-radius: 0px;
+	@include vendor-prefix('border-radius', '0');
 	
 	&:hover {
 		background-color: $scrollbar-thumb-background-hover;
@@ -51,7 +51,7 @@ figure figcaption {
 ::-webkit-scrollbar-track {
 	background-color: $scrollbar-track-background;
 	border: 0px none $scrollbar-track-border;
-	border-radius: 0px;
+	@include vendor-prefix('border-radius', '0');
 	
 	&:active {
 		background-color: $scrollbar-track-background-active;
