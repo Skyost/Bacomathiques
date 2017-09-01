@@ -77,28 +77,33 @@ header {
 		text-align: center;
 		color: white;
 		
+		h1 {
+			font-family: 'Handlee', cursive;
+			font-size: 7vw;
+			margin-bottom: 40px;
+			
+			&:before {
+				@include logo-before();
+			}
+			
+			@media(max-width: $mobile-max-width) {
+				font-size: 12vw !important;
+			}
+		}
+		
 		p {
 			font-size: 1.2em;
 			color: $header-paragraph-color;
 			margin-bottom: 30px;
 		}
 		
+		.btn {
+			padding: 10px 30px;
+			@include vendor-prefix('border-radius', '0');
+		}
+		
 		.btn-outline-light:hover {
 			color: $main-color;
-		}
-	}
-	
-	h1 {
-		font-family: 'Handlee', cursive;
-		font-size: 7vw;
-		margin-bottom: 40px;
-		
-		&:before {
-			@include logo-before();
-		}
-		
-		@media(max-width: $mobile-max-width) {
-			font-size: 12vw !important;
 		}
 	}
 }
