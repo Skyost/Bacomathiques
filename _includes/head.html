@@ -27,6 +27,10 @@
 	<meta name="theme-color" content="#{{ layout.metacolor }}"/>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css"/>
+
+	{% if layout.awesomplete %}
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.min.css"/>
+	{% endif %}
 	
 	<link rel="stylesheet" type="text/css" href="/assets/css/style.css"/>
 	{% if page.layout == 'lesson' %}

@@ -184,9 +184,9 @@ article .col-md-4 {
 /** Footer styles : **/
 
 footer {
-	color: rgba(255, 255, 255, 0.8);
-	background-color: #0a1922;
-	padding: 40px 0 40px 0;
+	color: $simple-footer-color;
+	background-color: $simple-footer-links-background-color;
+	padding: 40px 0;
 	
 	a:link, a:visited {
 		color: $simple-footer-links-color;
@@ -200,11 +200,11 @@ footer {
 		font-size: 1.3em;
 		text-transform: uppercase;
 		margin-bottom: 16px;
-		color: rgba(255, 255, 255, 0.9);
+		color: $simple-footer-h3-color;
 	}
 	
 	.fa-heart {
-		color: #e74c3c;
+		color: $simple-footer-heart-color;
 	}
 	
 	.col-md-4 p:last-of-type, .col-md-4 ul:last-of-type {
@@ -222,18 +222,6 @@ footer {
 
 .pulse {
 	@include vendor-prefix('animation', 'pulse 1s linear infinite');
-}
-
-@keyframes "pulse" {
-	0% {
-		@include vendor-prefix('transform', 'scale(1.1)');
-	}
-	50% {
-		@include vendor-prefix('transform', 'scale(0.8)');
-	}
-	100% {
-		@include vendor-prefix('transform', 'scale(1)');
-	}
 }
 
 @-webkit-keyframes "pulse" {
@@ -293,5 +281,17 @@ footer {
 	100% {
 		-ms-transform: scale(1);
 		transform: scale(1);
+	}
+}
+
+@keyframes "pulse" {
+	0% {
+		@include vendor-prefix('transform', 'scale(1.1)');
+	}
+	50% {
+		@include vendor-prefix('transform', 'scale(0.8)');
+	}
+	100% {
+		@include vendor-prefix('transform', 'scale(1)');
 	}
 }

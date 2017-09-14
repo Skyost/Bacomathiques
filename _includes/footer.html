@@ -19,7 +19,7 @@
 {% endif %}
 
 {% if page.adsense or layout.adsense %}
-	<script async type="text/javascript" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script type="text/javascript" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('.adsbygoogle').each(function() {
@@ -27,6 +27,10 @@
 			});
 		});
 	</script>
+{% endif %}
+
+{% if layout.awesomplete %}
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.min.js" async></script>
 {% endif %}
 
 {% if page.js %}
