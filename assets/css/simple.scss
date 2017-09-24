@@ -72,8 +72,8 @@ header {
 	background-color: $main-color;
 	
 	div {
-		margin-top: 30px;
-		margin-bottom: 30px;
+		margin-top: 50px;
+		margin-bottom: 50px;
 		text-align: center;
 		color: white;
 		
@@ -115,8 +115,7 @@ header {
 	width: 100%;
 	margin: 0;
 	border: 0;
-	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50 15, 100 100, 0 100" fill="' + $main-color + '"/></svg>');
-	@include vendor-prefix('transform', 'rotate(180deg)');
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,85 100,0 0,0" fill="' + $main-color + '"/></svg>');
 }
 
 /* HEADINGS */
