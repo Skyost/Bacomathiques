@@ -284,41 +284,11 @@ chapter: 10
 	</section>
 	<section>
 	
-		<h3>Loi normale centrée réduite</h3>
-		<p>Une variable aléatoire $X$ suit <strong>la loi normale centrée réduite</strong> (notée $\mathcal{N}(0;1)$) si elle admet pour densité la fonction $f$ définie par :</p>
+		<h3>Loi normale</h3>
+		<p>Une variable aléatoire $X$ suit la loi normale de paramètres $\mu$, $\sigma$ avec $\mu \in \mathbb{R}$ et $\sigma \in \mathbb{R}^{+}_{*}$ (notée $\mathcal{N}(\mu; \sigma^2)$)
+		si elle admet pour densité la fonction $f$ définie par :</p>
 		
-		<p class="bubble formula">$\displaystyle{f(x) : \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}}$</p>
-		
-		<span id="representation-4" class="plot"></span>
-		
-		<p>Si $X$ suit la loi exponentielle énoncée précédemment, alors pour tout réel $\alpha \in [0;1]$ il existe $u_{\alpha}$ tel que :</p>
-		
-		<div class="bubble formula">
-			<p>$p(-u_{\alpha} \leq X \leq u_{\alpha}) = 1-\alpha$</p>
-			
-			<p><strong>Valeurs particulières :</strong></p>
-			<ul>
-				<li>$u_{0,05} \approx 1,959$</li>
-				<li>$u_{0,01} \approx 2,575$</li>
-			</ul>
-		</div>
-		
-		<p>L'espérance $E(X)$, la variance $V(X)$ et l'écart-type $\sigma(X)$ de la loi normale centrée réduite sont :</p>
-		
-		<ul class="bubble formula">
-			<li>$E(X) = 0$</li>
-			<li>$V(X) = \sigma(X) = 1$</li>
-		</ul>
-		
-		<p>La fonction densité de probabilité de la loi normale centrée réduite n'admet pas de primitive avec les moyens usuels.
-		Il faut donc utiliser la calculatrice pour déterminer les probabilités d'événements.</p>
-	
-	</section>
-	<section>
-	
-		<h3>Loi normale générale</h3>
-		<p>Une variable aléatoire $X$ suit la loi normale de paramètres $\mu$, $\sigma$ (notée $\mathcal{N}(\mu; \sigma^2)$ avec $\mu \in \mathbb{R}$ et $\sigma \in \mathbb{R}^{+}_{*}$)
-		si $\displaystyle{\frac{X - \mu}{\sigma}}$ suit la loi normale centrée réduite.</p>
+		<p class="bubble formula">$\displaystyle{f(x) = \frac{1}{\sqrt{2\pi}\sigma}} e^{\frac{-(x - \mu)^2}{2\sigma^2}}$</p>
 		
 		<span id="representation-5" class="plot"></span>
 		
@@ -337,8 +307,44 @@ chapter: 10
 			<li>$V(X) = \sigma^2$</li>
 		</ul>
 		
-		<p>Comme pour la loi normale centrée réduite, il faut utiliser la calculatrice pour déterminer les probabilités d'événements.</p>
+		<p>La fonction densité de probabilité de la loi normale n'admet pas de primitive avec les moyens usuels.
+		Il faut donc utiliser la calculatrice pour déterminer les probabilités d'événements.</p>
 			
+	</section>
+	<section>
+	
+		<h3>Loi normale centrée réduite</h3>
+		<p>Un cas particulier de la loi normale est <strong>la loi normale centrée réduite</strong>.</p>
+		<p>Ainsi, une variable aléatoire $X$ suit la loi normale centrée réduite (notée $\mathcal{N}(0;1)$) si elle admet pour densité la fonction $f$ définie par :</p>
+		
+		<div class="bubble formula">
+			<p>$\displaystyle{f(x) : \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}}$</p>
+			<p>Autrement dit, $X$ suit la loi normale centrée réduite si et seulement si $X$ suit la loi normale de paramètres $\mu = 0$ et $\sigma = 1$.</p>
+		</div>
+		
+		<span id="representation-4" class="plot"></span>
+		
+		<p>Si $X$ suit la loi normale centrée réduite, alors pour tout réel $\alpha \in [0;1]$ il existe $u_{\alpha}$ tel que :</p>
+		
+		<div class="bubble formula">
+			<p>$p(-u_{\alpha} \leq X \leq u_{\alpha}) = 1-\alpha$</p>
+			
+			<p><strong>Valeurs particulières :</strong></p>
+			<ul>
+				<li>$u_{0,05} \approx 1,959$</li>
+				<li>$u_{0,01} \approx 2,575$</li>
+			</ul>
+		</div>
+		
+		<p>L'espérance $E(X)$, la variance $V(X)$ et l'écart-type $\sigma(X)$ de la loi normale centrée réduite sont :</p>
+		
+		<ul class="bubble formula">
+			<li>$E(X) = 0$</li>
+			<li>$V(X) = \sigma(X) = 1$</li>
+		</ul>
+		
+		<p>Comme pour la loi normale, il faudra utiliser la calculatrice pour déterminer les probabilités d'événements.</p>
+	
 	</section>
 
 </section>
