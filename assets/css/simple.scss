@@ -99,6 +99,7 @@ header {
 		
 		.btn {
 			padding: 10px 30px;
+			font-size: 1.1em;
 			@include vendor-prefix('border-radius', '0');
 		}
 		
