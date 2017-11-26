@@ -127,7 +127,8 @@ article {
 	}
 
 	h3 {
-		font-size: 1.5em;
+		font-family: 'Handlee', cursive;
+		font-size: 2em;
 		margin-bottom: 50px;
 		text-transform: uppercase;
 		
@@ -163,14 +164,33 @@ article {
 
 /* CONTENT STYLES */
 
-article .col-md-4 {
-	margin-bottom: 20px;
+article {
+	.col-md-4 {
+		margin-bottom: 20px;
+	}
+	
+	a {
+		font-weight: bold;
+	}
+	
+	a:link, a:visited {
+		color: $main-color;
+	}
+
+	a:hover, a:active, a:focus {
+		color: darken($main-color, 20%);
+	}
+	
+	strong {
+		color: $main-color;
+	}
 }
 
 .stand-out {
 	font-weight: bold;
 	font-size: 1.3em;
 	margin-bottom: 0;
+	color: $main-color;
 }
 
 /* ADSENSE */
