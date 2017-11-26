@@ -1,6 +1,11 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>{% if page.fulltitle %}{{ page.fulltitle }}{% else %}{{ page.title }} | {{ site.title }} {% endif %}</title>
+	
+	{% if page.layout == 'lesson' %}
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/silver/pace-theme-flash.min.css"/>
+	{% endif %}
 
 	<!-- Description -->
 	<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{site.tagline}}{% endif %}"/>
