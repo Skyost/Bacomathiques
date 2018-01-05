@@ -35,6 +35,11 @@
 	margin-top: 50px;
 	font-size: 0.9em;
 	
+	ol {
+		padding-left: 0;
+		list-style-type: none;
+	}
+	
 	.toc-link {
 		display: inline-block;
 		padding-left: 20px;
