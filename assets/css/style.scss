@@ -72,21 +72,31 @@ figure figcaption {
 	vertical-align: 0.1em;
 }
 
-#modal-search .modal-body .awesomplete {
-	width: 100%;
+#modal-search .modal-body {
 
-	input {
-		padding: 0.5rem 0.75rem;
-		font-size: 1rem;
-		line-height: 1.25;
-		border: 1px solid rgba(0, 0, 0, 0.15);
-		@include vendor-prefix('border-radius', '0.25rem 0 0 0.25rem');
-		@include vendor-prefix('transition', 'border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s');
-		
-		&:focus {
-			border-color: #80bdff;
-			outline: 0;
+	.awesomplete {
+		width: 100%;
+
+		input {
+			padding: 0.5rem 0.75rem;
+			font-size: 1rem;
+			line-height: 1.25;
+			border: 1px solid rgba(0, 0, 0, 0.15);
+			padding-right: 52px;
+			@include vendor-prefix('transition', 'border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s');
+			
+			&:focus {
+				border-color: #80bdff;
+				outline: 0;
+			}
 		}
+	}
+	
+	.input-group .btn {
+		position: absolute;
+		top: 0;
+		right: 0;
+		@include vendor-prefix('border-radius', '0');
 	}
 }
 

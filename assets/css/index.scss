@@ -19,12 +19,14 @@
 
 .note {
 	color: $postit-font-color;
+	background-color: $postit-background-color;
 	position: relative;
 	width: 90%;
 	margin: 0 auto;
 	padding: 20px;
 	font-size: 1.05em;
 	box-shadow: 0 10px 10px 2px rgba(0,0,0,0.3);
+	@include vendor-prefix('transform', 'rotate(2deg)');
 	
 	h4 {
 		font-weight: bold;
@@ -51,11 +53,6 @@
 
 .highlight-container, .highlight {
 	position: relative
-}
-
-.yellow {
-	background-color: $postit-background-color;
-	@include vendor-prefix('transform', 'rotate(2deg)');
 }
 
 .pin {

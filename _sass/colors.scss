@@ -84,7 +84,7 @@ $h3-line-on-sides-color: #dddddd;
 /** Index colors : **/
 
 $postit-font-color: #333333;
-$postit-background-color: #ffd73f;
+$postit-background-color: lighten($main-color, 30%);
 $postit-pin-color: #c0392b;
 $postit-pin-stem-color: #aaaaaa;
 
