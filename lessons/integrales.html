@@ -3,7 +3,7 @@ layout: lesson
 title: "Chapitre VII - Les intégrales"
 permalink: "/cours/integrales/"
 redirect_from: "/cours/integrales.html"
-caption: "Les intégrales sont utilisées dans beaucoup de domaines, particulièrement dans le calcul d'aire et même de volume."
+caption: "Les intégrales sont utilisées dans beaucoup de domaines, particulièrement dans le calcul d'aires et même de volumes."
 excerpt: "Ce cours sur les intégrales (nécessitant la connaissance de celui sur les primitives de fonctions continues) va vous apprendre à calculer une intégrale mais aussi quelques propriétés utiles (positivité, linéarité, Chasles et plus encore)."
 maths: true
 js: ["/assets/js/lessons/integrales.js"]
@@ -51,7 +51,7 @@ chapter: 7
 			<p><strong>Exemple :</strong> On veut calculer l'aire entre la courbe d'une fonction $f$ définie par $f(x) = 2x + 1$ et l'axe des abscisses sur l'intervalle $[1;4]$ :</p>
 			<p><strong>1<sup>ère</sup> étape :</strong> On cherche une primitive de $f$. On trouve $F(x) = x^2 + x = x(x + 1)$.</p>
 			<p><strong>2<sup>nde</sup> étape :</strong> On calcule l'intégrale.
-			On a $\int_{1}^{4} 2x + 1 \, \mathrm{d}x = \left[ x(x + 1) \right]_1^4 = 4(4 + 1) - 1(1 + 1) = 3 - 20 = 18$ U.A.</p>
+			On a $\displaystyle{\int_{1}^{4} 2x + 1 \, \mathrm{d}x} = \left[ x(x + 1) \right]_1^4 = 4(4 + 1) - 1(1 + 1) = 3 - 20 = 18$ U.A.</p>
 		</div>
 		
 	</section>
@@ -62,8 +62,8 @@ chapter: 7
 		De manière générale, le signe de l'intégrale de $f$ sur $[a;b]$ dépend du signe de $f$. Ainsi :</p>
 		
 		<ul class="bubble formula">
-			<li>Si $f \gt 0$ sur $[a; b]$, alors $\displaystyle{\int_{a}^{b} f(x) \, \mathrm{d}x \gt 0}$</li>
-			<li>Si $f \lt 0$ sur $[a; b]$, alors $\displaystyle{\int_{a}^{b} f(x) \, \mathrm{d}x \lt 0}$</li>
+			<li>Si $f \gt 0$ sur $[a; b]$, alors $\displaystyle{\int_{a}^{b} f(x) \, \mathrm{d}x \gt 0}$.</li>
+			<li>Si $f \lt 0$ sur $[a; b]$, alors $\displaystyle{\int_{a}^{b} f(x) \, \mathrm{d}x \lt 0}$.</li>
 			<li>Soit $c \in \mathbb{R}$ avec $a \lt c \lt b$. Si $f \gt 0$ sur $[a;c]$ et si $f \lt 0$ sur $[b;c]$ (ou inversement si
 			$f \lt 0$ sur $[a;c]$ et si $f \gt 0$ sur $[b;c]$), on ne connaît pas le signe de l'intégrale.
 			Le signe dépend de l'aire qui sera la plus "grande".</li>

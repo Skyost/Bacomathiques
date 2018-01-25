@@ -3,7 +3,7 @@ layout: lesson
 title: "Chapitre V - La fonction logarithme népérien"
 permalink: "/cours/fonction-logarithme/"
 redirect_from: "/cours/fonction_logarithme.html"
-caption: "Le logarithme népérien peut être utilisé pour simplifier de longs calculs."
+caption: "Le logarithme népérien est utilisé dans les calculs logarithmiques et dans l'étude de certaines croissances."
 excerpt: "Ce cours (qui nécessite la connaissance du cours sur la fonction exponentielle) va vous apprendre ce qu'est le logarithme népérien : relations algébriques, représentation graphique, logarithme décimal, ...<br/>Mais également étude de la fonction : signe, dérivée, variations, et plus !"
 maths: true
 js: ["/assets/js/lessons/fonction_logarithme.js"]
@@ -58,14 +58,14 @@ chapter: 5
 	<section>
 		
 		<h3>Relations algébriques</h3>
-		<p>Le logarithme népérien a plusieurs propriétés intéressantes qu'il faut connaître. Ainsi, pour tout $a$ et $b$ <strong>strictement positifs</strong> :</p>
+		<p>Le logarithme népérien a plusieurs propriétés intéressantes qu'il faut connaître. Ainsi, pour tous réels $x$ et $y$ <strong>strictement positifs</strong> :</p>
 		
 		<ul class="bubble formula">
-			<li>$ln(a \times b) = ln(a) + ln(b)$</li>
-			<li>$ln(a^n) = n \times ln(a)$ pour $n \in \mathbb{Z}$</li>
-			<li>$\displaystyle{ln\left(\frac{a}{b}\right) = ln(a) - ln(b)}$</li>
-			<li>$\displaystyle{ln\left(\frac{1}{b}\right) = -ln(b)}$</li>
-			<li>$\displaystyle{ln(\sqrt[p]{a}) = \frac{1}{p} \times ln(a)}$ pour $p \in \mathbb{N}^*$</li>
+			<li>$ln(x \times y) = ln(x) + ln(y)$</li>
+			<li>$ln(x^n) = n \times ln(x)$ pour $n \in \mathbb{Z}$</li>
+			<li>$\displaystyle{ln\left(\frac{x}{y}\right) = ln(x) - ln(y)}$</li>
+			<li>$\displaystyle{ln\left(\frac{1}{y}\right) = -ln(y)}$</li>
+			<li>$\displaystyle{ln(\sqrt[p]{x}) = \frac{1}{p} \times ln(x)}$ pour $p \in \mathbb{N}^*$</li>
 		</ul>
 		
 		<p>Certaines des ces propriétés peuvent se déduire les unes des autres.</p>
@@ -105,7 +105,7 @@ chapter: 5
 			<li>$\lim\limits_{\substack{x \rightarrow +\infty}} ln(x) = +\infty$</li>
 		</ul>
 		
-		<p>Il faut aussi savoir que la fonction puissance "l'emporte" sur le logarithme népérien (voir la partie <a href="#3-représentation-graphique"><q>Représentation graphique</q></a>) :</p>
+		<p>Il faut aussi savoir que la fonction puissance <q>l'emporte</q> sur le logarithme népérien (voir la partie <a href="#3-représentation-graphique"><q>Représentation graphique</q></a>) :</p>
 		
 		<ul class="bubble formula">
 			<li>$\displaystyle{\lim\limits_{\substack{x \rightarrow +\infty}} \frac{ln(x)}{x} = 0}$</li>
@@ -163,20 +163,20 @@ chapter: 5
 	<h2>Le logarithme décimal</h2>
 	<p>Le <strong>logarithme décimal</strong> (utilisé en physique-chimie en classe de Terminale S) est défini sur $]0;+\infty[$ par :</p>
 	
-	<p class="bubble formula">$\displaystyle{log(x) = \frac{ln(x)}{ln(10)}}$</p>
+	<p class="bubble formula">$\displaystyle{log_{10}(x) = \frac{ln(x)}{ln(10)}}$</p>
 	
 	<p>Et on a les propriétés suivantes :</p>
 	
 	<ul class="bubble formula">
-		<li>$log(10) = 1$</li>
-		<li>$log(10^n) = n$ pour $n \in \mathbb{Z}$</li>
+		<li>$log_{10}(10) = 1$</li>
+		<li>$log_{10}(10^n) = n$ pour $n \in \mathbb{Z}$</li>
 	</ul>
 	
 	<div class="bubble tip">
 		<p>Ces formules peuvent se retrouver très facilement ! En effet, pour la première :
-		<br/>$log(10) = \frac{ln(10)}{ln(10)} = 1$.</p>
+		<br/>$log_{10}(10) = \frac{ln(10)}{ln(10)} = 1$.</p>
 		<p>Et pour la seconde :
-		<br/>$log(10^n) = \frac{n \times ln(10)}{ln(10)} = n \times \frac{ln(10)}{ln(10)} = n$.</p>
+		<br/>$log_{10}(10^n) = \frac{n \times ln(10)}{ln(10)} = n \times \frac{ln(10)}{ln(10)} = n$.</p>
 	</div>
 
 </section>

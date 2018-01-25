@@ -76,26 +76,28 @@ chapter: 10
 		élémentaires dont l'image par $X$ est $x_i$. Cette loi est généralement représentée dans un tableau :</p>
 		
 		<div class="bubble formula">
-			<table class="table table-bordered table-hover table-responsive">
-				<thead>
-					<tr>
-						<th>$x_i$</th>
-						<th>$x_1$</th>
-						<th>$x_2$</th>
-						<th>...</th>
-						<th>$x_n$</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>$p(X = x_i)$</td>
-						<td>$p(X = x_1)$</td>
-						<td>$p(X = x_2)$</td>
-						<td>...</td>
-						<td>$p(X = x_n)$</td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>$x_i$</th>
+							<th>$x_1$</th>
+							<th>$x_2$</th>
+							<th>...</th>
+							<th>$x_n$</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>$p(X = x_i)$</td>
+							<td>$p(X = x_1)$</td>
+							<td>$p(X = x_2)$</td>
+							<td>...</td>
+							<td>$p(X = x_n)$</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 			
 			<p>On a $p(X = x_1) + p(X = x_2) + \text{ ... } + p(X = x_n) = 1$.</p>
 		</div>
@@ -230,6 +232,10 @@ chapter: 10
 		
 		<p class="bubble formula">$\displaystyle{E(X) = \int_{a}^{b} xf(x) \, \mathrm{d}x}$</p>
 		
+		<p>On peut également calculer sa variance :</p>
+		
+		<p class="bubble formula">$\displaystyle{V(X) = E(X^2) - E(X)^2 = \int_{a}^{b} x^2f(x) \, \mathrm{d}x}$</p>
+		
 	</section>
 	<section>
 	
@@ -248,6 +254,10 @@ chapter: 10
 		<p>L'espérance de cette loi uniforme est :</p>
 		
 		<p class="bubble formula">$\displaystyle{E(X) = \frac{a+b}{2}}$</p>
+		
+		<p>Sa variance est :</p>
+		
+		<p class="bubble formula">$\displaystyle{V(X) = \frac{(b-a)^2}{12}}$</p>
 	
 	</section>
 	<section>
@@ -275,11 +285,15 @@ chapter: 10
 		
 		<p class="bubble formula">$\displaystyle{E(X) = \frac{1}{\lambda}}$</p>
 		
+		<p>Sa variance est :</p>
+		
+		<p class="bubble formula">$\displaystyle{V(X) = \frac{1}{\lambda^2}}$</p>
+		
 		<p>La loi exponentielle de paramètre $\lambda$ est dite <strong>"sans vieillissement"</strong> :</p>
 		
-		<p class="bubble formula">$p_{X \geq x}(X \geq x + s) = p(X \geq s)$ avec $x$ et $s$ réels positifs</p>
+		<p class="bubble formula">$p(X \gt T + t) = p(X \gt t)$ avec $T$ et $t$ réels positifs</p>
 		
-		<p>Ceci montre que la durée de vie $X$ sur un laps de temps $s$ ne dépend pas de l'âge $x$ à partir duquel on considère cet événement.</p>
+		<p>Ceci montre que $X$ peut avoir vécu pendant $t$ heures (ou autre unité de temps), cela ne modifiera pas sa durée de vie.</p>
 	
 	</section>
 	<section>

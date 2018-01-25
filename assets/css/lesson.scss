@@ -218,10 +218,12 @@
 	}
 }
 
+.bubble .table-responsive {
+	overflow-y: hidden;
+}
+
 .bubble table {
 	background-color: white;
-	max-width: 75%;
-	overflow-y: hidden;
 }
 
 .bubble .plot svg {
@@ -303,14 +305,13 @@ article {
 		font-size: 32px;
 		padding: 15px 0 15px 0;
 		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-		margin: 20px 0 0 0;
+		margin: 20px 0 30px 0;
 		page-break-after: avoid;
 	}
 	
 	h3 {
 		color: $lesson-h3-color;
 		font-size: 26px;
-		margin-top: 30px;
 		page-break-after: avoid;
 	}
 	
