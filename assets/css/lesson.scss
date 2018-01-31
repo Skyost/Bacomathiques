@@ -199,6 +199,8 @@
 	border-width: 0 0 0 7px;
 	border-style: solid;
 	page-break-inside: avoid;
+	overflow-x: scroll;
+	overflow-y: hidden;
 	@include vendor-prefix('border-radius', '4px');
 	
 	&:before {
@@ -222,11 +224,7 @@
 	overflow-y: hidden;
 }
 
-.bubble table {
-	background-color: white;
-}
-
-.bubble .plot svg {
+.bubble table, .bubble .plot svg {
 	background-color: white;
 }
 
@@ -266,10 +264,6 @@ table {
 
 .formula ul li, ul.formula li, .tip ul li, ul.tip li, .formula ol li, ol.formula li, .tip ol li, ol.tip li {
 	margin-bottom: 10px;
-}
-
-.MathJax {
-	outline-width: 0;
 }
 
 /* PLOTS */

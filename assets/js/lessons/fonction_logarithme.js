@@ -7,6 +7,12 @@ $(window).resize(function() {
 });
 
 function createPlots(dimensions) {
+	if(!canSVG) {
+		$('#representation-1').html(innerImage('assets/img/fonction_logarithme', 'representation-1'));
+		$('#representation-2').html(innerImage('assets/img/fonction_logarithme', 'representation-2'));
+		return;
+	}
+	
 	functionPlot({
 		title: 'Le logarithme néperien',
 		target: '#representation-1',

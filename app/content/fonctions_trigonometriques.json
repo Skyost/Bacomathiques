@@ -1,0 +1,5 @@
+---
+layout: compress
+---
+{% capture linebreak %}
+{% endcapture %}{% for page in site.pages %}{% if page.permalink == '/cours/fonctions-trigonometriques/' %}{% assign id = page.path | replace: 'lessons/', '' | replace: '.html', '' %}{"id": "{{ id }}", "title": "{{ page.title }}", "content": "{{ page.content | escape | remove: "	" | replace: linebreak, " " }}"}{% break %}{% endif %}{% endfor %}

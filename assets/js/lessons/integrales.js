@@ -7,6 +7,16 @@ $(window).resize(function() {
 });
 
 function createPlots(dimensions) {
+	if(!canSVG) {
+		$('#representation-1').html(innerImage('assets/img/integrales', 'representation-1'));
+		$('#representation-2').html(innerImage('assets/img/integrales', 'representation-2'));
+		$('#representation-3').html(innerImage('assets/img/integrales', 'representation-3'));
+		$('#representation-4').html(innerImage('assets/img/integrales', 'representation-4'));
+		$('#representation-5').html(innerImage('assets/img/integrales', 'representation-5'));
+		$('#representation-6').html(innerImage('assets/img/integrales', 'representation-6'));
+		return;
+	}
+	
 	functionPlot({
 		title: 'L\'Unité d\'Aire (U.A.)',
 		target: '#representation-1',

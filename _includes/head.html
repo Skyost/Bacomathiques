@@ -61,17 +61,19 @@
 				},
 				'HTML-CSS': {
 					scale: 90,
-					linebreaks: {
-						automatic: true
-					},
 					webFont: 'Asana-Math',
 					preferredFont: 'Asana-Math', 
 					availableFonts: [
-						'Asana-Math',
-						'TeX'
+						'Asana-Math'
 					], 
-					extensions: ['handle-floats.js']
+					extensions: ['handle-floats.js'/*, '[a11y]/auto-collapse.js'*/]
 				},
+				/*'auto-collapse': {
+					disabled: false
+				},
+				menuSettings: {
+					autocollapse: true
+				},*/
 				messageStyle: 'none',
 				showMathMenu: false
 			});

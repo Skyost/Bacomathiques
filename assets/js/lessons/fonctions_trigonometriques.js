@@ -7,6 +7,14 @@ $(window).resize(function() {
 });
 
 function createPlots(dimensions) {
+	if(!canSVG) {
+		$('#representation-1').html(innerImage('assets/img/fonctions_trigonometriques', 'representation-1'));
+		$('#representation-2').html(innerImage('assets/img/fonctions_trigonometriques', 'representation-2'));
+		$('#representation-3').html(innerImage('assets/img/fonctions_trigonometriques', 'representation-3'));
+		$('#representation-4').html(innerImage('assets/img/fonctions_trigonometriques', 'representation-4'));
+		return;
+	}
+	
 	functionPlot({
 		title: 'Repère trigonométrique',
 		target: '#representation-1',

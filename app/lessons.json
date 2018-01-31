@@ -1,0 +1,4 @@
+---
+layout: compress
+---
+[{% assign pages = site.pages | sort: 'chapter' %}{% for page in pages %}{% if page.layout == 'lesson' %}{% assign id = page.path | replace: 'lessons/', '' | replace: '.html', '' %}{"id": "{{ id }}", "title": "{{ page.title }}", "preview": "assets/img/lessons/{{ id }}/preview.jpg", "caption": "{{ page.caption | escape }}", "excerpt": "{{ page.excerpt | escape }}", "content": "app/content/{{ id }}.json"}{% unless forloop.last %},{% endunless %}{% endif %}{% endfor %}]

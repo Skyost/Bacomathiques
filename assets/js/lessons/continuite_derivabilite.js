@@ -7,6 +7,12 @@ $(window).resize(function() {
 });
 
 function createPlots(dimensions) {
+	if(!canSVG) {
+		$('#representation-1').html(innerImage('assets/img/continuite_derivabilite', 'representation-1'));
+		$('#representation-2').html(innerImage('assets/img/continuite_derivabilite', 'representation-2'));
+		return;
+	}
+	
 	functionPlot({
 		title: 'La fonction partie entière',
 		target: '#representation-1',

@@ -7,6 +7,12 @@ $(window).resize(function() {
 });
 
 function createPlots(dimensions) {
+	if(!canSVG) {
+		$('#representation-1').html(innerImage('assets/img/nombres_complexes', 'representation-1'));
+		$('#representation-2').html(innerImage('assets/img/nombres_complexes', 'representation-2'));
+		return;
+	}
+	
 	functionPlot({
 		title: 'Représentation de z',
 		target: '#representation-1',

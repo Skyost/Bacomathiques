@@ -7,6 +7,14 @@ $(window).resize(function() {
 });
 
 function createPlots(dimensions) {
+	if(!canSVG) {
+		$('#representation-1').html(innerImage('assets/img/probabilites', 'representation-1'));
+		$('#representation-2').html(innerImage('assets/img/probabilites', 'representation-2'));
+		$('#representation-3').html(innerImage('assets/img/probabilites', 'representation-3'));
+		$('#representation-4').html(innerImage('assets/img/probabilites', 'representation-4'));
+		$('#representation-5').html(innerImage('assets/img/probabilites', 'representation-5'));
+		return;
+	}
 	
 	gauss = [
 				{
