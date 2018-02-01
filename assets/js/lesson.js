@@ -1,3 +1,5 @@
+const canSVG = !!(document.createElementNS && document.createElementNS('http://www.w3.org/2000/svg','svg').createSVGRect);
+
 $(document).ready(function() {
 	// TITLE NUMBERING
 	
@@ -98,6 +100,14 @@ $(document).ready(function() {
 			resetPosition(navigation);
 		}
 	});
+	
+	// SVG HANDLING
+	
+	if(!canSVG) {
+		$('img[src$=".svg"]').each(function() {
+			this.src = replaceAll(this.src, '.svg', '.png');
+		});
+	}
 	
 	// ADSENSE
 	

@@ -1,5 +1,3 @@
-var canSVG = !!(document.createElementNS && document.createElementNS('http://www.w3.org/2000/svg','svg').createSVGRect);
-
 var graphHeight = 400;
 var graphWidth = 600;
 
@@ -21,5 +19,5 @@ function computeDimension() {
 }
 
 function innerImage(path, name) {
-	return '<img src="' + path + name + '.png" title="' + name + '" alt="' + name + '"/>';
+	return '<a href="' + path + name + '.png"><img src="' + path + name + '.png" title="' + name + '" alt="' + name + '"/></a>';
 }

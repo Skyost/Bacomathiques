@@ -203,6 +203,10 @@
 	overflow-y: hidden;
 	@include vendor-prefix('border-radius', '4px');
 	
+	table, .plot svg {
+		background-color: white;
+	}
+	
 	&:before {
 		position: absolute;
 		display: none;
@@ -220,20 +224,17 @@
 	}
 }
 
-.bubble .table-responsive {
-	overflow-y: hidden;
-}
-
-.bubble table, .bubble .plot svg {
-	background-color: white;
-}
-
 ul.bubble, ol.bubble {
 	padding-left: 28px;
 }
 
-table {
+.table-responsive-md {
 	overflow-y: hidden;
+	margin-bottom: 16px;
+	
+	table {
+		margin-bottom: 0;
+	}
 }
 
 /* FORMULAS & TIPS */
