@@ -33,6 +33,19 @@
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css"/>
 
+	{% if layout.smartbanner %}
+		<meta name="smartbanner:title" content="{{ site.title }}">
+		<meta name="smartbanner:author" content="Skyost">
+		<meta name="smartbanner:price" content="GRATUIT">
+		<meta name="smartbanner:price-suffix-google" content=" - Sur Google Play">
+		<meta name="smartbanner:icon-google" content="/assets/img/logo.svg">
+		<meta name="smartbanner:button" content="VOIR">
+		<meta name="smartbanner:button-url-google" content="https://play.google.com/store/apps/details?id=fr.bacomathiques">
+		<meta name="smartbanner:enabled-platforms" content="android">
+		
+		<link rel="stylesheet" type="text/css" href="/assets/css/smartbanner.min.css"/>
+	{% endif %}
+	
 	{% if layout.awesomplete %}
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.min.css"/>
 	{% endif %}

@@ -27,7 +27,7 @@ chapter: 14
 		<p>Soient $m$ et $n$ deux entiers non nuls. Une matrice $A$ de taille $(m;n)$ est un tableau de réels tel que :</p>
 		
 		<div class="bubble formula">
-			<p>$A = \begin{pmatrix}a_{1,1} & a_{1,2} & \text{...} & a_{1,n} \cr a_{2,1} & a_{2,2} & \text{...} & a_{2,n} \cr \vdots & \vdots & \ddots & \vdots \cr a_{m,1} & a_{m,2} & \text{...} & a_{m,n}\end{pmatrix}$</p>
+			<p>$\displaystyle{A = \begin{pmatrix}a_{1,1} & a_{1,2} & \text{...} & a_{1,n} \cr a_{2,1} & a_{2,2} & \text{...} & a_{2,n} \cr \vdots & \vdots & \ddots & \vdots \cr a_{m,1} & a_{m,2} & \text{...} & a_{m,n}\end{pmatrix}}$</p>
 			<p>Avec $a_{1,1}$, $a_{1,2}$, $a_{2,1}$, ..., $a_{m,n}$ coefficients réels de la matrice.</p>
 		</div>
 		
@@ -63,15 +63,14 @@ chapter: 14
 		<p>Soient quatre réels $a$, $b$, $c$ et $d$ et deux autres réels $\alpha$ et $\beta$. Le système $\displaystyle{\begin{cases}ax + by = \alpha \cr cx + dy = \beta\end{cases}}$
 		d'inconnues $x$ et $y$ peut s'écrire matriciellement :</p>
 		
-		<p class="bubble formula">$\displaystyle{\begin{pmatrix}a & b \cr c & d\end{pmatrix} \begin{pmatrix}x \cr y\end{pmatrix} = \begin{pmatrix}\alpha \cr \beta\end{pmatrix}}$</p>
+		<p class="bubble formula">$\displaystyle{\underbrace{\begin{pmatrix}a & b \cr c & d\end{pmatrix}}_{A} \underbrace{\begin{pmatrix}x \cr y\end{pmatrix}}_{X} = \underbrace{\begin{pmatrix}\alpha \cr \beta\end{pmatrix}}_{B}}$</p>
 		
-		<p>De plus, si on nomme $A$ la matrice $\displaystyle{\begin{pmatrix}a & b \cr c & d\end{pmatrix}}$, $X$ la matrice des inconnues et
-		$B$ la matrice $\displaystyle{\begin{pmatrix}\alpha \cr \beta\end{pmatrix}}$, alors on a la relation suivante :</p>
+		<p>Avec les écritures données ci-dessus ($A$ la première matrice, $X$ la deuxième et $B$ la dernière), on la relation suivante :</p>
 		
 		<p class="bubble formula">Si $A$ est inversible (voir les paragraphes suivants) alors $AX = B$ admet une unique solution $X = A^{-1}B$.</p>
 		
 		<div class="bubble tip">
-			<p>Cela peut sembler compliquer à appliquer, il n'en est rien !</p>
+			<p>Cela peut sembler compliqué à appliquer, il n'en est rien !</p>
 			<p>Par exemple, transformons le système $\displaystyle{\begin{cases}2x + y = 1 \cr 4x + 3y = 4\end{cases}}$ en une égalité de matrices.</p>
 			<p>D'après les formules suivantes :</p>
 			<p>$\displaystyle{\begin{cases}2x + y = 1 \cr 4x + 3y = 4\end{cases} \iff \begin{pmatrix}2 & 1 \cr 4 & 3\end{pmatrix} \begin{pmatrix}x \cr y\end{pmatrix} = \begin{pmatrix}1 \cr 4\end{pmatrix}}$</p>

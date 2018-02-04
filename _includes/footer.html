@@ -33,6 +33,10 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.min.js" async></script>
 {% endif %}
 
+{% if layout.smartbanner %}
+	<script type="text/javascript" src="/assets/js/smartbanner.min.js"></script>
+{% endif %}
+
 {% if page.js %}
 	{% for script in page.js %}
 		<script type="text/javascript" src="{{ script }}"></script>
