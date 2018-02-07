@@ -3,7 +3,7 @@ layout: simple
 title: "Accueil"
 navbarpos: 1
 fa: "fa-home"
-css: ["/assets/css/index.css"]
+css: ["/assets/css/devices.min.css", "/assets/css/index.css"]
 ---
 
 <section class="container">
@@ -78,13 +78,59 @@ css: ["/assets/css/index.css"]
 	</div>
 </section>
 
-<section class="container">
-	<h3>À propos de {{ site.title }}</h3>
-	<p><strong>Par qui</strong> a été crée ce site web ?
-	Sous <strong>quelle licence</strong> sont disponibles les contenus ?
-	<strong>Quelles sont les technologies</strong> utilisées pour concevoir le site web ?</p>
-
-	<p>Toutes les réponses à ces questions sont disponibles dans la page <a href="/a-propos/"><q>À propos</q></a>.</p>
+<section id="mobile" class="container">
+	<h3>Application Mobile</h3>
 	
-	<i class="fa fa-question-circle" aria-hidden="true"></i>
+	<div class="row">
+		<div class="col-md-12 col-lg-6 d-none d-lg-block">
+			<div class="marvel-device s5 white">
+				<div class="top-bar"></div>
+				<div class="sleep"></div>
+				<div class="camera"></div>
+				<div class="sensor"></div>
+				<div class="speaker"></div>
+				<div class="screen"></div>
+				<div class="home"></div>
+			</div>
+		</div>
+		
+		<div class="col-md-12 col-lg-6 d-flex align-items-center text-center text-md-left">
+			<div class="w-100">
+				<p><strong>{{ site.title }}</strong> possède une application mobile !
+				Vous pouvez dès à présent la télécharger et accéder à tous vos cours directement depuis <strong>votre smartphone</strong>.</p>
+				
+				<p>Pour la télécharger, rien de plus simple ! Accédez au <strong>Play Store</strong> de Google et tapez <q>Bacomathiques</q>.
+				<br/>Vous pouvez également cliquer sur le bouton ci-dessous :</p>
+				
+				<div class="text-center">
+					<a href="https://play.google.com/store/apps/details?id=fr.bacomathiques&utm_source=bacomathiqu.es&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img src="https://play.google.com/intl/en_us/badges/images/generic/fr_badge_web_generic.png" title="Disponible sur Google Play" alt="Disponible sur Google Play"/></a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-12 col-lg-6 d-none d-lg-none d-md-block">
+			<div class="marvel-device s5 white">
+				<div class="top-bar"></div>
+				<div class="sleep"></div>
+				<div class="camera"></div>
+				<div class="sensor"></div>
+				<div class="speaker"></div>
+				<div class="screen"></div>
+				<div class="home"></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section>
+	<div class="container">
+		<h3>À propos de {{ site.title }}</h3>
+		<p><strong>Par qui</strong> a été crée ce site web ?
+		Sous <strong>quelle licence</strong> sont disponibles les contenus ?
+		<strong>Quelles sont les technologies</strong> utilisées pour concevoir le site web ?</p>
+
+		<p>Toutes les réponses à ces questions sont disponibles dans la page <a href="/a-propos/"><q>À propos</q></a>.</p>
+		
+		<i class="fa fa-question-circle" aria-hidden="true"></i>
+	</div>
 </section>
