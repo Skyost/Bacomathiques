@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="lesson_item_title_padding">20dp</dimen>
+    <dimen name="lesson_item_preview_height">100dp</dimen>
+
+    <integer name="main_lessons_recyclerview_columns">1</integer>
+</resources>
