@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.bacomathiques.R;
 import fr.bacomathiques.adapters.LessonsAdapter;
@@ -35,8 +39,13 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if(savedInstanceState != null) {
-			onRequestLessonsDone((Lesson[])savedInstanceState.getParcelableArray(INTENT_LESSONS));
+		if(savedInstanceState != null && savedInstanceState.containsKey(INTENT_LESSONS)) {
+			final List<Lesson> lessons = new ArrayList<>();
+			for(final Parcelable parcelable : savedInstanceState.getParcelableArray(INTENT_LESSONS)) {
+				lessons.add((Lesson)parcelable);
+			}
+
+			onRequestLessonsDone(lessons.toArray(new Lesson[lessons.size()]));
 			return;
 		}
 

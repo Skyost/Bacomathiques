@@ -163,7 +163,7 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 
 				@Override
 				public final void onClick(final DialogInterface dialogInterface, final int which) {
-					dialog.dismiss();
+					dialogInterface.dismiss();
 				}
 
 			}).setNeutralButton(R.string.dialog_lesson_button_neutral, new DialogInterface.OnClickListener() {
@@ -199,6 +199,14 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 		dialog = new ProgressDialog(this);
 		dialog.setMessage(this.getString(R.string.dialog_loading_message));
 		dialog.setCancelable(false);
+		dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+
+			@Override
+			public final void onDismiss(final DialogInterface dialogInterface) {
+				LessonActivity.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+			}
+
+		});
 		dialog.show();
 	}
 
@@ -215,7 +223,6 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 			dialog.dismiss();
 			dialog = null;
 		}
-		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
 
 		if(result == null) {
 			new AlertDialog.Builder(this).setTitle(R.string.dialog_generic_error).setMessage(R.string.dialog_errorgetlesson_message).setPositiveButton(R.string.dialog_generic_ok, new DialogInterface.OnClickListener() {
@@ -248,7 +255,6 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 			content += "<script type=\"text/javascript\">const ANCHOR = \"" + intent.getStringExtra(INTENT_ANCHOR) + "\";</script>";
 		}
 		content += "<script type=\"text/javascript\" src=\"script.js\"></script>";
-		// TODO: AsanaMath ou TeX ?
 		content += "<script type=\"text/x-mathjax-config\">MathJax.Hub.Config({tex2jax: { inlineMath: [ ['$','$'], ['\\\\(','\\\\)'] ]},'HTML-CSS': { webFont: 'TeX', preferredFont: 'TeX', availableFonts: [ 'TeX' ], extensions: ['handle-floats.js']}, messageStyle: 'none', showMathMenu: false});</script>";
 		content += "<script type=\"text/javascript\" src=\"mathjax/MathJax.js?config=TeX-AMS_HTML\"></script>";
 		content += "</head>";

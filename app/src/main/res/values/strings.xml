@@ -11,7 +11,7 @@
     <string name="dialog_errorgetlesson_message">Impossible d\'accéder à ce cours pour le moment. Veuillez réessayer plus tard.</string>
 
     <string name="dialog_lesson_about_title">À Propos</string>
-    <string name="dialog_lesson_about_message">Cette application a été créée par H. Delaunay.\nVous pouvez consulter les licences des contenus, technologies utilisées et autres en cliquant sur le bouton "Plus d'informations".\nSinon, n\'hésitez pas à laisser une (bonne) note sur la page Google Play de l'application !</string>
+    <string name="dialog_lesson_about_message">Révisez votre BAC de mathématiques avec Bacomathiques !\nVous pouvez consulter les licences des contenus, technologies utilisées et autres en cliquant sur le bouton "Plus d'informations".\nSinon, n\'hésitez pas à laisser une (bonne) note sur la page Google Play de l\'application !</string>
     <string name="dialog_lesson_button_negative">Fermer</string>
     <string name="dialog_lesson_button_neutral">Plus d\'informations</string>
     <string name="dialog_lesson_button_positive">Fiche Google Play</string>

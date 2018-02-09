@@ -6,7 +6,15 @@ import android.text.Spanned;
 
 public class Utils {
 
-	public static Spanned fromHtml(String source) {
+	/**
+	 * Creates a Spanned from a HTML source.
+	 *
+	 * @param source The HTML source.
+	 *
+	 * @return The Spanned.
+	 */
+
+	public static Spanned fromHtml(final String source) {
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 			return Html.fromHtml(source, Html.FROM_HTML_MODE_LEGACY);
 		}
