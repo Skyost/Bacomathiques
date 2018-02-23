@@ -5,12 +5,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,9 +22,12 @@ import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
+import de.mateware.snacky.Snacky;
 import fr.bacomathiques.R;
 import fr.bacomathiques.adapters.LessonsAdapter;
 import fr.bacomathiques.lesson.Lesson;
@@ -35,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 
 	private LessonsAdapter adapter;
 	private View clickedCaption;
+
+	private long offlineDate = -1L;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
@@ -51,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 
 		displaySplashScreen();
 		CalligraphyConfig.initDefault(null);
-		new RequestLessonsTask(this).execute(Lesson.getLessonsURL());
+		new RequestLessonsTask(this, this).execute(Lesson.getLessonsURL());
 	}
 
 	@Override
@@ -72,8 +81,10 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 	public final void onRequestLessonsStarted() {}
 
 	@Override
-	public final void onRequestLessonsException(final Exception ex) {
+	public final void onRequestLessonsException(final Exception ex, final long offlineDate) {
 		ex.printStackTrace();
+
+		this.offlineDate = offlineDate;
 	}
 
 	@Override
@@ -106,6 +117,18 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 	 */
 
 	public final void displaySplashScreen() {
+		final ActionBar actionBar = this.getSupportActionBar();
+		if(actionBar != null) {
+			actionBar.hide();
+
+			actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+
+			final LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			if(inflater != null) {
+				actionBar.setCustomView(inflater.inflate(R.layout.actionbar_view, null));
+			}
+		}
+
 		this.setContentView(R.layout.activity_main_splash);
 	}
 
@@ -121,12 +144,37 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 			return;
 		}
 
-		layout.animate().alpha(0f).withEndAction(new Runnable() {
+		layout.animate().alpha(0f).setDuration(700L).withEndAction(new Runnable() {
 
 			@Override
 			public final void run() {
+				final ActionBar actionBar = MainActivity.this.getSupportActionBar();
+				if(actionBar != null) {
+					actionBar.show();
+				}
+
 				MainActivity.this.setContentView(R.layout.activity_main);
 				setupRecyclerView();
+
+				if(offlineDate != -1L) {
+					final Calendar calendar = Calendar.getInstance();
+					calendar.setTimeInMillis(offlineDate);
+
+					new Handler().postDelayed(new Runnable() {
+
+						@Override
+						public void run() {
+							Snacky.builder()
+									.setActivity(MainActivity.this)
+									.setText(MainActivity.this.getString(R.string.snackbar_offline, SimpleDateFormat.getDateInstance().format(calendar.getTime())))
+									.setDuration(Snacky.LENGTH_LONG)
+									.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimaryDark))
+									.info()
+									.show();
+						}
+
+					}, 500);
+				}
 			}
 
 		}).start();

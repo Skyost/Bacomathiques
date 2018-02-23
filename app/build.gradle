@@ -28,4 +28,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
 
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
+
+    implementation 'com.github.matecode:Snacky:1.0.3'
 }

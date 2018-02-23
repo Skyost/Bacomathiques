@@ -31,5 +31,7 @@
     <string name="lesson_item_preview">Prévisualisation</string>
     <string name="lesson_item_checkout">Lire ce cours</string>
 
+    <string name="snackbar_offline">Chargement du contenu hors ligne du %s.</string>
+
     <string name="filter_view">Bacomathiques</string>
 </resources>

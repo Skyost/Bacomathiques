@@ -12,14 +12,21 @@ import android.os.Bundle;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import de.mateware.snacky.Snacky;
 import fr.bacomathiques.R;
 import fr.bacomathiques.lesson.Lesson;
 import fr.bacomathiques.lesson.LessonContent;
@@ -81,15 +88,23 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 		webView.getSettings().setBuiltInZoomControls(false);
 		webView.getSettings().setDisplayZoomControls(false);
 		webView.getSettings().setSupportZoom(false);
+		webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
 		webView.setHapticFeedbackEnabled(false);
 		webView.setHorizontalScrollBarEnabled(false);
 		webView.setWebViewClient(WEBVIEW_CLIENT);
+
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+		}
+		else {
+			webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+		}
 
 		if(savedInstanceState != null && savedInstanceState.containsKey(INTENT_CONTENT)) {
 			onGetLessonDone((LessonContent)savedInstanceState.getParcelable(INTENT_CONTENT));
 		}
 		else {
-			new GetLessonTask(this).execute(this.getIntent().getStringExtra(MainActivity.INTENT_LESSON));
+			new GetLessonTask(this, this).execute(this.getIntent().getStringExtra(MainActivity.INTENT_LESSON));
 		}
 
 		/*webView.setWebChromeClient(new WebChromeClient() {
@@ -211,8 +226,21 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 	}
 
 	@Override
-	public final void onGetLessonException(final Exception ex) {
+	public final void onGetLessonException(final Exception ex, final long offlineDate) {
 		ex.printStackTrace();
+
+		if(offlineDate != -1L) {
+			final Calendar calendar = Calendar.getInstance();
+			calendar.setTimeInMillis(offlineDate);
+
+			Snacky.builder()
+					.setActivity(LessonActivity.this)
+					.setText(LessonActivity.this.getString(R.string.snackbar_offline, SimpleDateFormat.getDateInstance().format(calendar.getTime())))
+					.setDuration(Snacky.LENGTH_LONG)
+					.setBackgroundColor(ContextCompat.getColor(LessonActivity.this, R.color.colorPrimaryDark))
+					.info()
+					.show();
+		}
 	}
 
 	@Override

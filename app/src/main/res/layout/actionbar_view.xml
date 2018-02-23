@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/main_actionbar_logo"
+        android:layout_width="27sp"
+        android:layout_height="27sp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/app_name"
+        app:srcCompat="@mipmap/ic_launcher"/>
+
+    <TextView
+        fontPath="fonts/handlee-regular.ttf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/main_actionbar_logo"
+        android:layout_marginLeft="6sp"
+        android:layout_marginStart="6sp"
+        android:layout_marginTop="3.6sp"
+        android:layout_toEndOf="@+id/main_actionbar_logo"
+        android:layout_toRightOf="@+id/main_actionbar_logo"
+        android:gravity="center_vertical"
+        android:text="@string/app_name"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        tools:ignore="MissingPrefix"/>
+
+</RelativeLayout>
