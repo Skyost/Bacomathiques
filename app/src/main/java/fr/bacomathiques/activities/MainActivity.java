@@ -121,12 +121,7 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 		if(actionBar != null) {
 			actionBar.hide();
 
-			actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-
-			final LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			if(inflater != null) {
-				actionBar.setCustomView(inflater.inflate(R.layout.actionbar_view, null));
-			}
+			customizeActionBar();
 		}
 
 		this.setContentView(R.layout.activity_main_splash);
@@ -141,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 		if(layout == null) {
 			MainActivity.this.setContentView(R.layout.activity_main);
 			setupRecyclerView();
+			customizeActionBar();
 			return;
 		}
 
@@ -245,6 +241,24 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 		final int columns = adapter.getColumnsNumber();
 		recyclerView.setLayoutManager(columns == 1 ? new LinearLayoutManager(this) : new GridLayoutManager(this, columns));
 		recyclerView.setAdapter(adapter);
+	}
+
+	/**
+	 * Handles ActionBar customizations.
+	 */
+
+	private void customizeActionBar() {
+		final ActionBar actionBar = this.getSupportActionBar();
+
+		if(actionBar == null) {
+			return;
+		}
+
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+		final LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		if(inflater != null) {
+			actionBar.setCustomView(inflater.inflate(R.layout.actionbar_view, null));
+		}
 	}
 
 }
