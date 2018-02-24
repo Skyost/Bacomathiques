@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 	@Override
 	public final void onRequestLessonsDone(final Lesson[] result) {
 		if(result != null) {
-			adapter = new LessonsAdapter(Glide.with(this), result);
+			adapter = new LessonsAdapter(Glide.with(this), this.getResources().getInteger(R.integer.main_lessons_recyclerview_columns), result);
 			hideSplashScreen();
 			return;
 		}
@@ -242,7 +242,7 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 
 		});
 
-		final int columns = this.getResources().getInteger(R.integer.main_lessons_recyclerview_columns);
+		final int columns = adapter.getColumnsNumber();
 		recyclerView.setLayoutManager(columns == 1 ? new LinearLayoutManager(this) : new GridLayoutManager(this, columns));
 		recyclerView.setAdapter(adapter);
 	}

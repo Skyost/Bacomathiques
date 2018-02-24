@@ -20,11 +20,69 @@ public class LessonsAdapter extends RecyclerView.Adapter<LessonsAdapter.ViewHold
 	private static final RequestOptions DEFAULT_OPTIONS = new RequestOptions().centerCrop();
 
 	private final RequestManager glide;
+	private final int columns;
 	private Lesson[] data;
 
-	public LessonsAdapter(final RequestManager glide, final Lesson... data) {
+	private RecyclerView recyclerView;
+
+	public LessonsAdapter(final RequestManager glide, final int columns, final Lesson... data) {
 		this.glide = glide;
+		this.columns = columns;
 		this.data = data == null ? new Lesson[0] : data;
+	}
+
+	@Override
+	public void onAttachedToRecyclerView(final RecyclerView recyclerView) {
+		super.onAttachedToRecyclerView(recyclerView);
+
+		this.recyclerView = recyclerView;
+	}
+
+	@Override
+	public final ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+		final CardView view = (CardView)LayoutInflater.from(parent.getContext()).inflate(R.layout.main_lessons_recyclerview_item, parent, false);
+
+		return new ViewHolder(view);
+	}
+
+	@Override
+	public final void onBindViewHolder(final ViewHolder holder, final int position) {
+		final Lesson lesson = data[position];
+
+		glide.load(lesson.getPreviewURL()).apply(DEFAULT_OPTIONS).transition(DrawableTransitionOptions.withCrossFade()).into(holder.preview);
+		holder.caption.setText(lesson.getPlaceholder());
+		holder.caption.setAlpha(0f);
+		holder.title.setText(lesson.getTitle());
+		holder.description.setText(Utils.fromHtml(lesson.getDescription()));
+		holder.checkOut.setTag(lesson.getLessonURL());
+
+		if(columns == 1) {
+			return;
+		}
+
+		holder.title.post(new Runnable() {
+
+			@Override
+			public void run() {
+				adjustToHeight(position, holder);
+			}
+
+		});
+	}
+
+	@Override
+	public final int getItemCount() {
+		return data.length;
+	}
+
+	/**
+	 * Gets columns number for this RecyclerView.
+	 *
+	 * @return Columns number.
+	 */
+
+	public final int getColumnsNumber() {
+		return columns;
 	}
 
 	/**
@@ -48,28 +106,65 @@ public class LessonsAdapter extends RecyclerView.Adapter<LessonsAdapter.ViewHold
 		notifyDataSetChanged();
 	}
 
-	@Override
-	public final ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
-		final CardView view = (CardView)LayoutInflater.from(parent.getContext()).inflate(R.layout.main_lessons_recyclerview_item, parent, false);
+	/**
+	 * Adjusts holder's title to other rows' title.
+	 *
+	 * @param position Current position.
+	 * @param holder The current view holder.
+	 */
 
-		return new ViewHolder(view);
+	private void adjustToHeight(final int position, final ViewHolder holder) {
+		if(columns == 2) {
+			switch(position % columns) {
+			case 1:
+				adjustToHeight(holder, recyclerView.findViewHolderForAdapterPosition(position - 1));
+				break;
+			default:
+				adjustToHeight(holder, recyclerView.findViewHolderForAdapterPosition(position + 1));
+				break;
+			}
+		}
+		else {
+			switch(position % columns) {
+			case 2:
+				adjustToHeight(holder, recyclerView.findViewHolderForAdapterPosition(position - 1), recyclerView.findViewHolderForAdapterPosition(position - 2));
+				break;
+			case 1:
+				adjustToHeight(holder, recyclerView.findViewHolderForAdapterPosition(position - 1), recyclerView.findViewHolderForAdapterPosition(position + 1));
+				break;
+			default:
+				adjustToHeight(holder, recyclerView.findViewHolderForAdapterPosition(position + 1), recyclerView.findViewHolderForAdapterPosition(position + 2));
+				break;
+			}
+		}
 	}
 
-	@Override
-	public final void onBindViewHolder(final ViewHolder holder, final int position) {
-		final Lesson lesson = data[position];
+	/**
+	 * Adjusts holders title height.
+	 *
+	 * @param holders Holders title height.
+	 */
 
-		glide.load(lesson.getPreviewURL()).apply(DEFAULT_OPTIONS).transition(DrawableTransitionOptions.withCrossFade()).into(holder.preview);
-		holder.caption.setText(lesson.getPlaceholder());
-		holder.caption.setAlpha(0f);
-		holder.title.setText(lesson.getTitle());
-		holder.description.setText(Utils.fromHtml(lesson.getDescription()));
-		holder.checkOut.setTag(lesson.getLessonURL());
-	}
+	private void adjustToHeight(final RecyclerView.ViewHolder... holders) {
+		int max = 0;
 
-	@Override
-	public final int getItemCount() {
-		return data.length;
+		for(final RecyclerView.ViewHolder holder : holders) {
+			if(holder == null) {
+				continue;
+			}
+
+			final int height = ((ViewHolder)holder).title.getHeight();
+			if(max < height) {
+				max = height;
+			}
+		}
+
+		for(final RecyclerView.ViewHolder holder : holders) {
+			if(holder == null) {
+				continue;
+			}
+			((ViewHolder)holder).title.setHeight(max);
+		}
 	}
 
 	static class ViewHolder extends RecyclerView.ViewHolder {
