@@ -121,6 +121,16 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 	}
 
 	@Override
+	public void onPause() {
+		super.onPause();
+
+		if(dialog != null && dialog.isShowing()) {
+			dialog.dismiss();
+		}
+		dialog = null;
+	}
+
+	@Override
 	protected final void onSaveInstanceState(final Bundle outState) {
 		if(content != null) {
 			outState.putParcelable(INTENT_CONTENT, content);
@@ -211,7 +221,7 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 			actionBar.setTitle(R.string.activity_lesson_defaulttitle);
 			actionBar.setDisplayHomeAsUpEnabled(true);
 		}
-		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		this.setRequestedOrientation(this.getRequestedOrientation());
 
 		final WaveDrawable indeterminate = new WaveDrawable(ContextCompat.getDrawable(this, R.mipmap.ic_launcher));
 		indeterminate.setIndeterminate(true);
@@ -255,8 +265,8 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 
 		if(dialog != null && dialog.isShowing()) {
 			dialog.dismiss();
-			dialog = null;
 		}
+		dialog = null;
 
 		if(result == null) {
 			new AlertDialog.Builder(this).setTitle(R.string.dialog_generic_error).setMessage(R.string.dialog_errorgetlesson_message).setPositiveButton(R.string.dialog_generic_ok, new DialogInterface.OnClickListener() {
