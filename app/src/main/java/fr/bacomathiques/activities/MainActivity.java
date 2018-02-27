@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
+import com.kobakei.ratethisapp.RateThisApp;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -89,6 +90,10 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 
 	@Override
 	public final void onRequestLessonsDone(final Lesson[] result) {
+		if(this.isChangingConfigurations() || this.isFinishing()) {
+			return;
+		}
+
 		if(result != null) {
 			adapter = new LessonsAdapter(Glide.with(this), this.getResources().getInteger(R.integer.main_lessons_recyclerview_columns), result);
 			hideSplashScreen();
@@ -125,6 +130,10 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 		}
 
 		this.setContentView(R.layout.activity_main_splash);
+
+		RateThisApp.init(new RateThisApp.Config(3, 10));
+		RateThisApp.onCreate(this);
+		RateThisApp.showRateDialogIfNeeded(this);
 	}
 
 	/**

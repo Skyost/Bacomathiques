@@ -71,6 +71,12 @@ public class LessonsAdapter extends RecyclerView.Adapter<LessonsAdapter.ViewHold
 	}
 
 	@Override
+	public final void onViewRecycled(final ViewHolder holder) {
+		super.onViewRecycled(holder);
+		glide.clear(holder.preview);
+	}
+
+	@Override
 	public final int getItemCount() {
 		return data.length;
 	}

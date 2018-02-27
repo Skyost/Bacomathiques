@@ -23,6 +23,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.race604.drawable.wave.WaveDrawable;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -211,6 +213,9 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 		}
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+		final WaveDrawable indeterminate = new WaveDrawable(ContextCompat.getDrawable(this, R.mipmap.ic_launcher));
+		indeterminate.setIndeterminate(true);
+
 		dialog = new ProgressDialog(this);
 		dialog.setMessage(this.getString(R.string.dialog_loading_message));
 		dialog.setCancelable(false);
@@ -222,6 +227,7 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 			}
 
 		});
+		dialog.setIndeterminateDrawable(indeterminate);
 		dialog.show();
 	}
 
