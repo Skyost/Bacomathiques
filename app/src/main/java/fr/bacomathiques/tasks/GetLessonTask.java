@@ -29,6 +29,64 @@ public class GetLessonTask extends AsyncTask<String, Void, LessonContent> {
 	}
 
 	/**
+	 * Reads a local file.
+	 *
+	 * @param contextReference A context reference (used to read the file).
+	 * @param url The remote URL.
+	 *
+	 * @return 0 : The local file last modification date, 1 : The local file content.
+	 */
+
+	public static Object[] readLocalFile(final WeakReference<Context> contextReference, final String url) {
+		try {
+			final Context context = contextReference.get();
+			if(context == null) {
+				return null;
+			}
+
+			final String path = url.substring(url.lastIndexOf("/") + 1);
+			return new Object[]{context.getFileStreamPath(path).lastModified(), readLineFromInputStream(context.openFileInput(path))};
+		}
+		catch(final Exception ex) {
+			ex.printStackTrace();
+		}
+
+		return null;
+	}
+
+	/**
+	 * Reads a local lesson content.
+	 *
+	 * @param context The context.
+	 * @param url The lesson URL.
+	 *
+	 * @return 0 : The local file last modification date, 1 : The local lesson content.
+	 */
+
+	public static Object[] readLocalLessonContent(final WeakReference<Context> context, final String url) {
+		long offlineDate = -1L;
+
+		try {
+			final Object[] data = readLocalFile(context, url);
+
+			offlineDate = (long)data[0];
+			final LessonContent content = new LessonContent(new JSONObject((String)data[1]), url);
+
+			return new Object[]{offlineDate, content};
+		}
+		catch(Exception localEx) {
+			localEx.printStackTrace();
+		}
+
+		return new Object[]{offlineDate, null};
+	}
+
+	@Override
+	protected final void onPreExecute() {
+		listener.onGetLessonStarted();
+	}
+
+	/**
 	 * Reads a line from a given url and caches it to a local file.
 	 *
 	 * @param contextReference A context reference (used to save the line to a file).
@@ -77,30 +135,26 @@ public class GetLessonTask extends AsyncTask<String, Void, LessonContent> {
 		return line;
 	}
 
-	/**
-	 * Reads a local file.
-	 *
-	 * @param contextReference A context reference (used to read the file).
-	 * @param url The remote URL.
-	 *
-	 * @return 0 : The local file last modification date, 1 : The local file content.
-	 */
+	@Override
+	protected final LessonContent doInBackground(final String... params) {
+		final String url = params[0];
+		LessonContent content;
 
-	static Object[] readLocalFile(final WeakReference<Context> contextReference, final String url) {
 		try {
-			final Context context = contextReference.get();
-			if(context == null) {
-				return null;
-			}
-
-			final String path = url.substring(url.lastIndexOf("/") + 1);
-			return new Object[]{context.getFileStreamPath(path).lastModified(), readLineFromInputStream(context.openFileInput(path))};
+			content = new LessonContent(new JSONObject(readRemoteLine(context, url)), url);
 		}
-		catch(final Exception ex) {
-			ex.printStackTrace();
+		catch(final Exception remoteEx) {
+			final Object[] result = GetLessonTask.readLocalLessonContent(context, url);
+			content = (LessonContent)result[0];
+			listener.onGetLessonException(remoteEx, (Long)result[0]);
 		}
 
-		return null;
+		return content;
+	}
+
+	@Override
+	protected final void onPostExecute(final LessonContent result) {
+		listener.onGetLessonDone(result);
 	}
 
 	/**
@@ -134,42 +188,6 @@ public class GetLessonTask extends AsyncTask<String, Void, LessonContent> {
 				}
 			}
 		}
-	}
-
-	@Override
-	protected final void onPreExecute() {
-		listener.onGetLessonStarted();
-	}
-
-	@Override
-	protected final LessonContent doInBackground(final String... params) {
-		LessonContent content = null;
-
-		try {
-			content = new LessonContent(new JSONObject(readRemoteLine(context, params[0])));
-		}
-		catch(final Exception remoteEx) {
-			long offlineDate = -1L;
-
-			try {
-				final Object[] data = readLocalFile(context, params[0]);
-
-				offlineDate = (long)data[0];
-				content = new LessonContent(new JSONObject((String)data[1]));
-			}
-			catch(Exception localEx) {
-				localEx.printStackTrace();
-			}
-
-			listener.onGetLessonException(remoteEx, offlineDate);
-		}
-
-		return content;
-	}
-
-	@Override
-	protected final void onPostExecute(final LessonContent result) {
-		listener.onGetLessonDone(result);
 	}
 
 	public interface GetLessonListener {

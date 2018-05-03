@@ -25,13 +25,14 @@ import android.webkit.WebViewClient;
 
 import com.race604.drawable.wave.WaveDrawable;
 
+import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import de.mateware.snacky.Snacky;
 import fr.bacomathiques.R;
-import fr.bacomathiques.lesson.Lesson;
 import fr.bacomathiques.lesson.LessonContent;
+import fr.bacomathiques.lesson.LessonSummary;
 import fr.bacomathiques.tasks.GetLessonTask;
 
 public class LessonActivity extends AppCompatActivity implements GetLessonTask.GetLessonListener {
@@ -50,7 +51,7 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 				final Context context = view.getContext();
 
 				final Intent intent = new Intent(context, LessonActivity.class);
-				intent.putExtra(MainActivity.INTENT_LESSON, new Lesson(id, null, null, null, null).getLessonURL());
+				intent.putExtra(MainActivity.INTENT_LESSON, new LessonSummary(id, null, null, null, null).getLessonURL());
 				if(parts.length > 1) {
 					intent.putExtra(INTENT_ANCHOR, parts[1]);
 				}
@@ -103,7 +104,7 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 		}
 
 		if(savedInstanceState != null && savedInstanceState.containsKey(INTENT_CONTENT)) {
-			onGetLessonDone((LessonContent)savedInstanceState.getParcelable(INTENT_CONTENT));
+			onGetLessonDone((LessonContent)GetLessonTask.readLocalLessonContent(new WeakReference<Context>(this), savedInstanceState.getString(INTENT_CONTENT))[1]);
 		}
 		else {
 			new GetLessonTask(this, this).execute(this.getIntent().getStringExtra(MainActivity.INTENT_LESSON));
@@ -133,7 +134,7 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 	@Override
 	protected final void onSaveInstanceState(final Bundle outState) {
 		if(content != null) {
-			outState.putParcelable(INTENT_CONTENT, content);
+			outState.putString(INTENT_CONTENT, content.getUrl());
 		}
 
 		super.onSaveInstanceState(outState);
@@ -294,7 +295,7 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 		content += "<head>";
 		content += "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>";
 		content += "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"/>";
-		content += "<script type=\"text/javascript\">const BASE_URL = \"" + Lesson.BASE_URL + "\"; const PAGE_ID = \"" + result.getId() + "\";</script>";
+		content += "<script type=\"text/javascript\">const BASE_URL = \"" + LessonSummary.BASE_URL + "\"; const PAGE_ID = \"" + result.getId() + "\";</script>";
 		if(intent.hasExtra(INTENT_ANCHOR)) {
 			content += "<script type=\"text/javascript\">const ANCHOR = \"" + intent.getStringExtra(INTENT_ANCHOR) + "\";</script>";
 		}

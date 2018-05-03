@@ -1,45 +1,26 @@
 package fr.bacomathiques.lesson;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import fr.bacomathiques.utils.Utils;
 
-public class Lesson implements Parcelable {
+public class LessonSummary {
 
 	public static final String BASE_URL = "https://bacomathiqu.es/";
-	public static final Parcelable.Creator<Lesson> CREATOR = new Parcelable.Creator<Lesson>() {
-
-		@Override
-		public final Lesson createFromParcel(final Parcel source) {
-			return new Lesson(source);
-		}
-
-		@Override
-		public final Lesson[] newArray(final int size) {
-			return new Lesson[size];
-		}
-
-	};
 	private static final String API_URL = BASE_URL + "api/v1/";
+
 	private String id;
 	private String title;
 	private String description;
 	private String preview;
 	private String placeholder;
 
-	private Lesson(final Parcel parcel) {
-		this(parcel.readString(), parcel.readString(), parcel.readString(), parcel.readString(), parcel.readString());
-	}
-
-	public Lesson(final JSONObject object) throws JSONException {
+	public LessonSummary(final JSONObject object) throws JSONException {
 		this(object.getString("id"), object.getString("title"), Utils.fromHtml(object.getString("excerpt")).toString(), object.getString("preview"), Utils.fromHtml(object.getString("caption")).toString());
 	}
 
-	public Lesson(final String id, final String title, final String description, final String preview, final String placeholder) {
+	public LessonSummary(final String id, final String title, final String description, final String preview, final String placeholder) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -55,20 +36,6 @@ public class Lesson implements Parcelable {
 
 	public static String getLessonsURL() {
 		return API_URL + "lessons.json";
-	}
-
-	@Override
-	public final int describeContents() {
-		return 0;
-	}
-
-	@Override
-	public final void writeToParcel(final Parcel parcel, final int flags) {
-		parcel.writeString(id);
-		parcel.writeString(title);
-		parcel.writeString(description);
-		parcel.writeString(preview);
-		parcel.writeString(placeholder);
 	}
 
 	/**

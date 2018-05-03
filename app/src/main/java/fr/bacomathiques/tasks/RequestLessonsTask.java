@@ -10,9 +10,9 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.bacomathiques.lesson.Lesson;
+import fr.bacomathiques.lesson.LessonSummary;
 
-public class RequestLessonsTask extends AsyncTask<String, Void, Lesson[]> {
+public class RequestLessonsTask extends AsyncTask<String, Void, LessonSummary[]> {
 
 	private final WeakReference<Context> context;
 	private final RequestLessonsListener listener;
@@ -27,37 +27,6 @@ public class RequestLessonsTask extends AsyncTask<String, Void, Lesson[]> {
 		listener.onRequestLessonsStarted();
 	}
 
-	@Override
-	protected final Lesson[] doInBackground(final String... params) {
-		Lesson[] lessons = null;
-
-		try {
-			lessons = readFromJSON(GetLessonTask.readRemoteLine(context, params[0]));
-		}
-		catch(final Exception ex) {
-			long offlineDate = -1L;
-
-			try {
-				final Object[] data = GetLessonTask.readLocalFile(context, params[0]);
-
-				offlineDate = (long)data[0];
-				lessons = readFromJSON((String)data[1]);
-			}
-			catch(Exception localEx) {
-				localEx.printStackTrace();
-			}
-
-			listener.onRequestLessonsException(ex, offlineDate);
-		}
-
-		return lessons;
-	}
-
-	@Override
-	protected final void onPostExecute(final Lesson[] result) {
-		listener.onRequestLessonsDone(result);
-	}
-
 	/**
 	 * Reads a JSONArray from a string.
 	 *
@@ -68,22 +37,70 @@ public class RequestLessonsTask extends AsyncTask<String, Void, Lesson[]> {
 	 * @throws JSONException If a JSON exception occurs.
 	 */
 
-	private Lesson[] readFromJSON(final String json) throws JSONException {
+	public static LessonSummary[] readFromJSON(final String json) throws JSONException {
 		final JSONArray lessons = new JSONArray(json);
 
-		final List<Lesson> result = new ArrayList<>();
+		final List<LessonSummary> result = new ArrayList<>();
 		for(int i = 0; i < lessons.length(); i++) {
-			result.add(new Lesson(lessons.getJSONObject(i)));
+			result.add(new LessonSummary(lessons.getJSONObject(i)));
 		}
 
-		return result.toArray(new Lesson[result.size()]);
+		return result.toArray(new LessonSummary[result.size()]);
+	}
+
+	/**
+	 * Reads local lessons.
+	 *
+	 * @param context The context.
+	 *
+	 * @return 0 : The local file last modification date, 1 : The local lessons summary.
+	 */
+
+	public static Object[] readLocalLessons(final WeakReference<Context> context) {
+		long offlineDate = -1L;
+
+		try {
+			final Object[] data = GetLessonTask.readLocalFile(context, LessonSummary.getLessonsURL());
+
+			offlineDate = (long)data[0];
+			final LessonSummary[] lessons = readFromJSON((String)data[1]);
+
+			return new Object[]{offlineDate, lessons};
+		}
+		catch(Exception localEx) {
+			localEx.printStackTrace();
+		}
+
+		return new Object[]{offlineDate, null};
+	}
+
+	@Override
+	protected final LessonSummary[] doInBackground(final String... params) {
+		final String url = params[0];
+		LessonSummary[] lessons;
+
+		try {
+			lessons = readFromJSON(GetLessonTask.readRemoteLine(context, url));
+		}
+		catch(final Exception ex) {
+			final Object[] result = readLocalLessons(context);
+			lessons = (LessonSummary[])result[1];
+			listener.onRequestLessonsException(ex, (Long)result[0]);
+		}
+
+		return lessons;
+	}
+
+	@Override
+	protected final void onPostExecute(final LessonSummary[] result) {
+		listener.onRequestLessonsDone(result);
 	}
 
 	public interface RequestLessonsListener {
 
 		void onRequestLessonsStarted();
 		void onRequestLessonsException(final Exception ex, final long offlineDate);
-		void onRequestLessonsDone(final Lesson[] result);
+		void onRequestLessonsDone(final LessonSummary[] result);
 
 	}
 

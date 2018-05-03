@@ -12,7 +12,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 
 import fr.bacomathiques.R;
-import fr.bacomathiques.lesson.Lesson;
+import fr.bacomathiques.lesson.LessonSummary;
 import fr.bacomathiques.utils.Utils;
 
 public class LessonsAdapter extends RecyclerView.Adapter<LessonsAdapter.ViewHolder> {
@@ -21,14 +21,14 @@ public class LessonsAdapter extends RecyclerView.Adapter<LessonsAdapter.ViewHold
 
 	private final RequestManager glide;
 	private final int columns;
-	private Lesson[] data;
+	private LessonSummary[] data;
 
 	private RecyclerView recyclerView;
 
-	public LessonsAdapter(final RequestManager glide, final int columns, final Lesson... data) {
+	public LessonsAdapter(final RequestManager glide, final int columns, final LessonSummary... data) {
 		this.glide = glide;
 		this.columns = columns;
-		this.data = data == null ? new Lesson[0] : data;
+		this.data = data == null ? new LessonSummary[0] : data;
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class LessonsAdapter extends RecyclerView.Adapter<LessonsAdapter.ViewHold
 
 	@Override
 	public final void onBindViewHolder(final ViewHolder holder, final int position) {
-		final Lesson lesson = data[position];
+		final LessonSummary lesson = data[position];
 
 		glide.load(lesson.getPreviewURL()).apply(DEFAULT_OPTIONS).transition(DrawableTransitionOptions.withCrossFade()).into(holder.preview);
 		holder.caption.setText(lesson.getPlaceholder());
@@ -97,7 +97,7 @@ public class LessonsAdapter extends RecyclerView.Adapter<LessonsAdapter.ViewHold
 	 * @return The adapter data.
 	 */
 
-	public final Lesson[] getData() {
+	public final LessonSummary[] getData() {
 		return data;
 	}
 
@@ -107,8 +107,8 @@ public class LessonsAdapter extends RecyclerView.Adapter<LessonsAdapter.ViewHold
 	 * @param data The adapter data.
 	 */
 
-	public final void setData(final Lesson... data) {
-		this.data = data == null ? new Lesson[0] : data;
+	public final void setData(final LessonSummary... data) {
+		this.data = data == null ? new LessonSummary[0] : data;
 		notifyDataSetChanged();
 	}
 

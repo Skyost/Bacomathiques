@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Parcelable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -23,15 +22,14 @@ import android.widget.RelativeLayout;
 import com.bumptech.glide.Glide;
 import com.kobakei.ratethisapp.RateThisApp;
 
+import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import de.mateware.snacky.Snacky;
 import fr.bacomathiques.R;
 import fr.bacomathiques.adapters.LessonsAdapter;
-import fr.bacomathiques.lesson.Lesson;
+import fr.bacomathiques.lesson.LessonSummary;
 import fr.bacomathiques.tasks.RequestLessonsTask;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -50,24 +48,19 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if(savedInstanceState != null && savedInstanceState.containsKey(INTENT_LESSONS)) {
-			final List<Lesson> lessons = new ArrayList<>();
-			for(final Parcelable parcelable : savedInstanceState.getParcelableArray(INTENT_LESSONS)) {
-				lessons.add((Lesson)parcelable);
-			}
-
-			onRequestLessonsDone(lessons.toArray(new Lesson[lessons.size()]));
+			onRequestLessonsDone((LessonSummary[])RequestLessonsTask.readLocalLessons(new WeakReference<Context>(this))[1]);
 			return;
 		}
 
 		displaySplashScreen();
 		CalligraphyConfig.initDefault(null);
-		new RequestLessonsTask(this, this).execute(Lesson.getLessonsURL());
+		new RequestLessonsTask(this, this).execute(LessonSummary.getLessonsURL());
 	}
 
 	@Override
 	public final void onSaveInstanceState(final Bundle outState) {
 		if(adapter != null) {
-			outState.putParcelableArray(INTENT_LESSONS, adapter.getData());
+			outState.putBoolean(INTENT_LESSONS, true);
 		}
 
 		super.onSaveInstanceState(outState);
@@ -89,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 	}
 
 	@Override
-	public final void onRequestLessonsDone(final Lesson[] result) {
+	public final void onRequestLessonsDone(final LessonSummary[] result) {
 		if(this.isChangingConfigurations() || this.isFinishing()) {
 			return;
 		}
