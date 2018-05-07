@@ -145,7 +145,7 @@ public class GetLessonTask extends AsyncTask<String, Void, LessonContent> {
 		}
 		catch(final Exception remoteEx) {
 			final Object[] result = GetLessonTask.readLocalLessonContent(context, url);
-			content = (LessonContent)result[0];
+			content = (LessonContent)result[1];
 			listener.onGetLessonException(remoteEx, (Long)result[0]);
 		}
 
