@@ -8,7 +8,7 @@
 	{% endif %}
 
 	<!-- Description -->
-	<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{site.tagline}}{% endif %}"/>
+	<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{ site.tagline }}{% endif %}"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	
 	<!-- OpenGraph -->
@@ -31,7 +31,7 @@
 	<!-- Styles -->
 	<meta name="theme-color" content="#{{ layout.metacolor }}"/>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css"/>
 
 	{% if layout.smartbanner %}
 		<meta name="smartbanner:title" content="{{ site.title }}">
