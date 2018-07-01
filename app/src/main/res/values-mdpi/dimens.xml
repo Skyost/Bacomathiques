@@ -1,4 +1,0 @@
-<resources>
-    <dimen name="lesson_item_title_padding">5dp</dimen>
-    <dimen name="lesson_item_preview_height">55dp</dimen>
-</resources>

@@ -13,7 +13,7 @@
     <item
         android:icon="@drawable/menu_lesson_action_more"
         android:orderInCategory="101"
-        android:title="More"
+        android:title="@string/menu_lesson_action_more"
         app:showAsAction="always">
 
         <menu>

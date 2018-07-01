@@ -74,8 +74,8 @@ public class GetLessonTask extends AsyncTask<String, Void, LessonContent> {
 
 			return new Object[]{offlineDate, content};
 		}
-		catch(Exception localEx) {
-			localEx.printStackTrace();
+		catch(final Exception ex) {
+			ex.printStackTrace();
 		}
 
 		return new Object[]{offlineDate, null};

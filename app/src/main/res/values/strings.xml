@@ -4,7 +4,6 @@
     <string name="activity_lesson_defaulttitle">Chargement&#8230;</string>
 
     <string name="dialog_generic_error">Erreur</string>
-    <string name="dialog_generic_ok">OK</string>
 
     <string name="dialog_loading_message">Téléchargement du cours&#8230;</string>
     <string name="dialog_errorrequestlessons_message">Impossible d\'obtenir la liste des cours pour le moment. Veuillez réessayer plus tard.</string>

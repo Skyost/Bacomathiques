@@ -1,5 +1,6 @@
 package fr.bacomathiques.adapters;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -32,7 +33,7 @@ public class LessonsAdapter extends RecyclerView.Adapter<LessonsAdapter.ViewHold
 	}
 
 	@Override
-	public void onAttachedToRecyclerView(final RecyclerView recyclerView) {
+	public void onAttachedToRecyclerView(@NonNull final RecyclerView recyclerView) {
 		super.onAttachedToRecyclerView(recyclerView);
 
 		this.recyclerView = recyclerView;
@@ -41,7 +42,6 @@ public class LessonsAdapter extends RecyclerView.Adapter<LessonsAdapter.ViewHold
 	@Override
 	public final ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
 		final CardView view = (CardView)LayoutInflater.from(parent.getContext()).inflate(R.layout.main_lessons_recyclerview_item, parent, false);
-
 		return new ViewHolder(view);
 	}
 
@@ -60,18 +60,11 @@ public class LessonsAdapter extends RecyclerView.Adapter<LessonsAdapter.ViewHold
 			return;
 		}
 
-		holder.title.post(new Runnable() {
-
-			@Override
-			public void run() {
-				adjustToHeight(position, holder);
-			}
-
-		});
+		holder.title.post(() -> adjustToHeight(position, holder));
 	}
 
 	@Override
-	public final void onViewRecycled(final ViewHolder holder) {
+	public final void onViewRecycled(@NonNull final ViewHolder holder) {
 		super.onViewRecycled(holder);
 		glide.clear(holder.preview);
 	}

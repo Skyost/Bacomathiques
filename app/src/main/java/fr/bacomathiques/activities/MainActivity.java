@@ -1,7 +1,6 @@
 package fr.bacomathiques.activities;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -48,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if(savedInstanceState != null && savedInstanceState.containsKey(INTENT_LESSONS)) {
-			onRequestLessonsDone((LessonSummary[])RequestLessonsTask.readLocalLessons(new WeakReference<Context>(this))[1]);
+			onRequestLessonsDone((LessonSummary[])RequestLessonsTask.readLocalLessons(new WeakReference<>(this))[1]);
 			return;
 		}
 
@@ -93,21 +91,13 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 			return;
 		}
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-		new AlertDialog.Builder(this).setTitle(R.string.dialog_generic_error).setMessage(R.string.dialog_errorrequestlessons_message).setPositiveButton(R.string.dialog_generic_ok, new DialogInterface.OnClickListener() {
-
-			@Override
-			public final void onClick(final DialogInterface dialogInterface, final int id) {
-				dialogInterface.dismiss();
-			}
-
-		}).setOnDismissListener(new DialogInterface.OnDismissListener() {
-
-			@Override
-			public final void onDismiss(final DialogInterface dialogInterface) {
-				MainActivity.this.finish();
-			}
-
-		}).create().show();
+		new AlertDialog.Builder(this)
+				.setTitle(R.string.dialog_generic_error)
+				.setMessage(R.string.dialog_errorrequestlessons_message)
+				.setPositiveButton(android.R.string.ok, null)
+				.setOnDismissListener(dialogInterface -> MainActivity.this.finish())
+				.create()
+				.show();
 	}
 
 	/**
@@ -142,39 +132,27 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 			return;
 		}
 
-		layout.animate().alpha(0f).setDuration(700L).withEndAction(new Runnable() {
-
-			@Override
-			public final void run() {
-				final ActionBar actionBar = MainActivity.this.getSupportActionBar();
-				if(actionBar != null) {
-					actionBar.show();
-				}
-
-				MainActivity.this.setContentView(R.layout.activity_main);
-				setupRecyclerView();
-
-				if(offlineDate != -1L) {
-					final Calendar calendar = Calendar.getInstance();
-					calendar.setTimeInMillis(offlineDate);
-
-					new Handler().postDelayed(new Runnable() {
-
-						@Override
-						public void run() {
-							Snacky.builder()
-									.setActivity(MainActivity.this)
-									.setText(MainActivity.this.getString(R.string.snackbar_offline, SimpleDateFormat.getDateInstance().format(calendar.getTime())))
-									.setDuration(Snacky.LENGTH_LONG)
-									.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimaryDark))
-									.info()
-									.show();
-						}
-
-					}, 500);
-				}
+		layout.animate().alpha(0f).setDuration(700L).withEndAction(() -> {
+			final ActionBar actionBar = MainActivity.this.getSupportActionBar();
+			if(actionBar != null) {
+				actionBar.show();
 			}
 
+			MainActivity.this.setContentView(R.layout.activity_main);
+			setupRecyclerView();
+
+			if(offlineDate != -1L) {
+				final Calendar calendar = Calendar.getInstance();
+				calendar.setTimeInMillis(offlineDate);
+
+				new Handler().postDelayed(() -> Snacky.builder()
+						.setActivity(MainActivity.this)
+						.setText(MainActivity.this.getString(R.string.snackbar_offline, SimpleDateFormat.getDateInstance().format(calendar.getTime())))
+						.setDuration(Snacky.LENGTH_LONG)
+						.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimaryDark))
+						.info()
+						.show(), 500);
+			}
 		}).start();
 	}
 
@@ -227,17 +205,12 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 	private void setupRecyclerView() {
 		final RecyclerView recyclerView = this.findViewById(R.id.main_lessons_recyclerview);
 
-		recyclerView.setOnTouchListener(new View.OnTouchListener() {
-
-			@Override
-			public final boolean onTouch(final View view, final MotionEvent motionEvent) {
-				if(clickedCaption != null) {
-					onPreviewClick(clickedCaption);
-					return true;
-				}
-				return false;
+		recyclerView.setOnTouchListener((view, motionEvent) -> {
+			if(clickedCaption != null) {
+				onPreviewClick(clickedCaption);
+				return true;
 			}
-
+			return false;
 		});
 
 		final int columns = adapter.getColumnsNumber();

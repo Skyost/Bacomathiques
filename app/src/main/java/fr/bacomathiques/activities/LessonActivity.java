@@ -3,7 +3,6 @@ package fr.bacomathiques.activities;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
@@ -187,28 +186,14 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 			launchBrowser(this, Uri.parse("https://github.com/Skyost/Bacomathiques/issues/new?title=[APP]%20Rapport%20de%20bug"));
 			return true;
 		case R.id.menu_lesson_action_about:
-			new AlertDialog.Builder(this).setTitle(R.string.dialog_lesson_about_title).setMessage(R.string.dialog_lesson_about_message).setNegativeButton(R.string.dialog_lesson_button_negative, new DialogInterface.OnClickListener() {
-
-				@Override
-				public final void onClick(final DialogInterface dialogInterface, final int which) {
-					dialogInterface.dismiss();
-				}
-
-			}).setNeutralButton(R.string.dialog_lesson_button_neutral, new DialogInterface.OnClickListener() {
-
-				@Override
-				public final void onClick(final DialogInterface dialogInterface, final int which) {
-					launchBrowser(LessonActivity.this, Uri.parse("https://bacomathiqu.es/a-propos/"));
-				}
-
-			}).setPositiveButton(R.string.dialog_lesson_button_positive, new DialogInterface.OnClickListener() {
-
-				@Override
-				public final void onClick(final DialogInterface dialogInterface, final int which) {
-					launchBrowser(LessonActivity.this, Uri.parse("https://play.google.com/store/apps/details?id=fr.bacomathiques"));
-				}
-
-			}).show();
+			new AlertDialog.Builder(this)
+					.setTitle(R.string.dialog_lesson_about_title)
+					.setMessage(R.string.dialog_lesson_about_message)
+					.setNegativeButton(R.string.dialog_lesson_button_negative, null)
+					.setNeutralButton(R.string.dialog_lesson_button_neutral, (dialogInterface, which) -> launchBrowser(LessonActivity.this, Uri.parse("https://bacomathiqu.es/a-propos/")))
+					.setPositiveButton(R.string.dialog_lesson_button_positive, (dialogInterface, which) -> launchBrowser(LessonActivity.this, Uri.parse("https://play.google.com/store/apps/details?id=fr.bacomathiques")))
+					.create()
+					.show();
 			return true;
 		}
 
@@ -230,14 +215,7 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 		dialog = new ProgressDialog(this);
 		dialog.setMessage(this.getString(R.string.dialog_loading_message));
 		dialog.setCancelable(false);
-		dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-
-			@Override
-			public final void onDismiss(final DialogInterface dialogInterface) {
-				LessonActivity.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-			}
-
-		});
+		dialog.setOnDismissListener(dialogInterface -> LessonActivity.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED));
 		dialog.setIndeterminateDrawable(indeterminate);
 		dialog.show();
 	}
@@ -270,21 +248,13 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 		dialog = null;
 
 		if(result == null) {
-			new AlertDialog.Builder(this).setTitle(R.string.dialog_generic_error).setMessage(R.string.dialog_errorgetlesson_message).setPositiveButton(R.string.dialog_generic_ok, new DialogInterface.OnClickListener() {
-
-				@Override
-				public final void onClick(final DialogInterface dialogInterface, final int id) {
-					dialogInterface.dismiss();
-				}
-
-			}).setOnDismissListener(new DialogInterface.OnDismissListener() {
-
-				@Override
-				public final void onDismiss(final DialogInterface dialogInterface) {
-					LessonActivity.this.onBackPressed();
-				}
-
-			}).create().show();
+			new AlertDialog.Builder(this)
+					.setTitle(R.string.dialog_generic_error)
+					.setMessage(R.string.dialog_errorgetlesson_message)
+					.setPositiveButton(android.R.string.ok, null)
+					.setOnDismissListener(dialogInterface -> LessonActivity.this.onBackPressed())
+					.create()
+					.show();
 			return;
 		}
 
