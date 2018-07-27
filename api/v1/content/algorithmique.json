@@ -2,4 +2,4 @@
 layout: compress
 ---
 {% capture linebreak %}
-{% endcapture %}{% for page in site.pages %}{% if page.permalink == '/cours/algorithmique/' %}{% assign id = page.path | replace: 'lessons/', '' | replace: '.html', '' %}{"id": "{{ id }}", "title": "{{ page.title }}", "content": "{{ page.content | escape | replace: '\', '&#92;' | remove: "	" | replace: linebreak, " " }}"}{% break %}{% endif %}{% endfor %}
+{% endcapture %}{% for page in site.pages %}{% if page.permalink == '/cours/algorithmique/' %}{% assign id = page.path | replace: 'lessons/', '' | replace: '.html', '' %}{"id": "{{ id }}", "title": "{{ page.title }}", "annals": [{% for annal in page.annals %}"assets/pdf/annales/{{ annal }}.pdf"{% unless forloop.last %},{% endunless %}{% endfor %}], "annals": [{% for annal in page.annals %}"assets/pdf/annales/{{ annal }}.pdf"{% unless forloop.last %},{% endunless %}{% endfor %}], "content": "{{ page.content | escape | replace: '\', '&#92;' | remove: "	" | replace: linebreak, " " }}"}{% break %}{% endif %}{% endfor %}
