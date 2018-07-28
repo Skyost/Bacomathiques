@@ -17,7 +17,7 @@
     <string name="dialog_lesson_annalsask_negative">Correction</string>
 
     <string name="dialog_lesson_about_title">À Propos</string>
-    <string name="dialog_lesson_about_message">Révisez votre BAC de mathématiques avec <em>Bacomathiques</em> !\nVous pouvez consulter les licences des contenus, technologies utilisées et autres en cliquant sur le bouton <strong>"Plus d'informations"</strong>.\nSinon, n\'hésitez pas à laisser une (bonne) note sur la <strong>fiche Google Play</strong> de l\'application !</string>
+    <string name="dialog_lesson_about_message">Révisez votre BAC de mathématiques avec &lt;em&gt;Bacomathiques&lt;/em&gt; !\nVous pouvez consulter les licences des contenus, technologies utilisées et autres en cliquant sur le bouton &lt;strong&gt;"Plus d'informations"&lt;/strong&gt;.\nSinon, n\'hésitez pas à laisser une (bonne) note sur la &lt;strong&gt;fiche Google Play&lt;/strong&gt; de l\'application !</string>
     <string name="dialog_lesson_about_button_negative">Fermer</string>
     <string name="dialog_lesson_about_button_neutral">Plus d\'informations</string>
     <string name="dialog_lesson_about_button_positive">Fiche Google Play</string>
