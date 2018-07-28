@@ -14,10 +14,10 @@
         android:orientation="vertical">
 
         <TextView
-            fontPath="fonts/handlee-regular.ttf"
             android:id="@+id/main_lessons_recyclerview_item_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/handlee"
             android:background="@color/colorPrimary"
             android:gravity="center_vertical|center_horizontal"
             android:padding="@dimen/lesson_item_title_padding"

@@ -1,4 +1,4 @@
-package fr.bacomathiques.adapters;
+package fr.bacomathiques.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
@@ -14,19 +14,53 @@ import com.bumptech.glide.request.RequestOptions;
 
 import fr.bacomathiques.R;
 import fr.bacomathiques.lesson.LessonSummary;
-import fr.bacomathiques.utils.Utils;
+import fr.bacomathiques.util.Utils;
 
-public class LessonsAdapter extends RecyclerView.Adapter<LessonsAdapter.ViewHolder> {
+/**
+ * An adapter that can contain lessons.
+ */
+
+public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder> {
+
+	/**
+	 * Default Glide options.
+	 */
 
 	private static final RequestOptions DEFAULT_OPTIONS = new RequestOptions().centerCrop();
 
+	/**
+	 * The current glide instance.
+	 */
+
 	private final RequestManager glide;
+
+	/**
+	 * Number of columns to display.
+	 */
+
 	private final int columns;
+
+	/**
+	 * Summaries to display.
+	 */
+
 	private LessonSummary[] data;
+
+	/**
+	 * The parent recycler view.
+	 */
 
 	private RecyclerView recyclerView;
 
-	public LessonsAdapter(final RequestManager glide, final int columns, final LessonSummary... data) {
+	/**
+	 * Creates a new lessons adapter instance.
+	 *
+	 * @param glide The Glide instance.
+	 * @param columns Number of columns to display.
+	 * @param data Data to display.
+	 */
+
+	public LessonAdapter(final RequestManager glide, final int columns, final LessonSummary... data) {
 		this.glide = glide;
 		this.columns = columns;
 		this.data = data == null ? new LessonSummary[0] : data;
@@ -75,7 +109,7 @@ public class LessonsAdapter extends RecyclerView.Adapter<LessonsAdapter.ViewHold
 	}
 
 	/**
-	 * Gets columns number for this RecyclerView.
+	 * Returns columns number for this RecyclerView.
 	 *
 	 * @return Columns number.
 	 */
@@ -85,7 +119,7 @@ public class LessonsAdapter extends RecyclerView.Adapter<LessonsAdapter.ViewHold
 	}
 
 	/**
-	 * Gets the adapter data.
+	 * Returns the adapter data.
 	 *
 	 * @return The adapter data.
 	 */
@@ -166,13 +200,47 @@ public class LessonsAdapter extends RecyclerView.Adapter<LessonsAdapter.ViewHold
 		}
 	}
 
+	/**
+	 * A lesson summary view holder.
+	 */
+
 	static class ViewHolder extends RecyclerView.ViewHolder {
 
+		/**
+		 * The preview image.
+		 */
+
 		private ImageView preview;
+
+		/**
+		 * The caption.
+		 */
+
 		private TextView caption;
+
+		/**
+		 * The title.
+		 */
+
 		private TextView title;
+
+		/**
+		 * The description.
+		 */
+
 		private TextView description;
+
+		/**
+		 * The check out text view.
+		 */
+
 		private TextView checkOut;
+
+		/**
+		 * Creates a new view holder instance.
+		 *
+		 * @param view The card view.
+		 */
 
 		private ViewHolder(final CardView view) {
 			super(view);

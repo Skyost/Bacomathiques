@@ -3,22 +3,77 @@ package fr.bacomathiques.lesson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import fr.bacomathiques.utils.Utils;
+import fr.bacomathiques.util.Utils;
+
+/**
+ * Represents a lesson's summary.
+ */
 
 public class LessonSummary {
 
+	/**
+	 * The API base URL.
+	 */
+
 	public static final String BASE_URL = "https://bacomathiqu.es/";
+
+	/**
+	 * The API URL.
+	 */
+
 	private static final String API_URL = BASE_URL + "api/v1/";
 
+	/**
+	 * The lesson's ID.
+	 */
+
 	private String id;
+
+	/**
+	 * The lesson's content.
+	 */
+
 	private String title;
+
+	/**
+	 * The lesson's description.
+	 */
+
 	private String description;
+
+	/**
+	 * The preview URL.
+	 */
+
 	private String preview;
+
+	/**
+	 * The placeholder content.
+	 */
+
 	private String placeholder;
+
+	/**
+	 * Creates a new lesson summary instance.
+	 *
+	 * @param object The JSON object.
+	 *
+	 * @throws JSONException If a JSON exception occurs.
+	 */
 
 	public LessonSummary(final JSONObject object) throws JSONException {
 		this(object.getString("id"), object.getString("title"), Utils.fromHtml(object.getString("excerpt")).toString(), object.getString("preview"), Utils.fromHtml(object.getString("caption")).toString());
 	}
+
+	/**
+	 * Creates a new lesson summary instance.
+	 *
+	 * @param id The lesson's ID.
+	 * @param title The lesson's title.
+	 * @param description The lesson's description.
+	 * @param preview The preview URL.
+	 * @param placeholder The placeholder content.
+	 */
 
 	public LessonSummary(final String id, final String title, final String description, final String preview, final String placeholder) {
 		this.id = id;
@@ -29,7 +84,7 @@ public class LessonSummary {
 	}
 
 	/**
-	 * Gets lessons URL.
+	 * Returns lessons URL.
 	 *
 	 * @return Lessons URL.
 	 */
@@ -39,7 +94,7 @@ public class LessonSummary {
 	}
 
 	/**
-	 * Gets the lesson ID.
+	 * Returns the lesson ID.
 	 *
 	 * @return The lesson ID.
 	 */
@@ -59,7 +114,7 @@ public class LessonSummary {
 	}
 
 	/**
-	 * Gets the lesson title.
+	 * Returns the lesson title.
 	 *
 	 * @return The lesson title.
 	 */
@@ -79,7 +134,7 @@ public class LessonSummary {
 	}
 
 	/**
-	 * Gets the lesson description.
+	 * Returns the lesson description.
 	 *
 	 * @return The lesson description.
 	 */
@@ -119,7 +174,7 @@ public class LessonSummary {
 	}
 
 	/**
-	 * Gets the lesson preview URL.
+	 * Returns the lesson preview URL.
 	 *
 	 * @return The lesson preview URL.
 	 */
@@ -129,7 +184,7 @@ public class LessonSummary {
 	}
 
 	/**
-	 * Gets the lesson placeholder.
+	 * Returns the lesson placeholder.
 	 *
 	 * @return The lesson placeholder.
 	 */
@@ -149,7 +204,7 @@ public class LessonSummary {
 	}
 
 	/**
-	 * Gets the lesson URL.
+	 * Returns the lesson URL.
 	 *
 	 * @return The lesson URL.
 	 */

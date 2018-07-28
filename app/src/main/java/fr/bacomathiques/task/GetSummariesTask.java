@@ -1,4 +1,4 @@
-package fr.bacomathiques.tasks;
+package fr.bacomathiques.task;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -12,19 +12,34 @@ import java.util.List;
 
 import fr.bacomathiques.lesson.LessonSummary;
 
-public class RequestLessonsTask extends AsyncTask<String, Void, LessonSummary[]> {
+/**
+ * The task that allows to get all available summaries.
+ */
+
+public class GetSummariesTask extends AsyncTask<String, Void, LessonSummary[]> {
+
+	/**
+	 * A context reference.
+	 */
 
 	private final WeakReference<Context> context;
+
+	/**
+	 * The listener.
+	 */
+
 	private final RequestLessonsListener listener;
 
-	public RequestLessonsTask(final Context context, final RequestLessonsListener listener) {
+	/**
+	 * Creates a new get summaries task instance.
+	 *
+	 * @param context The context.
+	 * @param listener The listener.
+	 */
+
+	public GetSummariesTask(final Context context, final RequestLessonsListener listener) {
 		this.context = new WeakReference<>(context);
 		this.listener = listener;
-	}
-
-	@Override
-	protected final void onPreExecute() {
-		listener.onRequestLessonsStarted();
 	}
 
 	/**
@@ -37,7 +52,7 @@ public class RequestLessonsTask extends AsyncTask<String, Void, LessonSummary[]>
 	 * @throws JSONException If a JSON exception occurs.
 	 */
 
-	public static LessonSummary[] readFromJSON(final String json) throws JSONException {
+	private static LessonSummary[] readFromJSON(final String json) throws JSONException {
 		final JSONArray lessons = new JSONArray(json);
 
 		final List<LessonSummary> result = new ArrayList<>();
@@ -46,6 +61,11 @@ public class RequestLessonsTask extends AsyncTask<String, Void, LessonSummary[]>
 		}
 
 		return result.toArray(new LessonSummary[result.size()]);
+	}
+
+	@Override
+	protected final void onPreExecute() {
+		listener.onGetSummariesStarted();
 	}
 
 	/**
@@ -85,7 +105,7 @@ public class RequestLessonsTask extends AsyncTask<String, Void, LessonSummary[]>
 		catch(final Exception ex) {
 			final Object[] result = readLocalLessons(context);
 			lessons = (LessonSummary[])result[1];
-			listener.onRequestLessonsException(ex, (Long)result[0]);
+			listener.onGetSummariesException(ex, (Long)result[0]);
 		}
 
 		return lessons;
@@ -93,14 +113,37 @@ public class RequestLessonsTask extends AsyncTask<String, Void, LessonSummary[]>
 
 	@Override
 	protected final void onPostExecute(final LessonSummary[] result) {
-		listener.onRequestLessonsDone(result);
+		listener.onGetSummariesDone(result);
 	}
+
+	/**
+	 * The listener interface.
+	 */
 
 	public interface RequestLessonsListener {
 
-		void onRequestLessonsStarted();
-		void onRequestLessonsException(final Exception ex, final long offlineDate);
-		void onRequestLessonsDone(final LessonSummary[] result);
+		/**
+		 * Triggered when the task starts to get the summaries.
+		 */
+
+		void onGetSummariesStarted();
+
+		/**
+		 * Triggered when an exception occurs.
+		 *
+		 * @param ex The exception.
+		 * @param offlineDate The offline content date.
+		 */
+
+		void onGetSummariesException(final Exception ex, final long offlineDate);
+
+		/**
+		 * Triggered when task has found summaries.
+		 *
+		 * @param result All summaries.
+		 */
+
+		void onGetSummariesDone(final LessonSummary[] result);
 
 	}
 

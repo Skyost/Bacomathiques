@@ -6,8 +6,10 @@ android {
         applicationId "fr.bacomathiques"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 9
-        versionName "v0.3.2"
+        versionCode 10
+        versionName "v0.4"
+        buildConfigField "String", "ADMOB_APP_ID", "\"" + getLocalProperty("admob.appId") + "\""
+        resValue "string", "ADMOB_WAITING_DIALOG", getLocalProperty("admob.waitingDialog")
     }
     buildTypes {
         release {
@@ -17,6 +19,7 @@ android {
         debug {
             applicationIdSuffix = ".dev"
             versionNameSuffix "-dev"
+            resValue "string", "ADMOB_WAITING_DIALOG", "ca-app-pub-3940256099942544/6300978111"
         }
     }
     compileOptions {
@@ -28,18 +31,22 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:customtabs:27.1.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
-
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
-
-    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
-
+    implementation 'io.github.inflationx:viewpump:1.0.0'
     implementation 'com.github.matecode:Snacky:1.0.3'
-
     implementation 'com.race604.waveloading:library:1.1.1'
-
     implementation 'io.github.kobakei:ratethisapp:1.2.0'
+    implementation 'com.github.delight-im:Android-AdvancedWebView:v3.0.0'
+    implementation 'com.google.android.gms:play-services-ads:15.0.1'
+}
+
+def getLocalProperty(String name) {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    return properties.getProperty(name);
 }

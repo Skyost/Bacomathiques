@@ -1,4 +1,4 @@
-package fr.bacomathiques.tasks;
+package fr.bacomathiques.task;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -18,10 +18,30 @@ import java.net.URL;
 
 import fr.bacomathiques.lesson.LessonContent;
 
+/**
+ * The task that allows to get a lesson.
+ */
+
 public class GetLessonTask extends AsyncTask<String, Void, LessonContent> {
 
+	/**
+	 * A context reference.
+	 */
+
 	private final WeakReference<Context> context;
+
+	/**
+	 * The listener.
+	 */
+
 	private final GetLessonListener listener;
+
+	/**
+	 * Creates a new get lesson task instance.
+	 *
+	 * @param context The context.
+	 * @param listener The listener.
+	 */
 
 	public GetLessonTask(final Context context, final GetLessonListener listener) {
 		this.context = new WeakReference<>(context);
@@ -190,10 +210,33 @@ public class GetLessonTask extends AsyncTask<String, Void, LessonContent> {
 		}
 	}
 
+	/**
+	 * The listener interface.
+	 */
+
 	public interface GetLessonListener {
 
+		/**
+		 * Triggered when the task starts to get the lesson.
+		 */
+
 		void onGetLessonStarted();
+
+		/**
+		 * Triggered when an exception occurs.
+		 *
+		 * @param ex The exception.
+		 * @param offlineDate The offline content date.
+		 */
+
 		void onGetLessonException(final Exception ex, final long offlineDate);
+
+		/**
+		 * Triggered when task has found a lesson.
+		 *
+		 * @param result The lesson content.
+		 */
+
 		void onGetLessonDone(final LessonContent result);
 
 	}

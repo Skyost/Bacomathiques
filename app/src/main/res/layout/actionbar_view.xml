@@ -16,7 +16,6 @@
         app:srcCompat="@mipmap/ic_launcher"/>
 
     <TextView
-        fontPath="fonts/handlee-regular.ttf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/main_actionbar_logo"
@@ -25,6 +24,7 @@
         android:layout_marginTop="3.6sp"
         android:layout_toEndOf="@+id/main_actionbar_logo"
         android:layout_toRightOf="@+id/main_actionbar_logo"
+        android:fontFamily="@font/handlee"
         android:gravity="center_vertical"
         android:text="@string/app_name"
         android:textColor="@android:color/white"

@@ -1,10 +1,10 @@
-package fr.bacomathiques.activities;
+package fr.bacomathiques.activity;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,22 +22,51 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.race604.drawable.wave.WaveDrawable;
 
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import de.mateware.snacky.Snacky;
 import fr.bacomathiques.R;
+import fr.bacomathiques.adapter.AnnalsAdapter;
 import fr.bacomathiques.lesson.LessonContent;
 import fr.bacomathiques.lesson.LessonSummary;
-import fr.bacomathiques.tasks.GetLessonTask;
+import fr.bacomathiques.task.GetLessonTask;
+import fr.bacomathiques.util.Utils;
+import im.delight.android.webview.AdvancedWebView;
+
+/**
+ * Represents the activity that allows to read a lesson.
+ */
 
 public class LessonActivity extends AppCompatActivity implements GetLessonTask.GetLessonListener {
 
+	/**
+	 * Anchor intent.
+	 */
+
 	private static final String INTENT_ANCHOR = "anchor";
+
+	/**
+	 * Content intent.
+	 */
+
 	private static final String INTENT_CONTENT = "content";
+
+	/**
+	 * Ads preferences.
+	 */
+
+	private static final String PREFERENCES_ADS = "ads-opt-in";
+
+	/**
+	 * Default webview client.
+	 */
 
 	private static final WebViewClient WEBVIEW_CLIENT = new WebViewClient() {
 
@@ -64,8 +93,23 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 
 	};
 
-	private ProgressDialog dialog;
+	/**
+	 * The current progress dialog instance.
+	 */
+
+	private ProgressDialog progressDialog;
+
+	/**
+	 * The current lesson content.
+	 */
+
 	private LessonContent content;
+
+	/**
+	 * The webview component.
+	 */
+
+	private AdvancedWebView webView;
 
 	/**
 	 * Launches the default web browser.
@@ -84,8 +128,8 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.activity_lesson);
 
-		final WebView webView = this.findViewById(R.id.lesson_webview);
-		webView.getSettings().setJavaScriptEnabled(true);
+		webView = this.findViewById(R.id.lesson_webview);
+
 		webView.getSettings().setUseWideViewPort(true);
 		webView.getSettings().setBuiltInZoomControls(false);
 		webView.getSettings().setDisplayZoomControls(false);
@@ -103,10 +147,18 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 		}
 
 		if(savedInstanceState != null && savedInstanceState.containsKey(INTENT_CONTENT)) {
-			onGetLessonDone((LessonContent)GetLessonTask.readLocalLessonContent(new WeakReference<Context>(this), savedInstanceState.getString(INTENT_CONTENT))[1]);
+			onGetLessonDone((LessonContent)GetLessonTask.readLocalLessonContent(new WeakReference<>(this), savedInstanceState.getString(INTENT_CONTENT))[1]);
 		}
 		else {
 			new GetLessonTask(this, this).execute(this.getIntent().getStringExtra(MainActivity.INTENT_LESSON));
+		}
+
+		final AdView adView = this.findViewById(R.id.lesson_adview);
+		if(this.getPreferences(Context.MODE_PRIVATE).getBoolean(PREFERENCES_ADS, true)) {
+			adView.loadAd(new AdRequest.Builder().build());
+		}
+		else {
+			adView.setVisibility(View.GONE);
 		}
 
 		/*webView.setWebChromeClient(new WebChromeClient() {
@@ -121,13 +173,26 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 	}
 
 	@Override
-	public void onPause() {
-		super.onPause();
+	protected void onResume() {
+		webView.onResume();
+		super.onResume();
+	}
 
-		if(dialog != null && dialog.isShowing()) {
-			dialog.dismiss();
+	@Override
+	protected void onPause() {
+		webView.onPause();
+		if(progressDialog != null && progressDialog.isShowing()) {
+			progressDialog.dismiss();
 		}
-		dialog = null;
+		progressDialog = null;
+
+		super.onPause();
+	}
+
+	@Override
+	protected void onDestroy() {
+		webView.onDestroy();
+		super.onDestroy();
 	}
 
 	@Override
@@ -151,6 +216,30 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 		switch(item.getItemId()) {
 		case android.R.id.home:
 			this.onBackPressed();
+			return true;
+		case R.id.menu_lesson_action_annals:
+			final List<String> annals = content.getAnnals();
+			if(annals == null || annals.isEmpty()) {
+				new AlertDialog.Builder(this)
+						.setTitle(R.string.dialog_lesson_annals_title)
+						.setMessage(R.string.dialog_lesson_annals_empty)
+						.setPositiveButton(android.R.string.ok, null)
+						.show();
+				return true;
+			}
+
+			new AlertDialog.Builder(this)
+					.setTitle(R.string.dialog_lesson_annals_title)
+					.setAdapter(new AnnalsAdapter(this, annals), (dialog, selected) -> {
+						final String baseUrl = LessonSummary.BASE_URL + annals.get(selected);
+						new AlertDialog.Builder(this)
+								.setMessage(R.string.dialog_lesson_annalsask_message)
+								.setPositiveButton(R.string.dialog_lesson_annalsask_positive, (dialogInterface, choice) -> launchBrowser(this, Uri.parse(baseUrl + "enonce.pdf")))
+								.setNegativeButton(R.string.dialog_lesson_annalsask_negative, (dialogInterface, choice) -> launchBrowser(this, Uri.parse(baseUrl + "correction.pdf")))
+								.show();
+					})
+					.setPositiveButton(android.R.string.cancel, null)
+					.show();
 			return true;
 		case R.id.menu_lesson_action_share:
 			final Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
@@ -179,6 +268,23 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 				manager.print(content.getTitle(), adapter, new PrintAttributes.Builder().build());
 			}
 			return true;
+		case R.id.menu_lesson_action_ads:
+			final SharedPreferences.Editor editor = this.getPreferences(Context.MODE_PRIVATE).edit();
+			new AlertDialog.Builder(this)
+					.setTitle(R.string.dialog_lesson_ads_title)
+					.setMessage(R.string.dialog_lesson_ads_message)
+					.setPositiveButton(R.string.dialog_lesson_ads_positive, (dialog, selected) -> editor.putBoolean(PREFERENCES_ADS, true))
+					.setNegativeButton(R.string.dialog_lesson_ads_negative, (dialog, selected) -> editor.putBoolean(PREFERENCES_ADS, false))
+					.setCancelable(false)
+					.setOnDismissListener(dialog -> {
+						editor.apply();
+						new AlertDialog.Builder(this)
+								.setMessage(R.string.dialog_lessons_adsconfirmation_message)
+								.setPositiveButton(android.R.string.ok, null)
+								.show();
+					})
+					.show();
+			return true;
 		case R.id.menu_lesson_action_rate:
 			launchBrowser(this, Uri.parse("https://play.google.com/store/apps/details?id=fr.bacomathiques"));
 			return true;
@@ -188,11 +294,10 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 		case R.id.menu_lesson_action_about:
 			new AlertDialog.Builder(this)
 					.setTitle(R.string.dialog_lesson_about_title)
-					.setMessage(R.string.dialog_lesson_about_message)
-					.setNegativeButton(R.string.dialog_lesson_button_negative, null)
-					.setNeutralButton(R.string.dialog_lesson_button_neutral, (dialogInterface, which) -> launchBrowser(LessonActivity.this, Uri.parse("https://bacomathiqu.es/a-propos/")))
-					.setPositiveButton(R.string.dialog_lesson_button_positive, (dialogInterface, which) -> launchBrowser(LessonActivity.this, Uri.parse("https://play.google.com/store/apps/details?id=fr.bacomathiques")))
-					.create()
+					.setMessage(Utils.fromHtml(this.getString(R.string.dialog_lesson_about_message)))
+					.setNegativeButton(R.string.dialog_lesson_about_button_negative, null)
+					.setNeutralButton(R.string.dialog_lesson_about_button_neutral, (dialogInterface, which) -> launchBrowser(LessonActivity.this, Uri.parse("https://bacomathiqu.es/a-propos/")))
+					.setPositiveButton(R.string.dialog_lesson_about_button_positive, (dialogInterface, which) -> launchBrowser(LessonActivity.this, Uri.parse("https://play.google.com/store/apps/details?id=fr.bacomathiques")))
 					.show();
 			return true;
 		}
@@ -207,17 +312,8 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 			actionBar.setTitle(R.string.activity_lesson_defaulttitle);
 			actionBar.setDisplayHomeAsUpEnabled(true);
 		}
-		this.setRequestedOrientation(this.getRequestedOrientation());
-
-		final WaveDrawable indeterminate = new WaveDrawable(ContextCompat.getDrawable(this, R.mipmap.ic_launcher));
-		indeterminate.setIndeterminate(true);
-
-		dialog = new ProgressDialog(this);
-		dialog.setMessage(this.getString(R.string.dialog_loading_message));
-		dialog.setCancelable(false);
-		dialog.setOnDismissListener(dialogInterface -> LessonActivity.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED));
-		dialog.setIndeterminateDrawable(indeterminate);
-		dialog.show();
+		progressDialog = createProgressDialog();
+		progressDialog.show();
 	}
 
 	@Override
@@ -242,10 +338,10 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 	public final void onGetLessonDone(final LessonContent result) {
 		content = result;
 
-		if(dialog != null && dialog.isShowing()) {
-			dialog.dismiss();
+		if(progressDialog != null && progressDialog.isShowing()) {
+			progressDialog.dismiss();
 		}
-		dialog = null;
+		progressDialog = null;
 
 		if(result == null) {
 			new AlertDialog.Builder(this)
@@ -253,7 +349,6 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 					.setMessage(R.string.dialog_errorgetlesson_message)
 					.setPositiveButton(android.R.string.ok, null)
 					.setOnDismissListener(dialogInterface -> LessonActivity.this.onBackPressed())
-					.create()
 					.show();
 			return;
 		}
@@ -278,8 +373,7 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 		content += "</body>";
 		content += "</html>";
 
-		final WebView webView = this.findViewById(R.id.lesson_webview);
-		webView.loadDataWithBaseURL("file:///android_asset/webview/", content, "text/html", "UTF-8", null);
+		webView.loadHtml(content, "file:///android_asset/webview/");
 
 		final ActionBar actionBar = this.getSupportActionBar();
 		if(actionBar != null) {
@@ -288,6 +382,24 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 			actionBar.setTitle(title[0]);
 			actionBar.setSubtitle(title[1]);
 		}
+	}
+
+	/**
+	 * Creates the progress dialog.
+	 *
+	 * @return The progress dialog.
+	 */
+
+	private ProgressDialog createProgressDialog() {
+		final WaveDrawable indeterminate = new WaveDrawable(ContextCompat.getDrawable(this, R.mipmap.ic_launcher));
+		indeterminate.setIndeterminate(true);
+
+		final ProgressDialog progressDialog = new ProgressDialog(this);
+		progressDialog.setMessage(this.getString(R.string.dialog_loading_message));
+		progressDialog.setCancelable(false);
+		progressDialog.setIndeterminateDrawable(indeterminate);
+
+		return progressDialog;
 	}
 
 }

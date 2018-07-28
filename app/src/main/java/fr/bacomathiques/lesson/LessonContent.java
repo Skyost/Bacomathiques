@@ -2,31 +2,92 @@ package fr.bacomathiques.lesson;
 
 import android.net.Uri;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import fr.bacomathiques.utils.Utils;
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.bacomathiques.util.Utils;
+
+/**
+ * Represents a lesson and its content.
+ */
 
 public class LessonContent {
 
+	/**
+	 * The lesson's ID.
+	 */
+
 	private String id;
+
+	/**
+	 * The lesson's title.
+	 */
+
 	private String title;
+
+	/**
+	 * The lesson's content.
+	 */
+
 	private String content;
+
+	/**
+	 * The lesson's URL.
+	 */
+
 	private String url;
 
+	/**
+	 * All available annals.
+	 */
+
+	private List<String> annals = new ArrayList<>();
+
+	/**
+	 * Creates a new lesson content instance.
+	 *
+	 * @param object The JSON object.
+	 * @param url The lesson's URL.
+	 *
+	 * @throws JSONException If a JSON exception occurs.
+	 */
+
 	public LessonContent(final JSONObject object, final String url) throws JSONException {
-		this(object.getString("id"), object.getString("title"), Utils.fromHtml(object.getString("content")).toString(), url);
+		this(object.getString("id"), object.getString("title"), Utils.fromHtml(object.getString("content")).toString(), url, object.getJSONArray("annals"));
 	}
 
-	public LessonContent(final String id, final String title, final String content, final String url) {
+	/**
+	 * Creates a new lesson content instance.
+	 *
+	 * @param id The lesson's ID.
+	 * @param title The lesson's title.
+	 * @param content The lesson's content.
+	 * @param url The lesson's URL.
+	 * @param annals All annals.
+	 *
+	 * @throws JSONException If a JSON exception occurs.
+	 */
+
+	private LessonContent(final String id, final String title, final String content, final String url, final JSONArray annals) throws JSONException {
 		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.url = url;
+		if(annals == null) {
+			return;
+		}
+
+		for(int i = 0; i < annals.length(); i++) {
+			this.annals.add(annals.getString(i));
+		}
 	}
 
 	/**
-	 * Gets the lesson ID.
+	 * Returns the lesson ID.
 	 *
 	 * @return The lesson ID.
 	 */
@@ -46,7 +107,7 @@ public class LessonContent {
 	}
 
 	/**
-	 * Gets the lesson title.
+	 * Returns the lesson title.
 	 *
 	 * @return The lesson title.
 	 */
@@ -66,7 +127,7 @@ public class LessonContent {
 	}
 
 	/**
-	 * Gets the lesson content.
+	 * Returns the lesson content.
 	 *
 	 * @return The lesson content.
 	 */
@@ -86,7 +147,7 @@ public class LessonContent {
 	}
 
 	/**
-	 * Gets the lesson url.
+	 * Returns the lesson url.
 	 *
 	 * @return The lesson url.
 	 */
@@ -106,13 +167,23 @@ public class LessonContent {
 	}
 
 	/**
-	 * Gets the lesson PDF url.
+	 * Returns the lesson PDF url.
 	 *
 	 * @return The lesson PDF url.
 	 */
 
 	public final Uri getPDFUrl() {
 		return Uri.parse(LessonSummary.BASE_URL + "assets/pdf/lessons/" + Uri.encode(title.replace('é', 'e').replace('É', 'E')) + ".pdf");
+	}
+
+	/**
+	 * Returns all available annals.
+	 *
+	 * @return All available annals.
+	 */
+
+	public final List<String> getAnnals() {
+		return annals;
 	}
 
 }

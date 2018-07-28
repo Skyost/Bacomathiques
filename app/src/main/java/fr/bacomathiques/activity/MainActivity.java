@@ -1,4 +1,4 @@
-package fr.bacomathiques.activities;
+package fr.bacomathiques.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.MobileAds;
 import com.kobakei.ratethisapp.RateThisApp;
 
 import java.lang.ref.WeakReference;
@@ -25,20 +26,47 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import de.mateware.snacky.Snacky;
+import fr.bacomathiques.BuildConfig;
 import fr.bacomathiques.R;
-import fr.bacomathiques.adapters.LessonsAdapter;
+import fr.bacomathiques.adapter.LessonAdapter;
 import fr.bacomathiques.lesson.LessonSummary;
-import fr.bacomathiques.tasks.RequestLessonsTask;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import fr.bacomathiques.task.GetSummariesTask;
+import io.github.inflationx.viewpump.ViewPump;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
-public class MainActivity extends AppCompatActivity implements RequestLessonsTask.RequestLessonsListener {
+/**
+ * The application main activity.
+ */
+
+public class MainActivity extends AppCompatActivity implements GetSummariesTask.RequestLessonsListener {
+
+	/**
+	 * Lesson intent.
+	 */
 
 	protected static final String INTENT_LESSON = "lesson";
+
+	/**
+	 * Lessons intent.
+	 */
+
 	private static final String INTENT_LESSONS = "lessons";
 
-	private LessonsAdapter adapter;
+	/**
+	 * The current adapter.
+	 */
+
+	private LessonAdapter adapter;
+
+	/**
+	 * The current clicked caption.
+	 */
+
 	private View clickedCaption;
+
+	/**
+	 * The offline check date.
+	 */
 
 	private long offlineDate = -1L;
 
@@ -46,13 +74,14 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if(savedInstanceState != null && savedInstanceState.containsKey(INTENT_LESSONS)) {
-			onRequestLessonsDone((LessonSummary[])RequestLessonsTask.readLocalLessons(new WeakReference<>(this))[1]);
+			onGetSummariesDone((LessonSummary[])GetSummariesTask.readLocalLessons(new WeakReference<>(this))[1]);
 			return;
 		}
 
 		displaySplashScreen();
-		CalligraphyConfig.initDefault(null);
-		new RequestLessonsTask(this, this).execute(LessonSummary.getLessonsURL());
+		ViewPump.init(ViewPump.builder().build());
+		MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID);
+		new GetSummariesTask(this, this).execute(LessonSummary.getLessonsURL());
 	}
 
 	@Override
@@ -66,27 +95,27 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 
 	@Override
 	protected final void attachBaseContext(final Context newBase) {
-		super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+		super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
 	}
 
 	@Override
-	public final void onRequestLessonsStarted() {}
+	public final void onGetSummariesStarted() {}
 
 	@Override
-	public final void onRequestLessonsException(final Exception ex, final long offlineDate) {
+	public final void onGetSummariesException(final Exception ex, final long offlineDate) {
 		ex.printStackTrace();
 
 		this.offlineDate = offlineDate;
 	}
 
 	@Override
-	public final void onRequestLessonsDone(final LessonSummary[] result) {
+	public final void onGetSummariesDone(final LessonSummary[] result) {
 		if(this.isChangingConfigurations() || this.isFinishing()) {
 			return;
 		}
 
 		if(result != null) {
-			adapter = new LessonsAdapter(Glide.with(this), this.getResources().getInteger(R.integer.main_lessons_recyclerview_columns), result);
+			adapter = new LessonAdapter(Glide.with(this), this.getResources().getInteger(R.integer.main_lessons_recyclerview_columns), result);
 			hideSplashScreen();
 			return;
 		}
@@ -96,7 +125,6 @@ public class MainActivity extends AppCompatActivity implements RequestLessonsTas
 				.setMessage(R.string.dialog_errorrequestlessons_message)
 				.setPositiveButton(android.R.string.ok, null)
 				.setOnDismissListener(dialogInterface -> MainActivity.this.finish())
-				.create()
 				.show();
 	}
 

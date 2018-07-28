@@ -1,8 +1,12 @@
-package fr.bacomathiques.utils;
+package fr.bacomathiques.util;
 
 import android.os.Build;
 import android.text.Html;
 import android.text.Spanned;
+
+/**
+ * Contains some useful methods.
+ */
 
 public class Utils {
 

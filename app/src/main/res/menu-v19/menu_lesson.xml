@@ -1,18 +1,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context=".activities.LessonActivity">
+      tools:context=".activity.LessonActivity">
+
+    <item
+        android:id="@+id/menu_lesson_action_annals"
+        android:icon="@drawable/menu_lesson_action_annals"
+        android:orderInCategory="100"
+        android:title="@string/menu_lesson_action_annals"
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/menu_lesson_action_share"
         android:icon="@drawable/menu_lesson_action_share"
-        android:orderInCategory="100"
+        android:orderInCategory="200"
         android:title="@string/menu_lesson_action_share"
         app:showAsAction="ifRoom"/>
 
     <item
         android:icon="@drawable/menu_lesson_action_more"
-        android:orderInCategory="101"
+        android:orderInCategory="201"
         android:title="@string/menu_lesson_action_more"
         app:showAsAction="always">
 
@@ -21,35 +28,42 @@
             <item
                 android:id="@+id/menu_lesson_action_save"
                 android:icon="@drawable/menu_lesson_action_save"
-                android:orderInCategory="200"
+                android:orderInCategory="300"
                 android:title="@string/menu_lesson_action_save"
                 app:showAsAction="ifRoom"/>
 
             <item
                 android:id="@+id/menu_lesson_action_print"
                 android:icon="@drawable/menu_lesson_action_print"
-                android:orderInCategory="300"
+                android:orderInCategory="400"
                 android:title="@string/menu_lesson_action_print"
+                app:showAsAction="ifRoom"/>
+
+            <item
+                android:id="@+id/menu_lesson_action_ads"
+                android:icon="@drawable/menu_lesson_action_ads"
+                android:orderInCategory="500"
+                android:title="@string/menu_lesson_action_ads"
                 app:showAsAction="ifRoom"/>
 
             <item
                 android:id="@+id/menu_lesson_action_rate"
                 android:icon="@drawable/menu_lesson_action_rate"
-                android:orderInCategory="400"
+                android:orderInCategory="600"
                 android:title="@string/menu_lesson_action_rate"
                 app:showAsAction="ifRoom"/>
 
             <item
                 android:id="@+id/menu_lesson_action_report"
                 android:icon="@drawable/menu_lesson_action_report"
-                android:orderInCategory="500"
+                android:orderInCategory="700"
                 android:title="@string/menu_lesson_action_report"
                 app:showAsAction="ifRoom"/>
 
             <item
                 android:id="@+id/menu_lesson_action_about"
                 android:icon="@drawable/menu_lesson_action_about"
-                android:orderInCategory="600"
+                android:orderInCategory="800"
                 android:title="@string/menu_lesson_action_about"
                 app:showAsAction="ifRoom"/>
 
