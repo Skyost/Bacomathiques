@@ -6,10 +6,10 @@ android {
         applicationId "fr.bacomathiques"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 10
-        versionName "v0.4"
+        versionCode 11
+        versionName "v0.4.1"
         buildConfigField "String", "ADMOB_APP_ID", "\"" + getLocalProperty("admob.appId") + "\""
-        resValue "string", "ADMOB_WAITING_DIALOG", getLocalProperty("admob.waitingDialog")
+        resValue "string", "ADMOB_LESSONACTIVITY_FOOTER", getLocalProperty("admob.lessonActiviyFooter")
     }
     buildTypes {
         release {
@@ -19,7 +19,7 @@ android {
         debug {
             applicationIdSuffix = ".dev"
             versionNameSuffix "-dev"
-            resValue "string", "ADMOB_WAITING_DIALOG", "ca-app-pub-3940256099942544/6300978111"
+            resValue "string", "ADMOB_LESSONACTIVITY_FOOTER", "ca-app-pub-3940256099942544/6300978111"
         }
     }
     compileOptions {
@@ -36,8 +36,7 @@ dependencies {
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.github.bumptech.glide:glide:4.7.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
-    implementation 'io.github.inflationx:viewpump:1.0.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
     implementation 'com.github.matecode:Snacky:1.0.3'
     implementation 'com.race604.waveloading:library:1.1.1'
     implementation 'io.github.kobakei:ratethisapp:1.2.0'

@@ -48,27 +48,27 @@ window.onload = function(event) {
 };
 
 function romanize(num) {
-	if(!+num)
+	if(!+num) {
 		return false;
+	}
 	var digits = String(+num).split(""),
 		key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
 				"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
 				"","I","II","III","IV","V","VI","VII","VIII","IX"],
 		roman = "",
 		i = 3;
-	while(i--)
+	while(i--) {
 		roman = (key[+digits.pop() + (i * 10)] || "") + roman;
+	}
 	return Array(+digits.join("") + 1).join("M") + roman;
 }
 
 function urlify(text) {
-	var nonsafeChars = /[& +$,:;=?@"#{}|^~[`%!'<>\]\.\/\(\)\*\\]/g, urlText;
-	urlText = text.trim()
-			.replace(/\'/gi, '')
-			.replace(nonsafeChars, '-')
-			.replace(/-{2,}/g, '-')
-			.replace(/^-+|-+$/gm, '')
-			.toLowerCase();
-	
-	return urlText;
+	var nonsafeChars = /[& +$,:;=?@"#{}|^~[`%!'<>\]\.\/\(\)\*\\\n\t\b\v]/g;
+	return text.trim()
+           	    .replace(/\'/gi, '')
+           		.replace(nonsafeChars, '-')
+           		.replace(/-{2,}/g, '-')
+           		.replace(/^-+|-+$/gm, '')
+           		.toLowerCase();
 }

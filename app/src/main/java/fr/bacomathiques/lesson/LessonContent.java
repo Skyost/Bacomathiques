@@ -57,7 +57,7 @@ public class LessonContent {
 	 */
 
 	public LessonContent(final JSONObject object, final String url) throws JSONException {
-		this(object.getString("id"), object.getString("title"), Utils.fromHtml(object.getString("content")).toString(), url, object.getJSONArray("annals"));
+		this(object.getString("id"), object.getString("title"), Utils.fromHtml(object.getString("content")).toString(), url, object.has("annals") ? object.getJSONArray("annals") : null);
 	}
 
 	/**

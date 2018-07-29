@@ -219,7 +219,7 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 			return true;
 		case R.id.menu_lesson_action_annals:
 			final List<String> annals = content.getAnnals();
-			if(annals == null || annals.isEmpty()) {
+			if(annals.isEmpty()) {
 				new AlertDialog.Builder(this)
 						.setTitle(R.string.dialog_lesson_annals_title)
 						.setMessage(R.string.dialog_lesson_annals_empty)
@@ -355,25 +355,29 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 
 		final Intent intent = this.getIntent();
 
-		String content = "<!DOCTYPE HTML>";
-		content += "<html>";
-		content += "<head>";
-		content += "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>";
-		content += "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"/>";
-		content += "<script type=\"text/javascript\">const BASE_URL = \"" + LessonSummary.BASE_URL + "\"; const PAGE_ID = \"" + result.getId() + "\";</script>";
+		final StringBuilder builder = new StringBuilder("<!DOCTYPE HTML>");
+		builder.append("<html>");
+		builder.append("<head>");
+		builder.append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>");
+		builder.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"/>");
+		builder.append("<script type=\"text/javascript\">const BASE_URL = \"").append(LessonSummary.BASE_URL).append("\"; const PAGE_ID = \"").append(result.getId()).append("\";</script>");
 		if(intent.hasExtra(INTENT_ANCHOR)) {
-			content += "<script type=\"text/javascript\">const ANCHOR = \"" + intent.getStringExtra(INTENT_ANCHOR) + "\";</script>";
+			builder.append("<script type=\"text/javascript\">const ANCHOR = \"").append(intent.getStringExtra(INTENT_ANCHOR)).append("\";</script>");
 		}
-		content += "<script type=\"text/javascript\" src=\"script.js\"></script>";
-		content += "<script type=\"text/x-mathjax-config\">MathJax.Hub.Config({tex2jax: { inlineMath: [ ['$','$'], ['\\\\(','\\\\)'] ]},'HTML-CSS': { webFont: 'TeX', preferredFont: 'TeX', availableFonts: [ 'TeX' ], extensions: ['handle-floats.js']}, messageStyle: 'none', showMathMenu: false});</script>";
-		content += "<script type=\"text/javascript\" src=\"mathjax/MathJax.js?config=TeX-AMS_HTML\"></script>";
-		content += "</head>";
-		content += "<body>";
-		content += result.getContent();
-		content += "</body>";
-		content += "</html>";
+		builder.append("<script type=\"text/javascript\" src=\"script.js\"></script>");
+		builder.append("<script type=\"text/x-mathjax-config\">MathJax.Hub.Config({tex2jax: { inlineMath: [ ['$','$'], ['\\\\(','\\\\)'] ]},'HTML-CSS': { webFont: 'TeX', preferredFont: 'TeX', availableFonts: [ 'TeX' ], extensions: ['handle-floats.js']}, messageStyle: 'none', showMathMenu: false});</script>");
+		builder.append("<script type=\"text/javascript\" src=\"mathjax/MathJax.js?config=TeX-AMS_HTML\"></script>");
+		builder.append("</head>");
+		builder.append("<body");
+		if(this.getPreferences(Context.MODE_PRIVATE).getBoolean(PREFERENCES_ADS, true)) {
+			builder.append(" style=\"margin-bottom: 60px\";");
+		}
+		builder.append(">");
+		builder.append(result.getContent());
+		builder.append("</body>");
+		builder.append("</html>");
 
-		webView.loadHtml(content, "file:///android_asset/webview/");
+		webView.loadHtml(builder.toString(), "file:///android_asset/webview/");
 
 		final ActionBar actionBar = this.getSupportActionBar();
 		if(actionBar != null) {

@@ -31,8 +31,6 @@ import fr.bacomathiques.R;
 import fr.bacomathiques.adapter.LessonAdapter;
 import fr.bacomathiques.lesson.LessonSummary;
 import fr.bacomathiques.task.GetSummariesTask;
-import io.github.inflationx.viewpump.ViewPump;
-import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 /**
  * The application main activity.
@@ -79,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements GetSummariesTask.
 		}
 
 		displaySplashScreen();
-		ViewPump.init(ViewPump.builder().build());
 		MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID);
 		new GetSummariesTask(this, this).execute(LessonSummary.getLessonsURL());
 	}
@@ -91,11 +88,6 @@ public class MainActivity extends AppCompatActivity implements GetSummariesTask.
 		}
 
 		super.onSaveInstanceState(outState);
-	}
-
-	@Override
-	protected final void attachBaseContext(final Context newBase) {
-		super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
 	}
 
 	@Override

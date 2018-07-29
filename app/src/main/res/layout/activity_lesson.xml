@@ -22,7 +22,7 @@
         android:layout_above="@id/lesson_webview"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/ADMOB_WAITING_DIALOG"/>
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/ADMOB_LESSONACTIVITY_FOOTER"/>
 
 </RelativeLayout>
