@@ -31,7 +31,7 @@
 	<!-- Styles -->
 	<meta name="theme-color" content="#{{ layout.metacolor }}"/>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"/>
 
 	{% if layout.smartbanner %}
 		<meta name="smartbanner:title" content="{{ site.title }}">
@@ -43,7 +43,7 @@
 		<meta name="smartbanner:button-url-google" content="https://play.google.com/store/apps/details?id=fr.bacomathiques">
 		<meta name="smartbanner:enabled-platforms" content="android">
 		
-		<link rel="stylesheet" type="text/css" href="/assets/css/smartbanner.min.css"/>
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/smartbanner.js@1.9.1/dist/smartbanner.min.css"/>
 	{% endif %}
 	
 	{% if layout.awesomplete %}
@@ -83,6 +83,6 @@
 				showMathMenu: false
 			});
 		</script>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
 	{% endif %}
 </head>
