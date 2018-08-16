@@ -36,6 +36,10 @@ h1 {
 			margin: 8px 0 8px 0;
 		}
 	}
+	
+	.card-header.specialty {
+		background-color: $lesson-specialty-color;
+	}
 
 	.card-img {
 		position: relative;

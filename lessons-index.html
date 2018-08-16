@@ -24,7 +24,7 @@ adsense: true
 		{% if page.layout == 'lesson' %}
 				<div class="col-xs-12 col-md-6 col-lg-4">
 					<div class="card">
-						<div class="card-header d-flex align-items-center">
+						<div class="card-header d-flex align-items-center{% if page.title contains '(Spécialité)' %} specialty{% endif %}">
 							<h2 class="w-100">{{ page.title }}</h2>
 						</div>
 						<div class="card-img">

@@ -1,9 +1,12 @@
-<ul id="export" class="no-print no-style">
-	<li id="export-pdf" title="Exporter en PDF"></li>
-	<li id="export-print" title="Imprimer"></li>
-	<li id="export-social" title="Partager" data-toggle="modal" data-target="#modal-social"></li>
-	<li id="export-caveats" title="Apporter une correction" data-toggle="modal" data-target="#modal-caveats"></li>
-</ul>
+<div class="text-right no-print">
+	<ul id="export" class="no-style">
+		<li id="export-pdf" title="Exporter en PDF"></li>
+		<li id="export-print" title="Imprimer"></li>
+		<li id="export-social" title="Partager" data-toggle="modal" data-target="#modal-social"></li>
+		<li id="export-caveats" title="Apporter une correction" data-toggle="modal" data-target="#modal-caveats"></li>
+	</ul>
+	<span id="difficulty" class="text-muted">Difficulté du cours : {% for i in (1..5) %}<i class="fa fa-graduation-cap{% if i <= page.difficulty %} difficulty-{{ page.difficulty }}{% endif %}" aria-hidden="true"></i>{% endfor %}</span>
+</div>
 
 <div id="modal-social" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-social-label" aria-hidden="true">
 	<div class="modal-dialog" role="document">

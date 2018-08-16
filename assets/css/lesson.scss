@@ -148,9 +148,35 @@
 
 /** Others : **/
 
+#difficulty {
+	font-size: 0.8em;
+	
+	.transparent {
+		opacity: 0.7;
+	}
+}
+
+.difficulty-1 {
+	color: $lesson-difficulty-1;
+}
+
+.difficulty-2 {
+	color: $lesson-difficulty-2;
+}
+
+.difficulty-3 {
+	color: $lesson-difficulty-3;
+}
+
+.difficulty-4 {
+	color: $lesson-difficulty-4;
+}
+
+.difficulty-5 {
+	color: $lesson-difficulty-5;
+}
+
 #export {
-	width: 100%;
-	text-align: right;
 	padding-top: 25px;
 	
 	li {
