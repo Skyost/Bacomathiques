@@ -28,7 +28,7 @@ import java.util.Calendar;
 import de.mateware.snacky.Snacky;
 import fr.bacomathiques.BuildConfig;
 import fr.bacomathiques.R;
-import fr.bacomathiques.adapter.LessonAdapter;
+import fr.bacomathiques.adapter.LessonsSummaryAdapter;
 import fr.bacomathiques.lesson.LessonSummary;
 import fr.bacomathiques.task.GetSummariesTask;
 
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements GetSummariesTask.
 	 * The current adapter.
 	 */
 
-	private LessonAdapter adapter;
+	private LessonsSummaryAdapter adapter;
 
 	/**
 	 * The current clicked caption.
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements GetSummariesTask.
 		}
 
 		if(result != null) {
-			adapter = new LessonAdapter(Glide.with(this), this.getResources().getInteger(R.integer.main_lessons_recyclerview_columns), result);
+			adapter = new LessonsSummaryAdapter(Glide.with(this), this.getResources().getInteger(R.integer.main_lessons_recyclerview_columns), result);
 			hideSplashScreen();
 			return;
 		}

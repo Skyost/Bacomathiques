@@ -1,6 +1,7 @@
 package fr.bacomathiques.adapter;
 
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,12 +21,13 @@ import fr.bacomathiques.util.Utils;
  * An adapter that can contain lessons.
  */
 
-public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder> {
+public class LessonsSummaryAdapter extends RecyclerView.Adapter<LessonsSummaryAdapter.ViewHolder> {
 
 	/**
 	 * Default Glide options.
 	 */
 
+	// TODO: Make a placeholder.
 	private static final RequestOptions DEFAULT_OPTIONS = new RequestOptions().centerCrop();
 
 	/**
@@ -60,7 +62,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
 	 * @param data Data to display.
 	 */
 
-	public LessonAdapter(final RequestManager glide, final int columns, final LessonSummary... data) {
+	public LessonsSummaryAdapter(final RequestManager glide, final int columns, final LessonSummary... data) {
 		this.glide = glide;
 		this.columns = columns;
 		this.data = data == null ? new LessonSummary[0] : data;
@@ -81,20 +83,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
 
 	@Override
 	public final void onBindViewHolder(final ViewHolder holder, final int position) {
-		final LessonSummary lesson = data[position];
-
-		glide.load(lesson.getPreviewURL()).apply(DEFAULT_OPTIONS).transition(DrawableTransitionOptions.withCrossFade()).into(holder.preview);
-		holder.caption.setText(lesson.getPlaceholder());
-		holder.caption.setAlpha(0f);
-		holder.title.setText(lesson.getTitle());
-		holder.description.setText(Utils.fromHtml(lesson.getDescription()));
-		holder.checkOut.setTag(lesson.getLessonURL());
-
-		if(columns == 1) {
-			return;
-		}
-
-		holder.title.post(() -> adjustToHeight(position, holder));
+		holder.bind(position);
 	}
 
 	@Override
@@ -204,7 +193,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
 	 * A lesson summary view holder.
 	 */
 
-	static class ViewHolder extends RecyclerView.ViewHolder {
+	class ViewHolder extends RecyclerView.ViewHolder {
 
 		/**
 		 * The preview image.
@@ -250,6 +239,33 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
 			this.title = view.findViewById(R.id.main_lessons_recyclerview_item_title);
 			this.description = view.findViewById(R.id.main_lessons_recyclerview_item_description);
 			this.checkOut = view.findViewById(R.id.main_lessons_recyclerview_item_checkout);
+		}
+
+		/**
+		 * Binds the data at the specified position to the view.
+		 *
+		 * @param position The position.
+		 */
+
+		public void bind(final int position) {
+			final LessonSummary lesson = data[position];
+
+			glide.load(lesson.getPreviewURL()).apply(DEFAULT_OPTIONS).transition(DrawableTransitionOptions.withCrossFade()).into(preview);
+			caption.setText(lesson.getPlaceholder());
+			caption.setAlpha(0f);
+			title.setText(lesson.getTitle());
+			description.setText(Utils.fromHtml(lesson.getDescription()));
+			checkOut.setTag(lesson.getLessonURL());
+
+			if(lesson.getTitle().endsWith("(Spécialité)")) {
+				title.setBackgroundColor(ContextCompat.getColor(title.getContext(), R.color.colorSpecialty));
+			}
+
+			if(columns == 1) {
+				return;
+			}
+
+			title.post(() -> adjustToHeight(position, this));
 		}
 
 	}
