@@ -1,0 +1,17 @@
+- title: 'Accueil'
+  fa: 'fa-home'
+  position: 1
+  link: '/'
+  path: 'index.html'
+
+- title: 'Index des cours'
+  fa: 'fa-bookmark'
+  position: 2
+  link: '/cours/'
+  path: 'lessons-index.html'
+
+- title: 'À propos'
+  fa: 'fa-graduation-cap'
+  position: 3
+  link: '/a-propos/'
+  path: 'about.html'

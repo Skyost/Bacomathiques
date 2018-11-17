@@ -1,24 +1,10 @@
 ---
 layout: lesson
-title: "Chapitre I - Les suites"
+lesson: "suites"
+
 permalink: "/cours/suites/"
 redirect_from: "/cours/suites.html"
-caption: "Les suites sont utilisées dans bien des domaines, notamment celui des fractales."
-excerpt: "Ce cours va vous apprendre ce qu'est une suite : suites arithmétiques, géométriques, définies par récurrence, ...<br/>Il va également vous apprendre à étudier ces suites : sens de variation, limites, majoration et minoration et plus !<br/>Le raisonnement par récurrence est également au programme de ce cours."
 maths: true
-annals: [
-	"2018/liban/specifique",
-	"2018/polynesie/specifique",
-	"2017/antilles-guyane/specifique",
-	"2017/pondichery/specifique",
-	"2016/asie/specifique",
-	"2016/liban/specifique",
-	"2016/metropole/specifique",
-	"2015/pondichery/specifique"
-]
-comments: true
-chapter: 1
-difficulty: 4
 ---
 <section>
 
@@ -399,7 +385,7 @@ difficulty: 4
 	<div class="bubble tip">
 		<p><strong>Exemple :</strong> Soit une suite $(u_n)_{n \in \mathbb{N}}$ définie par $u_n$ : $\begin{cases} u_0 = 4\\ u_{n+1} = \frac{4u_n + 17}{u_n + 4}\end{cases}$.
 		On souhaite montrer que pour tout $n \in \mathbb{N}$, on a $4 \leq u_n \leq 5$.</p>
-		<p>On note $P_n$ la propriété $P_n$ : $4 \leq u_n \leq 5$.</p>
+		<p>On note $(P_n)_{n \in \mathbb{N}}$ la propriété définie pour tout $n \in \mathbb{N}$ par $P_n$ : $4 \leq u_n \leq 5$.</p>
 		<p>On constate également que $u_{n+1} = \frac{4u_n + 17}{u_n + 4} = \frac{4(u_n + 4) + 1}{u_n + 4} = 4 + \frac{1}{u_n + 4}$.</p>
 		<p><strong>Initialisation :</strong> On teste la propriété au rang $0$ :</p>
 		<p>$P_0$ : $4 \leq u_0 \leq 5 \iff 4 \leq 4 \leq 5$. C'est vrai.</p>

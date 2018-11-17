@@ -1,5 +1,4 @@
 ---
-layout: compress
+layout: api_lesson
+lesson: "geometrie_espace"
 ---
-{% capture linebreak %}
-{% endcapture %}{% for page in site.pages %}{% if page.permalink == '/cours/geometrie-espace/' %}{% assign id = page.path | replace: 'lessons/', '' | replace: '.html', '' %}{"id": "{{ id }}", "title": "{{ page.title }}", "annals": [{% for annal in page.annals %}"assets/pdf/annales/{{ annal }}/"{% unless forloop.last %},{% endunless %}{% endfor %}], "content": "{{ page.content | escape | replace: '\', '&#92;' | replace: '\', '&#92;' | remove: "	" | replace: linebreak, " " }}"}{% break %}{% endif %}{% endfor %}

@@ -1,0 +1,265 @@
+"suites":
+  id: "suites"
+  path: "/lessons/suites.html"
+  summary: "/summaries/suites.html"
+  title: "Chapitre I - Les suites"
+  chapter: 1
+  caption: "Les suites sont utilisées dans bien des domaines, notamment celui des fractales."
+  excerpt: "En mathématiques, une suite est une famille d'éléments — appelés ses <q>termes</q> — indexée par les entiers naturels. Ce cours va donc vous apprendre comment définir une suite et l'étudier. On y verra notamment l'étude du sens de variation, des limites, et plus !<br/>Le raisonnement par récurrence est également au programme de ce chapitre."
+  difficulty: 4
+  annals:
+    - "2018/liban/specifique"
+    - "2018/polynesie/specifique"
+    - "2017/antilles-guyane/specifique"
+    - "2017/pondichery/specifique"
+    - "2016/asie/specifique"
+    - "2016/liban/specifique"
+    - "2016/metropole/specifique"
+    - "2015/pondichery/specifique"
+
+"continuite_derivabilite":
+  id: "continuite_derivabilite"
+  path: "/lessons/continuite_derivabilite.html"
+  summary: "/summaries/continuite_derivabilite.html"
+  title: "Chapitre II - Continuité et dérivabilité"
+  chapter: 2
+  caption: "Ce chapitre a beaucoup d'applications, notamment dans l'étude de fonctions et dans la physique."
+  excerpt: "Il est possible de définir la continuité d'une fonction comme le fait de pouvoir tracer sa courbe représentative <q>sans lever le crayon</q>. La notion de dérivabilité, elle est plus complexe et sera élaborée dans ce chapitre (on parlera notamment de la fonction partie entière, du théorème des valeurs intermédiaires, etc...).<br/>Ce cours contient également les différentes tables de dérivation."
+  difficulty: 4
+  annals:
+    - "2018/liban/specifique"
+    - "2018/polynesie/specifique"
+    - "2017/antilles-guyane/specifique"
+    - "2017/nouvelle-caledonie/specifique"
+    - "2016/antilles-guyane/specifique"
+    - "2016/polynesie/specifique"
+    - "2015/polynesie/specifique"
+    - "2015/rochambeau/specifique"
+
+"fonctions_trigonometriques":
+  id: "fonctions_trigonometriques"
+  path: "/lessons/fonctions_trigonometriques.html"
+  summary: "/summaries/fonctions_trigonometriques.html"
+  title: "Chapitre III - Les fonctions trigonométriques"
+  chapter: 3
+  caption: "On retrouve les fonctions trigonométriques dans le son et l'acoustique."
+  excerpt: "La trigonométrie est une branche des mathématiques qui traite des relations entre distances et angles dans les triangles et des fonctions trigonométriques telles que sinus, cosinus et tangente. Ce cours permettra d'étudier ces fonctions et d'en visualiser des propriétés (périodicité, parité, valeurs remarquables, et plus encore)."
+  difficulty: 3
+  annals:
+    - "2018/polynesie/specifique"
+    - "2017/centres-etrangers/specifique"
+    - "2017/metropole/specifique"
+    - "2016/centres-etrangers/specifique"
+    - "2016/metropole/specifique"
+    - "2016/pondichery/specifique"
+    - "2015/nouvelle-caledonie/specifique"
+    - "2015/rochambeau/specifique"
+
+"fonction_exponentielle":
+  id: "fonction_exponentielle"
+  path: "/lessons/fonction_exponentielle.html"
+  summary: "/summaries/fonction_exponentielle.html"
+  title: "Chapitre IV - La fonction exponentielle"
+  chapter: 4
+  caption: "Les fonctions exponentielles sont notamment utilisées dans l'étude des croissances."
+  excerpt: "La fonction exponentielle est la fonction qui est sa propre dérivée et qui prend la valeur 1 en 0. Elle est utilisée pour modéliser des phénomènes dans lesquels une différence constante sur la variable conduit à un rapport constant sur les images.<br/>Dans ce chapitre, on va étudier les propriétés de cette fonction (relations algébriques, dérivées, variations, signe, ...)."
+  difficulty: 3
+  annals:
+    - "2018/asie/specifique"
+    - "2018/nouvelle-caledonie/specifique"
+    - "2017/asie/specifique"
+    - "2017/nouvelle-caledonie/specifique"
+    - "2016/antilles-guyane/specifique"
+    - "2016/liban/specifique"
+    - "2016/polynesie/specifique"
+    - "2015/liban/specifique"
+
+"fonction_logarithme":
+  id: "fonction_logarithme"
+  path: "/lessons/fonction_logarithme.html"
+  summary: "/summaries/fonction_logarithme.html"
+  title: "Chapitre V - La fonction logarithme népérien"
+  chapter: 5
+  caption: "Le logarithme népérien est utilisé dans les calculs logarithmiques et dans l'étude de certaines croissances."
+  excerpt: "Une fonction logarithme est une fonction possédant la propriété de pouvoir transformer des produits en sommes. L'utilisation de telles fonctions permet de faciliter les calculs comprenant de nombreuses multiplications, divisions et élévations à des puissances rationnelles. Ici, nous étudierons la fonction logarithme népérien : relations algébriques, signe, dérivée, variations, représentation et plus encore !"
+  difficulty: 4
+  annals:
+    - "2018/centres-etrangers/specifique"
+    - "2018/rochambeau/specifique"
+    - "2017/antilles-guyane/specifique"
+    - "2017/nouvelle-caledonie/specifique"
+    - "2016/liban/specifique"
+    - "2016/metropole/specifique"
+    - "2016/rochambeau/specifique"
+    - "2015/antilles-guyane/specifique"
+
+"primitives":
+  id: "primitives"
+  path: "/lessons/primitives.html"
+  summary: "/summaries/primitives.html"
+  title: "Chapitre VI - Les primitives de fonctions continues"
+  chapter: 6
+  caption: "Les primitives sont notamment utilisées dans dans le cadre de la dynamique Newtonienne."
+  excerpt: "Une primitive d'une fonction d'une variable réelle définie sur un intervalle est une autre fonction, définie et dérivable sur cet intervalle, et dont la dérivée et notre fonction de départ.<br/>Ce cours ne contient essentiellement (en plus de la définition d'une primitive) que les tableaux à connaître pour pouvoir trouver les primitives des fonctions usuelles."
+  difficulty: 2
+  annals:
+    - "2018/asie/specifique"
+    - "2018/centres-etrangers/specifique"
+    - "2017/asie/specifique"
+    - "2017/metropole/specifique"
+    - "2016/antilles-guyane/specifique"
+    - "2016/centres-etrangers/specifique"
+    - "2016/liban/specifique"
+    - "2015/antilles-guyane/specifique"
+
+"integrales":
+  id: "integrales"
+  path: "/lessons/integrales.html"
+  summary: "/summaries/integrales.html"
+  title: "Chapitre VII - Les intégrales"
+  chapter: 7
+  caption: "Les intégrales sont utilisées dans beaucoup de domaines, particulièrement dans le calcul d'aires et même de volumes."
+  excerpt: "L'intégration est une opération très utilisée en mathématiques et permet notamment de calculer l'aire sous la courbe d'une fonction sur un intervalle donné. Ici nous étudierons principalement les méthodes de calcul mais également les propriétés remarquables des intégrales.<br/>Attention cependant; il est fortement recommandé d'avoir une bonne connaissance du Chapitre VI sur les primitives de fonctions continues."
+  difficulty: 4
+  annals:
+    - "2018/antilles-guyane/specifique"
+    - "2018/rochambeau/specifique"
+    - "2017/antilles-guyane/specifique"
+    - "2017/pondichery/specifique"
+    - "2016/antilles-guyane/specifique"
+    - "2016/asie/specifique"
+    - "2016/centres-etrangers/specifique"
+    - "2016/pondichery/specifique"
+
+"nombres_complexes":
+  id: "nombres_complexes"
+  path: "/lessons/nombres_complexes.html"
+  summary: "/summaries/nombres_complexes.html"
+  title: "Chapitre VIII - Les nombres complexes"
+  chapter: 8
+  caption: "Ce chapitre un peu abstrait possède notamment des applications en électronique."
+  excerpt: "L'ensemble des nombres complexes est créé comme extension de l'ensemble des nombres réels, contenant en particulier un nombre dit <q>imaginaire</q> tel quel, mis au carré, ce nombre donne -1. Dans ce cours un peu abstrait, nous étudierons les nombres complexes : nous découvrirons comment les représenter, quelles-en sont les propriétés et bien plus encore !"
+  difficulty: 5
+  annals:
+    - "2018/metropole/specifique"
+    - "2018/pondichery/specifique"
+    - "2017/antilles-guyane/specifique"
+    - "2017/pondichery/specifique"
+    - "2016/nouvelle-caledonie/specifique"
+    - "2016/polynesie/specifique"
+    - "2016/rochambeau/specifique"
+    - "2015/metropole/specifique"
+
+"geometrie_espace":
+  id: "geometrie_espace"
+  path: "/lessons/geometrie_espace.html"
+  summary: "/summaries/geometrie_espace.html"
+  title: "Chapitre IX - Géométrie dans l'espace"
+  chapter: 9
+  caption: "La géométrie dans l'espace s'applique dans beaucoup de domaines : la modélisation 3D par exemple."
+  excerpt: "La géométrie dans l'espace est une forme de géométrie dans laquelle les objets peuvent notamment être des solides. Ce chapitre va vous servir à mieux comprendre différentes notions comme la coplanarité, le produit scalaire dans l'espace mais aussi les représentations paramétriques ou encore les intersections et orthogonalités."
+  difficulty: 2
+  annals:
+    - "2018/asie/specifique"
+    - "2018/pondichery/specifique"
+    - "2017/polynesie/specifique"
+    - "2017/pondichery/specifique"
+    - "2016/antilles-guyane/specifique"
+    - "2016/liban/specifique"
+    - "2016/metropole/specifique"
+    - "2015/nouvelle-caledonie/specifique"
+
+"probabilites":
+  id: "probabilites"
+  path: "/lessons/probabilites.html"
+  summary: "/summaries/probabilites.html"
+  title: "Chapitre X - Lois de probabilité"
+  chapter: 10
+  caption: "Les probabilités peuvent servir à comprendre les jeux de hasard; par exemple : pourquoi avons-nous plus de chances de perdre que de gagner ?"
+  excerpt: "La théorie des probabilités est l'étude des phénomènes caractérisés par le hasard et l'incertitude. Elle forme avec la statistique les deux sciences du hasard qui sont partie intégrante des mathématiques.<br/>Dans ce chapitre, nous étudierons certaines lois de probabilités discrètes (conditionnelles, variables aléatoires, loi binomiale, ...) mais également quelques lois de probabilités continues (loi uniforme, exponentielle, normale, ...)."
+  difficulty: 2
+  annals:
+    - "2018/liban/specifique"
+    - "2018/nouvelle-caledonie/specifique"
+    - "2017/nouvelle-caledonie/specifique"
+    - "2017/pondichery/specifique"
+    - "2016/metropole/specifique"
+    - "2016/pondichery/specifique"
+    - "2015/asie/specifique"
+    - "2015/polynesie/specifique"
+
+"echantillonnage_estimation":
+  id: "echantillonnage_estimation"
+  path: "/lessons/echantillonnage_estimation.html"
+  summary: "/summaries/echantillonnage_estimation.html"
+  title: "Chapitre XI - Échantillonnage et estimation"
+  chapter: 11
+  caption: "Les notions de ce chapitre sont utilisées dans l'industrie mais aussi plus généralement dans la collecte de données."
+  excerpt: "L'echantillonnage est le procédé qui concède en la création d'échantillons; qui permettent par la suite notamment d'étudier les propriétés de populations. Ici nous verrons ce que cela représente, qu'est-ce-qu'un intervalle de confiance, un intervalle de fluctuation, et plus !"
+  difficulty: 1
+  annals:
+    - "2018/polynesie/specifique"
+    - "2018/pondichery/specifique"
+    - "2017/metropole/specifique"
+    - "2017/nouvelle-caledonie/specifique"
+    - "2016/antilles-guyane/specifique"
+    - "2016/asie/specifique"
+    - "2016/centres-etrangers/specifique"
+    - "2015/centres-etrangers/specifique"
+
+"algorithmique":
+  id: "algorithmique"
+  path: "/lessons/algorithmique.html"
+  summary: "/summaries/algorithmique.html"
+  title: "Chapitre XII - Algorithmique"
+  chapter: 12
+  caption: "On retrouve les algorithmes en informatique mais également en robotique."
+  excerpt: "L'algorithmique est l'étude et la production de règles et techniques qui sont impliquées dans la définition et la conception d'algorithmes, c'est-à-dire de processus systématiques de résolution d'un problème permettant de décrire précisément des étapes pour résoudre un problème algorithmique.<br/>Ce cours qui n'est pas au programme va quand même vous servir sur les exercices contenant des algorithmes au baccalauréat."
+  difficulty: 5
+  annals:
+    - "2018/metropole/specifique"
+    - "2018/pondichery/specifique"
+    - "2017/asie/specifique"
+    - "2017/nouvelle-caledonie/specifique"
+    - "2016/liban/specifique"
+    - "2016/metropole/specifique"
+    - "2016/polynesie/specifique"
+    - "2015/liban/specifique"
+
+"arithmetique":
+  id: "arithmetique"
+  path: "/lessons/arithmetique.html"
+  summary: "/summaries/arithmetique.html"
+  title: "Chapitre XIII - Arithmétique (Spécialité)"
+  chapter: 13
+  caption: "L'arithmétique sert beaucoup en cryptographie (avec les cartes bancaires, le web mais également dans le domaine militaire)."
+  excerpt: "L'arithmétique est une branche des mathématiques qui étudie la science des nombres. Ici, nous aborderons les notions de divisibilité et de congruence. Nous verrons comment résoudre des problèmes contenant des congruences et nous étudierons certains théorèmes fondamentaux de l'arithmétique (théorème de Bézout et de Gauss notamment)."
+  difficulty: 5
+  annals:
+    - "2018/centres-etrangers/specialite"
+    - "2018/metropole/specialite"
+    - "2017/polynesie/specialite"
+    - "2017/pondichery/specialite"
+    - "2017/rochambeau/specialite"
+    - "2016/metropole/specialite"
+    - "2016/polynesie/specialite"
+    - "2015/pondichery/specialite"
+
+"matrices":
+  id: "matrices"
+  path: "/lessons/matrices.html"
+  summary: "/summaries/matrices.html"
+  title: "Chapitre XIV - Les matrices (Spécialité)"
+  chapter: 14
+  caption: "Les matrices sont utilisées dans le domaine de la photographie et du traitement d'images."
+  excerpt: "En mathématiques, les matrices sont des tableaux de nombres qui servent à interpréter en termes calculatoires et donc opérationnels les résultats théoriques de l'algèbre linéaire et même de l'algèbre bilinéaire.<br/>Dans ce chapitre nous étudierons les propriétés des matrices et nous nous en servirons notamment dans l'étude de marches aléatoires."
+  difficulty: 5
+  annals:
+    - "2018/asie/specialite"
+    - "2018/rochambeau/specialite"
+    - "2017/centres-etrangers/specialite"
+    - "2017/pondichery/specialite"
+    - "2017/rochambeau/specialite"
+    - "2016/antilles-guyane/specialite"
+    - "2016/asie/specialite"
+    - "2015/nouvelle-caledonie/specialite"

@@ -1,0 +1,91 @@
+year: 2015
+
+"antilles-guyane/specifique":
+  id: "antilles-guyane/specifique"
+  name: "Antilles-Guyane"
+  specific: true
+
+"antilles-guyane/specialite":
+  id: "antilles-guyane/specialite"
+  name: "Antilles-Guyane"
+  specific: false
+
+"asie/specifique":
+  id: "asie/specifique"
+  name: "Asie"
+  specific: true
+
+"asie/specialite":
+  id: "asie/specialite"
+  name: "Asie"
+  specific: false
+
+"centres-etrangers/specifique":
+  id: "centres-etrangers/specifique"
+  name: "Centres étrangers"
+  specific: true
+
+"centres-etrangers/specialite":
+  id: "centres-etrangers/specialite"
+  name: "Centres étrangers"
+  specific: false
+
+"liban/specifique":
+  id: "liban/specifique"
+  name: "Liban"
+  specific: true
+
+"liban/specialite":
+  id: "liban/specialite"
+  name: "Liban"
+  specific: false
+
+"metropole/specifique":
+  id: "metropole/specifique"
+  name: "Métropole"
+  specific: true
+
+"metropole/specialite":
+  id: "metropole/specialite"
+  name: "Métropole"
+  specific: false
+
+"nouvelle-caledonie/specifique":
+  id: "nouvelle-caledonie/specifique"
+  name: "Nouvelle-Calédonie"
+  specific: true
+
+"nouvelle-caledonie/specialite":
+  id: "nouvelle-caledonie/specialite"
+  name: "Nouvelle-Calédonie"
+  specific: false
+
+"polynesie/specifique":
+  id: "polynesie/specifique"
+  name: "Polynésie"
+  specific: true
+
+"polynesie/specialite":
+  id: "polynesie/specialite"
+  name: "Polynésie"
+  specific: false
+
+"pondichery/specifique":
+  id: "pondichery/specifique"
+  name: "Pondichéry"
+  specific: true
+
+"pondichery/specialite":
+  id: "pondichery/specialite"
+  name: "Pondichéry"
+  specific: false
+
+"rochambeau/specifique":
+  id: "rochambeau/specifique"
+  name: "Rochambeau"
+  specific: true
+
+"rochambeau/specialite":
+  id: "rochambeau/specialite"
+  name: "Rochambeau"
+  specific: false

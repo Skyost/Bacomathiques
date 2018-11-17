@@ -5,7 +5,6 @@ permalink: "/a-propos/"
 redirect_from: "/about.html"
 navbarpos: 3
 fa: "fa-graduation-cap"
-css: ["https://cdnjs.cloudflare.com/ajax/libs/font-mfizz/2.4.1/font-mfizz.min.css"]
 ---
 
 <section class="container">
@@ -14,10 +13,10 @@ css: ["https://cdnjs.cloudflare.com/ajax/libs/font-mfizz/2.4.1/font-mfizz.min.cs
 	<div class="row">
 		<div class="col-md-4 col-xs-12">
 			<figure>
-				<i class="icon-javascript-alt fa-5x"></i>
+				<img src="../assets/img/simple/about/code.svg" alt="Code"/>
 				
 				<figcaption>
-					Ce site web a été créé avec le framework <a href="https://getbootstrap.com/">Bootstrap</a>, avec <a href="https://jquery.com/">jQuery</a>.
+					Ce site web a été créé avec le framework <a href="https://getbootstrap.com/">Bootstrap</a>, ainsi que <a href="https://jquery.com/">jQuery</a>.
 					<a href="https://www.mathjax.org/">MathJax</a>, <a href="http://mauriciopoppe.github.io/function-plot/">Function Plot</a>,
 					<a href="http://github.hubspot.com/pace/">PACE</a>, <a href="https://lunrjs.com/">Lunr.js</a>, <a href="https://www.bryanbraun.com/anchorjs/">AnchorJS</a>,
 					<a href="https://tscanlin.github.io/tocbot/">Tocbot</a>
@@ -28,7 +27,7 @@ css: ["https://cdnjs.cloudflare.com/ajax/libs/font-mfizz/2.4.1/font-mfizz.min.cs
 		</div>
 		<div class="col-md-4 col-xs-12 middle">
 			<figure>
-				<i class="icon-ruby fa-5x"></i>
+				<img src="../assets/img/simple/about/flask.svg" alt="Fiole"/>
 				
 				<figcaption>
 					{{ site.title }} utilise le moteur <a href="https://jekyllrb.com/">Jekyll</a> pour générer ses contenus et
@@ -38,10 +37,11 @@ css: ["https://cdnjs.cloudflare.com/ajax/libs/font-mfizz/2.4.1/font-mfizz.min.cs
 		</div>
 		<div class="col-md-4 col-xs-12">
 			<figure>
-				<i class="icon-svg fa-5x"></i>
+				<img src="../assets/img/simple/about/pencil.svg" alt="Crayon"/>
 				
 				<figcaption>
-					Les icônes <a href="https://www.iconfinder.com/iconsets/hawcons">PDF</a>, <a href="https://www.iconfinder.com/iconsets/ikooni-outline-free-basic">Imprimer</a>,
+					Les icônes des <a href="https://www.iconfinder.com/iconsets/small-n-flat">pages de présentation</a>, <a href="https://www.iconfinder.com/iconsets/hawcons">Résumé</a>,
+					<a href="https://www.iconfinder.com/iconsets/hawcons">PDF</a>, <a href="https://www.iconfinder.com/iconsets/ikooni-outline-free-basic">Imprimer</a>,
 					<a href="https://www.iconfinder.com/iconsets/mayssam">Partager</a>, <a href="https://www.iconfinder.com/iconsets/ikooni-outline-free-basic">Correction</a>,
 					et <a href="https://www.iconfinder.com/iconsets/tutor-icon-set">Bacomathiques</a> proviennent de IconFinder.
 					<br/>Les autres icônes proviennent de <a href="http://fontawesome.io/">FontAwesome</a>.
@@ -53,7 +53,7 @@ css: ["https://cdnjs.cloudflare.com/ajax/libs/font-mfizz/2.4.1/font-mfizz.min.cs
 	<p><em>Comme dit plus haut, le site utilise <strong>Jekyll{% if site.github.versions.jekyll %} v{{ site.github.versions.jekyll }}{% endif %}</strong>
 	ce qui lui procure d’excellentes performances en matière de temps de chargement, puisque contrairement aux autres technologies,
 	le contenu des pages n’est pas généré à chaque requête.</em></p>
-
+	
 </section>
 
 <section>
@@ -64,7 +64,8 @@ css: ["https://cdnjs.cloudflare.com/ajax/libs/font-mfizz/2.4.1/font-mfizz.min.cs
 			<div class="col-xs-12 col-md-10 text-center text-md-left">
 				<p>Les cours ont été écrits intégralement par <a href="https://www.skyost.eu">Hugo Delaunay</a> et sont disponibles sous licence
 				<a href="{{ site.content_license.url }}">{{ site.content_license.name }}</a>.
-				Les annales ainsi que les corrigés sont la propriété de <a href="http://www.maths-france.fr/">Math France</a>.</p>
+				Les annales ainsi que les corrigés sont la propriété de <a href="http://www.maths-france.fr/">Math France</a>.
+				Enfin, certaines introductions ont été reprises de <a href="https://fr.wikipedia.org">Wikipédia</a>.</p>
 					
 				<p>Toutes les technologies intégrées dans ce site WEB sont disponibles sous licence <strong>open-source</strong>.
 				N'hésitez pas à aller faire un tour sur leurs pages respectives !</p>

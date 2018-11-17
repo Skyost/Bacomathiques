@@ -5,11 +5,9 @@
 		<a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-search"><i class="fa fa-search" aria-hidden="true"></i> Rechercher un cours...</a>
 		<div class="dropdown-divider"></div>
 		<span class="dropdown-header"><i class="fa fa-book" aria-hidden="true"></i> Liste des cours</span>
-		{% assign pages = (site.pages | sort: 'chapter') %}
-		{% for lesson in pages %}
-			{% if lesson.layout == 'lesson' %}
-				<a class="dropdown-item lesson-item{% if lesson.path == page.path %} current{% endif %}" href="{{ lesson.url }}">{{ lesson.title }}</a>
-			{% endif %}
+		{% for data in site.data.lessons %}
+			{% assign lesson = data[1] %}
+			<a class="dropdown-item lesson-item{% if lesson.path == page.path %} current{% endif %}" href="/cours/{{ lesson.id | replace: '_', '-' }}">{{ lesson.title }}</a>
 		{% endfor %}
 	</div>
 	
@@ -26,7 +24,7 @@
 					<p>Entrez ci-dessous les termes recherchés :</p>
 					<form class="navbar-form navbar-left" action="/search.html" method="get">
 						<div class="input-group">
-							<input type="search" class="awesomplete" name="keywords" placeholder="Chercher un cours..." data-list="{% for lesson in pages %}{% if lesson.layout == 'lesson' %}{{ lesson.title }}, {% endif %}{% endfor %}Index des cours" data-autofirst="true"/>
+							<input type="search" class="awesomplete" name="keywords" placeholder="Chercher un cours..." data-list="{% for data in site.data.lessons %}{% assign lesson = data[1] %}{{ lesson.title }}, {% endfor %}Index des cours" data-autofirst="true"/>
 							<span class="input-group-btn">
 								<button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
 							</span>

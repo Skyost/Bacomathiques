@@ -2,8 +2,9 @@
 title: "Bacomathiques"
 tagline: "Bacomathiques est un petit site web qui contient tout ce dont vous avez besoin pour réussir votre BAC de mathématiques en toute tranquillité : cours de mathématiques gratuits, téléchargeables et imprimables, annales et corrigés des sujets précédents, etc..."
 url: "https://bacomathiqu.es"
-repository: Skyost/Bacomathiques
-timezone: Europe/Paris
+repository: "Skyost/Bacomathiques"
+timezone: "Europe/Paris"
+includes_dir: ""
 
 # Social
 social:
@@ -14,9 +15,10 @@ social:
 
 # HTML Compresser
 compress_html:
-  clippings: all
+  clippings: "all"
   blanklines: true
-  
+
+# License
 content_license:
   name: "Creative Commons BY-NC 4.0"
   full_name: "Licence Creative Commons Attribution - Pas d’Utilisation Commerciale 4.0 International"
@@ -26,8 +28,8 @@ content_license:
 
 # SASS options
 sass:
-  sass_dir: _sass
-  style: compressed
+  sass_dir: "_sass"
+  style: "compressed"
 
 # Production
 exclude: [".scss", "README.md", "CNAME"]

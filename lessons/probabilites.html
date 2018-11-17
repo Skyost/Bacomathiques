@@ -1,25 +1,12 @@
 ---
 layout: lesson
-title: "Chapitre X - Lois de probabilité"
+lesson: "probabilites"
+
 permalink: "/cours/probabilites/"
 redirect_from: "/cours/probabilites.html"
-caption: "Les probabilités peuvent servir à comprendre les jeux de hasard, par exemple, pourquoi avons-nous plus de chances de perdre que de gagner ?"
-excerpt: "Ce cours sur les lois de probabilité vous servira à apprendre ce dont vous avez besoin sur les lois de probabilité discrètes (probabilités conditionnelles, formule des probabilités totales, variables aléatoires, loi binomiale, ...).<br/>Mais il contient aussi ce dont vous avez besoin sur les lois de probabilités continues (loi uniforme, exponentielle, normale, ...)."
 maths: true
-js: ["/assets/js/lessons/probabilites.js"]
-annals: [
-	"2018/liban/specifique",
-	"2018/nouvelle-caledonie/specifique",
-	"2017/nouvelle-caledonie/specifique",
-	"2017/pondichery/specifique",
-	"2016/metropole/specifique",
-	"2016/pondichery/specifique",
-	"2015/asie/specifique",
-	"2015/polynesie/specifique"
-]
-comments: true
-chapter: 10
-difficulty: 2
+js:
+  - "/assets/js/lessons/probabilites.js"
 ---
 <section>
 
@@ -31,7 +18,7 @@ difficulty: 2
 		<p>Soient $A$ et $B$ deux événements avec $A$ de probabilité non nulle. Alors la probabilité conditionnelle de <strong>$B$ sachant que $A$ est réalisé</strong> est :</p>
 		
 		<p class="bubble formula">$\displaystyle{p_{A}(B) = \frac{p(A \cap B)}{p(A)}}$</p>
-				
+		
 		<div class="bubble tip">
 			<p>En réalité, lorsque l'on dessine un arbre de probabilité (vu en classe de Première), $p_{A}{B}$ se lit sur les branches de l'arbre :</p>
 			
@@ -165,7 +152,7 @@ difficulty: 2
 		<p>Une variable aléatoire $X$ suit la loi de Bernoulli de paramètre $p$ si :</p>
 		
 		<ul class="bubble formula">
-			<li>$X(\Omega) =  {0;1}$</li>
+			<li>$X(\Omega) = {0; 1}$</li>
 			<li>$p(X = 1) = p$ et $p(X = 0) = 1-p$</li>
 			<li><strong>Remarque :</strong> On voit que $0$ correspond à l'échec et que $1$ correspond au succès.</li>
 		</ul>

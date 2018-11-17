@@ -1,0 +1,14 @@
+---
+layout: compress
+---
+{% assign lesson = site.data.lessons[page.lesson] %}
+
+{% capture linebreak %}
+{% endcapture %}
+{% capture lessonContent %}
+{% include {{ lesson.path }} %}
+{% endcapture %}
+{% assign parts = lessonContent | split: "---" %}
+{% assign lessonContent = parts[2] %}
+
+{"id": "{{ lesson.id }}", "chapter": {{ lesson.chapter }}, "difficulty": {{ lesson.difficulty }}, "title": "{{ lesson.title }}", "annals": [{% for annal in lesson.annals %}"assets/pdf/annales/{{ annal }}/"{% unless forloop.last %},{% endunless %}{% endfor %}], "content": "{{ lessonContent | escape | replace: '\', '&#92;' | remove: "	" | replace: linebreak, " " }}"}

@@ -1,0 +1,146 @@
+---
+permalink: "/cours/nombres-complexes/resume/"
+sitemap: false
+---
+<section>
+
+	<h2>L'ensemble des nombres complexes $\mathbb{C}$</h2>
+	
+	<section>
+		
+		<p>Il existe un ensemble de nombres noté $\mathbb{C}$ qui contient l'ensemble $\mathbb{R}$ ainsi qu'un nombre $i \in \mathbb{C}$ tel que $i^2 = -1$.
+		Cet ensemble est appelé <strong>ensemble des nombres complexes</strong> et obéit aux mêmes règles de calcul que l'ensemble $\mathbb{R}$.</p>
+		
+	</section>
+	
+	<section>
+		
+		<p>Soient $x$ et $y$ deux réels. Le nombre complexe $z$ correspondant peut s'écrire sous cette forme :</p>
+		
+		<p class="bubble formula">$z = x+iy$</p>
+		
+		<p>Avec $x = \operatorname{Re}(z)$ (la <strong>partie réelle</strong> de $z$) et $y = \operatorname{Im}(z)$ (la <strong>partie imaginaire</strong> de $z$).
+		$z$ est dit <strong>réel</strong> si $y = 0$ et il est dit <strong>imaginaire pur</strong> si $x = 0$.</p>
+	
+	</section>
+	
+	<section>
+		
+		<p>Soient deux nombres complexes $z$ et $z'$. Ces deux nombres sont dits <strong>égaux</strong> si et seulement si
+		la partie réelle et la partie imaginaire de ces deux nombres sont égales.</p>
+		
+	</section>
+	
+</section>
+<section>
+
+	<h2>Propriétés</h2>
+	
+	<section>
+		
+		<p>Tout nombre complexe $z = x+iy$ admet un nombre complexe <strong>conjugué</strong> noté $\bar{z}$. Ce conjugué est le nombre complexe suivant :</p>
+		
+		<p class="bubble formula">$\bar{z} = x-iy$</p>
+		
+		<p>Plusieurs propriétés peuvent se dégager à l'aide des conjugués. Soient $z$ et $z'$ deux nombres complexes :</p>
+		
+		<ul class="bubble formula">
+			<li>$\bar{\bar{z}} = z$</li>
+			<li>$\overline{z + z'} = \bar{z} + \bar{z'}$</li>
+			<li>$\displaystyle{\overline{\left(\frac{z}{z'}\right)} = \frac{\bar{z}}{\bar{z'}}}$ avec $z' \neq 0$</li>
+			<li>$\bar{z^n} = (\bar{z})^n$ avec $n \in \mathbb{Z}$ et $z' \neq 0$ si $n \leq 0$</li>
+			<li>$\overline{z \times z'} = \bar{z} \times \bar{z'}$</li>
+			<li>$z + \bar{z} = 2\operatorname{Re}(z)$</li>
+			<li>$z - \bar{z} = 2i \times \operatorname{Re}(z)$</li>
+		</ul>
+		
+	</section>
+	
+	<section>
+		
+		<p>On appelle <strong>module</strong> (noté $|z|$) d'un nombre complexe $z = x + iy$ le réel :</p>
+		
+		<p class="bubble formula">$|z| = \sqrt{x^2 + y^2}$</p>
+		
+		<p>Et on a les relations suivantes pour $z, z' \in \mathbb{C}$ :</p>
+		
+		<ul class="bubble formula">
+			<li>$z\bar{z} = |z|^2$</li>
+			<li>$|z| = |\bar{z}| = |-z|$</li>
+			<li>$|zz'| = |z| \times |z'|$</li>
+			<li>$\displaystyle{\left|\frac{z}{z'}\right| = \frac{|z|}{|z'|}}$ avec $z' \neq 0$</li>
+			<li>$|z^n| = |z|^n$ avec $n \in \mathbb{Z}$ et $z' \neq 0$ si $n \leq 0$</li>
+		</ul>
+		
+	</section>
+		
+	<section>
+		
+		<p>Un nombre complexe $z = x+iy$ peut s'écrire sous deux formes la <strong>forme algébrique</strong> et la <strong>forme exponentielle</strong> (ou forme trigonométrique).
+		Pour obtenir la forme trigonométrique du nombre complexe, il faut tout d'abord obtenir le <a href="#2-module-dun-nombre-complexe">module</a>.
+		La forme trigonométrique est ensuite donnée par la formule suivante :</p>
+		
+		<p class="bubble formula">$z = |z| \times (cos(\theta) + isin(\theta))$</p>
+		
+		<p>Avec $\theta$ <strong>l'argument</strong> de $z$ (noté $\operatorname{arg}(z)$) qui doit vérifier les deux conditions suivantes :</p>
+		
+		<p class="bubble formula">$\displaystyle{cos(\theta) = \frac{x}{|z|}}$ et $\displaystyle{sin(\theta) = \frac{y}{|z|}}$</p>
+		
+		<p>Une fois la forme trigonométrique obtenue, on peut passer à la forme exponentielle, qui est :</p>
+		
+		<p class="bubble formula">$z = |z| \times e^{i\theta}$</p>
+		
+		<p>Deux nombres complexes sont égaux s'ils ont le <strong>même module</strong> et le <strong>même argument (modulo $2\pi$)</strong>.</p>
+		
+	</section>
+	
+	<section>
+		
+		<p>Un nombre complexe $z = x+iy$ peut être représenté dans le plan $(Oxy)$ par un point $M$ de coordonnées $M(x; y)$.
+		$z$ est alors appelé <strong>affixe</strong> du point $M$ (et réciproquement le point $M$ est <strong>l'image</strong> de $z$).</p>
+		
+		<p>Un nombre complexe $z' = |z'| \times e^{\theta}$ peut être représenté dans le plan $(Oxy)$ par un point $M'$ situé sur le cercle d'origine $O$ de rayon
+		$|z'|$. Le point $M'$ est alors situé à l'angle $\theta$ sur ce cercle.
+		<br/>Le module est donc une <strong>distance</strong> et l'argument est un <strong>angle</strong>.</p>
+		
+	</section>
+	
+</section>
+<section>
+
+	<h2>Calculs particuliers</h2>
+	
+	<section>
+		
+		<p>Soit $P(z) = az^2 + bz + c$ (avec $a, b, c \in \mathbb{R}$ et $a \neq 0$) un polynôme du second degré à coefficients réels.
+		Pour résoudre $P(z) = 0$ dans $\mathbb{C}$, on calcule le discriminant $\Delta = b^2 - 4ac$ et on a :</p>
+		
+		<div class="bubble formula">
+			<p><strong>Si $\Delta \gt 0$, il existe deux solution réelles :</strong></p>
+			<p>$\displaystyle{z_1 = \frac{-b - \sqrt{\Delta}}{2a}}$</p>
+			<p>$\displaystyle{z_2 = \frac{-b + \sqrt{\Delta}}{2a}}$</p>
+			
+			<p><strong>Si $\Delta = 0$, il existe une solution réelle :</strong></p>
+			<p>$\displaystyle{z = \frac{-b}{2a}}$</p>
+			
+			<p><strong>Si $\Delta \lt 0$, il existe deux solutions complexes conjuguées :</strong></p>
+			<p>$\displaystyle{z_1 = \frac{-b - \sqrt{-\Delta}i}{2a}}$</p>
+			<p>$\displaystyle{z_2 = \frac{-b + \sqrt{-\Delta}i}{2a} = \bar{z_1}}$</p>
+		</div>
+		
+	</section>
+	
+	<section>
+		
+		<p>Soient $A$, $B$, $C$ et $D$ des points d'affixes respectives $z_A$, $z_B$, $z_C$ et $z_D$ :</p>
+		
+		<div class="bubble formula">
+			<p><strong>La longueur $AB$ est :</strong> $|z_B - z_A|$.</p>
+			<p><strong>Le milieu du segment $[AB]$ est :</strong> le point $M$ d'affixe $\displaystyle{z_{M} = \frac{z_A + z_B}{2}}$.</p>
+			<p><strong>L'angle $(\vec{i}; \vec{AB})$ est :</strong> $\operatorname{arg}(z_B - z_A)$ (modulo $2\pi$).</p>
+			<p><strong>L'angle $(\vec{AB}; \vec{CD})$ est :</strong> $\displaystyle{\operatorname{arg}\left(\frac{z_C - z_D}{z_B - z_A}\right)}$ (modulo $2\pi$).</p>
+		</div>
+		
+	</section>
+	
+</section>

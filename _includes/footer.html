@@ -13,9 +13,30 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.print/1.5.1/jQuery.print.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/is-in-viewport/3.0.4/isInViewport.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.3.2/tocbot.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
 		
 	<script src="/assets/js/lesson.js"></script>
+	
+	<script>
+		let isSummaryLoaded = false;
+		
+		$('#export-summary').click(function() {
+			$('#modal-summary').modal();
+			if(!isSummaryLoaded) {
+				$('#modal-summary .modal-body').html('<em>Chargement du résumé en cours...</em>');			
+				let id = '{{ page.path | replace: 'lessons/', '' | replace: '.html', '' }}';
+				$.get('../../api/v1/summary/' + id + '.json', function(content) {
+					$('#modal-summary .modal-title').html(content.title);
+					$('#modal-summary .modal-body').html(new DOMParser().parseFromString(content.content, 'text/html').documentElement.textContent);
+					isSummaryLoaded = true;
+					MathJax.Hub.Queue(['Typeset', MathJax.Hub, $('#modal-summary').get(0)]);
+				})
+				.fail(function() {
+					$('#modal-summary .modal-body').html('Impossible d\'obtenir le résumé de cours. Veuillez ré-essayer plus tard !');
+				});
+			}
+		});
+	</script>
 {% endif %}
 
 {% if page.adsense or layout.adsense %}

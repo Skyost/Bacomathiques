@@ -1,12 +1,12 @@
 ---
 layout: default
 title: "Résultats de la recherche"
-css: ["assets/css/search.css"]
-js: [
-	"https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.6/lunr.min.js",
-	"https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.2/jquery.matchHeight-min.js",
-	"/assets/js/search.js"
-]
+css:
+  - "assets/css/search.css"
+js:
+  - "https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.5/lunr.min.js"
+  - "https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.2/jquery.matchHeight-min.js"
+  - "/assets/js/search.js"
 sitemap: false
 adsense: true
 ---
@@ -27,15 +27,17 @@ adsense: true
 
 <script type='text/javascript'>
 	var pages = {
-		{% for page in site.pages %}
-			{% if page.layout == 'lesson' %}
-				'{{ page.url | slugify }}': {
-					title: "{{ page.title | xml_escape }}",
-					excerpt: "{{ page.excerpt | strip_html }}",
-					content: "{{ page.content | strip_html | xml_escape | strip_newlines | truncatewords: 20 | textilize }}",
-					url: "{{ page.url | xml_escape }}"
-				},
-			{% endif %}
+		{% for data in site.data.lessons %}
+			{% assign lesson = data[1] %}
+			{% capture lessonContent %}{% include {{ lesson.path }} %}{% endcapture %}
+			{% assign parts = lessonContent | split: "---" %}
+			{% assign lessonContent = parts[2] %}
+			'{{ lesson.id }}': {
+				title: "{{ lesson.title | xml_escape }}",
+				excerpt: "{{ lesson.excerpt | strip_html }}",
+				content: "{{ lessonContent | strip_html | xml_escape | strip_newlines | truncatewords: 20 | textilize }}",
+				url: "cours/{{ lesson.id | replace: '_', '-' | xml_escape }}/"
+			},
 		{% endfor %}
 		'index-des-cours-html': {
 			title: 'Index des cours',

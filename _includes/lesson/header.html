@@ -1,11 +1,29 @@
 <div class="text-right no-print">
 	<ul id="export" class="no-style">
+		<li id="export-summary" title="Fiche résumée"></li>
 		<li id="export-pdf" title="Exporter en PDF"></li>
 		<li id="export-print" title="Imprimer"></li>
 		<li id="export-social" title="Partager" data-toggle="modal" data-target="#modal-social"></li>
 		<li id="export-caveats" title="Apporter une correction" data-toggle="modal" data-target="#modal-caveats"></li>
 	</ul>
-	<span id="difficulty" class="text-muted">Difficulté du cours : {% for i in (1..5) %}<i class="fa fa-graduation-cap{% if i <= page.difficulty %} difficulty-{{ page.difficulty }}{% endif %}" aria-hidden="true"></i>{% endfor %}</span>
+	<span id="difficulty" class="text-muted">Difficulté du cours : {% for i in (1..5) %}<i class="fa fa-graduation-cap{% if i <= lesson.difficulty %} difficulty-{{ lesson.difficulty }}{% endif %}" aria-hidden="true"></i>{% endfor %}</span>
+</div>
+
+<div id="modal-summary" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-summary-label" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modal-summary-label">Fiche résumée</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body"></div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div id="modal-social" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-social-label" aria-hidden="true">
@@ -20,11 +38,11 @@
 			<div class="modal-body">
 				<p>Vous pouvez partager cette page sur les réseaux sociaux :</p>
 				<ul class="social-icons icon-circle icon-zoom list-unstyled list-inline no-style">
-					<li><a href="https://twitter.com/intent/tweet?text=Retrouvez%20le%20cours%20intitul%C3%A9%20%22{{ page.title | uri_escape }}%22%20sur%20{{ site.title }}%20!&url={{ site.url }}{{ page.url }}" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+					<li><a href="https://twitter.com/intent/tweet?text=Retrouvez%20le%20cours%20intitul%C3%A9%20%22{{ lesson.title | uri_escape }}%22%20sur%20{{ site.title }}%20!&url={{ site.url }}{{ page.url }}" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 					<li><a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}&t=" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 					<li><a href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
 					<li><a href="http://www.tumblr.com/share?v=3&u={{ site.url }}{{ page.url }}&t=&s=" target="_blank"><i class="fa fa-tumblr" aria-hidden="true"></i></a></li>
-					<li><a href="mailto:?subject=&body=Retrouvez%20le%20cours%20intitul%C3%A9%20%22{{ page.title | uri_escape }}%22%20sur%20{{ site.title }}%20!%20{{ site.url }}{{ page.url }}" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+					<li><a href="mailto:?subject=&body=Retrouvez%20le%20cours%20intitul%C3%A9%20%22{{ lesson.title | uri_escape }}%22%20sur%20{{ site.title }}%20!%20{{ site.url }}{{ page.url }}" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
 				</ul>
 				<p>Sinon, vous pouvez directement copier le lien vers ce cours dans votre presse-papier :</p>
 				<input type="text" value="{{ site.url }}{{ page.url }}" style="width: 100%;" readonly/>

@@ -13,14 +13,14 @@ css: ["/assets/css/devices.min.css", "/assets/css/index.css"]
 	<div class="row">
 		<div class="col-md-4 col-xs-12">
 			<figure>
-				<i class="fa fa-check-circle fa-5x"></i>
+				<img src="assets/img/simple/index/check.svg" alt="Vérifié"/>
 			
 				<figcaption>Des cours en accord avec le programme de <strong>Terminale S</strong>.</figcaption>
 			</figure>
 		</div>
 		<div class="col-md-4 col-xs-12 middle">
 			<figure>
-				<i class="fa fa-book fa-5x"></i>
+				<img src="assets/img/simple/index/book.svg" alt="Livre"/>
 			
 				<figcaption>
 					Des exemples intuitifs et la possibilité de <strong>télécharger</strong>
@@ -30,7 +30,7 @@ css: ["/assets/css/devices.min.css", "/assets/css/index.css"]
 		</div>
 		<div class="col-md-4 col-xs-12">
 			<figure>
-				<i class="fa fa-laptop fa-5x"></i>
+				<img src="assets/img/simple/index/computer.svg" alt="Ordinateur"/>
 			
 				<figcaption>Le plus important : <strong>tout est gratuit</strong>. Même pas besoin de compte, tout est à disposition de tout le monde !</figcaption>
 			</figure>
@@ -64,11 +64,9 @@ css: ["/assets/css/devices.min.css", "/assets/css/index.css"]
 					<blockquote class="note">
 						<h4>Liste des cours</h4>
 						<ul>
-							{% assign pages = site.pages | sort: 'chapter' %}
-							{% for lesson in pages %}
-								{% if lesson.layout == 'lesson' %}
-									<li><a href="{{ lesson.url }}">{{ lesson.title }}</a></li>
-								{% endif %}
+							{% for data in site.data.lessons %}
+								{% assign lesson = data[1] %}
+								<li><a href="cours/{{ lesson.id | replace: '_', '-' }}/">{{ lesson.title }}</a></li>
 							{% endfor %}
 						</ul>
 					</blockquote>

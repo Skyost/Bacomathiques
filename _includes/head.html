@@ -1,31 +1,36 @@
 <head>
 	<meta charset="utf-8"/>
-	<title>{% if page.fulltitle %}{{ page.fulltitle }}{% else %}{{ page.title }} | {{ site.title }} {% endif %}</title>
+	{% if page.lesson %}
+		{% assign lesson = site.data.lessons[page.lesson] %}
+	{% endif %}
 	
-	{% if page.layout == 'lesson' %}
+	{% capture title %}{% if page.fulltitle %}{{ page.fulltitle }}{% else %}{% if page.lesson %}{{ lesson.title }}{% else %}{{ page.title }}{% endif %} | {{ site.title }}{% endif %} {% endcapture %}
+	<title>{{ title }}</title>
+	
+	{% if page.lesson %}	
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/silver/pace-theme-flash.min.css"/>
 	{% endif %}
 
 	<!-- Description -->
-	<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{ site.tagline }}{% endif %}"/>
+	<meta name="description" content="{% if page.lesson %}{{ lesson.excerpt | strip_html }}{% else %}{{ site.tagline }}{% endif %}"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	
 	<!-- OpenGraph -->
 	<meta property="og:type" content="website"/>
-	<meta property="og:title" content="{% if page.fulltitle %}{{ page.fulltitle }}{% else %}{{ page.title }} | {{ site.title }} {% endif %}"/>
+	<meta property="og:title" content="{{ title }}"/>
 	<meta property="og:site_name" content="{{ site.title }}"/>
 	<meta property="og:url" content="{{ site.url }}{{ page.url }}"/>
-	<meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{ site.tagline }}{% endif %}"/>
+	<meta property="og:description" content="{% if page.lesson %}{{ lesson.excerpt | strip_html }}{% else %}{{ site.tagline }}{% endif %}"/>
 	<meta property="og:image" content="{% if page.image %}{{ site.url }}{{ page.image }}{% else %}{{ site.url }}{{ site.social.preview }}{% endif %}"/>
 	
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary"/>
-	<meta name="twitter:title" content="{% if page.fulltitle %}{{ page.fulltitle }}{% else %}{{ page.title }} | {{ site.title }} {% endif %}"/>
+	<meta name="twitter:title" content="{{ title }}"/>
 	<meta name="twitter:site" content="{{ site.social.twitter }}"/>
 	<meta name="twitter:creator" content="{{ site.social.twitter }}"/>
 	<meta name="twitter:url" content="{{ site.url }}{{ page.url }}"/>
-	<meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{ site.tagline }}{% endif %}"/>
+	<meta name="twitter:description" content="{% if page.lesson %}{{ lesson.excerpt | strip_html }}{% else %}{{ site.tagline }}{% endif %}"/>
 	<meta name="twitter:image" content="{{ site.url }}{{ site.social.preview }}"/>
 	
 	<!-- Styles -->
@@ -73,10 +78,6 @@
 					]
 				},
 				'HTML-CSS': {
-					scale: 90,
-					webFont: 'Asana-Math',
-					preferredFont: 'Asana-Math', 
-					availableFonts: ['Asana-Math'], 
 					extensions: ['handle-floats.js']
 				},
 				messageStyle: 'none',

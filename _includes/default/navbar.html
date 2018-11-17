@@ -11,17 +11,14 @@
 		<li>
 			<div class="collapse navbar-collapse" id="navbar-nav">
 				<ul class="navbar-nav mr-auto no-style">
-					{% assign pages = (site.pages | sort: 'navbarpos') %}
-					{% for sitepage in pages %}
-						{% if sitepage.navbarpos %}
-							<li class="nav-item{% if sitepage.path == page.path %} active{% endif %}">
-								<a class="nav-link" href="{{ sitepage.url }}"><i class="fa {{ sitepage.fa }}" aria-hidden="true"></i> {{ sitepage.title }}</a>
-							</li>
-						{% endif %}
+					{% for menuPage in site.data.menu %}
+						<li class="nav-item{% if menuPage.path == page.path %} active{% endif %}">
+							<a class="nav-link" href="{{ menuPage.link }}"><i class="fa {{ menuPage.fa }}" aria-hidden="true"></i> {{ menuPage.title }}</a>
+						</li>
 					{% endfor %}
 				</ul>
 				<ul class="navbar-nav no-style">
-					{% include lessons_menu.html %}
+					{% include _includes/lessons_menu.html %}
 				</ul>
 			</div>
 		</li>

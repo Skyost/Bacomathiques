@@ -124,23 +124,27 @@ $(document).ready(function() {
 /**
 * Found here : http://stackoverflow.com/a/9083076/3608831
 */
+
 function romanize(num) {
-	if(!+num)
+	if(!+num) {
 		return false;
+	}
 	var digits = String(+num).split(""),
 		key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
 				"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
 				"","I","II","III","IV","V","VI","VII","VIII","IX"],
 		roman = "",
 		i = 3;
-	while(i--)
+	while(i--) {
 		roman = (key[+digits.pop() + (i * 10)] || "") + roman;
+	}
 	return Array(+digits.join("") + 1).join("M") + roman;
 }
 
 /**
 * Found here : http://stackoverflow.com/a/1144788/3608831
 */
+
 function replaceAll(str, find, replace) {
 	return str.replace(new RegExp(find, 'g'), replace);
 }

@@ -18,31 +18,28 @@ adsense: true
 
 	<h1>Liste des cours</h1>
 
-	{% assign pages = site.pages | sort: 'chapter' %}
 	<div class="lessons-row row">
-	{% for page in pages %}
-		{% if page.layout == 'lesson' %}
-				<div class="col-xs-12 col-md-6 col-lg-4">
-					<div class="card">
-						<div class="card-header d-flex align-items-center{% if page.title contains '(Spécialité)' %} specialty{% endif %}">
-							<h2 class="w-100">{{ page.title }}</h2>
-						</div>
-						<div class="card-img">
-							{% assign id = page.path | replace: 'lessons/', '' | replace: '.html', '' %}
-							<span class="preview" data-src="/assets/img/lessons/{{ id }}/preview.jpg"></span>
-							<span class="overlay"></span>
-							<span class="caption">{{ page.caption }}</span>
-						</div>
-						<div class="card-body">
-							<p class="card-text">{{ page.excerpt }}</p>
-						</div>
-						<div class="card-footer">
-							<a href="{{ page.url }}"><i class="fa fa-share" aria-hidden="true"></i> Lien vers ce cours</a>
-						</div>
+		{% for data in site.data.lessons %}
+			{% assign lesson = data[1] %}
+			<div class="col-xs-12 col-md-6 col-lg-4">
+				<div class="card">
+					<div class="card-header d-flex align-items-center{% if lesson.title contains '(Spécialité)' %} specialty{% endif %}">
+						<h2 class="w-100">{{ lesson.title }}</h2>
+					</div>
+					<div class="card-img">
+						<span class="preview" data-src="/assets/img/lessons/{{ lesson.id }}/preview.jpg"></span>
+						<span class="overlay"></span>
+						<span class="caption">{{ lesson.caption }}</span>
+					</div>
+					<div class="card-body">
+						<p class="card-text">{{ lesson.excerpt }}</p>
+					</div>
+					<div class="card-footer">
+						<a href="{{ lesson.id | replace: '_', '-' }}"><i class="fa fa-share" aria-hidden="true"></i> Lien vers ce cours</a>
 					</div>
 				</div>
-		{% endif %}
-	{% endfor %}
+			</div>
+		{% endfor %}
 	</div>
 	
 	<ins class="adsbygoogle" data-ad-client="ca-pub-7167241518798106" data-ad-slot="2776038870" data-ad-format="auto"></ins>

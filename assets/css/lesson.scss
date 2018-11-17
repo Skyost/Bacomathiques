@@ -34,10 +34,14 @@
 	font-weight: lighter;
 	margin-top: 50px;
 	font-size: 0.9em;
+	background-color: white;
+	padding: 20px 25px;
+	@include vendor-prefix('border-radius', '10px');
 	
 	ol {
 		padding-left: 0;
 		list-style-type: none;
+		margin-bottom: 0;
 	}
 	
 	.toc-link {
@@ -199,6 +203,10 @@
 	}
 }
 
+#export-summary {
+	background-image: url('../img/export-menu/summary.svg');
+}
+
 #export-pdf {
 	background-image: url('../img/export-menu/pdf.svg');
 }
@@ -254,6 +262,10 @@ ul.bubble, ol.bubble {
 	padding-left: 28px;
 }
 
+ol.bubble li {
+	margin-left: 18px;
+}
+
 .table-responsive-md {
 	overflow-y: hidden;
 	margin-bottom: 16px;
@@ -307,12 +319,29 @@ ul.bubble, ol.bubble {
 
 /** Headers : **/
 
-article {
+.row {
+	background-color: rgba(0, 0, 0, 0.015);
+	
+	.col-md-7 {
+		background-color: white;
+		margin-top: 50px;
+		margin-bottom: 50px;
+		border-radius: 10px;
+		padding: 10px 40px;
+		
+		@media(max-width: $mobile-max-width) {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	}
+}
+
+article {	
 	h1 {
 		padding-top: 20px;
 		text-align: center;
 		color: $lesson-h1-color;
-		font-size: 38px;
+		font-size: 2.5em;
 		
 		@media(max-width: $mobile-max-width) {
 			padding-top: 0;
@@ -323,8 +352,8 @@ article {
 	
 	h2 {
 		color: $lesson-h2-color;
-		font-size: 32px;
-		padding: 15px 0 15px 0;
+		font-size: 2em;
+		padding: 15px 0 5px 0;
 		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 		margin: 20px 0 30px 0;
 		page-break-after: avoid;
@@ -332,7 +361,8 @@ article {
 	
 	h3 {
 		color: $lesson-h3-color;
-		font-size: 26px;
+		font-size: 1.5em;
+		margin: 20px 0;
 		page-break-after: avoid;
 	}
 	
@@ -408,6 +438,21 @@ article {
 
 #modal-directaccess li {
 	height: 3em;
+}
+
+/* SUMMARIES */
+
+#modal-summary .modal-body {
+	padding: 16px 32px;
+
+	:first-of-type h2 {
+		margin-top: 0;
+		padding-top: 0;
+	}
+	
+	h2 {
+		font-size: 1.6em;
+	}
 }
 
 /* PRINT OPTIONS */

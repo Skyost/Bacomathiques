@@ -32,24 +32,22 @@ article {
 	}
 }
 
-/** FontAwesome : **/
+/** Images de présentation : **/
 
-.col-fa .fa {
-	color: $col-fa-color;
-	font-size: 6em;
-	
-	@media(max-width: $mobile-max-width) {
-		margin-top: 40px;
-	}
+figure img {
+	margin-bottom: 20px;
+	height: 6em;
 }
+
+/** FontAwesome : **/
 
 .col-xs-12 p:last-of-type {
 	margin-bottom: 0;
 }
 
-figure .fa-5x {
-	color: $figure-fa-color;
-	margin-bottom: 20px;
+.col-fa .fa {
+	font-size: 5em;
+	color: rgba(0, 0, 0, 0.2);
 }
 
 

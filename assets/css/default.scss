@@ -26,6 +26,7 @@ body {
 
 article {
 	margin-top: 30px;
+	font-size: 1.05em;
 }
 
 /* NAVIGATIONS */
@@ -33,7 +34,7 @@ article {
 /** Navbar : **/
 
 #navbar {
-	font-size: 1.08em;
+	font-size: 1.15em;
 	background-color: darken($main-color, 6%);
 	padding-bottom: 0;
 	
@@ -52,10 +53,10 @@ article {
 	
 	.navbar-brand {
 		font-family: 'Handlee', cursive;
-		font-size: 4em;
+		font-size: 5em;
 		color: white !important;
 		padding: 0;
-		margin: 20px 0 20px 0;
+		margin: 45px 0;
 		
 		&:before {
 			@include logo-before();

@@ -1,0 +1,139 @@
+---
+permalink: "/cours/geometrie-espace/resume/"
+sitemap: false
+---
+<section>
+
+	<h2>Vecteurs de l'espace</h2>
+
+	<section>
+		
+		<p>Comme dans le plan, un vecteur de l'espace est caractérisé par <strong>une norme</strong> (sa <q>longueur</q>), <strong>un sens</strong> et <strong>une direction</strong>.
+		La <strong>relation de Chasles</strong> est également disponible dans l'espace.</p>
+		
+	</section>
+	<section>
+		
+		<p>Soient $\vec{u}$ et $\vec{v}$ deux vecteurs non colinéaires de l'espace et $\vec{w}$ un autre vecteur de l'espace.
+		$\vec{u}$, $\vec{v}$ et $\vec{w}$ sont <strong>coplanaires</strong> s'il existe deux réels $a$ et $b$ tels que :</p>
+		
+		<p class="bubble formula">$\vec{w} = a \times \vec{u} + b \times \vec{v}$</p>
+		
+		<p>Dans l'espace, <strong>deux</strong> vecteurs sont <strong>toujours coplanaires</strong>.</p>
+		
+	</section>
+	<section>
+		
+		<p>Soient $\vec{i}$, $\vec{j}$ et $\vec{k}$ trois vecteurs non coplanaires de l'espace et $O$ un point de l'espace.
+		On se placera dans le repère $(O ; \vec{i} ; \vec{j} ; \vec{k})$.</p>
+		
+		<div class="bubble formula">
+			<p>Tout point $M$ peut alors être identifié dans ce repère par un unique triplet de réels $(x;y;z)$ tel que :</p>
+			<p>$\vec{OM} = x\vec{i} + y\vec{j} + z\vec{k}$.</p>
+			<p>Les coordonnées de $M$ dans ce repère sont alors $(x;y;z)$ :
+			$x$ est <strong>l'abscisse</strong>, $y$ est <strong>l'ordonnée</strong> et $z$ est <strong>la côte</strong> de $M$.</p>
+		</div>
+		
+		<ul class="bubble formula">
+			<li>Le repère est dit <strong>orthogonal</strong> si $\vec{i}$, $\vec{j}$ et $\vec{k}$ sont orthogonaux les uns par rapport aux autres.</li>
+			<li>Le repère est dit <strong>normé</strong> si $\vec{i}$, $\vec{j}$ et $\vec{k}$ ont la même norme.</li>
+			<li>Le repère est dit <strong>orthonormé</strong> si les deux conditions précédentes sont réunies.</li>
+		</ul>
+		
+	</section>
+
+</section>
+<section>
+
+	<h2>Produit scalaire dans l'espace</h2>		
+	<p>Soient $\vec{u} = (x;y;z)$ et $\vec{v} = (x';y';z')$ deux vecteurs de l'espace. On a la formule suivante :</p>
+	
+	<p class="bubble formula">$\vec{u} \cdot \vec{v} = xx' + yy' + zz'$</p>
+		
+</section>
+<section>
+
+	<h2>Droites de l'espace</h2>
+
+	<section>
+		
+		<p>Plusieurs manières existent pour caractériser une droite de l'espace. Ainsi, soient $M(x;y;z)$ un point quelconque de l'espace, $D$ une droite de l'espace passant par un
+		point $A(x_A;y_A;z_A)$ et qui suit un vecteur $\vec{u} = (a;b;c)$ (on dit que $\vec{u}$ est <strong>vecteur directeur</strong> de $D$).
+		<br/>On peut caractériser $D$ de deux manières :</p>
+		
+		<ul class="bubble formula">
+			<li><strong>Caractérisation vectorielle :</strong> $M \in D \iff \vec{AM} = k\vec{u}$ avec $k \in \mathbb{R}$.</li>
+			<li><strong>Caractérisation par système d'équations paramétriques :</strong> $D : \begin{cases} x_A + ka \\ y_A + kb \\ z_A + kc \end{cases}$ avec $k \in \mathbb{R}$.</li>
+		</ul>
+				
+	</section>
+	<section>
+		
+		<p>Soient $D$ et $D'$ deux droites. On a les relations suivantes :</p>
+		
+		<ul class="bubble formula">
+			<li>Si $D$ et $D'$ ne sont pas coplanaires, leur intersection <strong>est vide</strong>.</li>
+			<li>Si $D$ et $D'$ sont coplanaires et parallèles, leur intersection <strong>est vide</strong>.</li>
+			<li>Si $D$ et $D'$ sont coplanaires et confondues, leur intersection <strong>est la droite $D$</strong>.</li>
+			<li>Si $D$ et $D'$ sont coplanaires et non parallèles, leur intersection <strong>est un point</strong>.</li>
+		</ul>
+		
+	</section>
+
+</section>
+<section>
+
+	<h2>Plans de l'espace</h2>
+
+	<section>
+		
+		<p>Plusieurs manières existent pour caractériser un plan de l'espace. Ainsi, soient $\vec{u}$ et $\vec{v}$ deux vecteurs non colinéaires de l'espace et $A(x_A;y_A;z_A)$ un point de l'espace.
+		Soit $P$ le plan contenant le point $A$ et défini par les vecteurs $u$ et $v$. On se donne un vecteur de l'espace $\vec{n} = (a;b;c)$ normal au plan $P$.
+		<br/>On peut caractériser $P$ de deux manières :</p>
+		
+		<ul class="bubble formula">
+			<li><strong>Caractérisation vectorielle :</strong> $M \in P \iff \vec{AM} = k\vec{u} + k\vec{v}$ avec $k \in \mathbb{R}$.</li>
+			<li><strong>Caractérisation par une équation cartésienne :</strong> $P$ admet une équation cartésienne de la forme $ax+by+cz = 0$.</li>
+		</ul>
+		
+	</section>
+	<section>
+		
+		<p>Soient $P$ un plan de l'espace et $D$ une droite de l'espace :</p>
+		
+		<ul class="bubble formula">
+			<li>Si $P$ contient $D$, leur intersection <strong>est la droite $D$</strong>.</li>
+			<li>Si $P$ ne contient pas $D$ et que $P$ et $D$ sont parallèles, leur intersection <strong>est vide</strong>.</li>
+			<li>Si $P$ ne contient pas $D$ et que $P$ et $D$ ne sont pas parallèles, leur intersection <strong>est un point</strong>.</li>
+		</ul>
+		
+		<p>Soient $P_1$, $P_2$ et $P_3$ trois plans de l'espace :</p>
+		
+		<ul class="bubble formula">
+			<li>Si $P_1$ et $P_2$ sont confondus, leur intersection <strong>est le plan $P_1$</strong>.</li>
+			<li>Si $P_1$ et $P_2$ sont parallèles mais pas confondus, leur intersection <strong>est vide</strong>.</li>
+			<li>Si $P_1$ et $P_2$ ne sont ni parallèles ni confondus, leur intersection <strong>est une droite</strong>.</li>
+			<li>L'intersection de $P_1$, $P_2$ et $P_3$ peut être soit <strong>vide</strong>, soit être <strong>une droite</strong>, soit être <strong>un point</strong>.</li>
+		</ul>
+		
+	</section>
+	<section>
+		
+		<p>Soient $P$ un plan de l'espace et $D$ une droite de l'espace :</p>
+		
+		<p class="bubble formula">$D$ est orthogonale à $P$ si $D$ est orthogonale à toutes les droites de ce plan.</p>
+		
+		<p>Soient $D$ et $D'$ deux droites :</p>
+		
+		<p class="bubble formula">$D$ et $D'$ sont <strong>orthogonales</strong> s'il existe une parallèle à $D$ qui est perpendiculaire à $D'$.</p>
+		
+	</section>
+	<section>
+		
+		<p>Soient $P$ un plan de l'espace, $A$ et $B$ deux points de l'espace :</p>
+		
+		<p class="bubble formula">$P$ est dit <strong>plan médiateur</strong> si $P$ est orthogonal au segment $[AB]$ et passe par le milieu de ce segment.</p>
+				
+	</section>
+
+</section>
