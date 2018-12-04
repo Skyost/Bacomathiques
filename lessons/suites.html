@@ -385,13 +385,13 @@ maths: true
 	<div class="bubble tip">
 		<p><strong>Exemple :</strong> Soit une suite $(u_n)_{n \in \mathbb{N}}$ définie par $(u_n)_{n \in \mathbb{N}}$ : $\begin{cases} u_0 = 4\\ u_{n+1} = \frac{4u_n + 17}{u_n + 4}\end{cases}$.
 		On souhaite montrer que pour tout $n \in \mathbb{N}$, on a $4 \leq u_n \leq 5$.</p>
-		<p>On note $(P_n)_{n \in \mathbb{N}}$ la propriété définie pour tout $n \in \mathbb{N}$ par $P_n$ : $4 \leq u_n \leq 5$.</p>
+		<p>On note $\mathcal{P}_n$ la propriété définie pour tout $n \in \mathbb{N}$ par $\mathcal{P}_n$ : $4 \leq u_n \leq 5$.</p>
 		<p>On constate également que $u_{n+1} = \frac{4u_n + 17}{u_n + 4} = \frac{4(u_n + 4) + 1}{u_n + 4} = 4 + \frac{1}{u_n + 4}$.</p>
 		<p><strong>Initialisation :</strong> On teste la propriété au rang $0$ :</p>
-		<p>$P_0$ : $4 \leq u_0 \leq 5 \iff 4 \leq 4 \leq 5$. C'est vrai.</p>
+		<p>$\mathcal{P}_0$ : $4 \leq u_0 \leq 5 \iff 4 \leq 4 \leq 5$. C'est vrai.</p>
 		<p>La propriété est vraie au rang $0$, on souhaite vérifier que la propriété est vraie au rang $n+1$.</p>
 		<p><strong>Hérédité :</strong></p>
-		<p>D'après $P_n$ : $4 \leq u_n \leq 5$. Donc on a :</p>
+		<p>D'après $\mathcal{P}_n$ : $4 \leq u_n \leq 5$. Donc on a :</p>
 		<p>$\iff 4 \leq u_n \leq 5$</p>
 		<p>$\iff 4 + 4 \leq u_n + 4 \leq 5 + 4$</p>
 		<p>$\iff \frac{1}{9} \leq \frac{1}{u_n + 4} \leq \frac{1}{8}$ (la fonction inverse est décroissante sur $\mathbb{R}^+$ donc on change l'inégalité)</p>
@@ -399,7 +399,7 @@ maths: true
 		<p>Or $4 + \frac{1}{9} \approx 4.111 \gt 4$ et $4 + \frac{1}{8} = 4.125 \lt 5$. On a donc bien :</p>
 		<p>$4 \leq u_{n+1} \leq 5$</p>
 		<p><strong>Conclusion :</strong></p>
-		<p>La propriété est initialisée au rang $0$ et est héréditaire. Ainsi, $P_n$ est vraie pour tout $n \in \mathbb{N}$.</p>
+		<p>La propriété est initialisée au rang $0$ et est héréditaire. Ainsi, $\mathcal{P}_n$ est vraie pour tout $n \in \mathbb{N}$.</p>
 	</div>
 	
 	<p>Le raisonnement par récurrence est très utilisé en mathématiques et ne se limite pas qu'à l'étude des suites.</p>
