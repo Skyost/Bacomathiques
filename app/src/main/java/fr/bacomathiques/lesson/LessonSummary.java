@@ -21,7 +21,7 @@ public class LessonSummary {
 	 * The API URL.
 	 */
 
-	private static final String API_URL = BASE_URL + "api/v1/";
+	static final String API_URL = BASE_URL + "api/v1/";
 
 	/**
 	 * The lesson's ID.
@@ -62,7 +62,7 @@ public class LessonSummary {
 	 */
 
 	public LessonSummary(final JSONObject object) throws JSONException {
-		this(object.getString("id"), object.getString("title"), Utils.fromHtml(object.getString("excerpt")).toString(), object.getString("preview"), Utils.fromHtml(object.getString("caption")).toString());
+		this(object.getString("id"), object.getString("title"), Utils.fromHTML(object.getString("excerpt")).toString(), object.getString("preview"), Utils.fromHTML(object.getString("caption")).toString());
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class LessonSummary {
 	 * @return The lesson ID.
 	 */
 
-	public final String getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -109,7 +109,7 @@ public class LessonSummary {
 	 * @param id The lesson ID.
 	 */
 
-	public final void setId(final String id) {
+	public void setId(final String id) {
 		this.id = id;
 	}
 
@@ -119,7 +119,7 @@ public class LessonSummary {
 	 * @return The lesson title.
 	 */
 
-	public final String getTitle() {
+	public String getTitle() {
 		return title;
 	}
 
@@ -129,7 +129,7 @@ public class LessonSummary {
 	 * @param title The lesson title.
 	 */
 
-	public final void setTitle(final String title) {
+	public void setTitle(final String title) {
 		this.title = title;
 	}
 
@@ -139,7 +139,7 @@ public class LessonSummary {
 	 * @return The lesson description.
 	 */
 
-	public final String getDescription() {
+	public String getDescription() {
 		return description;
 	}
 
@@ -149,7 +149,7 @@ public class LessonSummary {
 	 * @param description The lesson description.
 	 */
 
-	public final void setDescription(final String description) {
+	public void setDescription(final String description) {
 		this.description = description;
 	}
 
@@ -159,7 +159,7 @@ public class LessonSummary {
 	 * @return The lesson preview.
 	 */
 
-	public final String getPreview() {
+	public String getPreview() {
 		return preview;
 	}
 
@@ -169,7 +169,7 @@ public class LessonSummary {
 	 * @param preview The lesson preview.
 	 */
 
-	public final void setPreview(final String preview) {
+	public void setPreview(final String preview) {
 		this.preview = preview;
 	}
 
@@ -179,7 +179,7 @@ public class LessonSummary {
 	 * @return The lesson preview URL.
 	 */
 
-	public final String getPreviewURL() {
+	public String getPreviewURL() {
 		return BASE_URL + preview;
 	}
 
@@ -189,7 +189,7 @@ public class LessonSummary {
 	 * @return The lesson placeholder.
 	 */
 
-	public final String getPlaceholder() {
+	public String getPlaceholder() {
 		return placeholder;
 	}
 
@@ -199,7 +199,7 @@ public class LessonSummary {
 	 * @param placeholder The lesson placeholder.
 	 */
 
-	public final void setPlaceholder(final String placeholder) {
+	public void setPlaceholder(final String placeholder) {
 		this.placeholder = placeholder;
 	}
 
@@ -209,7 +209,7 @@ public class LessonSummary {
 	 * @return The lesson URL.
 	 */
 
-	public final String getLessonURL() {
+	public String getLessonURL() {
 		return API_URL + "content/" + id + ".json";
 	}
 

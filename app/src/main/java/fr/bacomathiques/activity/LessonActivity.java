@@ -1,6 +1,5 @@
 package fr.bacomathiques.activity;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -11,10 +10,6 @@ import android.os.Bundle;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,6 +26,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import de.mateware.snacky.Snacky;
 import fr.bacomathiques.R;
 import fr.bacomathiques.adapter.AnnalsAdapter;
@@ -124,11 +123,11 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 	}
 
 	@Override
-	protected final void onCreate(final Bundle savedInstanceState) {
+	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.setContentView(R.layout.activity_lesson);
+		setContentView(R.layout.activity_lesson);
 
-		webView = this.findViewById(R.id.lesson_webview);
+		webView = findViewById(R.id.lesson_webview);
 
 		webView.getSettings().setUseWideViewPort(true);
 		webView.getSettings().setBuiltInZoomControls(false);
@@ -150,11 +149,11 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 			onGetLessonDone((LessonContent)GetLessonTask.readLocalLessonContent(new WeakReference<>(this), savedInstanceState.getString(INTENT_CONTENT))[1]);
 		}
 		else {
-			new GetLessonTask(this, this).execute(this.getIntent().getStringExtra(MainActivity.INTENT_LESSON));
+			new GetLessonTask(this, this).execute(getIntent().getStringExtra(MainActivity.INTENT_LESSON));
 		}
 
-		final AdView adView = this.findViewById(R.id.lesson_adview);
-		if(this.getPreferences(Context.MODE_PRIVATE).getBoolean(PREFERENCES_ADS, true)) {
+		final AdView adView = findViewById(R.id.lesson_adview);
+		if(getPreferences(Context.MODE_PRIVATE).getBoolean(PREFERENCES_ADS, true)) {
 			adView.loadAd(new AdRequest.Builder().build());
 		}
 		else {
@@ -196,7 +195,7 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 	}
 
 	@Override
-	protected final void onSaveInstanceState(final Bundle outState) {
+	protected void onSaveInstanceState(final Bundle outState) {
 		if(content != null) {
 			outState.putString(INTENT_CONTENT, content.getUrl());
 		}
@@ -205,17 +204,16 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 	}
 
 	@Override
-	public final boolean onCreateOptionsMenu(final Menu menu) {
-		this.getMenuInflater().inflate(R.menu.menu_lesson, menu);
+	public boolean onCreateOptionsMenu(final Menu menu) {
+		getMenuInflater().inflate(R.menu.menu_lesson, menu);
 		return true;
 	}
 
-	@SuppressLint({"NewApi"})
 	@Override
-	public final boolean onOptionsItemSelected(MenuItem item) {
+	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
 		case android.R.id.home:
-			this.onBackPressed();
+			onBackPressed();
 			return true;
 		case R.id.menu_lesson_action_annals:
 			final List<String> annals = content.getAnnals();
@@ -244,32 +242,32 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 		case R.id.menu_lesson_action_share:
 			final Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
 			sharingIntent.setType("text/plain");
-			sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, this.getString(R.string.lesson_share_subject, content.getTitle(), this.getString(R.string.app_name)));
-			sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, this.getString(R.string.lesson_share_content, content.getTitle()));
-			this.startActivity(Intent.createChooser(sharingIntent, this.getString(R.string.lesson_share_title)));
+			sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.lesson_share_subject, content.getTitle(), getString(R.string.app_name)));
+			sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.lesson_share_content, content.getTitle()));
+			startActivity(Intent.createChooser(sharingIntent, getString(R.string.lesson_share_title)));
 			return true;
 		case R.id.menu_lesson_action_save:
-			launchBrowser(this, content.getPDFUrl());
+			launchBrowser(this, content.getPDFURL());
 			return true;
 		case R.id.menu_lesson_action_print:
 			if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-				final PrintManager manager = (PrintManager)this.getSystemService(Context.PRINT_SERVICE);
+				final PrintManager manager = (PrintManager)getSystemService(Context.PRINT_SERVICE);
 				if(manager == null) {
 					return true;
 				}
 
 				final PrintDocumentAdapter adapter;
 				if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-					adapter = ((WebView)this.findViewById(R.id.lesson_webview)).createPrintDocumentAdapter(content.getTitle());
+					adapter = ((WebView)findViewById(R.id.lesson_webview)).createPrintDocumentAdapter(content.getTitle());
 				}
 				else {
-					adapter = ((WebView)this.findViewById(R.id.lesson_webview)).createPrintDocumentAdapter();
+					adapter = ((WebView)findViewById(R.id.lesson_webview)).createPrintDocumentAdapter();
 				}
 				manager.print(content.getTitle(), adapter, new PrintAttributes.Builder().build());
 			}
 			return true;
 		case R.id.menu_lesson_action_ads:
-			final SharedPreferences.Editor editor = this.getPreferences(Context.MODE_PRIVATE).edit();
+			final SharedPreferences.Editor editor = getPreferences(Context.MODE_PRIVATE).edit();
 			new AlertDialog.Builder(this)
 					.setTitle(R.string.dialog_lesson_ads_title)
 					.setMessage(R.string.dialog_lesson_ads_message)
@@ -294,7 +292,7 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 		case R.id.menu_lesson_action_about:
 			new AlertDialog.Builder(this)
 					.setTitle(R.string.dialog_lesson_about_title)
-					.setMessage(Utils.fromHtml(this.getString(R.string.dialog_lesson_about_message)))
+					.setMessage(Utils.fromHTML(getString(R.string.dialog_lesson_about_message)))
 					.setNegativeButton(R.string.dialog_lesson_about_button_negative, null)
 					.setNeutralButton(R.string.dialog_lesson_about_button_neutral, (dialogInterface, which) -> launchBrowser(LessonActivity.this, Uri.parse("https://bacomathiqu.es/a-propos/")))
 					.setPositiveButton(R.string.dialog_lesson_about_button_positive, (dialogInterface, which) -> launchBrowser(LessonActivity.this, Uri.parse("https://play.google.com/store/apps/details?id=fr.bacomathiques")))
@@ -306,8 +304,8 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 	}
 
 	@Override
-	public final void onGetLessonStarted() {
-		final ActionBar actionBar = this.getSupportActionBar();
+	public void onGetLessonStarted() {
+		final ActionBar actionBar = getSupportActionBar();
 		if(actionBar != null) {
 			actionBar.setTitle(R.string.activity_lesson_defaulttitle);
 			actionBar.setDisplayHomeAsUpEnabled(true);
@@ -317,7 +315,7 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 	}
 
 	@Override
-	public final void onGetLessonException(final Exception ex, final long offlineDate) {
+	public void onGetLessonException(final Exception ex, final long offlineDate) {
 		ex.printStackTrace();
 
 		if(offlineDate != -1L) {
@@ -325,17 +323,17 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 			calendar.setTimeInMillis(offlineDate);
 
 			Snacky.builder()
-					.setActivity(LessonActivity.this)
-					.setText(LessonActivity.this.getString(R.string.snackbar_offline, SimpleDateFormat.getDateInstance().format(calendar.getTime())))
+					.setActivity(this)
+					.setText(getString(R.string.snackbar_offline, SimpleDateFormat.getDateInstance().format(calendar.getTime())))
 					.setDuration(Snacky.LENGTH_LONG)
-					.setBackgroundColor(ContextCompat.getColor(LessonActivity.this, R.color.colorPrimaryDark))
+					.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimaryDark))
 					.info()
 					.show();
 		}
 	}
 
 	@Override
-	public final void onGetLessonDone(final LessonContent result) {
+	public void onGetLessonDone(final LessonContent result) {
 		content = result;
 
 		if(progressDialog != null && progressDialog.isShowing()) {
@@ -348,12 +346,12 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 					.setTitle(R.string.dialog_generic_error)
 					.setMessage(R.string.dialog_errorgetlesson_message)
 					.setPositiveButton(android.R.string.ok, null)
-					.setOnDismissListener(dialogInterface -> LessonActivity.this.onBackPressed())
+					.setOnDismissListener(dialogInterface -> onBackPressed())
 					.show();
 			return;
 		}
 
-		final Intent intent = this.getIntent();
+		final Intent intent = getIntent();
 
 		final StringBuilder builder = new StringBuilder("<!DOCTYPE HTML>");
 		builder.append("<html>");
@@ -369,7 +367,7 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 		builder.append("<script type=\"text/javascript\" src=\"mathjax/MathJax.js?config=TeX-AMS_HTML\"></script>");
 		builder.append("</head>");
 		builder.append("<body");
-		if(this.getPreferences(Context.MODE_PRIVATE).getBoolean(PREFERENCES_ADS, true)) {
+		if(getPreferences(Context.MODE_PRIVATE).getBoolean(PREFERENCES_ADS, true)) {
 			builder.append(" style=\"margin-bottom: 60px\";");
 		}
 		builder.append(">");
@@ -379,7 +377,7 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 
 		webView.loadHtml(builder.toString(), "file:///android_asset/webview/");
 
-		final ActionBar actionBar = this.getSupportActionBar();
+		final ActionBar actionBar = getSupportActionBar();
 		if(actionBar != null) {
 			final String[] title = result.getTitle().split(" - ");
 
@@ -399,7 +397,7 @@ public class LessonActivity extends AppCompatActivity implements GetLessonTask.G
 		indeterminate.setIndeterminate(true);
 
 		final ProgressDialog progressDialog = new ProgressDialog(this);
-		progressDialog.setMessage(this.getString(R.string.dialog_loading_message));
+		progressDialog.setMessage(getString(R.string.dialog_loading_message));
 		progressDialog.setCancelable(false);
 		progressDialog.setIndeterminateDrawable(indeterminate);
 

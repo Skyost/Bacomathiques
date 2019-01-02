@@ -29,12 +29,12 @@
 
     <string name="dialog_lessons_adsconfirmation_message">Choix enregistré ! Il est possible que vous ayez à redémarrer l\'application pour que les changements soient pris en compte.</string>
 
-    <string name="menu_lesson_action_annals">Annales</string>
+    <string name="menu_lesson_action_annals">Annales…</string>
     <string name="menu_lesson_action_share">Partager</string>
     <string name="menu_lesson_action_more">Plus</string>
     <string name="menu_lesson_action_save">Enregistrer le PDF</string>
     <string name="menu_lesson_action_print">Imprimer</string>
-    <string name="menu_lesson_action_ads">Activer / désactiver les publicités</string>
+    <string name="menu_lesson_action_ads">Publicités…</string>
     <string name="menu_lesson_action_rate">Noter l\'application</string>
     <string name="menu_lesson_action_report">Signaler un bug</string>
     <string name="menu_lesson_action_about">À Propos</string>

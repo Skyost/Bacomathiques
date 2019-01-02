@@ -60,11 +60,11 @@ public class GetSummariesTask extends AsyncTask<String, Void, LessonSummary[]> {
 			result.add(new LessonSummary(lessons.getJSONObject(i)));
 		}
 
-		return result.toArray(new LessonSummary[result.size()]);
+		return result.toArray(new LessonSummary[0]);
 	}
 
 	@Override
-	protected final void onPreExecute() {
+	protected void onPreExecute() {
 		listener.onGetSummariesStarted();
 	}
 
@@ -95,7 +95,7 @@ public class GetSummariesTask extends AsyncTask<String, Void, LessonSummary[]> {
 	}
 
 	@Override
-	protected final LessonSummary[] doInBackground(final String... params) {
+	protected LessonSummary[] doInBackground(final String... params) {
 		final String url = params[0];
 		LessonSummary[] lessons;
 
@@ -112,7 +112,7 @@ public class GetSummariesTask extends AsyncTask<String, Void, LessonSummary[]> {
 	}
 
 	@Override
-	protected final void onPostExecute(final LessonSummary[] result) {
+	protected void onPostExecute(final LessonSummary[] result) {
 		listener.onGetSummariesDone(result);
 	}
 

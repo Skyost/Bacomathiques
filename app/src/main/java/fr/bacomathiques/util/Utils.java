@@ -18,7 +18,7 @@ public class Utils {
 	 * @return The Spanned.
 	 */
 
-	public static Spanned fromHtml(final String source) {
+	public static Spanned fromHTML(final String source) {
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 			return Html.fromHtml(source, Html.FROM_HTML_MODE_LEGACY);
 		}

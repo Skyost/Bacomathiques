@@ -1,9 +1,5 @@
 package fr.bacomathiques.adapter;
 
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -13,6 +9,10 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 import fr.bacomathiques.R;
 import fr.bacomathiques.lesson.LessonSummary;
 import fr.bacomathiques.util.Utils;
@@ -75,25 +75,26 @@ public class LessonsSummaryAdapter extends RecyclerView.Adapter<LessonsSummaryAd
 		this.recyclerView = recyclerView;
 	}
 
+	@NonNull
 	@Override
-	public final ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+	public ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent, final int viewType) {
 		final CardView view = (CardView)LayoutInflater.from(parent.getContext()).inflate(R.layout.main_lessons_recyclerview_item, parent, false);
 		return new ViewHolder(view);
 	}
 
 	@Override
-	public final void onBindViewHolder(final ViewHolder holder, final int position) {
+	public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 		holder.bind(position);
 	}
 
 	@Override
-	public final void onViewRecycled(@NonNull final ViewHolder holder) {
+	public void onViewRecycled(@NonNull final ViewHolder holder) {
 		super.onViewRecycled(holder);
 		glide.clear(holder.preview);
 	}
 
 	@Override
-	public final int getItemCount() {
+	public int getItemCount() {
 		return data.length;
 	}
 
@@ -103,7 +104,7 @@ public class LessonsSummaryAdapter extends RecyclerView.Adapter<LessonsSummaryAd
 	 * @return Columns number.
 	 */
 
-	public final int getColumnsNumber() {
+	public int getColumnsNumber() {
 		return columns;
 	}
 
@@ -113,7 +114,7 @@ public class LessonsSummaryAdapter extends RecyclerView.Adapter<LessonsSummaryAd
 	 * @return The adapter data.
 	 */
 
-	public final LessonSummary[] getData() {
+	public LessonSummary[] getData() {
 		return data;
 	}
 
@@ -123,7 +124,7 @@ public class LessonsSummaryAdapter extends RecyclerView.Adapter<LessonsSummaryAd
 	 * @param data The adapter data.
 	 */
 
-	public final void setData(final LessonSummary... data) {
+	public void setData(final LessonSummary... data) {
 		this.data = data == null ? new LessonSummary[0] : data;
 		notifyDataSetChanged();
 	}
@@ -254,12 +255,10 @@ public class LessonsSummaryAdapter extends RecyclerView.Adapter<LessonsSummaryAd
 			caption.setText(lesson.getPlaceholder());
 			caption.setAlpha(0f);
 			title.setText(lesson.getTitle());
-			description.setText(Utils.fromHtml(lesson.getDescription()));
+			description.setText(Utils.fromHTML(lesson.getDescription()));
 			checkOut.setTag(lesson.getLessonURL());
 
-			if(lesson.getTitle().endsWith("(Spécialité)")) {
-				title.setBackgroundColor(ContextCompat.getColor(title.getContext(), R.color.colorSpecialty));
-			}
+			title.setBackgroundColor(ContextCompat.getColor(title.getContext(), lesson.getTitle().endsWith("(Spécialité)") ? R.color.colorSpecialty : R.color.colorPrimary));
 
 			if(columns == 1) {
 				return;

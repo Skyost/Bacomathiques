@@ -102,7 +102,7 @@ public class GetLessonTask extends AsyncTask<String, Void, LessonContent> {
 	}
 
 	@Override
-	protected final void onPreExecute() {
+	protected void onPreExecute() {
 		listener.onGetLessonStarted();
 	}
 
@@ -138,25 +138,18 @@ public class GetLessonTask extends AsyncTask<String, Void, LessonContent> {
 
 		final String line = readLineFromInputStream(connection.getInputStream());
 
-		FileOutputStream fileOutputStream = null;
-		try {
-			fileOutputStream = context.openFileOutput(url.substring(url.lastIndexOf("/") + 1), Context.MODE_PRIVATE);
+		try(final FileOutputStream fileOutputStream = context.openFileOutput(url.substring(url.lastIndexOf("/") + 1), Context.MODE_PRIVATE)) {
 			fileOutputStream.write(line.getBytes("UTF-8"));
 		}
 		catch(final Exception ex) {
 			ex.printStackTrace();
-		}
-		finally {
-			if(fileOutputStream != null) {
-				fileOutputStream.close();
-			}
 		}
 
 		return line;
 	}
 
 	@Override
-	protected final LessonContent doInBackground(final String... params) {
+	protected LessonContent doInBackground(final String... params) {
 		final String url = params[0];
 		LessonContent content;
 

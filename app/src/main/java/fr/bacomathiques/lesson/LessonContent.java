@@ -57,7 +57,7 @@ public class LessonContent {
 	 */
 
 	public LessonContent(final JSONObject object, final String url) throws JSONException {
-		this(object.getString("id"), object.getString("title"), Utils.fromHtml(object.getString("content")).toString(), url, object.has("annals") ? object.getJSONArray("annals") : null);
+		this(object.getString("id"), object.getString("title"), Utils.fromHTML(object.getString("content")).toString(), url, object.has("annals") ? object.getJSONArray("annals") : null);
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class LessonContent {
 	 * @return The lesson ID.
 	 */
 
-	public final String getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -102,7 +102,7 @@ public class LessonContent {
 	 * @param id The lesson ID.
 	 */
 
-	public final void setId(final String id) {
+	public void setId(final String id) {
 		this.id = id;
 	}
 
@@ -112,7 +112,7 @@ public class LessonContent {
 	 * @return The lesson title.
 	 */
 
-	public final String getTitle() {
+	public String getTitle() {
 		return title;
 	}
 
@@ -122,7 +122,7 @@ public class LessonContent {
 	 * @param title The lesson title.
 	 */
 
-	public final void setTitle(final String title) {
+	public void setTitle(final String title) {
 		this.title = title;
 	}
 
@@ -132,7 +132,7 @@ public class LessonContent {
 	 * @return The lesson content.
 	 */
 
-	public final String getContent() {
+	public String getContent() {
 		return content;
 	}
 
@@ -142,7 +142,7 @@ public class LessonContent {
 	 * @param content The lesson content.
 	 */
 
-	public final void setContent(final String content) {
+	public void setContent(final String content) {
 		this.content = content;
 	}
 
@@ -152,7 +152,7 @@ public class LessonContent {
 	 * @return The lesson url.
 	 */
 
-	public final String getUrl() {
+	public String getUrl() {
 		return url;
 	}
 
@@ -162,7 +162,7 @@ public class LessonContent {
 	 * @param url The lesson url.
 	 */
 
-	public final void setUrl(final String url) {
+	public void setUrl(final String url) {
 		this.url = url;
 	}
 
@@ -172,7 +172,7 @@ public class LessonContent {
 	 * @return The lesson PDF url.
 	 */
 
-	public final Uri getPDFUrl() {
+	public Uri getPDFURL() {
 		return Uri.parse(LessonSummary.BASE_URL + "assets/pdf/lessons/" + Uri.encode(title.replace('é', 'e').replace('É', 'E')) + ".pdf");
 	}
 
@@ -182,8 +182,18 @@ public class LessonContent {
 	 * @return All available annals.
 	 */
 
-	public final List<String> getAnnals() {
+	public List<String> getAnnals() {
 		return annals;
+	}
+
+	/**
+	 * Returns the summary URL.
+	 *
+	 * @return The summary URL.
+	 */
+
+	public String getSummaryURL() {
+		return LessonSummary.API_URL + "summary/" + id + ".json";
 	}
 
 }

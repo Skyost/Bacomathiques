@@ -1,7 +1,6 @@
 package fr.bacomathiques.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -10,6 +9,8 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import androidx.annotation.NonNull;
 
 /**
  * An adapter that allows to display annals.
@@ -36,7 +37,7 @@ public class AnnalsAdapter extends ArrayAdapter<String> {
 
 	@NonNull
 	@Override
-	public final View getView(final int position, final View convertView, @NonNull final ViewGroup parent) {
+	public View getView(final int position, final View convertView, @NonNull final ViewGroup parent) {
 		final View view = super.getView(position, convertView, parent);
 		if(!(view instanceof TextView)) {
 			return view;
