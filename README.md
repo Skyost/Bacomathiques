@@ -2,7 +2,7 @@
 
 ## Qu'est-ce-que Bacomathiques ?
 
-<q>Bac-o-math-iques<q> (ou plus simplement Bacomathiques) est un petit site web qui contient tout ce dont vous avez besoin pour réussir votre BAC de mathématiques en toute tranquillité !
+<q>Bac-o-math-iques</q> (ou plus simplement Bacomathiques) est un petit site web qui contient tout ce dont vous avez besoin pour réussir votre BAC de mathématiques en toute tranquillité !
 
 ## Les contenus
 
