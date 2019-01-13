@@ -15,7 +15,8 @@ social:
 
 # HTML Compresser
 compress_html:
-  clippings: "all"
+  clippings: all
+  comments: all
   blanklines: true
 
 # License
