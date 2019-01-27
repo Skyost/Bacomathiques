@@ -430,6 +430,22 @@ article {
 	}
 }
 
+/** Book : **/
+
+#book {
+	border-color: $book-border-color;
+	background-color: $book-background-color;
+	
+	p {
+		margin-bottom: 0;
+	}
+	
+	&:before {
+		content: $bubble-text-book;
+		background-color: $book-border-color;
+	}
+}
+
 /* COMMENTS */
 
 #disqus_thread {
