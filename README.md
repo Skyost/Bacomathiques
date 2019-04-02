@@ -6,12 +6,12 @@
 
 ## Fonctionnalités
 
-• Léger.
-• Des exemples intuitifs et la possibilité de télécharger et imprimer les cours gratuitement !
-• Open-source.
-• Des cours en accord avec le programme de Terminale S.
-• Un mode hors-ligne.
-• Bien plus !
+* Léger.
+* Des exemples intuitifs et la possibilité de télécharger et imprimer les cours gratuitement !
+* Open-source.
+* Des cours en accord avec le programme de Terminale S.
+* Un mode hors-ligne.
+* Bien plus !
 
 ## Alors pourquoi attendre ?
 Vous êtes intéressé par des cours de mathématiques gratuits en ligne, accessibles à tout moment ? [Téléchargez](https://play.google.com/store/apps/details?id=fr.bacomathiques) dès maintenant l'application Bacomathiques !

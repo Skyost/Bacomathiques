@@ -1,0 +1,77 @@
+name: bacomathiques
+description: Cours de mathématiques gratuits pour réviser le BAC !
+version: 0.5.0+13
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  http: ^0.12.0
+  html_unescape: ^1.0.1
+  webview_flutter: ^0.3.5
+  mime: ^0.9.6
+  flutter_html: ^0.9.6
+  url_launcher: ^5.0.1
+  flutter_svg: ^0.12.0
+  shared_preferences: ^0.5.1
+  firebase_admob: ^0.8.0
+  share: ^0.6.0
+  flutter_statusbarcolor: ^0.2.0
+  localstorage: ^1.2.0
+  transparent_image: ^1.0.0
+  flutter:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+  - assets/
+  - assets/images/
+  - assets/webview/
+  - assets/webview/mathjax/
+  - assets/webview/mathjax/config/
+  - assets/webview/mathjax/extensions/
+  - assets/webview/mathjax/extensions/HTML-CSS/
+  - assets/webview/mathjax/extensions/MathML/
+  - assets/webview/mathjax/extensions/TeX/
+  - assets/webview/mathjax/extensions/TeX/mhchem3/
+  - assets/webview/mathjax/fonts/HTML-CSS/TeX/otf/
+  - assets/webview/mathjax/jax/element/mml/
+  - assets/webview/mathjax/jax/element/mml/optable/
+  - assets/webview/mathjax/jax/input/AsciiMath/
+  - assets/webview/mathjax/jax/input/MathML/
+  - assets/webview/mathjax/jax/input/TeX/
+  - assets/webview/mathjax/jax/input/MathML/entities/
+  - assets/webview/mathjax/jax/output/HTML-CSS/
+  - assets/webview/mathjax/jax/output/PreviewHTML/
+  - assets/webview/mathjax/jax/output/HTML-CSS/autoload/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/Caligraphic/Bold/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/Caligraphic/Regular/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Bold/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Regular/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/Bold/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/BoldItalic/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/Italic/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/Regular/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Italic/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Regular/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/Math/BoldItalic/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/Math/Italic/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Bold/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Italic/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Regular/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/Script/Regular/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/Size1/Regular/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/Size2/Regular/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/Size3/Regular/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/Size4/Regular/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/WinChrome/Regular/
+  - assets/webview/mathjax/jax/output/HTML-CSS/fonts/TeX/WinIE6/Regular/
+  fonts:
+  - family: handlee-regular
+    fonts:
+    - asset: assets/fonts/handlee-regular.ttf
