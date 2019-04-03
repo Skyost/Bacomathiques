@@ -105,9 +105,61 @@ class _PreviewsList extends StatelessWidget {
   _PreviewsList(this._previews);
 
   @override
-  Widget build(BuildContext context) => ListView(
-        children: List.of(_previews.map((preview) => _PreviewWidget(preview))),
+  Widget build(BuildContext context) {
+    /*
+    Size screenSize = MediaQuery.of(context).size;
+    int columns = _getColumns(screenSize);
+    List<Widget> children = [];
+    for (int i = 0; i < _previews.length; i++) {
+      if (columns == 1) {
+        children.add(_PreviewWidget(_previews[i]));
+        continue;
+      }
+
+      List<Widget> rowChildren = [];
+      if (columns >= 2) {
+        rowChildren.add(_PreviewWidget(_previews[i], columns));
+        if (i + 1 < _previews.length) {
+          rowChildren.add(_PreviewWidget(_previews[++i], columns));
+        }
+
+        if (columns == 3 && i + 1 < _previews.length) {
+          rowChildren.add(_PreviewWidget(_previews[++i], columns));
+        }
+      }
+
+      children.add(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: rowChildren,
+        ),
       );
+    }
+    */
+
+    return ListView.builder(
+      shrinkWrap: true,
+      semanticChildCount: _previews.length,
+      itemCount: _previews.length,
+      itemBuilder: (context, position) => _PreviewWidget(_previews[position]),
+    );
+  }
+
+/*
+  /// Returns the number of columns to display according to the screen size.
+  int _getColumns(Size screenSize) {
+    if (screenSize.shortestSide < 600) {
+      return 1;
+    }
+
+    if (screenSize.shortestSide < 720) {
+      return 2;
+    }
+
+    return 3;
+  }*/
 }
 
 /// A widget which shows a lesson preview.
@@ -216,49 +268,49 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
 
   /// Creates a new preview actions widget.
   Widget _createActionsWidget() => Padding(
-    padding: EdgeInsets.symmetric(horizontal: 12),
-    child: Wrap(
-      alignment: WrapAlignment.end,
-      children: [
-        FlatButton.icon(
-          icon: Icon(
-            Icons.assignment,
-            color: App.ACCENT_COLOR,
-          ),
-          label: Text(
-            'Lire le résumé'.toUpperCase(),
-            style: Theme.of(context).textTheme.button,
-          ),
-          onPressed: () => Navigator.pushNamed(
-            context,
-            '/html',
-            arguments: {
-              'relativeURL': widget._preview.summaryURL,
-              'requestObjectFunction': Summary.request,
-            },
-          ),
-          padding: EdgeInsets.symmetric(horizontal: 5),
+        padding: EdgeInsets.symmetric(horizontal: 12),
+        child: Wrap(
+          alignment: WrapAlignment.end,
+          children: [
+            FlatButton.icon(
+              icon: Icon(
+                Icons.assignment,
+                color: App.ACCENT_COLOR,
+              ),
+              label: Text(
+                'Lire le résumé'.toUpperCase(),
+                style: Theme.of(context).textTheme.button,
+              ),
+              onPressed: () => Navigator.pushNamed(
+                    context,
+                    '/html',
+                    arguments: {
+                      'relativeURL': widget._preview.summaryURL,
+                      'requestObjectFunction': Summary.request,
+                    },
+                  ),
+              padding: EdgeInsets.symmetric(horizontal: 5),
+            ),
+            FlatButton.icon(
+              icon: Icon(
+                Icons.book,
+                color: App.ACCENT_COLOR,
+              ),
+              label: Text(
+                'Lire le cours'.toUpperCase(),
+                style: Theme.of(context).textTheme.button,
+              ),
+              onPressed: () => Navigator.pushNamed(
+                    context,
+                    '/html',
+                    arguments: {
+                      'relativeURL': widget._preview.contentURL,
+                      'requestObjectFunction': Lesson.request,
+                    },
+                  ),
+              padding: EdgeInsets.symmetric(horizontal: 5),
+            )
+          ],
         ),
-        FlatButton.icon(
-          icon: Icon(
-            Icons.book,
-            color: App.ACCENT_COLOR,
-          ),
-          label: Text(
-            'Lire le cours'.toUpperCase(),
-            style: Theme.of(context).textTheme.button,
-          ),
-          onPressed: () => Navigator.pushNamed(
-            context,
-            '/html',
-            arguments: {
-              'relativeURL': widget._preview.contentURL,
-              'requestObjectFunction': Lesson.request,
-            },
-          ),
-          padding: EdgeInsets.symmetric(horizontal: 5),
-        )
-      ],
-    ),
-  );
+      );
 }

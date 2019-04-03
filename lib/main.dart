@@ -26,6 +26,7 @@ class BacomathiquesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: App.APP_NAME,
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
             primaryColor: App.PRIMARY_COLOR,
             primaryColorDark: App.PRIMARY_COLOR_DARK,
