@@ -19,6 +19,7 @@ dependencies:
   flutter_statusbarcolor: ^0.2.0
   localstorage: ^1.2.0
   transparent_image: ^1.0.0
+  snaplist: ^0.1.8
   flutter:
     sdk: flutter
 
