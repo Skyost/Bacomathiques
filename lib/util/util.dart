@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:math';
 
 import 'package:bacomathiques/app/app.dart';
 import 'package:flutter/material.dart';
@@ -38,12 +37,6 @@ Future<String> getAndSave(String file, String key, String url) async {
   }
 
   return content;
-}
-
-/// Returns whether the current screen is a tablet.
-bool isTablet(Size screenSize) {
-  double diagonal = sqrt(pow(screenSize.width, 2) + pow(screenSize.height, 2));
-  return diagonal > 1100 || screenSize.shortestSide >= 600;
 }
 
 /// A centered circular progress indicator.

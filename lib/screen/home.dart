@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:snaplist/snaplist.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 /// The home screen, where previews are shown.
@@ -107,24 +106,60 @@ class _PreviewsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /*
     Size screenSize = MediaQuery.of(context).size;
-    if (isTablet(screenSize)) {
-      return SnapList(
-        sizeProvider: (index, data) => Size(screenSize.width, screenSize.height),
-        separatorProvider: (index, data) => Size(30, 30),
-        builder: (context, position, data) => _PreviewWidget(_previews[position], true, position + 1, _previews.length),
-        count: _previews.length,
+    int columns = _getColumns(screenSize);
+    List<Widget> children = [];
+    for (int i = 0; i < _previews.length; i++) {
+      if (columns == 1) {
+        children.add(_PreviewWidget(_previews[i]));
+        continue;
+      }
+
+      List<Widget> rowChildren = [];
+      if (columns >= 2) {
+        rowChildren.add(_PreviewWidget(_previews[i], columns));
+        if (i + 1 < _previews.length) {
+          rowChildren.add(_PreviewWidget(_previews[++i], columns));
+        }
+
+        if (columns == 3 && i + 1 < _previews.length) {
+          rowChildren.add(_PreviewWidget(_previews[++i], columns));
+        }
+      }
+
+      children.add(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: rowChildren,
+        ),
       );
     }
+    */
 
     return ListView.builder(
       shrinkWrap: true,
       semanticChildCount: _previews.length,
-      scrollDirection: isTablet(screenSize) ? Axis.horizontal : Axis.vertical,
       itemCount: _previews.length,
       itemBuilder: (context, position) => _PreviewWidget(_previews[position]),
     );
   }
+
+/*
+  /// Returns the number of columns to display according to the screen size.
+  int _getColumns(Size screenSize) {
+    if (screenSize.shortestSide < 600) {
+      return 1;
+    }
+
+    if (screenSize.shortestSide < 720) {
+      return 2;
+    }
+
+    return 3;
+  }*/
 }
 
 /// A widget which shows a lesson preview.
@@ -132,17 +167,8 @@ class _PreviewWidget extends StatefulWidget {
   /// The preview.
   final Preview _preview;
 
-  /// Whether it's tablet.
-  final bool _tablet;
-
-  /// The chapter position.
-  final int position;
-
-  /// Number of chapters.
-  final int size;
-
   /// Creates a new preview widget instance.
-  _PreviewWidget(this._preview, [this._tablet = false, this.position = 1, this.size = 1]);
+  _PreviewWidget(this._preview);
 
   @override
   State<StatefulWidget> createState() => _PreviewWidgetState();
@@ -157,44 +183,23 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
   _PreviewWidgetState() : this._showCaption = false;
 
   @override
-  Widget build(BuildContext context) {
-    List<Widget> children = [
-      _createTitleWidget(widget._tablet),
-      _createPreviewWidget(),
-      _createDescriptionWidget(widget._tablet),
-      _createActionsWidget(widget._tablet),
-    ];
-    if (widget._tablet) {
-      children.add(Padding(
-        padding: EdgeInsets.only(right: 18, bottom: 10),
-        child: Text(
-          ('Chapitre ' + widget.position.toString() + ' sur ' + widget.size.toString() + ' (Glissez vers la droite ou vers la gauche pour naviguer)').toUpperCase(),
-          textAlign: TextAlign.right,
-          style: Theme.of(context).textTheme.body2.copyWith(
-                fontStyle: FontStyle.italic,
-                fontWeight: FontWeight.bold,
-                color: App.ACCENT_COLOR,
-              ),
-        ),
-      ));
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: children,
-      );
-    }
-
-    return Padding(
-      padding: EdgeInsets.all(10),
-      child: Card(
+  Widget build(BuildContext context) => Padding(
+        padding: EdgeInsets.all(10),
+        child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(App.CARD_BORDER_RADIUS),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: children,
-          )),
-    );
-  }
+            children: [
+              _createTitleWidget(),
+              _createPreviewWidget(),
+              _createDescriptionWidget(),
+              _createActionsWidget(),
+            ],
+          ),
+        ),
+      );
 
   /// Toggles the current caption.
   void _toggleCaption() => setState(() {
@@ -202,21 +207,21 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
       });
 
   /// Creates a new title widget.
-  Widget _createTitleWidget(bool tablet) => Container(
-        padding: EdgeInsets.symmetric(vertical: tablet ? 30 : 20, horizontal: 10),
+  Widget _createTitleWidget() => Container(
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
         child: Text(
           widget._preview.title,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: tablet ? 40 : 26,
+            fontSize: 26,
             fontFamily: 'handlee-regular',
             color: Colors.white,
           ),
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(tablet ? 0 : App.CARD_BORDER_RADIUS),
-            topRight: Radius.circular(tablet ? 0 : App.CARD_BORDER_RADIUS),
+            topLeft: Radius.circular(App.CARD_BORDER_RADIUS),
+            topRight: Radius.circular(App.CARD_BORDER_RADIUS),
           ),
           color: widget._preview.title.endsWith('(Spécialité)') ? App.SPECIALITY_COLOR : App.PRIMARY_COLOR,
         ),
@@ -253,29 +258,16 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
       );
 
   /// Creates a new description widget.
-  Widget _createDescriptionWidget(bool tablet) {
-    Widget description = Padding(
-      padding: EdgeInsets.all(12),
-      child: Html(
-        data: widget._preview.content + (tablet ? '<br>' + widget._preview.caption : ''),
-        useRichText: true,
-        defaultTextStyle: Theme.of(context).textTheme.body1.copyWith(
-              fontSize: tablet ? 18 : 14,
-            ),
-      ),
-    );
-
-    return tablet
-        ? Expanded(
-            child: SingleChildScrollView(
-              child: description,
-            ),
-          )
-        : description;
-  }
+  Widget _createDescriptionWidget() => Padding(
+        padding: EdgeInsets.all(12),
+        child: Html(
+          data: widget._preview.content,
+          useRichText: true,
+        ),
+      );
 
   /// Creates a new preview actions widget.
-  Widget _createActionsWidget(bool tablet) => Padding(
+  Widget _createActionsWidget() => Padding(
         padding: EdgeInsets.symmetric(horizontal: 12),
         child: Wrap(
           alignment: WrapAlignment.end,
@@ -287,7 +279,7 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
               ),
               label: Text(
                 'Lire le résumé'.toUpperCase(),
-                style: Theme.of(context).textTheme.button.copyWith(fontSize: tablet ? 18 : 14),
+                style: Theme.of(context).textTheme.button,
               ),
               onPressed: () => Navigator.pushNamed(
                     context,
@@ -306,7 +298,7 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
               ),
               label: Text(
                 'Lire le cours'.toUpperCase(),
-                style: Theme.of(context).textTheme.button.copyWith(fontSize: tablet ? 18 : 14),
+                style: Theme.of(context).textTheme.button,
               ),
               onPressed: () => Navigator.pushNamed(
                     context,
