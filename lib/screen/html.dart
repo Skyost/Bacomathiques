@@ -160,10 +160,12 @@ class HTMLScreenState extends State<HTMLScreen> {
             _disposeAd();
             Navigator.pop(context);
             Navigator.pushNamed(context, '/html', arguments: arguments);
-          } else if (navigation.url.startsWith('http')) {
+            return NavigationDecision.prevent;
+          } if (navigation.url.startsWith('http') && !navigation.url.startsWith("http://localhost:$_PORT/")) {
             openURL(navigation.url);
+            return NavigationDecision.prevent;
           }
-          return NavigationDecision.prevent;
+          return NavigationDecision.navigate;
         },
       );
 
