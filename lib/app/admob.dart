@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/services.dart';
@@ -35,11 +36,14 @@ class AdMob {
 
     try {
       Map<String, dynamic> data = json.decode(await rootBundle.loadString('assets/admob.json', cache: false));
-      appId = data['appId'];
-      adId = data['adId'];
+      String key = Platform.isAndroid ? 'android' : 'ios';
+      Map<String, dynamic> platformData = data[key];
+
+      appId = platformData['appId'];
+      adId = platformData['adId'];
     } catch (ignored) {}
 
-    FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-7167241518798106~9455148387');
+    FirebaseAdMob.instance.initialize(appId: appId);
   }
 
   /// Creates the banner ad.

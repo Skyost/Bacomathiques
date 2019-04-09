@@ -28,6 +28,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
@@ -61,7 +62,7 @@ android {
             minifyEnabled false
         }
         debug {
-            applicationIdSuffix = '.dev'
+            //applicationIdSuffix = '.dev'
             versionNameSuffix '-dev'
         }
     }
