@@ -10,6 +10,8 @@
 .svn/
 assets/admob.json
 android/key.properties
+ios/Runner/GoogleService-Info.plist
+android/app/google-services.json
 
 # IntelliJ related
 *.iml
