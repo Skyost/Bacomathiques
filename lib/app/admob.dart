@@ -39,8 +39,12 @@ class AdMob {
       String key = Platform.isAndroid ? 'android' : 'ios';
       Map<String, dynamic> platformData = data[key];
 
-      appId = platformData['appId'];
-      adId = platformData['adId'];
+      if(platformData['appId'] != null) {
+        appId = platformData['appId'];
+      }
+      if(platformData['bannerId'] != null) {
+        adId = platformData['bannerId'];
+      }
     } catch (ignored) {}
 
     FirebaseAdMob.instance.initialize(appId: appId);
