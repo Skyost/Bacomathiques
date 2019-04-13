@@ -1,0 +1,17 @@
+comments:
+  allowedFields: ["author", "email", "message"]
+  branch: "master"
+  commitMessage: "Nouveau commentaire [comment]: par {fields.author} <Staticman>\n\n{fields.permalink}#comment-{@id}"
+  filename: "{@id}"
+  format: "yaml"
+  generatedFields:
+    date:
+      type: date
+      options:
+        format: "timestamp"
+  moderation: false
+  name: "Bacomathiques"
+  path: "_data/comments/{options.postId}"
+  requiredFields: ["author", "email", "message"]
+  transforms:
+    email: md5
