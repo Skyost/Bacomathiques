@@ -6,12 +6,16 @@ repository: "Skyost/Bacomathiques"
 timezone: "Europe/Paris"
 includes_dir: ""
 
+# Comments settings
+comments:
+  moderators:
+    Skyost: 'https://www.skyost.eu/assets/img/skyost.png'
+
 # Social
 social:
   preview: "/assets/img/social.png"
   twitter: "Skyost_"
   googleplus: "Skyost"
-  disqus: "bacomathiques"
 
 # HTML Compresser
 compress_html:

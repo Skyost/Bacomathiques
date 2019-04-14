@@ -1,14 +1,44 @@
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-	var disqus_config = function() {
-		this.page.url = '{{ site.url }}{{ page.url }}';
-		this.page.identifier = "lesson-{{ lesson.id }}";
-	};
+<div id="comments">
+	<h2><i id="commentaires" class="fa fa-comments" aria-hidden="true"></i> Commentaires</h2>
 	
-	(function() {
-		var d = document, s = d.createElement('script');
-		s.src = '//{{ site.social.disqus }}.disqus.com/embed.js';
-		s.setAttribute('data-timestamp', +new Date());
-		(d.head || d.body).appendChild(s);
-	})();
-</script>
+	<div class="alert alert-danger" role="alert" style="display: none;"></div>
+
+	<form id="comment-form" class="clearfix">
+		<input name="options[redirect]" type="hidden" value="{{ site.url }}{{ page.url }}#commentaires">
+		<input name="options[slug]" type="hidden" value="{{ lesson.id }}">
+		<input name="fields[lesson]" type="hidden" value="{{ lesson.id }}">
+		<div id="comment-form-message" class="form-group">
+			<label for="comment-message">Message</label>
+			<textarea id="comment-message" class="form-control" name="fields[message]" rows="5" placeholder="Exprimez-vous !" required></textarea>
+		</div>
+		<div id="comment-form-author" class="form-group">
+			<img id="comment-avatar" src="https://api.adorable.io/avatars/56/.png"/>
+			<label for="comment-author">Nom d'utilisateur</label>
+			<input id="comment-author" class="form-control" name="fields[author]" type="text" placeholder="Nom d'utilisateur" required>
+		</div>
+		<button type="submit" class="btn btn-primary float-right"><i class="fa fa-paper-plane" aria-hidden="true"></i> Envoyer</button>
+	</form>
+	
+	<div id="comments-list">
+		{% assign hasComment = false %}
+		{% if site.data.comments != null %}
+			{% assign comments_hashes = site.data.comments | sort %}
+			{% for comment_hash in comments_hashes reversed %}
+				{% assign comment = comment_hash[1] %}
+				{% if comment.lesson == lesson.id %}
+					{% include _includes/lesson/comment.html %}
+					{% assign hasComment = true %}
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+		
+		{% if hasComment == false %}
+			<em class="text-muted">Il n'y a pas de commentaire sur ce cours pour le moment.</em>
+		{% endif %}
+	</div>
+	
+	{% assign comment = null %}
+	<div id="comment-copy" class="d-none">
+		{% include _includes/lesson/comment.html %}
+	</div>
+</div>

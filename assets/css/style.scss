@@ -22,6 +22,14 @@ figure figcaption {
 	text-align: center;
 }
 
+input, button, textarea {
+	@include vendor-prefix('border-radius', '0 !important');
+}
+
+.alert {
+	border: 0 !important;
+}
+
 /* CUSTOM SCROLLBARS FOR WEBKIT USERS */
 
 ::-webkit-scrollbar {
@@ -78,17 +86,7 @@ figure figcaption {
 		width: 100%;
 
 		input {
-			padding: 0.5rem 0.75rem;
-			font-size: 1rem;
-			line-height: 1.25;
-			border: 1px solid rgba(0, 0, 0, 0.15);
 			padding-right: 52px;
-			@include vendor-prefix('transition', 'border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s');
-			
-			&:focus {
-				border-color: #80bdff;
-				outline: 0;
-			}
 		}
 	}
 	

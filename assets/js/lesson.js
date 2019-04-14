@@ -119,6 +119,61 @@ $(document).ready(function() {
 		}
 		$(this).before('<ins class="adsbygoogle no-print" style="margin-top: 40px;" data-ad-client="ca-pub-7167241518798106" data-ad-slot="2776038870" data-ad-format="auto"></ins>'); 
 	});
+	
+	// COMMENTS
+	
+	$('#comment-avatar').height($('#comment-author').outerHeight());
+	$('#comment-author').css('padding-left', ($('#comment-avatar').height() + 10) + 'px');
+	
+	var updateTimeout;
+	$('#comment-author').change(function() {
+	  clearTimeout(updateTimeout);
+	  updateTimeout = setTimeout(function() {
+			$('#comment-avatar').attr('src', getAvatarUrl($('#comment-author').val()));
+	  }, 200);
+	});
+	
+	$('#comment-form').submit(function(event) {
+		var username = $('#comment-author').val();
+		var message = $('#comment-message').val();
+		
+		if(username.length == 0 || message.length == 0) {
+			return false;
+		}
+		
+		var button = $('#comment-form button');
+		button.attr('disabled', true);
+		
+		event.preventDefault();
+		//$.post('https://dev.staticman.net/v3/entry/github/Skyost/Bacomathiques/master/comments', $(this).serialize());
+		
+		setTimeout(function() {
+			var clone = $('#comment-copy > .comment').clone();
+			clone.find('a').attr('href', '#commentaires');
+			
+			var avatar = clone.find('.avatar');
+			avatar.attr('src', getAvatarUrl(username));
+			avatar.attr('alt', username);
+			avatar.attr('title', username);
+			
+			var author = clone.find('.author');
+			author.removeAttr('id');
+			author.text(username);
+			
+			clone.find('.message').text(message);
+			
+			var now = new Date();
+			var date = clone.find('.date');
+			date.text(('0' + now.getDate()).slice(-2) + '/' + ('0' + (now.getMonth() + 1)).slice(-2) + '/' + now.getFullYear() + ' ' + ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2));
+			
+			clone.hide().prependTo($('#comments-list')).fadeIn();
+			
+			button.removeAttr('disabled');
+			$('#comment-message').val('');
+			$('#comment-author').val('');
+			$('#comment-avatar').attr('src', getAvatarUrl(''));
+		}, 3000);
+	});
 });
 
 /**
@@ -175,6 +230,18 @@ function goToHash(event, hash) {
 	}
 }
 
+/**
+* Resets the nativation position.
+*/
+
 function resetPosition(navigation) {
 	navigation.css('position', '');
+}
+
+/**
+* Returns the username avatar url.
+*/
+
+function getAvatarUrl(username) {
+	return 'https://api.adorable.io/avatars/56/' + username + '.png';
 }
