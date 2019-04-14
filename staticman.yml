@@ -9,7 +9,7 @@ comments:
       type: date
       options:
         format: "timestamp-seconds"
-  moderation: false
+  moderation: true
   name: "Bacomathiques"
   path: "_data/comments/"
   requiredFields: ["lesson", "author", "message"]
