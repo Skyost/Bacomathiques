@@ -145,7 +145,7 @@ $(document).ready(function() {
 		button.attr('disabled', true);
 		
 		event.preventDefault();
-		//$.post('https://dev.staticman.net/v3/entry/github/Skyost/Bacomathiques/master/comments', $(this).serialize());
+		$.post('https://dev.staticman.net/v3/entry/github/Skyost/Bacomathiques/master/comments', $(this).serialize());
 		
 		setTimeout(function() {
 			var clone = $('#comment-copy > .comment').clone();
@@ -165,6 +165,11 @@ $(document).ready(function() {
 			var now = new Date();
 			var date = clone.find('.date');
 			date.text(('0' + now.getDate()).slice(-2) + '/' + ('0' + (now.getMonth() + 1)).slice(-2) + '/' + now.getFullYear() + ' ' + ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2));
+			
+			var noComment = $('#comments-list em.text-muted');
+			if(noComment.length) {
+				noComment.remove();
+			}
 			
 			clone.hide().prependTo($('#comments-list')).fadeIn();
 			
