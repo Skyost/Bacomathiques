@@ -1,17 +1,16 @@
 comments:
-  allowedFields: ["lesson", "author", "email", "message"]
+  allowedFields: ["lesson", "author", "message"]
   branch: "master"
-  commitMessage: "Nouveau commentaire [comment]: par {fields.author} <Staticman>\n\n{fields.permalink}#comment-{@id}"
-  filename: "{@id}"
+  commitMessage: "Nouveau commentaire par {fields.author} <Staticman>\n\n{fields.message}\n\n#comment-{@id}"
+  filename: "{@timestamp}_{@id}"
   format: "yaml"
   generatedFields:
     date:
       type: date
       options:
-        format: "timestamp"
+        format: "timestamp-seconds"
   moderation: false
   name: "Bacomathiques"
-  path: "_data/comments/{options.postId}"
-  requiredFields: ["lesson", "author", "email", "message"]
-  transforms:
-    email: md5
+  path: "_data/comments/"
+  requiredFields: ["lesson", "author", "message"]
+ 
