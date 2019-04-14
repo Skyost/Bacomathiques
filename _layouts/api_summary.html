@@ -2,4 +2,4 @@
 layout: compress
 ---
 {% capture linebreak %}
-{% endcapture %}{% assign lesson = site.data.lessons[page.lesson] %}{% capture summaryContent %}{% include {{ lesson.summary }} %}{% endcapture %}{% assign parts = summaryContent | split: "---" %}{% assign summaryContent = parts[2] %}{"id": "{{ lesson.id }}", "title": "{{ lesson.title }} - Fiche résumée", "content": "{{ summaryContent | escape | replace: '\', '&#92;' | remove: "	" | replace: linebreak, " " }}"}
+{% endcapture %}{% assign lesson = site.data.lessons[page.lesson] %}{% capture summaryContent %}{% include {{ lesson.summary }} %}{% endcapture %}{% assign parts = summaryContent | split: "---" %}{% assign summaryContent = parts[2] %}{"id": "{{ lesson.id }}", "title": "{{ lesson.title }} - Fiche résumée", "content": "{{ summaryContent | escape | remove: "	" | replace: linebreak, " " }}"}
