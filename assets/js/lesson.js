@@ -66,7 +66,7 @@ $(document).ready(function() {
 	backToTop.click(function() {
 		$('body, html').animate({
 			scrollTop: 0
-		}, 800);
+		}, 500);
 		return false;
 	});
 	backToTop.tooltip();
@@ -148,35 +148,11 @@ $(document).ready(function() {
 		$.post('https://dev.staticman.net/v3/entry/github/Skyost/Bacomathiques/master/comments', $(this).serialize());
 		
 		setTimeout(function() {
-			var clone = $('#comment-copy > .comment').clone();
-			clone.find('a').attr('href', '#commentaires');
-			
-			var avatar = clone.find('.avatar');
-			avatar.attr('src', getAvatarUrl(username));
-			avatar.attr('alt', username);
-			avatar.attr('title', username);
-			
-			var author = clone.find('.author');
-			author.removeAttr('id');
-			author.text(username);
-			
-			clone.find('.message').text(message);
-			
-			var now = new Date();
-			var date = clone.find('.date');
-			date.text(('0' + now.getDate()).slice(-2) + '/' + ('0' + (now.getMonth() + 1)).slice(-2) + '/' + now.getFullYear() + ' ' + ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2));
-			
-			var noComment = $('#comments-list em.text-muted');
-			if(noComment.length) {
-				noComment.remove();
-			}
-			
-			clone.hide().prependTo($('#comments-list')).fadeIn();
-			
+			$('#comments .alert').css('display', 'block');
+			$('html, body').animate({
+				scrollTop: $('#comments .alert').top
+			}, 500);
 			button.removeAttr('disabled');
-			$('#comment-message').val('');
-			$('#comment-author').val('');
-			$('#comment-avatar').attr('src', getAvatarUrl(''));
 		}, 3000);
 	});
 });

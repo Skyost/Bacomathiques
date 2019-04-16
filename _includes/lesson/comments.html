@@ -17,6 +17,8 @@
 		<button type="submit" class="btn btn-primary float-right"><i class="fa fa-paper-plane" aria-hidden="true"></i> Envoyer</button>
 	</form>
 	
+	<div class="alert alert-success" role="alert" style="display: none;">Votre commentaire a été envoyé avec succès. Veuillez cependant noter qu'il ne sera publié qu'après modération 😉</div>
+	
 	<div id="comments-list">
 		{% assign hasComment = false %}
 		{% if site.data.comments != null %}
@@ -33,10 +35,5 @@
 		{% if hasComment == false %}
 			<em class="text-muted">Il n'y a pas de commentaire sur ce cours pour le moment.</em>
 		{% endif %}
-	</div>
-	
-	{% assign comment = null %}
-	<div id="comment-copy" class="d-none">
-		{% include _includes/lesson/comment.html %}
 	</div>
 </div>
