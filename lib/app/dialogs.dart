@@ -259,6 +259,7 @@ class WriteCommentDialog extends StatelessWidget {
         decoration: InputDecoration(
           hintText: 'Exprimez-vous !',
         ),
+        maxLines: null,
       );
 
   /// Creates a new dialog actions widgets.

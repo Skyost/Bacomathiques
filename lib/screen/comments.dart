@@ -30,7 +30,7 @@ class _CommentsScreenState extends RequestScaffold<CommentsScreen, Comments> {
   Widget createBody(BuildContext context) {
     if (object.content.isEmpty) {
       return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 15),
         child: Center(
           child: Text(
             'Aucun commentaire sur ce cours pour le moment. Soyez le premier à en poster un !',
