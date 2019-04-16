@@ -2,7 +2,6 @@ import 'package:bacomathiques/app/app.dart';
 import 'package:bacomathiques/app/lesson.dart';
 import 'package:bacomathiques/util/util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -14,48 +13,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 /// The home screen state.
-class _HomeScreenState extends State<HomeScreen> {
-  /// A list of downloaded previews.
-  List<Preview> _previews;
-
-  /// Whether the screen is currently loading.
-  bool _loading;
-
+class _HomeScreenState extends RequestScaffold<HomeScreen, List<Preview>> {
   /// Creates a new home screen state instance.
-  _HomeScreenState()
-      : this._previews = [],
-        this._loading = true;
+  _HomeScreenState() : super(() => Preview.request(), 'Impossible de charger la liste des cours et aucune sauvegarde n\'est disponible.', () {});
 
   @override
-  void initState() {
-    super.initState();
-    Preview.request().then((previews) {
-      if (previews != null) {
-        _updatePreviews(previews);
-        return;
-      }
-
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              content: Text('Impossible de charger la liste des cours et aucune sauvegarde n\'est disponible.\nVeuillez vérifier votre connexion internet et réessayer.'),
-              actions: [
-                FlatButton(
-                  child: Text('Ok'.toUpperCase()),
-                  onPressed: () => SystemChannels.platform.invokeMethod('SystemNavigator.pop'),
-                ),
-              ],
-            ),
-      );
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Widget body = _loading ? CenteredCircularProgressIndicator() : _PreviewsList(_previews);
-
-    return Scaffold(
-      appBar: AppBar(
+  AppBar createAppBar(BuildContext context) => AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -65,16 +28,34 @@ class _HomeScreenState extends State<HomeScreen> {
             _createTitleWidget(),
           ],
         ),
-      ),
-      body: body,
-    );
-  }
+      );
 
-  /// Updates the list of previews.
-  void _updatePreviews(List<Preview> previews) => setState(() {
-        this._previews = previews;
-        this._loading = false;
-      });
+  @override
+  Widget createBody(BuildContext context) => _PreviewsList(object);
+
+  @override
+  Widget createNoObjectBody(BuildContext context) => Padding(
+    padding: EdgeInsets.symmetric(horizontal: 15),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(bottom: 15),
+          child: Text(
+            'Impossible de charger la liste des cours et aucune sauvegarde n\'est disponible.',
+            textAlign: TextAlign.center,
+          ),
+        ),
+        RaisedButton(
+          child: Text('Réessayer'.toUpperCase()),
+          onPressed: () {
+            loading = true;
+            triggerRequest();
+          },
+        )
+      ],
+    ),
+  );
 
   /// Creates the logo widget.
   Widget _createLogoWidget() => SvgPicture.asset(
@@ -117,7 +98,6 @@ class _PreviewsList extends StatelessWidget {
     }
 
     return ListView.builder(
-      shrinkWrap: true,
       semanticChildCount: _previews.length,
       scrollDirection: Axis.vertical,
       itemCount: _previews.length,

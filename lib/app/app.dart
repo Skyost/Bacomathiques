@@ -22,4 +22,13 @@ class App {
 
   /// The border radius of cards.
   static const double CARD_BORDER_RADIUS = 10;
+
+  /// The border radius of comments.
+  static const double COMMENT_BORDER_RADIUS = 15;
+
+  /// The background color of comments.
+  static const Color COMMENT_BACKGROUND_COLOR = Color(0xFFE1F0FA);
+
+  /// The color of dates in comments.
+  static const Color COMMENT_DATE_COLOR = Color(0xFF6C757D);
 }

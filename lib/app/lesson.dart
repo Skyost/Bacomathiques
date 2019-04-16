@@ -1,12 +1,15 @@
 import 'dart:convert';
 
-import 'package:bacomathiques/main.dart';
+import 'package:bacomathiques/app/dialogs.dart' as Dialogs;
 import 'package:bacomathiques/util/util.dart';
 import 'package:flutter/material.dart';
 import 'package:html_unescape/html_unescape.dart';
+import 'package:http/http.dart' as http;
+import 'package:localstorage/localstorage.dart';
+import 'package:share/share.dart';
 
 /// Represents an API object.
-abstract class APIObject {
+abstract class APIObject<T> {
   /// The website address.
   static const WEBSITE = 'https://bacomathiqu.es/';
 
@@ -20,17 +23,17 @@ abstract class APIObject {
   final String title;
 
   /// The object main content.
-  final String content;
-
-  /// All actions that should be displayed.
-  final List<ActionMenu> actions;
+  final T content;
 
   /// Creates a new API object instance.
-  const APIObject(this.id, this.title, this.content, this.actions);
+  const APIObject(this.id, this.title, this.content);
+
+  /// Creates all actions (displayed in the action bar).
+  List<Widget> createActions(BuildContext context);
 }
 
 /// Represents a lesson preview with a title, a picture and a description.
-class Preview extends APIObject {
+class Preview extends APIObject<String> {
   /// Path to previews.
   static const PREVIEWS_PATH = 'lessons.json';
 
@@ -47,7 +50,7 @@ class Preview extends APIObject {
   final String summaryURL;
 
   /// Creates a new lesson preview instance.
-  Preview(String id, String title, String content, this.previewImage, this.caption, this.contentURL, this.summaryURL) : super(id, title, content, []);
+  Preview(String id, String title, String content, this.previewImage, this.caption, this.contentURL, this.summaryURL) : super(id, title, content);
 
   /// Requests to load the list of available previews.
   static Future<List<Preview>> request() async {
@@ -59,34 +62,40 @@ class Preview extends APIObject {
     List<dynamic> previews = json.decode(content);
     return List.of(previews.map((preview) => Preview(preview['id'], preview['title'], HtmlUnescape().convert(preview['excerpt']).replaceAll("<q>", "« <em>").replaceAll('</q>', '</em> »'), preview['preview'], HtmlUnescape().convert(preview['caption']), preview['content'], preview['summary'])));
   }
+
+  @override
+  List<Widget> createActions(BuildContext context) => null;
 }
 
 /// Represents a lesson.
-class Lesson extends APIObject {
+class Lesson extends APIObject<String> {
   /// Available action bar actions.
   static final _actions = [
-    ActionMenu(Icons.assignment_turned_in, 'Annales…', (context, object) => AnnalsDialog.show(context, object as Lesson)),
+    ActionMenu(Icons.assignment_turned_in, 'Annales…', (context, object) => Dialogs.AnnalsDialog.show(context, object as Lesson)),
     ActionMenu(Icons.save, 'Enregistrer le PDF', (context, object) => openURL(APIObject.WEBSITE + 'assets/pdf/lessons/' + Uri.encodeComponent(object.title.replaceAll('é', 'e').replaceAll('É', 'E')) + '.pdf')),
-    ActionMenu(Icons.subtitles, 'Publicités…', (context, object) => AdsDialog.show(context)),
+    ActionMenu(Icons.subtitles, 'Publicités…', (context, object) => Dialogs.AdsDialog.show(context)),
     ActionMenu(Icons.thumb_up, 'Noter l\'application', (context, object) => openURL(storePage)),
     ActionMenu(Icons.sms_failed, 'Signaler un bug', (context, object) => openURL('https://github.com/Skyost/Bacomathiques/issues/new?title=[Application]%20Rapport%20de%20bug')),
-    ActionMenu(Icons.help, 'À Propos…', (context, object) => AboutDialog.show(context))
+    ActionMenu(Icons.help, 'À Propos…', (context, object) => Dialogs.AboutDialog.show(context))
   ];
 
   /// List of annals.
   final List<String> annals;
 
+  /// The comments URL.
+  final String commentsURL;
+
   /// Creates a new lesson instance.
-  Lesson(String id, String title, String content, this.annals) : super(id, title, content, _actions);
+  Lesson(String id, String title, String content, this.annals, this.commentsURL) : super(id, title, content);
 
   /// Requests to load the specified lesson.
   static Future<Lesson> request(String relativeURL) async {
-    String content = await getAndSave('lessons', relativeURL, APIObject.WEBSITE + relativeURL);
-    if (content == null) {
+    String data = await getAndSave('lessons', relativeURL, APIObject.WEBSITE + relativeURL);
+    if (data == null) {
       return null;
     }
 
-    Map<String, dynamic> lesson = json.decode(content);
+    Map<String, dynamic> lesson = json.decode(data);
     List<String> annals = [];
     lesson['annals'].forEach((id) => annals.add(id));
 
@@ -95,14 +104,48 @@ class Lesson extends APIObject {
       lesson['title'],
       HtmlUnescape().convert(lesson['content']),
       annals,
+      lesson['comments'] ?? APIObject.API_PATH.substring(APIObject.WEBSITE.length) + 'summaries/' + lesson['id'] + '.json',
     );
   }
+
+  @override
+  List<Widget> createActions(BuildContext context) => [
+        IconButton(
+          icon: Icon(
+            Icons.share,
+            color: Colors.white,
+          ),
+          onPressed: () => Share.share('Lisez le cours intitulé « ' + title + ' » en téléchargeant l\'application Bacomathiques !\n' + storePage),
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.message,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, '/comments', arguments: {
+              'relativeURL': commentsURL,
+            });
+          },
+        ),
+        PopupMenuButton<ActionMenu>(
+          onSelected: (action) => action.callback(context, this),
+          itemBuilder: (context) => _actions
+              .map(
+                (action) => PopupMenuItem<ActionMenu>(
+                      value: action,
+                      child: action.createWidget(),
+                    ),
+              )
+              .toList(),
+        )
+      ];
 }
 
 /// Represents a lesson summary.
-class Summary extends APIObject {
+class Summary extends APIObject<String> {
   /// Creates a new lesson summary instance.
-  Summary(String id, String title, String content) : super(id, title, content, []);
+  Summary(String id, String title, String content) : super(id, title, content);
 
   /// Requests to load the specified lesson summary.
   static Future<Summary> request(String relativeURL) async {
@@ -118,6 +161,121 @@ class Summary extends APIObject {
       HtmlUnescape().convert(summary['content']),
     );
   }
+
+  @override
+  List<Widget> createActions(BuildContext context) => [];
+}
+
+/// Represents a comment list.
+class Comments extends APIObject<List<Comment>> {
+  /// The URL that allows to post comments to this list.
+  String postURL;
+
+  /// Creates a new comments instance.
+  Comments(String id, List<Comment> content, this.postURL) : super(id, 'Commentaires', content);
+
+  /// Requests to load the specified comments.
+  static Future<Comments> request(String relativeURL) async {
+    String content;
+    try {
+      content = await http.read(APIObject.WEBSITE + relativeURL);
+    } catch (ignored) {}
+
+    if (content == null) {
+      return null;
+    }
+
+    Map<String, dynamic> data = json.decode(content);
+    List<dynamic> jsonComments = data['comments'];
+    List<Comment> comments = [];
+    for (Map<String, dynamic> comment in jsonComments) {
+      Map<String, dynamic> authorData = comment['author'];
+      comments.add(Comment(comment['id'], CommentAuthor(authorData['name'], authorData['avatar'], authorData['isModerator']), comment['message'], DateTime.fromMillisecondsSinceEpoch(comment['date'] * 1000)));
+    }
+
+    return Comments(
+      data['lesson'],
+      comments,
+      data['postUrl'],
+    );
+  }
+
+  /// Creates a new local storage instance containing comments settings.
+  static LocalStorage createCommentsSettings() => LocalStorage('comments');
+
+  /// Posts a new comment.
+  Future<bool> post(String message) async {
+    try {
+      LocalStorage storage = createCommentsSettings();
+      String username = storage.getItem('username');
+      if(username == null || username.isEmpty) {
+        username = 'Anonyme';
+      }
+
+      http.Response response = await http.post(postURL, body: {
+        'options[slug]': id,
+        'fields[lesson]': id,
+        'fields[message]': message,
+        'fields[author]': username,
+      });
+
+      Map<String, dynamic> data = json.decode(response.body);
+      return data['success'] ?? false;
+    } catch (ignored) {
+      return false;
+    }
+  }
+
+  @override
+  List<Widget> createActions(BuildContext context) => [
+        IconButton(
+          icon: Icon(
+            Icons.person,
+            color: Colors.white,
+          ),
+          onPressed: () => Dialogs.UserDialog.show(context),
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.create,
+            color: Colors.white,
+          ),
+          onPressed: () => Dialogs.WriteCommentDialog.show(context, this),
+        ),
+      ];
+}
+
+/// Represents a comment.
+class Comment {
+  /// The comment id.
+  String id;
+
+  /// The comment author.
+  CommentAuthor author;
+
+  /// The comment message.
+  String message;
+
+  /// The comment date.
+  DateTime date;
+
+  /// Creates a new comment instance.
+  Comment(this.id, this.author, this.message, this.date);
+}
+
+/// Represents a comment author.
+class CommentAuthor {
+  /// The author name.
+  String name;
+
+  /// The author avatar.
+  String avatar;
+
+  /// Whether this author is a moderator.
+  bool isModerator;
+
+  /// Creates a new comment author instance.
+  CommentAuthor(this.name, this.avatar, this.isModerator);
 }
 
 /// An action menu with text, icon and callback.
@@ -151,174 +309,5 @@ class ActionMenu {
             style: TextStyle(color: Colors.black),
           ),
         ],
-      );
-}
-
-/// Dialog that displays annals.
-class AnnalsDialog extends StatelessWidget {
-  /// The lesson.
-  final Lesson _lesson;
-
-  /// Creates a new annals dialog.
-  AnnalsDialog(this._lesson);
-
-  @override
-  Widget build(BuildContext context) => SimpleDialog(
-        title: _createTitleWidget(),
-        children: _lesson.annals.map((annal) => _createAnnalWidget(context, annal)).toList(),
-      );
-
-  /// Creates a new title widget.
-  Widget _createTitleWidget() => Text('Annales');
-
-  /// Creates a new annal widget.
-  Widget _createAnnalWidget(BuildContext context, String annal) {
-    List<String> parts = annal.split('/');
-    SimpleDialogOption result = SimpleDialogOption(
-      child: Text((parts[4] + ' ' + parts[5] + ' ' + parts[3]).toUpperCase()),
-      onPressed: () {
-        Navigator.pop(context);
-        showDialog(
-          context: context,
-          builder: (context) => SimpleDialog(
-                children: [
-                  SimpleDialogOption(
-                    child: Text('Énoncé'),
-                    onPressed: () => openURL(APIObject.WEBSITE + annal + 'enonce.pdf'),
-                  ),
-                  SimpleDialogOption(
-                    child: Text('Correction'),
-                    onPressed: () => openURL(APIObject.WEBSITE + annal + 'correction.pdf'),
-                  )
-                ],
-              ),
-        );
-      },
-    );
-    return result;
-  }
-
-  /// Shows the dialog.
-  static void show(BuildContext context, Lesson lesson) => showDialog(
-        context: context,
-        builder: (context) => AnnalsDialog(lesson),
-      );
-}
-
-/// The ads dialog.
-class AdsDialog extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) => AlertDialog(
-        title: _createTitleWidget(),
-        content: _createContentWidget(),
-        actions: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: createActionsWidgets(context),
-          )
-        ],
-      );
-
-  /// Creates a new title widget.
-  Widget _createTitleWidget() => Text('Publicités');
-
-  /// Creates a new content widget.
-  Widget _createContentWidget() => SingleChildScrollView(
-        child: Text(
-          'Bacomathiques vous laisse le choix d\'activer ou de désactiver les publicités. Sachez cependant que cette application et son contenu sont mis à disposition gratuitement pour les utilisateurs et que les publicités constituent les seuls revenus de cette application.',
-        ),
-      );
-
-  /// Creates a new dialog actions widgets.
-  List<Widget> createActionsWidgets(BuildContext context) => [
-        FlatButton(
-          onPressed: () {
-            adMob.setEnabled(true);
-            _showRestartDialog(context);
-          },
-          child: Text('Activer les publicités'.toUpperCase()),
-        ),
-        FlatButton(
-          onPressed: () {
-            adMob.setEnabled(false);
-            _showRestartDialog(context);
-          },
-          child: Text('Désactiver les publicités'.toUpperCase()),
-        ),
-        FlatButton(
-          onPressed: () => Navigator.pop(context),
-          child: Text('Fermer'.toUpperCase()),
-        ),
-      ];
-
-  /// Shows a restart dialog.
-  void _showRestartDialog(BuildContext context) => showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              content: SingleChildScrollView(
-                child: Text(
-                  'Choix enregistré ! Il est possible que vous ayez à redémarrer l\'application pour que les changements soient pris en compte.',
-                ),
-              ),
-              actions: [
-                FlatButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Text('Ok'.toUpperCase()),
-                ),
-              ],
-            ),
-      );
-
-  /// Shows the dialog.
-  static void show(BuildContext context) => showDialog(
-        context: context,
-        builder: (context) => AdsDialog(),
-      );
-}
-
-/// The about dialog.
-class AboutDialog extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) => AlertDialog(
-        title: _createTitleWidget(),
-        content: _createContentWidget(),
-        actions: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: createActionsWidgets(context),
-          )
-        ],
-      );
-
-  /// Creates a new title widget.
-  Widget _createTitleWidget() => Text('À Propos');
-
-  /// Creates a new content widget.
-  Widget _createContentWidget() => SingleChildScrollView(
-        child: Text(
-          'Révisez votre BAC de mathématiques avec Bacomathiques !\nVous pouvez consulter les licences des contenus, technologies utilisées et autres en cliquant sur le bouton « Plus d\'informations ».\nSinon, n\'hésitez pas à laisser une (bonne) note sur la fiche de l\'application !',
-        ),
-      );
-
-  /// Creates a new dialog actions widgets.
-  List<Widget> createActionsWidgets(BuildContext context) => [
-        FlatButton(
-          onPressed: () => openURL('https://bacomathiqu.es/a-propos/'),
-          child: Text('Plus d\'informations'.toUpperCase()),
-        ),
-        FlatButton(
-          onPressed: () => openURL(storePage),
-          child: Text('Fiche de l\'application'.toUpperCase()),
-        ),
-        FlatButton(
-          onPressed: () => Navigator.pop(context),
-          child: Text('Fermer'.toUpperCase()),
-        ),
-      ];
-
-  /// Shows the dialog.
-  static void show(BuildContext context) => showDialog(
-        context: context,
-        builder: (context) => AboutDialog(),
       );
 }

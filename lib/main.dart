@@ -1,5 +1,6 @@
 import 'package:bacomathiques/app/admob.dart';
 import 'package:bacomathiques/app/app.dart';
+import 'package:bacomathiques/screen/comments.dart';
 import 'package:bacomathiques/screen/home.dart';
 import 'package:bacomathiques/screen/html.dart';
 import 'package:bacomathiques/util/util.dart' as Util;
@@ -41,6 +42,10 @@ class BacomathiquesApp extends StatelessWidget {
           '/html': (context) {
             Map<String, dynamic> arguments = ModalRoute.of(context).settings.arguments;
             return HTMLScreen(arguments['relativeURL'], arguments['requestObjectFunction'], arguments['anchor']);
+          },
+          '/comments': (context) {
+            Map<String, dynamic> arguments = ModalRoute.of(context).settings.arguments;
+            return CommentsScreen(arguments['relativeURL']);
           },
         },
       );
