@@ -104,7 +104,7 @@ class Lesson extends APIObject<String> {
       lesson['title'],
       HtmlUnescape().convert(lesson['content']),
       annals,
-      lesson['comments'] ?? APIObject.API_PATH.substring(APIObject.WEBSITE.length) + 'summaries/' + lesson['id'] + '.json',
+      lesson['comments'] ?? APIObject.API_PATH.substring(APIObject.WEBSITE.length) + 'comments/' + lesson['id'] + '.json',
     );
   }
 
