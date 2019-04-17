@@ -8,6 +8,7 @@
 .buildlog/
 .history
 .svn/
+assets/listAssets.py
 assets/admob.json
 android/key.properties
 ios/Runner/GoogleService-Info.plist
