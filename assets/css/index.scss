@@ -94,10 +94,17 @@
 	}
 }
 
+/* MOBILE BANNERS */
+
+.mobile-banner {
+	@media(max-width: $mobile-max-width) {
+		margin-top: 20px;
+	}
+}
+
 /* MOCKUP */
 
 #mobile {
-	
 	.d-lg-block {
 		margin-bottom: -300px;
 	}
@@ -118,7 +125,6 @@
 	.d-flex img {
 		width: 200px;
 	}
-	
 }
 
 /* FONTAWESOME END CIRCLE */
