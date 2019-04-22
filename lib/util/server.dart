@@ -17,7 +17,7 @@ class Server {
   Map<String, List<FormatArgument>> formatArguments;
 
   /// Creates a new server instance.
-  Server(this._port, this.formatArguments);
+  Server(this._port, [this.formatArguments]);
 
   /// Closes the server.
   Future<void> close() async {
@@ -47,7 +47,7 @@ class Server {
           path = (path.startsWith('/')) ? path.substring(1) : path;
           path += (path.endsWith('/')) ? 'index.html' : '';
 
-          List<FormatArgument> arguments = formatArguments[path];
+          List<FormatArgument> arguments = formatArguments == null ? null : formatArguments[path];
           if (arguments == null) {
             sendResponseWithoutFormatting(request, path);
             return;

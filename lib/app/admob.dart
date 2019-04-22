@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:localstorage/localstorage.dart';
 
 /// Allows to load and set required AdMob information.
 class AdMob {
@@ -24,8 +24,8 @@ class AdMob {
 
   /// Loads the class data.
   Future<void> load() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    bool isEnabled = preferences.getBool(_PREFERENCE_KEY);
+    LocalStorage adMobPreferences = LocalStorage('admob');
+    bool isEnabled = adMobPreferences.getItem(_PREFERENCE_KEY);
     if (isEnabled != null) {
       _isEnabled = isEnabled;
     }
@@ -61,8 +61,8 @@ class AdMob {
 
   /// Sets whether AdMob should be enabled.
   void setEnabled(isEnabled) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.setBool(_PREFERENCE_KEY, isEnabled);
+    LocalStorage adMobPreferences = LocalStorage('admob');
+    adMobPreferences.setItem(_PREFERENCE_KEY, isEnabled);
     _isEnabled = isEnabled;
   }
 }

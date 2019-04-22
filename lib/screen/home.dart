@@ -1,5 +1,6 @@
 import 'package:bacomathiques/app/app.dart';
 import 'package:bacomathiques/app/lesson.dart';
+import 'package:bacomathiques/main.dart';
 import 'package:bacomathiques/util/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -31,31 +32,44 @@ class _HomeScreenState extends RequestScaffold<HomeScreen, List<Preview>> {
       );
 
   @override
-  Widget createBody(BuildContext context) => _PreviewsList(object);
+  Widget createBody(BuildContext context) {
+    if (rateMyApp.shouldOpenDialog) {
+      rateMyApp.showRateDialog(
+        context,
+        title: 'Noter l\'application',
+        message: 'Si vous aimez cette application, n\'hésitez pas à prendre un peu de votre temps pour la noter !\nCe serait d\'une grande aide et cela ne devrait pas vous prendre plus d\'une minute.',
+        rateButton: 'Noter'.toUpperCase(),
+        noButton: 'Non merci'.toUpperCase(),
+        laterButton: 'Plus tard'.toUpperCase(),
+      );
+    }
+
+    return _PreviewsList(object);
+  }
 
   @override
   Widget createNoObjectBody(BuildContext context) => Padding(
-    padding: EdgeInsets.symmetric(horizontal: 15),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Padding(
-          padding: EdgeInsets.only(bottom: 15),
-          child: Text(
-            'Impossible de charger la liste des cours et aucune sauvegarde n\'est disponible.',
-            textAlign: TextAlign.center,
-          ),
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(bottom: 15),
+              child: Text(
+                'Impossible de charger la liste des cours et aucune sauvegarde n\'est disponible.',
+                textAlign: TextAlign.center,
+              ),
+            ),
+            RaisedButton(
+              child: Text('Réessayer'.toUpperCase()),
+              onPressed: () {
+                loading = true;
+                triggerRequest();
+              },
+            )
+          ],
         ),
-        RaisedButton(
-          child: Text('Réessayer'.toUpperCase()),
-          onPressed: () {
-            loading = true;
-            triggerRequest();
-          },
-        )
-      ],
-    ),
-  );
+      );
 
   /// Creates the logo widget.
   Widget _createLogoWidget() => SvgPicture.asset(
@@ -191,6 +205,13 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
         onTap: _toggleCaption,
         child: Stack(
           children: [
+            Positioned.fill(
+                child: Container(
+              alignment: Alignment(0, 0),
+              foregroundDecoration: BoxDecoration(
+                color: Colors.black.withAlpha(30),
+              ),
+            )),
             FadeInImage.memoryNetwork(
               image: APIObject.WEBSITE + widget._preview.previewImage,
               placeholder: kTransparentImage,
@@ -203,7 +224,7 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
               duration: Duration(milliseconds: 200),
               child: Container(
                 alignment: Alignment(0, 0),
-                decoration: BoxDecoration(color: Color(0xB3000000)),
+                decoration: BoxDecoration(color: Colors.black.withAlpha(175)),
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
                   widget._preview.caption,

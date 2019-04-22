@@ -1,5 +1,5 @@
 import 'package:bacomathiques/app/lesson.dart';
-import 'package:bacomathiques/main.dart' as Main;
+import 'package:bacomathiques/main.dart';
 import 'package:bacomathiques/util/server.dart';
 import 'package:bacomathiques/util/util.dart';
 import 'package:firebase_admob/firebase_admob.dart';
@@ -26,12 +26,6 @@ class HTMLScreen extends StatefulWidget {
 
 /// State of HTML screens.
 class HTMLScreenState extends RequestScaffold<HTMLScreen, APIObject> {
-  /// The port to open for local servers.
-  static const int _PORT = 8080;
-
-  /// The local server.
-  Server _server;
-
   /// The banner ad.
   BannerAd _ad;
 
@@ -42,8 +36,8 @@ class HTMLScreenState extends RequestScaffold<HTMLScreen, APIObject> {
   void initState() {
     super.initState();
 
-    if (Main.adMob.isEnabled()) {
-      BannerAd ad = Main.adMob.createBannerAd();
+    if (adMob.isEnabled()) {
+      BannerAd ad = adMob.createBannerAd();
       ad.load().then((loaded) => _showBanner(ad, loaded));
     }
   }
@@ -56,13 +50,13 @@ class HTMLScreenState extends RequestScaffold<HTMLScreen, APIObject> {
 
   @override
   Widget createBody(BuildContext context) => WebView(
-        initialUrl: "http://localhost:$_PORT/assets/webview/content.html",
+        initialUrl: "http://localhost:$LOCAL_SERVER_PORT/assets/webview/content.html",
         javascriptMode: JavascriptMode.unrestricted,
         navigationDelegate: (navigation) {
-          if (navigation.url.startsWith("http://localhost:$_PORT/") && !navigation.url.contains('/webview/') && (navigation.url.contains('/#') || navigation.url.endsWith('/'))) {
+          if (navigation.url.startsWith("http://localhost:$LOCAL_SERVER_PORT/") && !navigation.url.contains('/webview/') && (navigation.url.contains('/#') || navigation.url.endsWith('/'))) {
             final List<String> parts = navigation.url.split("/#");
 
-            final String id = parts[0].replaceAll("http://localhost:$_PORT/assets", '').replaceAll('/', '').replaceAll('-', '_');
+            final String id = parts[0].replaceAll("http://localhost:$LOCAL_SERVER_PORT/assets", '').replaceAll('/', '').replaceAll('-', '_');
             Map<String, dynamic> arguments = {
               'relativeURL': APIObject.API_PATH.substring(APIObject.WEBSITE.length) + 'content/' + id + '.json',
               'requestObjectFunction': Lesson.request,
@@ -76,7 +70,7 @@ class HTMLScreenState extends RequestScaffold<HTMLScreen, APIObject> {
             Navigator.pushNamed(context, '/html', arguments: arguments);
             return NavigationDecision.prevent;
           }
-          if (navigation.url.startsWith('http') && !navigation.url.startsWith("http://localhost:$_PORT/")) {
+          if (navigation.url.startsWith('http') && !navigation.url.startsWith("http://localhost:$LOCAL_SERVER_PORT/")) {
             openURL(navigation.url);
             return NavigationDecision.prevent;
           }
@@ -87,9 +81,7 @@ class HTMLScreenState extends RequestScaffold<HTMLScreen, APIObject> {
   @override
   void deactivate() {
     _disposeAd();
-    if (_server != null) {
-      _server.close().then((v) => super.deactivate());
-    }
+    super.deactivate();
   }
 
   /// Disposes the ad.
@@ -101,7 +93,7 @@ class HTMLScreenState extends RequestScaffold<HTMLScreen, APIObject> {
 
   @override
   void updateObject(APIObject object) {
-    _server = Server(_PORT, {
+    localServer.formatArguments = {
       'assets/webview/content.html': [
         FormatArgument('content', object.content),
       ],
@@ -111,11 +103,10 @@ class HTMLScreenState extends RequestScaffold<HTMLScreen, APIObject> {
         FormatArgument('anchor', widget._anchor ?? ''),
       ],
       'assets/webview/style.css': [
-        FormatArgument('margin_bottom', (Main.adMob.isEnabled() ? 60 : 0).toString()),
+        FormatArgument('margin_bottom', (adMob.isEnabled() ? 60 : 0).toString()),
       ]
-    });
-
-    _server.start().then((v) => super.updateObject(object));
+    };
+    super.updateObject(object);
   }
 
   /// Shows the ad banner.

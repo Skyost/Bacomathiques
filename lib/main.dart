@@ -3,16 +3,27 @@ import 'package:bacomathiques/app/app.dart';
 import 'package:bacomathiques/screen/comments.dart';
 import 'package:bacomathiques/screen/home.dart';
 import 'package:bacomathiques/screen/html.dart';
+import 'package:bacomathiques/util/server.dart';
 import 'package:bacomathiques/util/util.dart' as Util;
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:rate_my_app/rate_my_app.dart';
+
+/// The port to open for local servers.
+const int LOCAL_SERVER_PORT = 8080;
 
 /// The AdMob instance.
 AdMob adMob = AdMob();
 
+/// The RateMyApp instance.
+RateMyApp rateMyApp = RateMyApp();
+
+/// The local server.
+Server localServer = Server(LOCAL_SERVER_PORT);
+
 /// Hello world !
 void main() {
-  runApp(BacomathiquesApp());
+  rateMyApp.init().then((v) => runApp(BacomathiquesApp()));
 
   if (!Util.isInDebugMode) {
     adMob.load();
@@ -20,6 +31,8 @@ void main() {
 
   FlutterStatusbarcolor.setNavigationBarColor(App.ACTION_BAR_COLOR);
   FlutterStatusbarcolor.setNavigationBarWhiteForeground(true);
+
+  localServer.start();
 }
 
 /// The app main class.

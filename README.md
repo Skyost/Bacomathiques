@@ -14,4 +14,4 @@
 * Bien plus !
 
 ## Alors pourquoi attendre ?
-Vous êtes intéressé par des cours de mathématiques gratuits en ligne, accessibles à tout moment ? [Téléchargez](https://play.google.com/store/apps/details?id=fr.bacomathiques) dès maintenant l'application Bacomathiques !
+Vous êtes intéressé par des cours de mathématiques gratuits en ligne, accessibles à tout moment ? Téléchargez dès maintenant l'application Bacomathiques (disponible sur [Android](https://play.google.com/store/apps/details?id=fr.bacomathiques) et [iOS](https://itunes.apple.com/us/app/bacomathiques/id1458503418)) !
