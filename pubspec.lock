@@ -173,14 +173,14 @@ packages:
       name: rate_my_app
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.0"
+    version: "0.2.0+1"
   share:
     dependency: "direct main"
     description:
       name: share
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.1"
+    version: "0.6.1+1"
   shared_preferences:
     dependency: transitive
     description:
