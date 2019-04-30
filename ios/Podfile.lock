@@ -1,6 +1,4 @@
 PODS:
-  - app_review (0.0.1):
-    - Flutter
   - Firebase/AdMob (5.20.2):
     - Firebase/Core
     - Google-Mobile-Ads-SDK (~> 7.42)
@@ -40,31 +38,29 @@ PODS:
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - GoogleUtilities/AppDelegateSwizzler (5.7.0):
+  - GoogleUtilities/AppDelegateSwizzler (5.8.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (5.7.0)
-  - GoogleUtilities/Logger (5.7.0):
+  - GoogleUtilities/Environment (5.8.0)
+  - GoogleUtilities/Logger (5.8.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (5.7.0):
+  - GoogleUtilities/MethodSwizzler (5.8.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (5.7.0):
+  - GoogleUtilities/Network (5.8.0):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (5.7.0)"
-  - GoogleUtilities/Reachability (5.7.0):
+  - "GoogleUtilities/NSData+zlib (5.8.0)"
+  - GoogleUtilities/Reachability (5.8.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (5.7.0):
+  - GoogleUtilities/UserDefaults (5.8.0):
     - GoogleUtilities/Logger
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - package_info (0.0.1):
-    - Flutter
   - path_provider (0.0.1):
     - Flutter
   - rate_my_app (0.1):
@@ -79,11 +75,9 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - app_review (from `.symlinks/plugins/app_review/ios`)
   - firebase_admob (from `.symlinks/plugins/firebase_admob/ios`)
   - Flutter (from `.symlinks/flutter/ios-release`)
   - flutter_statusbarcolor (from `.symlinks/plugins/flutter_statusbarcolor/ios`)
-  - package_info (from `.symlinks/plugins/package_info/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - rate_my_app (from `.symlinks/plugins/rate_my_app/ios`)
   - share (from `.symlinks/plugins/share/ios`)
@@ -103,16 +97,12 @@ SPEC REPOS:
     - nanopb
 
 EXTERNAL SOURCES:
-  app_review:
-    :path: ".symlinks/plugins/app_review/ios"
   firebase_admob:
     :path: ".symlinks/plugins/firebase_admob/ios"
   Flutter:
     :path: ".symlinks/flutter/ios-release"
   flutter_statusbarcolor:
     :path: ".symlinks/plugins/flutter_statusbarcolor/ios"
-  package_info:
-    :path: ".symlinks/plugins/package_info/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
   rate_my_app:
@@ -127,26 +117,24 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter/ios"
 
 SPEC CHECKSUMS:
-  app_review: 017f0ac7e570c624a9c763b2b0f4d4afdb6c8a00
   Firebase: 0c8cf33f266410c61ab3e2265cfa412200351d9c
-  firebase_admob: b8cc46113ddf88a62fec340e9446607a5061a872
+  firebase_admob: ba3d9c8874c03ccc2b87ae30c50d1630b522a693
   FirebaseAnalytics: ece1aa57a4f43c64d53a648b5a5e05151aae947b
   FirebaseCore: f1a9a8be1aee4bf71a2fc0f4096df6788bdfda61
   FirebaseInstanceID: a122b0c258720cf250551bb2bedf48c699f80d90
-  Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
-  flutter_statusbarcolor: ccc8f90efe5e571f817aaed60dac5382d2cec98d
+  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
+  flutter_statusbarcolor: 8afb1071ed8c58be929f1e32b36c629771fd2259
   Google-Mobile-Ads-SDK: e911f5544fc6488f8372a183627a802c8bdb5e36
   GoogleAppMeasurement: ffe513e90551844a739e7bcbb1d2aca1c28a4338
-  GoogleUtilities: 273e67030e0de313e7304f6dcfa96fc5214f6c23
+  GoogleUtilities: 04fce34bcd5620c1ee76fb79172105c74a4df335
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  package_info: d7c98b64f60add4c2908b9d94d82a45d3c8827ad
-  path_provider: 09407919825bfe3c2deae39453b7a5b44f467873
-  rate_my_app: 765967a4905dc60e7a3b55c685c8f58e01a8d840
-  share: 222b5dcc8031238af9d7de91149df65bad1aef75
-  shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
-  url_launcher: 92b89c1029a0373879933c21642958c874539095
-  webview_flutter: 9bd234c07e99632356cba112df56fd1d47d6b6e3
+  path_provider: f96fff6166a8867510d2c25fdcc346327cc4b259
+  rate_my_app: 45513a2f4d9a55b7b46d19b64fc13882fd101157
+  share: 7d22fe8baedfe93aefd864bf0b73f29711fbb0a3
+  shared_preferences: 1feebfa37bb57264736e16865e7ffae7fc99b523
+  url_launcher: 0067ddb8f10d36786672aa0722a21717dba3a298
+  webview_flutter: 1aa7604e6cdb451a9b7ed2c37d5454c0b440246b
 
-PODFILE CHECKSUM: 92ef3c75c8d01e7bec639a983064efed9123f853
+PODFILE CHECKSUM: aff02bfeed411c636180d6812254b2daeea14d09
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1
