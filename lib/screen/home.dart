@@ -243,7 +243,6 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
       padding: EdgeInsets.all(12),
       child: Html(
         data: widget._preview.content,
-        useRichText: true,
         defaultTextStyle: Theme.of(context).textTheme.body1.copyWith(
               fontSize: 14,
             ),

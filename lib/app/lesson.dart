@@ -60,7 +60,7 @@ class Preview extends APIObject<String> {
     }
 
     List<dynamic> previews = json.decode(content);
-    return List.of(previews.map((preview) => Preview(preview['id'], preview['title'], HtmlUnescape().convert(preview['excerpt']).replaceAll("<q>", "« <em>").replaceAll('</q>', '</em> »'), preview['preview'], HtmlUnescape().convert(preview['caption']), preview['content'], preview['summary'])));
+    return List.of(previews.map((preview) => Preview(preview['id'], preview['title'], HtmlUnescape().convert(preview['excerpt']), preview['preview'], HtmlUnescape().convert(preview['caption']), preview['content'], preview['summary'])));
   }
 
   @override
@@ -185,12 +185,13 @@ class Comments extends APIObject<List<Comment>> {
       return null;
     }
 
+    HtmlUnescape htmlUnescape = HtmlUnescape();
     Map<String, dynamic> data = json.decode(content);
     List<dynamic> jsonComments = data['comments'];
     List<Comment> comments = [];
     for (Map<String, dynamic> comment in jsonComments) {
       Map<String, dynamic> authorData = comment['author'];
-      comments.add(Comment(comment['id'], CommentAuthor(authorData['name'], authorData['avatar'], authorData['isModerator']), comment['message'], DateTime.fromMillisecondsSinceEpoch(comment['date'] * 1000)));
+      comments.add(Comment(comment['id'], CommentAuthor(authorData['name'], authorData['avatar'], authorData['isModerator']), htmlUnescape.convert(comment['message']), DateTime.fromMillisecondsSinceEpoch(comment['date'] * 1000)));
     }
 
     return Comments(
