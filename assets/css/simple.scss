@@ -114,7 +114,7 @@ header {
 	width: 100%;
 	margin: 0;
 	border: 0;
-	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,85 100,0 0,0" fill="' + $main-color + '"/></svg>');
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,85 100,0 0,0" fill="' + encodeColor($main-color) + '"/></svg>');
 }
 
 /* HEADINGS */
