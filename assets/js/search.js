@@ -1,12 +1,12 @@
 $(document).ready(function() {
-	var searchTerm = getQueryVariable('keywords');
+	let searchTerm = getQueryVariable('keywords');
 	if(!searchTerm) {
 		$('#keywords').text('vide');
 		displaySearchResults(0, 0);
 		return;
 	}
 	$('#keywords').text(searchTerm);
-	var idx = lunr(function() {
+	let idx = lunr(function() {
 		this.field('id');
 		this.field('title', {
 			boost: 10
@@ -14,7 +14,7 @@ $(document).ready(function() {
 		this.field('excerpt');
 		this.field('content');
 		
-		for(var page in pages) {
+		for(let page in pages) {
 			this.add({
 				'id': page,
 				'title': pages[page].title,
@@ -23,7 +23,7 @@ $(document).ready(function() {
 			});
 		}
 	});
-	var results = idx.search(searchTerm);
+	let results = idx.search(searchTerm);
 	displaySearchResults(results, pages);
 });
 
@@ -32,11 +32,11 @@ $(document).ready(function() {
 */
 
 function getQueryVariable(variable) {
-	var query = window.location.search.substring(1);
-	var vars = query.split('&');
+	let query = window.location.search.substring(1);
+	let vars = query.split('&');
 
-	for(var i = 0; i < vars.length; i++) {
-		var pair = vars[i].split('=');
+	for(let i = 0; i < vars.length; i++) {
+		let pair = vars[i].split('=');
 
 		if(pair[0] === variable) {
 			return decodeURIComponent(pair[1].replace(/\+/g, '%20'));
@@ -49,14 +49,14 @@ function getQueryVariable(variable) {
 */
 
 function displaySearchResults(results, pages) {
-	var searchResults = $('article .row');
+	let searchResults = $('article .row');
 
 	if(results.length) {
 		$('#numbers').text(results.length);
-		var appendString = '';
+		let appendString = '';
 
-		for(var i = 0; i < results.length; i++) {
-			var item = pages[results[i].ref];
+		for(let i = 0; i < results.length; i++) {
+			let item = pages[results[i].ref];
 			appendString += '<div class="col-xs-12 col-md-6 col-lg-4">';
 			appendString += '<div class="card bg-light">';
 			appendString += '<div class="card-header d-flex align-items-center"><h2 class="w-100">' + item.title + '</h2></div>';
@@ -69,10 +69,10 @@ function displaySearchResults(results, pages) {
 		}
 
 		searchResults.html(appendString);
-		searchResults.css('display', '');
+		searchResults.removeClass('d-none');
 		
 		$('.card-header').matchHeight();
 		$('.card-text').matchHeight();
 	}
-	$('.fa-spinner').css('display', 'none');
+	$('.fa-spinner').addClass('d-none');
 }

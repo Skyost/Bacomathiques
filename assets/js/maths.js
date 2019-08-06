@@ -1,13 +1,39 @@
-var graphHeight = 400;
-var graphWidth = 600;
+const IS_SVG_SUPPORTED = !!(document.createElementNS && document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect);
 
-function computeDimension() {
-	var height = graphHeight;
-	var width = graphWidth;
+const GRAPH_HEIGHT = 400;
+const GRAPH_WIDTH = 600;
+
+$(document).ready(function () {
+	if(!IS_SVG_SUPPORTED) {
+		if(LESSON_ID) {
+			let i = 1;
+			let representation = null;
+			do {
+				representation = $('#representation-' + i);
+				representation.html(innerImage('assets/img/' + LESSON_ID, 'representation-' + (i++)));
+			}
+			while (representation.length > 0);
+		}
+	}
+
+	if(typeof createPlots !== 'undefined' && $.isFunction(createPlots)) {
+		createPlots(computeGraphDimension());
+	}
+});
+
+$(window).resize(function () {
+	if(typeof createPlots !== 'undefined' && $.isFunction(createPlots)) {
+		createPlots(computeGraphDimension());
+	}
+});
+
+function computeGraphDimension() {
+	let height = GRAPH_HEIGHT;
+	let width = GRAPH_WIDTH;
+
+	let ratio = height / width;
 	
-	var ratio = height / width;
-	
-	if($(window).width() < graphWidth + 200) {
+	if($(window).width() < GRAPH_WIDTH + 200) {
 		width = $(window).width() / 1.5;
 		height = height * ratio;
 	}

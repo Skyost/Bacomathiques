@@ -19,14 +19,14 @@ adsense: true
 	<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
 	<span class="sr-only">Loading...</span>
 
-	<div class="row" style="display: none;"></div>
+	<div class="row d-none"></div>
 	
 	<ins class="adsbygoogle" data-ad-client="ca-pub-7167241518798106" data-ad-slot="2776038870" data-ad-format="auto"></ins>
 
 </article>
 
 <script type='text/javascript'>
-	var pages = {
+	let pages = {
 		{% for data in site.data.lessons %}
 			{% assign lesson = data[1] %}
 			{% capture lessonContent %}{% include {{ lesson.path }} %}{% endcapture %}

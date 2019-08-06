@@ -17,7 +17,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.6.0/tocbot.min.js" integrity="sha256-+fdFDIM3huAQNs/gn7OOoN9jpU+6sx7RCGkvQn9QS0s=" crossorigin="anonymous"></script>
 		
 	<script src="/assets/js/adblock-modal.js"></script>
-	<script src="/assets/js/lesson.js"></script>
+	<script src="/assets/js/lessons/lesson.js"></script>
 	
 	<script>
 		let isSummaryLoaded = false;
@@ -34,7 +34,7 @@
 					MathJax.Hub.Queue(['Typeset', MathJax.Hub, $('#modal-summary').get(0)]);
 				})
 				.fail(function() {
-					$('#modal-summary .modal-body').html('Impossible d\'obtenir le résumé de cours. Veuillez ré-essayer plus tard !');
+					$('#modal-summary .modal-body').html('Impossible d\'obtenir le résumé de cours. Veuillez réessayer plus tard !');
 				});
 			}
 		});
