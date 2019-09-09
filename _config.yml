@@ -5,6 +5,7 @@ url: "https://bacomathiqu.es"
 repository: "Skyost/Bacomathiques"
 timezone: "Europe/Paris"
 includes_dir: ""
+safe: true
 
 # Comments settings
 comments:
