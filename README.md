@@ -2,7 +2,7 @@
 
 ## Qu'est-ce-que Bacomathiques ?
 
-<q>Bac-o-math-iques</q> (ou plus simplement <strong>{{ site.title }}</strong>) est un petit site web qui contient tout ce dont vous avez besoin pour réviser vos maths en toute tranquilité de la Première à la Terminale ! Que vous cherchiez à passer votre BAC ou que vous souhaitiez simplement réviser votre cours : tout est possible et tout est gratuit.
+<q>Bac-o-math-iques</q> (ou plus simplement <strong>Bacomathiques</strong>) est un petit site web qui contient tout ce dont vous avez besoin pour réviser vos maths en toute tranquilité de la Première à la Terminale ! Que vous cherchiez à passer votre BAC ou que vous souhaitiez simplement réviser votre cours : tout est possible et tout est gratuit.
 
 ## Les contenus
 
