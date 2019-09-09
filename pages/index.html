@@ -1,0 +1,150 @@
+---
+layout: pretty
+title: "Accueil"
+permalink: "/"
+css:
+  - "https://cdn.jsdelivr.net/npm/marvel-devices.css@1.0.0/assets/devices.min.css"
+  - "/assets/css/index.css"
+js:
+  - "/assets/js/index.js"
+---
+
+<section class="container">
+
+	<h3><span class="first-letter">L</span>es contenus</h3>
+	
+	<div class="row">
+		<div class="col-md-4 col-xs-12">
+			<figure>
+				<img src="../assets/img/simple/index/check.svg" alt="Vérifié"/>
+			
+				<figcaption>
+					Des cours en accord avec les <strong>programmes officiels</strong> du ministère de l'Éducation nationale.
+				</figcaption>
+			</figure>
+		</div>
+		<div class="col-md-4 col-xs-12 middle">
+			<figure>
+				<img src="../assets/img/simple/index/book.svg" alt="Livre"/>
+			
+				<figcaption>
+					Des exemples intuitifs et la possibilité de <strong>télécharger</strong>
+					et <strong>imprimer les cours</strong> gratuitement pour les relire chez soi !
+				</figcaption>
+			</figure>
+		</div>
+		<div class="col-md-4 col-xs-12">
+			<figure>
+				<img src="../assets/img/simple/index/computer.svg" alt="Ordinateur"/>
+			
+				<figcaption>
+					Le plus important : <strong>tout est gratuit</strong>.
+					Même pas besoin de compte, tout est à disposition de tout le monde !
+				</figcaption>
+			</figure>
+		</div>
+	</div>
+	
+	<p><em>
+			Également des <strong>annales des précédents sujets du BAC</strong> de mathématiques à télécharger (avec leur correction), bientôt
+			des vidéos explicatives du cours avec des exemples visuels, ...
+		</em></p>
+	
+	<p class="stand-out">Et bien plus ! :wink:</p>
+
+</section>
+
+<section>
+	<div class="container">
+		<h3>Qu'attendez-vous ?</h3>
+		
+		<div class="row">
+			<div class="col-md-12 col-lg-6 d-flex align-items-center text-center text-md-left">
+				<div class="w-100">
+					<p>Vous êtes intéressé par des <strong>cours de mathématiques gratuits</strong> en ligne, accessibles à tout moment ?
+					Accédez dès maintenant à <a href="/cours/">l'index des cours</a> !
+					Vous y retrouverez la liste des cours disponibles sur le site ainsi qu'une brève description et une image d'illustration.</p>
+			
+					<p class="stand-out">Nous vous souhaitons une bonne visite !</p>
+				</div>
+			</div>
+			<div class="col-md-12 col-lg-6 d-none d-md-block">
+				<div id="lessons-list">
+					<div class="btn-group" role="group" aria-label="Cours">
+						{% for data in site.data.levels %}
+							{% assign level = data[1] %}
+							<button type="button" class="btn btn-primary" data-level="{{ level.id }}"><img src="{{ level.image }}" alt="{{ level.name }}" title="{{ level.name }}"> Cours de {{ level.name }}</button>
+						{% endfor %}
+					</div>
+					{% for dataLevel in site.data.levels %}
+						{% assign level = dataLevel[1] %}
+						<ul id="lessons-list-{{ level.id }}" class="d-none">
+							{% for dataLesson in site.data.lessons[level.id] %}
+								{% assign lesson = dataLesson[1] %}
+								<li><a href="cours/{{ level.url }}/{{ lesson.url }}">{{ lesson.title }}</a></li>
+							{% endfor %}
+						</ul>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="mobile" class="container">
+	<h3>Application Mobile</h3>
+	
+	<div class="row">
+		<div class="col-md-12 col-lg-6 d-none d-lg-block">
+			<div class="marvel-device s5 white">
+				<div class="top-bar"></div>
+				<div class="sleep"></div>
+				<div class="camera"></div>
+				<div class="sensor"></div>
+				<div class="speaker"></div>
+				<div class="screen"></div>
+				<div class="home"></div>
+			</div>
+		</div>
+		
+		<div class="col-md-12 col-lg-6 d-flex align-items-center text-center text-md-left">
+			<div class="w-100">
+				<p><strong>{{ site.title }}</strong> possède une application mobile !
+				Vous pouvez dès à présent la télécharger et accéder à tous vos cours directement depuis <strong>votre smartphone</strong>.</p>
+				
+				<p>Pour la télécharger, rien de plus simple ! Accédez au <strong>Play Store</strong> de Google ou à l'<strong>App Store</strong> d'Apple et tapez <q>Bacomathiques</q>.
+				<br>Vous pouvez également cliquer sur un des boutons ci-dessous :</p>
+				
+				<div class="text-center">
+					<a href="https://play.google.com/store/apps/details?id=fr.bacomathiques&utm_source=bacomathiqu.es&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img src="../assets/img/play_store.svg" class="mobile-banner" title="Disponible sur Google Play" alt="Disponible sur Google Play"/></a>
+					<a href="http://itunes.apple.com/app/id1458503418"><img src="../assets/img/app_store.svg" class="mobile-banner" title="Disponible sur l'App Store" alt="Disponible sur l'App Store"/></a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-12 col-lg-6 d-none d-lg-none d-md-block">
+			<div class="marvel-device s5 white">
+				<div class="top-bar"></div>
+				<div class="sleep"></div>
+				<div class="camera"></div>
+				<div class="sensor"></div>
+				<div class="speaker"></div>
+				<div class="screen"></div>
+				<div class="home"></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section>
+	<div class="container">
+		<h3>À propos de {{ site.title }}</h3>
+		<p><strong>Par qui</strong> a été crée ce site web ?
+		Sous <strong>quelle licence</strong> sont disponibles les contenus ?
+		<strong>Quelles sont les technologies</strong> utilisées pour concevoir le site web ?</p>
+
+		<p>Toutes les réponses à ces questions sont disponibles dans la page <a href="/a-propos/"><q>À propos</q></a>.</p>
+		
+		<i class="fa fa-question-circle" aria-hidden="true"></i>
+	</div>
+</section>

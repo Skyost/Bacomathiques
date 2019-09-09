@@ -1,0 +1,6 @@
+---
+layout: api_file
+permalink: "/api/v2/terminale/fonction-logarithme/"
+sitemap: false
+---
+{% include _includes/api/v2/lessons/content/content.json lesson='fonction_logarithme' level='terminale' %}

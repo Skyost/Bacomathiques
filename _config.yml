@@ -1,6 +1,6 @@
 # Site settings
 title: "Bacomathiques"
-tagline: "Bacomathiques est un petit site web qui contient tout ce dont vous avez besoin pour réussir votre BAC de mathématiques en toute tranquillité : cours de mathématiques gratuits, téléchargeables et imprimables, annales et corrigés des sujets précédents, etc..."
+tagline: "Bacomathiques est un petit site web qui contient tout ce dont vous avez besoin pour réviser vos maths en toute tranquilité de la Première à la Terminale ! Que vous cherchiez à passer votre BAC ou que vous souhaitiez simplement réviser votre cours ; tout est possible et tout est gratuit. Au programme : cours de mathématiques gratuits, téléchargeables et imprimables, annales et corrigés des sujets précédents, etc..."
 url: "https://bacomathiqu.es"
 repository: "Skyost/Bacomathiques"
 timezone: "Europe/Paris"
@@ -40,4 +40,4 @@ sass:
 exclude: [".scss", "README.md", "CNAME"]
 
 # Gems
-plugins: ["jekyll-redirect-from"]
+plugins: ["jekyll-redirect-from", "jemoji"]

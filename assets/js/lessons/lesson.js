@@ -1,45 +1,47 @@
 $(document).ready(function () {
-    // TITLE NUMBERING
+    MathJax.Hub.Register.StartupHook("End", function () {
+        // TITLE NUMBERING
 
-    let h2Index = 1;
-    let h3Index = 1;
-    $('article h2, article h3').each(function () {
-        let title = $(this);
-        if (title.prop('tagName') === 'H3') {
-            title.html((h3Index++) + '. ' + title.html());
-        } else {
-            h3Index = 1;
-            title.html(romanize(h2Index++) + ' - ' + title.html());
+        let h2Index = 1;
+        let h3Index = 1;
+        $('article h2, article h3').each(function () {
+            let title = $(this);
+            if (title.prop('tagName') === 'H3') {
+                title.html((h3Index++) + '. ' + title.html());
+            } else {
+                h3Index = 1;
+                title.html(romanize(h2Index++) + ' – ' + title.html());
+            }
+        });
+
+        // ANCHORS
+
+        anchors.add('article h2, article h3');
+
+        if (window.location.hash.length > 0) {
+            goToHash(undefined, decodeURI(window.location.hash));
         }
-    });
 
-    // ANCHORS
+        $('a[href*=\\#]').on('click', function (event) {
+            goToHash(event, decodeURI(this.hash));
+        });
 
-    anchors.add('article h2, article h3');
+        // TABLE OF CONTENTS
 
-    if (window.location.hash.length > 0) {
-        goToHash(undefined, decodeURI(window.location.hash));
-    }
-
-    $('a[href*=\\#]').on('click', function (event) {
-        goToHash(event, decodeURI(this.hash));
-    });
-
-    // TABLE OF CONTENTS
-
-    tocbot.init({
-        tocSelector: '#nav-toc',
-        contentSelector: 'article',
-        headingSelector: 'h2, h3',
-        extraListClasses: 'no-style'
+        tocbot.init({
+            tocSelector: '#nav-toc',
+            contentSelector: 'article',
+            headingSelector: 'h2, h3',
+            extraListClasses: 'no-style',
+            includeHtml: true
+        });
     });
 
     // EXPORT SETTINGS
 
     let exportTitle = $($('h1').get(0)).text();
     $('#export-pdf').click(function () {
-        let pdfFile = replaceAll(replaceAll(exportTitle, 'é', 'e'), 'É', 'E');
-        window.open('/assets/pdf/lessons/' + encodeURI(pdfFile) + '.pdf', '_blank', '');
+        window.open($(this).attr('data-pdf'), '_blank', '');
     });
     $('#export-print').click(function () {
         $('article').print({
@@ -96,13 +98,32 @@ $(document).ready(function () {
         }
     });
 
-    // SVG HANDLING
+    // PROOFS AND BUBBLES
 
-    if (!IS_SVG_SUPPORTED) {
-        $('img[src$=".svg"]').each(function () {
-            this.src = replaceAll(this.src, '.svg', '.png');
+    $('.proof').each(function () {
+        let proof = $(this);
+        let proofLabel = $('<span class="proof-label"><i class="fa fa-angle-right" aria-hidden="true"></i> Démonstration</span>');
+        let proofContent = $('<div class="bubble proof-content d-none clearfix"></div>');
+        proofContent.html(proof.html());
+        proofContent.append($('<span class="proof-end float-right">&#8718;</span>'));
+
+        proofLabel.click(function () {
+            proofContent.toggleClass('d-none');
+            proofLabel.toggleClass('mb-0');
+            proofLabel.find('.fa').toggleClass('fa-angle-right').toggleClass('fa-angle-down');
+
+            if (!proofContent.hasClass('rendered')) {
+                MathJax.Hub.Queue(['Typeset', MathJax.Hub, proofContent.get(0)]);
+                proofContent.addClass('rendered');
+            }
         });
-    }
+
+        proof.empty();
+        proof.append(proofLabel);
+        proof.append(proofContent);
+    });
+
+    $('.formula, .tip').addClass('bubble');
 
     // ADSENSE
 
@@ -173,14 +194,6 @@ function romanize(num) {
         roman = (key[+digits.pop() + (i * 10)] || "") + roman;
     }
     return Array(+digits.join("") + 1).join("M") + roman;
-}
-
-/**
- * Found here : http://stackoverflow.com/a/1144788/3608831
- */
-
-function replaceAll(str, find, replace) {
-    return str.replace(new RegExp(find, 'g'), replace);
 }
 
 /**

@@ -1,0 +1,188 @@
+---
+sitemap: false
+---
+
+<section>
+
+    <h2>Le cercle trigonométrique</h2>
+
+    <section>
+
+        <p>
+            Dans tout le cours, le plan sera muni d'un repère orthonormé $(O,\ \overrightarrow\imath ;\ \overrightarrow\jmath)$.
+            Il sera également muni d'un cercle $\mathcal{C}$ appelé <strong>cercle trigonométrique</strong> de centre $O$ et de rayon $1$ orienté dans le sens inverse des aiguilles
+            d'une montre (c'est le <strong>sens direct</strong>).
+        </p>
+
+        <p>Soit $M$ un point quelconque situé sur le cercle $\mathcal{C}$ faisant un angle $x$ avec l'axe des abscisses. Les coordonnées de $M$ sont :</p>
+
+        <ul class="formula">
+            <li>L'abscisse de $M$ appelée <strong>cosinus</strong> est notée $\cos(x)$.</li>
+            <li>L'ordonnée de $M$ appelée <strong>sinus</strong> est notée $\sin(x)$.</li>
+            <li>Pour tout $x \in \mathbb{R}$, on aura $-1 \leq \cos(x) \leq 1$ et $-1 \leq \sin(x) \leq 1$.</li>
+        </ul>
+
+    </section>
+
+    <section>
+
+        <p>Il est possible <q>d'enrouler</q> la droite des réels autour du cercle $\mathcal{C}$ dans le sens inverse des aiguilles d'une montre.</p>
+
+        <p>
+            Puisque l'on peut enrouler infiniment cette droite autour du cercle,
+            les fonctions sinus et cosinus sont périodiques de période $2\pi$.
+            Ce qui veut dire que pour tout $x$ réel et $k$ entier relatif :
+        </p>
+
+        <ul class="formula">
+            <li>$\cos(x) = \cos(x + 2k\pi)$</li>
+            <li>$\sin(x) = \sin(x + 2k\pi)$</li>
+        </ul>
+
+    </section>
+
+    <section>
+
+        <p>Le <strong>radian</strong> est une unité de mesure permettant de mesurer des <strong>angles orientés</strong>. Il est défini comme suit :</p>
+
+        <p class="formula">La mesure en radians d'un angle vaut la longueur de l'arc de $\mathcal{C}$ que cet angle intercepte.</p>
+
+    </section>
+
+</section>
+
+<section>
+
+    <h2>Étude des fonctions trigonométriques</h2>
+
+    <section>
+
+        <p>On a les relations suivantes pour tout $x \in \mathbb{R}$ :</p>
+
+        <ul class="formula">
+            <li>$\cos(-x) = \cos(x)$ (la fonction cosinus est <strong>paire</strong>)</li>
+            <li>$\sin(-x) = -\sin(x)$ (la fonction sinus est <strong>impaire</strong>)</li>
+            <li>$\cos(x + \pi) = -\cos(x)$</li>
+            <li>$\sin(x + \pi) = -\sin(x)$</li>
+            <li>$\cos(x - \pi) = -\cos(x)$</li>
+            <li>$\sin(x - \pi) = \sin(x)$</li>
+            <li>$\cos(\frac{\pi}{2} - x) = \sin(x)$</li>
+            <li>$\sin(\frac{\pi}{2} - x) = \cos(x)$</li>
+            <li>$\cos(x + \frac{\pi}{2}) = -\sin(x)$</li>
+            <li>$\sin(x + \frac{\pi}{2}) = \cos(x)$</li>
+            <li>$\cos(x + y) = \cos(x) \times \cos(y) - \sin(x) \times \sin(y)$</li>
+            <li>$\sin(x + y) = \sin(x) \times \cos(y) + \cos(x) \times \sin(y)$</li>
+            <li>$\cos(x)^2 + \sin(x)^2 = 1$</li>
+        </ul>
+
+    </section>
+
+    <section>
+
+        <p>Soit une fonction $u$ dérivable sur un intervalle $I$, on a pour tout $x$ appartenant à cet intervalle :</p>
+
+        <ul class="formula">
+            <li>$\cos'(u(x)) = -u'(x)\sin(u(x))$</li>
+            <li>$\sin'(u(x)) = u'(x)\cos(u(x))$</li>
+        </ul>
+
+        <p>Ainsi, si pour tout $x \in I$ on a $u(x) = x$ :</p>
+
+        <ul class="formula">
+            <li>$\cos'(x) = -\sin(x)$</li>
+            <li>$\sin'(x) = \cos(x)$</li>
+        </ul>
+
+    </section>
+
+    <section>
+
+        <p>
+            L'étude du signe des dérivées des fonctions trigonométriques permet d'obtenir les variations de celles-ci.
+            Voici donc le signe et les variations de ces fonctions. Tout d'abord celui de la fonction cosinus :
+        </p>
+
+        <figure class="formula math-table">
+            <img src="/assets/img/lessons/premiere/fonctions_trigonometriques/variations_cos.svg" title="Tableau de variation de la fonction cosinus" alt="Tableau de variation de la fonction cosinus"/>
+            <figcaption>
+                <p>Veuillez noter que ce tableau est périodique de période $2\pi$.</p>
+            </figcaption>
+        </figure>
+
+        <p>Voici maintenant celui de la fonction sinus :</p>
+
+        <figure class="formula math-table">
+            <img src="/assets/img/lessons/premiere/fonctions_trigonometriques/variations_sin.svg" title="Tableau de variation de la fonction sinus" alt="Tableau de variation de la fonction sinus"/>
+            <figcaption>
+                <p>Ce tableau est également périodique de période $2\pi$.</p>
+            </figcaption>
+        </figure>
+
+    </section>
+
+    <section>
+
+        <p>Voici un tableau regroupant quelques valeurs remarquables de sinus et de cosinus :</p>
+
+        <div class="formula table-responsive-md">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Valeur de $x$ (à $2k\pi$ près, $k \in \mathbb{Z}$)</th>
+                    <th>Valeur de $\cos(x)$</th>
+                    <th>Valeur de $\sin(x)$</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>$0$</td>
+                    <td>$1$</td>
+                    <td>$0$</td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{\pi}{6}}$</td>
+                    <td>$\displaystyle{\frac{\sqrt{3}}{2}}$</td>
+                    <td>$\displaystyle{\frac{1}{2}}$</td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{\pi}{4}}$</td>
+                    <td>$\displaystyle{\frac{\sqrt{2}}{2}}$</td>
+                    <td>$\displaystyle{\frac{\sqrt{2}}{2}}$</td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{\pi}{3}}$</td>
+                    <td>$\displaystyle{\frac{1}{2}}$</td>
+                    <td>$\displaystyle{\frac{\sqrt{3}}{2}}$</td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{\pi}{2}}$</td>
+                    <td>$0$</td>
+                    <td>$1$</td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{2\pi}{3}}$</td>
+                    <td>$\displaystyle{-\frac{1}{2}}$</td>
+                    <td>$\displaystyle{\frac{\sqrt{3}}{2}}$</td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{3\pi}{4}}$</td>
+                    <td>$\displaystyle{-\frac{\sqrt{2}}{2}}$</td>
+                    <td>$\displaystyle{\frac{\sqrt{2}}{2}}$</td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{5\pi}{6}}$</td>
+                    <td>$\displaystyle{-\frac{\sqrt{3}}{2}}$</td>
+                    <td>$\displaystyle{\frac{1}{2}}$</td>
+                </tr>
+                <tr>
+                    <td>$\pi$</td>
+                    <td>$-1$</td>
+                    <td>$0$</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+</section>

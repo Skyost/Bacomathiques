@@ -2,6 +2,7 @@
 ---
 @import 'colors';
 @import 'utils';
+@import 'reading.css';
 
 /* ANCHORS */
 
@@ -48,7 +49,11 @@
 		display: inline-block;
 		padding-left: 20px;
 		position: relative;
-		
+
+		.anchorjs-link {
+			display: none !important;
+		}
+
 		&:before {
 			display: inline-block;
 			content: '';
@@ -152,7 +157,8 @@
 
 /** Others : **/
 
-#difficulty {
+#difficulty, #level {
+	display: block;
 	font-size: 0.8em;
 	
 	.transparent {
@@ -240,6 +246,10 @@
 	table, .plot svg {
 		background-color: white;
 	}
+
+	.highlight pre {
+		padding: 10px;
+	}
 	
 	&:before {
 		position: absolute;
@@ -247,7 +257,7 @@
 		top: 0;
 		left: 0;
 		padding-right: 6px;
-		color: rgba(255, 255, 255, 0.8);
+		color: white;
 		font-size: 10px;
 		text-transform: uppercase;
 		@include vendor-prefix('border-bottom-right-radius', '4px');
@@ -275,7 +285,7 @@ ol.bubble li {
 	}
 }
 
-/* FORMULAS & TIPS */
+/* FORMULAS, TIPS & PROOFS */
 
 .formula {
 	border-color: $formula-border-color;
@@ -297,12 +307,33 @@ ol.bubble li {
 	}
 }
 
-.formula > *:last-child, .tip > *:last-child, .formula > *:last-child *:last-child, .tip > *:last-child *:last-child {
+.proof-content {
+	border-color: $proof-border-color;
+	background-color: $proof-background-color;
+
+	&:before {
+		content: $bubble-text-proof;
+		background-color: $proof-border-color;
+	}
+}
+
+.formula > *:last-child, .tip > *:last-child, .proof-content > *:last-child, .formula > *:last-child *:last-child, .tip > *:last-child *:last-child, .proof-content > *:last-child *:last-child {
 	margin-bottom: 0 !important;
 }
 
-.formula ul li, ul.formula li, .tip ul li, ul.tip li, .formula ol li, ol.formula li, .tip ol li, ol.tip li {
+.formula ul li, ul.formula li, .tip ul li, ul.tip li, .proof-content ul li, ul.proof-content li, .formula ol li, ol.formula li, .tip ol li, ol.tip li, .proof-content ol li, ol.proof-content li {
 	margin-bottom: 10px;
+}
+
+/* PROOFS SPECIFICS */
+
+.proof-label {
+	display: block;
+	text-align: right;
+	font-size: 0.8em;
+	color: rgba(0, 0, 0, 0.75);
+	cursor: pointer;
+	margin-bottom: 14px;
 }
 
 /* PLOTS */

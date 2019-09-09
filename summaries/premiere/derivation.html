@@ -1,0 +1,240 @@
+---
+sitemap: false
+---
+
+<section>
+
+    <h2>Qu'est-ce-qu'une dérivée ?</h2>
+
+    <section>
+
+        <p>Soient $f$ une fonction définie sur un intervalle $I$ et deux réels $a \in I$ et $h \neq 0$ tels que $(a + h) \in I$.</p>
+
+        <div class="formula">
+            <p>La fonction $f$ est <strong>dérivable</strong> en $a$ si la limite ci-dessous existe et est finie :</p>
+            <p>$\displaystyle{\lim\limits_{\substack{h \rightarrow 0}} \frac{f(a + h) - f(a)}{h}}$</p>
+            <p>Ou en posant $x = a + h$ :</p>
+            <p>$\displaystyle{\lim\limits_{\substack{x \rightarrow a}} \frac{f(x) - f(a)}{x-a}}$</p>
+            <p>Si cette limite existe et est finie, alors elle est égale au <strong>nombre dérivé</strong> de $f$ en $a$ noté $f'(a)$.</p>
+        </div>
+
+    </section>
+
+    <section>
+
+        <p>
+            Soient $f$ une fonction définie sur un intervalle $I$ et un réel $a \in I$.
+            Si $f$ est dérivable en $a$, alors la courbe représentative de $f$ admet une tangente $\mathcal{T}$ au point de coordonnées $(a; f(a))$.
+            $f'(a)$ est le coefficient directeur de $\mathcal{T}$, et une équation de $\mathcal{T}$ est :
+        </p>
+
+        <p class="formula">$y = f'(a)(x-a)+f(a)$</p>
+
+    </section>
+
+    <section>
+
+        <p>
+            Soit $f$ une fonction dérivable sur un intervalle $I$ de $\mathbb{R}$. Alors on appelle fonction dérivée
+            (ou plus simplement <strong>dérivée</strong>) de $f$ la fonction $g$ suivante :
+        </p>
+
+        <p class="formula">
+            Pour tout $x \in I$, $g(x) = f'(x)$ (à tout réel $x$ de $I$, $g$ y associe le nombre dérivé $f'(x)$).
+            <br>Très souvent, la fonction $g$ sera notée $f'$.
+        </p>
+
+    </section>
+
+</section>
+
+<section>
+
+    <h2>Tables de dérivation</h2>
+
+    <section>
+
+        <p>Le tableau suivant est à connaître et nous donne la dérivée de la plupart des fonctions usuelles :</p>
+
+        <div class="formula table-responsive-md">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Fonction</th>
+                    <th>Dérivée</th>
+                    <th>Domaine de dérivabilité</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>$\lambda$</td>
+                    <td>$0$</td>
+                    <td>$\mathbb{R}$</td>
+                </tr>
+                <tr>
+                    <td>$x^n$<br>$n \in \mathbb{N}^*$</td>
+                    <td>$nx^{n-1}$</td>
+                    <td>$\mathbb{R}$</td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{1}{x}}$</td>
+                    <td>$\displaystyle{-\frac{1}{x^2}}$</td>
+                    <td>$\mathbb{R^*}$</td>
+                </tr>
+                <tr>
+                    <td>$\sqrt{x}$</td>
+                    <td>$\displaystyle{\frac{1}{2\sqrt{x}}}$</td>
+                    <td>$\mathbb{R^+_*}$</td>
+                </tr>
+                <tr>
+                    <td>$e^x$</td>
+                    <td>$e^x$</td>
+                    <td>$\mathbb{R}$</td>
+                </tr>
+                <tr>
+                    <td>$\sin(x)$</td>
+                    <td>$\cos(x)$</td>
+                    <td>$\mathbb{R}$</td>
+                </tr>
+                <tr>
+                    <td>$\cos(x)$</td>
+                    <td>$-\sin(x)$</td>
+                    <td>$\mathbb{R}$</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+    <section>
+
+        <p>Le tableau suivant est également à connaître et nous donne la dérivée qui dépend des opérations sur les fonctions $u$ et $v$ :</p>
+
+        <div class="formula table-responsive-md">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Fonction</th>
+                    <th>Dérivée</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>$\lambda \times u$</td>
+                    <td>$\lambda \times u'$</td>
+                </tr>
+                <tr>
+                    <td>$u + v$</td>
+                    <td>$u' + v'$</td>
+                </tr>
+                <tr>
+                    <td>$u \times v$</td>
+                    <td>$u' \times v + u \times v'$</td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{1}{v}}$ (avec $v \neq 0$)</td>
+                    <td>$\displaystyle{-\frac{v'}{v^2}}$</td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{u}{v}}$ (avec $v \neq 0$)</td>
+                    <td>$\displaystyle{\frac{u' \times v - u \times v'}{v^2}}$</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+    <section>
+
+        <p>
+            Le tableau suivant, toujours à connaître, nous donne la dérivée des fonctions composées usuelles
+            (i.e. <q>$f$ de $g$ de $x$</q>) :
+        </p>
+
+        <div class="formula table-responsive-md">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Fonction</th>
+                    <th>Dérivée</th>
+                    <th>Domaine de dérivabilité</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>$u^n$ avec $n \in \mathbb{N}^*$</td>
+                    <td>$nu'u^{n-1}$</td>
+                    <td>En tout point où $u$ est dérivable.</td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{1}{u}}$</td>
+                    <td>$\displaystyle{-\frac{u'}{u^2}}$</td>
+                    <td>En tout point où $u$ est dérivable et non nulle.</td>
+                </tr>
+                <tr>
+                    <td>$\sqrt{u}$</td>
+                    <td>$\displaystyle{\frac{u'}{2\sqrt{u}}}$</td>
+                    <td>En tout point où $u$ est dérivable et strictement positive.</td>
+                </tr>
+                <tr>
+                    <td>$e^u$</td>
+                    <td>$u'e^u$</td>
+                    <td>En tout point où $u$ est dérivable.</td>
+                </tr>
+                <tr>
+                    <td>$\sin(u)$</td>
+                    <td>$u'\cos(u)$</td>
+                    <td>En tout point où $u$ est dérivable.</td>
+                </tr>
+                <tr>
+                    <td>$\cos(u)$</td>
+                    <td>$-u'\sin(u)$</td>
+                    <td>En tout point où $u$ est dérivable.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>De manière générale, soient $f$ dérivable sur $I$ et $g$ dérivable sur $f(I)$. On a alors :</p>
+
+        <p class="formula">$(g \circ f)' = (g' \circ f) \times f'$</p>
+
+    </section>
+
+</section>
+
+<section>
+
+    <h2>Étude des variations d'une fonction</h2>
+
+    <section>
+
+        <p>
+            Avec le signe de la dérivée, il est possible d'obtenir le sens de variation de la fonction.
+            Pour une fonction $f$ dérivable sur $I$ et de dérivée $f'$ :
+        </p>
+
+        <ul class="formula">
+            <li>Si $f' \gt 0$ sur $I$, alors $f$ est strictement croissante sur $I$.</li>
+            <li>Si $f' \lt 0$ sur $I$, alors $f$ est strictement décroissante sur $I$.</li>
+            <li>Si $f' = 0$ sur $I$, alors $f$ est constante sur $I$.</li>
+        </ul>
+
+    </section>
+
+    <section>
+
+        <p>Soient $f$ dérivable sur $I$ de dérivée $f'$, et $a \in I$ :</p>
+
+        <ul class="formula">
+            <li>Si $f$ admet un extremum local en $a$, alors on a $f'(a) = 0$.</li>
+            <li>Si $f'(a) = 0$ et que le signe de $f'$ est différent avant et après $a$, alors $f'(a)$ est un extremum local de $f$.</li>
+            <li>Si $f'(a) = 0$ et qu'on est négatif avant $a$ et positif après, cet extremum local est un minimum local.</li>
+            <li>Si $f'(a) = 0$ et qu'on est positif avant $a$ et négatif après, cet extremum local est un maximum local.</li>
+        </ul>
+
+    </section>
+
+</section>

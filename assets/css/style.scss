@@ -30,6 +30,20 @@ input, button, textarea {
 	border: 0 !important;
 }
 
+.btn-primary {
+	background-color: $main-color;
+	border-color: darken($main-color, 10%);
+
+	&.active, &:active {
+		background-color: darken($main-color, 10%) !important;
+		border-color: darken($main-color, 20%) !important;
+	}
+
+	&:hover {
+		background-color: darken($main-color, 6%);
+	}
+}
+
 /* CUSTOM SCROLLBARS FOR WEBKIT USERS */
 
 ::-webkit-scrollbar {
@@ -38,13 +52,13 @@ input, button, textarea {
 }
 
 ::-webkit-scrollbar-button {
-	width: 0px;
-	height: 0px;
+	width: 0;
+	height: 0;
 }
 
 ::-webkit-scrollbar-thumb {
 	background-color: $scrollbar-thumb-background;
-	border: 0px none $scrollbar-thumb-border;
+	border: 0 none $scrollbar-thumb-border;
 	@include vendor-prefix('border-radius', '0');
 	
 	&:hover {
@@ -58,7 +72,7 @@ input, button, textarea {
 
 ::-webkit-scrollbar-track {
 	background-color: $scrollbar-track-background;
-	border: 0px none $scrollbar-track-border;
+	border: 0 none $scrollbar-track-border;
 	@include vendor-prefix('border-radius', '0');
 	
 	&:active {
@@ -80,21 +94,15 @@ input, button, textarea {
 	vertical-align: 0.1em;
 }
 
-#modal-search .modal-body {
-
-	.awesomplete {
+#navbar {
+	input {
+		border: 0;
+		padding: 4px 24px;
 		width: 100%;
 
-		input {
-			padding-right: 52px;
+		&:focus {
+			box-shadow: none;
 		}
-	}
-	
-	.input-group .btn {
-		position: absolute;
-		top: 0;
-		right: 0;
-		@include vendor-prefix('border-radius', '0');
 	}
 }
 
@@ -110,7 +118,7 @@ a:hover, a:active, a:focus {
 	text-decoration: none;
 }
 
-@media(max-width: $tablets-max-width) {
+@media(max-width: $tablet-max-width) {
 
 	.lesson-item {
 		white-space: normal;

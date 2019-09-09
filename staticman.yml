@@ -1,5 +1,5 @@
 comments:
-  allowedFields: ["lesson", "author", "message"]
+  allowedFields: ["lesson", "level", "client", "author", "message"]
   branch: "master"
   commitMessage: "Nouveau commentaire par {fields.author} <Staticman>\n\n{fields.message}\n\n#comment-{@id}"
   filename: "{@timestamp}_{@id}"
@@ -12,5 +12,5 @@ comments:
   moderation: true
   name: "Bacomathiques"
   path: "_data/comments/"
-  requiredFields: ["lesson", "author", "message"]
+  requiredFields: ["lesson", "level", "client", "author", "message"]
  

@@ -1,0 +1,50 @@
+---
+---
+
+@import 'colors';
+@import 'utils';
+
+#levels {
+	padding: 50px 20px;
+
+	.level {
+		display: block;
+		padding: 20px;
+		width: 100%;
+		text-align: center;
+		background-color: darken($main-color, 6%);
+		color: white !important;
+
+		h2 {
+			font-size: 1.4em;
+			text-transform: uppercase;
+			margin-bottom: 1em;
+			font-family: 'Handlee', cursive;
+		}
+
+		em {
+			font-size: 1em;
+		}
+
+		img {
+			display: block;
+			margin: 0 auto 8px auto;
+			height: 3em;
+			width: 3em;
+		}
+
+		&:hover {
+			background-color: darken($main-color, 8%);
+		}
+	}
+}
+
+@media(max-width: $tablet-max-width) {
+	#levels > * {
+		margin-bottom: 50px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}

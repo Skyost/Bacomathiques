@@ -1,5 +1,5 @@
 ---
-layout: api_lesson
-lesson: "fonction_logarithme"
+layout: compress
 sitemap: false
 ---
+{% include_relative template.json lesson='fonction_logarithme' %}

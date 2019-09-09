@@ -1,0 +1,18 @@
+{% assign parts = include.annal | split: "/" %}
+{% assign year = parts[0] %}{% capture id %}{{ parts[1] }}/{{ parts[2] }}{% endcapture %}
+{% assign data = site.data.annals[year][id] %}
+{% assign baseLink = '/assets/pdf/annales/' | append: year | append: '/' | append: id | append: '/' %}
+
+{% if annal.specific %}
+    {% assign baseLink = baseLink | append: 'specifique/' %}
+{% else %}
+    {% assign baseLink = baseLink | append: 'specialite/' %}
+{% endif %}
+
+{
+    "id": {{ id | jsonify }},
+    "name": {{ data.name | jsonify }},
+    "specific": {{ data.specific | jsonify }},
+    "subject": {{ baseLink | append: 'enonce.pdf' | jsonify }},
+    "correction": {{ baseLink | append: 'correction.pdf' | jsonify }}
+}

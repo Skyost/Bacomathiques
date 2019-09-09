@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /api/
+Disallow: /cours/*/resume/
+Sitemap: https://bacomathiqu.es/sitemap.xml

@@ -1,5 +1,5 @@
 ---
-layout: api_comments
-lesson: "integrales"
+layout: compress
 sitemap: false
 ---
+{% include_relative template.json lesson='integrales' %}

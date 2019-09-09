@@ -1,34 +1,88 @@
 ---
-layout: "default"
-adsense: true
+layout: "compress"
+metacolor: "3498db"
 ---
 
-{% assign lesson = site.data.lessons[page.lesson] %}
-<div class="row">
-	<div class="article-col col-sm-12 col-md-7 col-lg-7 ml-md-auto">
-	
-		<article>
-			
-			<h1>{{ lesson.title }}</h1>
-			{% include _includes/lesson/header.html %}
+<!DOCTYPE html>
+<html lang="fr">
+	{% assign lesson = site.data.lessons[page.level][page.lesson] %}
+	{% assign description = lesson.excerpt | strip_html %}
+	{% include _includes/head.html title=lesson.title description=description %}
+	{% include _includes/scripts/maths/head.html %}
+	{% include _includes/scripts/smartbanner/head.html %}
 
-			{{ content }}
-			
-			<ins class="adsbygoogle no-print" data-ad-client="ca-pub-7167241518798106" data-ad-slot="2776038870" data-ad-format="auto"></ins>
-			
-			<a id="back-to-top" href="#" class="btn btn-primary no-print" role="button" title="Cliquez pour retourner en haut de la page" data-toggle="tooltip" data-placement="left">
-				<i class="fa fa-chevron-up" aria-hidden="true"></i>
-			</a>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/silver/pace-theme-flash.min.css" integrity="sha256-GT98VYLXLNFqi5R+kDkxPBrgVeSBM12Y/xhukgkaX1E=" crossorigin="anonymous">
+<body>
+	{% include _includes/navbar/navbar.html %}
 
-		</article>
-		
-		{% include _includes/lesson/annals.html %}
-		{% include _includes/lesson/book.html %}
-		{% include _includes/lesson/comments.html %}
-		
+	<div class="container-fluid">
+		<div class="row">
+			<div class="article-col col-sm-12 col-md-7 col-lg-7 ml-md-auto">
+
+				<article>
+
+					<h1>{{ lesson.title }}</h1>
+					{% include _includes/lesson/header.html %}
+
+					{{ content }}
+
+					<ins class="adsbygoogle no-print" data-ad-client="ca-pub-7167241518798106" data-ad-slot="2776038870" data-ad-format="auto"></ins>
+
+					<a id="back-to-top" href="#" class="btn btn-primary no-print" role="button" title="Cliquez pour retourner en haut de la page" data-toggle="tooltip" data-placement="left">
+						<i class="fa fa-chevron-up" aria-hidden="true"></i>
+					</a>
+
+				</article>
+
+				{% if lesson.level == 'terminale' %}
+					{% include _includes/lesson/annals.html %}
+					{% include _includes/lesson/book.html %}
+				{% endif %}
+				{% include _includes/lesson/comments.html %}
+
+			</div>
+
+			<div class="col-sm-12 col-md-3 col-lg-3 ml-md-auto d-none d-md-block">
+				<nav id="nav-toc"></nav>
+			</div>
+		</div>
 	</div>
-	
-	<div class="col-sm-12 col-md-3 col-lg-3 ml-md-auto d-none d-md-block">
-		<nav id="nav-toc"></nav>
-	</div>
-</div>
+
+	{% include _includes/scripts/adsense.html %}
+	{% include _includes/scripts/maths/footer.html %}
+	{% include _includes/scripts/smartbanner/footer.html %}
+	{% include _includes/footer.html %}
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.print/1.6.0/jQuery.print.min.js" integrity="sha256-s/wuIT+s0uE5Igk30VS2UAcs5Ck6SDt+iTlUzYQBn/4=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js" integrity="sha256-m1eTvwEHwmsw4+XKF7BshClVJEPwTVycveNl0CS0Mkk=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/is-in-viewport/3.0.4/isInViewport.min.js" integrity="sha256-YCKf7pbD5WuWira7Ir49rglmeklV67h8HCeC7GCYWEw=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.6.0/tocbot.min.js" integrity="sha256-+fdFDIM3huAQNs/gn7OOoN9jpU+6sx7RCGkvQn9QS0s=" crossorigin="anonymous"></script>
+
+	<script src="/assets/js/adblock-modal.js"></script>
+	<script src="/assets/js/lessons/lesson.js"></script>
+
+	<script>
+		let isSummaryLoaded = false;
+
+		$('#export-summary').click(function () {
+			$('#modal-summary').modal();
+			if (!isSummaryLoaded) {
+				$('#modal-summary .modal-body').html('<em>Chargement du résumé en cours...</em>');
+				$.get('/api/v2/{{ site.data.levels[lesson.level].url }}/{{ lesson.url }}/summary', function (content) {
+					$('#modal-summary .modal-title').html(content.title);
+					let body = $('#modal-summary .modal-body');
+					body.html(content.html);
+
+					MathJax.Hub.Queue(['Typeset', MathJax.Hub, $('#modal-summary').get(0)]);
+					body.find('.formula, .tip').addClass('bubble');
+
+					isSummaryLoaded = true;
+				}).fail(function () {
+					$('#modal-summary .modal-body').html('Impossible d\'obtenir le résumé de cours. Veuillez réessayer plus tard !');
+				});
+			}
+		});
+	</script>
+</body>
+</html>

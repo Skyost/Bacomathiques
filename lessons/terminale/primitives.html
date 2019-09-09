@@ -1,0 +1,150 @@
+---
+layout: lesson
+lesson: "primitives"
+level: "terminale"
+permalink: "/cours/terminale/primitives/"
+redirect_from:
+  - "/cours/primitives.html"
+  - "/cours/primitives/"
+---
+<section>
+
+	<h2>Définition</h2>
+
+	<p>
+		Soit $f$ un fonction définie et continue sur un intervalle $I$, on appelle <strong>primitive</strong> de $f$, toute fonction $F$
+		(parfois notée $\int f(x) \, \mathrm{d}x$) définie sur $I$ et qui vérifie pour tout $x \in I$ :
+	</p>
+	
+	<p class="formula">$F'(x) = f(x)$</p>
+	
+	<p><strong>Note :</strong> Une primitive est toujours définie à une constante près.</p>
+	
+	<div class="tip">
+		<p>En effet. Si on considère la fonction définie pour $x \in R$ : $f(x) = 2x$.
+		<br>Alors, $F_{1}(x) = x^2 + 1$ est une primitive de la fonction $f$ (car $F'(x) = 2x = f(x)$).</p>
+		<p>Mais $F_{1}(x)$ <strong>n'est pas la seule primitive</strong> de $f$ !
+		<br>On peut citer par exemple $F_{2}(x) = x^2 + 10$ et $F_{3}(x) = x^2 + 3$ qui sont également des primitives de $f$.</p>
+		<p>
+			C'est pour cette raison que l'ont dit que les primitives sont définies à une constante près
+			(lorsque l'on dérive, la constante devient nulle).
+		</p>
+	</div>
+	
+	<p>
+		Ainsi, toute <strong>fonction continue</strong> sur un intervalle $I$ admet <strong>une infinité de primitives</strong> sur $I$
+		de la forme suivante :
+	</p>
+	
+	<p class="formula">$x \mapsto F(x) + k$ avec $k \in \mathbb{R}$ avec $F$ une primitive de $f$.</p>
+
+</section>
+
+<section>
+
+	<h2>Primitive de fonctions usuelles</h2>
+
+	<p>Le tableau suivant est à connaître (mais il peut être obtenu en prenant celui des dérivées usuelles à l'envers) :</p>
+
+	<div class="formula table-responsive-md">
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Fonction</th>
+					<th>Primitive</th>
+					<th>Domaine de définition de la primitive</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>$k$</td>
+					<td>$kx$</td>
+					<td>$\mathbb{R}$</td>
+				</tr>
+				<tr>
+					<td>$e^x$</td>
+					<td>$e^x$</td>
+					<td>$\mathbb{R}$</td>
+				</tr>
+				<tr>
+					<td>$\displaystyle{\frac{1}{x}}$</td>
+					<td>$\ln(x)$</td>
+					<td>$\mathbb{R}^{*}_{+}$</td>
+				</tr>
+				<tr>
+					<td>$\displaystyle{\frac{1}{\sqrt{x}}}$</td>
+					<td>$2\sqrt{x}$</td>
+					<td>$\mathbb{R}^{*}_{+}$</td>
+				</tr>
+				<tr>
+					<td>$x^a$<br>$a \in \mathbb{R}$ et $a \neq -1$</td>
+					<td>$\displaystyle{\frac{1}{a + 1} x^{a + 1}}$</td>
+					<td>$\mathbb{R}^{*}_{+}$</td>
+				</tr>
+				<tr>
+					<td>$\sin(x)$</td>
+					<td>$-\cos(x)$</td>
+					<td>$\mathbb{R}$</td>
+				</tr>
+				<tr>
+					<td>$\cos(x)$</td>
+					<td>$\sin(x)$</td>
+					<td>$\mathbb{R}$</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+</section>
+
+<section>
+
+	<h2>Opérations sur les primitives</h2>
+
+	<p>Le tableau suivant est également à connaître (mais il peut être obtenu en prenant celui des dérivées usuelles à l'envers) :</p>
+	
+	<div class="formula table-responsive-md">
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Fonction</th>
+					<th>Primitive</th>
+					<th>Domaine de définition de la primitive</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>$u'(x)e^{u(x)}$</td>
+					<td>$e^{u(x)}$</td>
+					<td>En tout point où $u$ est définie.</td>
+				</tr>
+				<tr>
+					<td>$\displaystyle{\frac{u'(x)}{u(x)}}$</td>
+					<td>$\ln(|u(x)|)$</td>
+					<td>En tout point où $u$ est définie.<br>On peut retirer la valeur absolue si $u$ est positive.</td>
+				</tr>
+				<tr>
+					<td>$\displaystyle{\frac{u'(x)}{\sqrt{u(x)}}}$</td>
+					<td>$2\sqrt{u(x)}$</td>
+					<td>En tout point où $u$ est définie et est positive.</td>
+				</tr>
+				<tr>
+					<td>$u'(x)(u(x))^a$<br>$a \in \mathbb{R}$ et $a \neq -1$</td>
+					<td>$\displaystyle{\frac{1}{a + 1} (u(x))^{a + 1}}$</td>
+					<td>En tout point où $u$ est définie.</td>
+				</tr>
+				<tr>
+					<td>$u'(x)\sin(u(x))$</td>
+					<td>$-\cos(u(x))$</td>
+					<td>En tout point où $u$ est définie.</td>
+				</tr>
+				<tr>
+					<td>$u'(x)\cos(u(x))$</td>
+					<td>$\sin(u(x))$</td>
+					<td>En tout point où $u$ est définie.</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+</section>

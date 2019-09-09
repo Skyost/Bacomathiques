@@ -1,0 +1,217 @@
+---
+layout: lesson
+lesson: "algorithmique"
+level: "terminale"
+permalink: "/cours/terminale/algorithmique/"
+redirect_from:
+  - "/cours/algorithmique.html"
+  - "/cours/algorithmique/"
+---
+<section>
+		
+	<h2>Définition</h2>
+
+	<p>
+		<strong>Un algorithme</strong> est une suite finie et ordonnée d’opérations ou d'instructions permettant de résoudre un problème ou d'obtenir un résultat.
+		Ainsi, faire une recette de cuisine ou encore effectuer une division euclidienne à la main sont des exemples d'algorithmes.
+	</p>
+	
+	<p>Nous ne travaillerons dans ce cours qu'avec des algorithmes <q>type BAC</q>.</p>
+		
+</section>
+
+<section>
+		
+	<h2>Instructions</h2>
+	
+	<section>
+	
+		<h3>Création de variables</h3>
+
+		<p>
+			<strong>Créer une variable</strong> permet de réserver un espace pour y stocker des données quelconques.
+			<br>On donne un nom à chaque espace pour le repérer : ce sont les noms de variables.
+			On leur donne également un type (entier, réel, ...) pour travailler avec.
+		</p>
+		
+		<div class="tip">
+			<p><strong>Exemple (tiré du sujet de Pondichéry 2017) :</strong></p>
+			
+			<figure>
+				<img src="/assets/img/lessons/terminale/algorithmique/algorithme-1.png" title="Exemple d'algorithme" alt="Exemple d'algorithme"/>
+				<figcaption>
+					<p>Ici nous avons quatre variables : $R$ et $S$ qui sont des réels et $n$ et $k$ qui sont des entiers.</p>
+				</figcaption>
+			</figure>
+		</div>
+		
+	</section>
+	
+	<section>
+	
+		<h3>Affections de valeurs</h3>
+
+		<p>
+			Comme dit précédemment, les variables sont des <q>espaces</q> dans lequel il est possible de stocker des informations.
+			<br>Cependant, après avoir créé cet espace, celui-ci est encore vide. C'est pourquoi on doit le <q>remplir</q> :
+			c'est <strong>l'affectation d'une valeur à une variable</strong>.
+		</p>
+		
+		<p>
+			Il existe plusieurs manières d'affecter une valeur à une variable :
+			soit on lui donne directement sa valeur dans l'algorithme, soit on demande à l'utilisateur d'entrer une valeur
+			(il faut garder à l'esprit que les algorithmes sont faits pour être utilisés par des utilisateurs).
+		</p>
+		
+		<div class="tip">
+			<p><strong>Exemple (tiré du sujet de Pondichéry 2017) :</strong></p>
+			
+			<figure>
+				<img src="/assets/img/lessons/terminale/algorithmique/algorithme-1.png" title="Exemple d'algorithme" alt="Exemple d'algorithme"/>
+				<figcaption>
+					<p>
+						Ici on donne à $S$ la valeur $0$, mais on demande à l'utilisateur d'entrer la valeur de la variable $n$
+						(l'utilisateur entrera un entier, car la variable $n$ ne peut contenir que des entiers).
+					</p>
+				</figcaption>
+			</figure>
+		</div>
+		
+		<p>Une fois que l'on a affecté une valeur à une variable, il est encore possible de la changer !</p>
+		
+	</section>
+	
+	<section>
+	
+		<h3>Affichage de variables</h3>
+
+		<p>
+			Les algorithmes étant faits pour être utilisés, il faut donc <strong>retourner un résultat</strong> sinon ceux-ci seraient inutiles.
+			<br>C'est pourquoi, on peut <q>afficher</q> les valeurs des variables (les montrer à l'utilisateur).
+		</p>
+		
+		<div class="tip">
+			<p><strong>Exemple (tiré du sujet de Métropole 2017) :</strong></p>
+			
+			<figure>
+				<img src="/assets/img/lessons/terminale/algorithmique/algorithme-2.png" title="Exemple d'algorithme" alt="Exemple d'algorithme"/>
+				<figcaption>
+					<p>
+						Une fois l'algorithme terminé, on affiche la valeur de la variable $N$ (on remarque que $N$ a pris plusieurs valeurs
+						différentes au cours de l'algorithme mais qu'on affiche uniquement la valeur finale de la variable).
+					</p>
+				</figcaption>
+			</figure>
+		</div>
+		
+	</section>
+		
+</section>
+
+<section>
+		
+	<h2>Blocs d'instructions</h2>
+	
+	<section>
+	
+		<h3>Définition</h3>
+
+		<p>
+			Les blocs d'instructions sont des parties de l'algorithme (ce sont des <q>algorithmes dans l'algorithme</q>)
+			qui s'exécutent suivant certaines conditions propres aux différents blocs d'instructions.
+		</p>
+	
+	</section>
+
+	<section>
+	
+		<h3>Les blocs SI et SINON</h3>
+
+		<p>
+			Les blocs <strong>SI</strong> et <strong>SINON</strong> sont des blocs d'instructions très utilisés qui permettent de tester une condition :
+			si elle est réalisée, on va exécuter les instructions se situant sous le bloc SI et sinon, on va exécuter celles se situant sous le bloc SINON.
+		</p>
+		
+		<div class="tip">
+			<p><strong>Exemple (test de parité) :</strong></p>
+			
+			<figure>
+				<img src="/assets/img/lessons/terminale/algorithmique/algorithme-3.png" title="Exemple d'algorithme" alt="Exemple d'algorithme"/>
+				<figcaption>
+					<p>
+						Si la partie entière de $\frac{N}{2}$ est égale à $\frac{N}{2}$ (ce n'est vrai que pour les entiers pairs), alors
+						on donne à $R$ la valeur 0. Sinon on lui donne la valeur 1.
+						<br>En fin d'algorithme, on affiche la valeur de $R$ : soit 0 si $N$ est pair, soit 1 si $N$ est impair.
+					</p>
+				</figcaption>
+			</figure>
+		</div>
+		
+	</section>
+
+	<section>
+	
+		<h3>La boucle POUR</h3>
+
+		<p>
+			La <strong>boucle POUR</strong> est un bloc d'instruction qui s'exécute et qui va
+			faire prendre à une variable toutes les valeurs comprises dans un ensemble d'entiers.
+		</p>
+		
+		<div class="tip">
+			<p><strong>Exemple (calcul des termes d'une suite) :</strong></p>
+			
+			<figure>
+				<img src="/assets/img/lessons/terminale/algorithmique/algorithme-4.png" title="Exemple d'algorithme" alt="Exemple d'algorithme"/>
+				<figcaption>
+					<p>
+						Cet algorithme permet de calculer les termes d'une suite $(u_n)_{n \in \mathbb{N}}$ définie par récurrence :
+						$(u_n)_{n \in \mathbb{N}} = \begin{cases} u_0 = 1\\ u_{n+1} = u_n + \frac{1}{n}\end{cases}$ pour $n$ entier.
+						<br>On demande à l'utilisateur d'entrer une variable $N$, et pour $n$ variant de 1 jusqu'à $N$ ($n$ prendra tour à tour les valeurs 1, 2, 3, ..., $N-1$, $N$),
+						on va calculer les termes de la suite.
+					</p>
+				</figcaption>
+			</figure>
+		</div>
+		
+	</section>
+
+	<section>
+	
+		<h3>La boucle TANT QUE</h3>
+
+		<p>Cette boucle, différente de la boucle POUR permet d'exécuter son bloc d'instructions tant qu'une certaine condition est valable.</p>
+		
+		<div class="tip">
+			<p><strong>Exemple (tiré du sujet de Métropole 2017) :</strong></p>
+			
+			<figure>
+				<img src="/assets/img/lessons/terminale/algorithmique/algorithme-2.png" title="Exemple d'algorithme" alt="Exemple d'algorithme"/>
+				<figcaption>
+					<p>Ici, tant que $N - \ln(N^2 + 1)$ est inférieure à $A$, on affecte une nouvelle valeur à la variable $N$.</p>
+				</figcaption>
+			</figure>
+		</div>
+		
+	</section>
+	
+</section>
+
+<section>
+		
+	<h2>Algorithmes sur l'ordinateur</h2>
+
+	<p>
+		Il est possible de tester et de vous entraîner aux algorithmes sur votre ordinateur, voire directement sur votre smartphone !
+		<br>Divers logiciels à télécharger, dont certains ne nécessitant pas d'installation sont disponibles :
+	</p>
+	
+	<ul class="formula">
+		<li><a href="https://www.algogo.xyz">Algogo</a></li>
+		<li><a href="http://www.xm1math.net/algobox/">AlgoBox</a></li>
+		<li><a href="https://scratch.mit.edu/">Scratch</a></li>
+		<li><a href="http://proglab.fr/">Proglab</a></li>
+		<li><a href="http://raffinat.perso.univ-pau.fr/plurialgo/index.html">PluriAlgo</a></li>
+	</ul>
+		
+</section>

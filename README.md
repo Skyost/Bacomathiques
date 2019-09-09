@@ -2,11 +2,11 @@
 
 ## Qu'est-ce-que Bacomathiques ?
 
-<q>Bac-o-math-iques</q> (ou plus simplement Bacomathiques) est un petit site web qui contient tout ce dont vous avez besoin pour réussir votre BAC de mathématiques en toute tranquillité !
+<q>Bac-o-math-iques</q> (ou plus simplement <strong>{{ site.title }}</strong>) est un petit site web qui contient tout ce dont vous avez besoin pour réviser vos maths en toute tranquilité de la Première à la Terminale ! Que vous cherchiez à passer votre BAC ou que vous souhaitiez simplement réviser votre cours : tout est possible et tout est gratuit.
 
 ## Les contenus
 
-* Des cours en accord avec [le programme](http://media.education.gouv.fr/file/special_8_men/98/4/mathematiques_S_195984.pdf) de Terminale S.
+* Des cours en accord avec les programmes officiels de l'Éducation nationale.
 * Des exemples intuitifs et la possibilité de télécharger et imprimer les cours gratuitement pour les relire chez soi !
 * Des annales des précédents sujets du BAC de mathématiques à télécharger.
 * Une [application Android](https://github.com/Skyost/Bacomathiques/tree/app) pour réviser les cours directement sur votre smartphone !

@@ -1,0 +1,102 @@
+---
+layout: pretty
+title: "À propos"
+permalink: "/a-propos/"
+redirect_from: "/about.html"
+---
+
+<section class="container">
+	<h3>Technologies intégrées</h3>
+	
+	<div class="row">
+		<div class="col-md-4 col-xs-12">
+			<figure>
+				<img src="../assets/img/simple/about/code.svg" alt="Code"/>
+				
+				<figcaption>
+					Ce site web a été créé avec le framework <a href="https://getbootstrap.com/">Bootstrap</a>, ainsi que <a href="https://jquery.com/">jQuery</a>.
+					<a href="https://www.mathjax.org/">MathJax</a>, <a href="http://mauriciopoppe.github.io/function-plot/">Function Plot</a>,
+					<a href="http://github.hubspot.com/pace/">PACE</a>, <a href="https://lunrjs.com/">Lunr.js</a>, <a href="https://www.bryanbraun.com/anchorjs/">AnchorJS</a>,
+					<a href="https://tscanlin.github.io/tocbot/">Tocbot</a>
+					et les plugins <a href="https://doersguild.github.io/jQuery.print/">jQuery.print</a>, <a href="http://jquery.eisbehr.de/lazy/">jQuery.lazy</a> et
+					<a href="https://github.com/zeusdeux/isInViewport">isInViewport.js</a> sont utilisés.
+				</figcaption>
+			</figure>
+		</div>
+		<div class="col-md-4 col-xs-12 middle">
+			<figure>
+				<img src="../assets/img/simple/about/flask.svg" alt="Fiole"/>
+				
+				<figcaption>
+					{{ site.title }} utilise le moteur <a href="https://jekyllrb.com/">Jekyll</a> pour générer ses contenus et
+					est hébergé sur <a href="https://pages.github.com/">Github Pages</a>.
+				</figcaption>
+			</figure>
+		</div>
+		<div class="col-md-4 col-xs-12">
+			<figure>
+				<img src="../assets/img/simple/about/pencil.svg" alt="Crayon"/>
+				
+				<figcaption>
+					Les icônes des <a href="https://www.iconfinder.com/iconsets/small-n-flat">pages de présentation</a>, <a href="https://www.iconfinder.com/iconsets/hawcons">Résumé</a>,
+					<a href="https://www.iconfinder.com/iconsets/hawcons">PDF</a>, <a href="https://www.iconfinder.com/iconsets/ikooni-outline-free-basic">Imprimer</a>,
+					<a href="https://www.iconfinder.com/iconsets/mayssam">Partager</a>, <a href="https://www.iconfinder.com/iconsets/ikooni-outline-free-basic">Correction</a>,
+					et <a href="https://www.iconfinder.com/iconsets/tutor-icon-set">Bacomathiques</a> proviennent de IconFinder.
+					<br>Les autres icônes proviennent de <a href="http://fontawesome.io/">FontAwesome</a>.
+				</figcaption>
+			</figure>
+		</div>
+	</div>
+	
+	<p><em>Comme dit plus haut, le site utilise <strong>Jekyll{% if site.github.versions.jekyll %} v{{ site.github.versions.jekyll }}{% endif %}</strong>
+	ce qui lui procure d’excellentes performances en matière de temps de chargement, puisque contrairement aux autres technologies,
+	le contenu des pages n’est pas généré à chaque requête.</em></p>
+	
+</section>
+
+<section>
+	<div class="container">
+		<h3 id="licence">Licence des contenus</h3>
+		
+		<div class="row">
+			<div class="col-xs-12 col-md-10 text-center text-md-left">
+				<p>Les cours ont été écrits intégralement par <a href="https://www.skyost.eu">Hugo Delaunay</a> et sont disponibles sous licence
+				<a href="{{ site.content_license.url }}">{{ site.content_license.name }}</a>.
+				Les annales ainsi que les corrigés sont la propriété de <a href="http://www.maths-france.fr/">Math France</a>.
+				Enfin, certaines introductions ont été reprises de <a href="https://fr.wikipedia.org">Wikipédia</a>.</p>
+					
+				<p>Toutes les technologies intégrées dans ce site web sont disponibles sous licence <strong>open-source</strong>.
+				N'hésitez pas à aller faire un tour sur leurs pages respectives !</p>
+				
+				<p>Ce site utilise des services tels que Google Analytics, AdSense et Disqus. L'application utilise AdMob, il vous est donc
+				possible de consulter la <a href="/assets/pdf/politique-de-confidentialite.pdf">Politique de confidentialité</a> de ce site web.</p>
+			</div>
+			<div class="col-xs-12 col-md-2 col-fa d-flex align-items-center">
+				<i class="fa fa-creative-commons w-100" aria-hidden="true"></i>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="container">
+	<h3 id="contact">Contact</h3>
+	
+	<div class="row">
+		<div class="col-md-2 d-none d-md-flex col-fa align-items-center">
+			<i class="fa fa-commenting w-100" aria-hidden="true"></i>
+		</div>
+		<div class="col-xs-12 col-md-10 text-center text-md-left">
+			<p>Vous avez trouvé <strong>une faute dans un cours</strong> ?
+			Vous souhaitez qu'une <strong>nouvelle fonctionnalité</strong> soit ajoutée au site web ou vous souhaitez tout simplement <strong>me contacter</strong> ?</p>
+			
+			<p>Pas de problème, il vous suffit de
+			<a class="typeform-share link" href="https://skyost.typeform.com/to/piCNkp" data-mode="1" target="_blank">cliquer ici</a> pour lancer le formulaire de contact !</p>
+						
+			<!-- Typeform -->
+			<script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>
+		</div>
+		<div class="col-lg-12 d-flex d-md-none col-fa align-items-center">
+			<i class="fa fa-commenting w-100" aria-hidden="true"></i>
+		</div>
+	</div>
+</section>

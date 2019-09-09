@@ -21,3 +21,8 @@ Thumbs.db
 /.idea/misc.xml
 /.idea/modules.xml
 /.idea/vcs.xml
+
+# Others #
+##########
+
+bacomathiques2tex.py

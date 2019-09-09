@@ -1,0 +1,481 @@
+---
+layout: lesson
+lesson: "suites"
+level: "terminale"
+permalink: "/cours/terminale/suites/"
+redirect_from:
+  - "/cours/suites.html"
+  - "/cours/suites/"
+---
+<section>
+
+	<h2>Qu'est-ce qu'une suite ?</h2>
+
+	<section>
+
+		<h3>Définition</h3>
+
+		<p>
+			On appelle <strong>suite</strong> une fonction de $\mathbb{N}$ dans $\mathbb{R}$ :
+			cette fonction va prendre des éléments d'un ensemble de départ $\mathbb{N}$ et va les amener dans un ensemble d'arrivée $\mathbb{R}$.
+		</p>
+
+		<p>Il y a plusieurs manières de définir une suite :</p>
+
+		<ul class="formula">
+			<li>
+				<strong>Par récurrence :</strong> On donne le premier terme de la suite ainsi que le terme au rang $n+1$.
+			</li>
+			<li>
+				<strong>Par son terme général :</strong> On donne le $n$-ième terme de la suite en fonction de $n$.
+			</li>
+		</ul>
+
+		<div class="tip">
+			<p>
+				<strong>Exemple :</strong> Pour tout $n \in \mathbb{N}$,
+				on définit les suites $(u_n)_{n \in \mathbb{N}}$ et $(v_n)_{n \in \mathbb{N}}$ ainsi :
+			</p>
+			<p>$u_n = n$</p>
+			<p>$(v_n)_{n \in \mathbb{N}} = \begin{cases} v_0 = 0 \\ v_{n+1} = v_n + 1 \end{cases}$.</p>
+			<p>On remarque que bien que définies différemment, $(u_n)_{n \in \mathbb{N}}$ et $(v_n)_{n \in \mathbb{N}}$ sont égales.</p>
+		</div>
+
+	</section>
+
+	<section>
+
+		<h3>Suites arithmétiques</h3>
+
+		<p>Une suite $(u_n)_{n \in \mathbb{N}}$ est dite <strong>arithmétique</strong> si elle est de la forme :</p>
+
+		<p class="formula">$u_{n+1} = u_n + r$ avec $r \in \mathbb{R}$.</p>
+
+		<p>
+			Le réel $r$ est la <strong>raison</strong> de la suite (si $r \gt 0$, $(u_n)_{n \in \mathbb{N}}$ est strictement croissante,
+			si $r \lt 0$, $(u_n)_{n \in \mathbb{N}}$ est strictement décroissante et si $r = 0$, $(u_n)_{n \in \mathbb{N}}$ est constante).
+			Il est possible de trouver le terme général d'une suite arithmétique :
+		</p>
+
+		<div class="formula">
+			<p>On note $p$ le rang initial de la suite (celui à partir duquel la suite est définie) :</p>
+			<p>$u_n = u_p + (n-p) \times r$</p>
+			<p>Et si $(u_n)_{n \in \mathbb{N}}$ est définie à partir du rang $0$ (on a $p = 0$) :</p>
+			<p>$u_n = u_0 + (n-0) \times r = u_0 + n \times r$</p>
+		</div>
+
+		<p>La somme des $n$ premiers termes d'une suite arithmétique est donnée par la formule suivante (on note $S_n$ cette somme) :</p>
+
+		<p class="formula">$\displaystyle{S_n = \frac{(\text{Premier terme } + \text{ Dernier terme}) \times (\text{Nombre de termes})}{2}}$</p>
+
+		<div class="tip">
+			<p>
+				<strong>Astuce :</strong> Pour trouver le nombre de termes, on prend le rang jusqu'auquel on souhaite calculer cette somme,
+			on y soustrait l'indice du premier terme et on y ajoute $1$.
+			</p>
+			<p>
+				<strong>Exemple :</strong> Soit une suite $(u_n)_{n \geq 1}$ définie par
+				$(u_n)_{n \geq 1}$ : $\begin{cases} u_1 = 10\\ u_{n+1} = u_n + 5 \end{cases}$ pour $n \in \mathbb{N}$ et $n \geq 1$.
+			</p>
+			<p>
+				La raison $r$ est égale à $5$.
+				Le premier terme est $u_1 = 10$ d'indice $p = 1$. Le terme général de cette suite est donc $u_n = u_1 + (n-1) \times r$.
+			</p>
+			<p>
+				Par conséquent, on a : $u_n = 10 + (n-1) \times 5$. On souhaite calculer la somme des termes de cette suite jusqu'au rang $n$.
+				Par l'astuce précédente, il y a $n-1+p = n$ termes. On peut calculer la somme $S_n$ :
+			</p>
+			<p>$S_n = \frac{(u_1 + u_n) \times (n)}{2} = \frac{(20 + (n-1) \times 5)(n)}{2} = \frac{5n^2 + 15n}{2}$.</p>
+		</div>
+
+	</section>
+
+	<section>
+
+		<h3>Suites géométriques</h3>
+
+		<p>Une suite $(v_n)_{n \in \mathbb{N}}$ est dite <strong>géométrique</strong> si elle est de la forme :</p>
+
+		<p class="formula">$v_{n+1} = v_n \times q$ avec $q \in \mathbb{R}$.</p>
+
+		<p>
+			Le réel $q$ est la <strong>raison</strong> de la suite (si $q \gt 1$, $(v_n)_{n \in \mathbb{N}}$ est strictement croissante,
+			si $0 \lt q \lt 1$, $(v_n)_{n \in \mathbb{N}}$ est strictement décroissante et si $q = 1$ ou $0$, $(v_n)_{n \in \mathbb{N}}$ est constante).
+			Il est possible de trouver le terme général d'une suite géométrique :
+		</p>
+
+		<div class="formula">
+			<p>On note $p$ le rang initial de la suite (celui à partir duquel la suite est définie) :</p>
+			<p>$v_n = v_p \times q^{n-p}$</p>
+			<p>Et si $(v_n)_{n \in \mathbb{N}}$ est définie à partir du rang $0$ (on a $p = 0$) :</p>
+			<p>$v_n = v_0 \times q^{n-0} = v_0 \times q^n$</p>
+		</div>
+
+		<p>
+			La somme des $n$ premiers termes d'une suite géométrique est donnée par la formule suivante (on note $S_n$ cette somme) :
+		</p>
+
+		<p class="formula">$\displaystyle{S_n = (\text{Premier terme}) \times \frac{1 - q^\text{Nombre de termes}}{1 - q}}$</p>
+
+		<div class="tip">
+			<p>
+				<strong>Astuce :</strong> Pour trouver le nombre de termes, on prend le rang jusqu'auquel on souhaite calculer cette somme.
+				On y soustrait l'indice du premier terme et on y ajoute $1$.
+			</p>
+			<p>
+				<strong>Exemple :</strong> Soit une suite $(v_n)_{n \geq 2}$ définie par
+				$(v_n)_{n \geq 2}$ : $\begin{cases} v_2 = 1\\ v_{n+1} = v_n \times 2\end{cases}$ pour $n \in \mathbb{N}$ et $n \geq 2$.
+			</p>
+			<p>
+				La raison $q$ est égale à $2$. Le premier terme est $v_2 = 1$ d'indice $p = 2$.
+				Le terme général de cette suite est donc $v_n = v_2 \times q^{n-2}$.
+			</p>
+			<p>
+				Par conséquent, on a : $v_n = 2^{n-2}$. On souhaite calculer la somme des termes de cette suite jusqu'au rang $n$.
+				Par l'astuce précédente, il y a $n-1+p = n + 1$ termes. On peut calculer la somme $S_n$ :
+			</p>
+			<p>$S_n = v_2 \times \frac{1 - q^{n-1}}{1 - q} = -(1 - 2^{n-1}) = 2^{n-1} - 1$.</p>
+		</div>
+
+	</section>
+
+</section>
+
+<section>
+
+	<h2>Étude des suites</h2>
+
+	<section>
+
+		<h3>Sens de variation</h3>
+
+		<p>Une suite $(u_n)_{n \in \mathbb{N}}$ est <strong>croissante</strong> si on a :</p>
+
+		<p class="formula">$u_{n+1} \geq u_n$ ou $u_{n+1} - u_n \geq 0$</p>
+
+		<p>À l'inverse, une suite $(u_n)_{n \in \mathbb{N}}$ est <strong>décroissante</strong> si on a :</p>
+
+		<p class="formula">$u_{n+1} \leq u_n$ ou $u_{n+1} - u_n \leq 0$</p>
+
+		<p>Une suite $(u_n)_{n \in \mathbb{N}}$ est dite <strong>constante</strong> si on a pour $c \in \mathbb{R}$ :</p>
+
+		<p class="formula">$u_{n} = u_{n+1} = c$</p>
+
+		<p>Si une suite est croissante ou décroissante et ne change pas de variation, alors elle est dite <strong>monotone</strong>.</p>
+
+	</section>
+
+	<section>
+
+		<h3>Limites</h3>
+
+		<p>
+			On dit qu'une suite $(u_n)_{n \in \mathbb{N}}$ <strong>converge</strong> vers une limite finie $l$ si pour tout $\epsilon \gt 0$, on a $|u_n - l| \lt \epsilon$.
+			Cette définition est un peu technique mais elle signifie qu'il existe une infinité de réels entre $(u_n)_{n \in \mathbb{N}}$ et $l$.
+			On dit que $(u_n)_{n \in \mathbb{N}}$ est <strong>convergente</strong> et on note alors :
+		</p>
+
+		<p class="formula">$\lim\limits_{n \rightarrow +\infty} u_n = l$</p>
+
+		<p class="tip">
+			<strong>Attention !</strong> On dit que $(u_n)_{n \in \mathbb{N}}$ converge vers $l$
+			mais <strong>jamais</strong> $(u_n)_{n \in \mathbb{N}}$ n'atteindra $l$ quand $n$ tend vers +$\infty$.
+		</p>
+
+		<p>
+			La suite $(u_n)_{n \in \mathbb{N}}$ peut également diverger vers une limite infinie.
+			On dit à ce moment là que $(u_n)_{n \in \mathbb{N}}$ est <strong>divergente</strong>. On note ainsi :
+		</p>
+
+		<p class="formula">$\lim\limits_{n \rightarrow +\infty} u_n = \pm \infty$</p>
+
+		<div class="tip">
+			<p>Il est possible d'écrire une définition semblable à celle de la convergence.</p>
+			<p>
+				Ainsi, si $(u_n)_{n \in \mathbb{N}}$ diverge vers $+\infty$ quand $n$ tend vers +$\infty$,
+				cela signifie que pour tout réel $h$ et à partir d'un certain rang $M$, on aura $u_M \gt h$.
+			</p>
+			<p>
+				Et si $(u_n)_{n \in \mathbb{N}}$ diverge vers $-\infty$ quand $n$ tend vers +$\infty$,
+				cela signifie que pour tout réel $h$ et à partir d'un certain rang $m$, on aura $u_m \lt h$.</p>
+		</div>
+
+		<div class="table-responsive-md">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th colspan="5">Limite d'une suite géométrique</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Si on a pour $q \in \mathbb{R}$...</td>
+						<td>$-1 \lt q \lt 1$</td>
+						<td>$1 \lt q$</td>
+						<td>$q \leq -1$</td>
+						<td>$q = 1$</td>
+					</tr>
+					<tr>
+						<td>La suite $q^n$ a pour limite...</td>
+						<td>$0$</td>
+						<td>$+\infty$</td>
+						<td>Pas de limite</td>
+						<td>$1$</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<p>À savoir que si une suite a une limite, alors cette limite est <strong>unique</strong>.</p>
+
+	</section>
+
+	<section>
+
+		<h3>Opérations sur les limites</h3>
+
+		<p>
+			Dans tout ce qui suit, $(u_n)_{n \in \mathbb{N}}$ et $(v_n)_{n \in \mathbb{N}}$ sont deux suites.
+			Ces tableaux sont à connaître et sont requis pour pouvoir travailler sur les limites.
+		</p>
+
+		<div class="formula">
+
+			<div class="table-responsive-md">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th colspan="7">Limite d'une somme</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>$\lim\limits_{n \rightarrow +\infty} u_n$</td>
+							<td>$l$</td>
+							<td>$l$</td>
+							<td>$l$</td>
+							<td>$+\infty$</td>
+							<td>$-\infty$</td>
+							<td>$+\infty$</td>
+						</tr>
+						<tr>
+							<td>$\lim\limits_{n \rightarrow +\infty} v_n$</td>
+							<td>$l'$</td>
+							<td>$+\infty$</td>
+							<td>$-\infty$</td>
+							<td>$+\infty$</td>
+							<td>$-\infty$</td>
+							<td>$-\infty$</td>
+						</tr>
+						<tr>
+							<td>$\lim\limits_{n \rightarrow +\infty} (u_n + v_n)$</td>
+							<td>$l + l'$</td>
+							<td>$+\infty$</td>
+							<td>$-\infty$</td>
+							<td>$+\infty$</td>
+							<td>$-\infty$</td>
+							<td><strong>?</strong></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="table-responsive-md">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th colspan="10">Limite d'un produit</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>$\lim\limits_{n \rightarrow +\infty} u_n$</td>
+							<td>$l$</td>
+							<td>$l \gt 0$</td>
+							<td>$l \gt 0$</td>
+							<td>$l \lt 0$</td>
+							<td>$l \lt 0$</td>
+							<td>$+\infty$</td>
+							<td>$+\infty$</td>
+							<td>$-\infty$</td>
+							<td>$0$</td>
+						</tr>
+						<tr>
+							<td>$\lim\limits_{n \rightarrow +\infty} v_n$</td>
+							<td>$l'$</td>
+							<td>$+\infty$</td>
+							<td>$-\infty$</td>
+							<td>$+\infty$</td>
+							<td>$-\infty$</td>
+							<td>$+\infty$</td>
+							<td>$-\infty$</td>
+							<td>$-\infty$</td>
+							<td>$\pm \infty$</td>
+						</tr>
+						<tr>
+							<td>$\lim\limits_{n \rightarrow +\infty} (u_n \times v_n)$</td>
+							<td>$l \times l'$</td>
+							<td>$+\infty$</td>
+							<td>$-\infty$</td>
+							<td>$-\infty$</td>
+							<td>$+\infty$</td>
+							<td>$+\infty$</td>
+							<td>$-\infty$</td>
+							<td>$+\infty$</td>
+							<td><strong>?</strong></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="table-responsive-md">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th colspan="10">Limite d'un quotient</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>$\lim\limits_{n \rightarrow +\infty} u_n$</td>
+							<td>$l$</td>
+							<td>$l$</td>
+							<td>$+\infty$</td>
+							<td>$+\infty$</td>
+							<td>$-\infty$</td>
+							<td>$-\infty$</td>
+							<td>$\pm \infty$</td>
+							<td>$l$</td>
+							<td>$0$</td>
+						</tr>
+						<tr>
+							<td>$\lim\limits_{n \rightarrow +\infty} v_n$</td>
+							<td>$l' \neq 0$</td>
+							<td>$\pm \infty$</td>
+							<td>$l' \gt 0$</td>
+							<td>$l' \lt 0$</td>
+							<td>$l' \gt 0$</td>
+							<td>$l' \lt 0$</td>
+							<td>$\pm \infty$</td>
+							<td>$0^+_-$</td>
+							<td>$0$</td>
+						</tr>
+						<tr>
+							<td>$\lim\limits_{n \rightarrow +\infty} (\frac{u_n}{v_n})$</td>
+							<td>$\displaystyle{\frac{l}{l'}}$</td>
+							<td>$0$</td>
+							<td>$+\infty$</td>
+							<td>$-\infty$</td>
+							<td>$-\infty$</td>
+							<td>$+\infty$</td>
+							<td><strong>?</strong></td>
+							<td>$\pm \infty$</td>
+							<td><strong>?</strong></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+
+		<p class="tip">
+			À noter que l'on n'étudie les limites des <strong>suites</strong> qu'en $+\infty$ et qu'il n'existe que 4 formes indéterminées :
+			<q>$+\infty - \infty$</q>, <q>$0 \times \pm \infty$</q>, <q>$\frac{\pm \infty}{\pm \infty}$</q> et <q>$\frac{0}{0}$</q>.
+		</p>
+
+	</section>
+
+	<section>
+
+		<h3>Majoration, minoration et bornes</h3>
+
+		<p>Soient une suite $(u_n)_{n \in \mathbb{N}}$ et deux réels $m$ et $M$ :</p>
+
+		<ul class="formula">
+			<li>On dit que que $m$ est un <strong>minorant</strong> de $(u_n)_{n \in \mathbb{N}}$ si pour tout $n$ : $u_n \gt m$.</li>
+			<li>On dit que que $M$ est un <strong>majorant</strong> de $(u_n)_{n \in \mathbb{N}}$ si pour tout $n$ : $u_n \lt M$.</li>
+			<li>On dit que que $(u_n)_{n \in \mathbb{N}}$ est <strong>bornée</strong> si elle est à la fois majorée et minorée.</li>
+			<li>
+				Si $(u_n)_{n \in \mathbb{N}}$ est croissante et est majorée, alors elle est convergente.
+				Si elle n'est pas majorée, $(u_n)_{n \in \mathbb{N}}$ diverge vers $+\infty$.
+			</li>
+			<li>
+				Si $(u_n)_{n \in \mathbb{N}}$ est décroissante et est minorée, alors elle est convergente.
+				Si elle n'est pas minorée, $(u_n)_{n \in \mathbb{N}}$ diverge vers $-\infty$.
+			</li>
+		</ul>
+
+		<p>Toute suite convergente est également bornée.</p>
+
+	</section>
+
+	<section>
+
+		<h3>Encadrement</h3>
+
+		<p>
+			Soient deux suites $(u_n)_{n \in \mathbb{N}}$ et $(v_n)_{n \in \mathbb{N}}$ telles que $u_n \lt v_n$ à partir d'un certain rang.
+			On a :
+		</p>
+
+		<ul class="formula">
+			<li>Si $\lim\limits_{n \rightarrow +\infty} u_n = +\infty$, alors $\lim\limits_{n \rightarrow +\infty} v_n = +\infty$.</li>
+			<li>Si $\lim\limits_{n \rightarrow +\infty} v_n = -\infty$, alors $\lim\limits_{n \rightarrow +\infty} u_n = -\infty$.</li>
+			<li>Si $\lim\limits_{n \rightarrow +\infty} u_n = l$ et $\lim\limits_{n \rightarrow +\infty} v_n = l'$ alors $l \lt l'$.</li>
+		</ul>
+
+		<p>
+			Soient trois suites $(u_n)_{n \in \mathbb{N}}$, $(v_n)_{n \in \mathbb{N}}$ et $(w_n)_{n \in \mathbb{N}}$ telles que $u_n \lt v_n \lt w_n$ à partir d'un certain rang et
+		que $(u_n)_{n \in \mathbb{N}}$ et $(w_n)_{n \in \mathbb{N}}$ convergent vers le réel $l$. Alors :
+		</p>
+
+		<p class="formula">$\lim\limits_{n \rightarrow +\infty} v_n = l$</p>
+
+		<p>Ce théorème est appelé <strong>théorème des gendarmes</strong>.</p>
+
+	</section>
+
+</section>
+<section>
+
+	<h2>Raisonnement par récurrence</h2>
+
+	<p>Si on souhaite montrer qu'une propriété est vraie pour tout $n \in \mathbb{N}$ à partir d'un certain rang $p$ :</p>
+
+	<div class="formula">
+		<p><strong>Initialisation :</strong> On teste la propriété au rang $p$. Si elle est vérifiée, on passe à l'étape suivante.</p>
+		<p><strong>Hérédité :</strong> On suppose la propriété vraie à un rang $n \geq p$. Puis on montre qu'elle reste vraie au rang $n+1$.</p>
+		<p>
+			<strong>Conclusion :</strong> On explique que l'on vient de démontrer la propriété au rang $n+1$ et que comme celle-ci est initialisée et héréditaire,
+			alors elle est vraie à partir du rang $p$.
+		</p>
+	</div>
+
+	<div class="tip">
+		<p>
+			<strong>Exemple :</strong> Soit une suite $(u_n)_{n \in \mathbb{N}}$ définie par $(u_n)_{n \in \mathbb{N}}$ : $\begin{cases} u_0 = 4\\ u_{n+1} = \frac{4u_n + 17}{u_n + 4}\end{cases}$.
+			On souhaite montrer que pour tout $n \in \mathbb{N}$, on a $4 \leq u_n \leq 5$.
+		</p>
+		<p>On note $\mathcal{P}_n$ la propriété définie pour tout $n \in \mathbb{N}$ par $\mathcal{P}_n$ : $4 \leq u_n \leq 5$.</p>
+		<p>On constate également que $u_{n+1} = \frac{4u_n + 17}{u_n + 4} = \frac{4(u_n + 4) + 1}{u_n + 4} = 4 + \frac{1}{u_n + 4}$.</p>
+		<p><strong>Initialisation :</strong> On teste la propriété au rang $0$ :</p>
+		<p>$\mathcal{P}_0$ : $4 \leq u_0 \leq 5 \iff 4 \leq 4 \leq 5$. C'est vrai.</p>
+		<p>La propriété est vraie au rang $0$, on souhaite vérifier que la propriété est vraie au rang $n+1$.</p>
+		<p><strong>Hérédité :</strong></p>
+		<p>D'après $\mathcal{P}_n$ : $4 \leq u_n \leq 5$. Donc on a :</p>
+		<p>$\iff 4 \leq u_n \leq 5$</p>
+		<p>$\iff 4 + 4 \leq u_n + 4 \leq 5 + 4$</p>
+		<p>
+			$\iff \frac{1}{9} \leq \frac{1}{u_n + 4} \leq \frac{1}{8}$
+			(la fonction inverse est décroissante sur $\mathbb{R}^+$ donc on change l'inégalité)
+		</p>
+		<p>$\iff 4 + \frac{1}{9} \leq 4 + \frac{1}{u_n + 4} \leq 4 + \frac{1}{8}$</p>
+		<p>Or $4 + \frac{1}{9} \approx 4.111 \gt 4$ et $4 + \frac{1}{8} = 4.125 \lt 5$. On a donc bien :</p>
+		<p>$4 \leq u_{n+1} \leq 5$</p>
+		<p><strong>Conclusion :</strong></p>
+		<p>La propriété est initialisée au rang $0$ et est héréditaire. Ainsi, $\mathcal{P}_n$ est vraie pour tout $n \in \mathbb{N}$.</p>
+	</div>
+
+	<p>Le raisonnement par récurrence est très utilisé en mathématiques et ne se limite pas qu'à l'étude des suites.</p>
+
+</section>

@@ -15,7 +15,7 @@ $scrollbar-track-border: white;
 
 $scrollbar-corner-background: transparent;
 
-/* DEFAULT COLORS */
+/* READING COLORS */
 
 /** Text : **/
 
@@ -73,20 +73,23 @@ $annals-background-color: #fceae9;
 $book-border-color: #9b59b6;
 $book-background-color: #f6e2ff;
 
-/* SIMPLE LAYOUT COLORS */
+$proof-border-color: #f1c40f;
+$proof-background-color: #fff8de;
+
+/* PRETTY LAYOUT COLORS */
 
 /** Global colors : **/
 
-$simple-selection-color: #aef2e7;
-$simple-footer-color: rgba(255, 255, 255, 0.8);
-$simple-footer-h3-color: rgba(255, 255, 255, 0.9);
-$simple-footer-links-color: #4cdbc4;
-$simple-footer-heart-color: #e74c3c;
-$simple-footer-links-background-color: #0a1922;
+$pretty-selection-color: #aef2e7;
+$pretty-footer-color: rgba(255, 255, 255, 0.8);
+$pretty-footer-h3-color: rgba(255, 255, 255, 0.9);
+$pretty-footer-links-color: #4cdbc4;
+$pretty-footer-heart-color: #e74c3c;
+$pretty-footer-links-background-color: #0a1922;
 
 $header-paragraph-color: rgba(255, 255, 255, 0.7);
 
-$simple-text-color: rgba(0, 0, 0, 0.7);
+$pretty-text-color: rgba(0, 0, 0, 0.7);
 $section-2n-color: #f2f2f2;
 
 $h3-line-on-sides-color: #dddddd;

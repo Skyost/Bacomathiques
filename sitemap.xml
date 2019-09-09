@@ -8,7 +8,7 @@ sitemap: false
 		{% if page.layout != nil %}
 			{% if page.sitemap != false %}
 				<url>
-					<loc>{{ site.url }}{{ page.url | remove: 'index.html' }}</loc>
+					<loc>{{ site.url }}{% if page.permalink %}{{ page.permalink }}{% else %}{{ page.url | remove: 'index.html' }}{% endif %}</loc>
 				</url>
 			{% endif %}
 		{% endif %}

@@ -1,0 +1,53 @@
+<article>
+
+	{% assign currentLevel = site.data.levels[include.level] %}
+	<h1>Liste des cours de {{ currentLevel.title }}</h1>
+
+	<div class="lessons-row row">
+		{% for data in site.data.lessons[currentLevel.id] %}
+			{% assign lesson = data[1] %}
+			<div class="col-xs-12 col-md-6 col-lg-4">
+				<div class="card">
+					<div class="card-header d-flex align-items-center{% if lesson.title contains '(Spécialité)' %} specialty{% endif %}">
+						<h2 class="w-100">{{ lesson.title }}</h2>
+					</div>
+					<div class="card-img">
+						<span class="preview" data-src="/assets/img/lessons/{{ lesson.level }}/{{ lesson.id }}/preview.jpg"></span>
+						<span class="overlay"></span>
+						<span class="caption">{{ lesson.caption }}</span>
+					</div>
+					<div class="card-body">
+						<p class="card-text">{{ lesson.excerpt }}</p>
+					</div>
+					<div class="card-footer">
+						<a href="{{ lesson.url }}"><i class="fa fa-share" aria-hidden="true"></i> Lien vers ce cours</a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	
+	<ins class="adsbygoogle" data-ad-client="ca-pub-7167241518798106" data-ad-slot="2776038870" data-ad-format="auto"></ins>
+
+	<p id="footer" class="text-muted">
+		Les cours sont disponibles sous licence <a href="/pages/about.html#licence" rel="license">{{ site.content_license.name }}</a>.
+		<br>Généré le {{ site.time | date: "%d/%m/%Y" }} à {{ site.time | date: "%H:%M:%S" }}{% if site.github.build_revision %} | Révision {{ site.github.build_revision }}{% else %}.{% endif %}
+	</p>
+
+	<nav id="nav-levels" class="row d-md-none">
+		{% for levelHash in site.data.levels %}
+			{% assign level = levelHash[1] %}
+			<figure class="col-6{% if level.id == include.level %} current{% endif %}">
+				<a href="/cours/{{ level.url }}">
+					<img src="{{ level.image }}" alt="{{ level.name }}" title="{{ level.name }}">
+				</a>
+				<figcaption>
+					<a href="/cours/{{ level.url }}">{{ level.name }}</a>
+				</figcaption>
+			</figure>
+		{% endfor %}
+	</nav>
+
+</article>
+
+{% include _includes/scripts/adsense.html %}

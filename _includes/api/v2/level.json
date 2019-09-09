@@ -1,0 +1,7 @@
+{
+    "id": {{ include.level.id | jsonify }},
+    "name": {{ include.level.name | jsonify }},
+    "image": {{ include.level.image | jsonify }},
+    "description": {{ include.level.description | jsonify }},
+    "lessons": {{ '/api/v2/' | append: include.level.url | append: '/' | jsonify }}
+}

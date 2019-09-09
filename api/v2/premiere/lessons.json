@@ -1,0 +1,6 @@
+---
+layout: api_file
+permalink: "/api/v2/premiere/"
+sitemap: false
+---
+{% include _includes/api/v2/lessons/list.json level='premiere' %}

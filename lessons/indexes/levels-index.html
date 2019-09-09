@@ -1,0 +1,22 @@
+---
+layout: reading
+title: "Index des cours"
+permalink: "/cours/"
+excerpt: "Retrouvez ici la liste des cours disponible sur Bacomathiques ainsi qu'une brève description et une petite illustration."
+css:
+  - "/assets/css/levels-index.css"
+---
+
+<div id="levels" class="row">
+    {% for levelHash in site.data.levels %}
+        {% assign level = levelHash[1] %}
+        <div class="col-xs-12 col-md-6">
+            <a class="level" href="{{ level.url }}">
+                <img src="{{ level.image }}" alt="{{ level.name }}" title="{{ level.name }}">
+                <h2>{{ level.name }}</h2>
+
+                <em>{{ level.description }}</em>
+            </a>
+        </div>
+    {% endfor %}
+</div>

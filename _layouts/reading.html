@@ -1,0 +1,22 @@
+---
+layout: "compress"
+metacolor: "2489cc"
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+	{% assign description = site.tagline %}
+	{% if page.excerpt %}{% assign description = page.excerpt %}{% endif %}
+	{% include _includes/head.html title=page.title description=description %}
+	{% include _includes/scripts/smartbanner/head.html %}
+<body>
+	{% include _includes/navbar/navbar.html %}
+
+	<div class="container-fluid">
+		{{ content }}
+	</div>
+
+	{% include _includes/footer.html %}
+	{% include _includes/scripts/smartbanner/footer.html %}
+</body>
+</html>

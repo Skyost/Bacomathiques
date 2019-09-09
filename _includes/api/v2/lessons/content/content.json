@@ -1,0 +1,19 @@
+{% assign lesson = site.data.lessons[include.level][include.lesson] %}
+{% capture lessonContent %}{% include {{ lesson.path }} %}{% endcapture %}
+{% assign parts = lessonContent | split: "---" %}
+{% assign lessonContent = parts[2] %}
+{% assign titleUrl = lesson.title | url_param_escape %}
+
+{
+    "api": {% include _includes/api/v2/api_info.json %},
+    "lesson": {% include _includes/api/v2/lessons/lesson_info.json lesson=lesson %},
+    "difficulty": {{ lesson.difficulty | jsonify }},
+    "pdf": {{ '/assets/pdf/cours/' | append: lesson.level | append: '/' | append: titleUrl | append: '.pdf' | jsonify }},
+    "html": {{ lessonContent | normalize_whitespace | jsonify }},
+    "annals": [
+        {% for annal in lesson.annals %}
+            {% include _includes/api/v2/lessons/content/annals/annal.json annal=annal %}
+            {% unless forloop.last %},{% endunless %}
+        {% endfor %}
+    ]
+}

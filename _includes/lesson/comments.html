@@ -3,8 +3,10 @@
 	
 	<form id="comment-form" class="clearfix">
 		<input name="options[redirect]" type="hidden" value="{{ site.url }}{{ page.url }}#commentaires">
-		<input name="options[slug]" type="hidden" value="{{ lesson.id }}">
+		<input name="options[slug]" type="hidden" value="{{ lesson.level }}_{{ lesson.id }}">
 		<input name="fields[lesson]" type="hidden" value="{{ lesson.id }}">
+		<input name="fields[level]" type="hidden" value="{{ lesson.level }}">
+		<input name="fields[client]" type="hidden" value="bacomathiqu.es">
 		<div id="comment-form-message" class="form-group">
 			<label for="comment-message">Message</label>
 			<textarea id="comment-message" class="form-control" name="fields[message]" rows="5" placeholder="Exprimez-vous !" required></textarea>
@@ -25,8 +27,8 @@
 			{% assign comments_hashes = site.data.comments | sort %}
 			{% for comment_hash in comments_hashes reversed %}
 				{% assign comment = comment_hash[1] %}
-				{% if comment.lesson == lesson.id %}
-					{% include _includes/lesson/comment.html %}
+				{% if comment.lesson == lesson.id and comment.level == lesson.level %}
+					{% include _includes/lesson/comment.html comment=comment %}
 					{% assign hasComment = true %}
 				{% endif %}
 			{% endfor %}

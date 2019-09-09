@@ -1,0 +1,15 @@
+{% assign lessonApiRoot = '/api/v2/' | append: site.data.levels[include.lesson.level].url | append: '/' | append: include.lesson.url | append: '/'%}
+{% assign title = include.lesson.title %}
+{% if include.isSummary %}
+    {% assign title = title | append: ' - Fiche résumée' %}
+{% endif %}
+
+{
+    "id": {{ include.lesson.id | jsonify }},
+    "level": {{ include.lesson.level | jsonify }},
+    "title": {{ title | jsonify }},
+    "chapter": {{ lesson.chapter | jsonify }},
+    "content": {{ lessonApiRoot | jsonify }},
+    "comments": {{ lessonApiRoot | append: 'comments/' | jsonify }},
+    "summary": {{ lessonApiRoot | append: 'summary/' | jsonify }}
+}

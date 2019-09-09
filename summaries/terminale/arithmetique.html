@@ -1,0 +1,153 @@
+---
+permalink: "/cours/terminale/arithmetique/resume/"
+sitemap: false
+redirect_from: "/cours/arithmetique/resume/"
+---
+
+<section>
+
+	<h2>Divisibilité et congruence</h2>
+
+	<section>
+
+		<p>Soient $a$, $b$ et $c$ trois entiers relatifs avec $c \neq 0$ :</p>
+		
+		<p class="formula">Si $c$ divise $a$ (i.e. $a = k \times c$) et $b$, alors pour tout $u, v \in \mathbb{Z}$ : $c$ divise $u \times a + v \times b$.</p>
+		
+		<p>Pour ces entiers relatifs $a$ et $b$, il existe $q$ et $r$ entiers relatifs tels que :</p>
+		
+		<p class="formula">$a = b \times q + r$ avec $0 \leq r \leq |b|$</p>
+		
+		<p>De plus, on a :</p>
+		
+		<p class="formula">Si $c$ divise $ab$ et $c$ premier avec $a$, alors $c$ divise $b$.</p>
+		
+	</section>
+
+	<section>
+		
+		<p>
+			Soient $a$ et $b$ deux entiers relatifs avec $b \neq 0$, $a$ est un <strong>multiple</strong> de $b$ si et seulement si $b$ est un diviseur de $a$.
+			On a les propriétés suivantes :
+		</p>
+		
+		<ul class="formula">
+			<li>Si $a$ est un multiple de $b$ alors $-a$ est un multiple de $b$.</li>
+			<li>La somme ainsi que la différence de certains multiples de $b$ est un multiple de $b$.</li>
+			<li>Si $a$ est un multiple de $b$ alors pour $k \in \mathbb{Z}$, $k \times a$ est un multiple de $b$.</li>
+		</ul>
+		
+	</section>
+
+	<section>
+		
+		<p>
+			Soient $a$, $b$ et $n$ trois entiers avec $n \geq 2$.
+			<strong>$a$ est congru à $b$ modulo $n$</strong> (noté $a \equiv b[n]$) si et seulement si :
+		</p>
+		
+		<p class="formula">$a$ et $b$ ont le même reste dans la division euclidienne par $n$ (ou encore $(a - b)$ est multiple de $n$).</p>
+				
+		<p>Les opérations suivantes sont disponibles avec les congruences pour $a$, $b$, $c$ et $d$ quatre entiers relatifs :</p>
+		
+		<ul class="formula">
+			<li>Si $a \equiv b[n]$ et $c \equiv d[n]$ alors $a + c \equiv b + d[n]$.</li>
+			<li>Si $a \equiv b[n]$ et $c \equiv d[n]$ alors $a - c \equiv b - d[n]$.</li>
+			<li>Si $a \equiv b[n]$ et $c \equiv d[n]$ alors $a \times c \equiv b \times d[n]$.</li>
+			<li>Si $a \equiv b[n]$ alors $a \times c \equiv b \times c[n]$.</li>
+			<li>Si $a \equiv b[n]$ alors $a^k \equiv b^k[n]$ pour $k \in \mathbb{N}^*$.</li>
+		</ul>
+		
+	</section>
+
+</section>
+
+<section>
+
+	<h2>PGCD et théorème de Bézout</h2>
+
+	<section>
+		
+		<p>
+			Le <strong>Plus Grand Commun Diviseur</strong> de deux nombres entiers relatifs $a$ et $b$ (avec $a$ ou $b$ non nul) noté $\operatorname{PGCD}(a;b)$
+			est le plus grand entier qui les divise simultanément. Ainsi, on a les propriétés suivantes :
+		</p>
+		
+		<ul class="formula">
+			<li>$\operatorname{PGCD}(a;1) = 1$</li>
+			<li>$\operatorname{PGCD}(a;0) = a$</li>
+			<li>$\operatorname{PGCD}(ka; kb) = k \operatorname{PGCD}(a;b)$ pour $k \in \mathbb{N}^*$</li>
+			<li>Si $b$ divise $a$ alors $\operatorname{PGCD}(a;b) = b$</li>
+			<li>$\operatorname{PGCD}(a;b) = d$ si et seulement si $\displaystyle{\operatorname{PGCD}\left(\frac{a}{d};\frac{b}{d}\right) = 1}$</li>
+			<li>$a$ et $b$ premiers entre eux $\iff$ $\operatorname{PGCD}(a;b) = 1$</li>
+		</ul>
+		
+		<p>
+			Il existe une manière de déterminer le PGCD de deux entiers naturels non nuls $a$ et $b$ avec $b \lt a$
+			appelée <strong>Algorithme d'Euclide</strong>. Pour obtenir \operatorname{PGCD}(a;b)$, on procède comme suit :</p>
+		
+		<ol class="formula">
+			<li>On fait la division euclidienne de $a$ par $b$ et on appelle $r$ le reste.</li>
+			<li>Si $r = 0$, alors \operatorname{PGCD}(a;b) = b$.</li>
+			<li>Sinon on recommence l'étape 1 en remplaçant $a$ par $b$ et $b$ par $r$.</li>
+		</ol>
+
+		<p>
+			On dit que deux nombres sont <strong>premiers entre eux</strong> si leur PGCD est égal à 1.
+			Ainsi, soient $a, b \in \mathbb{N}^*$ :
+		</p>
+		
+	</section>
+	<section>
+
+		<p>Soient $a$ et $b$ deux entiers relatifs non nuls et $d$ leur PGCD. Il existe deux entiers relatifs $u$ et $v$ tels que :</p>
+
+		<p class="formula">$ua + vb = d$</p>
+		
+		<p>Une méthode pour obtenir ces entiers est de <q>remonter l'algorithme d'Euclide</q>.</p>
+		
+	</section>
+
+</section>
+<section>
+
+	<h2>Les nombres premiers</h2>
+
+	<section>
+
+		<p>Soit $n \in \mathbb{N}$ supérieur ou égal à 2 :</p>
+		
+		<p class="formula">
+			$n$ est dit <strong>premier</strong> s'il n'admet que deux diviseurs distincts, entiers et positifs : 1 et lui-même.
+			Il existe une infinité de tels nombres.
+		</p>
+		
+	</section>
+
+	<section>
+	
+		<p>Soient $a$, $b \in \mathbb{Z}$ et $n \in \mathbb{N}$ supérieur ou égal à 2, alors on a les propriétés suivantes :</p>
+		
+		<ul class="formula">
+			<li>Si $n$ n'admet aucun diviseur premier inférieur ou égal à $\sqrt{n}$, alors $n$ est premier.</li>
+			<li>Si $n$ n'est pas premier alors $n$ admet au moins un diviseur premier inférieur ou égal à $\sqrt{n}$.</li>
+			<li>Si $n$ est premier et $n$ ne divise pas $a$, alors $a$ et $n$ sont premiers entre eux.</li>
+			<li>Si $n$ est premier et divise $ab$ alors $n$ divise $a$ ou $n$ divise $b$.</li>
+			<li>Si $a$, $b$ et $n$ sont premiers et $n$ divise $ab$ alors $n = a$ ou $n = b$.</li>
+		</ul>
+	
+	</section>
+
+	<section>
+	
+		<p>Soit $n \in \mathbb{N}$ supérieur ou égal à 2, alors on peut <strong>décomposer $n$ en facteurs premiers</strong> :</p>
+
+		<p class="formula">
+			$n = p_{1}^{\alpha_1} \times p_{2}^{\alpha_2} \times \text{ ... } \times p_{n}^{\alpha_n}$
+			avec $p_1$, $p_2$, ... , $p_n$ des nombres premiers tels que $p_1 \lt p_2 \lt \text{ ... } \lt p_n$
+			et $\alpha_1$, $\alpha_2$, ... , $\alpha_n$ des entiers naturels non nuls.
+		</p>
+
+	</section>
+
+</section>

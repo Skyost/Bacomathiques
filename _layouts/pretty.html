@@ -1,0 +1,25 @@
+---
+layout: "compress"
+metacolor: "2489cc"
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	{% include _includes/head.html title=page.title description=site.tagline %}
+</head>
+<body>
+	{% include _includes/pretty/header.html %}
+
+	<article>
+		<h2>{{ page.title }}</h2>
+		{{ content }}
+	</article>
+	<ins class="adsbygoogle" data-ad-client="ca-pub-7167241518798106" data-ad-slot="2930816076" data-ad-format="auto"></ins>
+
+	{% include _includes/pretty/footer.html %}
+
+	{% include _includes/footer.html %}
+	{% include _includes/scripts/adsense.html %}
+</body>
+</html>

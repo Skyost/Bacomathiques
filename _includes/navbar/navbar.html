@@ -1,0 +1,64 @@
+<nav id="navbar" class="navbar navbar-expand-md navbar-dark">
+    <a class="navbar-brand" href="/">{{ site.title }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar-content">
+        <ul class="navbar-nav mr-auto no-style">
+            {% include _includes/navbar/navbar-item.html title="Accueil" href="/" icon="home" path="pages/index.html" %}
+            {% include _includes/navbar/navbar-item.html title="Liste des cours" href="/cours/" icon="bookmark" path="lessons/indexes/levels-index.html" %}
+            {% include _includes/navbar/navbar-item.html title="À propos" href="/a-propos/" icon="graduation-cap" path="pages/about.html" %}
+        </ul>
+        <ul class="navbar-nav no-style">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbar-lesson-access" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-tag" aria-hidden="true"></i> Accès direct à un cours
+                </a>
+                <div class="dropdown-menu dropdown-menu-right pt-0" aria-labelledby="navbar-lesson-access">
+                    <form action="/recherche/" method="get">
+                        <input type="search" class="form-control" name="keywords" placeholder="Chercher un cours..." data-list="Index des cours" data-autofirst="true"/>
+                    </form>
+
+                    {% include _includes/navbar/dropdown-level.html level='premiere' %}
+                    {% include _includes/navbar/dropdown-level.html level='terminale' %}
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script>
+    let searchInput = $('#navbar input');
+    searchInput.keyup(handleChange);
+    searchInput.on('search', handleChange);
+
+    function handleChange() {
+        let items = $('.lesson-item');
+        let value = $(this).val();
+        if(typeof value === 'undefined') {
+            value = '';
+        }
+
+        value = value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, '');
+        items.each(function() {
+            let item = $(this);
+            if(item.attr('data-search').indexOf(value) === -1) {
+                item.addClass('d-none');
+            }
+            else {
+                item.removeClass('d-none');
+            }
+        });
+
+        $('#navbar .dropdown-header').each(function() {
+            let header = $(this);
+            if(header.attr('data-size') - $('.lesson-item[data-level="' + header.attr('data-level') + '"].d-none').length === 0) {
+                header.addClass('d-none');
+            }
+            else {
+                header.removeClass('d-none')
+            }
+        });
+    }
+</script>

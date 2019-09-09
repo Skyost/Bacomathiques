@@ -1,0 +1,229 @@
+---
+permalink: "/cours/terminale/matrices/resume/"
+sitemap: false
+redirect_from: "/cours/matrices/resume/"
+---
+
+<section>
+
+	<h2>Les matrices</h2>
+
+	<section>
+		
+		<p>Soient $m$ et $n$ deux entiers non nuls. Une matrice $A$ de taille $(m;n)$ est un tableau de réels tel que :</p>
+		
+		<div class="formula">
+			<p>$\displaystyle{A = \begin{pmatrix}a_{1,1} & a_{1,2} & \text{...} & a_{1,n} \cr a_{2,1} & a_{2,2} & \text{...} & a_{2,n} \cr \vdots & \vdots & \ddots & \vdots \cr a_{m,1} & a_{m,2} & \text{...} & a_{m,n}\end{pmatrix}}$</p>
+			<p>Avec $a_{1,1}$, $a_{1,2}$, $a_{2,1}$, ..., $a_{m,n}$ coefficients réels de la matrice.</p>
+		</div>
+		
+		<p>Selon leur taille, on peut avoir différents types de matrices :</p>
+		
+		<ul class="formula">
+			<li>Une matrice $(1;n)$ est une <strong>matrice ligne</strong>.</li>
+			<li>Une matrice $(m;1)$ est une <strong>matrice colonne</strong>.</li>
+			<li>Une matrice $A$ de taille $(n;n)$ est une <strong>matrice carrée d'ordre $n$</strong>.</li>
+			<li>Une matrice $(m;n)$ dont tous les termes sont nuls est une <strong>matrice nulle</strong>.</li>
+			<li>Une matrice $(1;1)$ est un <strong>réel</strong>.</li>
+		</ul>
+		
+	</section>
+
+	<section>
+		
+		<p>Il existe différentes matrices carrées remarquables outre celles données ci-dessus :</p>
+		
+		<ul class="formula">
+			<li>Une matrice carrée dont tous les termes en dessous de la diagonale principale sont nuls est une <strong>matrice triangulaire supérieure</strong>.</li>
+			<li>Une matrice carrée dont tous les termes au-dessus de la diagonale principale sont nuls est une <strong>matrice triangulaire inférieure</strong>.</li>
+			<li>Si en plus les termes de la diagonale sont nuls, cette matrice est une <strong>matrice triangulaire inférieure stricte</strong> (ou <strong>matrice triangulaire supérieure stricte</strong>).</li>
+			<li>Une matrice carrée dont tous les termes qui ne sont pas sur la diagonale sont nuls est une <strong>matrice diagonale</strong>.</li>
+			<li>Une matrice carrée dont tous les termes qui ne sont pas sur la diagonale sont nuls et qui sont égaux à $1$ sur la diagonale est une <strong>matrice identité</strong>.</li>
+		</ul>
+		
+	</section>
+
+	<section>
+		
+		<p>Soient quatre réels $a$, $b$, $c$ et $d$ et deux autres réels $\alpha$ et $\beta$. Le système $\displaystyle{\begin{cases}ax + by = \alpha \cr cx + dy = \beta\end{cases}}$
+		d'inconnues $x$ et $y$ peut s'écrire matriciellement :</p>
+		
+		<p class="formula">$\displaystyle{\underbrace{\begin{pmatrix}a & b \cr c & d\end{pmatrix}}_{A} \underbrace{\begin{pmatrix}x \cr y\end{pmatrix}}_{X} = \underbrace{\begin{pmatrix}\alpha \cr \beta\end{pmatrix}}_{B}}$</p>
+		
+		<p>Avec les écritures données ci-dessus ($A$ la première matrice, $X$ la deuxième et $B$ la dernière), on la relation suivante :</p>
+		
+		<p class="formula">Si $A$ est inversible alors $AX = B$ admet une unique solution $X = A^{-1}B$.</p>
+		
+	</section>
+
+</section>
+
+<section>
+
+	<h2>Opérations</h2>
+
+	<section>
+
+		<p>Soient $A$ et $B$ deux matrices de même taille. La somme de ces deux matrices (notée $A+B$) est une matrice telle que :</p>
+
+		<p class="formula">
+			$A+B$ est la matrice de même taille dont les coefficients représentent la somme des coefficients de $A$
+			et des coefficients de $B$ qui ont les mêmes coordonnées.
+		</p>
+				
+	</section>
+
+	<section>
+		
+		<p>Soient $A$ une matrice et $\lambda$ un réel. Le produit de $A$ par $\lambda$ (noté $\lambda A$) est une matrice telle que :</p>
+		
+		<p class="formula">$\lambda A$ est la matrice de même taille que $A$ dont les coefficients sont tous multipliés par $\lambda$.</p>
+		
+		<p>Pour soustraire deux matrices, on multiple la deuxième par $-1$ puis on additionne la première avec la matrice obtenue.</p>
+		
+		<p>
+			Soient $A$ de taille $(m;n)$ et $B$ de taille $(n;p)$ deux matrices (dont le nombre de lignes de $A$ est égal au nombre de colonnes de $B$).
+			Le produit de ces deux matrices (notée $AB$) est une matrice telle que :
+		</p>
+		
+		<p class="formula">
+			$AB$ est la matrice de taille $(m;p)$ dont le coefficient à la position $(i;j)$ est égal au produit de la
+			$i$-ième ligne de $A$ par la $j$-ième colonne de $B$.
+		</p>
+		
+		<p>
+			En général $AB \neq BA$. De plus si $A$ et $B$ sont deux matrices diagonales,
+			leur produit est une matrice de même taille dont le coefficient à la position $(i;j)$ est égal au produit du coefficient à la position $(i,j)$
+			de $A$ par celui à la position $(i;j)$ de $B$. De plus, on aura $AB = BA$.
+		</p>
+		
+	</section>
+
+	<section>
+		
+		<p>Soit $A$ une matrice carrée d'ordre $n$ et $i$ un entier naturel :</p>
+		
+		<p class="formula">$\displaystyle{A^i = \underbrace{ A \times \text{ ... } \times A }_{i \text{ fois}} = A^{i-1} \times A}$</p>
+		
+		<p>De plus, si $i = 0$, on a :</p>
+		
+		<p class="formula">$A^i = A^0 = I_n$</p>
+		
+		<p>Et, si on pose $k$ entier, on a la relation suivante :</p>
+		
+		<p class="formula">$A^k \times A^i = A^{k+i}$</p>
+		
+		<p>
+			Si $A$ est une matrice diagonale, alors $A^i$ représente simplement une matrice de même taille avec tous les termes mis à la puissance $i$
+			(cela vaut aussi si $i = -1$).
+		</p>
+				
+	</section>
+
+	<section>
+
+		<p>Soit $A$ une matrice carrée d'ordre $n$. $A$ est dite inversible s'il existe une matrice $A^{-1}$ telle que :</p>
+		
+		<p class="formula">$A \times A^{-1} = A^{-1} \times A = I_n$</p>
+
+		<p>Si cette matrice existe, elle est unique et s'appelle <strong>inverse</strong> de $A$.</p>
+		
+	</section>
+
+	<section>
+		
+		<p>Soient trois matrices carrées $A$, $B$ et $C$ d'ordre $n$ et un réel $\lambda$, les égalités suivantes sont disponibles :</p>
+		
+		<ul class="formula">
+			<li>$A(BC) = (AB)C$ (associativité)</li>
+			<li>$A(B + C) = AB + AC$ (distributivité)</li>
+			<li>$AI_n = I_nA = A$</li>
+			<li>$A0_n = 0_nA = 0_n$</li>
+			<li>$\lambda (AB) = (\lambda A)B = A(\lambda B)$</li>
+		</ul>
+		
+	</section>
+
+</section>
+
+<section>
+		
+	<h2>Étude asymptotique d’une marche aléatoire</h2>
+	
+	<section>
+
+		<p>Soit $U_n$ une suite de matrices colonnes de taille $(m;1)$. On a la propriété suivante :</p>
+
+		<p class="formula">
+			$U_n$ converge vers une matrice $U$ si chacune des suites formées par les coefficients de $U_n$ convergent.
+			Les limites de ces suites forment alors les coefficients de $U$.
+		</p>
+
+		<p>
+			Soient $A$ une matrice carrée d'ordre $m$, $B$ et $U_0$ deux matrices colonnes de taille $(m;1)$.
+			Il existe une unique suite $U_n$ de matrices colonnes de taille $(m;1)$,
+			définie par son premier terme $U_0$ et par la relation de récurrence :
+		</p>
+
+		<p class="formula">$U_{n+1} = AU_n + B$</p>
+
+		<p>Si la suite $U_n$ converge, alors elle converge vers une matrice colonne $U$ de taille $(m;1)$ telle que :</p>
+
+		<p class="formula">$U = AU + B$</p>
+	
+	</section>
+
+	<section>
+
+		<ul class="formula">
+			<li>
+				Une <strong>marche aléatoire</strong> représente l'évolution d'un système qui, au cours du temps,
+				peut-être dans un certain nombre fini d'état.
+			</li>
+			<li>
+				Une <strong>matrice de transition</strong> est une matrice carrée dont le coefficient situé à la position $(i;j)$
+				est la probabilité que le système soit, à un instant, dans l'état $j$ sachant qu'il était dans l'état $i$ à l'instant précédent.
+			</li>
+			<li>
+				La <strong>matrice colonne des états de la marche aléatoire après $n$ étapes</strong> est la matrice colonne
+				dont les coefficients sont les probabilités que le système soit à l'état $i$ à l'instant $n$.
+			</li>
+		</ul>
+		
+	</section>
+
+	<section>
+
+		<p>
+			Soient une marche aléatoire qui admet une matrice de transition $T$ ainsi qu'une matrice colonne de ses états après $n$ étapes $P_n$.
+			On a alors la relation de récurrence suivante (voir exemple précédent pour plus d'explications) :
+		</p>
+
+		<p class="formula">$P_{n+1} = TP_n$</p>
+
+		<p>De plus, le terme général d'une telle suite de matrices est :</p>
+
+		<p class="formula">$P_{n} = T^nP_0$</p>
+		
+	</section>
+
+	<section>
+
+		<p>Une marche aléatoire qui admet une matrice de transition $T$ ainsi qu'une matrice colonne de ses états après $n$ étapes $P_n$ converge si :</p>
+
+		<p class="formula">$P_n$ converge vers une matrice $P$. Si $P$ existe, elle est appelée <strong>état stable</strong> de la marche aléatoire.</p>
+
+		<p>Si $P_n$ converge vers $P$, alors l'équation suivante doit être vérifiée :</p>
+
+		<p class="formula">$P = TP$</p>
+
+		<p>
+			Si la marche aléatoire n'a que deux états et que $T$ ne comporte pas de $0$, alors cette marche aléatoire converge vers
+			un état stable unique $P = \begin{pmatrix} a & b \end{pmatrix}$ tel que :
+		</p>
+
+		<p class="formula">$P = TP$ avec $a + b = 1$.</p>
+	
+	</section>
+		
+</section>

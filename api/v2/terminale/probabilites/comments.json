@@ -1,0 +1,6 @@
+---
+layout: api_file
+permalink: "/api/v2/terminale/probabilites/comments/"
+sitemap: false
+---
+{% include _includes/api/v2/lessons/comments/comments.json lesson='probabilites' level='terminale' %}

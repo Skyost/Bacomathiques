@@ -1,0 +1,433 @@
+---
+layout: lesson
+lesson: "probabilites"
+level: "terminale"
+permalink: "/cours/terminale/probabilites/"
+redirect_from:
+  - "/cours/probabilites.html"
+  - "/cours/probabilites/"
+js:
+  - "/assets/js/lessons/terminale/probabilites.js"
+---
+<section>
+
+	<h2>Lois de probabilité discrètes</h2>
+
+	<section>
+		
+		<h3>Probabilités conditionnelles</h3>
+
+		<p>
+			Soient $A$ et $B$ deux événements avec $A$ de probabilité non nulle.
+			Alors la probabilité conditionnelle de <strong>$B$ sachant que $A$ est réalisé</strong> est :
+		</p>
+		
+		<p class="formula">$\displaystyle{p_{A}(B) = \frac{p(A \cap B)}{p(A)}}$</p>
+		
+		<div class="tip">
+			<p>En réalité, lorsque l'on dessine un arbre de probabilité (vu en classe de Première), $p_{A}(B)$ se lit sur les branches de l'arbre :</p>
+			
+			<img src="/assets/img/lessons/terminale/probabilites/arbre.svg" title="Arbre de probabilité" alt="Arbre de probabilité"/>
+			
+			<p>Ici, on a $p_{A}(B) = \frac{1}{4}$.</p>
+		</div>
+		
+		<p>
+			Deux événements $A$ et $B$ sont dits <strong>indépendants</strong> si la réalisation de l'un
+			n'a aucune incidence sur la réalisation de l'autre et réciproquement. C'est-à-dire :
+		</p>
+		
+		<p class="formula">$p(A \cap B) = p(A) \times p(B)$</p>
+		
+		<p>Pour deux événements indépendants $A$ et $B$, on a les relations suivantes :</p>
+		
+		<ul class="formula">
+			<li>$p_{A}(B) = p(B)$</li>
+			<li>$p_{B}(A) = p(A)$</li>
+		</ul>
+		
+	</section>
+
+	<section>
+		
+		<h3>Formule des probabilités totales</h3>
+
+		<p>Soient $A_1, A_2, ..., A_n$ des événements qui partitionnent (qui recouvrent) l'univers $\Omega$, alors pour tout événement $B$ :</p>
+		
+		<p class="formula">$p(B) = p(B \cap A_1) + p(B \cap A_2) + \text{ ... } + p(B \cap A_n)$</p>
+		
+		<div class="tip">
+			<p>
+				En reprenant l'arbre précédent, comme $A$ et $\bar{A}$ recouvrent notre univers
+				(en effet, soit on tombe sur $A$, soit on tombe sur $\bar{A}$ : pas d'autre choix possible), calculons $p(B)$ :
+			</p>
+
+			<p>
+				<img src="/assets/img/lessons/terminale/probabilites/arbre.svg" title="Arbre de probabilité" alt="Arbre de probabilité"/>
+			</p>
+
+			<p>D'après la formule des probabilités totales, $p(B) = p(B \cap A) + p(B \cap \bar{A}) = \frac{107}{252}$.</p>
+		</div>
+		
+	</section>
+
+	<section>
+		
+		<h3>Variables aléatoires</h3>
+
+		<p>
+			Une <strong>variable aléatoire</strong> $X$ est une fonction qui,
+			à chaque événement élémentaire de l'univers $\Omega$ y associe un nombre réel.
+			C'est-à-dire : $X : \Omega \rightarrow \mathbb{R}$. L'ensemble des valeurs prises par $X$ est noté $X(\Omega)$.
+		</p>
+		
+		<p>
+			La <strong>loi de probabilité</strong> de $X$ attribue à chaque valeur $x_i$ la probabilité $p_i = p(X = x_i)$
+			de l'événement $X = x_i$ constitué de tous les événements élémentaires dont l'image par $X$ est $x_i$.
+			Cette loi est généralement représentée dans un tableau :
+		</p>
+		
+		<div class="formula">
+			<div class="table-responsive-md">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>$x_i$</th>
+							<th>$x_1$</th>
+							<th>$x_2$</th>
+							<th>...</th>
+							<th>$x_n$</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>$p(X = x_i)$</td>
+							<td>$p(X = x_1)$</td>
+							<td>$p(X = x_2)$</td>
+							<td>...</td>
+							<td>$p(X = x_n)$</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<p>On a $p(X = x_1) + p(X = x_2) + \text{ ... } + p(X = x_n) = 1$.</p>
+		</div>
+		
+		<p>L'<strong>espérance</strong> $E(X)$ de la variable aléatoire $X$ est un réel :</p>
+		
+		<p class="formula">$E(X) = x_1 \times p_1 + x_2 \times p_2 + \text{ ... } + x_n \times p_n$</p>
+		
+		<p>La <strong>variance</strong> $V(X)$ et l'<strong>écart-type</strong> $\sigma(X)$ de la variable aléatoire $X$ sont les réels positifs :</p>
+		
+		<ul class="formula">
+			<li>$V(X) = E(X^2) - E(X)^2$</li>
+			<li>$\sigma(X) = \sqrt{V(X)}$</li>
+		</ul>
+		
+		<div class="tip">
+			<p>
+				<strong>Exemple :</strong> Calcul de l'espérance, de la variance et de l'écart-type.
+				Soit $X$ une variable aléatoire suivant la loi de probabilité donnée par le tableau ci-dessous :
+			</p>
+			
+			<div class="table-responsive-md">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>$x_i$</th>
+							<th>$-1$</th>
+							<th>$0$</th>
+							<th>$2$</th>
+							<th>$6$</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>$p(X = x_i)$</td>
+							<td>$\frac{1}{4}$</td>
+							<td>$\frac{1}{2}$</td>
+							<td>$\frac{1}{8}$</td>
+							<td>$\frac{1}{8}$</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<p>On a :</p>
+			
+			<ul>
+				<li>$E(X) = -1 \times \frac{1}{4} + 0 \times \frac{1}{2} + 2 \times \frac{1}{8} + 6 \times \frac{1}{8} = \frac{3}{4}$</li>
+				<li>$V(X) = ((-1)^2 \times \frac{1}{4} + 0^2 \times \frac{1}{2} + 2^2 \times \frac{1}{8} + 6^2 \times \frac{1}{8}) - (\frac{3}{4})^2 = \frac{75}{16}$</li>
+				<li>$\sigma(X) = \sqrt{\frac{75}{16}} \approx 2.165$</li>
+			</ul>
+		</div>
+
+		<p>Chacun de ces paramètres a une utilité précise :</p>
+
+		<ul class="formula">
+			<li>L'espérance est la <strong>valeur moyenne</strong> prise par $X$.</li>
+			<li>
+				La variance et l'écart-type mesurent la <strong>dispersion</strong> des valeurs prises par $X$.
+				Plus ces valeurs sont grandes, plus les valeurs sont dispersées autour de l'espérance.
+			</li>
+		</ul>
+		
+	</section>
+
+	<section>
+		
+		<h3>Épreuve et loi de Bernoulli</h3>
+
+		<p>
+			Soit $p \in \mathbb{R}$ compris entre $0$ et $1$.
+			Une <strong>épreuve de Bernoulli</strong> de paramètre $p$ est une expérience aléatoire ne présentant que deux issues possibles :
+		</p>
+		
+		<ul class="formula">
+			<li><strong>Succès</strong>, obtenu avec la probabilité $p$.</li>
+			<li><strong>Échec</strong>, obtenu avec la probabilité $1-p$.</li>
+		</ul>
+		
+		<p>Une variable aléatoire $X$ suit la loi de Bernoulli de paramètre $p$ si :</p>
+		
+		<ul class="formula">
+			<li>$X(\Omega) = {% raw %}\{0; 1\}{% endraw %}$</li>
+			<li>$p(X = 1) = p$ et $p(X = 0) = 1-p$</li>
+			<li><strong>Remarque :</strong> On voit que $0$ correspond à l'échec et que $1$ correspond au succès.</li>
+		</ul>
+		
+		<p>Si $X$ suit la loi de Bernoulli de paramètre $p$, on a les propriétés suivantes :</p>
+		
+		<ul class="formula">
+			<li>$E(X) = p$</li>
+			<li>$V(X) = p(1-p)$</li>
+		</ul>
+		
+	</section>
+
+	<section>
+		
+		<h3>Loi binomiale</h3>
+
+		<p>
+			On répète $n$ épreuves de Bernoulli identiques et indépendantes. On note $p$ la probabilité de succès à chaque épreuve et
+			$X$ la variable aléatoire égale au nombre de succès au cours de ces $n$ épreuves.
+		</p>
+		
+		<p>
+			La loi de probabilité de $X$ est appelée <strong>loi binomiale</strong>
+			de paramètres $n$ et $p$ et est notée $\operatorname{B}(n; p)$.
+		</p>
+		
+		<p>Ainsi, pour $X$ variable aléatoire suivant une loi binomiale de paramètres $n$ et $p$, on a :</p>
+		
+		<ul class="formula">
+			<li>
+				$\displaystyle{p(X = k) = \binom{n}{k}p^k(1-p)^{n-k}}$
+				pour tout $0 \leq k \leq n$, avec $\displaystyle{\binom{n}{k}}$ coefficient binomial (se lit $k$ parmi $n$)
+			</li>
+			<li>$E(X) = n \times p$</li>
+			<li>$V(X) = np(1-p)$</li>
+		</ul>
+		
+	</section>
+
+</section>
+
+<section>
+
+	<h2>Lois de probabilités continues</h2>
+	
+	<section>
+	
+		<h3>Différence discret / continu</h3>
+
+		<p>
+			Une variable aléatoire est dite <strong>discrète</strong> s'il est possible d'énumérer le nombre de valeurs prises par cette variable.
+			Dès lors qu'une variable aléatoire peut prendre comme valeur tous les nombres réels d'un certain intervalle de $\mathbb{R}$,
+			il devient impossible de compter le nombre de valeurs prises
+			par cette variable et on parle alors de variable aléatoire <strong>continue</strong>.
+		</p>
+	
+	</section>
+
+	<section>
+	
+		<h3>Densité de probabilité</h3>
+
+		<p>
+			Soit $f : \mathbb{R} \rightarrow \mathbb{R}$,
+			$f$ est une <strong>fonction densité de probabilité</strong> si les conditions suivantes sont respectées :
+		</p>
+		
+		<ul class="formula">
+			<li>$f$ est positive sur $\mathbb{R}$.</li>
+			<li>$f$ est continue sur $\mathbb{R}$ (sauf peut-être en certains points).</li>
+			<li>L'aire du domaine délimitée par la courbe représentative de $f$ et l'axe des abscisses est égale à 1.</li>
+		</ul>
+		
+		<span id="representation-1" class="plot"></span>
+		
+		<p>Soient $X$ une variable aléatoire admettant une densité de probabilité et $a$ et $b$ deux réels tels que $a \leq b$, alors on a :</p>
+		
+		<ul class="formula">
+			<li>$p(X \in [a;b]) = p(X \in [a;b[) = p(X \in ]a;b]) = p(X \in ]a;b[)$</li>
+			<li>$p(X = a) = 0$</li>
+			<li>$p(a \leq X \leq b) = p(X \leq b) - p(X \leq a)$</li>
+			<li>$p(X \leq a) + p(X \gt a) = 1$</li>
+		</ul>
+		
+		<p>On peut calculer l'espérance d'une variable aléatoire $X$ de densité $f$ sur un intervalle $[a;b]$ :</p>
+		
+		<p class="formula">$\displaystyle{E(X) = \int_{a}^{b} xf(x) \, \mathrm{d}x}$</p>
+		
+		<p>On peut également calculer sa variance :</p>
+		
+		<p class="formula">$\displaystyle{V(X) = E(X^2) - E(X)^2 = \int_{a}^{b} x^2f(x) \, \mathrm{d}x}$</p>
+		
+	</section>
+
+	<section>
+	
+		<h3>Loi uniforme</h3>
+
+		<p>
+			Une variable aléatoire $X$ suit la loi uniforme sur $[a;b]$ (avec $a$ et $b$ réels tels que $a \lt b$)
+			si elle admet pour densité la fonction $f$ définie sur $[a;b]$ par :
+		</p>
+		
+		<p class="formula">$f(x) = \begin{cases} \frac{1}{b-a} \text{ si } x \in [a;b] \\ 0 \text{ sinon} \end{cases}$</p>
+		
+		<span id="representation-2" class="plot"></span>
+		
+		<p>Si $X$ suit la loi uniforme énoncée précédemment, alors :</p>
+		
+		<p class="formula">
+			$\displaystyle{p(c \leq X \leq d) = \int_{d}^{c} \frac{1}{b-a} \, \mathrm{d}x = \frac{d-c}{b-a}}$
+			avec $c$ et $d$ réels tels que $a \leq c \leq d \leq b$
+		</p>
+		
+		<p>L'espérance de cette loi uniforme est :</p>
+		
+		<p class="formula">$\displaystyle{E(X) = \frac{a+b}{2}}$</p>
+		
+		<p>Sa variance est :</p>
+		
+		<p class="formula">$\displaystyle{V(X) = \frac{(b-a)^2}{12}}$</p>
+	
+	</section>
+
+	<section>
+	
+		<h3>Loi exponentielle</h3>
+
+		<p>
+			Une variable aléatoire $X$ suit <strong>la loi exponentielle</strong> (ou loi de durée de vie sans vieillissement)
+			de paramètre $\lambda$ (avec $\lambda$ réel et positif) si elle admet pour densité la fonction $f$ définie sur $\mathbb{R}$ par :
+		</p>
+		
+		<p class="formula">$f(x) = \begin{cases} 0 \text{ si } x \lt 0 \\ \lambda e^{-\lambda x} \text{ si } x \geq 0 \end{cases}$</p>
+		
+		<span id="representation-3" class="plot"></span>
+		
+		<p>Si $X$ suit la loi exponentielle énoncée précédemment, alors :</p>
+		
+		<p class="formula">$\displaystyle{p(a \leq X \leq b) = \int_{a}^{b} \lambda e^{-\lambda x} \, \mathrm{d}x}$ avec $a$ et $b$ réels tels que $a \leq b$</p>
+		
+		<p>Les propriétés suivantes sont par conséquent disponibles :</p>
+		
+		<ul class="formula">
+			<li>$\displaystyle{p(X \leq a) = \int_{0}^{a} \lambda e^{-\lambda x} \, \mathrm{d}x = 1 - e^{-\lambda a}}$</li>
+			<li>$p(X \gt a) = 1 - p(X \leq a) = e^{-\lambda a}$</li>
+		</ul>
+		
+		<p>L'espérance de cette loi exponentielle est :</p>
+		
+		<p class="formula">$\displaystyle{E(X) = \frac{1}{\lambda}}$</p>
+		
+		<p>Sa variance est :</p>
+		
+		<p class="formula">$\displaystyle{V(X) = \frac{1}{\lambda^2}}$</p>
+		
+		<p>La loi exponentielle de paramètre $\lambda$ est dite <strong>"sans vieillissement"</strong> :</p>
+		
+		<p class="formula">$p_{X > T}(X > T + t) = p(X > t)$ avec $T$ et $t$ réels positifs</p>
+		
+		<p>Ceci montre que $X$ peut avoir vécu pendant $t$ heures (ou autre unité de temps), cela ne modifiera pas son espérance de vie à partir du temps $t$.</p>
+	
+	</section>
+
+	<section>
+	
+		<h3>Loi normale</h3>
+
+		<p>
+			Une variable aléatoire $X$ suit <strong>la loi normale</strong> de paramètres $\mu$, $\sigma$ avec $\mu \in \mathbb{R}$
+			et $\sigma \in \mathbb{R}^{+}_{*}$ (notée $\mathcal{N}(\mu; \sigma^2)$) si elle admet pour densité la fonction $f$ définie sur $\mathbb{R}$ par :
+		</p>
+		
+		<p class="formula">$\displaystyle{f(x) = \frac{1}{\sqrt{2\pi}\sigma}} e^{\frac{-(x - \mu)^2}{2\sigma^2}}$</p>
+		
+		<span id="representation-5" class="plot"></span>
+		
+		<p>Si $X$ suit la loi normale énoncée précédemment, alors on a les valeurs remarquables suivantes :</p>
+		
+		<ul class="formula">
+			<li>$p(\mu - \sigma \leq X \leq \mu + \sigma) \approx 0,683$</li>
+			<li>$p(\mu - 2\sigma \leq X \leq \mu + 2\sigma) \approx 0,954$</li>
+			<li>$p(\mu - 3\sigma \leq X \leq \mu + 3\sigma) \approx 0,997$</li>
+		</ul>
+		
+		<p>L'espérance $E(X)$ et la variance $V(X)$ de cette loi normale sont :</p>
+		
+		<ul class="formula">
+			<li>$E(X) = \mu$</li>
+			<li>$V(X) = \sigma^2$</li>
+		</ul>
+		
+		<p>
+			La fonction densité de probabilité de la loi normale n'admet pas de primitive avec les moyens usuels.
+			Il faut donc utiliser la calculatrice pour déterminer les probabilités d'événements.
+		</p>
+			
+	</section>
+
+	<section>
+	
+		<h3>Loi normale centrée réduite</h3>
+
+		<p>Un cas particulier de la loi normale est <strong>la loi normale centrée réduite</strong>.</p>
+		<p>Ainsi, une variable aléatoire $X$ suit la loi normale centrée réduite (notée $\mathcal{N}(0;1)$) si elle admet pour densité la fonction $f$ définie sur $\mathbb{R}$ par :</p>
+		
+		<div class="formula">
+			<p>$\displaystyle{f(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}}$</p>
+			<p>Autrement dit, $X$ suit la loi normale centrée réduite si et seulement si $X$ suit la loi normale de paramètres $\mu = 0$ et $\sigma = 1$.</p>
+		</div>
+		
+		<span id="representation-4" class="plot"></span>
+		
+		<p>Si $X$ suit la loi normale centrée réduite, alors pour tout réel $\alpha \in [0;1]$ il existe $u_{\alpha}$ tel que :</p>
+		
+		<div class="formula">
+			<p>$p(-u_{\alpha} \leq X \leq u_{\alpha}) = 1-\alpha$</p>
+			
+			<p><strong>Valeurs particulières :</strong></p>
+			<ul>
+				<li>$u_{0,05} \approx 1,959$</li>
+				<li>$u_{0,01} \approx 2,575$</li>
+			</ul>
+		</div>
+		
+		<p>L'espérance $E(X)$, la variance $V(X)$ et l'écart-type $\sigma(X)$ de la loi normale centrée réduite sont :</p>
+		
+		<ul class="formula">
+			<li>$E(X) = 0$</li>
+			<li>$V(X) = \sigma(X) = 1$</li>
+		</ul>
+		
+		<p>Comme pour la loi normale, il faudra utiliser la calculatrice pour déterminer les probabilités d'événements.</p>
+	
+	</section>
+
+</section>
