@@ -1,7 +1,7 @@
 {% if site.comments.moderators contains comment.author %}
     {% assign avatar = site.comments.moderators[comment.author] %}
 {% else %}
-    {% assign avatar = https://api.adorable.io/avatars/128/ | append: include.comment.author | append: '.png' %}
+    {% assign avatar = 'https://api.adorable.io/avatars/128/' | append: include.comment.author | append: '.png' %}
 {% endif %}
 
 {
@@ -9,8 +9,8 @@
     "author": {
         "name": {{ include.comment.author | jsonify }},
         "avatar": {{ avatar | jsonify }},
-        "isModerator": {% if site.comments.moderators contains include.comment.author %}true{% else %}false{% endif %},
-        "message": {{ include.comment.message | jsonify }},
-        "date": {{ include.comment.date | jsonify }}
-    }
+        "isModerator": {% if site.comments.moderators contains include.comment.author %}{{ true | jsonify }}{% else %}{{ false | jsonify }}{% endif %},
+    },
+    "date": {{ include.comment.date | jsonify }},
+    "message": {{ include.comment.message | jsonify }}
 }

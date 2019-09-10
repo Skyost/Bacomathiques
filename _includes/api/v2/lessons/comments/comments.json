@@ -9,8 +9,8 @@
             {% include _includes/api/v2/lessons/comments/comment_field.json name='slug' type='options' %},
             {% include _includes/api/v2/lessons/comments/comment_field.json name='lesson' type='fields' %},
             {% include _includes/api/v2/lessons/comments/comment_field.json name='level' type='fields' %},
-            {% include _includes/api/v2/lessons/comments/comment_field.json name='client' type='fields' %}
-            {% include _includes/api/v2/lessons/comments/comment_field.json name='message' type='fields' %}
+            {% include _includes/api/v2/lessons/comments/comment_field.json name='client' type='fields' %},
+            {% include _includes/api/v2/lessons/comments/comment_field.json name='message' type='fields' %},
             {% include _includes/api/v2/lessons/comments/comment_field.json name='author' type='fields' %}
         ]
     },
