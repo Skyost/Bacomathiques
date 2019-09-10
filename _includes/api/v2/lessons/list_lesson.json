@@ -1,5 +1,5 @@
 {
     "lesson": {% include _includes/api/v2/lessons/lesson_info.json lesson=include.lesson %},
-    "preview": {{ '/assets/img/lessons/' | append: lesson.level | append: '/' | append: lesson.id | append: 'preview.jpg' | jsonify }},
+    "preview": {{ '/assets/img/lessons/' | append: lesson.level | append: '/' | append: lesson.id | append: '/' | append: 'preview.jpg' | jsonify }},
     "caption": {{ lesson.caption | jsonify }}, "excerpt": {{ lesson.excerpt | jsonify }}
 }
