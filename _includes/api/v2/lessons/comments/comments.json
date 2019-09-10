@@ -6,10 +6,10 @@
     "post": {
         "url" : {{ 'https://dev.staticman.net/v3/entry/github/Skyost/Bacomathiques/master/comments' | jsonify }},
         "fields": [
-            {% include _includes/api/v2/lessons/comments/comment_field.json name='slug' isOption=true type='hidden' %},
-            {% include _includes/api/v2/lessons/comments/comment_field.json name='lesson' isOption=false type='hidden' %},
-            {% include _includes/api/v2/lessons/comments/comment_field.json name='level' isOption=false type='hidden' %},
-            {% include _includes/api/v2/lessons/comments/comment_field.json name='client' isOption=false type='hidden' %}
+            {% include _includes/api/v2/lessons/comments/comment_field.json name='slug' type='options' %},
+            {% include _includes/api/v2/lessons/comments/comment_field.json name='lesson' type='fields' %},
+            {% include _includes/api/v2/lessons/comments/comment_field.json name='level' type='fields' %},
+            {% include _includes/api/v2/lessons/comments/comment_field.json name='client' type='fields' %}
         ]
     },
     "list": [

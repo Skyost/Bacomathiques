@@ -1,4 +1,4 @@
 {
-    "name": "{% if include.isOption %}options{% else %}fields{% endif %}[{{ include.name }}]",
+    "name": {{ include.name | jsonify }},
     "type": {{ include.type | jsonify }}
 }
