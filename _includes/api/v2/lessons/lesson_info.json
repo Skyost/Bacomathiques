@@ -9,6 +9,7 @@
     "level": {{ include.lesson.level | jsonify }},
     "title": {{ title | jsonify }},
     "chapter": {{ lesson.chapter | jsonify }},
+    "specialty": {{ lesson.specialty | jsonify }},
     "content": {{ lessonApiRoot | jsonify }},
     "comments": {{ lessonApiRoot | append: 'comments/' | jsonify }},
     "summary": {{ lessonApiRoot | append: 'summary/' | jsonify }}

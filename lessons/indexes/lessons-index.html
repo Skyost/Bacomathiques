@@ -8,7 +8,7 @@
 			{% assign lesson = data[1] %}
 			<div class="col-xs-12 col-md-6 col-lg-4">
 				<div class="card">
-					<div class="card-header d-flex align-items-center{% if lesson.title contains '(Spécialité)' %} specialty{% endif %}">
+					<div class="card-header d-flex align-items-center{% if lesson.specialty %} specialty{% endif %}">
 						<h2 class="w-100">{{ lesson.title }}</h2>
 					</div>
 					<div class="card-img">
