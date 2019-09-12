@@ -9,7 +9,7 @@
     "author": {
         "name": {{ include.comment.author | jsonify }},
         "avatar": {{ avatar | jsonify }},
-        "isModerator": {% if site.comments.moderators contains include.comment.author %}{{ true | jsonify }}{% else %}{{ false | jsonify }}{% endif %},
+        "isModerator": {% if site.comments.moderators contains include.comment.author %}{{ true | jsonify }}{% else %}{{ false | jsonify }}{% endif %}
     },
     "date": {{ include.comment.date | jsonify }},
     "message": {{ include.comment.message | jsonify }}
