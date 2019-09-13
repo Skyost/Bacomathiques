@@ -1,7 +1,7 @@
 <div class="text-right no-print">
 	<ul id="export" class="no-style">
 		<li id="export-summary" title="Fiche résumée"></li>
-		<li id="export-pdf" title="Exporter en PDF" data-pdf="{{ '/assets/pdf/cours/' | append: lesson.level | append: '/' | append: lesson.title | replace: 'É', 'E' | replace: 'é', 'e' | replace: 'ô', 'o' | append: '.pdf' }}"></li>
+		<li id="export-pdf" title="Exporter en PDF" data-pdf="{{ '/assets/pdf/cours/' | append: lesson.level | append: '/' | append: lesson.title | replace: '–', '-' | replace: 'É', 'E' | replace: 'é', 'e' | replace: 'ô', 'o' | append: '.pdf' }}"></li>
 		<li id="export-print" title="Imprimer"></li>
 		<li id="export-social" title="Partager" data-toggle="modal" data-target="#modal-social"></li>
 		<li id="export-caveats" title="Apporter une correction" data-toggle="modal" data-target="#modal-caveats"></li>
