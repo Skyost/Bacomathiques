@@ -3,12 +3,6 @@
 {% assign data = site.data.annals[year][id] %}
 {% assign baseLink = '/assets/pdf/annales/' | append: year | append: '/' | append: id | append: '/' %}
 
-{% if annal.specific %}
-    {% assign baseLink = baseLink | append: 'specifique/' %}
-{% else %}
-    {% assign baseLink = baseLink | append: 'specialite/' %}
-{% endif %}
-
 {
     "id": {{ id | jsonify }},
     "name": {{ data.name | jsonify }},

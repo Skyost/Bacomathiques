@@ -22,7 +22,7 @@ $(document).ready(function () {
             goToHash(undefined, decodeURI(window.location.hash));
         }
 
-        $('a[href*=\\#]').on('click', function (event) {
+        $('a[href*=\\#]').click(function (event) {
             goToHash(event, decodeURI(this.hash));
         });
 
