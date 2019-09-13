@@ -12,7 +12,7 @@
 {
     "id": {{ id | jsonify }},
     "name": {{ data.name | jsonify }},
-    "year": {{ year | jsonify }},
+    "year": {{ year | plus: 0 | jsonify }},
     "specific": {{ data.specific | jsonify }},
     "subject": {{ baseLink | append: 'enonce.pdf' | jsonify }},
     "correction": {{ baseLink | append: 'correction.pdf' | jsonify }}
