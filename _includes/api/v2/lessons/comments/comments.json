@@ -16,7 +16,7 @@
     },
     "list": [
         {% if site.data.comments != null %}
-            {% assign comments_hashes = site.data.comments | sort | where_exp: 'comment_hash', 'comment_hash[1].lesson == lesson.id' %}
+            {% assign comments_hashes = site.data.comments | sort | where_exp: 'comment_hash', 'comment_hash[1].level == lesson.level' | where_exp: 'comment_hash', 'comment_hash[1].lesson == lesson.id' %}
             {% for comment_hash in comments_hashes reversed %}
                 {% assign comment = comment_hash[1] %}
                 {% include _includes/api/v2/lessons/comments/comment.json comment=comment %}
