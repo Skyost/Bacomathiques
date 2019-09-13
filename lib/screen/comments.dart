@@ -1,34 +1,34 @@
+import 'package:bacomathiques/app/api/comments.dart';
+import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/app.dart';
-import 'package:bacomathiques/app/lesson.dart';
 import 'package:bacomathiques/util/util.dart';
 import 'package:flutter/material.dart';
 
-/// comments home screen, where previews are shown.
-class CommentsScreen extends StatefulWidget {
-  /// The relative URL of comments.
-  final String _relativeURL;
+/// The comments screen, where previews are shown.
+class CommentsPage extends StatefulWidget {
+  /// The comments endpoint.
+  final APIEndpoint<LessonComments> endpoint;
 
   /// Creates a new comments screen instance.
-  CommentsScreen(this._relativeURL);
+  CommentsPage(this.endpoint);
 
   @override
-  _CommentsScreenState createState() => _CommentsScreenState(() => Comments.request(_relativeURL));
+  _CommentsPageState createState() => _CommentsPageState(endpoint);
 }
 
 /// The comments screen state.
-class _CommentsScreenState extends RequestScaffold<CommentsScreen, Comments> {
+class _CommentsPageState extends RequestScaffold<CommentsPage, LessonComments> {
   /// Creates a new home screen state instance.
-  _CommentsScreenState(Function() _requestObjectFunction) : super(_requestObjectFunction, 'Impossible de charger les commentaires de ce cours.');
-
-  @override
-  AppBar createAppBar(BuildContext context) => AppBar(
-        title: Text(object == null ? 'Chargement…' : object.title),
-        actions: object?.createActions(context),
-      );
+  _CommentsPageState(
+    APIEndpoint<LessonComments> endpoint,
+  ) : super(
+          endpoint: endpoint,
+          failMessage: 'Impossible de charger les commentaires de ce cours.',
+        );
 
   @override
   Widget createBody(BuildContext context) {
-    if (object.content.isEmpty) {
+    if (result.list.isEmpty) {
       return Padding(
         padding: EdgeInsets.symmetric(horizontal: 15),
         child: Center(
@@ -42,10 +42,9 @@ class _CommentsScreenState extends RequestScaffold<CommentsScreen, Comments> {
     }
 
     return ListView.builder(
-      semanticChildCount: object.content.length,
-      scrollDirection: Axis.vertical,
-      itemCount: object.content.length,
-      itemBuilder: (context, position) => _CommentWidget(object.content[position]),
+      semanticChildCount: result.list.length,
+      itemCount: result.list.length,
+      itemBuilder: (context, position) => _CommentWidget(result.list[position]),
     );
   }
 }
@@ -53,7 +52,7 @@ class _CommentsScreenState extends RequestScaffold<CommentsScreen, Comments> {
 /// A widget that allows to show a comment.
 class _CommentWidget extends StatelessWidget {
   /// The comment to show.
-  final Comment _comment;
+  final LessonComment _comment;
 
   /// Creates a new comment widget instance.
   _CommentWidget(this._comment);
@@ -127,7 +126,7 @@ class _CommentWidget extends StatelessWidget {
   Widget _createDateWidget(BuildContext context) => SizedBox(
         width: double.infinity,
         child: Text(
-          _dateToString(_comment.date),
+          _dateToString(DateTime.fromMillisecondsSinceEpoch(_comment.date * 1000)),
           textAlign: TextAlign.right,
           style: Theme.of(context).textTheme.body1.copyWith(
                 fontSize: 12,

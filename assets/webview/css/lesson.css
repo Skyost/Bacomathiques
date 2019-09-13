@@ -1,0 +1,152 @@
+* {
+    -webkit-user-select: none
+}
+body {
+    background-color: #fcfcfc;
+    padding: 5%;
+    overflow-x: hidden;
+    margin-bottom: {margin_bottom}px
+}
+.bubble{
+    position:relative;
+    display:block;
+    margin:14px 0 14px 0;
+    padding:18px;
+    border-width:0 0 0 7px;
+    border-style:solid;
+    page-break-inside:avoid;
+    overflow-x:scroll;
+    overflow-y:hidden;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    -o-border-radius:4px;
+    -ms-border-radius:4px;
+    border-radius:4px
+}
+.bubble table,.bubble .plot svg{
+    background-color:white
+}
+.bubble .highlight pre{
+    padding:10px
+}
+.bubble:before{
+    position:absolute;
+    display:none;
+    top:0;
+    left:0;
+    padding-right:6px;
+    color:white;
+    font-size:10px;
+    text-transform:uppercase;
+    -webkit-border-bottom-right-radius:4px;
+    -moz-border-bottom-right-radius:4px;
+    -o-border-bottom-right-radius:4px;
+    -ms-border-bottom-right-radius:4px;
+    border-bottom-right-radius:4px
+}
+.bubble:hover:before{
+    display:inline-block
+}
+ul.bubble,ol.bubble{
+    padding-left:28px
+}
+ol.bubble li{
+    margin-left:18px
+}
+.table-responsive-md{
+    overflow-y:hidden;
+    margin-bottom:16px
+}
+.table-responsive-md table{
+    margin-bottom:0
+}
+.formula{
+    border-color:#3498db;
+    background-color:#ebf3fb
+}
+.formula:before{
+    content:"À Connaître 💡";
+    background-color:#3498db
+}
+.tip{
+    border-color:#26a65b;
+    background-color:#dcf3d8
+}
+.tip:before{
+    content:"À Lire 👀";
+    background-color:#26a65b
+}
+.proof-content{
+    border-color:#f1c40f;
+    background-color:#fff8de
+}
+.proof-content:before{
+    content:"Démonstration 🧠";
+    background-color:#f1c40f
+}
+.formula>*:last-child,.tip>*:last-child,.proof-content>*:last-child,.formula>*:last-child *:last-child,.tip>*:last-child *:last-child,.proof-content>*:last-child *:last-child{
+    margin-bottom:0 !important
+}
+.formula ul li,ul.formula li,.tip ul li,ul.tip li,.proof-content ul li,ul.proof-content li,.formula ol li,ol.formula li,.tip ol li,ol.tip li,.proof-content ol li,ol.proof-content li{
+    margin-bottom:10px
+}
+.proof-label{
+    display:block;
+    text-align:right;
+    font-size:0.8em;
+    color:rgba(0,0,0,0.75);
+    cursor:pointer;
+    margin-bottom:14px
+}
+.plot img{
+    display:block;
+    margin:auto;
+    margin-bottom:21px;
+    border:1px solid rgba(0,0,0,0.075);
+    max-width:100%
+}
+h2,#comments h2{
+    color:#1c567d;
+    font-size:2em;
+    padding:15px 0 5px 0;
+    border-bottom:1px solid rgba(0,0,0,0.1);
+    page-break-after:avoid
+}
+h1{
+    padding-top:20px;
+    text-align:center;
+    color:#912c21;
+    font-size:2.5em
+}
+@media (max-width: 767px){
+    h1{
+        padding-top:0;
+        margin-top:60px;
+        margin-bottom:60px
+    }
+}
+h2{
+    margin:20px 0 30px 0
+}
+h3{
+    color:#2980b9;
+    font-size:1.5em;
+    margin:20px 0;
+    page-break-after:avoid
+}
+table{
+    page-break-inside:avoid
+}
+article>section>p:nth-child(2){
+    margin-top:30px
+}
+.math-table img{
+    background-color:white;
+    min-width:40%
+}
+.anchorjs-link {
+    display: none
+}
+.MathJax {
+	outline-width: 0
+}

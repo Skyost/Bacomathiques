@@ -1,4 +1,7 @@
-import 'package:bacomathiques/app/lesson.dart';
+import 'dart:convert';
+
+import 'package:bacomathiques/app/api/common.dart';
+import 'package:bacomathiques/app/api/content.dart';
 import 'package:bacomathiques/main.dart';
 import 'package:bacomathiques/util/server.dart';
 import 'package:bacomathiques/util/util.dart';
@@ -7,30 +10,32 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 /// A screen that is able to display some HTML content.
-class HTMLScreen extends StatefulWidget {
-  /// The relative URL to display.
-  final String _relativeURL;
-
-  /// The function that is able to request objects from the given URL.
-  final Function(String) _requestObjectFunction;
+class HTMLPage extends StatefulWidget {
+  /// The endpoint to display.
+  final APIEndpoint<APIEndpointResultHTML> _endpoint;
 
   /// The current anchor.
   final String _anchor;
 
   /// Creates a new HTML screen instance.
-  HTMLScreen(this._relativeURL, this._requestObjectFunction, this._anchor);
+  HTMLPage(this._endpoint, this._anchor);
 
   @override
-  State<StatefulWidget> createState() => HTMLScreenState(() => _requestObjectFunction(_relativeURL));
+  State<StatefulWidget> createState() => HTMLPageState(_endpoint);
 }
 
 /// State of HTML screens.
-class HTMLScreenState extends RequestScaffold<HTMLScreen, APIObject> {
+class HTMLPageState extends RequestScaffold<HTMLPage, APIEndpointResultHTML> {
   /// The banner ad.
   BannerAd _ad;
 
   /// Creates a new HTML screen state instance.
-  HTMLScreenState(Function() _requestObjectFunction) : super(_requestObjectFunction, 'Impossible de charger ce contenu et aucune sauvegarde n\'est disponible.');
+  HTMLPageState(
+    APIEndpoint<APIEndpointResultHTML> endpoint,
+  ) : super(
+          endpoint: endpoint,
+          failMessage: 'Impossible de charger ce contenu et aucune sauvegarde n\'est disponible.',
+        );
 
   @override
   void initState() {
@@ -43,33 +48,29 @@ class HTMLScreenState extends RequestScaffold<HTMLScreen, APIObject> {
   }
 
   @override
-  AppBar createAppBar(BuildContext context) => AppBar(
-        title: Text(object == null ? 'Chargement…' : object.title),
-        actions: object?.createActions(context),
-      );
-
-  @override
   Widget createBody(BuildContext context) => WebView(
         initialUrl: "http://localhost:$LOCAL_SERVER_PORT/assets/webview/content.html",
         javascriptMode: JavascriptMode.unrestricted,
+        javascriptChannels: [
+          JavascriptChannel(
+            name: 'Navigation',
+            onMessageReceived: (message) {
+              Map<String, dynamic> object = json.decode(message.message);
+              Navigator.pushReplacementNamed(
+                context,
+                '/html',
+                arguments: {
+                  'endpoint': LessonContentEndpoint.fromLevelAndLesson(
+                    level: object['level'],
+                    lesson: object['lesson'],
+                  ),
+                  'anchor': object['hash'],
+                },
+              );
+            },
+          )
+        ].toSet(),
         navigationDelegate: (navigation) {
-          if (navigation.url.startsWith("http://localhost:$LOCAL_SERVER_PORT/") && !navigation.url.contains('/webview/') && (navigation.url.contains('/#') || navigation.url.endsWith('/'))) {
-            final List<String> parts = navigation.url.split("/#");
-
-            final String id = parts[0].replaceAll("http://localhost:$LOCAL_SERVER_PORT/assets", '').replaceAll('/', '').replaceAll('-', '_');
-            Map<String, dynamic> arguments = {
-              'relativeURL': APIObject.API_PATH.substring(APIObject.WEBSITE.length) + 'content/' + id + '.json',
-              'requestObjectFunction': Lesson.request,
-            };
-            if (parts.length > 1) {
-              arguments['anchor'] = parts[1];
-            }
-
-            _disposeAd();
-            Navigator.pop(context);
-            Navigator.pushNamed(context, '/html', arguments: arguments);
-            return NavigationDecision.prevent;
-          }
           if (navigation.url.startsWith('http') && !navigation.url.startsWith("http://localhost:$LOCAL_SERVER_PORT/")) {
             openURL(navigation.url);
             return NavigationDecision.prevent;
@@ -86,27 +87,29 @@ class HTMLScreenState extends RequestScaffold<HTMLScreen, APIObject> {
 
   /// Disposes the ad.
   Future<void> _disposeAd() async {
-    if (_ad != null) {
-      await _ad.dispose();
-    }
+    try {
+      if (_ad != null) {
+        await _ad.dispose();
+      }
+    } catch (ignored) {}
   }
 
   @override
-  void updateObject(APIObject object) {
+  void updateObject(APIEndpointResultHTML result) {
     localServer.formatArguments = {
       'assets/webview/content.html': [
-        FormatArgument('content', object.content),
+        FormatArgument('content', result.html),
       ],
-      'assets/webview/script.js': [
-        FormatArgument('base_url', APIObject.WEBSITE),
-        FormatArgument('page_id', object.id),
+      'assets/webview/js/lesson.js': [
+        FormatArgument('base_url', API.BASE_URL),
+        FormatArgument('page_id', result.id.replaceAll('-', '_')),
         FormatArgument('anchor', widget._anchor ?? ''),
       ],
-      'assets/webview/style.css': [
+      'assets/webview/css/lesson.css': [
         FormatArgument('margin_bottom', (adMob.isEnabled() ? 60 : 0).toString()),
       ]
     };
-    super.updateObject(object);
+    super.updateObject(result);
   }
 
   /// Shows the ad banner.

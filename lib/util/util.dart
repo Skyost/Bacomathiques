@@ -1,11 +1,10 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/app.dart';
 import 'package:bacomathiques/app/dialogs.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:localstorage/localstorage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// The app store page.
@@ -25,22 +24,6 @@ void openURL(String url) async {
   }
 }
 
-/// Gets the content from the specified url and saves it to the local storage.
-Future<String> getAndSave(String file, String key, String url) async {
-  LocalStorage storage = LocalStorage(file);
-  await storage.ready;
-
-  String content;
-  try {
-    content = await http.read(url);
-    storage.setItem(key, content);
-  } catch (ignored) {
-    content = storage.getItem(key);
-  }
-
-  return content;
-}
-
 /// Returns whether the current screen is a tablet.
 bool isTablet(Size screenSize) {
   double diagonal = sqrt(pow(screenSize.width, 2) + pow(screenSize.height, 2));
@@ -58,24 +41,32 @@ class CenteredCircularProgressIndicator extends StatelessWidget {
 }
 
 /// A scaffold that allows to request remote objects.
-abstract class RequestScaffold<W extends StatefulWidget, O> extends State<W> {
+abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointResult> extends State<W> {
   /// Whether the screen is currently loading.
-  bool _loading;
+  bool _loading = true;
 
-  /// The function that allows to load objects.
-  Function() _requestObjectFunction;
+  /// The API endpoint.
+  APIEndpoint<R> endpoint;
 
   /// The object.
-  O object;
+  R result;
 
   /// When the request fails.
-  String _failMessage;
+  String failMessage;
 
-  /// Triggered when the fail dialog is closed.
-  VoidCallback _failDialogClosedCallback;
+  /// The success callback.
+  VoidCallback successCallback;
+
+  /// Fail dialog options.
+  FailDialogOptions failDialogOptions;
 
   /// Creates a new loading scaffold instance.
-  RequestScaffold(this._requestObjectFunction, this._failMessage, [this._failDialogClosedCallback]) : this._loading = true;
+  RequestScaffold({
+    @required this.endpoint,
+    @required this.failMessage,
+    this.successCallback,
+    this.failDialogOptions = const FailDialogOptions(),
+  });
 
   @override
   void initState() {
@@ -83,16 +74,25 @@ abstract class RequestScaffold<W extends StatefulWidget, O> extends State<W> {
     triggerRequest();
   }
 
+  /// Creates the app bar.
+  AppBar createAppBar(BuildContext context) {
+    if (result == null) {
+      return AppBar(
+        title: Text(_loading ? 'Chargement…' : 'Erreur'),
+      );
+    }
+
+    return result.createAppBar(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget body;
-    if(_loading) {
+    if (_loading) {
       body = CenteredCircularProgressIndicator();
-    }
-    else if(object == null) {
+    } else if (result == null) {
       body = createNoObjectBody(context);
-    }
-    else {
+    } else {
       body = createBody(context);
     }
 
@@ -112,24 +112,26 @@ abstract class RequestScaffold<W extends StatefulWidget, O> extends State<W> {
 
   /// Triggers a request.
   void triggerRequest() {
-    _requestObjectFunction().then((object) {
+    endpoint.request().then((object) {
       if (object != null) {
         updateObject(object);
+        if (successCallback != null) {
+          successCallback();
+        }
         return;
       }
 
-      MessageDialog.show(
-        context,
-        _failMessage + '\nVeuillez vérifier votre connexion internet et réessayer.',
-        () => Navigator.pop(context),
-        _failDialogClosedCallback ?? () => Navigator.pop(context),
-      );
+      if (failDialogOptions.show) {
+        MessageDialog.show(
+          context,
+          failMessage + '\nVeuillez vérifier votre connexion internet et réessayer plus tard.',
+          () => Navigator.pop(context),
+          failDialogOptions.callback ?? () => Navigator.pop(context),
+        );
+      }
       loading = false;
     });
   }
-
-  /// Creates the app bar.
-  AppBar createAppBar(BuildContext context);
 
   /// Creates the body with a non-null object.
   Widget createBody(BuildContext context);
@@ -138,8 +140,23 @@ abstract class RequestScaffold<W extends StatefulWidget, O> extends State<W> {
   Widget createNoObjectBody(BuildContext context) => null;
 
   /// Updates the current object.
-  void updateObject(O object) => setState(() {
+  void updateObject(R object) => setState(() {
         _loading = false;
-        this.object = object;
+        this.result = object;
       });
+}
+
+/// Options for the fail dialog.
+class FailDialogOptions {
+  /// Whether to show it.
+  final bool show;
+
+  /// The dialog callback.
+  final VoidCallback callback;
+
+  /// Creates a new fail dialog options instance.
+  const FailDialogOptions({
+    this.show = true,
+    this.callback,
+  });
 }

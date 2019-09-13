@@ -1,4 +1,8 @@
-import 'package:bacomathiques/app/lesson.dart';
+import 'dart:io';
+
+import 'package:bacomathiques/app/api/comments.dart';
+import 'package:bacomathiques/app/api/common.dart';
+import 'package:bacomathiques/app/api/content.dart';
 import 'package:bacomathiques/main.dart';
 import 'package:bacomathiques/util/util.dart';
 import 'package:flutter/material.dart';
@@ -6,51 +10,47 @@ import 'package:flutter/material.dart';
 /// Dialog that displays annals.
 class AnnalsDialog extends StatelessWidget {
   /// The lesson.
-  final Lesson _lesson;
+  final List<LessonAnnal> _annals;
 
   /// Creates a new annals dialog.
-  AnnalsDialog(this._lesson);
+  AnnalsDialog(this._annals);
 
   @override
   Widget build(BuildContext context) => SimpleDialog(
         title: _createTitleWidget(),
-        children: _lesson.annals.map((annal) => _createAnnalWidget(context, annal)).toList(),
+        children: _annals.map((annal) => _createAnnalWidget(context, annal)).toList(),
       );
 
   /// Creates a new title widget.
   Widget _createTitleWidget() => Text('Annales');
 
   /// Creates a new annal widget.
-  Widget _createAnnalWidget(BuildContext context, String annal) {
-    List<String> parts = annal.split('/');
-    SimpleDialogOption result = SimpleDialogOption(
-      child: Text((parts[4] + ' ' + parts[5] + ' ' + parts[3]).toUpperCase()),
+  Widget _createAnnalWidget(BuildContext context, LessonAnnal annal) => SimpleDialogOption(
+      child: Text(annal.name + (annal.specific ? ' Spécifique ' : ' Spécialité ') + annal.year.toString()),
       onPressed: () {
         Navigator.pop(context);
         showDialog(
           context: context,
           builder: (context) => SimpleDialog(
-                children: [
-                  SimpleDialogOption(
-                    child: Text('Énoncé'),
-                    onPressed: () => openURL(APIObject.WEBSITE + annal + 'enonce.pdf'),
-                  ),
-                  SimpleDialogOption(
-                    child: Text('Correction'),
-                    onPressed: () => openURL(APIObject.WEBSITE + annal + 'correction.pdf'),
-                  )
-                ],
+            children: [
+              SimpleDialogOption(
+                child: Text('Énoncé'),
+                onPressed: () => openURL(API.BASE_URL + annal.subject),
               ),
+              SimpleDialogOption(
+                child: Text('Correction'),
+                onPressed: () => openURL(API.BASE_URL + annal.correction),
+              )
+            ],
+          ),
         );
       },
     );
-    return result;
-  }
 
   /// Shows the dialog.
-  static void show(BuildContext context, Lesson lesson) => showDialog(
+  static void show(BuildContext context, List<LessonAnnal> annals) => showDialog(
         context: context,
-        builder: (context) => AnnalsDialog(lesson),
+        builder: (context) => AnnalsDialog(annals),
       );
 }
 
@@ -104,18 +104,18 @@ class AdsDialog extends StatelessWidget {
   void _showRestartDialog(BuildContext context) => showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              content: SingleChildScrollView(
-                child: Text(
-                  'Choix enregistré ! Il est possible que vous ayez à redémarrer l\'application pour que les changements soient pris en compte.',
-                ),
-              ),
-              actions: [
-                FlatButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Text('Ok'.toUpperCase()),
-                ),
-              ],
+          content: SingleChildScrollView(
+            child: Text(
+              'Choix enregistré ! Il est possible que vous ayez à redémarrer l\'application pour que les changements soient pris en compte.',
             ),
+          ),
+          actions: [
+            FlatButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('Ok'.toUpperCase()),
+            ),
+          ],
+        ),
       );
 
   /// Shows the dialog.
@@ -140,7 +140,7 @@ class AboutDialog extends StatelessWidget {
       );
 
   /// Creates a new title widget.
-  Widget _createTitleWidget() => Text('À Propos');
+  Widget _createTitleWidget() => Text('À propos');
 
   /// Creates a new content widget.
   Widget _createContentWidget() => SingleChildScrollView(
@@ -174,11 +174,14 @@ class AboutDialog extends StatelessWidget {
 
 /// The user dialog.
 class UserDialog extends StatelessWidget {
+  /// The current comments instance.
+  final LessonComments _comments;
+
   /// A text editing controller.
   final TextEditingController _controller;
 
   /// Creates a new user dialog instance.
-  UserDialog() : this._controller = TextEditingController(text: Comments.createCommentsSettings().getItem('username'));
+  UserDialog(this._comments) : this._controller = TextEditingController(text: _comments.username);
 
   @override
   Widget build(BuildContext context) => AlertDialog(
@@ -208,7 +211,7 @@ class UserDialog extends StatelessWidget {
   List<Widget> createActionsWidgets(BuildContext context) => [
         FlatButton(
           onPressed: () {
-            Comments.createCommentsSettings().setItem('username', _controller.text);
+            _comments.username = _controller.text;
             Navigator.pop(context);
           },
           child: Text('Valider'.toUpperCase()),
@@ -220,16 +223,16 @@ class UserDialog extends StatelessWidget {
       ];
 
   /// Shows the dialog.
-  static void show(BuildContext context) => showDialog(
+  static void show(BuildContext context, LessonComments comments) => showDialog(
         context: context,
-        builder: (context) => UserDialog(),
+        builder: (context) => UserDialog(comments),
       );
 }
 
 /// The write comment dialog.
 class WriteCommentDialog extends StatelessWidget {
   /// The current comments instance.
-  final Comments _comments;
+  final LessonComments _comments;
 
   /// A text editing controller.
   final TextEditingController _controller;
@@ -272,7 +275,55 @@ class WriteCommentDialog extends StatelessWidget {
             }
 
             WaitingDialog.show(context, 'Envoi en cours, veuillez patienter…');
-            _comments.post(_controller.text).then((success) {
+            List<LessonCommentsPostDataFieldValue> fields = [];
+            for (LessonCommentsPostDataField field in _comments.post.fields) {
+              switch (field.name) {
+                case 'slug':
+                  fields.add(LessonCommentsPostDataFieldValue(
+                    field: field,
+                    value: _comments.lesson.level + '_' + _comments.lesson.id,
+                  ));
+                  break;
+                case 'lesson':
+                  fields.add(LessonCommentsPostDataFieldValue(
+                    field: field,
+                    value: _comments.lesson.id,
+                  ));
+                  break;
+                case 'level':
+                  fields.add(LessonCommentsPostDataFieldValue(
+                    field: field,
+                    value: _comments.lesson.level,
+                  ));
+                  break;
+                case 'client':
+                  fields.add(LessonCommentsPostDataFieldValue(
+                    field: field,
+                    value: Platform.isIOS ? 'iOS' : 'Android',
+                  ));
+                  break;
+                case 'message':
+                  fields.add(LessonCommentsPostDataFieldValue(
+                    field: field,
+                    value: _controller.text,
+                  ));
+                  break;
+                case 'author':
+                  fields.add(LessonCommentsPostDataFieldValue(
+                    field: field,
+                    value: _comments.username,
+                  ));
+                  break;
+                default:
+                  fields.add(LessonCommentsPostDataFieldValue(
+                    field: field,
+                    value: '?',
+                  ));
+                  break;
+              }
+            }
+
+            _comments.postComment(fields).then((success) {
               Navigator.pop(context);
               if (success) {
                 Navigator.pop(context);
@@ -293,7 +344,7 @@ class WriteCommentDialog extends StatelessWidget {
       ];
 
   /// Shows the dialog.
-  static void show(BuildContext context, Comments comments) => showDialog(
+  static void show(BuildContext context, LessonComments comments) => showDialog(
         context: context,
         builder: (context) => WriteCommentDialog(comments),
       );
