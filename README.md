@@ -9,7 +9,7 @@
 * Des cours en accord avec les programmes officiels de l'Éducation nationale.
 * Des exemples intuitifs et la possibilité de télécharger et imprimer les cours gratuitement pour les relire chez soi !
 * Des annales des précédents sujets du BAC de mathématiques à télécharger.
-* Une [application Android](https://github.com/Skyost/Bacomathiques/tree/app) pour réviser les cours directement sur votre smartphone !
+* Une [application mobile](https://github.com/Skyost/Bacomathiques/tree/app) pour réviser les cours directement sur votre smartphone !
 * Le plus important : tout est gratuit. Même pas besoin de compte, tout est à disposition de tout le monde !
 
 ## Alors pourquoi attendre ?
