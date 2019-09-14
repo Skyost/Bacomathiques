@@ -1,6 +1,6 @@
 name: bacomathiques
 description: Cours de mathématiques gratuits pour réviser le BAC !
-version: 1.0.0+21
+version: 1.0.1+22
 
 environment:
   sdk: ">=2.1.0 <3.0.0"

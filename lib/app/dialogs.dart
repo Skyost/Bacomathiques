@@ -64,7 +64,8 @@ class AdsDialog extends StatelessWidget {
           Wrap(
             alignment: WrapAlignment.end,
             children: createActionsWidgets(context),
-          )
+            direction: Axis.vertical,
+          ),
         ],
       );
 
@@ -135,6 +136,7 @@ class AboutDialog extends StatelessWidget {
           Wrap(
             alignment: WrapAlignment.end,
             children: createActionsWidgets(context),
+            direction: Axis.vertical,
           )
         ],
       );
@@ -191,6 +193,7 @@ class UserDialog extends StatelessWidget {
           Wrap(
             alignment: WrapAlignment.end,
             children: createActionsWidgets(context),
+            direction: Axis.vertical,
           )
         ],
       );
@@ -248,6 +251,7 @@ class WriteCommentDialog extends StatelessWidget {
           Wrap(
             alignment: WrapAlignment.end,
             children: createActionsWidgets(context),
+            direction: Axis.vertical,
           ),
         ],
       );
