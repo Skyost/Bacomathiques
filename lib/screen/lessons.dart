@@ -123,7 +123,7 @@ class _PreviewsList extends StatelessWidget {
       return GridView.count(
         // TODO: Custom height.
         crossAxisCount: columnCount,
-        childAspectRatio: size.width / size.height,
+        childAspectRatio: 0.6 * (size.width / size.height),
         children: _items.map((item) {
           return _PreviewWidget(item, true);
         }).toList(),
