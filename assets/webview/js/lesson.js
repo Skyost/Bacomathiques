@@ -3,6 +3,7 @@ const PAGE_ID = '{page_id}';
 const ANCHOR = '{anchor}';
 
 $(document).ready(function () {
+    $($('h2')[0]).addClass('pt-0');
     MathJax.Hub.Register.StartupHook("End", function () {
         // TITLE NUMBERING
 
@@ -82,6 +83,13 @@ $(document).ready(function () {
     plots.each(function () {
         let plot = $(this);
         plot.html('<a href="' + BASE_URL + '/assets/img/lessons/' + PAGE_ID + "/" + plot.attr('id') + '.png"><img src="' + BASE_URL + '/assets/img/lessons/' + PAGE_ID + "/" + plot.attr('id') + '.png" title="' + plot.attr('id') + '" alt="' + plot.attr('id') + '"></a>');
+    });
+
+    // SYNTAX HIGHLIGHTING
+
+    $('.highlight code').each(function() {
+       let code = $(this);
+       code.html(code.html().replace(new RegExp('\t', 'g'), '    '))
     });
 });
 

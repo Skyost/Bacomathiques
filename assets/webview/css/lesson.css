@@ -105,18 +105,12 @@ ol.bubble li{
     border:1px solid rgba(0,0,0,0.075);
     max-width:100%
 }
-h2,#comments h2{
+h2{
     color:#1c567d;
     font-size:2em;
     padding:15px 0 5px 0;
     border-bottom:1px solid rgba(0,0,0,0.1);
     page-break-after:avoid
-}
-h1{
-    padding-top:20px;
-    text-align:center;
-    color:#912c21;
-    font-size:2.5em
 }
 @media (max-width: 767px){
     h1{
@@ -146,7 +140,4 @@ article>section>p:nth-child(2){
 }
 .anchorjs-link {
     display: none
-}
-.MathJax {
-	outline-width: 0
 }

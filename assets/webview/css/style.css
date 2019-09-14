@@ -1,0 +1,35 @@
+body{
+    font-size:16px
+}
+figure figcaption{
+    margin-top:14px
+}
+figure,img{
+    max-width:100%
+}
+ul{
+    list-style-type:none;
+    padding-left:16px
+}
+ul li:before{
+    content:'—';
+    margin-right:10px
+}
+ul.no-style{
+    list-style-type:none;
+    padding-left:0;
+    margin-bottom:0
+}
+ul.no-style li:before{
+    content:'';
+    margin-right:0
+}
+q:before{
+    content:'« '
+}
+q:after{
+    content:' »'
+}
+.MathJax{
+    outline-width:0
+}
