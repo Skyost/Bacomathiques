@@ -174,6 +174,13 @@ $(document).ready(function () {
             button.removeAttr('disabled');
         }, 3000);
     });
+
+    // SYNTAX HIGHLIGHTING
+
+    $('.highlight code').each(function() {
+       let code = $(this);
+       code.html(code.html().replace(new RegExp('\t', 'g'), '    '))
+    });
 });
 
 /**

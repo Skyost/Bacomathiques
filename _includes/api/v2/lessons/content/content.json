@@ -9,7 +9,7 @@
     "lesson": {% include _includes/api/v2/lessons/lesson_info.json lesson=lesson %},
     "difficulty": {{ lesson.difficulty | jsonify }},
     "pdf": {{ '/assets/pdf/cours/' | append: lesson.level | append: '/' | append: titleUrl | append: '.pdf' | jsonify }},
-    "html": {{ lessonContent | normalize_whitespace | replace: '<img src="/', '<img src="https://bacomathiqu.es/' | jsonify }},
+    "html": {{ lessonContent | replace: '<img src="/', '<img src="https://bacomathiqu.es/' | jsonify }},
     "annals": [
         {% for annal in lesson.annals %}
             {% include _includes/api/v2/lessons/content/annals/annal.json annal=annal %}
