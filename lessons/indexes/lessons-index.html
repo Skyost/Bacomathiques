@@ -1,7 +1,7 @@
 <article>
 
 	{% assign currentLevel = site.data.levels[include.level] %}
-	<h1>Liste des cours de {{ currentLevel.title }}</h1>
+	<h1>Liste des cours de {{ currentLevel.name }}</h1>
 
 	<div class="lessons-row row">
 		{% for data in site.data.lessons[currentLevel.id] %}

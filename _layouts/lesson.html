@@ -6,8 +6,9 @@ metacolor: "3498db"
 <!DOCTYPE html>
 <html lang="fr">
 	{% assign lesson = site.data.lessons[page.level][page.lesson] %}
+	{% assign title = lesson.title | append: ' | Cours de ' | append: site.data.levels[lesson.level].name %}
 	{% assign description = lesson.excerpt | strip_html %}
-	{% include _includes/head.html title=lesson.title description=description %}
+	{% include _includes/head.html title=title description=description %}
 	{% include _includes/scripts/maths/head.html %}
 	{% include _includes/scripts/smartbanner/head.html %}
 
