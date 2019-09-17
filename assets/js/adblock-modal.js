@@ -33,5 +33,5 @@ function hideAdBlockDialog() {
     $('#modal-adblock').on('shown.bs.modal', function (e) {
         $("#modal-adblock").modal("hide");
     });
-    createCookie('adblock_modal_hide', true);
+    createCookie('adblock_modal_hide', true, 1461);
 }

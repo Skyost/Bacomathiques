@@ -14,7 +14,7 @@ function showCookieBanner() {
 
 function hideCookieBanner() {
 	$('#cookie-banner').remove();
-	createCookie('cookie_consent', true);
+	createCookie('cookie_consent', true, 1461);
 }
 
 function createCookie(name, value, days) {
