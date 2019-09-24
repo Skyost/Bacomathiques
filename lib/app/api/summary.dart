@@ -44,7 +44,4 @@ class LessonSummary extends APIEndpointResultHTML {
   AppBar createAppBar(BuildContext context) => AppBar(
         title: Text(lesson.title),
       );
-
-  @override
-  String get id => lesson.id;
 }

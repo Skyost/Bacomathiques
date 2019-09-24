@@ -144,9 +144,6 @@ class LessonContent extends APIEndpointResultHTML {
       ],
     );
   }
-
-  @override
-  String get id => lesson.id;
 }
 
 /// A lesson annal.

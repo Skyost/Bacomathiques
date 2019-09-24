@@ -1,5 +1,6 @@
 const BASE_URL = '{base_url}';
-const PAGE_ID = '{page_id}';
+const LEVEL = '{level}';
+const LESSON = '{lesson}';
 const ANCHOR = '{anchor}';
 
 $(document).ready(function () {
@@ -83,7 +84,8 @@ $(document).ready(function () {
     if (typeof GGBApplet === 'undefined') {
         plots.each(function () {
             let plot = $(this);
-            plot.html('<a href="' + BASE_URL + '/assets/img/lessons/' + PAGE_ID + "/" + plot.attr('id') + '.png"><img src="' + BASE_URL + '/assets/img/lessons/' + PAGE_ID + "/" + plot.attr('id') + '.png" title="' + plot.attr('id') + '" alt="' + plot.attr('id') + '"></a>');
+            let imageUrl = BASE_URL + '/assets/img/lessons/' + LEVEL + '/' + LESSON + "/" + plot.attr('id') + '.png';
+            plot.html('<a href="' + imageUrl + '"><img src="' + imageUrl + '" title="' + plot.attr('id') + '" alt="' + plot.attr('id') + '"></a>');
         });
     }
     else {

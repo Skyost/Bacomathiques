@@ -102,7 +102,8 @@ class HTMLPageState extends RequestScaffold<HTMLPage, APIEndpointResultHTML> {
       ],
       'assets/webview/js/lesson.js': [
         FormatArgument('base_url', API.BASE_URL),
-        FormatArgument('page_id', result.id.replaceAll('-', '_')),
+        FormatArgument('level', result.lesson.level),
+        FormatArgument('lesson', result.lesson.id.replaceAll('-', '_')),
         FormatArgument('anchor', widget._anchor ?? ''),
       ],
       'assets/webview/css/lesson.css': [

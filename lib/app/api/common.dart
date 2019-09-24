@@ -14,7 +14,7 @@ import 'package:path_provider/path_provider.dart';
 /// The API.
 class API {
   /// The website base URL.
-  static const String BASE_URL = 'http://10.0.2.2:4000';
+  static const String BASE_URL = 'https://bacomathiqu.es';
 }
 
 /// The API status object.
@@ -228,8 +228,8 @@ abstract class APIEndpointResultHTML extends APIEndpointResult {
   /// Creates a new API endpoint result with a HTML body.
   const APIEndpointResultHTML();
 
-  /// The object ID.
-  String get id;
+  /// The lesson.
+  Lesson get lesson;
 
   /// The HTML body.
   String get html;
