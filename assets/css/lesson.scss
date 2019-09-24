@@ -243,7 +243,7 @@
 	overflow-y: hidden;
 	@include vendor-prefix('border-radius', '4px');
 	
-	table, .plot svg {
+	table {
 		background-color: white;
 	}
 
@@ -338,12 +338,14 @@ ol.bubble li {
 
 /* PLOTS */
 
-.plot svg {
-	display: block;
-	margin: auto;
-	margin-bottom: 21px;
-	border: 1px solid rgba(0, 0, 0, 0.075);
-	//max-width: 90%;
+.plot {
+	margin: 0 auto 14px auto;
+	max-width: 90%;
+
+	article {
+		margin-top: 0;
+		font-size: inherit;
+	}
 }
 
 /* ARTICLE STYLES */
