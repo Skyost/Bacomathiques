@@ -98,12 +98,13 @@ ol.bubble li{
     cursor:pointer;
     margin-bottom:14px
 }
-.plot img{
-    display:block;
-    margin:auto;
-    margin-bottom:21px;
-    border:1px solid rgba(0,0,0,0.075);
-    max-width:100%
+.plot{
+	margin: 0 auto 14px auto;
+	max-width: 90%;
+}
+.plot article{
+    margin-top: 0;
+    font-size: inherit;
 }
 h2{
     color:#1c567d;

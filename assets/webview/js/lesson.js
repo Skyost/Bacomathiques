@@ -80,10 +80,18 @@ $(document).ready(function () {
     // REPRESENTATIONS
 
     let plots = $('.plot');
-    plots.each(function () {
-        let plot = $(this);
-        plot.html('<a href="' + BASE_URL + '/assets/img/lessons/' + PAGE_ID + "/" + plot.attr('id') + '.png"><img src="' + BASE_URL + '/assets/img/lessons/' + PAGE_ID + "/" + plot.attr('id') + '.png" title="' + plot.attr('id') + '" alt="' + plot.attr('id') + '"></a>');
-    });
+    if (typeof GGBApplet === 'undefined') {
+        plots.each(function () {
+            let plot = $(this);
+            plot.html('<a href="' + BASE_URL + '/assets/img/lessons/' + PAGE_ID + "/" + plot.attr('id') + '.png"><img src="' + BASE_URL + '/assets/img/lessons/' + PAGE_ID + "/" + plot.attr('id') + '.png" title="' + plot.attr('id') + '" alt="' + plot.attr('id') + '"></a>');
+        });
+    }
+    else {
+        plots.each(function () {
+            let plot = $(this);
+            createGeoGebraInstance(plot.attr('data-api-v2-geogebra-id')).inject(plot.attr('id'));
+        });
+    }
 
     // SYNTAX HIGHLIGHTING
 
@@ -131,4 +139,18 @@ function goToHash(event, hash) {
     $('html, body').animate({
         scrollTop: jqueryHash.offset().top
     }, 500);
+}
+
+function createGeoGebraInstance(materialId) {
+	return new GGBApplet({
+        'id': materialId,
+        'material_id': materialId,
+        'showResetIcon': true,
+        'enableLabelDrags': false,
+        //'showZoomButtons': true,
+        'scaleContainerClass': 'plot',
+        'preventFocus': true,
+        'enableShiftDragZoom': true,
+        'borderColor': 'rgba(0, 0, 0, 0.5)',
+	}, true);
 }

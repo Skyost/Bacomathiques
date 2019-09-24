@@ -14,7 +14,7 @@ import 'package:path_provider/path_provider.dart';
 /// The API.
 class API {
   /// The website base URL.
-  static const String BASE_URL = 'https://bacomathiqu.es';
+  static const String BASE_URL = 'http://10.0.2.2:4000';
 }
 
 /// The API status object.
