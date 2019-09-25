@@ -26,6 +26,8 @@ function createGeoGebraInstance(materialId) {
         'showResetIcon': true,
         'enableLabelDrags': false,
         'scale': scale,
+        'allowUpscale': true,
+        'scaleContainerClass': 'plot',
         //'showZoomButtons': true,
         'preventFocus': true,
         'enableShiftDragZoom': true,
