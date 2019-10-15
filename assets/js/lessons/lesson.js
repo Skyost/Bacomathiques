@@ -133,7 +133,7 @@ $(document).ready(function () {
             firstH2 = false;
             return true;
         }
-        $(this).before('<ins class="adsbygoogle no-print" style="margin-top: 40px;" data-ad-client="ca-pub-7167241518798106" data-ad-slot="2776038870" data-ad-format="auto"></ins>');
+        $(this).before('<ins class="adsbygoogle no-print" style="margin-top: 40px;" data-ad-client="ca-pub-7167241518798106" data-ad-slot="2776038870" data-ad-format="auto" data-full-width-responsive="true"></ins>');
     });
 
     // COMMENTS
