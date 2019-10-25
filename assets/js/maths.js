@@ -1,8 +1,8 @@
-$(document).ready(function () {
+window.onload = function () {
     if (typeof createPlots !== 'undefined' && $.isFunction(createPlots)) {
         createPlots();
     }
-});
+};
 
 /*$(window).resize(function () {
     if (typeof createPlots !== 'undefined' && $.isFunction(createPlots)) {
@@ -22,6 +22,7 @@ function createGeoGebraInstance(materialId) {
 
     return new GGBApplet({
         'id': materialId,
+        "width": Math.min(800, $('[data-api-v2-geogebra-id="' + materialId + '"]').parent().width() - 36),
         'material_id': materialId,
         'showResetIcon': true,
         'enableLabelDrags': false,
