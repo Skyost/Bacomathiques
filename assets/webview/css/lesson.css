@@ -99,8 +99,9 @@ ol.bubble li{
     margin-bottom:14px
 }
 .plot{
-	margin: 0 auto 14px auto;
-	max-width: 90%;
+    margin: 0 auto 14px auto;
+    max-height: 600px;
+    max-width: calc(100%)
 }
 .plot article{
     margin-top: 0;
