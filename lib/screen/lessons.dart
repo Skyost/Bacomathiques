@@ -121,9 +121,8 @@ class _PreviewsList extends StatelessWidget {
     if (columnCount > 1) {
       Size size = MediaQuery.of(context).size;
       return GridView.count(
-        // TODO: Custom height.
         crossAxisCount: columnCount,
-        childAspectRatio: 0.6 * (size.width / size.height),
+        childAspectRatio: _getCoefficient(context) * (size.width / size.height),
         children: _items.map((item) {
           return _PreviewWidget(item, true);
         }).toList(),
@@ -136,6 +135,24 @@ class _PreviewsList extends StatelessWidget {
       itemCount: _items.length,
       itemBuilder: (context, position) => _PreviewWidget(_items[position]),
     );
+  }
+
+  /// Returns the size coefficient.
+  double _getCoefficient(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    if(height < 600) {
+      return 0.4;
+    }
+
+    if(height < 800) {
+      return 0.5;
+    }
+
+    if(height < 1000) {
+      return 0.6;
+    }
+
+    return 0.7;
   }
 
   /// Returns the column count.
