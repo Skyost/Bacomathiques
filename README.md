@@ -14,7 +14,7 @@
 
 ## Alors pourquoi attendre ?
 
-Vous êtes intéressé par des cours de mathématiques gratuits en ligne, accessibles à tout moment ? Accédez dès maintenant à [l'index des cours](https://bacomathiqu.es/cours/) !
+Vous êtes intéressé par des cours de mathématiques gratuits en ligne, accessibles à tout moment ? Accédez dès maintenant à [la liste des cours](https://bacomathiqu.es/cours/) !
 
 Vous y retrouverez la liste des cours disponibles sur le site ainsi qu'une brève description et une image d'illustration. Nous vous souhaitons une bonne visite !
 
@@ -22,4 +22,4 @@ Vous y retrouverez la liste des cours disponibles sur le site ainsi qu'une brèv
 
 Par qui a été crée ce site web ? Sous quelle licence sont disponibles les contenus ? Quelles sont les technologies utilisées pour concevoir le site web ?
 
-Toutes les réponses à ces questions sont disponibles dans la page [<q>À propos</q>](https://bacomathiqu.es/about.html).
+Toutes les réponses à ces questions sont disponibles dans la page [<q>À propos</q>](https://bacomathiqu.es/a-propos/).
