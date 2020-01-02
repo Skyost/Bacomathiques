@@ -11,12 +11,12 @@ redirect_from: "/about.html"
 	<div class="row">
 		<div class="col-md-4 col-xs-12">
 			<figure>
-				<img src="../assets/img/simple/about/code.svg" alt="Code"/>
+				<img src="/assets/img/simple/about/code.svg" alt="Code"/>
 				
 				<figcaption>
 					Ce site web a été créé avec le framework <a href="https://getbootstrap.com/">Bootstrap</a>, ainsi que <a href="https://jquery.com/">jQuery</a>.
 					<a href="https://www.mathjax.org/">MathJax</a>, <a href="https://www.geogebra.org">GeoGebra</a>,
-					<a href="http://github.hubspot.com/pace/">PACE</a>, <a href="https://lunrjs.com/">Lunr.js</a>, <a href="https://www.bryanbraun.com/anchorjs/">AnchorJS</a>,
+					<a href="https://github.hubspot.com/pace/">PACE</a>, <a href="https://lunrjs.com/">Lunr.js</a>, <a href="https://www.bryanbraun.com/anchorjs/">AnchorJS</a>,
 					<a href="https://tscanlin.github.io/tocbot/">Tocbot</a>
 					et les plugins <a href="https://doersguild.github.io/jQuery.print/">jQuery.print</a>, <a href="http://jquery.eisbehr.de/lazy/">jQuery.lazy</a> et
 					<a href="https://github.com/zeusdeux/isInViewport">isInViewport.js</a> sont utilisés.
@@ -25,7 +25,7 @@ redirect_from: "/about.html"
 		</div>
 		<div class="col-md-4 col-xs-12 middle">
 			<figure>
-				<img src="../assets/img/simple/about/flask.svg" alt="Fiole"/>
+				<img src="/assets/img/simple/about/flask.svg" alt="Fiole"/>
 				
 				<figcaption>
 					{{ site.title }} utilise le moteur <a href="https://jekyllrb.com/">Jekyll</a> pour générer ses contenus et
@@ -35,14 +35,14 @@ redirect_from: "/about.html"
 		</div>
 		<div class="col-md-4 col-xs-12">
 			<figure>
-				<img src="../assets/img/simple/about/pencil.svg" alt="Crayon"/>
+				<img src="/assets/img/simple/about/pencil.svg" alt="Crayon"/>
 				
 				<figcaption>
 					Les icônes des <a href="https://www.iconfinder.com/iconsets/small-n-flat">pages de présentation</a>, <a href="https://www.iconfinder.com/iconsets/hawcons">Résumé</a>,
 					<a href="https://www.iconfinder.com/iconsets/hawcons">PDF</a>, <a href="https://www.iconfinder.com/iconsets/ikooni-outline-free-basic">Imprimer</a>,
 					<a href="https://www.iconfinder.com/iconsets/mayssam">Partager</a>, <a href="https://www.iconfinder.com/iconsets/ikooni-outline-free-basic">Correction</a>,
 					et <a href="https://www.iconfinder.com/iconsets/tutor-icon-set">Bacomathiques</a> proviennent de IconFinder.
-					<br>Les autres icônes proviennent de <a href="http://fontawesome.io/">FontAwesome</a>.
+					<br>Les autres icônes proviennent de <a href="https://fontawesome.io/">FontAwesome</a>.
 				</figcaption>
 			</figure>
 		</div>
@@ -62,8 +62,8 @@ redirect_from: "/about.html"
 			<div class="col-xs-12 col-md-10 text-center text-md-left">
 				<p>
 					Les cours ont été écrits intégralement par <a href="https://www.skyost.eu">Hugo Delaunay</a>,
-					Toute reproduction totale ou partielle est interdite excepté pour un usage pédagogique et non-commercial (en citant explicitement la propriété de {{ site.name }}).
-					Les annales ainsi que les corrigés sont la propriété de <a href="http://www.maths-france.fr/">Math France</a>.
+					Toute reproduction totale ou partielle est interdite excepté pour un usage pédagogique et non-commercial (en citant explicitement la propriété de {{ site.title }}).
+					Les annales ainsi que les corrigés sont la propriété de <a href="https://www.maths-france.fr/">Math France</a>.
 					Enfin, certaines introductions ont été reprises de <a href="https://fr.wikipedia.org">Wikipédia</a>.
 				</p>
 
@@ -123,8 +123,8 @@ redirect_from: "/about.html"
 				<p>Il existe énormément de moyens de <strong>contribuer</strong> au projet {{ site.title }} !</p>
 
 				<p>
-					Vous pouvez y attribuer des modifications ou même tout simplement lui donner une étoile
-					sur <a href="https://github.com/Skyost/Bacomathiques">Github</a>.
+					Vous pouvez y attribuer des modifications ou même tout simplement lui donner une étoile sur
+					{% if site.github.repository_url %}<a href="{{ site.github.repository_url }}">Github</a>{% else %}Github{% endif %}.
 					Il vous est également possible d'effectuer des dons, que ce soit directement
 					via <a href="https://paypal.me/Skyost">PayPal</a> ou en regardant des publicités sur
 					<a href="https://utip.io/skyost">uTip</a>.

@@ -317,7 +317,7 @@ ol.bubble li {
 	}
 }
 
-.formula > *:last-child, .tip > *:last-child, .proof-content > *:last-child, .formula > *:last-child *:last-child, .tip > *:last-child *:last-child, .proof-content > *:last-child *:last-child {
+.formula > *:last-child, .tip > *:last-child, .proof-content > *:last-child, #book > *:last-child, .formula > *:last-child *:last-child, .tip > *:last-child *:last-child, .proof-content > *:last-child *:last-child, #book > *:last-child *:last-child {
 	margin-bottom: 0 !important;
 }
 
@@ -473,10 +473,7 @@ article {
 #book {
 	border-color: $book-border-color;
 	background-color: $book-background-color;
-	
-	p {
-		margin-bottom: 0;
-	}
+	display: flex;
 	
 	&:before {
 		content: $bubble-text-book;

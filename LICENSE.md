@@ -4,7 +4,7 @@
 
 Les cours ont été écrits intégralement par [Hugo Delaunay](https://www.skyost.eu),
 Toute reproduction totale ou partielle est interdite excepté pour un usage pédagogique et non-commercial (en citant explicitement la propriété de Bacomathiques).
-Les annales ainsi que les corrigés sont la propriété de [Math France](http://www.maths-france.fr/).
+Les annales ainsi que les corrigés sont la propriété de [Math France](https://www.maths-france.fr/).
 Enfin, certaines introductions ont été reprises de [Wikipédia](https://fr.wikipedia.org).
 
 ## Technologies
