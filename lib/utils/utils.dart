@@ -142,7 +142,7 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
   /// Updates the current object.
   void updateObject(R object) => setState(() {
         _loading = false;
-        this.result = object;
+        result = object;
       });
 }
 

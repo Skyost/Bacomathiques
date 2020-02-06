@@ -1,7 +1,7 @@
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/index.dart';
 import 'package:bacomathiques/app/app.dart';
-import 'package:bacomathiques/util/util.dart';
+import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,7 +20,7 @@ class _LevelsPageState extends RequestScaffold<LevelsPage, APIIndex> {
   ) : super(
           endpoint: endpoint,
           failMessage: 'Impossible de récupérer la liste des classes.',
-          failDialogOptions: FailDialogOptions(
+          failDialogOptions: const FailDialogOptions(
             show: false,
           ),
         );
@@ -34,12 +34,12 @@ class _LevelsPageState extends RequestScaffold<LevelsPage, APIIndex> {
 
   @override
   Widget createNoObjectBody(BuildContext context) => Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(bottom: 15),
               child: Text(
                 'Impossible de charger la liste des classes et aucune sauvegarde n\'est disponible.\nVeuillez vérifier votre connexion internet et réessayer plus tard.',
@@ -68,7 +68,7 @@ class _LevelWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Material(
           color: App.PRIMARY_COLOR,
           child: InkWell(
@@ -90,7 +90,7 @@ class _LevelWidget extends StatelessWidget {
               );
             },
             child: Padding(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: Column(
                 children: [
                   SvgPicture.network(
@@ -98,10 +98,7 @@ class _LevelWidget extends StatelessWidget {
                     height: 60,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(
-                      top: 5,
-                      bottom: 5,
-                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Text(
                       _level.name.toUpperCase(),
                       style: TextStyle(

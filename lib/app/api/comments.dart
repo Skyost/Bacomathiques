@@ -47,7 +47,7 @@ class LessonComments extends APIEndpointResult {
     SharedPreferences.getInstance().then((preferences) {
       String username = preferences.getString('comments.username');
       if (username != null && username.isNotEmpty) {
-        this._username = username;
+        _username = username;
       }
     });
   }
@@ -90,7 +90,7 @@ class LessonComments extends APIEndpointResult {
         body[field.postKey] = field.value;
       }
 
-      http.Response response = await http.post(this.post.url, body: body);
+      http.Response response = await http.post(post.url, body: body);
       Map<String, dynamic> data = json.decode(response.body);
       return data['success'] ?? false;
     } catch (ignored) {

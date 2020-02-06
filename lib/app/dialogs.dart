@@ -4,7 +4,7 @@ import 'package:bacomathiques/app/api/comments.dart';
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/content.dart';
 import 'package:bacomathiques/main.dart';
-import 'package:bacomathiques/util/util.dart';
+import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 /// Dialog that displays annals.
@@ -22,30 +22,30 @@ class AnnalsDialog extends StatelessWidget {
       );
 
   /// Creates a new title widget.
-  Widget _createTitleWidget() => Text('Annales');
+  Widget _createTitleWidget() => const Text('Annales');
 
   /// Creates a new annal widget.
   Widget _createAnnalWidget(BuildContext context, LessonAnnal annal) => SimpleDialogOption(
-      child: Text(annal.name + (annal.specific ? ' Spécifique ' : ' Spécialité ') + annal.year.toString()),
-      onPressed: () {
-        Navigator.pop(context);
-        showDialog(
-          context: context,
-          builder: (context) => SimpleDialog(
-            children: [
-              SimpleDialogOption(
-                child: Text('Énoncé'),
-                onPressed: () => openURL(API.BASE_URL + annal.subject),
-              ),
-              SimpleDialogOption(
-                child: Text('Correction'),
-                onPressed: () => openURL(API.BASE_URL + annal.correction),
-              )
-            ],
-          ),
-        );
-      },
-    );
+        child: Text(annal.name + (annal.specific ? ' Spécifique ' : ' Spécialité ') + annal.year.toString()),
+        onPressed: () {
+          Navigator.pop(context);
+          showDialog(
+            context: context,
+            builder: (context) => SimpleDialog(
+              children: [
+                SimpleDialogOption(
+                  child: const Text('Énoncé'),
+                  onPressed: () => openURL(API.BASE_URL + annal.subject),
+                ),
+                SimpleDialogOption(
+                  child: const Text('Correction'),
+                  onPressed: () => openURL(API.BASE_URL + annal.correction),
+                )
+              ],
+            ),
+          );
+        },
+      );
 
   /// Shows the dialog.
   static void show(BuildContext context, List<LessonAnnal> annals) => showDialog(
@@ -70,10 +70,10 @@ class AdsDialog extends StatelessWidget {
       );
 
   /// Creates a new title widget.
-  Widget _createTitleWidget() => Text('Publicités');
+  Widget _createTitleWidget() => const Text('Publicités');
 
   /// Creates a new content widget.
-  Widget _createContentWidget() => SingleChildScrollView(
+  Widget _createContentWidget() => const SingleChildScrollView(
         child: Text(
           'Bacomathiques vous laisse le choix d\'activer ou de désactiver les publicités. Sachez cependant que cette application et son contenu sont mis à disposition gratuitement pour les utilisateurs et que les publicités constituent les seuls revenus de cette application.',
         ),
@@ -105,7 +105,7 @@ class AdsDialog extends StatelessWidget {
   void _showRestartDialog(BuildContext context) => showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          content: SingleChildScrollView(
+          content: const SingleChildScrollView(
             child: Text(
               'Choix enregistré ! Il est possible que vous ayez à redémarrer l\'application pour que les changements soient pris en compte.',
             ),
@@ -142,10 +142,10 @@ class AboutDialog extends StatelessWidget {
       );
 
   /// Creates a new title widget.
-  Widget _createTitleWidget() => Text('À propos');
+  Widget _createTitleWidget() => const Text('À propos');
 
   /// Creates a new content widget.
-  Widget _createContentWidget() => SingleChildScrollView(
+  Widget _createContentWidget() => const SingleChildScrollView(
         child: Text(
           'Révisez votre BAC de mathématiques avec Bacomathiques !\nVous pouvez consulter les licences des contenus, technologies utilisées et autres en cliquant sur le bouton « Plus d\'informations ».\nSinon, n\'hésitez pas à laisser une (bonne) note sur la fiche de l\'application !',
         ),
@@ -183,7 +183,7 @@ class UserDialog extends StatelessWidget {
   final TextEditingController _controller;
 
   /// Creates a new user dialog instance.
-  UserDialog(this._comments) : this._controller = TextEditingController(text: _comments.username);
+  UserDialog(this._comments) : _controller = TextEditingController(text: _comments.username);
 
   @override
   Widget build(BuildContext context) => AlertDialog(
@@ -199,13 +199,13 @@ class UserDialog extends StatelessWidget {
       );
 
   /// Creates a new title widget.
-  Widget _createTitleWidget() => Text('Utilisateur');
+  Widget _createTitleWidget() => const Text('Utilisateur');
 
   /// Creates a new content widget.
   Widget _createContentWidget(BuildContext context) => TextField(
         controller: _controller,
         onSubmitted: (username) => Navigator.pop(context),
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           hintText: 'Nom d\'utilisateur',
         ),
       );
@@ -241,7 +241,7 @@ class WriteCommentDialog extends StatelessWidget {
   final TextEditingController _controller;
 
   /// Creates a new write comment dialog instance.
-  WriteCommentDialog(this._comments) : this._controller = TextEditingController();
+  WriteCommentDialog(this._comments) : _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) => AlertDialog(
@@ -257,13 +257,13 @@ class WriteCommentDialog extends StatelessWidget {
       );
 
   /// Creates a new title widget.
-  Widget _createTitleWidget() => Text('Nouveau commentaire');
+  Widget _createTitleWidget() => const Text('Nouveau commentaire');
 
   /// Creates a new content widget.
   Widget _createContentWidget() => TextField(
         keyboardType: TextInputType.multiline,
         controller: _controller,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           hintText: 'Exprimez-vous !',
         ),
         maxLines: null,
@@ -396,11 +396,11 @@ class WaitingDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AlertDialog(
-        title: Text('Veuillez patienter…'),
+        title: const Text('Veuillez patienter…'),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(bottom: 15),
               child: CircularProgressIndicator(),
             ),

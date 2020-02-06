@@ -1,6 +1,6 @@
 import 'package:bacomathiques/app/api/common.dart';
-import 'package:bacomathiques/app/dialogs.dart' as Dialogs;
-import 'package:bacomathiques/util/util.dart';
+import 'package:bacomathiques/app/dialogs.dart' as dialogs;
+import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 
@@ -37,7 +37,7 @@ class LessonContent extends APIEndpointResultHTML {
     _ActionMenu(
       icon: Icons.subtitles,
       label: 'Publicités…',
-      callback: (context, lessonContent) => Dialogs.AdsDialog.show(context),
+      callback: (context, lessonContent) => dialogs.AdsDialog.show(context),
     ),
     _ActionMenu(
       icon: Icons.thumb_up,
@@ -52,7 +52,7 @@ class LessonContent extends APIEndpointResultHTML {
     _ActionMenu(
       icon: Icons.help,
       label: 'À propos…',
-      callback: (context, lessonContent) => Dialogs.AboutDialog.show(context),
+      callback: (context, lessonContent) => dialogs.AboutDialog.show(context),
     )
   ];
 
@@ -60,6 +60,7 @@ class LessonContent extends APIEndpointResultHTML {
   final APIStatus api;
 
   /// The "lesson" field.
+  @override
   final Lesson lesson;
 
   /// The "difficulty" field.
@@ -69,6 +70,7 @@ class LessonContent extends APIEndpointResultHTML {
   final String pdf;
 
   /// The "html" field.
+  @override
   final String html;
 
   /// The "annals" field.
@@ -97,14 +99,14 @@ class LessonContent extends APIEndpointResultHTML {
 
   @override
   AppBar createAppBar(BuildContext context) {
-    List<_ActionMenu> actions = []..addAll(_actions);
+    List<_ActionMenu> actions = List.of(_actions);
     if (annals.isNotEmpty) {
       actions.insert(
         0,
         _ActionMenu(
           icon: Icons.assignment_turned_in,
           label: 'Annales…',
-          callback: (context, object) => Dialogs.AnnalsDialog.show(context, annals),
+          callback: (context, object) => dialogs.AnnalsDialog.show(context, annals),
         ),
       );
     }
@@ -212,7 +214,7 @@ class _ActionMenu {
         spacing: 5,
         children: [
           Padding(
-            padding: EdgeInsets.only(right: 5),
+            padding: const EdgeInsets.only(right: 5),
             child: Icon(
               icon,
               color: Colors.black,

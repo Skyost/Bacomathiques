@@ -36,6 +36,6 @@ class APIIndex extends APIEndpointResult {
 
   @override
   AppBar createAppBar(BuildContext context) => AppBar(
-        title: Text('Choix de la classe'),
+        title: const Text('Choix de la classe'),
       );
 }

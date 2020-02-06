@@ -1,5 +1,5 @@
 import 'package:bacomathiques/app/api/list.dart';
-import 'package:bacomathiques/util/util.dart';
+import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

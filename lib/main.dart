@@ -5,8 +5,8 @@ import 'package:bacomathiques/screen/home.dart';
 import 'package:bacomathiques/screen/html.dart';
 import 'package:bacomathiques/screen/lessons.dart';
 import 'package:bacomathiques/screen/levels.dart';
-import 'package:bacomathiques/util/server.dart';
-import 'package:bacomathiques/util/util.dart' as Util;
+import 'package:bacomathiques/utils/server.dart';
+import 'package:bacomathiques/utils/utils.dart' as utils;
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
@@ -21,9 +21,7 @@ Server localServer = Server(LOCAL_SERVER_PORT);
 
 /// Hello world !
 void main() {
-  runApp(BacomathiquesApp());
-
-  if (!Util.isInDebugMode) {
+  if (!utils.isInDebugMode) {
     adMob.load();
   }
 
@@ -31,6 +29,8 @@ void main() {
   FlutterStatusbarcolor.setNavigationBarWhiteForeground(true);
 
   localServer.start();
+
+  runApp(BacomathiquesApp());
 }
 
 /// The app main class.
@@ -38,7 +38,6 @@ class BacomathiquesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: App.APP_NAME,
-        debugShowCheckedModeBanner: false,
         theme: ThemeData(
             primaryColor: App.PRIMARY_COLOR,
             primaryColorDark: App.PRIMARY_COLOR_DARK,

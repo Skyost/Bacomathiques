@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
+import 'package:pedantic/pedantic.dart';
 
 /// The API.
 class API {
@@ -170,7 +171,7 @@ abstract class APIEndpoint<T extends APIEndpointResult> {
       if (!file.existsSync()) {
         file.createSync(recursive: true);
       }
-      file.writeAsString(content);
+      unawaited(file.writeAsString(content));
     } catch (ignored) {
       if (file.existsSync()) {
         content = await file.readAsString();
@@ -208,7 +209,7 @@ abstract class APIEndpointResult {
       );
 
   /// Creates the title widget.
-  Widget _createTitleWidget() => Padding(
+  Widget _createTitleWidget() => const Padding(
         padding: EdgeInsets.only(top: 5, left: 7),
         child: Text(
           App.APP_NAME,

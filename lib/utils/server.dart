@@ -11,36 +11,36 @@ class Server {
   HttpServer _server;
 
   /// The port.
-  int _port = 8080;
+  final int _port;
 
   /// All format arguments.
   Map<String, List<FormatArgument>> formatArguments;
 
   /// Creates a new server instance.
-  Server(this._port, [this.formatArguments]);
+  Server([this._port = 8080, this.formatArguments]);
 
   /// Closes the server.
   Future<void> close() async {
-    if (this._server != null) {
-      await this._server.close(force: true);
+    if (_server != null) {
+      await _server.close(force: true);
       print('Server running on http://localhost:$_port closed');
-      this._server = null;
+      _server = null;
     }
   }
 
   /// Starts the server.
   Future<void> start() async {
-    if (this._server != null) {
+    if (_server != null) {
       throw Exception('Server already started on http://localhost:$_port');
     }
 
-    var completer = new Completer();
+    var completer = Completer();
 
     runZoned(() {
       HttpServer.bind('127.0.0.1', _port).then((server) {
         print('Server running on http://localhost:' + _port.toString());
 
-        this._server = server;
+        _server = server;
 
         server.listen((HttpRequest request) async {
           var path = request.requestedUri.path;
@@ -49,11 +49,11 @@ class Server {
 
           List<FormatArgument> arguments = formatArguments == null ? null : formatArguments[path];
           if (arguments == null) {
-            sendResponseWithoutFormatting(request, path);
+            await sendResponseWithoutFormatting(request, path);
             return;
           }
 
-          sendResponseWithFormatting(request, path, arguments);
+          await sendResponseWithFormatting(request, path, arguments);
         });
 
         completer.complete();
@@ -71,8 +71,7 @@ class Server {
       body = await rootBundle.loadString(path);
     } catch (e) {
       print(e.toString());
-      request.response.close();
-      return;
+      return request.response.close();
     }
 
     arguments.forEach((argument) {
@@ -87,21 +86,20 @@ class Server {
       }
     }
 
-    request.response.headers.contentType = new ContentType(contentType[0], contentType[1], charset: 'utf-8');
+    request.response.headers.contentType = ContentType(contentType[0], contentType[1], charset: 'utf-8');
     request.response.write(body);
-    request.response.close();
+    return request.response.close();
   }
 
   /// Sends the response without formatting.
   Future<void> sendResponseWithoutFormatting(HttpRequest request, String path) async {
-    var body = List<int>();
+    var body = [];
 
     try {
       body = (await rootBundle.load(path)).buffer.asUint8List();
     } catch (e) {
       print(e.toString());
-      request.response.close();
-      return;
+      return request.response.close();
     }
 
     var contentType = ['text', 'html'];
@@ -112,9 +110,9 @@ class Server {
       }
     }
 
-    request.response.headers.contentType = new ContentType(contentType[0], contentType[1], charset: 'utf-8');
+    request.response.headers.contentType = ContentType(contentType[0], contentType[1], charset: 'utf-8');
     request.response.add(body);
-    request.response.close();
+    return request.response.close();
   }
 }
 

@@ -2,7 +2,7 @@ import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/list.dart';
 import 'package:bacomathiques/app/app.dart';
 import 'package:bacomathiques/app/dialogs.dart';
-import 'package:bacomathiques/util/util.dart';
+import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:rate_my_app/rate_my_app.dart';
@@ -29,7 +29,7 @@ class _LessonsPageState extends RequestScaffold<LessonsPage, LessonList> {
   ) : super(
           endpoint: endpoint,
           failMessage: 'Impossible de charger la liste des cours et aucune sauvegarde n\'est disponible.',
-          failDialogOptions: FailDialogOptions(
+          failDialogOptions: const FailDialogOptions(
             show: false,
           ),
         ) {
@@ -60,12 +60,12 @@ class _LessonsPageState extends RequestScaffold<LessonsPage, LessonList> {
 
   @override
   Widget createNoObjectBody(BuildContext context) => Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(bottom: 15),
               child: Text(
                 'Impossible de charger la liste des cours et aucune sauvegarde n\'est disponible.\nVeuillez vérifier votre connexion internet et réessayer plus tard.',
@@ -191,11 +191,11 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
   bool _showCaption;
 
   /// Creates a new preview widget state instance.
-  _PreviewWidgetState() : this._showCaption = false;
+  _PreviewWidgetState() : _showCaption = false;
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(App.CARD_BORDER_RADIUS),
@@ -218,7 +218,7 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
 
   /// Creates a new title widget.
   Widget _createTitleWidget() => Container(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
         child: Text(
           widget._item.lesson.title,
           textAlign: TextAlign.center,
@@ -244,7 +244,7 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
           children: [
             Positioned.fill(
                 child: Container(
-              alignment: Alignment(0, 0),
+              alignment: const Alignment(0, 0),
               foregroundDecoration: BoxDecoration(
                 color: Colors.black.withAlpha(30),
               ),
@@ -258,11 +258,11 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
             Positioned.fill(
                 child: AnimatedOpacity(
               opacity: _showCaption ? 1 : 0,
-              duration: Duration(milliseconds: 200),
+              duration: const Duration(milliseconds: 200),
               child: Container(
-                alignment: Alignment(0, 0),
+                alignment: const Alignment(0, 0),
                 decoration: BoxDecoration(color: Colors.black.withAlpha(175)),
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
                   widget._item.caption,
                   textAlign: TextAlign.center,
@@ -277,7 +277,7 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
   /// Creates a new description widget.
   Widget _createDescriptionWidget() {
     Widget description = Padding(
-      padding: EdgeInsets.all(12),
+      padding: const EdgeInsets.all(12),
       child: Html(
         data: widget._item.excerpt,
         defaultTextStyle: Theme.of(context).textTheme.body1.copyWith(
@@ -308,7 +308,7 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
         : null;
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: decoration,
       child: Wrap(
         alignment: WrapAlignment.end,
@@ -329,7 +329,7 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
                 'endpoint': widget._item.lesson.summary,
               },
             ),
-            padding: EdgeInsets.symmetric(horizontal: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
           ),
           FlatButton.icon(
             icon: Icon(
@@ -347,7 +347,7 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
                 'endpoint': widget._item.lesson.content,
               },
             ),
-            padding: EdgeInsets.symmetric(horizontal: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
           )
         ],
       ),

@@ -20,9 +20,11 @@ class LessonSummary extends APIEndpointResultHTML {
   final APIStatus api;
 
   /// The "lesson" field.
+  @override
   final Lesson lesson;
 
   /// The "html" field.
+  @override
   final String html;
 
   /// Creates a new lesson summary instance.

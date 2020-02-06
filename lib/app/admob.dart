@@ -36,15 +36,18 @@ class AdMob {
       String key = Platform.isAndroid ? 'android' : 'ios';
       Map<String, dynamic> platformData = data[key];
 
-      if(platformData['appId'] != null) {
+      if (platformData['appId'] != null) {
         appId = platformData['appId'];
       }
-      if(platformData['bannerId'] != null) {
+      if (platformData['bannerId'] != null) {
         adId = platformData['bannerId'];
       }
-    } catch (ignored) {}
+    } catch (error, stacktrace) {
+      print(error);
+      print(stacktrace);
+    }
 
-    FirebaseAdMob.instance.initialize(appId: appId);
+    return FirebaseAdMob.instance.initialize(appId: appId);
   }
 
   /// Creates the banner ad.
@@ -57,9 +60,9 @@ class AdMob {
   bool isEnabled() => _isEnabled;
 
   /// Sets whether AdMob should be enabled.
-  void setEnabled(isEnabled) async {
+  Future<void> setEnabled(isEnabled) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.setBool('admob.enable', isEnabled);
+    await preferences.setBool('admob.enable', isEnabled);
     _isEnabled = isEnabled;
   }
 }

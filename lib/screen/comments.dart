@@ -1,7 +1,7 @@
 import 'package:bacomathiques/app/api/comments.dart';
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/app.dart';
-import 'package:bacomathiques/util/util.dart';
+import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 /// The comments screen, where previews are shown.
@@ -30,7 +30,7 @@ class _CommentsPageState extends RequestScaffold<CommentsPage, LessonComments> {
   Widget createBody(BuildContext context) {
     if (result.list.isEmpty) {
       return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Center(
           child: Text(
             'Aucun commentaire sur ce cours pour le moment. Soyez le premier à en poster un !',
@@ -59,7 +59,7 @@ class _CommentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+        padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -71,7 +71,7 @@ class _CommentWidget extends StatelessWidget {
 
   /// Creates the avatar widget.
   Widget _createAvatarWidget() => Padding(
-        padding: EdgeInsets.only(right: 10),
+        padding: const EdgeInsets.only(right: 10),
         child: CircleAvatar(
           backgroundImage: NetworkImage(_comment.author.avatar),
           backgroundColor: App.PRIMARY_COLOR.withAlpha(50),
@@ -90,7 +90,7 @@ class _CommentWidget extends StatelessWidget {
             ),
             color: App.COMMENT_BACKGROUND_COLOR,
           ),
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
@@ -105,7 +105,7 @@ class _CommentWidget extends StatelessWidget {
 
   /// Creates the author widget.
   Widget _createAuthorWidget(BuildContext context) => Padding(
-        padding: EdgeInsets.only(bottom: 8),
+        padding: const EdgeInsets.only(bottom: 8),
         child: Text(
           _comment.author.name + (_comment.author.isModerator ? ' (Modérateur)' : ''),
           style: Theme.of(context).textTheme.body1.copyWith(
@@ -116,7 +116,7 @@ class _CommentWidget extends StatelessWidget {
 
   /// Creates the message widget.
   Widget _createMessageWidget() => Padding(
-        padding: EdgeInsets.only(bottom: 16),
+        padding: const EdgeInsets.only(bottom: 16),
         child: Text(
           _comment.message,
         ),

@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/content.dart';
 import 'package:bacomathiques/main.dart';
-import 'package:bacomathiques/util/server.dart';
-import 'package:bacomathiques/util/util.dart';
+import 'package:bacomathiques/utils/server.dart';
+import 'package:bacomathiques/utils/utils.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -48,36 +48,40 @@ class HTMLPageState extends RequestScaffold<HTMLPage, APIEndpointResultHTML> {
   }
 
   @override
-  Widget createBody(BuildContext context) => WebView(
-        initialUrl: "http://localhost:$LOCAL_SERVER_PORT/assets/webview/content.html",
-        javascriptMode: JavascriptMode.unrestricted,
-        javascriptChannels: [
-          JavascriptChannel(
-            name: 'Navigation',
-            onMessageReceived: (message) {
-              Map<String, dynamic> object = json.decode(message.message);
-              Navigator.pushReplacementNamed(
-                context,
-                '/html',
-                arguments: {
-                  'endpoint': LessonContentEndpoint.fromLevelAndLesson(
-                    level: object['level'],
-                    lesson: object['lesson'],
-                  ),
-                  'anchor': object['hash'],
-                },
-              );
+  Widget createBody(BuildContext context) {
+    List<JavascriptChannel> channels = [
+      JavascriptChannel(
+        name: 'Navigation',
+        onMessageReceived: (message) {
+          Map<String, dynamic> object = json.decode(message.message);
+          Navigator.pushReplacementNamed(
+            context,
+            '/html',
+            arguments: {
+              'endpoint': LessonContentEndpoint.fromLevelAndLesson(
+                level: object['level'],
+                lesson: object['lesson'],
+              ),
+              'anchor': object['hash'],
             },
-          )
-        ].toSet(),
-        navigationDelegate: (navigation) {
-          if (navigation.url.startsWith('http') && !navigation.url.startsWith("http://localhost:$LOCAL_SERVER_PORT/")) {
-            openURL(navigation.url);
-            return NavigationDecision.prevent;
-          }
-          return NavigationDecision.navigate;
+          );
         },
-      );
+      )
+    ];
+
+    return WebView(
+      initialUrl: 'http://localhost:$LOCAL_SERVER_PORT/assets/webview/content.html',
+      javascriptMode: JavascriptMode.unrestricted,
+      javascriptChannels: channels.toSet(),
+      navigationDelegate: (navigation) {
+        if (navigation.url.startsWith('http') && !navigation.url.startsWith('http://localhost:$LOCAL_SERVER_PORT/')) {
+          openURL(navigation.url);
+          return NavigationDecision.prevent;
+        }
+        return NavigationDecision.navigate;
+      },
+    );
+  }
 
   @override
   void deactivate() {
@@ -91,7 +95,10 @@ class HTMLPageState extends RequestScaffold<HTMLPage, APIEndpointResultHTML> {
       if (_ad != null) {
         await _ad.dispose();
       }
-    } catch (ignored) {}
+    } catch (error, stacktrace) {
+      print(error);
+      print(stacktrace);
+    }
   }
 
   @override
