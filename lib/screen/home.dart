@@ -16,12 +16,12 @@ class _HomePageState extends State<HomePage> {
     SharedPreferences.getInstance().then((preferences) {
       String lessonListEndpoint = preferences.getString('preferences.lesson-list');
       if (lessonListEndpoint == null) {
-        WidgetsBinding.instance.addPostFrameCallback((duration) => Navigator.pushReplacementNamed(context, '/levels'));
+        WidgetsBinding.instance.addPostFrameCallback((_) => Navigator.pushReplacementNamed(context, '/levels'));
         return;
       }
 
       WidgetsBinding.instance.addPostFrameCallback(
-        (duration) => Navigator.pushReplacementNamed(
+        (_) => Navigator.pushReplacementNamed(
           context,
           '/lessons',
           arguments: {

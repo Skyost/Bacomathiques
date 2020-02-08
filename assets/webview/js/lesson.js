@@ -5,7 +5,7 @@ const ANCHOR = '{anchor}';
 
 $(document).ready(function () {
     $($('h2')[0]).addClass('pt-0');
-    MathJax.Hub.Register.StartupHook("End", function () {
+    window.MathJax.startup.promise.then(function () {
         // TITLE NUMBERING
 
         let h2Index = 1;
@@ -55,19 +55,25 @@ $(document).ready(function () {
 
     $('.proof').each(function () {
         let proof = $(this);
-        let proofLabel = $('<span class="proof-label"><i class="fa fa-angle-right" aria-hidden="true"></i> Démonstration</span>');
-        let proofContent = $('<div class="bubble proof-content d-none clearfix"></div>');
+        let proofLabel = $('<span class="proof-label"><span class="toggle-icon">&#9654;</span> Démonstration</span>');
+        let proofContent = $('<div class="bubble proof-content d-none clearfix tex2jax_ignore"></div>');
         proofContent.html(proof.html());
-        proofContent.append($('<span class="proof-end float-right">&#8718;</span>'));
+        proofContent.append($('<span class="float-right">&#8718;</span>'));
 
         proofLabel.click(function () {
             proofContent.toggleClass('d-none');
             proofLabel.toggleClass('mb-0');
-            proofLabel.find('.fa').toggleClass('fa-angle-right').toggleClass('fa-angle-down');
 
-            if (!proofContent.hasClass('rendered')) {
-                MathJax.Hub.Queue(['Typeset', MathJax.Hub, proofContent.get(0)]);
-                proofContent.addClass('rendered');
+            if(proofContent.hasClass('d-none')) {
+                proofLabel.find('.toggle-icon').html('&#9654;');
+            }
+            else {
+                proofLabel.find('.toggle-icon').html('&#9660;');
+            }
+
+            if (proofContent.hasClass('tex2jax_ignore')) {
+                proofContent.removeClass('tex2jax_ignore');
+                MathJax.typeset([proofContent.get(0)]);
             }
         });
 

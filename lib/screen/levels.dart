@@ -4,6 +4,7 @@ import 'package:bacomathiques/app/app.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pedantic/pedantic.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// The page that allows the user to show his level.
@@ -76,18 +77,18 @@ class _LevelWidget extends StatelessWidget {
             highlightColor: Colors.black12,
             focusColor: Colors.black12,
             splashColor: Colors.black12,
-            onTap: () {
-              SharedPreferences.getInstance().then((preferences) {
-                preferences.setString('preferences.lesson-list', _level.lessons.path);
-              });
-              Navigator.pushNamedAndRemoveUntil(
+            onTap: () async {
+              SharedPreferences preferences = await SharedPreferences.getInstance();
+              await preferences.setString('preferences.level-image', _level.image);
+              await preferences.setString('preferences.lesson-list', _level.lessons.path);
+              unawaited(Navigator.pushNamedAndRemoveUntil(
                 context,
                 '/lessons',
                 (route) => false,
                 arguments: {
                   'endpoint': _level.lessons,
                 },
-              );
+              ));
             },
             child: Padding(
               padding: const EdgeInsets.all(15),

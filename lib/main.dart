@@ -21,6 +21,8 @@ Server localServer = Server(LOCAL_SERVER_PORT);
 
 /// Hello world !
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   if (!utils.isInDebugMode) {
     adMob.load();
   }

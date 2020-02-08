@@ -1,5 +1,7 @@
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// /api/v2/:level/ endpoint.
 class LessonListEndpoint extends APIEndpoint<LessonList> {
@@ -36,15 +38,7 @@ class LessonList extends APIEndpointResult {
         );
 
   @override
-  List<Widget> createActions(BuildContext context) => [
-        IconButton(
-          icon: Icon(
-            Icons.view_day,
-            color: Colors.white,
-          ),
-          onPressed: () => Navigator.pushNamed(context, '/levels'),
-        ),
-      ];
+  List<Widget> createActions(BuildContext context) => [_LevelIconButton()];
 }
 
 /// A lesson list item.
@@ -77,4 +71,50 @@ class LessonListItem {
           caption: parsedJSON['caption'],
           excerpt: parsedJSON['excerpt'],
         );
+}
+
+class _LevelIconButton extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _LevelIconButtonState();
+}
+
+class _LevelIconButtonState extends State<_LevelIconButton> {
+  String imageUrl;
+
+  @override
+  void initState() {
+    super.initState();
+
+    SharedPreferences.getInstance().then((preferences) async {
+      String imageUrl = preferences.getString('preferences.level-image');
+      if (imageUrl != null) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          setState(() => this.imageUrl = imageUrl);
+        });
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (imageUrl == null) {
+      return createButton(createIcon());
+    }
+
+    return createButton(SvgPicture.network(
+      API.BASE_URL + imageUrl,
+      height: 60,
+      placeholderBuilder: (_) => createIcon(),
+    ));
+  }
+
+  Widget createButton(Widget child) => IconButton(
+        icon: child,
+        onPressed: () => Navigator.pushNamed(context, '/levels'),
+      );
+
+  Widget createIcon() => Icon(
+        Icons.view_day,
+        color: Colors.white,
+      );
 }

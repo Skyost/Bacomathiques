@@ -84,7 +84,7 @@ packages:
     source: hosted
     version: "0.11.1"
   flutter_native_splash:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: flutter_native_splash
       url: "https://pub.dartlang.org"

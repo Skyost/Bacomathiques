@@ -1,11 +1,17 @@
-* {
-    -webkit-user-select: none
+*{
+    -webkit-user-select:none
 }
-body {
-    background-color: #fcfcfc;
-    padding: 5%;
-    overflow-x: hidden;
-    margin-bottom: {margin_bottom}px
+body{
+    background-color:#fcfcfc;
+    padding:5%;
+    overflow-x:hidden;
+    margin-bottom:{margin_bottom}px
+}
+a{
+    font-weight:bold;
+}
+a:hover{
+    text-decoration:underline;
 }
 .bubble{
     position:relative;
@@ -68,9 +74,15 @@ ol.bubble li{
     content:"À Connaître 💡";
     background-color:#3498db
 }
+.formula a{
+    color:#3498db;
+}
 .tip{
     border-color:#26a65b;
     background-color:#dcf3d8
+}
+.tip a{
+    color:#26a65b;
 }
 .tip:before{
     content:"À Lire 👀";
@@ -83,6 +95,9 @@ ol.bubble li{
 .proof-content:before{
     content:"Démonstration 🧠";
     background-color:#f1c40f
+}
+.proof-content a{
+    color:#fff8de;
 }
 .formula>*:last-child,.tip>*:last-child,.proof-content>*:last-child,.formula>*:last-child *:last-child,.tip>*:last-child *:last-child,.proof-content>*:last-child *:last-child{
     margin-bottom:0 !important
@@ -99,13 +114,13 @@ ol.bubble li{
     margin-bottom:14px
 }
 .plot{
-    margin: 0 auto 14px auto;
-    max-height: 600px;
-    max-width: calc(100%)
+    margin:0 auto 14px auto;
+    max-height:600px;
+    max-width:calc(100%)
 }
 .plot article{
-    margin-top: 0;
-    font-size: inherit;
+    margin-top:0;
+    font-size:inherit;
 }
 h2{
     color:#1c567d;
@@ -114,7 +129,7 @@ h2{
     border-bottom:1px solid rgba(0,0,0,0.1);
     page-break-after:avoid
 }
-@media (max-width: 767px){
+@media (max-width:767px){
     h1{
         padding-top:0;
         margin-top:60px;
@@ -140,6 +155,6 @@ article>section>p:nth-child(2){
     background-color:white;
     min-width:40%
 }
-.anchorjs-link {
-    display: none
+.anchorjs-link{
+    display:none
 }

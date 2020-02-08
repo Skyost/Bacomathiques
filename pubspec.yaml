@@ -17,17 +17,21 @@ dependencies:
   flutter_statusbarcolor: ^0.2.3
   transparent_image: ^1.0.0
   rate_my_app: ^0.5.0
-  flutter_native_splash: ^0.1.9
   path_provider: ^1.6.0
   shared_preferences: ^0.5.6
   pedantic: ^1.9.0
   flutter:
     sdk: flutter
 
+dev_dependencies:
+  flutter_native_splash: ^0.1.9
+
 flutter:
   uses-material-design: true
   assets:
   - assets/
+  - assets/images/
+  - assets/fonts/
   - assets/images/
   - assets/webview/
   - assets/webview/css/
@@ -36,48 +40,35 @@ flutter:
   - assets/webview/js/anchor/
   - assets/webview/js/jquery/
   - assets/webview/js/mathjax/
-  - assets/webview/js/mathjax/config/
-  - assets/webview/js/mathjax/extensions/
-  - assets/webview/js/mathjax/extensions/HTML-CSS/
-  - assets/webview/js/mathjax/extensions/MathML/
-  - assets/webview/js/mathjax/extensions/TeX/
-  - assets/webview/js/mathjax/extensions/TeX/mhchem3/
-  - assets/webview/js/mathjax/fonts/HTML-CSS/TeX/otf/
-  - assets/webview/js/mathjax/jax/element/mml/
-  - assets/webview/js/mathjax/jax/element/mml/optable/
-  - assets/webview/js/mathjax/jax/input/AsciiMath/
-  - assets/webview/js/mathjax/jax/input/MathML/
-  - assets/webview/js/mathjax/jax/input/TeX/
-  - assets/webview/js/mathjax/jax/input/MathML/entities/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/
-  - assets/webview/js/mathjax/jax/output/PreviewHTML/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/autoload/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/Caligraphic/Bold/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/Caligraphic/Regular/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Bold/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Regular/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/Bold/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/BoldItalic/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/Italic/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/Regular/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Italic/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Regular/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/Math/BoldItalic/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/Math/Italic/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Bold/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Italic/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Regular/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/Script/Regular/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/Size1/Regular/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/Size2/Regular/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/Size3/Regular/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/Size4/Regular/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/WinChrome/Regular/
-  - assets/webview/js/mathjax/jax/output/HTML-CSS/fonts/TeX/WinIE6/Regular/
+  - assets/webview/js/mathjax/es5/
+  - assets/webview/js/mathjax/es5/a11y/
+  - assets/webview/js/mathjax/es5/adaptors/
+  - assets/webview/js/mathjax/es5/input/
+  - assets/webview/js/mathjax/es5/input/tex/
+  - assets/webview/js/mathjax/es5/input/tex/extensions/
+  - assets/webview/js/mathjax/es5/output/
+  - assets/webview/js/mathjax/es5/output/chtml/
+  - assets/webview/js/mathjax/es5/output/chtml/fonts/
+  - assets/webview/js/mathjax/es5/output/chtml/fonts/woff-v2/
+  - assets/webview/js/mathjax/es5/sre/
+  - assets/webview/js/mathjax/es5/sre/mathmaps/
+  - assets/webview/js/mathjax/es5/sre/mathmaps/en/
+  - assets/webview/js/mathjax/es5/sre/mathmaps/en/functions/
+  - assets/webview/js/mathjax/es5/sre/mathmaps/en/symbols/
+  - assets/webview/js/mathjax/es5/sre/mathmaps/en/units/
+  - assets/webview/js/mathjax/es5/sre/mathmaps/es/
+  - assets/webview/js/mathjax/es5/sre/mathmaps/es/functions/
+  - assets/webview/js/mathjax/es5/sre/mathmaps/es/symbols/
+  - assets/webview/js/mathjax/es5/sre/mathmaps/es/units/
+  - assets/webview/js/mathjax/es5/sre/mathmaps/fr/
+  - assets/webview/js/mathjax/es5/sre/mathmaps/fr/functions/
+  - assets/webview/js/mathjax/es5/sre/mathmaps/fr/symbols/
+  - assets/webview/js/mathjax/es5/sre/mathmaps/fr/units/
+  - assets/webview/js/mathjax/es5/sre/mathmaps/nemeth/
+  - assets/webview/js/mathjax/es5/sre/mathmaps/nemeth/functions/
+  - assets/webview/js/mathjax/es5/sre/mathmaps/nemeth/symbols/
+  - assets/webview/js/mathjax/es5/sre/mathmaps/nemeth/units/
+  - assets/webview/js/mathjax/es5/ui/
   fonts:
   - family: handlee-regular
     fonts:

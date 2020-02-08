@@ -8,11 +8,11 @@
 .buildlog/
 .history
 .svn/
-assets/listAssets.py
 assets/admob.json
 android/key.properties
 ios/Runner/GoogleService-Info.plist
 android/app/google-services.json
+list_assets.py
 
 # IntelliJ related
 *.iml

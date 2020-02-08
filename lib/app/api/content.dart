@@ -111,8 +111,27 @@ class LessonContent extends APIEndpointResultHTML {
       );
     }
 
+    List<String> titleParts = lesson.title.split(' – ');
+
     return AppBar(
-      title: Text(lesson.title),
+      title: titleParts.length < 2
+          ? Text(lesson.title)
+          : RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: titleParts.first,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TextSpan(
+                    text: '\n' + titleParts[1],
+                  ),
+                ],
+              ),
+            ),
       actions: [
         IconButton(
           icon: Icon(
