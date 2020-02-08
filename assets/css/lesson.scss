@@ -344,6 +344,10 @@ ol.bubble li {
 	a {
 		color: $proof-border-color !important;
 	}
+	
+	.proof-end {
+		font-size: 0.8em;
+	}
 }
 
 .formula > *:last-child, .tip > *:last-child, .proof-content > *:last-child, #book > *:last-child, .formula > *:last-child *:last-child, .tip > *:last-child *:last-child, .proof-content > *:last-child *:last-child, #book > *:last-child *:last-child {
