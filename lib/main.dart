@@ -9,6 +9,7 @@ import 'package:bacomathiques/utils/server.dart';
 import 'package:bacomathiques/utils/utils.dart' as utils;
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:pedantic/pedantic.dart';
 
 /// The port to open for local servers.
 const int LOCAL_SERVER_PORT = 8080;
@@ -20,17 +21,17 @@ AdMob adMob = AdMob();
 Server localServer = Server(LOCAL_SERVER_PORT);
 
 /// Hello world !
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  unawaited(FlutterStatusbarcolor.setNavigationBarColor(App.ACTION_BAR_COLOR));
+  unawaited(FlutterStatusbarcolor.setNavigationBarWhiteForeground(true));
+
   if (!utils.isInDebugMode) {
-    adMob.load();
+    await adMob.load();
   }
 
-  FlutterStatusbarcolor.setNavigationBarColor(App.ACTION_BAR_COLOR);
-  FlutterStatusbarcolor.setNavigationBarWhiteForeground(true);
-
-  localServer.start();
+  await localServer.start();
 
   runApp(BacomathiquesApp());
 }
@@ -41,13 +42,14 @@ class BacomathiquesApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
         title: App.APP_NAME,
         theme: ThemeData(
-            primaryColor: App.PRIMARY_COLOR,
-            primaryColorDark: App.PRIMARY_COLOR_DARK,
-            accentColor: App.ACCENT_COLOR,
-            appBarTheme: AppBarTheme(color: App.ACTION_BAR_COLOR),
-            textTheme: TextTheme(
-              button: TextStyle(color: App.ACCENT_COLOR),
-            )),
+          primaryColor: App.PRIMARY_COLOR,
+          primaryColorDark: App.PRIMARY_COLOR_DARK,
+          accentColor: App.ACCENT_COLOR,
+          appBarTheme: AppBarTheme(color: App.ACTION_BAR_COLOR),
+          textTheme: TextTheme(
+            button: TextStyle(color: App.ACCENT_COLOR),
+          ),
+        ),
         initialRoute: '/',
         routes: {
           '/': (context) => HomePage(),

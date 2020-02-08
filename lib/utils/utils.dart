@@ -140,10 +140,14 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
   Widget createNoObjectBody(BuildContext context) => null;
 
   /// Updates the current object.
-  void updateObject(R object) => setState(() {
+  void updateObject(R object) {
+    if (mounted) {
+      setState(() {
         _loading = false;
         result = object;
       });
+    }
+  }
 }
 
 /// Options for the fail dialog.

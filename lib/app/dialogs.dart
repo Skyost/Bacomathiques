@@ -25,9 +25,10 @@ class AnnalsDialog extends StatelessWidget {
   Widget _createTitleWidget() => const Text('Annales');
 
   /// Creates a new annal widget.
-  Widget _createAnnalWidget(BuildContext context, LessonAnnal annal) => SimpleDialogOption(
-        child: Text(annal.name + (annal.specific ? ' Spécifique ' : ' Spécialité ') + annal.year.toString()),
-        onPressed: () {
+  Widget _createAnnalWidget(BuildContext context, LessonAnnal annal) => ListTile(
+        title: Text(annal.name + ' ' + annal.year.toString()),
+        subtitle: Text(annal.specific ? 'Spécifique' : 'Spécialité'),
+        onTap: () {
           Navigator.pop(context);
           showDialog(
             context: context,
