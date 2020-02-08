@@ -4,6 +4,16 @@
 @import 'utils';
 @import 'reading.css';
 
+@mixin link-style {
+	a {
+		font-weight: bold;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
 /* ANCHORS */
 
 .anchorjs-link {
@@ -166,6 +176,11 @@
 	}
 }
 
+#level img {
+	height: 1em;
+	vertical-align: -0.1em;
+}
+
 .difficulty-1 {
 	color: $lesson-difficulty-1;
 }
@@ -266,6 +281,8 @@
 	&:hover:before {
 		display: inline-block;
 	}
+
+	@include link-style;
 }
 
 ul.bubble, ol.bubble {
@@ -295,6 +312,10 @@ ol.bubble li {
 		content: $bubble-text-formula;
 		background-color: $formula-border-color;
 	}
+
+	a {
+		color: $formula-border-color !important;
+	}
 }
 
 .tip {
@@ -305,6 +326,10 @@ ol.bubble li {
 		content: $bubble-text-tip;
 		background-color: $tip-border-color;
 	}
+
+	a {
+		color: $tip-border-color !important;
+	}
 }
 
 .proof-content {
@@ -314,6 +339,10 @@ ol.bubble li {
 	&:before {
 		content: $bubble-text-proof;
 		background-color: $proof-border-color;
+	}
+
+	a {
+		color: $proof-border-color !important;
 	}
 }
 
@@ -413,6 +442,8 @@ article {
 	> section > p:nth-child(2) {
 		margin-top: 30px;
 	}
+
+	@include link-style;
 }
 
 /** Math table : **/
@@ -466,6 +497,10 @@ article {
 		content: $bubble-text-annals;
 		background-color: $annals-border-color;
 	}
+
+	a {
+		color: $annals-border-color !important;
+	}
 }
 
 /** Book : **/
@@ -478,6 +513,10 @@ article {
 	&:before {
 		content: $bubble-text-book;
 		background-color: $book-border-color;
+	}
+
+	a {
+		color: $book-border-color !important;
 	}
 }
 

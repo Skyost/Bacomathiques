@@ -6,7 +6,8 @@
 		<li id="export-social" title="Partager" data-toggle="modal" data-target="#modal-social"></li>
 		<li id="export-caveats" title="Apporter une correction" data-toggle="modal" data-target="#modal-caveats"></li>
 	</ul>
-	<span id="level" data-level="{{ lesson.level }}" class="text-muted">Niveau : {{ site.data.levels[lesson.level].name }}</span>
+	{% assign level = site.data.levels[lesson.level] %}
+	<span id="level" data-level="{{ lesson.level }}" class="text-muted">Niveau : <img src="{{ level.image }}" alt="{{ level.name }}" title="{{ level.name }}"> {{ level.name }}</span>
 	<span id="difficulty" class="text-muted">Difficulté du cours : {% for i in (1..5) %}<i class="fa fa-graduation-cap{% if i <= lesson.difficulty %} difficulty-{{ lesson.difficulty }}{% endif %}" aria-hidden="true"></i>{% endfor %}</span>
 </div>
 

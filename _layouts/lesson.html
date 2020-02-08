@@ -75,12 +75,12 @@ metacolor: "3498db"
 					let body = $('#modal-summary .modal-body');
 					body.html(content.html);
 
-					MathJax.Hub.Queue(['Typeset', MathJax.Hub, $('#modal-summary').get(0)]);
+					MathJax.typeset([$('#modal-summary').get(0)]);
 					body.find('.formula, .tip').addClass('bubble');
 
 					isSummaryLoaded = true;
 				}).fail(function () {
-					$('#modal-summary .modal-body').html('Impossible d\'obtenir le résumé de cours. Veuillez réessayer plus tard !');
+					$('#modal-summary .modal-body').html('Impossible d\'obtenir le résumé de ce cours. Veuillez réessayer plus tard !');
 				});
 			}
 		});
