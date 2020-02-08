@@ -105,7 +105,7 @@ $(document).ready(function () {
         let proofLabel = $('<span class="proof-label"><i class="fa fa-angle-right" aria-hidden="true"></i> Démonstration</span>');
         let proofContent = $('<div class="bubble proof-content d-none clearfix tex2jax_ignore"></div>');
         proofContent.html(proof.html());
-        proofContent.append($('<span class="proof-end float-right">&#8718;</span>'));
+        proofContent.append($('<span class="proof-end float-right"><i class="fa fa-square" aria-hidden="true"></i></span>'));
 
         proofLabel.click(function () {
             proofContent.toggleClass('d-none');
