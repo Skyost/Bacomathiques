@@ -1,4 +1,6 @@
 <meta charset="utf-8"/>
+
+<!-- Titre -->
 {% capture title %}{{ include.title }} | {{ site.title }}{% endcapture %}
 <title>{{ title }}</title>
 
@@ -9,6 +11,7 @@
 <!-- OpenGraph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="{{ title }}">
+<meta property="og:locale" content="fr_FR" />
 <meta property="og:site_name" content="{{ site.title }}">
 <meta property="og:url" content="{{ site.url }}{{ page.url }}">
 <meta property="og:description" content="{{ include.description }}">
@@ -23,10 +26,21 @@
 <meta name="twitter:description" content="{{ include.description }}">
 <meta name="twitter:image" content="{{ site.url }}{{ site.social.preview }}">
 
+<!-- Autres -->
+<meta name="generator" content="Jekyll{% if site.github.versions.jekyll %} v{{ site.github.versions.jekyll }}{% endif %}">
+
+{% if page.path != 'pages/404.html' %}
+	{% if lesson %}
+		<link rel="canonical" href="{{ site.url }}/cours/{{ site.data.levels[lesson.level].url }}/{{ lesson.url }}/">
+	{% else %}
+		<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+	{% endif %}
+{% endif %}
+
 <!-- Styles -->
 <meta name="theme-color" content="#{{ layout.metacolor }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha256-YLGeXaapI0/5IgZopewRJcFXomhRMlYYjugPLSyNjTY=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y=" crossorigin="anonymous">
 
 <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 <link rel="stylesheet" type="text/css" href="/assets/css/{{ page.layout }}.css">
@@ -37,8 +51,10 @@
 	{% endfor %}
 {% endif %}
 
+<!-- Favicon -->
 <link rel="icon" type="image/png" href="/assets/img/favicon.png">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js" integrity="sha256-fTuUgtT7O2rqoImwjrhDgbXTKUwyxxujIMRIK7TbuNU=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script>
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js" integrity="sha256-/ijcOLwFf26xEYAjW75FizKVo5tnTYiQddPZoLUHHZ8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha256-WqU1JavFxSAMcLP2WIOI+GB2zWmShMI82mTpLDcqFUg=" crossorigin="anonymous"></script>

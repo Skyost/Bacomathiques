@@ -5,6 +5,7 @@ metacolor: "3498db"
 
 <!DOCTYPE html>
 <html lang="fr">
+<head>
 	{% assign lesson = site.data.lessons[page.level][page.lesson] %}
 	{% assign title = lesson.title | append: ' | Cours de ' | append: site.data.levels[lesson.level].name %}
 	{% assign description = lesson.excerpt | strip_html %}
@@ -14,6 +15,7 @@ metacolor: "3498db"
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/silver/pace-theme-flash.min.css" integrity="sha256-GT98VYLXLNFqi5R+kDkxPBrgVeSBM12Y/xhukgkaX1E=" crossorigin="anonymous">
+</head>
 <body>
 	{% include _includes/navbar/navbar.html %}
 
@@ -56,9 +58,9 @@ metacolor: "3498db"
 	{% include _includes/footer.html %}
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.print/1.6.0/jQuery.print.min.js" integrity="sha256-s/wuIT+s0uE5Igk30VS2UAcs5Ck6SDt+iTlUzYQBn/4=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js" integrity="sha256-m1eTvwEHwmsw4+XKF7BshClVJEPwTVycveNl0CS0Mkk=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha256-E4RlfxwyJVmkkk0szw7LYJxuPlp6evtPSBDlWHsYYL8=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/is-in-viewport/3.0.4/isInViewport.min.js" integrity="sha256-YCKf7pbD5WuWira7Ir49rglmeklV67h8HCeC7GCYWEw=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.6.0/tocbot.min.js" integrity="sha256-+fdFDIM3huAQNs/gn7OOoN9jpU+6sx7RCGkvQn9QS0s=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.10.0/tocbot.min.js" integrity="sha256-VTn9aw/gr4Acp2RWpb9LFr1EKdXYJC9agYReAj0f7JM=" crossorigin="anonymous"></script>
 
 	<script src="/assets/js/adblock-modal.js"></script>
 	<script src="/assets/js/lessons/lesson.js"></script>
