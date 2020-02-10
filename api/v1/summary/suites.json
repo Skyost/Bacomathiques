@@ -1,5 +1,4 @@
 ---
 layout: compress
-sitemap: false
 ---
 {% include_relative template.json lesson='suites' %}

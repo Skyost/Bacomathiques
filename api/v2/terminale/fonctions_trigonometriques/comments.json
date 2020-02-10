@@ -1,6 +1,5 @@
 ---
 layout: api_file
 permalink: "/api/v2/terminale/fonctions-trigonometriques/comments/"
-sitemap: false
 ---
 {% include _includes/api/v2/lessons/comments/comments.json lesson='fonctions_trigonometriques' level='terminale' %}

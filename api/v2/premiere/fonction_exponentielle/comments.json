@@ -1,6 +1,5 @@
 ---
 layout: api_file
 permalink: "/api/v2/premiere/fonction-exponentielle/comments/"
-sitemap: false
 ---
 {% include _includes/api/v2/lessons/comments/comments.json lesson='fonction_exponentielle' level='premiere' %}

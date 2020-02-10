@@ -1,6 +1,5 @@
 ---
 layout: api_file
 permalink: "/api/v2/premiere/geometrie-reperee/summary/"
-sitemap: false
 ---
 {% include _includes/api/v2/lessons/summary/summary.json lesson='geometrie_reperee' level='premiere' %}

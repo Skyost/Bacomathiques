@@ -1,6 +1,5 @@
 ---
 layout: api_file
 permalink: "/api/v2/terminale/echantillonnage-estimation/summary/"
-sitemap: false
 ---
 {% include _includes/api/v2/lessons/summary/summary.json lesson='echantillonnage_estimation' level='terminale' %}

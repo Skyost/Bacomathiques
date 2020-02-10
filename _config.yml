@@ -30,7 +30,30 @@ sass:
   style: "compressed"
 
 # Production
-exclude: [".scss", "README.md", "CNAME"]
+exclude:
+  - ".scss"
+  - "README.md"
+  - "LICENSE.md"
+  - "CNAME"
+  - "staticman.yml"
+  - "serve.bat"
 
 # Gems
-plugins: ["jekyll-redirect-from", "jemoji"]
+plugins:
+  - "jekyll-redirect-from"
+  - "jekyll-sitemap"
+  - "jemoji"
+
+defaults:
+  - scope:
+      path:            "api/*"
+    values:
+      sitemap:         false
+  - scope:
+      path:            "assets/*"
+    values:
+      sitemap:         false
+  - scope:
+      path:            "lessons/indexes/lessons-index.html"
+    values:
+      sitemap:         false
