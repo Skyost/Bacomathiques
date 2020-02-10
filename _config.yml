@@ -54,6 +54,10 @@ defaults:
     values:
       sitemap:         false
   - scope:
+      path:            "summaries/*"
+    values:
+      sitemap:         false
+  - scope:
       path:            "lessons/indexes/lessons-index.html"
     values:
       sitemap:         false
