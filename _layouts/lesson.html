@@ -7,7 +7,7 @@ metacolor: "3498db"
 <html lang="fr">
 <head>
 	{% assign lesson = site.data.lessons[page.level][page.lesson] %}
-	{% assign title = lesson.title | append: ' | Cours de ' | append: site.data.levels[lesson.level].name %}
+	{% assign title = site.data.levels[lesson.level].name | append: ' > ' | append: lesson.title %}
 	{% assign description = lesson.excerpt | strip_html %}
 	{% include _includes/head.html title=title description=description %}
 	{% include _includes/scripts/maths/head.html %}
