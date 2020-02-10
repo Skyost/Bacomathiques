@@ -1,0 +1,30 @@
+<div id="modal-caveats" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-caveats-label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-caveats-label">Apporter une correction</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Pour apporter une correction à un cours, vous avez deux solutions :</p>
+                <ul>
+                    <li>Vous pouvez <a href="/a-propos/#contact">me contacter</a> en m'indiquant où se trouve la faute ou l'amélioration que vous souhaitez apporter.</li>
+                    <li>
+                        Vous pouvez modifier directement le
+                        {% if site.github.repository_url %}
+                            <a href="{{ site.github.repository_url }}/edit/master/{{ page.path }}">code source</a>
+                        {% else %}
+                            code source
+                        {% endif %}
+                        de la page.
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
