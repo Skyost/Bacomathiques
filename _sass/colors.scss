@@ -87,18 +87,17 @@ $pretty-footer-links-color: #4cdbc4;
 $pretty-footer-heart-color: #e74c3c;
 $pretty-footer-links-background-color: #0a1922;
 
-$header-paragraph-color: rgba(255, 255, 255, 0.7);
+$pretty-header-paragraph-color: rgba(255, 255, 255, 0.7);
 
 $pretty-text-color: rgba(0, 0, 0, 0.7);
-$section-2n-color: #f2f2f2;
+$pretty-section-2n-color: #f2f2f2;
+$pretty-col-fa-color: rgba(0, 0, 0, 0.2);
 
-$h3-line-on-sides-color: #dddddd;
+$pretty-h3-line-on-sides-color: #dddddd;
 
 /** Index colors : **/
 
-$postit-font-color: #333333;
-$postit-background-color: lighten($main-color, 30%);
-$postit-pin-color: #c0392b;
-$postit-pin-stem-color: #aaaaaa;
-
-$fa-question-color: rgba(0, 0, 0, 0.1);
+$review-background-color: $pretty-section-2n-color;
+$review-border-color: rgba(0, 0, 0, 0.2);
+$review-quote-icon-color: rgba(0, 0, 0, 0.1);
+$review-stars-color: #f1c40f;

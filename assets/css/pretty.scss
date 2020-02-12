@@ -28,7 +28,7 @@ article {
 	}
 
 	section:nth-of-type(2n) {
-		background-color: $section-2n-color;
+		background-color: $pretty-section-2n-color;
 	}
 }
 
@@ -47,11 +47,11 @@ figure img {
 
 .col-fa .fa {
 	font-size: 5em;
-	color: rgba(0, 0, 0, 0.2);
+	color: $pretty-col-fa-color;
 }
 
 
-@media(max-width: $mobile-max-width) {
+@media(max-width: $mobile-width) {
 	figure {
 		margin-bottom: 60px
 	}
@@ -88,14 +88,14 @@ header {
 				@include logo-before();
 			}
 			
-			@media(max-width: $mobile-max-width) {
+			@media(max-width: $mobile-width) {
 				font-size: 12vw !important;
 			}
 		}
 		
 		p {
 			font-size: 1.2em;
-			color: $header-paragraph-color;
+			color: $pretty-header-paragraph-color;
 			margin-bottom: 30px;
 		}
 		
@@ -138,7 +138,7 @@ article {
 		white-space: nowrap;
 		
 		&:before, &:after {
-			border-top: 1px solid $h3-line-on-sides-color;
+			border-top: 1px solid $pretty-h3-line-on-sides-color;
 			content: '';
 			display: table-cell;
 			position: relative;
@@ -154,7 +154,7 @@ article {
 			left: 1.5%;
 		}
 		
-		@media(max-width: $mobile-max-width) {
+		@media(max-width: $mobile-width) {
 			white-space: normal;
 			
 			&:before, &:after {
@@ -195,12 +195,6 @@ article {
 	color: $main-color;
 }
 
-img.emoji {
-	height: 1.3em;
-	width: 1.3em;
-	vertical-align: -0.3em;
-}
-
 /* ADSENSE */
 
 .adsbygoogle {
@@ -239,7 +233,7 @@ footer {
 		margin-bottom: 0;
 	}
 	
-	@media(max-width: $mobile-max-width) {
+	@media(max-width: $mobile-width) {
 		.col-md-4 p:last-of-type {
 			margin-bottom: 40px;
 		}

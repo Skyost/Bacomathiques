@@ -42,7 +42,6 @@ exclude:
 plugins:
   - "jekyll-redirect-from"
   - "jekyll-sitemap"
-  - "jemoji"
 
 defaults:
   - scope:

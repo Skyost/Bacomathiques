@@ -41,7 +41,7 @@
     }
   }
 
-  @media(max-width: $tablet-max-width) {
+  @media(max-width: $tablet-width) {
     margin-top: 50px;
   }
 }
@@ -49,7 +49,7 @@
 /* MOBILE BANNERS */
 
 .mobile-banner {
-  @media(max-width: $mobile-max-width) {
+  @media(max-width: $mobile-width) {
     margin-top: 20px;
   }
 }
@@ -79,16 +79,66 @@
   }
 }
 
-/* FONTAWESOME END CIRCLE */
+/* REVIEWS */
 
-.fa-question-circle {
+#review-box {
   margin-top: 30px;
-  font-size: 8em;
-  color: $fa-question-color;
+
+  .footer {
+    margin-top: 10px;
+    text-align: right;
+    display: block;
+  }
+
+  .stars {
+    text-align: center;
+    font-size: 2em;
+    color: $review-stars-color;
+    margin-bottom: 10px;
+
+    .fa {
+      margin-right: 0.1em;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .review {
+    position: relative;
+    height: 100%;
+    min-height: 9em;
+    border-left: 8px solid $review-border-color;
+    background-color: $review-background-color;
+    padding: 50px 20px 20px 20px;
+
+    .review-content {
+      width: 100%;
+    }
+
+    q:before, q:after {
+      content: '';
+    }
+
+    &:before, &:after {
+      position: absolute;
+      font-family: 'FontAwesome';
+      font-size: 40px;
+      color: $review-quote-icon-color;
+      top: 0;
+      left: 10px;
+      content: '\f10d';
+    }
+
+    @media(max-width: $mobile-width) {
+      min-height: 12em;
+    }
+  }
 }
 
 /* ADSENSE */
 
 .adsbygoogle {
-  background-color: $section-2n-color;
+  background-color: $pretty-section-2n-color;
 }

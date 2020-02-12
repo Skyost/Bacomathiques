@@ -7,11 +7,12 @@ css:
   - "/assets/css/index.css"
 js:
   - "/assets/js/index.js"
+  - "/assets/js/reviews.js"
 ---
 
 <section class="container">
 
-	<h3><span class="first-letter">L</span>es contenus</h3>
+	<h3>Les contenus</h3>
 	
 	<div class="row">
 		<div class="col-md-4 col-xs-12">
@@ -45,12 +46,14 @@ js:
 		</div>
 	</div>
 	
-	<p><em>
+	<p>
+		<em>
 			Également des <strong>annales des précédents sujets du Baccalauréat</strong> de mathématiques à télécharger (avec leur correction), bientôt
 			des vidéos explicatives du cours avec des exemples visuels, ...
-		</em></p>
+		</em>
+	</p>
 	
-	<p class="stand-out">Et bien plus ! :wink:</p>
+	<p class="stand-out">Et bien plus ! 😉</p>
 
 </section>
 
@@ -61,9 +64,11 @@ js:
 		<div class="row">
 			<div class="col-md-12 col-lg-6 d-flex align-items-center text-center text-md-left">
 				<div class="w-100">
-					<p>Vous êtes intéressé par des <strong>cours de mathématiques gratuits</strong> en ligne, accessibles à tout moment ?
-					Accédez dès maintenant à <a href="/cours/">l'index des cours</a> !
-					Vous y retrouverez la liste des cours disponibles sur le site ainsi qu'une brève description et une image d'illustration.</p>
+					<p>
+						Vous êtes intéressé par des <strong>cours de mathématiques gratuits</strong> en ligne, accessibles à tout moment ?
+						Accédez dès maintenant à <a href="/cours/">l'index des cours</a> !
+						Vous y retrouverez la liste des cours disponibles sur le site ainsi qu'une brève description et une image d'illustration.
+					</p>
 			
 					<p class="stand-out">Nous vous souhaitons une bonne visite !</p>
 				</div>
@@ -109,15 +114,24 @@ js:
 		
 		<div class="col-md-12 col-lg-6 d-flex align-items-center text-center text-md-left">
 			<div class="w-100">
-				<p><strong>{{ site.title }}</strong> possède une application mobile !
-				Vous pouvez dès à présent la télécharger et accéder à tous vos cours directement depuis <strong>votre smartphone</strong>.</p>
-				
-				<p>Pour la télécharger, rien de plus simple ! Accédez au <strong>Play Store</strong> de Google ou à l'<strong>App Store</strong> d'Apple et tapez <q>{{ site.title }}</q>.
-				<br>Vous pouvez également cliquer sur un des boutons ci-dessous :</p>
-				
+				<p>
+					<strong>{{ site.title }}</strong> possède une application mobile !
+					Vous pouvez dès à présent la télécharger et accéder à tous vos cours directement depuis <strong>votre smartphone</strong>.
+				</p>
+
+				<p>
+					Pour la télécharger, rien de plus simple ! Accédez au <strong>Play Store</strong> de Google ou à l'<strong>App Store</strong> d'Apple et tapez <q>{{ site.title }}</q>.
+					<br>Vous pouvez également cliquer sur un des boutons ci-dessous :
+				</p>
+
 				<div class="text-center">
 					<a href="https://play.google.com/store/apps/details?id=fr.bacomathiques&utm_source=bacomathiqu.es&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img src="/assets/img/play_store.svg" class="mobile-banner" title="Disponible sur Google Play" alt="Disponible sur Google Play"/></a>
 					<a href="https://itunes.apple.com/app/id1458503418"><img src="/assets/img/app_store.svg" class="mobile-banner" title="Disponible sur l'App Store" alt="Disponible sur l'App Store"/></a>
+				</div>
+
+				<div id="review-box">
+					<div class="stars"></div>
+					<div class="review d-flex align-items-center"></div>
 				</div>
 			</div>
 		</div>
@@ -139,12 +153,20 @@ js:
 <section>
 	<div class="container">
 		<h3>À propos de {{ site.title }}</h3>
-		<p><strong>Par qui</strong> a été crée ce site web ?
-		Sous <strong>quelle licence</strong> sont disponibles les contenus ?
-		<strong>Quelles sont les technologies</strong> utilisées pour concevoir le site web ?</p>
 
-		<p>Toutes les réponses à ces questions sont disponibles dans la page <a href="/a-propos/"><q>À propos</q></a>.</p>
-		
-		<i class="fa fa-question-circle" aria-hidden="true"></i>
+		<div class="row">
+			<div class="col-xs-12 col-md-10 text-center text-md-left">
+				<p>
+					<strong>Par qui</strong> a été crée ce site web ?
+					Sous <strong>quelle licence</strong> sont disponibles les contenus ?
+					<strong>Quelles sont les technologies</strong> utilisées pour concevoir le site web ?
+				</p>
+
+				<p>Toutes les réponses à ces questions sont disponibles dans la page <a href="/a-propos/"><q>À propos</q></a>.</p>
+			</div>
+			<div class="col-xs-12 col-md-2 col-fa d-flex align-items-center">
+				<i class="fa fa-question-circle w-100" aria-hidden="true"></i>
+			</div>
+		</div>
 	</div>
 </section>

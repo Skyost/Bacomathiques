@@ -62,7 +62,7 @@ article {
       @include logo-before();
     }
 
-    @media(max-width: $mobile-max-width) {
+    @media(max-width: $mobile-width) {
       margin: 0;
       font-size: 2em;
     }
@@ -71,7 +71,7 @@ article {
       font-size: 1.5em;
     }
 
-    @media(min-width: $mobile-max-width) {
+    @media(min-width: $mobile-width) {
       display: block;
       width: 100%;
       text-align: center;
@@ -97,7 +97,7 @@ article {
   .nav-item:hover:after, .nav-item.active:after {
     height: 3px;
 
-    @media(max-width: $mobile-max-width) {
+    @media(max-width: $mobile-width) {
       height: 0 !important;
     }
   }
@@ -109,17 +109,17 @@ article {
   .nav-link {
     text-transform: uppercase;
 
-    @media(max-width: $mobile-max-width) {
+    @media(max-width: $mobile-width) {
       font-size: 1em;
       text-transform: none;
     }
   }
 
-  @media(min-width: $mobile-max-width) {
+  @media(min-width: $mobile-width) {
     display: block;
   }
 
-  @media(max-width: $mobile-max-width) {
+  @media(max-width: $mobile-width) {
     padding-bottom: 8px;
 
     .nav-item > a > .fa {
