@@ -41,6 +41,13 @@ const reviews = [
         rating: 5,
         source: 0,
     },
+    {
+        author: 'A. Lamah',
+        date: '13 fev. 2020',
+        message: 'Très bon merci beaucoup, <strong>cela m\'a beaucoup aidé</strong> à former mes enfants. Félicitations au développeur.',
+        rating: 4,
+        source: 0,
+    },
 ];
 
 let currentReviewIndex;
@@ -75,7 +82,7 @@ function showRandom() {
         }
         author += '.</small>';
 
-        reviewBox.find('.review').html('<div class="review-content"><q>' + currentReview.message + '</q>' + author + '</div>');
+        reviewBox.find('.review').html('<div class="review-content"><q>' + currentReview.message + '</q> ' + author + '</div>');
         reviewBox.animate({
             opacity: 1,
         }, 200, function() {

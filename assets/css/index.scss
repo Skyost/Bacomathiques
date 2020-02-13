@@ -84,12 +84,6 @@
 #review-box {
   margin-top: 30px;
 
-  .footer {
-    margin-top: 10px;
-    text-align: right;
-    display: block;
-  }
-
   .stars {
     text-align: center;
     font-size: 2em;
@@ -114,11 +108,21 @@
     padding: 50px 20px 20px 20px;
 
     .review-content {
+      height: 100%;
       width: 100%;
-    }
 
-    q:before, q:after {
-      content: '';
+      q {
+        &:before, &:after {
+          content: '';
+        }
+      }
+
+      .footer {
+        margin-top: 10px;
+        text-align: right;
+        width: 100%;
+        display: block;
+      }
     }
 
     &:before, &:after {
