@@ -11,19 +11,19 @@ class Server {
   HttpServer _server;
 
   /// The port.
-  final int _port;
+  final int port;
 
   /// All format arguments.
   Map<String, List<FormatArgument>> formatArguments;
 
   /// Creates a new server instance.
-  Server([this._port = 8080, this.formatArguments]);
+  Server([this.port = 8080, this.formatArguments]);
 
   /// Closes the server.
   Future<void> close() async {
     if (_server != null) {
       await _server.close(force: true);
-      print('Server running on http://localhost:$_port closed');
+      print('Server running on http://localhost:$port closed');
       _server = null;
     }
   }
@@ -31,14 +31,14 @@ class Server {
   /// Starts the server.
   Future<void> start() async {
     if (_server != null) {
-      throw Exception('Server already started on http://localhost:$_port');
+      throw Exception('Server already started on http://localhost:$port');
     }
 
     var completer = Completer();
 
     runZoned(() {
-      HttpServer.bind('127.0.0.1', _port).then((server) {
-        print('Server running on http://localhost:' + _port.toString());
+      HttpServer.bind('127.0.0.1', port).then((server) {
+        print('Server running on http://localhost:' + port.toString());
 
         _server = server;
 

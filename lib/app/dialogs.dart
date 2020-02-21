@@ -3,9 +3,10 @@ import 'dart:io';
 import 'package:bacomathiques/app/api/comments.dart';
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/content.dart';
-import 'package:bacomathiques/main.dart';
+import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 /// Dialog that displays annals.
 class AnnalsDialog extends StatelessWidget {
@@ -33,14 +34,15 @@ class AnnalsDialog extends StatelessWidget {
           showDialog(
             context: context,
             builder: (context) => SimpleDialog(
+              title: Text(annal.name + ' ' + annal.year.toString() + (annal.specific ? ' (Spécifique)' : ' (Spécialité)')),
               children: [
-                SimpleDialogOption(
-                  child: const Text('Énoncé'),
-                  onPressed: () => openURL(API.BASE_URL + annal.subject),
+                ListTile(
+                  title: const Text('Énoncé'),
+                  onTap: () => openURL(API.BASE_URL + annal.subject),
                 ),
-                SimpleDialogOption(
-                  child: const Text('Correction'),
-                  onPressed: () => openURL(API.BASE_URL + annal.correction),
+                ListTile(
+                  title: const Text('Correction'),
+                  onTap: () => openURL(API.BASE_URL + annal.correction),
                 )
               ],
             ),
@@ -64,7 +66,8 @@ class AdsDialog extends StatelessWidget {
         actions: [
           Wrap(
             alignment: WrapAlignment.end,
-            children: createActionsWidgets(context),
+            crossAxisAlignment: WrapCrossAlignment.end,
+            children: createActionsWidgets(context, Provider.of<SettingsModel>(context)),
             direction: Axis.vertical,
           ),
         ],
@@ -81,24 +84,29 @@ class AdsDialog extends StatelessWidget {
       );
 
   /// Creates a new dialog actions widgets.
-  List<Widget> createActionsWidgets(BuildContext context) => [
+  List<Widget> createActionsWidgets(BuildContext context, SettingsModel settingsModel) => [
         FlatButton(
-          onPressed: () {
-            adMob.setEnabled(true);
+          onPressed: () async {
+            settingsModel.adMobEnabled = true;
+            await settingsModel.flush();
             _showRestartDialog(context);
           },
           child: Text('Activer les publicités'.toUpperCase()),
+          textTheme: ButtonTextTheme.accent,
         ),
         FlatButton(
-          onPressed: () {
-            adMob.setEnabled(false);
+          onPressed: () async {
+            settingsModel.adMobEnabled = false;
+            await settingsModel.flush();
             _showRestartDialog(context);
           },
           child: Text('Désactiver les publicités'.toUpperCase()),
+          textTheme: ButtonTextTheme.accent,
         ),
         FlatButton(
           onPressed: () => Navigator.pop(context),
           child: Text('Fermer'.toUpperCase()),
+          textTheme: ButtonTextTheme.accent,
         ),
       ];
 
@@ -115,6 +123,7 @@ class AdsDialog extends StatelessWidget {
             FlatButton(
               onPressed: () => Navigator.pop(context),
               child: Text('Ok'.toUpperCase()),
+              textTheme: ButtonTextTheme.accent,
             ),
           ],
         ),
@@ -136,6 +145,7 @@ class AboutDialog extends StatelessWidget {
         actions: [
           Wrap(
             alignment: WrapAlignment.end,
+            crossAxisAlignment: WrapCrossAlignment.end,
             children: createActionsWidgets(context),
             direction: Axis.vertical,
           )
@@ -157,14 +167,17 @@ class AboutDialog extends StatelessWidget {
         FlatButton(
           onPressed: () => openURL('https://bacomathiqu.es/a-propos/'),
           child: Text('Plus d\'informations'.toUpperCase()),
+          textTheme: ButtonTextTheme.accent,
         ),
         FlatButton(
           onPressed: () => openURL(storePage),
           child: Text('Fiche de l\'application'.toUpperCase()),
+          textTheme: ButtonTextTheme.accent,
         ),
         FlatButton(
           onPressed: () => Navigator.pop(context),
           child: Text('Fermer'.toUpperCase()),
+          textTheme: ButtonTextTheme.accent,
         ),
       ];
 
@@ -193,6 +206,7 @@ class UserDialog extends StatelessWidget {
         actions: [
           Wrap(
             alignment: WrapAlignment.end,
+            crossAxisAlignment: WrapCrossAlignment.end,
             children: createActionsWidgets(context),
             direction: Axis.vertical,
           )
@@ -219,10 +233,12 @@ class UserDialog extends StatelessWidget {
             Navigator.pop(context);
           },
           child: Text('Valider'.toUpperCase()),
+          textTheme: ButtonTextTheme.accent,
         ),
         FlatButton(
           onPressed: () => Navigator.pop(context),
           child: Text('Annuler'.toUpperCase()),
+          textTheme: ButtonTextTheme.accent,
         ),
       ];
 
@@ -251,6 +267,7 @@ class WriteCommentDialog extends StatelessWidget {
         actions: [
           Wrap(
             alignment: WrapAlignment.end,
+            crossAxisAlignment: WrapCrossAlignment.end,
             children: createActionsWidgets(context),
             direction: Axis.vertical,
           ),
@@ -341,10 +358,12 @@ class WriteCommentDialog extends StatelessWidget {
             });
           },
           child: Text('Envoyer'.toUpperCase()),
+          textTheme: ButtonTextTheme.accent,
         ),
         FlatButton(
           onPressed: () => Navigator.pop(context),
           child: Text('Fermer'.toUpperCase()),
+          textTheme: ButtonTextTheme.accent,
         ),
       ];
 
@@ -373,6 +392,7 @@ class MessageDialog extends StatelessWidget {
           FlatButton(
             child: Text('Ok'.toUpperCase()),
             onPressed: okButtonPressed ?? () => Navigator.pop(context),
+            textTheme: ButtonTextTheme.accent,
           ),
         ],
       );

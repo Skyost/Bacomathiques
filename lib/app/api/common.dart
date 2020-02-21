@@ -194,27 +194,27 @@ abstract class APIEndpointResult {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            _createLogoWidget(),
-            _createTitleWidget(),
+            _createLogoWidget(context),
+            _createTitleWidget(context),
           ],
         ),
         actions: createActions(context),
       );
 
   /// Creates the logo widget.
-  Widget _createLogoWidget() => SvgPicture.asset(
+  Widget _createLogoWidget(BuildContext context) => SvgPicture.asset(
         'assets/images/logo.svg',
-        width: 30,
+        width: MediaQuery.of(context).size.width > App.DAY_NIGHT_SWITCH_WIDTH_BREAKPOINT ? 30 : 26,
         semanticsLabel: 'Logo',
       );
 
   /// Creates the title widget.
-  Widget _createTitleWidget() => const Padding(
-        padding: EdgeInsets.only(top: 5, left: 7),
+  Widget _createTitleWidget(BuildContext context) => Padding(
+        padding: const EdgeInsets.only(top: 5, left: 7),
         child: Text(
           App.APP_NAME,
           style: TextStyle(
-            fontSize: 30,
+            fontSize: MediaQuery.of(context).size.width > App.DAY_NIGHT_SWITCH_WIDTH_BREAKPOINT ? 30 : 26,
             fontFamily: 'handlee-regular',
           ),
         ),

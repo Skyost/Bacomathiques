@@ -29,7 +29,7 @@ a:hover{
     -ms-border-radius:4px;
     border-radius:4px
 }
-.bubble table,.bubble .plot svg{
+.bubble table{
     background-color:white
 }
 .bubble .highlight pre{

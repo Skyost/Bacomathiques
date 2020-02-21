@@ -1,25 +1,26 @@
 name: bacomathiques
 description: Cours de mathématiques gratuits pour réviser le BAC !
-version: 1.1.0+26
+version: 1.2.0+27
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.6.0 <3.0.0"
 
 dependencies:
   http: ^0.12.0
   webview_flutter: ^0.3.19
   mime: ^0.9.6
   flutter_html: ^0.11.1
-  url_launcher: ^5.4.1
+  url_launcher: ^5.4.2
   flutter_svg: ^0.17.1
-  firebase_admob: ^0.9.0
+  firebase_admob: ^0.9.1
   share: ^0.6.3
   flutter_statusbarcolor: ^0.2.3
   transparent_image: ^1.0.0
-  rate_my_app: ^0.5.0
-  path_provider: ^1.6.0
+  rate_my_app: ^0.6.0
+  path_provider: ^1.6.1
   shared_preferences: ^0.5.6
   pedantic: ^1.9.0
+  provider: ^4.0.4
   flutter:
     sdk: flutter
 
@@ -69,6 +70,7 @@ flutter:
   - assets/webview/js/mathjax/es5/sre/mathmaps/nemeth/symbols/
   - assets/webview/js/mathjax/es5/sre/mathmaps/nemeth/units/
   - assets/webview/js/mathjax/es5/ui/
+  - assets/webview/js/polyfill/
   fonts:
   - family: handlee-regular
     fonts:

@@ -1,3 +1,5 @@
+'use strict';
+
 const BASE_URL = '{base_url}';
 const LEVEL = '{level}';
 const LESSON = '{lesson}';

@@ -1,10 +1,11 @@
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/index.dart';
-import 'package:bacomathiques/app/app.dart';
+import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pedantic/pedantic.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// The page that allows the user to show his level.
@@ -27,10 +28,15 @@ class _LevelsPageState extends RequestScaffold<LevelsPage, APIIndex> {
         );
 
   @override
-  Widget createBody(BuildContext context) => ListView.builder(
-        itemBuilder: (context, index) => _LevelWidget(result.levels[index]),
-        itemCount: result.levels.length,
-        semanticChildCount: result.levels.length,
+  Widget createBody(BuildContext context) => Consumer<SettingsModel>(
+        builder: (context, settings, _) => ListView.builder(
+          itemBuilder: (context, index) => _LevelWidget(
+            color: settings.appTheme.themeData.primaryColor,
+            level: result.levels[index],
+          ),
+          itemCount: result.levels.length,
+          semanticChildCount: result.levels.length,
+        ),
       );
 
   @override
@@ -61,68 +67,73 @@ class _LevelsPageState extends RequestScaffold<LevelsPage, APIIndex> {
 
 /// A level widget.
 class _LevelWidget extends StatelessWidget {
+  /// The color.
+  final Color color;
+
   /// The level.
-  final Level _level;
+  final Level level;
 
   /// Creates a new level widget instance.
-  _LevelWidget(this._level);
+  _LevelWidget({
+    @required this.color,
+    @required this.level,
+  });
 
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.all(10),
         child: Material(
-          color: App.PRIMARY_COLOR,
+          color: color,
           child: InkWell(
-            hoverColor: Colors.black12,
-            highlightColor: Colors.black12,
-            focusColor: Colors.black12,
-            splashColor: Colors.black12,
             onTap: () async {
               SharedPreferences preferences = await SharedPreferences.getInstance();
-              await preferences.setString('preferences.level-image', _level.image);
-              await preferences.setString('preferences.lesson-list', _level.lessons.path);
+              await preferences.setString('preferences.level-image', level.image);
+              await preferences.setString('preferences.lesson-list', level.lessons.path);
               unawaited(Navigator.pushNamedAndRemoveUntil(
                 context,
                 '/lessons',
                 (route) => false,
                 arguments: {
-                  'endpoint': _level.lessons,
+                  'endpoint': level.lessons,
                 },
               ));
             },
-            child: Padding(
-              padding: const EdgeInsets.all(15),
-              child: Column(
-                children: [
-                  SvgPicture.network(
-                    API.BASE_URL + _level.image,
-                    height: 60,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: Text(
-                      _level.name.toUpperCase(),
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontFamily: 'handlee-regular',
-                        color: Colors.white,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  Text(
-                    _level.description,
-                    style: Theme.of(context).textTheme.body1.copyWith(
-                          fontSize: 14,
-                          fontStyle: FontStyle.italic,
-                          color: Colors.white,
-                        ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+            child: buildMainWidget(context),
+          ),
+        ),
+      );
+
+  /// Builds the main widget.
+  Widget buildMainWidget(BuildContext context) => Padding(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          children: [
+            SvgPicture.network(
+              API.BASE_URL + level.image,
+              height: 60,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5),
+              child: Text(
+                level.name.toUpperCase(),
+                style: const TextStyle(
+                  fontSize: 30,
+                  fontFamily: 'handlee-regular',
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
-          ),
+            Text(
+              level.description,
+              style: Theme.of(context).textTheme.body1.copyWith(
+                    fontSize: 14,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.white,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
       );
 }

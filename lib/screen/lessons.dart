@@ -2,9 +2,11 @@ import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/list.dart';
 import 'package:bacomathiques/app/app.dart';
 import 'package:bacomathiques/app/dialogs.dart';
+import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:provider/provider.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -124,7 +126,10 @@ class _PreviewsList extends StatelessWidget {
         crossAxisCount: columnCount,
         childAspectRatio: _getCoefficient(context) * (size.width / size.height),
         children: _items.map((item) {
-          return _PreviewWidget(item, true);
+          return _PreviewWidget(
+            item: item,
+            tablet: true,
+          );
         }).toList(),
         semanticChildCount: _items.length,
       );
@@ -133,22 +138,22 @@ class _PreviewsList extends StatelessWidget {
     return ListView.builder(
       semanticChildCount: _items.length,
       itemCount: _items.length,
-      itemBuilder: (context, position) => _PreviewWidget(_items[position]),
+      itemBuilder: (context, position) => _PreviewWidget(item: _items[position]),
     );
   }
 
   /// Returns the size coefficient.
   double _getCoefficient(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    if(height < 600) {
+    if (height < 600) {
       return 0.4;
     }
 
-    if(height < 800) {
+    if (height < 800) {
       return 0.5;
     }
 
-    if(height < 1000) {
+    if (height < 1000) {
       return 0.6;
     }
 
@@ -173,13 +178,16 @@ class _PreviewsList extends StatelessWidget {
 /// A widget which shows a lesson preview.
 class _PreviewWidget extends StatefulWidget {
   /// The lesson to preview.
-  final LessonListItem _item;
+  final LessonListItem item;
 
   /// Whether it's tablet.
-  final bool _tablet;
+  final bool tablet;
 
   /// Creates a new preview widget instance.
-  _PreviewWidget(this._item, [this._tablet = false]);
+  _PreviewWidget({
+    this.item,
+    this.tablet = false,
+  });
 
   @override
   State<StatefulWidget> createState() => _PreviewWidgetState();
@@ -188,41 +196,45 @@ class _PreviewWidget extends StatefulWidget {
 /// The state of preview widgets.
 class _PreviewWidgetState extends State<_PreviewWidget> {
   /// Whether this state is currently showing a caption.
-  bool _showCaption;
+  bool showCaption;
 
   /// Creates a new preview widget state instance.
-  _PreviewWidgetState() : _showCaption = false;
+  _PreviewWidgetState() : showCaption = false;
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.all(10),
-        child: Card(
+  Widget build(BuildContext context) => Consumer<SettingsModel>(
+        builder: (context, settings, _) => Padding(
+          padding: const EdgeInsets.all(10),
+          child: Card(
+            color: settings.appTheme.themeData.lessonBackgroundColor,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(App.CARD_BORDER_RADIUS),
+              borderRadius: BorderRadius.circular(settings.appTheme.themeData.cardBorderRadius),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                _createTitleWidget(),
+                _createTitleWidget(settings.appTheme),
                 _createPreviewWidget(),
                 _createDescriptionWidget(),
-                _createActionsWidget(),
+                _createActionsWidget(settings.appTheme),
               ],
-            )),
+            ),
+          ),
+        ),
       );
 
   /// Toggles the current caption.
   void _toggleCaption() => setState(() {
-        _showCaption = !_showCaption;
+        showCaption = !showCaption;
       });
 
   /// Creates a new title widget.
-  Widget _createTitleWidget() => Container(
+  Widget _createTitleWidget(AppTheme theme) => Container(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
         child: Text(
-          widget._item.lesson.title,
+          widget.item.lesson.title,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 26,
             fontFamily: 'handlee-regular',
             color: Colors.white,
@@ -230,10 +242,10 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(App.CARD_BORDER_RADIUS),
-            topRight: Radius.circular(App.CARD_BORDER_RADIUS),
+            topLeft: Radius.circular(theme.themeData.cardBorderRadius),
+            topRight: Radius.circular(theme.themeData.cardBorderRadius),
           ),
-          color: widget._item.lesson.specialty ? App.SPECIALITY_COLOR : App.PRIMARY_COLOR,
+          color: widget.item.lesson.specialty ? theme.themeData.specialityColor : theme.themeData.primaryColor,
         ),
       );
 
@@ -243,33 +255,35 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
         child: Stack(
           children: [
             Positioned.fill(
-                child: Container(
-              alignment: const Alignment(0, 0),
-              foregroundDecoration: BoxDecoration(
-                color: Colors.black.withAlpha(30),
+              child: Container(
+                alignment: const Alignment(0, 0),
+                foregroundDecoration: BoxDecoration(
+                  color: Colors.black.withAlpha(30),
+                ),
               ),
-            )),
+            ),
             FadeInImage.memoryNetwork(
-              image: API.BASE_URL + widget._item.preview,
+              image: API.BASE_URL + widget.item.preview,
               placeholder: kTransparentImage,
               height: 100,
               fit: BoxFit.cover,
             ),
             Positioned.fill(
-                child: AnimatedOpacity(
-              opacity: _showCaption ? 1 : 0,
-              duration: const Duration(milliseconds: 200),
-              child: Container(
-                alignment: const Alignment(0, 0),
-                decoration: BoxDecoration(color: Colors.black.withAlpha(175)),
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Text(
-                  widget._item.caption,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white),
+              child: AnimatedOpacity(
+                opacity: showCaption ? 1 : 0,
+                duration: const Duration(milliseconds: 200),
+                child: Container(
+                  alignment: const Alignment(0, 0),
+                  decoration: BoxDecoration(color: Colors.black.withAlpha(175)),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(
+                    widget.item.caption,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
-            ))
+            ),
           ],
         ),
       );
@@ -279,14 +293,14 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
     Widget description = Padding(
       padding: const EdgeInsets.all(12),
       child: Html(
-        data: widget._item.excerpt,
+        data: widget.item.excerpt,
         defaultTextStyle: Theme.of(context).textTheme.body1.copyWith(
               fontSize: 14,
             ),
       ),
     );
 
-    return widget._tablet
+    return widget.tablet
         ? Expanded(
             child: SingleChildScrollView(
               child: description,
@@ -296,12 +310,12 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
   }
 
   /// Creates a new preview actions widget.
-  Widget _createActionsWidget() {
-    BoxDecoration decoration = widget._tablet
+  Widget _createActionsWidget(AppTheme theme) {
+    BoxDecoration decoration = widget.tablet
         ? BoxDecoration(
             border: Border(
               top: BorderSide(
-                color: App.ACCENT_COLOR.withAlpha(100),
+                color: theme.themeData.accentColor.withAlpha(100),
               ),
             ),
           )
@@ -316,7 +330,7 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
           FlatButton.icon(
             icon: Icon(
               Icons.assignment,
-              color: App.ACCENT_COLOR,
+              color: theme.themeData.accentColor,
             ),
             label: Text(
               'Lire le résumé'.toUpperCase(),
@@ -326,7 +340,7 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
               context,
               '/html',
               arguments: {
-                'endpoint': widget._item.lesson.summary,
+                'endpoint': widget.item.lesson.summary,
               },
             ),
             padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -334,7 +348,7 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
           FlatButton.icon(
             icon: Icon(
               Icons.book,
-              color: App.ACCENT_COLOR,
+              color: theme.themeData.accentColor,
             ),
             label: Text(
               'Lire le cours'.toUpperCase(),
@@ -344,7 +358,7 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
               context,
               '/html',
               arguments: {
-                'endpoint': widget._item.lesson.content,
+                'endpoint': widget.item.lesson.content,
               },
             ),
             padding: const EdgeInsets.symmetric(horizontal: 5),

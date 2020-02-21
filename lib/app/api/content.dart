@@ -1,7 +1,10 @@
 import 'package:bacomathiques/app/api/common.dart';
+import 'package:bacomathiques/app/app.dart';
 import 'package:bacomathiques/app/dialogs.dart' as dialogs;
+import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 
 /// /api/v2/:level/:lesson/ endpoint.
@@ -111,8 +114,8 @@ class LessonContent extends APIEndpointResultHTML {
       );
     }
 
+    AppTheme appTheme = Provider.of<SettingsModel>(context).appTheme;
     List<String> titleParts = lesson.title.split(' – ');
-
     return AppBar(
       title: titleParts.length < 2
           ? Text(lesson.title)
@@ -152,16 +155,17 @@ class LessonContent extends APIEndpointResultHTML {
           },
         ),
         PopupMenuButton<_ActionMenu>(
+          color: appTheme.themeData.scaffoldBackgroundColor,
           onSelected: (action) => action.callback(context, this),
           itemBuilder: (context) => actions
               .map(
                 (action) => PopupMenuItem<_ActionMenu>(
                   value: action,
-                  child: action.createWidget(),
+                  child: action.createWidget(appTheme),
                 ),
               )
               .toList(),
-        )
+        ),
       ],
     );
   }
@@ -228,7 +232,7 @@ class _ActionMenu {
   });
 
   /// Creates and returns the widget corresponding to this action menu.
-  Widget createWidget() => Wrap(
+  Widget createWidget(AppTheme appTheme) => Wrap(
         crossAxisAlignment: WrapCrossAlignment.center,
         spacing: 5,
         children: [
@@ -236,12 +240,12 @@ class _ActionMenu {
             padding: const EdgeInsets.only(right: 5),
             child: Icon(
               icon,
-              color: Colors.black,
+              color: appTheme.themeData.textColor ?? Colors.black,
             ),
           ),
           Text(
             label,
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: appTheme.themeData.textColor),
           ),
         ],
       );

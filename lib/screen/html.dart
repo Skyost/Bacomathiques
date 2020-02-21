@@ -2,11 +2,12 @@ import 'dart:convert';
 
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/content.dart';
-import 'package:bacomathiques/main.dart';
+import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/utils/server.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 /// A screen that is able to display some HTML content.
@@ -27,7 +28,9 @@ class HTMLPage extends StatefulWidget {
 /// State of HTML screens.
 class HTMLPageState extends RequestScaffold<HTMLPage, APIEndpointResultHTML> {
   /// The banner ad.
-  BannerAd _ad;
+  BannerAd ad;
+
+  int stackToView = 1;
 
   /// Creates a new HTML screen state instance.
   HTMLPageState(
@@ -41,10 +44,14 @@ class HTMLPageState extends RequestScaffold<HTMLPage, APIEndpointResultHTML> {
   void initState() {
     super.initState();
 
-    if (adMob.isEnabled()) {
-      BannerAd ad = adMob.createBannerAd();
-      ad.load().then((loaded) => _showBanner(ad, loaded));
-    }
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      SettingsModel settingsModel = Provider.of<SettingsModel>(context, listen: false);
+      if (settingsModel.adMobEnabled) {
+        BannerAd ad = settingsModel.createBannerAd();
+        bool loaded = await ad.load();
+        _showBanner(ad, loaded);
+      }
+    });
   }
 
   @override
@@ -69,31 +76,54 @@ class HTMLPageState extends RequestScaffold<HTMLPage, APIEndpointResultHTML> {
       )
     ];
 
-    return WebView(
-      initialUrl: 'http://localhost:$LOCAL_SERVER_PORT/assets/webview/content.html',
-      javascriptMode: JavascriptMode.unrestricted,
-      javascriptChannels: channels.toSet(),
-      navigationDelegate: (navigation) {
-        if (navigation.url.startsWith('http') && !navigation.url.startsWith('http://localhost:$LOCAL_SERVER_PORT/')) {
-          openURL(navigation.url);
-          return NavigationDecision.prevent;
-        }
-        return NavigationDecision.navigate;
-      },
+    Server server = Provider.of<Server>(context);
+
+    return IndexedStack(
+      index: stackToView,
+      children: [
+        SizedBox.expand(
+          child: WebView(
+            initialUrl: 'http://localhost:${server.port}/assets/webview/content.html',
+            onPageStarted: (_) {
+              setState(() {
+                stackToView = 1;
+              });
+            },
+            onPageFinished: (_) {
+              setState(() {
+                stackToView = 0;
+              });
+            },
+            javascriptMode: JavascriptMode.unrestricted,
+            javascriptChannels: channels.toSet(),
+            navigationDelegate: (navigation) {
+              if (navigation.url.startsWith('http') && !navigation.url.startsWith('http://localhost:${server.port}/')) {
+                openURL(navigation.url);
+                return NavigationDecision.prevent;
+              }
+              return NavigationDecision.navigate;
+            },
+          ),
+        ),
+        Container(
+          color: Provider.of<SettingsModel>(context).appTheme.themeData.scaffoldBackgroundColor,
+          child: CenteredCircularProgressIndicator(),
+        ),
+      ],
     );
   }
 
   @override
-  void deactivate() {
+  void dispose() {
     _disposeAd();
-    super.deactivate();
+    super.dispose();
   }
 
   /// Disposes the ad.
   Future<void> _disposeAd() async {
     try {
-      if (_ad != null) {
-        await _ad.dispose();
+      if (ad != null) {
+        await ad.dispose();
       }
     } catch (error, stacktrace) {
       print(error);
@@ -103,9 +133,14 @@ class HTMLPageState extends RequestScaffold<HTMLPage, APIEndpointResultHTML> {
 
   @override
   void updateObject(APIEndpointResultHTML result) {
-    localServer.formatArguments = {
+    SettingsModel settingsModel = Provider.of<SettingsModel>(context, listen: false);
+    Server server = Provider.of<Server>(context, listen: false);
+
+    server.formatArguments = {
       'assets/webview/content.html': [
         FormatArgument('content', result.html),
+        FormatArgument('dark_theme_css', settingsModel.darkModeEnabled ? '<link rel="stylesheet" href="http://localhost:8080/assets/webview/css/dark.css">' : ''),
+        FormatArgument('dark_theme_js', settingsModel.darkModeEnabled ? '<script src="http://localhost:8080/assets/webview/js/dark.js"></script>' : ''),
       ],
       'assets/webview/js/lesson.js': [
         FormatArgument('base_url', API.BASE_URL),
@@ -114,19 +149,19 @@ class HTMLPageState extends RequestScaffold<HTMLPage, APIEndpointResultHTML> {
         FormatArgument('anchor', widget._anchor ?? ''),
       ],
       'assets/webview/css/lesson.css': [
-        FormatArgument('margin_bottom', (adMob.isEnabled() ? 60 : 0).toString()),
-      ]
+        FormatArgument('margin_bottom', (settingsModel.adMobEnabled ? 60 : 0).toString()),
+      ],
     };
     super.updateObject(result);
   }
 
   /// Shows the ad banner.
   void _showBanner(BannerAd ad, bool loaded) {
-    if (!loaded) {
+    if (!loaded || !mounted) {
       return;
     }
 
-    _ad = ad;
-    ad.show();
+    this.ad = ad;
+    this.ad.show();
   }
 }

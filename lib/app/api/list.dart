@@ -1,4 +1,6 @@
 import 'package:bacomathiques/app/api/common.dart';
+import 'package:bacomathiques/app/app.dart';
+import 'package:bacomathiques/utils/day_night_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,9 +10,7 @@ class LessonListEndpoint extends APIEndpoint<LessonList> {
   /// Creates a new lesson list endpoint instance.
   const LessonListEndpoint({
     @required String path,
-  }) : super(
-          path: path,
-        );
+  }) : super(path: path);
 
   @override
   LessonList createObjectFromJSON(Map<String, dynamic> parsedJSON) => LessonList.fromParsedJSON(parsedJSON);
@@ -38,7 +38,10 @@ class LessonList extends APIEndpointResult {
         );
 
   @override
-  List<Widget> createActions(BuildContext context) => [_LevelIconButton()];
+  List<Widget> createActions(BuildContext context) => [
+        MediaQuery.of(context).size.width > App.DAY_NIGHT_SWITCH_WIDTH_BREAKPOINT ? DayNightSwitch() : DayNightSwitchIcon(),
+        _LevelIconButton(),
+      ];
 }
 
 /// A lesson list item.
@@ -73,12 +76,15 @@ class LessonListItem {
         );
 }
 
+/// The level button.
 class _LevelIconButton extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _LevelIconButtonState();
 }
 
+/// The level button state.
 class _LevelIconButtonState extends State<_LevelIconButton> {
+  /// The level image URL.
   String imageUrl;
 
   @override
@@ -108,11 +114,13 @@ class _LevelIconButtonState extends State<_LevelIconButton> {
     ));
   }
 
+  /// Creates the button.
   Widget createButton(Widget child) => IconButton(
         icon: child,
         onPressed: () => Navigator.pushNamed(context, '/levels'),
       );
 
+  /// Creates the icon.
   Widget createIcon() => Icon(
         Icons.view_day,
         color: Colors.white,

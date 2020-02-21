@@ -1,0 +1,28 @@
+html, body {
+    background-color: #15202B !important;
+    color: white !important;
+}
+
+h1, h2, h3 {
+    color: white !important;
+}
+
+h2 {
+    border-bottom:1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.bubble {
+    background-color: #192734 !important;
+}
+
+table, .bubble table {
+    background-color: #2E455C !important;
+}
+
+table th, table td, .bubble table th, .bubble table td {
+    border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.math-table img {
+    background-color: #2E455C !important;
+}
