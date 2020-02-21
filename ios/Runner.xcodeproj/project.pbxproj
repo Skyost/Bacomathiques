@@ -197,6 +197,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -268,17 +269,10 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh",
-				"${PODS_ROOT}/../.symlinks/flutter/ios-release/Flutter.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Flutter.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -404,7 +398,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = fr.bacomathiques;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Bacomathiques iOS";
+				PROVISIONING_PROFILE_SPECIFIER = "Skyost App Store";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Profile;
@@ -533,7 +527,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = fr.bacomathiques;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Bacomathiques iOS";
+				PROVISIONING_PROFILE_SPECIFIER = "Skyost App Store";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -560,7 +554,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = fr.bacomathiques;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Bacomathiques iOS";
+				PROVISIONING_PROFILE_SPECIFIER = "Skyost App Store";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
