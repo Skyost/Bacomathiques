@@ -29,7 +29,7 @@
 <!-- JSON-LD -->
 {% if page.path != 'pages/404.html' %}
 	{% if lesson %}
-		{% assign canonicalURL = site.url | append: '/cours/' | append: site.data.levels[lesson.level].url | append: lesson.url | append: '/' %}
+		{% assign canonicalURL = site.url | append: '/cours/' | append: site.data.levels[lesson.level].url | append: '/' | append: lesson.url | append: '/' %}
 	{% else %}
 		{% assign canonicalURL = site.url | append: page.url %}
 	{% endif %}
