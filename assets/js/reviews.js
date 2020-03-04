@@ -48,6 +48,13 @@ const reviews = [
         rating: 4,
         source: 0,
     },
+    {
+        author: 'F. Calvez',
+        date: '24 fev. 2020',
+        message: '<strong>Très bonne application.</strong> Bravo au développeur.',
+        rating: 5,
+        source: 0,
+    },
 ];
 
 let currentReviewIndex;
