@@ -31,17 +31,6 @@ bool isTablet(Size screenSize) {
   return diagonal > 1100 || screenSize.shortestSide >= 600;
 }
 
-/// Mix two colors.
-Color mixColors(Color color1, Color color2, double t) => Color.fromARGB(
-      ((1 - t) * color1.alpha + t * color2.alpha).round(),
-      ((1 - t) * color1.red + t * color2.red).round(),
-      ((1 - t) * color1.green + t * color2.green).round(),
-      ((1 - t) * color1.blue + t * color2.blue).round(),
-    );
-
-/// Mix two doubles.
-double mixDoubles(double double1, double double2, double t) => (1 - t) * double1 + t * double2;
-
 /// A centered circular progress indicator.
 class CenteredCircularProgressIndicator extends StatelessWidget {
   @override
@@ -50,6 +39,15 @@ class CenteredCircularProgressIndicator extends StatelessWidget {
           valueColor: AlwaysStoppedAnimation<Color>(Provider.of<SettingsModel>(context).appTheme.themeData.progressIndicatorColor),
         ),
       );
+}
+
+/// Contains some useful methods for doubles.
+extension DoubleUtils on double {
+  /// Does a linear interpolation of two doubles, this one and another.
+  double lerp(double other, double t) {
+    other ??= 0.0;
+    return this + (other - this) * t;
+  }
 }
 
 /// A scaffold that allows to request remote objects.

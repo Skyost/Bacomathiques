@@ -1,8 +1,10 @@
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/app.dart';
-import 'package:bacomathiques/utils/day_night_switch.dart';
+import 'package:bacomathiques/app/settings.dart';
+import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// /api/v2/:level/ endpoint.
@@ -38,10 +40,28 @@ class LessonList extends APIEndpointResult {
         );
 
   @override
-  List<Widget> createActions(BuildContext context) => [
-        MediaQuery.of(context).size.width > App.DAY_NIGHT_SWITCH_WIDTH_BREAKPOINT ? DayNightSwitch() : DayNightSwitchIcon(),
-        _LevelIconButton(),
-      ];
+  List<Widget> createActions(BuildContext context) {
+    SettingsModel settingsModel = Provider.of<SettingsModel>(context, listen: false);
+    bool darkModeEnabled = settingsModel.darkModeEnabled;
+    return [
+      MediaQuery.of(context).size.width > App.DAY_NIGHT_SWITCH_WIDTH_BREAKPOINT
+          ? DayNightSwitcher(
+              isDarkModeEnabled: darkModeEnabled,
+              onStateChanged: (enableDarkMode) => setDarkModeEnabled(settingsModel, enableDarkMode),
+            )
+          : DayNightSwitcherIcon(
+              isDarkModeEnabled: darkModeEnabled,
+              onStateChanged: (enableDarkMode) => setDarkModeEnabled(settingsModel, enableDarkMode),
+            ),
+      _LevelIconButton(),
+    ];
+  }
+
+  /// Sets the dark mode enabled.
+  void setDarkModeEnabled(SettingsModel settingsModel, bool enableDarkMode) {
+    settingsModel.darkModeEnabled = enableDarkMode;
+    settingsModel.flush();
+  }
 }
 
 /// A lesson list item.
