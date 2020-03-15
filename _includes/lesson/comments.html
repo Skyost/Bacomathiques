@@ -12,15 +12,16 @@
 			<textarea id="comment-message" class="form-control" name="fields[message]" rows="5" placeholder="Exprimez-vous !" required></textarea>
 		</div>
 		<div id="comment-form-author" class="form-group">
-			<img id="comment-avatar" src="https://api.adorable.io/avatars/56/.png" alt="Avatar (prévisualisation)" title="Avatar (prévisualisation)"/>
+			<img id="comment-avatar" src="https://api.adorable.io/avatars/56/Anonyme.png" alt="Avatar (prévisualisation)" title="Avatar (prévisualisation)"/>
 			<label for="comment-author">Nom d'utilisateur</label>
 			<input id="comment-author" class="form-control" name="fields[author]" type="text" placeholder="Nom d'utilisateur" required>
 		</div>
 		<button type="submit" class="btn btn-primary float-right"><i class="fa fa-paper-plane" aria-hidden="true"></i> Envoyer</button>
 	</form>
 	
-	<div class="alert alert-success" role="alert" style="display: none;">Votre commentaire a été envoyé avec succès. Veuillez cependant noter qu'il ne sera publié qu'après modération 😉</div>
-	
+	<div class="alert alert-danger d-none" role="alert">Impossible de poster votre commentaire. Veuillez réessayer plus tard.</div>
+	<div class="alert alert-success d-none" role="alert">Votre commentaire a été envoyé avec succès. Veuillez cependant noter qu'il ne sera publié qu'après modération 😉</div>
+
 	<div id="comments-list">
 		{% assign hasComment = false %}
 		{% if site.data.comments != null %}

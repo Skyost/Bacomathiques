@@ -159,20 +159,17 @@ $(document).ready(function () {
             return false;
         }
 
-        let button = $('#comment-form button');
-        button.attr('disabled', true);
+        $('#comment-form button').attr('disabled', true);
 
         event.preventDefault();
-        $.post('https://dev.staticman.net/v3/entry/github/Skyost/Bacomathiques/master/comments', $(this).serialize());
-
-        setTimeout(function () {
-            let commentsAlert = $('#comments .alert');
-            commentsAlert.css('display', 'block');
-            $('html, body').animate({
-                scrollTop: commentsAlert.top
-            }, 500);
-            button.removeAttr('disabled');
-        }, 3000);
+        $.post('https://skyost-staticman.herokuapp.com/v3/entry/github/Skyost/Bacomathiques/master/comments', $(this).serialize(), function() {
+            showCommentAlert('success');
+            commentAuthor.val('');
+            $('#comment-message').val('');
+        })
+            .fail(function() {
+                showCommentAlert('danger');
+            });
     });
 
     // SYNTAX HIGHLIGHTING
@@ -241,5 +238,21 @@ function resetPosition(navigation) {
  */
 
 function getAvatarUrl(username) {
+    if(username == null || username.length === 0) {
+        username = 'Anonyme';
+    }
     return 'https://api.adorable.io/avatars/56/' + username + '.png';
+}
+
+/**
+ * Shows a comment alert.
+ */
+
+function showCommentAlert(alert) {
+    let commentsAlert = $('#comments .alert-' + alert);
+    commentsAlert.removeClass('d-none');
+    $('html, body').animate({
+        scrollTop: commentsAlert.top
+    }, 500);
+    $('#comment-form button').removeAttr('disabled');
 }
