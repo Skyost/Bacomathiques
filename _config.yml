@@ -37,6 +37,8 @@ exclude:
   - "CNAME"
   - "staticman.yml"
   - "serve.bat"
+  - "Gemfile"
+  - "Gemfile.lock"
 
 # Gems
 plugins:
