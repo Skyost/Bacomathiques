@@ -10,7 +10,7 @@
 			{% include _includes/date_french.html %}
 			
 			<h3 id="commentaire-{{ comment._id }}" class="author">{{ comment.author }} {% if site.comments.moderators contains comment.author %}(Modérateur){% endif %}</h3>
-			<p class="message">{{ comment.message | xml_escape }}</p>
+			{{ comment.message | xml_escape | markdownify }}
 
 			<small class="date text-muted float-right">{{ date_french }} {{ comment.date | date: "%H:%M" }}</small>
 		</div>
