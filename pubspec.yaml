@@ -1,32 +1,31 @@
 name: bacomathiques
-description: Cours de mathématiques gratuits pour réviser le BAC !
-version: 1.2.0+27
+description: Cours gratuits pour réviser les maths au lycée !
+version: 1.2.1+28
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
 
 dependencies:
-  http: ^0.12.0
-  webview_flutter: ^0.3.19
+  http: ^0.12.1
+  webview_flutter: ^0.3.21
   mime: ^0.9.6
-  flutter_html: ^0.11.1
-  url_launcher: ^5.4.2
-  flutter_svg: ^0.17.3
-  firebase_admob: ^0.9.2
-  share: ^0.6.3
+  flutter_html: ^1.0.0
+  url_launcher: ^5.4.7
+  flutter_svg: ^0.17.4
+  firebase_admob: ^0.9.3
+  share: ^0.6.4
   flutter_statusbarcolor: ^0.2.3
   transparent_image: ^1.0.0
   rate_my_app: ^0.6.0
-  path_provider: ^1.6.5
-  shared_preferences: ^0.5.6
+  path_provider: ^1.6.8
+  shared_preferences: ^0.5.7
   pedantic: ^1.9.0
-  provider: ^4.0.4
+  provider: ^4.1.2
   day_night_switcher: ^0.1.0
+  flutter_layout_grid: ^0.10.1
+  google_fonts: ^1.1.0
   flutter:
     sdk: flutter
-
-dev_dependencies:
-  flutter_native_splash: ^0.1.9
 
 flutter:
   uses-material-design: true
@@ -54,29 +53,6 @@ flutter:
   - assets/webview/js/mathjax/es5/output/chtml/fonts/woff-v2/
   - assets/webview/js/mathjax/es5/sre/
   - assets/webview/js/mathjax/es5/sre/mathmaps/
-  - assets/webview/js/mathjax/es5/sre/mathmaps/en/
-  - assets/webview/js/mathjax/es5/sre/mathmaps/en/functions/
-  - assets/webview/js/mathjax/es5/sre/mathmaps/en/symbols/
-  - assets/webview/js/mathjax/es5/sre/mathmaps/en/units/
-  - assets/webview/js/mathjax/es5/sre/mathmaps/es/
-  - assets/webview/js/mathjax/es5/sre/mathmaps/es/functions/
-  - assets/webview/js/mathjax/es5/sre/mathmaps/es/symbols/
-  - assets/webview/js/mathjax/es5/sre/mathmaps/es/units/
-  - assets/webview/js/mathjax/es5/sre/mathmaps/fr/
-  - assets/webview/js/mathjax/es5/sre/mathmaps/fr/functions/
-  - assets/webview/js/mathjax/es5/sre/mathmaps/fr/symbols/
-  - assets/webview/js/mathjax/es5/sre/mathmaps/fr/units/
-  - assets/webview/js/mathjax/es5/sre/mathmaps/nemeth/
-  - assets/webview/js/mathjax/es5/sre/mathmaps/nemeth/functions/
-  - assets/webview/js/mathjax/es5/sre/mathmaps/nemeth/symbols/
-  - assets/webview/js/mathjax/es5/sre/mathmaps/nemeth/units/
   - assets/webview/js/mathjax/es5/ui/
   - assets/webview/js/polyfill/
-  fonts:
-  - family: handlee-regular
-    fonts:
-    - asset: assets/fonts/handlee-regular.ttf
-
-flutter_native_splash:
-  image: assets/images/splash.png
-  color: "3498DB"
+  - google_fonts/

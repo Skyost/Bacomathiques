@@ -13,16 +13,19 @@ import 'package:webview_flutter/webview_flutter.dart';
 /// A screen that is able to display some HTML content.
 class HTMLPage extends StatefulWidget {
   /// The endpoint to display.
-  final APIEndpoint<APIEndpointResultHTML> _endpoint;
+  final APIEndpoint<APIEndpointResultHTML> endpoint;
 
   /// The current anchor.
-  final String _anchor;
+  final String anchor;
 
   /// Creates a new HTML screen instance.
-  HTMLPage(this._endpoint, this._anchor);
+  const HTMLPage({
+    this.endpoint,
+    this.anchor,
+  });
 
   @override
-  State<StatefulWidget> createState() => HTMLPageState(_endpoint);
+  State<StatefulWidget> createState() => HTMLPageState(endpoint: endpoint);
 }
 
 /// State of HTML screens.
@@ -30,12 +33,13 @@ class HTMLPageState extends RequestScaffold<HTMLPage, APIEndpointResultHTML> {
   /// The banner ad.
   BannerAd ad;
 
+  /// Current stack to view.
   int stackToView = 1;
 
   /// Creates a new HTML screen state instance.
-  HTMLPageState(
-    APIEndpoint<APIEndpointResultHTML> endpoint,
-  ) : super(
+  HTMLPageState({
+    @required APIEndpoint<APIEndpointResultHTML> endpoint,
+  }) : super(
           endpoint: endpoint,
           failMessage: 'Impossible de charger ce contenu et aucune sauvegarde n\'est disponible.',
         );
@@ -77,7 +81,6 @@ class HTMLPageState extends RequestScaffold<HTMLPage, APIEndpointResultHTML> {
     ];
 
     Server server = Provider.of<Server>(context);
-
     return IndexedStack(
       index: stackToView,
       children: [
@@ -85,14 +88,10 @@ class HTMLPageState extends RequestScaffold<HTMLPage, APIEndpointResultHTML> {
           child: WebView(
             initialUrl: 'http://localhost:${server.port}/assets/webview/content.html',
             onPageStarted: (_) {
-              setState(() {
-                stackToView = 1;
-              });
+              setState(() => stackToView = 1);
             },
             onPageFinished: (_) {
-              setState(() {
-                stackToView = 0;
-              });
+              setState(() => stackToView = 0);
             },
             javascriptMode: JavascriptMode.unrestricted,
             javascriptChannels: channels.toSet(),
@@ -132,27 +131,29 @@ class HTMLPageState extends RequestScaffold<HTMLPage, APIEndpointResultHTML> {
   }
 
   @override
-  void updateObject(APIEndpointResultHTML result) {
-    SettingsModel settingsModel = Provider.of<SettingsModel>(context, listen: false);
-    Server server = Provider.of<Server>(context, listen: false);
+  set result(APIEndpointResultHTML result) {
+    if (mounted) {
+      SettingsModel settingsModel = Provider.of<SettingsModel>(context, listen: false);
+      Server server = Provider.of<Server>(context, listen: false);
 
-    server.formatArguments = {
-      'assets/webview/content.html': [
-        FormatArgument('content', result.html),
-        FormatArgument('dark_theme_css', settingsModel.darkModeEnabled ? '<link rel="stylesheet" href="http://localhost:8080/assets/webview/css/dark.css">' : ''),
-        FormatArgument('dark_theme_js', settingsModel.darkModeEnabled ? '<script src="http://localhost:8080/assets/webview/js/dark.js"></script>' : ''),
-      ],
-      'assets/webview/js/lesson.js': [
-        FormatArgument('base_url', API.BASE_URL),
-        FormatArgument('level', result.lesson.level),
-        FormatArgument('lesson', result.lesson.id.replaceAll('-', '_')),
-        FormatArgument('anchor', widget._anchor ?? ''),
-      ],
-      'assets/webview/css/lesson.css': [
-        FormatArgument('margin_bottom', (settingsModel.adMobEnabled ? 60 : 0).toString()),
-      ],
-    };
-    super.updateObject(result);
+      server.formatArguments = {
+        'assets/webview/content.html': [
+          FormatArgument('content', result.html),
+          FormatArgument('dark_theme_css', settingsModel.darkModeEnabled ? '<link rel="stylesheet" href="http://localhost:8080/assets/webview/css/dark.css">' : ''),
+          FormatArgument('dark_theme_js', settingsModel.darkModeEnabled ? '<script src="http://localhost:8080/assets/webview/js/dark.js"></script>' : ''),
+        ],
+        'assets/webview/js/lesson.js': [
+          FormatArgument('base_url', API.BASE_URL),
+          FormatArgument('level', result.lesson.level),
+          FormatArgument('lesson', result.lesson.id.replaceAll('-', '_')),
+          FormatArgument('anchor', widget.anchor ?? ''),
+        ],
+        'assets/webview/css/lesson.css': [
+          FormatArgument('margin_bottom', (settingsModel.adMobEnabled ? 60 : 0).toString()),
+        ],
+      };
+    }
+    super.result = result;
   }
 
   /// Shows the ad banner.

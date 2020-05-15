@@ -11,15 +11,17 @@ import 'package:provider/provider.dart';
 /// Dialog that displays annals.
 class AnnalsDialog extends StatelessWidget {
   /// The lesson.
-  final List<LessonAnnal> _annals;
+  final List<LessonAnnal> annals;
 
   /// Creates a new annals dialog.
-  AnnalsDialog(this._annals);
+  const AnnalsDialog({
+    @required this.annals,
+  });
 
   @override
   Widget build(BuildContext context) => SimpleDialog(
         title: _createTitleWidget(),
-        children: _annals.map((annal) => _createAnnalWidget(context, annal)).toList(),
+        children: annals.map((annal) => _createAnnalWidget(context, annal)).toList(),
       );
 
   /// Creates a new title widget.
@@ -51,9 +53,9 @@ class AnnalsDialog extends StatelessWidget {
       );
 
   /// Shows the dialog.
-  static void show(BuildContext context, List<LessonAnnal> annals) => showDialog(
+  static void show(BuildContext context, {@required List<LessonAnnal> annals}) => showDialog(
         context: context,
-        builder: (context) => AnnalsDialog(annals),
+        builder: (context) => AnnalsDialog(annals: annals),
       );
 }
 
@@ -158,7 +160,7 @@ class AboutDialog extends StatelessWidget {
   /// Creates a new content widget.
   Widget _createContentWidget() => const SingleChildScrollView(
         child: Text(
-          'Révisez votre BAC de mathématiques avec Bacomathiques !\nVous pouvez consulter les licences des contenus, technologies utilisées et autres en cliquant sur le bouton « Plus d\'informations ».\nSinon, n\'hésitez pas à laisser une (bonne) note sur la fiche de l\'application !',
+          'Révisez vos maths en toute tranquillité de la Première à la Terminale avec Bacomathiques !\nVous pouvez consulter les licences des contenus, technologies utilisées et autres en cliquant sur le bouton « Plus d\'informations ».\nSinon, n\'hésitez pas à laisser une (bonne) note sur la fiche de l\'application !',
         ),
       );
 
@@ -191,13 +193,15 @@ class AboutDialog extends StatelessWidget {
 /// The user dialog.
 class UserDialog extends StatelessWidget {
   /// The current comments instance.
-  final LessonComments _comments;
+  final LessonComments comments;
 
   /// A text editing controller.
   final TextEditingController _controller;
 
   /// Creates a new user dialog instance.
-  UserDialog(this._comments) : _controller = TextEditingController(text: _comments.username);
+  UserDialog({
+    @required this.comments,
+  }) : _controller = TextEditingController(text: comments.username);
 
   @override
   Widget build(BuildContext context) => AlertDialog(
@@ -229,7 +233,7 @@ class UserDialog extends StatelessWidget {
   List<Widget> createActionsWidgets(BuildContext context) => [
         FlatButton(
           onPressed: () {
-            _comments.username = _controller.text;
+            comments.username = _controller.text;
             Navigator.pop(context);
           },
           child: Text('Valider'.toUpperCase()),
@@ -243,22 +247,24 @@ class UserDialog extends StatelessWidget {
       ];
 
   /// Shows the dialog.
-  static void show(BuildContext context, LessonComments comments) => showDialog(
+  static void show(BuildContext context, {@required LessonComments comments}) => showDialog(
         context: context,
-        builder: (context) => UserDialog(comments),
+        builder: (context) => UserDialog(comments: comments),
       );
 }
 
 /// The write comment dialog.
 class WriteCommentDialog extends StatelessWidget {
   /// The current comments instance.
-  final LessonComments _comments;
+  final LessonComments comments;
 
   /// A text editing controller.
   final TextEditingController _controller;
 
   /// Creates a new write comment dialog instance.
-  WriteCommentDialog(this._comments) : _controller = TextEditingController();
+  WriteCommentDialog({
+    @required this.comments,
+  }) : _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) => AlertDialog(
@@ -290,32 +296,32 @@ class WriteCommentDialog extends StatelessWidget {
   /// Creates a new dialog actions widgets.
   List<Widget> createActionsWidgets(BuildContext context) => [
         FlatButton(
-          onPressed: () {
+          onPressed: () async {
             if (_controller.text.isEmpty) {
-              MessageDialog.show(context, 'Veuillez entrer un commentaire.');
+              await MessageDialog.show(context, message: 'Veuillez entrer un commentaire.');
               return;
             }
 
-            WaitingDialog.show(context, 'Envoi en cours, veuillez patienter…');
+            WaitingDialog.show(context, message: 'Envoi en cours, veuillez patienter environ 10 secondes…');
             List<LessonCommentsPostDataFieldValue> fields = [];
-            for (LessonCommentsPostDataField field in _comments.post.fields) {
+            for (LessonCommentsPostDataField field in comments.post.fields) {
               switch (field.name) {
                 case 'slug':
                   fields.add(LessonCommentsPostDataFieldValue(
                     field: field,
-                    value: _comments.lesson.level + '_' + _comments.lesson.id,
+                    value: comments.lesson.level + '_' + comments.lesson.id,
                   ));
                   break;
                 case 'lesson':
                   fields.add(LessonCommentsPostDataFieldValue(
                     field: field,
-                    value: _comments.lesson.id,
+                    value: comments.lesson.id,
                   ));
                   break;
                 case 'level':
                   fields.add(LessonCommentsPostDataFieldValue(
                     field: field,
-                    value: _comments.lesson.level,
+                    value: comments.lesson.level,
                   ));
                   break;
                 case 'client':
@@ -333,7 +339,7 @@ class WriteCommentDialog extends StatelessWidget {
                 case 'author':
                   fields.add(LessonCommentsPostDataFieldValue(
                     field: field,
-                    value: _comments.username,
+                    value: comments.username,
                   ));
                   break;
                 default:
@@ -345,17 +351,16 @@ class WriteCommentDialog extends StatelessWidget {
               }
             }
 
-            _comments.postComment(fields).then((success) {
+            bool success = await comments.postComment(fields);
+            Navigator.pop(context);
+            if (success) {
               Navigator.pop(context);
-              if (success) {
-                Navigator.pop(context);
-              }
+            }
 
-              MessageDialog.show(
-                context,
-                success ? 'Votre commentaire a été envoyé avec succès. Veuillez cependant noter qu\'il ne sera publié qu\'après modération 😉' : 'Une erreur est survenue pendant l\'envoi de votre commentaire. Veuillez vérifier votre connexion internet ainsi que les données envoyées et réessayez.',
-              );
-            });
+            await MessageDialog.show(
+              context,
+              message: success ? 'Votre commentaire a été envoyé avec succès. Veuillez cependant noter qu\'il ne sera publié qu\'après modération 😉' : 'Une erreur est survenue pendant l\'envoi de votre commentaire. Veuillez vérifier votre connexion internet ainsi que les données envoyées et réessayez.',
+            );
           },
           child: Text('Envoyer'.toUpperCase()),
           textTheme: ButtonTextTheme.accent,
@@ -368,9 +373,9 @@ class WriteCommentDialog extends StatelessWidget {
       ];
 
   /// Shows the dialog.
-  static void show(BuildContext context, LessonComments comments) => showDialog(
+  static void show(BuildContext context, {@required LessonComments comments}) => showDialog(
         context: context,
-        builder: (context) => WriteCommentDialog(comments),
+        builder: (context) => WriteCommentDialog(comments: comments),
       );
 }
 
@@ -383,7 +388,10 @@ class MessageDialog extends StatelessWidget {
   final VoidCallback okButtonPressed;
 
   /// Creates a new message dialog instance.
-  MessageDialog(this.message, [this.okButtonPressed]);
+  MessageDialog({
+    @required this.message,
+    this.okButtonPressed,
+  });
 
   @override
   Widget build(BuildContext context) => AlertDialog(
@@ -398,12 +406,15 @@ class MessageDialog extends StatelessWidget {
       );
 
   /// Shows the dialog.
-  static void show(BuildContext context, String message, [VoidCallback okButtonPressed, VoidCallback onCancelled]) {
-    showDialog(
+  static Future<void> show(BuildContext context, {@required String message, VoidCallback okButtonPressed, VoidCallback onCancelled}) async {
+    await showDialog(
       context: context,
-      builder: (context) => MessageDialog(message, okButtonPressed),
+      builder: (context) => MessageDialog(message: message, okButtonPressed: okButtonPressed),
       barrierDismissible: false,
-    ).then((value) => onCancelled == null ? null : onCancelled());
+    );
+    if (onCancelled != null) {
+      onCancelled();
+    }
   }
 }
 
@@ -413,7 +424,9 @@ class WaitingDialog extends StatelessWidget {
   final String message;
 
   /// Creates a new waiting dialog instance.
-  WaitingDialog(this.message);
+  const WaitingDialog({
+    @required this.message,
+  });
 
   @override
   Widget build(BuildContext context) => AlertDialog(
@@ -427,7 +440,7 @@ class WaitingDialog extends StatelessWidget {
             ),
             Text(
               message,
-              style: Theme.of(context).textTheme.body1.copyWith(fontStyle: FontStyle.italic),
+              style: const TextStyle(fontStyle: FontStyle.italic),
               textAlign: TextAlign.center,
             )
           ],
@@ -435,9 +448,9 @@ class WaitingDialog extends StatelessWidget {
       );
 
   /// Shows the dialog.
-  static void show(BuildContext context, String message) => showDialog(
+  static void show(BuildContext context, {@required String message}) => showDialog(
         context: context,
-        builder: (context) => WaitingDialog(message),
+        builder: (context) => WaitingDialog(message: message),
         barrierDismissible: false,
       );
 }

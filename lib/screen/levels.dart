@@ -4,6 +4,7 @@ import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,20 +12,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// The page that allows the user to show his level.
 class LevelsPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _LevelsPageState(APIIndexEndpoint());
+  State<StatefulWidget> createState() => _LevelsPageState(endpoint: APIIndexEndpoint());
 }
 
 /// The levels page state.
 class _LevelsPageState extends RequestScaffold<LevelsPage, APIIndex> {
   /// Creates a new levels page state instance.
-  _LevelsPageState(
-    APIIndexEndpoint endpoint,
-  ) : super(
+  _LevelsPageState({
+    @required APIIndexEndpoint endpoint,
+  }) : super(
           endpoint: endpoint,
           failMessage: 'Impossible de récupérer la liste des classes.',
-          failDialogOptions: const FailDialogOptions(
-            show: false,
-          ),
+          failDialogOptions: const FailDialogOptions(show: false),
         );
 
   @override
@@ -74,7 +73,7 @@ class _LevelWidget extends StatelessWidget {
   final Level level;
 
   /// Creates a new level widget instance.
-  _LevelWidget({
+  const _LevelWidget({
     @required this.color,
     @required this.level,
   });
@@ -116,9 +115,8 @@ class _LevelWidget extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: Text(
                 level.name.toUpperCase(),
-                style: const TextStyle(
+                style: GoogleFonts.handlee(
                   fontSize: 30,
-                  fontFamily: 'handlee-regular',
                   color: Colors.white,
                 ),
                 textAlign: TextAlign.center,
@@ -126,11 +124,11 @@ class _LevelWidget extends StatelessWidget {
             ),
             Text(
               level.description,
-              style: Theme.of(context).textTheme.body1.copyWith(
-                    fontSize: 14,
-                    fontStyle: FontStyle.italic,
-                    color: Colors.white,
-                  ),
+              style: const TextStyle(
+                fontSize: 14,
+                fontStyle: FontStyle.italic,
+                color: Colors.white,
+              ),
               textAlign: TextAlign.center,
             ),
           ],

@@ -109,7 +109,7 @@ class LessonContent extends APIEndpointResultHTML {
         _ActionMenu(
           icon: Icons.assignment_turned_in,
           label: 'Annales…',
-          callback: (context, object) => dialogs.AnnalsDialog.show(context, annals),
+          callback: (context, object) => dialogs.AnnalsDialog.show(context, annals: annals),
         ),
       );
     }

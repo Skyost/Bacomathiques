@@ -8,6 +8,7 @@ import 'package:bacomathiques/app/api/summary.dart';
 import 'package:bacomathiques/app/app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:pedantic/pedantic.dart';
@@ -155,25 +156,35 @@ abstract class APIEndpoint<T extends APIEndpointResult> {
   T createObjectFromJSON(Map<String, dynamic> parsedJSON);
 
   /// Requests the endpoint.
-  Future<T> request() async {
-    String content = await _getContent();
+  Future<T> request({bool cache = true}) async {
+    String content = await _getContent(cache: cache);
     return content == null ? null : createObjectFromJSON(json.decode(content));
   }
 
   /// Gets the content from the specified url and saves it to the local storage.
-  Future<String> _getContent() async {
-    Directory libDirectory = await getApplicationDocumentsDirectory();
-    File file = File('${libDirectory.path}$path/index.json');
-
+  Future<String> _getContent({bool cache = true}) async {
+    File file;
     String content;
+
+    if (cache) {
+      Directory libDirectory = await getApplicationDocumentsDirectory();
+      String filePath = path.replaceAll('/', Platform.pathSeparator);
+      if (!filePath.endsWith(Platform.pathSeparator)) {
+        filePath += Platform.pathSeparator;
+      }
+      file = File('${libDirectory.path}${filePath}index.json');
+    }
+
     try {
       content = await http.read(API.BASE_URL + path);
-      if (!file.existsSync()) {
-        file.createSync(recursive: true);
+      if (file != null) {
+        if (!file.existsSync()) {
+          file.createSync(recursive: true);
+        }
+        unawaited(file.writeAsString(content));
       }
-      unawaited(file.writeAsString(content));
     } catch (ignored) {
-      if (file.existsSync()) {
+      if (file != null && file.existsSync()) {
         content = await file.readAsString();
       }
     }
@@ -213,10 +224,7 @@ abstract class APIEndpointResult {
         padding: const EdgeInsets.only(top: 5, left: 7),
         child: Text(
           App.APP_NAME,
-          style: TextStyle(
-            fontSize: MediaQuery.of(context).size.width > App.DAY_NIGHT_SWITCH_WIDTH_BREAKPOINT ? 30 : 26,
-            fontFamily: 'handlee-regular',
-          ),
+          style: GoogleFonts.handlee(fontSize: MediaQuery.of(context).size.width > App.DAY_NIGHT_SWITCH_WIDTH_BREAKPOINT ? 26 : 30),
         ),
       );
 

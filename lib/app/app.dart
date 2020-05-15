@@ -8,7 +8,7 @@ class App {
   static const String APP_NAME = 'Bacomathiques';
 
   /// The day night switch / icon breakpoint (width).
-  static const double DAY_NIGHT_SWITCH_WIDTH_BREAKPOINT = 600;
+  static const double DAY_NIGHT_SWITCH_WIDTH_BREAKPOINT = 410;
 }
 
 /// The application theme.
@@ -38,18 +38,18 @@ class AppTheme {
       accentColor: themeData.accentColor,
       appBarTheme: AppBarTheme(color: themeData.actionBarColor),
       textTheme: TextTheme(
-        display4: TextStyle(color: themeData.textColor),
-        display3: TextStyle(color: themeData.textColor),
-        display2: TextStyle(color: themeData.textColor),
-        display1: TextStyle(color: themeData.textColor),
-        headline: TextStyle(color: themeData.textColor),
-        title: TextStyle(color: themeData.textColor),
-        subhead: TextStyle(color: themeData.textColor),
-        body2: TextStyle(color: themeData.textColor),
-        body1: TextStyle(color: themeData.textColor),
+        headline1: TextStyle(color: themeData.textColor),
+        headline2: TextStyle(color: themeData.textColor),
+        headline3: TextStyle(color: themeData.textColor),
+        headline4: TextStyle(color: themeData.textColor),
+        headline5: TextStyle(color: themeData.textColor),
+        headline6: TextStyle(color: themeData.textColor),
+        subtitle1: TextStyle(color: themeData.textColor),
+        subtitle2: TextStyle(color: themeData.textColor),
+        bodyText1: TextStyle(color: themeData.textColor),
+        bodyText2: TextStyle(color: themeData.textColor),
         caption: TextStyle(color: themeData.textColor),
         button: TextStyle(color: themeData.accentColor),
-        subtitle: TextStyle(color: themeData.textColor),
         overline: TextStyle(color: themeData.textColor),
       ),
       scaffoldBackgroundColor: themeData.scaffoldBackgroundColor,

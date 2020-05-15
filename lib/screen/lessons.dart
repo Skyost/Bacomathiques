@@ -6,6 +6,8 @@ import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_layout_grid/flutter_layout_grid.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,32 +16,34 @@ import 'package:transparent_image/transparent_image.dart';
 /// The home screen, where previews are shown.
 class LessonsPage extends StatefulWidget {
   /// The endpoint.
-  final APIEndpoint<LessonList> _endpoint;
+  final APIEndpoint<LessonList> endpoint;
 
   /// Creates a new lessons page instance.
-  LessonsPage(this._endpoint);
+  LessonsPage({
+    @required this.endpoint,
+  });
 
   @override
-  _LessonsPageState createState() => _LessonsPageState(_endpoint);
+  _LessonsPageState createState() => _LessonsPageState(endpoint: endpoint);
 }
 
 /// The home screen state.
 class _LessonsPageState extends RequestScaffold<LessonsPage, LessonList> {
   /// Creates a new home screen state instance.
-  _LessonsPageState(
-    APIEndpoint<LessonList> endpoint,
-  ) : super(
+  _LessonsPageState({
+    @required APIEndpoint<LessonList> endpoint,
+  }) : super(
           endpoint: endpoint,
           failMessage: 'Impossible de charger la liste des cours et aucune sauvegarde n\'est disponible.',
-          failDialogOptions: const FailDialogOptions(
-            show: false,
-          ),
+          failDialogOptions: const FailDialogOptions(show: false),
         ) {
     successCallback = showMessageIfOutdated;
   }
 
   @override
   void initState() {
+    super.initState();
+
     RateMyApp rateMyApp = RateMyApp();
     rateMyApp.init().then((_) {
       if (rateMyApp.shouldOpenDialog) {
@@ -53,12 +57,10 @@ class _LessonsPageState extends RequestScaffold<LessonsPage, LessonList> {
             ));
       }
     });
-
-    super.initState();
   }
 
   @override
-  Widget createBody(BuildContext context) => _PreviewsList(result.list);
+  Widget createBody(BuildContext context) => _PreviewsList(items: result.list);
 
   @override
   Widget createNoObjectBody(BuildContext context) => Padding(
@@ -103,7 +105,7 @@ class _LessonsPageState extends RequestScaffold<LessonsPage, LessonList> {
 
       preferences.setBool('preferences.api-warn-v' + result.api.version.toString(), true);
       WidgetsBinding.instance.scheduleFrameCallback((duration) {
-        MessageDialog.show(context, 'Une mise à jour de l\'application est disponible. Vous pouvez dès maintenant aller sur le Store pour la télécharger.');
+        MessageDialog.show(context, message: 'Une mise à jour de l\'application est disponible. Vous pouvez dès maintenant aller la télécharger.');
       });
     });
   }
@@ -112,52 +114,44 @@ class _LessonsPageState extends RequestScaffold<LessonsPage, LessonList> {
 /// A widget to show a list of previews.
 class _PreviewsList extends StatelessWidget {
   /// The lessons to preview.
-  final List<LessonListItem> _items;
+  final List<LessonListItem> items;
 
   /// Creates a new previews list widget instance.
-  _PreviewsList(this._items);
+  const _PreviewsList({
+    @required this.items,
+  });
 
   @override
   Widget build(BuildContext context) {
     int columnCount = _getColumnCount(context);
     if (columnCount > 1) {
-      Size size = MediaQuery.of(context).size;
-      return GridView.count(
-        crossAxisCount: columnCount,
-        childAspectRatio: _getCoefficient(context) * (size.width / size.height),
-        children: _items.map((item) {
-          return _PreviewWidget(
-            item: item,
-            tablet: true,
-          );
-        }).toList(),
-        semanticChildCount: _items.length,
+      int rowCount = (items.length / columnCount).floor();
+      return SingleChildScrollView(
+        child: LayoutGrid(
+          gridFit: GridFit.passthrough,
+          templateColumnSizes: [
+            for (int i = 0; i < columnCount; i++) //
+              const FlexibleTrackSize(1),
+          ],
+          templateRowSizes: [
+            for (int i = 0; i < rowCount; i++) //
+              const IntrinsicContentTrackSize(),
+          ],
+          children: items.map((item) {
+            return _PreviewWidget(
+              item: item,
+              tablet: true,
+            );
+          }).toList(),
+        ),
       );
     }
 
     return ListView.builder(
-      semanticChildCount: _items.length,
-      itemCount: _items.length,
-      itemBuilder: (context, position) => _PreviewWidget(item: _items[position]),
+      semanticChildCount: items.length,
+      itemCount: items.length,
+      itemBuilder: (context, position) => _PreviewWidget(item: items[position]),
     );
-  }
-
-  /// Returns the size coefficient.
-  double _getCoefficient(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    if (height < 600) {
-      return 0.4;
-    }
-
-    if (height < 800) {
-      return 0.5;
-    }
-
-    if (height < 1000) {
-      return 0.6;
-    }
-
-    return 0.7;
   }
 
   /// Returns the column count.
@@ -185,7 +179,7 @@ class _PreviewWidget extends StatefulWidget {
 
   /// Creates a new preview widget instance.
   _PreviewWidget({
-    this.item,
+    @required this.item,
     this.tablet = false,
   });
 
@@ -196,10 +190,7 @@ class _PreviewWidget extends StatefulWidget {
 /// The state of preview widgets.
 class _PreviewWidgetState extends State<_PreviewWidget> {
   /// Whether this state is currently showing a caption.
-  bool showCaption;
-
-  /// Creates a new preview widget state instance.
-  _PreviewWidgetState() : showCaption = false;
+  bool showCaption = false;
 
   @override
   Widget build(BuildContext context) => Consumer<SettingsModel>(
@@ -234,9 +225,8 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
         child: Text(
           widget.item.lesson.title,
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: GoogleFonts.handlee(
             fontSize: 26,
-            fontFamily: 'handlee-regular',
             color: Colors.white,
           ),
         ),
@@ -292,79 +282,55 @@ class _PreviewWidgetState extends State<_PreviewWidget> {
   Widget _createDescriptionWidget() {
     Widget description = Padding(
       padding: const EdgeInsets.all(12),
-      child: Html(
-        data: widget.item.excerpt,
-        defaultTextStyle: Theme.of(context).textTheme.body1.copyWith(
-              fontSize: 14,
-            ),
-      ),
+      child: Html(data: widget.item.excerpt),
     );
 
-    return widget.tablet
-        ? Expanded(
-            child: SingleChildScrollView(
-              child: description,
-            ),
-          )
-        : description;
+    return widget.tablet ? Expanded(child: description) : description;
   }
 
   /// Creates a new preview actions widget.
-  Widget _createActionsWidget(AppTheme theme) {
-    BoxDecoration decoration = widget.tablet
-        ? BoxDecoration(
-            border: Border(
-              top: BorderSide(
-                color: theme.themeData.accentColor.withAlpha(100),
+  Widget _createActionsWidget(AppTheme theme) => Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: Wrap(
+          alignment: WrapAlignment.end,
+          children: [
+            FlatButton.icon(
+              icon: Icon(
+                Icons.assignment,
+                color: theme.themeData.accentColor,
               ),
+              label: Text(
+                'Lire le résumé'.toUpperCase(),
+                style: Theme.of(context).textTheme.button.copyWith(fontSize: 14),
+              ),
+              onPressed: () => Navigator.pushNamed(
+                context,
+                '/html',
+                arguments: {
+                  'endpoint': widget.item.lesson.summary,
+                },
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
             ),
-          )
-        : null;
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      decoration: decoration,
-      child: Wrap(
-        alignment: WrapAlignment.end,
-        children: [
-          FlatButton.icon(
-            icon: Icon(
-              Icons.assignment,
-              color: theme.themeData.accentColor,
-            ),
-            label: Text(
-              'Lire le résumé'.toUpperCase(),
-              style: Theme.of(context).textTheme.button.copyWith(fontSize: 14),
-            ),
-            onPressed: () => Navigator.pushNamed(
-              context,
-              '/html',
-              arguments: {
-                'endpoint': widget.item.lesson.summary,
-              },
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-          ),
-          FlatButton.icon(
-            icon: Icon(
-              Icons.book,
-              color: theme.themeData.accentColor,
-            ),
-            label: Text(
-              'Lire le cours'.toUpperCase(),
-              style: Theme.of(context).textTheme.button.copyWith(fontSize: 14),
-            ),
-            onPressed: () => Navigator.pushNamed(
-              context,
-              '/html',
-              arguments: {
-                'endpoint': widget.item.lesson.content,
-              },
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-          )
-        ],
-      ),
-    );
-  }
+            FlatButton.icon(
+              icon: Icon(
+                Icons.book,
+                color: theme.themeData.accentColor,
+              ),
+              label: Text(
+                'Lire le cours'.toUpperCase(),
+                style: Theme.of(context).textTheme.button.copyWith(fontSize: 14),
+              ),
+              onPressed: () => Navigator.pushNamed(
+                context,
+                '/html',
+                arguments: {
+                  'endpoint': widget.item.lesson.content,
+                },
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+            )
+          ],
+        ),
+      );
 }

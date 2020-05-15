@@ -43,15 +43,15 @@ class BacomathiquesApp extends StatelessWidget {
               '/levels': (context) => LevelsPage(),
               '/lessons': (context) {
                 Map<String, dynamic> arguments = ModalRoute.of(context).settings.arguments;
-                return LessonsPage(arguments['endpoint']);
+                return LessonsPage(endpoint: arguments['endpoint']);
               },
               '/html': (context) {
                 Map<String, dynamic> arguments = ModalRoute.of(context).settings.arguments;
-                return HTMLPage(arguments['endpoint'], arguments['anchor']);
+                return HTMLPage(endpoint: arguments['endpoint'], anchor: arguments['anchor']);
               },
               '/comments': (context) {
                 Map<String, dynamic> arguments = ModalRoute.of(context).settings.arguments;
-                return CommentsPage(arguments['endpoint']);
+                return CommentsPage(endpoint: arguments['endpoint']);
               },
             },
           ),

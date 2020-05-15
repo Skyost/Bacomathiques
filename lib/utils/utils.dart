@@ -59,7 +59,7 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
   APIEndpoint<R> endpoint;
 
   /// The object.
-  R result;
+  R _result;
 
   /// When the request fails.
   String failMessage;
@@ -70,12 +70,16 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
   /// Fail dialog options.
   FailDialogOptions failDialogOptions;
 
+  /// Whether to cache requests.
+  bool cacheRequest;
+
   /// Creates a new loading scaffold instance.
   RequestScaffold({
     @required this.endpoint,
     @required this.failMessage,
     this.successCallback,
     this.failDialogOptions = const FailDialogOptions(),
+    this.cacheRequest = true,
   });
 
   @override
@@ -86,13 +90,13 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
 
   /// Creates the app bar.
   AppBar createAppBar(BuildContext context) {
-    if (result == null) {
+    if (_result == null) {
       return AppBar(
         title: Text(_loading ? 'Chargement…' : 'Erreur'),
       );
     }
 
-    return result.createAppBar(context);
+    return _result.createAppBar(context);
   }
 
   @override
@@ -100,7 +104,7 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
     Widget body;
     if (_loading) {
       body = CenteredCircularProgressIndicator();
-    } else if (result == null) {
+    } else if (_result == null) {
       body = createNoObjectBody(context);
     } else {
       body = createBody(context);
@@ -113,34 +117,36 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
   }
 
   /// Sets whether the screen is currently loading.
-  set loading(bool loading) => setState(() {
-        _loading = loading;
-      });
+  set loading(bool loading) {
+    setState(() => _loading = loading);
+  }
 
   /// Returns whether the current screen is loading.
   bool get loading => _loading;
 
   /// Triggers a request.
-  void triggerRequest() {
-    endpoint.request().then((object) {
-      if (object != null) {
-        updateObject(object);
-        if (successCallback != null) {
-          successCallback();
-        }
-        return;
+  Future<void> triggerRequest() async {
+    R result = await endpoint.request(cache: cacheRequest);
+    if (result != null) {
+      this.result = result;
+      if (successCallback != null) {
+        successCallback();
       }
+      return;
+    }
 
-      if (failDialogOptions.show) {
-        MessageDialog.show(
-          context,
-          failMessage + '\nVeuillez vérifier votre connexion internet et réessayer plus tard.',
-          () => Navigator.pop(context),
-          failDialogOptions.callback ?? () => Navigator.pop(context),
-        );
-      }
-      loading = false;
-    });
+    if (failDialogOptions.show) {
+      await MessageDialog.show(
+        context,
+        message: failMessage + '\nVeuillez vérifier votre connexion internet et réessayer plus tard.',
+        okButtonPressed: () => Navigator.pop(context),
+        onCancelled: failDialogOptions.callback ?? () => Navigator.pop(context),
+      );
+    }
+
+    if (mounted) {
+      setState(() => _loading = false);
+    }
   }
 
   /// Creates the body with a non-null object.
@@ -149,13 +155,19 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
   /// Creates the body with a null object.
   Widget createNoObjectBody(BuildContext context) => null;
 
-  /// Updates the current object.
-  void updateObject(R object) {
+  /// Returns the current result.
+  R get result => _result;
+
+  /// Updates the current result.
+  set result(R result) {
     if (mounted) {
       setState(() {
         _loading = false;
-        result = object;
+        _result = result;
       });
+    } else {
+      _loading = false;
+      _result = result;
     }
   }
 }

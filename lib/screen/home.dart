@@ -13,6 +13,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
+    super.initState();
+
     SharedPreferences.getInstance().then((preferences) {
       String lessonListEndpoint = preferences.getString('preferences.lesson-list');
       if (lessonListEndpoint == null) {
@@ -25,14 +27,11 @@ class _HomePageState extends State<HomePage> {
           context,
           '/lessons',
           arguments: {
-            'endpoint': LessonListEndpoint(
-              path: lessonListEndpoint,
-            ),
+            'endpoint': LessonListEndpoint(path: lessonListEndpoint),
           },
         ),
       );
     });
-    super.initState();
   }
 
   @override

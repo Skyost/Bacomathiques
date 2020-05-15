@@ -12,41 +12,60 @@ class CommentsPage extends StatefulWidget {
   final APIEndpoint<LessonComments> endpoint;
 
   /// Creates a new comments screen instance.
-  CommentsPage(this.endpoint);
+  const CommentsPage({
+    @required this.endpoint,
+  });
 
   @override
-  _CommentsPageState createState() => _CommentsPageState(endpoint);
+  _CommentsPageState createState() => _CommentsPageState(endpoint: endpoint);
 }
 
 /// The comments screen state.
 class _CommentsPageState extends RequestScaffold<CommentsPage, LessonComments> {
+  /// The current bottom padding to add.
+  double bottomPadding = 0;
+
   /// Creates a new home screen state instance.
-  _CommentsPageState(
-    APIEndpoint<LessonComments> endpoint,
-  ) : super(
+  _CommentsPageState({
+    @required APIEndpoint<LessonComments> endpoint,
+  }) : super(
           endpoint: endpoint,
           failMessage: 'Impossible de charger les commentaires de ce cours.',
+          cacheRequest: false,
         );
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      SettingsModel settingsModel = Provider.of<SettingsModel>(context, listen: false);
+      if (settingsModel.adMobEnabled) {
+        bottomPadding = 60;
+      }
+    });
+  }
 
   @override
   Widget createBody(BuildContext context) {
     if (result.list.isEmpty) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+      return const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 15),
         child: Center(
           child: Text(
             'Aucun commentaire sur ce cours pour le moment. Soyez le premier à en poster un !',
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.body1.copyWith(fontStyle: FontStyle.italic),
+            style: TextStyle(fontStyle: FontStyle.italic),
           ),
         ),
       );
     }
 
     return ListView.builder(
+      padding: EdgeInsets.only(left: 20, right: 20, bottom: 20 + bottomPadding),
       semanticChildCount: result.list.length,
       itemCount: result.list.length,
-      itemBuilder: (context, position) => _CommentWidget(result.list[position]),
+      itemBuilder: (context, position) => _CommentWidget(comment: result.list[position]),
     );
   }
 }
@@ -54,14 +73,16 @@ class _CommentsPageState extends RequestScaffold<CommentsPage, LessonComments> {
 /// A widget that allows to show a comment.
 class _CommentWidget extends StatelessWidget {
   /// The comment to show.
-  final LessonComment _comment;
+  final LessonComment comment;
 
   /// Creates a new comment widget instance.
-  _CommentWidget(this._comment);
+  const _CommentWidget({
+    @required this.comment,
+  });
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+        padding: const EdgeInsets.only(top: 20),
         child: Consumer<SettingsModel>(
           builder: (context, settings, _) => Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,7 +98,7 @@ class _CommentWidget extends StatelessWidget {
   Widget _createAvatarWidget(AppTheme theme) => Padding(
         padding: const EdgeInsets.only(right: 10),
         child: CircleAvatar(
-          backgroundImage: NetworkImage(_comment.author.avatar),
+          backgroundImage: NetworkImage(comment.author.avatar),
           backgroundColor: theme.themeData.primaryColor.withAlpha(50),
           radius: 30,
         ),
@@ -111,10 +132,8 @@ class _CommentWidget extends StatelessWidget {
   Widget _createAuthorWidget(BuildContext context) => Padding(
         padding: const EdgeInsets.only(bottom: 8),
         child: Text(
-          _comment.author.name + (_comment.author.isModerator ? ' (Modérateur)' : ''),
-          style: Theme.of(context).textTheme.body1.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+          comment.author.name + (comment.author.isModerator ? ' (Modérateur)' : ''),
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
       );
 
@@ -122,7 +141,7 @@ class _CommentWidget extends StatelessWidget {
   Widget _createMessageWidget() => Padding(
         padding: const EdgeInsets.only(bottom: 16),
         child: Text(
-          _comment.message,
+          comment.message,
         ),
       );
 
@@ -130,12 +149,12 @@ class _CommentWidget extends StatelessWidget {
   Widget _createDateWidget(BuildContext context, AppTheme theme) => SizedBox(
         width: double.infinity,
         child: Text(
-          _dateToString(DateTime.fromMillisecondsSinceEpoch(_comment.date * 1000)),
+          _dateToString(DateTime.fromMillisecondsSinceEpoch(comment.date * 1000)),
           textAlign: TextAlign.right,
-          style: Theme.of(context).textTheme.body1.copyWith(
-                fontSize: 12,
-                color: theme.themeData.commentDateColor,
-              ),
+          style: TextStyle(
+            fontSize: 12,
+            color: theme.themeData.commentDateColor,
+          ),
         ),
       );
 

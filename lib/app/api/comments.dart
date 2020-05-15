@@ -70,14 +70,14 @@ class LessonComments extends APIEndpointResult {
               Icons.person,
               color: Colors.white,
             ),
-            onPressed: () => UserDialog.show(context, this),
+            onPressed: () => UserDialog.show(context, comments: this),
           ),
           IconButton(
             icon: Icon(
               Icons.create,
               color: Colors.white,
             ),
-            onPressed: () => WriteCommentDialog.show(context, this),
+            onPressed: () => WriteCommentDialog.show(context, comments: this),
           ),
         ],
       );
