@@ -125,7 +125,7 @@ class _PreviewsList extends StatelessWidget {
   Widget build(BuildContext context) {
     int columnCount = _getColumnCount(context);
     if (columnCount > 1) {
-      int rowCount = (items.length / columnCount).floor();
+      int rowCount = (items.length / columnCount).ceil();
       return SingleChildScrollView(
         child: LayoutGrid(
           gridFit: GridFit.passthrough,

@@ -297,7 +297,7 @@ packages:
       name: rate_my_app
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.0+3"
+    version: "0.6.1+2"
   screen:
     dependency: transitive
     description:

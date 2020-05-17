@@ -40,8 +40,8 @@ class _CommentsPageState extends RequestScaffold<CommentsPage, LessonComments> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       SettingsModel settingsModel = Provider.of<SettingsModel>(context, listen: false);
-      if (settingsModel.adMobEnabled) {
-        bottomPadding = 60;
+      if (settingsModel.adMobEnabled && mounted) {
+        setState(() => bottomPadding = 60);
       }
     });
   }
