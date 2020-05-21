@@ -32,7 +32,7 @@ apply plugin: 'com.google.gms.google-services'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     lintOptions {
         disable 'InvalidPackage'
@@ -41,7 +41,7 @@ android {
     defaultConfig {
         applicationId "fr.bacomathiques"
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -61,10 +61,12 @@ android {
             signingConfig signingConfigs.release
             shrinkResources true
             minifyEnabled true
+            resValue 'string', 'admob_app_id', localPropertiesFile['adMob.appId']
         }
         debug {
             //applicationIdSuffix = '.dev'
             versionNameSuffix '-dev'
+            resValue 'string', 'admob_app_id', localPropertiesFile['adMob.appId']
         }
     }
 }
