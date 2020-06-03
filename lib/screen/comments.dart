@@ -22,9 +22,6 @@ class CommentsPage extends StatefulWidget {
 
 /// The comments screen state.
 class _CommentsPageState extends RequestScaffold<CommentsPage, LessonComments> {
-  /// The current bottom padding to add.
-  double bottomPadding = 0;
-
   /// Creates a new home screen state instance.
   _CommentsPageState({
     @required APIEndpoint<LessonComments> endpoint,
@@ -33,18 +30,6 @@ class _CommentsPageState extends RequestScaffold<CommentsPage, LessonComments> {
           failMessage: 'Impossible de charger les commentaires de ce cours.',
           cacheRequest: false,
         );
-
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      SettingsModel settingsModel = Provider.of<SettingsModel>(context, listen: false);
-      if (settingsModel.adMobEnabled && mounted) {
-        setState(() => bottomPadding = 60);
-      }
-    });
-  }
 
   @override
   Widget createBody(BuildContext context) {
@@ -62,7 +47,7 @@ class _CommentsPageState extends RequestScaffold<CommentsPage, LessonComments> {
     }
 
     return ListView.builder(
-      padding: EdgeInsets.only(left: 20, right: 20, bottom: 20 + bottomPadding),
+      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
       semanticChildCount: result.list.length,
       itemCount: result.list.length,
       itemBuilder: (context, position) => _CommentWidget(comment: result.list[position]),

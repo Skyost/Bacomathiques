@@ -1,29 +1,29 @@
 name: bacomathiques
 description: Cours gratuits pour réviser les maths au lycée !
-version: 1.2.2+29
+version: 1.2.3+30
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
 
 dependencies:
   http: ^0.12.1
-  webview_flutter: ^0.3.21
+  webview_flutter: ^0.3.22
   mime: ^0.9.6
   flutter_html: ^1.0.0
-  url_launcher: ^5.4.7
+  url_launcher: ^5.4.10
   flutter_svg: ^0.17.4
-  firebase_admob: ^0.9.3
   share: ^0.6.4
   flutter_statusbarcolor: ^0.2.3
   transparent_image: ^1.0.0
   rate_my_app: ^0.6.1
-  path_provider: ^1.6.8
+  path_provider: ^1.6.10
   shared_preferences: ^0.5.7
   pedantic: ^1.9.0
   provider: ^4.1.2
   day_night_switcher: ^0.1.0
   flutter_layout_grid: ^0.10.1
   google_fonts: ^1.1.0
+  admob_flutter: ^1.0.0-beta.4
   flutter:
     sdk: flutter
 

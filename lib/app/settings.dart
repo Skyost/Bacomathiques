@@ -1,20 +1,17 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bacomathiques/app/app.dart';
-import 'package:bacomathiques/utils/utils.dart' as utils;
-import 'package:firebase_admob/firebase_admob.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Allows to load and set required AdMob information.
 class SettingsModel extends ChangeNotifier {
-  /// The AdMob app identifier.
-  String adMobAppId;
-
   /// The banner ad identifier.
-  String adMobBannerId;
+  String _adMobBannerId;
 
   /// The app theme.
   final AppTheme appTheme = AppTheme();
@@ -27,9 +24,8 @@ class SettingsModel extends ChangeNotifier {
 
   /// Creates a new AdMob instance.
   SettingsModel({
-    this.adMobAppId = 'ca-app-pub-7167241518798106~9455148387',
-    this.adMobBannerId = 'ca-app-pub-3940256099942544/6300978111',
-  });
+    String adMobBannerId = 'ca-app-pub-3940256099942544/6300978111',
+  }) : _adMobBannerId = adMobBannerId;
 
   /// Loads the class data.
   Future<void> load(BuildContext context) async {
@@ -38,36 +34,34 @@ class SettingsModel extends ChangeNotifier {
     _darkModeEnabled = preferences.getBool('app.dark-mode') ?? false;
     appTheme.load(!_darkModeEnabled);
 
-    if (utils.isInDebugMode || !_adMobEnabled) {
+    if (kDebugMode || !_adMobEnabled) {
       notifyListeners();
       return;
     }
 
     try {
-      Map<String, dynamic> data = json.decode(await rootBundle.loadString('assets/admob.json', cache: false));
-      String key = Platform.isAndroid ? 'android' : 'ios';
-      Map<String, dynamic> platformData = data[key];
-
-      if (platformData['appId'] != null) {
-        adMobAppId = platformData['appId'];
-      }
-      if (platformData['bannerId'] != null) {
-        adMobBannerId = platformData['bannerId'];
-      }
+      _adMobBannerId = jsonDecode(await rootBundle.loadString('assets/admob.json'))[Platform.isAndroid ? 'android' : 'ios'];
     } catch (error, stacktrace) {
       print(error);
       print(stacktrace);
     }
 
-    await FirebaseAdMob.instance.initialize(appId: adMobAppId);
     notifyListeners();
   }
 
   /// Creates the banner ad.
-  BannerAd createBannerAd() => BannerAd(
-        adUnitId: adMobBannerId,
-        size: AdSize.smartBanner,
-      );
+  AdmobBanner createAdMobBanner(BuildContext context) => !_adMobEnabled || _adMobBannerId == null
+      ? null
+      : AdmobBanner(
+          adUnitId: _adMobBannerId,
+          adSize: _getAdMobBannerSize(context),
+        );
+
+  /// Calculates the banner size.
+  Future<Size> calculateAdMobBannerSize(BuildContext context) => !adMobEnabled || _adMobBannerId == null ? Future<Size>.value(Size.zero) : Admob.bannerSize(_getAdMobBannerSize(context));
+
+  /// Returns the AdMob banner size.
+  AdmobBannerSize _getAdMobBannerSize(BuildContext context) => AdmobBannerSize.ADAPTIVE_BANNER(width: MediaQuery.of(context).size.width.ceil());
 
   /// Returns whether AdMob should be enabled.
   bool get adMobEnabled => _adMobEnabled;

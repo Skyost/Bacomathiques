@@ -61,12 +61,12 @@ android {
             signingConfig signingConfigs.release
             shrinkResources true
             minifyEnabled true
-            resValue 'string', 'admob_app_id', localPropertiesFile['adMob.appId']
+            resValue 'string', 'admob_app_id', localProperties.getProperty('adMob.appId')
         }
         debug {
             //applicationIdSuffix = '.dev'
             versionNameSuffix '-dev'
-            resValue 'string', 'admob_app_id', localPropertiesFile['adMob.appId']
+            resValue 'string', 'admob_app_id', localProperties.getProperty('adMob.appId')
         }
     }
 }

@@ -1,17 +1,64 @@
 import 'dart:convert';
 
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/content.dart';
 import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/utils/server.dart';
 import 'package:bacomathiques/utils/utils.dart';
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+/// Allows to display the html content with an AdMob banner.
+class AdMobHTMLPage extends StatelessWidget {
+  /// The endpoint to display.
+  final APIEndpoint<APIEndpointResultHTML> endpoint;
+
+  /// The current anchor.
+  final String anchor;
+
+  /// Creates a new AdMob HTML screen instance.
+  const AdMobHTMLPage({
+    @required this.endpoint,
+    this.anchor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    SettingsModel settingsModel = Provider.of<SettingsModel>(context);
+    Widget htmlPage = _HTMLPage(
+      endpoint: endpoint,
+      anchor: anchor,
+    );
+    AdmobBanner banner = settingsModel.createAdMobBanner(context);
+    if (banner == null) {
+      return htmlPage;
+    }
+
+    return FutureBuilder<Size>(
+      initialData: Size.zero,
+      future: settingsModel.calculateAdMobBannerSize(context),
+      builder: (context, sizeSnapshot) => Stack(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(bottom: sizeSnapshot.data.height),
+            child: htmlPage,
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: banner,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 /// A screen that is able to display some HTML content.
-class HTMLPage extends StatefulWidget {
+class _HTMLPage extends StatefulWidget {
   /// The endpoint to display.
   final APIEndpoint<APIEndpointResultHTML> endpoint;
 
@@ -19,8 +66,8 @@ class HTMLPage extends StatefulWidget {
   final String anchor;
 
   /// Creates a new HTML screen instance.
-  const HTMLPage({
-    this.endpoint,
+  const _HTMLPage({
+    @required this.endpoint,
     this.anchor,
   });
 
@@ -29,10 +76,7 @@ class HTMLPage extends StatefulWidget {
 }
 
 /// State of HTML screens.
-class HTMLPageState extends RequestScaffold<HTMLPage, APIEndpointResultHTML> {
-  /// The banner ad.
-  BannerAd ad;
-
+class HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
   /// Current stack to view.
   int stackToView = 1;
 
@@ -43,20 +87,6 @@ class HTMLPageState extends RequestScaffold<HTMLPage, APIEndpointResultHTML> {
           endpoint: endpoint,
           failMessage: 'Impossible de charger ce contenu et aucune sauvegarde n\'est disponible.',
         );
-
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      SettingsModel settingsModel = Provider.of<SettingsModel>(context, listen: false);
-      if (settingsModel.adMobEnabled) {
-        BannerAd ad = settingsModel.createBannerAd();
-        bool loaded = await ad.load();
-        _showBanner(ad, loaded);
-      }
-    });
-  }
 
   @override
   Widget createBody(BuildContext context) {
@@ -113,24 +143,6 @@ class HTMLPageState extends RequestScaffold<HTMLPage, APIEndpointResultHTML> {
   }
 
   @override
-  void dispose() {
-    _disposeAd();
-    super.dispose();
-  }
-
-  /// Disposes the ad.
-  Future<void> _disposeAd() async {
-    try {
-      if (ad != null) {
-        await ad.dispose();
-      }
-    } catch (error, stacktrace) {
-      print(error);
-      print(stacktrace);
-    }
-  }
-
-  @override
   set result(APIEndpointResultHTML result) {
     if (mounted) {
       SettingsModel settingsModel = Provider.of<SettingsModel>(context, listen: false);
@@ -148,21 +160,8 @@ class HTMLPageState extends RequestScaffold<HTMLPage, APIEndpointResultHTML> {
           FormatArgument('lesson', result.lesson.id.replaceAll('-', '_')),
           FormatArgument('anchor', widget.anchor ?? ''),
         ],
-        'assets/webview/css/lesson.css': [
-          FormatArgument('margin_bottom', (settingsModel.adMobEnabled ? 60 : 0).toString()),
-        ],
       };
     }
     super.result = result;
-  }
-
-  /// Shows the ad banner.
-  void _showBanner(BannerAd ad, bool loaded) {
-    if (!loaded || !mounted) {
-      return;
-    }
-
-    this.ad = ad;
-    this.ad.show();
   }
 }

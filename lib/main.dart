@@ -1,3 +1,4 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bacomathiques/app/app.dart';
 import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/screen/comments.dart';
@@ -14,6 +15,7 @@ import 'package:provider/provider.dart';
 /// Hello world !
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Admob.initialize();
   unawaited(FlutterStatusbarcolor.setNavigationBarWhiteForeground(true));
   runApp(BacomathiquesApp());
 }
@@ -47,7 +49,7 @@ class BacomathiquesApp extends StatelessWidget {
               },
               '/html': (context) {
                 Map<String, dynamic> arguments = ModalRoute.of(context).settings.arguments;
-                return HTMLPage(endpoint: arguments['endpoint'], anchor: arguments['anchor']);
+                return AdMobHTMLPage(endpoint: arguments['endpoint'], anchor: arguments['anchor']);
               },
               '/comments': (context) {
                 Map<String, dynamic> arguments = ModalRoute.of(context).settings.arguments;
