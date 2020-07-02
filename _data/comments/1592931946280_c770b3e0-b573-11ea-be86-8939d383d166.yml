@@ -1,0 +1,7 @@
+_id: c770b3e0-b573-11ea-be86-8939d383d166
+lesson: polynomes_second_degre
+level: premiere
+client: bacomathiqu.es
+message: "Il est possible de résoudre ce genre d'équations à l'aide de la méthode du discriminant (cf. le cours) ; c'est la plus simple et elle marche à tous les coups :\r\n1. On calcule le discriminant Δ=b²-4ac=0-4x9x(-36)=1296.\r\n2. Δ>0 donc l'équation admet deux solutions réelles : x=(-b-racine(Δ))/(2a)=-36/18=-2 et y=(-b+racine(Δ))/(2a)=36/18=2\r\n3. Et voilà ! Les solutions de l'équation sont -2 et 2.\r\n\r\nÀ signaler que l'on peut utiliser beaucoup d'autres méthodes (dans le cas présent, il est possible de la résoudre \"directement\" par exemple)."
+author: Skyost
+date: 1592931946
