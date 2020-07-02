@@ -21,7 +21,7 @@ figure figcaption {
 	text-align: center;
 }
 
-input, button, textarea {
+input, button, textarea, select {
 	@include vendor-prefix('border-radius', '0 !important');
 }
 

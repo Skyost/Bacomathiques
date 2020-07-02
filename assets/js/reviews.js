@@ -55,6 +55,27 @@ const reviews = [
         rating: 5,
         source: 0,
     },
+    {
+        author: 'F. Calvez',
+        date: '24 fev. 2020',
+        message: '<strong>Très bonne application.</strong> Bravo au développeur.',
+        rating: 5,
+        source: 0,
+    },
+    {
+        author: 'R. Belgique',
+        date: '7 avr. 2020',
+        message: '<strong>Vraiment super.</strong> Merci.',
+        rating: 5,
+        source: 0,
+    },
+    {
+        author: 'S. Simon',
+        date: '3 juin 2020',
+        message: "<strong>J'adore</strong> cette appli. Je suis en terminale, j'ai 17 ans et je suis fan ; elle est parfaite sur le cours, les leçons, etc...",
+        rating: 5,
+        source: 0,
+    }
 ];
 
 let currentReviewIndex;

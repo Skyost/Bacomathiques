@@ -2,6 +2,8 @@
 layout: pretty
 title: "À propos"
 permalink: "/a-propos/"
+js:
+  - "/assets/js/contact.js"
 ---
 
 <section class="container">
@@ -102,13 +104,57 @@ permalink: "/a-propos/"
 			</p>
 			
 			<p>
-				Pas de problème, il vous suffit de
-				<a class="typeform-share link" href="https://skyost.typeform.com/to/piCNkp" data-mode="1" target="_blank">cliquer ici</a>
-				pour lancer le formulaire de contact !
+				Pas de problème, il vous suffit de remplir le formulaire de contact ci-dessous :
 			</p>
-						
-			<!-- Typeform -->
-			<script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>
+
+			<form id="contact-form" class="mt-3" action="https://formspree.io/moqkkawg" method="POST">
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="contact-name">
+							<i class="fa fa-user" aria-hidden="true"></i> Nom :
+						</label>
+						<input name="name" id="contact-name" class="form-control" type="text">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="contact-email">
+							<i class="fa fa-at" aria-hidden="true"></i> Email :
+						</label>
+						<input name="_replyto" id="contact-email" class="form-control" type="text">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="contact-subject">
+						<i class="fa fa-pencil" aria-hidden="true"></i> Sujet du message :
+					</label>
+					<select name="subject" id="contact-subject" class="form-control">
+						<option value="Correction à apporter" selected="selected">Correction à apporter</option>
+						<option value="Rapport de bug">Rapport de bug</option>
+						<option value="Idée d'amélioration">Idée d'amélioration</option>
+						<option value="Autre">Autre</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="contact-message">
+						<i class="fa fa-envelope-o" aria-hidden="true"></i> Message :
+					</label>
+					<textarea name="message" id="contact-message" class="form-control" rows="5"></textarea>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-6 col-md-3 offset-xs-6 offset-md-9">
+						<button id="contact-submit" class="btn btn-primary float-right w-100" type="submit">
+							<i class="fa fa-paper-plane-o" aria-hidden="true"></i> Envoyer
+						</button>
+					</div>
+				</div>
+
+				<div id="contact-success" class="alert alert-success d-none">
+					<i class="fa fa-check" aria-hidden="true"></i> Message envoyé avec succès !
+				</div>
+				<div id="contact-error" class="alert alert-danger d-none">
+					<i class="fa fa-times" aria-hidden="true"></i> Une erreur est survenue pendant l'envoi du message. Veuillez réessayer plus tard.
+				</div>
+			</form>
 		</div>
 		<div class="col-lg-12 d-flex d-md-none col-fa align-items-center">
 			<i class="fa fa-commenting w-100" aria-hidden="true"></i>
