@@ -3,6 +3,7 @@ layout: pretty
 title: "À propos"
 permalink: "/a-propos/"
 js:
+  - "https://www.google.com/recaptcha/api.js?render=6LeleK0ZAAAAAE1AyIgnyM60UZ1I9d2YPB5_zuyw"
   - "/assets/js/contact.js"
 ---
 
@@ -139,6 +140,8 @@ js:
 					</label>
 					<textarea name="message" id="contact-message" class="form-control" rows="5"></textarea>
 				</div>
+
+				<input type="hidden" name="g-recaptcha-response" id="recaptcha-response">
 
 				<div class="row">
 					<div class="col-xs-6 col-md-3 offset-xs-6 offset-md-9">

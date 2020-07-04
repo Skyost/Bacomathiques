@@ -1,4 +1,10 @@
 $(document).ready(function () {
+    // Setup reCaptcha.
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6LeleK0ZAAAAAE1AyIgnyM60UZ1I9d2YPB5_zuyw', {action: 'contact'}).then(function(token) {
+            $('#recaptcha-response').val(token);
+        });
+    });
 
     // Get the form elements defined in your form HTML above.
     let form = document.getElementById('contact-form');
