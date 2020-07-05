@@ -45,6 +45,10 @@ input, button, textarea, select {
 	&:hover {
 		background-color: darken($main-color, 6%);
 	}
+
+	&.disabled, &:disabled {
+		background-color: lighten($main-color, 10%);
+	}
 }
 
 /* CUSTOM SCROLLBARS FOR WEBKIT USERS */
