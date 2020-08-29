@@ -16,7 +16,7 @@ import 'package:pedantic/pedantic.dart';
 /// The API.
 class API {
   /// The website base URL.
-  static const String BASE_URL = 'http://10.0.2.2:4000';
+  static const String BASE_URL = 'https://bacomathiqu.es';
 }
 
 /// The API status object.
