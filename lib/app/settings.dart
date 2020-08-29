@@ -1,11 +1,8 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bacomathiques/app/app.dart';
+import 'package:bacomathiques/credentials.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Allows to load and set required AdMob information.
@@ -39,13 +36,7 @@ class SettingsModel extends ChangeNotifier {
       return;
     }
 
-    try {
-      _adMobBannerId = jsonDecode(await rootBundle.loadString('assets/admob.json'))[Platform.isAndroid ? 'android' : 'ios'];
-    } catch (error, stacktrace) {
-      print(error);
-      print(stacktrace);
-    }
-
+    _adMobBannerId = Credentials.adUnit;
     notifyListeners();
   }
 

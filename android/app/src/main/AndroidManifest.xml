@@ -6,6 +6,7 @@
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="Bacomathiques"
+        android:name="androidx.multidex.MultiDexApplication"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"

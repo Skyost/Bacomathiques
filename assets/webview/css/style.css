@@ -1,12 +1,6 @@
 body{
     font-size:16px
 }
-figure figcaption{
-    margin-top:14px
-}
-figure,img{
-    max-width:100%
-}
 ul{
     list-style-type:none;
     padding-left:16px

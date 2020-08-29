@@ -4,7 +4,6 @@ import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,6 +28,7 @@ class _LevelsPageState extends RequestScaffold<LevelsPage, APIIndex> {
   @override
   Widget createBody(BuildContext context) => Consumer<SettingsModel>(
         builder: (context, settings, _) => ListView.builder(
+          padding: const EdgeInsets.all(20),
           itemBuilder: (context, index) => _LevelWidget(
             color: settings.appTheme.themeData.primaryColor,
             level: result.levels[index],
@@ -53,7 +53,10 @@ class _LevelsPageState extends RequestScaffold<LevelsPage, APIIndex> {
               ),
             ),
             RaisedButton(
-              child: Text('Réessayer'.toUpperCase()),
+              child: Text(
+                'Réessayer'.toUpperCase(),
+                style: const TextStyle(color: Colors.white),
+              ),
               onPressed: () {
                 loading = true;
                 triggerRequest();
@@ -112,11 +115,12 @@ class _LevelWidget extends StatelessWidget {
               height: 60,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
+              padding: const EdgeInsets.only(top: 5, bottom: 15),
               child: Text(
-                level.name.toUpperCase(),
-                style: GoogleFonts.handlee(
-                  fontSize: 30,
+                level.name,
+                style: const TextStyle(
+                  fontFamily: 'FuturaBT',
+                  fontSize: 40,
                   color: Colors.white,
                 ),
                 textAlign: TextAlign.center,
@@ -126,7 +130,6 @@ class _LevelWidget extends StatelessWidget {
               level.description,
               style: const TextStyle(
                 fontSize: 14,
-                fontStyle: FontStyle.italic,
                 color: Colors.white,
               ),
               textAlign: TextAlign.center,

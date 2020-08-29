@@ -1,23 +1,40 @@
+import 'dart:io';
+
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bacomathiques/app/app.dart';
 import 'package:bacomathiques/app/settings.dart';
+import 'package:bacomathiques/credentials.dart';
 import 'package:bacomathiques/screen/comments.dart';
 import 'package:bacomathiques/screen/home.dart';
 import 'package:bacomathiques/screen/html.dart';
 import 'package:bacomathiques/screen/lessons.dart';
 import 'package:bacomathiques/screen/levels.dart';
 import 'package:bacomathiques/utils/server.dart';
+import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
-import 'package:pedantic/pedantic.dart';
 import 'package:provider/provider.dart';
 
 /// Hello world !
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Admob.initialize();
-  unawaited(FlutterStatusbarcolor.setNavigationBarWhiteForeground(true));
-  runApp(BacomathiquesApp());
+
+  CatcherOptions releaseConfig = CatcherOptions(
+    SilentReportMode(),
+    [
+      DiscordHandler(
+        Credentials.DISCORD_WEBHOOK,
+        printLogs: true,
+        enableDeviceParameters: false,
+        enableApplicationParameters: true,
+        enableCustomParameters: true,
+        enableStackTrace: true,
+      ),
+    ],
+    customParameters: {'platform': Platform.isAndroid ? 'Android' : 'iOS'},
+  );
+
+  Catcher(BacomathiquesApp(), releaseConfig: releaseConfig);
 }
 
 /// The app main class.

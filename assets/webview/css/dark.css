@@ -1,4 +1,4 @@
-html, body {
+html, body, #page-content {
     background-color: #15202B !important;
     color: white !important;
 }
@@ -11,12 +11,16 @@ h2 {
     border-bottom:1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
-.bubble {
+.formula, .tip, .proof-content {
     background-color: #192734 !important;
 }
 
-table, .bubble table {
+table, .formula table, .tip table, .proof-content table {
     background-color: #2E455C !important;
+}
+
+.proof-label {
+    color: rgba(255, 255, 255, 0.75) !important;
 }
 
 table th, table td, .bubble table th, .bubble table td {

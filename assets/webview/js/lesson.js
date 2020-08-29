@@ -5,56 +5,35 @@ const LEVEL = '{level}';
 const LESSON = '{lesson}';
 const ANCHOR = '{anchor}';
 
-$(document).ready(function () {
-    $($('h2')[0]).addClass('pt-0');
-    window.MathJax.startup.promise.then(function () {
-        // TITLE NUMBERING
+$(document).ready(async function () {
+    $('a').click(handleLinksClick);
+    addTitles();
+    await window.MathJax.startup.promise;
+    handleProofs();
+    numberizeTitles();
+    addAnchors();
+    goToHash(event, ANCHOR);
+});
 
-        let h2Index = 1;
-        let h3Index = 1;
-        $('h2, h3').each(function () {
-            let title = $(this);
-            if (title.prop('tagName') === 'H3') {
-                title.html((h3Index++) + '. ' + title.html());
-            } else {
-                h3Index = 1;
-                title.html(romanize(h2Index++) + ' – ' + title.html());
-            }
-        });
+function addAnchors() {
+    anchors.add('article h2, article h3');
+}
 
-        // ANCHORS AND LINKS
-
-        anchors.add('h2, h3');
-
-        goToHash(event, ANCHOR);
-
-        $('a').click(function(event) {
-            let level = $(this).attr('data-api-v2-level');
-            let lesson = $(this).attr('data-api-v2-lesson');
-            let hash = $(this).attr('data-api-v2-hash');
-            if (typeof level !== 'undefined' && typeof lesson !== 'undefined') {
-                let object = {
-                    level: level,
-                    lesson: lesson,
-                }
-
-                if (typeof hash !== 'undefined') {
-                    object['hash'] = hash;
-                }
-
-                Navigation.postMessage(JSON.stringify(object));
-                event.preventDefault();
-                return;
-            }
-
-            if (typeof hash !== 'undefined') {
-                goToHash(event, decodeURI(this.hash));
-            }
-        });
+function numberizeTitles() {
+    let h2Index = 1;
+    let h3Index = 1;
+    $('article h2, article h3').each(function () {
+        let title = $(this);
+        if (title.prop('tagName') === 'H3') {
+            title.html((h3Index++) + '. ' + title.html());
+        } else {
+            h3Index = 1;
+            title.html(romanize(h2Index++) + ' – ' + title.html());
+        }
     });
+}
 
-    // PROOFS AND BUBBLES
-
+function handleProofs() {
     $('.proof').each(function () {
         let proof = $(this);
         let proofLabel = $('<span class="proof-label"><span class="toggle-icon">&#9654;</span> Démonstration</span>');
@@ -83,37 +62,45 @@ $(document).ready(function () {
         proof.append(proofLabel);
         proof.append(proofContent);
     });
+}
 
-    $('.formula, .tip').addClass('bubble');
+function handleLinksClick(event) {
+    let level = $(this).attr('data-api-v2-level');
+    let lesson = $(this).attr('data-api-v2-lesson');
+    let hash = $(this).attr('data-api-v2-hash');
+    if (typeof level !== 'undefined' && typeof lesson !== 'undefined') {
+        let object = {
+            level: level,
+            lesson: lesson,
+        }
 
-    // REPRESENTATIONS
+        if (typeof hash !== 'undefined') {
+            object['hash'] = hash;
+        }
 
-    let plots = $('.plot');
-    if (typeof GGBApplet === 'undefined') {
-        plots.each(function () {
-            let plot = $(this);
-            let imageUrl = BASE_URL + '/assets/img/lessons/' + LEVEL + '/' + LESSON + "/" + plot.attr('id') + '.png';
-            plot.html('<a href="' + imageUrl + '"><img src="' + imageUrl + '" title="' + plot.attr('id') + '" alt="' + plot.attr('id') + '"></a>');
-        });
+        Navigation.postMessage(JSON.stringify(object));
+        event.preventDefault();
+        return;
     }
-    else {
-        plots.each(function () {
-            let plot = $(this);
-            createGeoGebraInstance(plot.attr('data-api-v2-geogebra-id')).inject(plot.attr('id'));
-        });
+
+    if (typeof hash !== 'undefined') {
+        goToHash(event, decodeURI(this.hash));
     }
+}
 
-    // SYNTAX HIGHLIGHTING
+function addTitles() {
+    $('div[data-api-v2-title]').each(function() {
+        $(this).prepend('<h4>' + $(this).attr('data-api-v2-title') + '</h4>');
+    });
+    MathJax.typesetPromise($('div[data-api-v2-title] h4').get());
+}
 
+function handleHighlighting() {
     $('.highlight code').each(function() {
        let code = $(this);
        code.html(code.html().replace(new RegExp('\t', 'g'), '    '))
     });
-});
-
-/**
- * Found here : http://stackoverflow.com/a/9083076/3608831
- */
+}
 
 function romanize(num) {
     if (!+num) {
@@ -131,10 +118,6 @@ function romanize(num) {
     return Array(+digits.join("") + 1).join("M") + roman;
 }
 
-/**
- * Found here : https://stackoverflow.com/a/18365991/3608831
- */
-
 function goToHash(event, hash) {
     if (hash.length === 0) {
         return;
@@ -149,29 +132,4 @@ function goToHash(event, hash) {
     $('html, body').animate({
         scrollTop: jqueryHash.offset().top
     }, 500);
-}
-
-function createGeoGebraInstance(materialId) {
-    let windowWidth = window.screen.width;
-    let scale = 1;
-    if (windowWidth < 992) {
-        scale = 2;
-    }
-    if (windowWidth < 768) {
-        scale = 4;
-    }
-
-	return new GGBApplet({
-        'id': materialId,
-        'material_id': materialId,
-        'showResetIcon': true,
-        'enableLabelDrags': false,
-        'scale': scale,
-        'allowUpscale': true,
-        'scaleContainerClass': 'plot',
-        //'showZoomButtons': true,
-        'preventFocus': true,
-        'enableShiftDragZoom': true,
-        'borderColor': 'rgba(0, 0, 0, 0.5)',
-	}, true);
 }

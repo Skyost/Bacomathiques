@@ -3,17 +3,15 @@
 <head>
     <title>Bacomathiques</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://localhost:8080/assets/webview/css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8080/assets/webview/css/style.css">
-    <link rel="stylesheet" href="http://localhost:8080/assets/webview/css/highlight.css">
-    <link rel="stylesheet" href="http://localhost:8080/assets/webview/css/lesson.css">
+    <link rel="stylesheet" href="{address}/assets/webview/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="{address}/assets/webview/css/style.css">
+    <link rel="stylesheet" href="{address}/assets/webview/css/highlight.css">
+    <link rel="stylesheet" href="{address}/assets/webview/css/lesson.css">
     {dark_theme_css}
 
-    <script src="http://localhost:8080/assets/webview/js/polyfill/polyfill.min.js"></script>
-    <script src="http://localhost:8080/assets/webview/js/jquery/jquery.min.js"></script>
-    <script src="http://localhost:8080/assets/webview/js/anchor/anchor.min.js"></script>
-    <script src="http://localhost:8080/assets/webview/js/lesson.js"></script>
-    {dark_theme_js}
+    <script src="{address}/assets/webview/js/polyfill/polyfill.min.js"></script>
+    <script src="{address}/assets/webview/js/jquery/jquery.min.js"></script>
+    <script src="{address}/assets/webview/js/anchor/anchor.min.js"></script>
 
     <script>
         window.MathJax = {
@@ -28,10 +26,16 @@
             },
         };
     </script>
-    <script src="http://localhost:8080/assets/webview/js/mathjax/es5/tex-chtml.js"></script>
+    <script src="{address}/assets/webview/js/mathjax/es5/tex-chtml.js"></script>
     <script src="https://www.geogebra.org/apps/deployggb.js"></script>
+
+    <script src="{address}/assets/webview/js/lesson.js"></script>
+    <script src="{address}/assets/webview/js/maths.js"></script>
+    {dark_theme_js}
 </head>
 <body>
-    {content}
+    <article id="page-content">
+        {content}
+    </article>
 </body>
 </html>

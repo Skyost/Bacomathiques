@@ -1,58 +1,64 @@
 name: bacomathiques
 description: Cours gratuits pour réviser les maths au lycée !
-version: 1.2.3+30
+version: 1.2.4+31
+homepage: https://bacomathiqu.es
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
+  flutter: ">=1.10.0"
 
 dependencies:
-  http: ^0.12.1
+  http: ^0.12.2
   webview_flutter: ^0.3.22
-  mime: ^0.9.6
-  flutter_html: ^1.0.0
-  url_launcher: ^5.4.10
-  flutter_svg: ^0.17.4
-  share: ^0.6.4
-  flutter_statusbarcolor: ^0.2.3
+  mime: ^0.9.7
+  flutter_html: ^1.0.2
+  url_launcher: ^5.4.11
+  flutter_svg: ^0.18.1
+  share: ^0.6.5
   transparent_image: ^1.0.0
-  rate_my_app: ^0.6.1
-  path_provider: ^1.6.10
-  shared_preferences: ^0.5.7
+  rate_my_app: ^0.7.0
+  path_provider: ^1.6.14
+  shared_preferences: ^0.5.10
   pedantic: ^1.9.0
-  provider: ^4.1.2
-  day_night_switcher: ^0.1.0
-  flutter_layout_grid: ^0.10.1
+  provider: ^4.3.2
+  day_night_switcher: ^0.1.1
+  flutter_layout_grid: ^0.10.2
   google_fonts: ^1.1.0
-  admob_flutter: ^1.0.0-beta.4
+  admob_flutter: ^1.0.0-beta.5
+  catcher: ^0.3.17
   flutter:
     sdk: flutter
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: FuturaBT
+      fonts:
+        - asset: assets/fonts/FuturaBT-Medium.ttf
   assets:
-  - assets/
-  - assets/images/
-  - assets/fonts/
-  - assets/images/
-  - assets/webview/
-  - assets/webview/css/
-  - assets/webview/css/bootstrap/
-  - assets/webview/js/
-  - assets/webview/js/anchor/
-  - assets/webview/js/jquery/
-  - assets/webview/js/mathjax/
-  - assets/webview/js/mathjax/es5/
-  - assets/webview/js/mathjax/es5/a11y/
-  - assets/webview/js/mathjax/es5/adaptors/
-  - assets/webview/js/mathjax/es5/input/
-  - assets/webview/js/mathjax/es5/input/tex/
-  - assets/webview/js/mathjax/es5/input/tex/extensions/
-  - assets/webview/js/mathjax/es5/output/
-  - assets/webview/js/mathjax/es5/output/chtml/
-  - assets/webview/js/mathjax/es5/output/chtml/fonts/
-  - assets/webview/js/mathjax/es5/output/chtml/fonts/woff-v2/
-  - assets/webview/js/mathjax/es5/sre/
-  - assets/webview/js/mathjax/es5/sre/mathmaps/
-  - assets/webview/js/mathjax/es5/ui/
-  - assets/webview/js/polyfill/
-  - google_fonts/
+    - assets/
+    - assets/images/
+    - assets/images/
+    - assets/fonts/
+    - assets/webview/
+    - assets/webview/css/
+    - assets/webview/css/bootstrap/
+    - assets/webview/js/
+    - assets/webview/js/anchor/
+    - assets/webview/js/jquery/
+    - assets/webview/js/mathjax/
+    - assets/webview/js/mathjax/es5/
+    - assets/webview/js/mathjax/es5/a11y/
+    - assets/webview/js/mathjax/es5/adaptors/
+    - assets/webview/js/mathjax/es5/input/
+    - assets/webview/js/mathjax/es5/input/tex/
+    - assets/webview/js/mathjax/es5/input/tex/extensions/
+    - assets/webview/js/mathjax/es5/output/
+    - assets/webview/js/mathjax/es5/output/chtml/
+    - assets/webview/js/mathjax/es5/output/chtml/fonts/
+    - assets/webview/js/mathjax/es5/output/chtml/fonts/woff-v2/
+    - assets/webview/js/mathjax/es5/sre/
+    - assets/webview/js/mathjax/es5/sre/mathmaps/
+    - assets/webview/js/mathjax/es5/ui/
+    - assets/webview/js/polyfill/
+    - google_fonts/

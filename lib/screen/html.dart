@@ -116,7 +116,7 @@ class HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
       children: [
         SizedBox.expand(
           child: WebView(
-            initialUrl: 'http://localhost:${server.port}/assets/webview/content.html',
+            initialUrl: 'http://${server.address}:${server.port}/assets/webview/content.html',
             onPageStarted: (_) {
               setState(() => stackToView = 1);
             },
@@ -148,11 +148,13 @@ class HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
       SettingsModel settingsModel = Provider.of<SettingsModel>(context, listen: false);
       Server server = Provider.of<Server>(context, listen: false);
 
+      String address = 'http://${server.address}:${server.port}';
       server.formatArguments = {
         'assets/webview/content.html': [
+          FormatArgument('address', address),
           FormatArgument('content', result.html),
-          FormatArgument('dark_theme_css', settingsModel.darkModeEnabled ? '<link rel="stylesheet" href="http://localhost:8080/assets/webview/css/dark.css">' : ''),
-          FormatArgument('dark_theme_js', settingsModel.darkModeEnabled ? '<script src="http://localhost:8080/assets/webview/js/dark.js"></script>' : ''),
+          FormatArgument('dark_theme_css', settingsModel.darkModeEnabled ? '<link rel="stylesheet" href="$address/assets/webview/css/dark.css">' : ''),
+          FormatArgument('dark_theme_js', settingsModel.darkModeEnabled ? '<script src="$address/assets/webview/js/dark.js"></script>' : ''),
         ],
         'assets/webview/js/lesson.js': [
           FormatArgument('base_url', API.BASE_URL),

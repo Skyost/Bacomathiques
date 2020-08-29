@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
-import 'package:pedantic/pedantic.dart';
+import 'package:flutter/services.dart';
 
 /// Contains some information about the app.
 class App {
@@ -27,40 +26,41 @@ class AppTheme {
 
     if (hasChanged) {
       themeData = light ? const LightAppThemeData() : const DarkAppThemeData();
-      unawaited(FlutterStatusbarcolor.setNavigationBarColor(themeData.actionBarColor));
+      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(systemNavigationBarColor: themeData.actionBarColor));
     }
   }
 
   /// Returns the flutter theme data.
   ThemeData get flutterThemeData => ThemeData(
-      primaryColor: themeData.primaryColor,
-      primaryColorDark: themeData.primaryColorDark,
-      accentColor: themeData.accentColor,
-      appBarTheme: AppBarTheme(color: themeData.actionBarColor),
-      textTheme: TextTheme(
-        headline1: TextStyle(color: themeData.textColor),
-        headline2: TextStyle(color: themeData.textColor),
-        headline3: TextStyle(color: themeData.textColor),
-        headline4: TextStyle(color: themeData.textColor),
-        headline5: TextStyle(color: themeData.textColor),
-        headline6: TextStyle(color: themeData.textColor),
-        subtitle1: TextStyle(color: themeData.textColor),
-        subtitle2: TextStyle(color: themeData.textColor),
-        bodyText1: TextStyle(color: themeData.textColor),
-        bodyText2: TextStyle(color: themeData.textColor),
-        caption: TextStyle(color: themeData.textColor),
-        button: TextStyle(color: themeData.accentColor),
-        overline: TextStyle(color: themeData.textColor),
-      ),
-      scaffoldBackgroundColor: themeData.scaffoldBackgroundColor,
-      dialogBackgroundColor: themeData.scaffoldBackgroundColor,
-      highlightColor: themeData.highlightColor,
-      splashColor: themeData.highlightColor,
-      buttonTheme: ButtonThemeData(
-        textTheme: ButtonTextTheme.accent,
+        primaryColor: themeData.primaryColor,
+        primaryColorDark: themeData.primaryColorDark,
+        accentColor: themeData.accentColor,
+        appBarTheme: AppBarTheme(color: themeData.actionBarColor),
+        textTheme: TextTheme(
+          headline1: TextStyle(color: themeData.textColor),
+          headline2: TextStyle(color: themeData.textColor),
+          headline3: TextStyle(color: themeData.textColor),
+          headline4: TextStyle(color: themeData.textColor),
+          headline5: TextStyle(color: themeData.textColor),
+          headline6: TextStyle(color: themeData.textColor),
+          subtitle1: TextStyle(color: themeData.textColor),
+          subtitle2: TextStyle(color: themeData.textColor),
+          bodyText1: TextStyle(color: themeData.textColor),
+          bodyText2: TextStyle(color: themeData.textColor),
+          caption: TextStyle(color: themeData.textColor),
+          button: TextStyle(color: themeData.accentColor),
+          overline: TextStyle(color: themeData.textColor),
+        ),
+        scaffoldBackgroundColor: themeData.scaffoldBackgroundColor,
+        dialogBackgroundColor: themeData.scaffoldBackgroundColor,
         highlightColor: themeData.highlightColor,
         splashColor: themeData.highlightColor,
-      ));
+        buttonTheme: ButtonThemeData(
+          textTheme: ButtonTextTheme.accent,
+          highlightColor: themeData.highlightColor,
+          splashColor: themeData.highlightColor,
+        ),
+      );
 }
 
 /// Contains the application theme data.
@@ -77,11 +77,11 @@ abstract class AppThemeData {
   /// The action bar color.
   final Color actionBarColor;
 
-  /// The speciality color.
-  final Color specialityColor;
+  /// The lesson button color.
+  final Color lessonButtonColor;
 
-  /// The card border radius.
-  final double cardBorderRadius;
+  /// The speciality button color.
+  final Color specialityButtonColor;
 
   /// The comments border radius.
   final double commentBorderRadius;
@@ -113,8 +113,8 @@ abstract class AppThemeData {
     @required this.primaryColorDark,
     @required this.accentColor,
     @required this.actionBarColor,
-    @required this.specialityColor,
-    this.cardBorderRadius = 10,
+    this.lessonButtonColor = const Color(0xFF217DBB),
+    this.specialityButtonColor = const Color(0xFF3CA797),
     this.commentBorderRadius = 15,
     @required this.commentBackgroundColor,
     @required this.commentDateColor,
@@ -135,7 +135,6 @@ class LightAppThemeData extends AppThemeData {
           primaryColorDark: const Color(0xFF3498DB),
           accentColor: const Color(0xFF757575),
           actionBarColor: const Color(0xFF2489CC),
-          specialityColor: const Color(0xFF29CBB1),
           commentBackgroundColor: const Color(0xFFE1F0FA),
           commentDateColor: const Color(0xFF6C757D),
           progressIndicatorColor: const Color(0xFF29CBB1),
@@ -151,7 +150,6 @@ class DarkAppThemeData extends AppThemeData {
           primaryColorDark: const Color(0xFF192734),
           accentColor: const Color(0xFF91A4B3),
           actionBarColor: const Color(0xFF253341),
-          specialityColor: const Color(0xFF2E455C),
           commentBackgroundColor: const Color(0xFF192734),
           commentDateColor: const Color(0xFF6C757D),
           scaffoldBackgroundColor: const Color(0xFF15202B),

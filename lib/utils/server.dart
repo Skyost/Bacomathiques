@@ -10,20 +10,22 @@ class Server {
   /// The http server.
   HttpServer _server;
 
-  /// The port.
-  final int port;
-
   /// All format arguments.
   Map<String, List<FormatArgument>> formatArguments;
 
   /// Creates a new server instance.
-  Server([this.port = 8080, this.formatArguments]);
+  Server([this.formatArguments]);
+
+  /// Returns the server address.
+  String get address => _server?.address?.address;
+
+  /// Returns the server port.
+  int get port => _server?.port;
 
   /// Closes the server.
   Future<void> close() async {
     if (_server != null) {
       await _server.close(force: true);
-      print('Server running on http://localhost:$port closed');
       _server = null;
     }
   }
@@ -31,36 +33,22 @@ class Server {
   /// Starts the server.
   Future<void> start() async {
     if (_server != null) {
-      throw Exception('Server already started on http://localhost:$port');
+      await close();
     }
 
-    var completer = Completer();
+    _server = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
+    _server.listen((HttpRequest request) async {
+      String path = request.requestedUri.path;
+      path = (path.startsWith('/')) ? path.substring(1) : path;
+      path += (path.endsWith('/')) ? 'index.html' : '';
 
-    runZoned(() {
-      HttpServer.bind('127.0.0.1', port).then((server) {
-        print('Server running on http://localhost:' + port.toString());
-
-        _server = server;
-
-        server.listen((HttpRequest request) async {
-          var path = request.requestedUri.path;
-          path = (path.startsWith('/')) ? path.substring(1) : path;
-          path += (path.endsWith('/')) ? 'index.html' : '';
-
-          List<FormatArgument> arguments = formatArguments == null ? null : formatArguments[path];
-          if (arguments == null) {
-            await sendResponseWithoutFormatting(request, path);
-            return;
-          }
-
-          await sendResponseWithFormatting(request, path, arguments);
-        });
-
-        completer.complete();
-      });
-    }, onError: (e, stackTrace) => print('Error: $e $stackTrace'));
-
-    return completer.future;
+      List<FormatArgument> arguments = formatArguments == null ? null : formatArguments[path];
+      if (arguments == null) {
+        await sendResponseWithoutFormatting(request, path);
+      } else {
+        await sendResponseWithFormatting(request, path, arguments);
+      }
+    });
   }
 
   /// Sends the response with formatting.

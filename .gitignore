@@ -8,7 +8,7 @@
 .buildlog/
 .history
 .svn/
-assets/admob.json
+lib/credentials.dart
 android/key.properties
 ios/Runner/GoogleService-Info.plist
 android/app/google-services.json
