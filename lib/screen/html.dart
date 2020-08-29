@@ -126,7 +126,7 @@ class HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
             javascriptMode: JavascriptMode.unrestricted,
             javascriptChannels: channels.toSet(),
             navigationDelegate: (navigation) {
-              if (navigation.url.startsWith('http') && !navigation.url.startsWith('http://localhost:${server.port}/')) {
+              if (navigation.url.startsWith('http') && !navigation.url.startsWith('http://${server.address}:${server.port}/')) {
                 openURL(navigation.url);
                 return NavigationDecision.prevent;
               }
