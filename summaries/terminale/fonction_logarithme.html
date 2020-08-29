@@ -1,117 +1,91 @@
 ---
-layout: "compress"
+layout: default
+lesson: "fonction_logarithme"
+level: "terminale"
+summary: true
 permalink: "/cours/terminale/fonction-logarithme/resume/"
 ---
 
 <section>
-
-	<h2>Propriétés du logarithme népérien</h2>
-
-	<section>
-		
-		<p>
-			Le logarithme népérien $\ln$ est une fonction qui est définie sur $]0;+\infty[$ et qui nous donne
-			la relation fondamentale suivante pour tout $x \gt 0$ et $y$ réels :
-		</p>
-		
-		<p class="formula">$\ln(x) = y \iff x = e^y$</p>
-		
-		<p>On a donc :</p>
-		
-		<div class="formula">
-			<p>Pour tout réel $x$ <strong>strictement positif</strong>, on a :</p>
-			<p>$e^{\ln(x)} = x$</p>
-			<p>Et pour tout réel $x$, on a :</p>
-			<p>$\ln(e^x) = x$</p>
-		</div>
-		
-	</section>
-
-	<section>
-		
-		<p>
-			Le logarithme népérien a plusieurs propriétés intéressantes qu'il faut connaître.
-			Ainsi, pour tous réels $x$ et $y$ <strong>strictement positifs</strong> :
-		</p>
-		
-		<ul class="formula">
-			<li>$\ln(x \times y) = \ln(x) + \ln(y)$</li>
-			<li>$\ln(x^n) = n \times \ln(x)$ pour $n \in \mathbb{Z}$</li>
-			<li>$\displaystyle{\ln\left(\frac{x}{y}\right) = \ln(x) - \ln(y)}$</li>
-			<li>$\displaystyle{\ln\left(\frac{1}{y}\right) = -\ln(y)}$</li>
-			<li>$\displaystyle{\ln(\sqrt[p]{x}) = \frac{1}{p} \times \ln(x)}$ pour $p \in \mathbb{N}^*$</li>
-		</ul>
-				
-	</section>
-
+    <h2>Propriétés du logarithme népérien</h2>
+    <section>
+        <h3>Définition</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Le <strong>logarithme népérien</strong> est une fonction qui est définie sur $]0;+\infty[$ par $x \mapsto \ln(x)$.</p>
+        </div>
+        <div class="formula">
+            <p>On a la relation fondamentale suivante pour tout $x \gt 0$ et $y$ réels :</p>
+            <p>$\ln(x) = y \iff x = e^y$.</p>
+        </div>
+        <p>Ainsi, a tout réel <strong>strictement positif</strong> $x$, la fonction logarithme népérien y associe <strong>son unique antécédent</strong> $y$ par rapport à <a href="/cours/premiere/fonction-exponentielle/" data-api-v2-level="premiere" data-api-v2-lesson="fonction-exponentielle">la fonction exponentielle</a>. De même pour la fonction exponentielle.</p>
+        <p>On dit que ces fonctions sont des <strong>fonctions réciproques</strong> (à la manière de $\sin$ et $\arcsin$ ou $\cos$ et $\arccos$).</p>
+        <p>Les relations suivantes sont par conséquent disponibles :</p>
+        <div class="formula" data-api-v2-title="Relations entre fonctions réciproques">
+            <p>Pour tout réel $x$ <strong>strictement positif</strong>, on a $e^{\ln(x)} = x$.</p>
+            <p>Et pour tout réel $x$, on a $\ln(e^x) = x$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Relations algébriques</h3>
+        <p>Le logarithme népérien a plusieurs propriétés intéressantes qu'il faut connaître.</p>
+        <div class="formula" data-api-v2-title="Formules">
+            <p>Pour tous réels $x$ et $y$ <strong>strictement positifs</strong> :</p>
+            <ul>
+                <li>$\ln(x \times y) = \ln(x) + \ln(y)$</li>
+                <li>$\ln(x^n) = n \times \ln(x)$ pour $n \in \mathbb{Z}$</li>
+                <li>$\displaystyle{\ln\left(\frac{x}{y}\right) = \ln(x) - \ln(y)}$</li>
+                <li>$\displaystyle{\ln\left(\frac{1}{y}\right) = -\ln(y)}$</li>
+                <li>$\displaystyle{\ln(\sqrt[p]{x}) = \frac{1}{p} \times \ln(x)}$ pour $p \in \mathbb{N}^*$</li>
+            </ul>
+        </div>
+        <p>Certaines des ces propriétés peuvent se déduire les unes des autres.</p>
+    </section>
+    <section>
+        <h3>Représentation graphique</h3>
+        <p>Voici une représentation graphique de la fonction logarithme népérien :</p>
+        <div id="representation-1" class="plot" data-api-v2-geogebra-id="wsntfeab"></div>
+        <p>On voit sur ce graphique plusieurs propriétés données précédemment : $\ln(1) = 0$ et $\ln(e) = 1$ par exemple.</p>
+    </section>
 </section>
 <section>
-
-	<h2>Étude de la fonction</h2>
-	
-	<section>
-	
-		<p>Les limites de la fonction logarithme népérien aux bornes de son ensemble de définition sont :</p>
-		
-		<ul class="formula">
-			<li>$\lim\limits_{\substack{x \rightarrow 0 \\ x \gt 0}} \ln(x) = -\infty$</li>
-			<li>$\lim\limits_{\substack{x \rightarrow +\infty}} \ln(x) = +\infty$</li>
-		</ul>
-		
-		<p>De plus, les limites suivantes sont à connaître :</p>
-		
-		<ul class="formula">
-			<li>$\displaystyle{\lim\limits_{\substack{x \rightarrow +\infty}} \frac{\ln(x)}{x} = 0}$</li>
-			<li>$\lim\limits_{\substack{x \rightarrow 0 \\ x \gt 0}} x \times \ln(x) = 0$</li>
-		</ul>
-		
-		<p>Une autre limite est à connaître :</p>
-		
-		<p class="formula">$\displaystyle{\lim\limits_{\substack{x \rightarrow 0}} \frac{\ln(1 + x)}{x} = 1}$</p>
-	
-	</section>
-	
-	<section>
-	
-		<p>
-			Soit une fonction $u$ dérivable et <strong>strictement positive</strong> sur un intervalle $I$,
-			on a pour tout $x$ appartenant à cet intervalle :
-		</p>
-		
-		<p class="formula">$\displaystyle{\ln'(u(x)) = \frac{u'(x)}{u(x)}}$</p>
-		
-		<p>Ainsi, si pour tout $x \in I$ on a $u(x) = x$ :</p>
-		
-		<p class="formula">$\displaystyle{\ln'(x) = \frac{1}{x}}$</p>
-	
-	</section>
-	
-	<section>
-	
-		<p>
-			Avec la dérivée donnée précédemment ainsi que les limites données,
-			il est désormais possible d'obtenir les variations de la fonction logarithme népérien :
-		</p>
-		
-		<figure class="formula math-table">
-			<img src="/assets/img/lessons/terminale/fonction_logarithme/variations.svg" title="Tableau de variation de la fonction logarithme népérien" alt="Tableau de variation de la fonction logarithme népérien"/>
-			<figcaption>
-				<p>
-					On remarque qu'avec le tableau de variation, il est possible d'obtenir le signe de la fonction (avec le théorème des valeurs intermédiaires).
-					<br>Ainsi, sur $]0;1[$, $\ln$ est <strong>strictement négative</strong> et sur $]1;+\infty[$,
-					$\ln$ est <strong>strictement positive</strong> et, comme vu précédemment, $\ln(1) = 0$.
-					<br>On observe également les variations de la fonction : strictement croissante sur son ensemble de définition.
-				</p>
-			</figcaption>
-		</figure>
-	
-	</section>
-
-</section>
-<section>
-
-	<p>Le <strong>logarithme décimal</strong> (utilisé en physique-chimie en classe de Terminale S) est défini sur $]0;+\infty[$ par :</p>
-	
-	<p class="formula">$\displaystyle{log_{10}(x) = \frac{\ln(x)}{\ln(10)}}$</p>
-	
+    <h2>Étude de la fonction</h2>
+    <section>
+        <h3>Limites</h3>
+        <div class="formula" data-api-v2-title="Limites">
+            <p>Les limites de la fonction logarithme népérien aux bornes de son ensemble de définition sont :</p>
+            <ul>
+                <li>$\lim_{x \rightarrow 0^+} \ln(x) = -\infty$</li>
+                <li>$\lim_{x \rightarrow +\infty} \ln(x) = +\infty$</li>
+            </ul>
+        </div>
+        <p>Il faut aussi savoir que la fonction puissance <q>l'emporte</q> sur le logarithme népérien (voir la partie <a href="#3-représentation-graphique" data-api-v2-hash="#3-représentation-graphique"><q>Représentation graphique</q></a>).</p>
+        <div class="formula" data-api-v2-title="Croissances comparées">
+            <p>Pour tout $n \in \mathbb{N}$ :</p>
+            <ul>
+                <li>$\displaystyle{\lim_{x \rightarrow +\infty} \frac{\ln(x)}{x^n} = 0}$.</li>
+                <li>$\displaystyle{\lim_{x \rightarrow 0^+} x^n \ln(x) = 0}$.</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Dérivée</h3>
+        <div class="formula" data-api-v2-title="Dérivée d'une composée">
+            <p>Soit une fonction $u$ dérivable et <strong>strictement positive</strong> sur un intervalle $I$, on a pour tout $x$ appartenant à cet intervalle :</p>
+            <p>$\displaystyle{\ln'(u(x)) = \frac{u'(x)}{u(x)}}$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Dérivée">
+            <p>Ainsi, si pour tout $x \in I$ on a $u(x) = x$, on trouve :</p>
+            <p>$\displaystyle{\ln'(x) = \frac{1}{x}}$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Variations</h3>
+        <p>Avec la dérivée donnée précédemment ainsi que les limites données, il est désormais possible d'obtenir les variations de la fonction logarithme népérien.</p>
+        <div class="formula" data-api-v2-title="Signe et variations">
+            <img src="/assets/img/lessons/terminale/fonction_logarithme/variations.svg" alt="Tableau de variations de la fonction logarithme">
+            <p>On remarque qu'avec le tableau de variation, il est possible d'obtenir le signe de la fonction (avec le théorème des valeurs intermédiaires).</p>
+            <p>Ainsi, sur $]0;1[$, $\ln$ est <strong>strictement négative</strong> et sur $]1;+\infty[$, $\ln(x)$ est <strong>strictement positive</strong> et, comme vu précédemment, $\ln(1) = 0$.</p>
+            <p>On observe également les variations de la fonction : strictement croissante sur son ensemble de définition.</p>
+        </div>
+    </section>
 </section>

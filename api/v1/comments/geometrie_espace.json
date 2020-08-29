@@ -1,4 +1,0 @@
----
-layout: compress
----
-{% include_relative template.json lesson='geometrie_espace' %}

@@ -1,4 +1,0 @@
----
-layout: compress
----
-{% include_relative template.json lesson='continuite_derivabilite' %}

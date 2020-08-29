@@ -1,0 +1,135 @@
+---
+layout: default
+lesson: "lois_bernoulli_binomiale"
+level: "terminale"
+summary: true
+permalink: "/cours/terminale/lois-bernoulli-binomiale/resume/"
+---
+
+<section>
+    <h2>Rappels sur les variables aléatoires</h2>
+    <section>
+        <h3>Définition</h3>
+        <p>Nous allons rappeler quelques notions vues en classe de Première sur les variables aléatoires.</p>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Une <strong>variable aléatoire</strong> $X$ est une fonction qui, à chaque événement élémentaire de l'univers $\Omega$ y associe un nombre réel. C'est-à-dire : $X : \Omega \rightarrow \mathbb{R}$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Loi de probabilité</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soit $X$ une variable aléatoire. La <strong>loi de probabilité</strong> de $X$ attribue à chaque valeur $x_i$ la probabilité $p_i = p(X = x_i)$ de l'événement $X = x_i$ constitué de tous les événements élémentaires dont l'image par $X$ est $x_i$.</p>
+        </div>
+        <p>On représente généralement les lois de probabilité par un tableau.</p>
+        <div class="formula" data-api-v2-title="Représentation d'une loi de probabilité par un tableau">
+            <p>Soit $X$ une variable aléatoire.</p>
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <td>$x_i$</td><td>$x_1$</td><td>$x_2$</td><td>...</td><td>$x_n$ </td>
+                </tr>
+                <tr>
+                    <td>$p_i$ <br> $= p(X = x_i)$</td><td>$p_1$ <br> $= p(X = x_1)$</td><td>$p_2$ <br> $= p(X = x_2)$</td><td>...</td><td>$p_n$ <br> $= p(X = x_n)$ </td>
+                </tr>
+            </table>
+            <p>On a $p_1 + p_2 + \text{ ... } + p_n = 1$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Espérance, variance et écart-type</h3>
+        <div class="formula" data-api-v2-title="Espérance">
+            <p>L'<strong>espérance</strong> $E(X)$ d'une variable aléatoire $X$ est le réel :</p>
+            <p>$E(X) = x_1 \times p_1 + x_2 \times p_2 + \text{ ... } + x_n \times p_n$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Variance et écart-type">
+            <p>La <strong>variance</strong> $V(X)$ et l'<strong>écart-type</strong> $\sigma(X)$ d'une variable aléatoire $X$ sont les réels positifs suivants :</p>
+            <ul>
+                <li>$V(X) = E(X^2) - E(X)^2$</li>
+                <li>$\sigma(X) = \sqrt{V(X)}$</li>
+            </ul>
+        </div>
+        <p>Chacun de ces paramètres a une utilité bien précise. En effet :</p>
+        <div class="formula" data-api-v2-title="Signification des paramètres">
+            <ul>
+                <li>L'espérance est la <strong>valeur moyenne</strong> prise par $X$.</li>
+                <li>La variance et l'écart-type mesurent la <strong>dispersion</strong> des valeurs prises par $X$. Plus ces valeurs sont grandes, plus les valeurs sont dispersées autour de l'espérance.</li>
+            </ul>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>Loi de Bernoulli</h2>
+    <section>
+        <h3>Succession d'épreuves indépendantes</h3>
+        <div class="formula" data-api-v2-title="Univers associé">
+            <p>Soit une succession de $n$ épreuves indépendantes (c'est-à-dire que le résultat de l'une n'a pas d'incidence sur le résultat de la suivante). On note les univers associés à chaque expérience respectivement par $\Omega_1$, $\Omega_2$, ... , $\Omega_n$.</p>
+            <p>Alors l'univers associé à cette succession d'épreuves indépendantes est le produit cartésien $\Omega_1 \times \Omega_2 \times \text{ ... } \times \Omega_n$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Calcul de probabilité">
+            <p>Soit une succession de $n$ épreuves indépendantes et soit $(x_1, \text{ ... }, x_n)$ une issue de cette succession d'épreuves. Alors $p((x_1, \text{ ... }, x_n)) = p(x_1) \times \text{ ... } \times p(x_n)$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Épreuve et schéma de Bernoulli</h3>
+        <p>Derrière ces noms qui peuvent sembler compliquer, se cache une notion finalement simple, et que l'on rencontre souvent dans la vie quotidienne.</p>
+        <div class="formula" data-api-v2-title="Épreuve de Bernoulli">
+            <p>Une <strong>épreuve de Bernoulli</strong> est une expérience aléatoire qui n'admet que deux issues possibles : le succès et l'échec.</p>
+        </div>
+        <p>Il est souvent possible de répéter plusieurs fois une épreuve de Bernoulli. C'est ce qu'on appelle un <strong>schéma de Bernoulli</strong>.</p>
+        <div class="formula" data-api-v2-title="Schéma de Bernoulli">
+            <p>Soit une succession d'épreuves de Bernoulli indépendantes. On appelle cette succession un schéma de Bernoulli.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Qu'est-ce qu'une loi de Bernoulli ?</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soient $X$ une variable aléatoire et $p \in ]0; 1[$. On dit que $X$ suit une \text{loi de Bernoulli} de paramètre $p$ (qui se note $\mathcal{B}(p)$) si la loi de $X$ est la suivante :</p>
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <td>$x_i$</td><td>$0$</td><td>$1$ </td>
+                </tr>
+                <tr>
+                    <td>$p_i$</td><td>$1 - p$</td><td>$p$ </td>
+                </tr>
+            </table>
+            <p>C'est-à-dire, qu'on a une probabilité $p$ d'obtenir un succès (représenté par $1$) et une probabilité de $1-p$ d'obtenir un échec (représenté par $0$).</p>
+        </div>
+        <p>Il est possible de calculer facilement l'espérance, la variable et l'écart-type d'une variable aléatoire suivant ce type de loi.</p>
+        <div class="formula" data-api-v2-title="Espérance, variance et écart-type">
+            <p>Soit $X$ une variable aléatoire suivant une loi de Bernoulli $\mathcal{B}(p)$. Alors :</p>
+            <ul>
+                <li>$E(X) = p$.</li>
+                <li>$V(X) = p(1-p)$.</li>
+                <li>$\sigma(X) = \sqrt{p(1-p)}$.</li>
+            </ul>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>Loi binomiale</h2>
+    <section>
+        <h3>Définition</h3>
+        <p>Une loi de Bernoulli permet de modéliser ce qui se passe dans le cas d'une seule épreuve de Bernoulli. Cependant, il peut arriver que l'on souhaite voir ce qu'il se passe dans le cadre d'un schéma de Bernoulli (c'est-à-dire, en répétant indépendamment plusieurs fois une épreuve de Bernoulli).</p>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soient $n \in \mathbb{N}^*$ et $p \in ]0; 1[$. On se place dans le cadre d'un schéma de Bernoulli à $n$ répétitions et où la probabilité de succès des épreuves est $p$.</p>
+            <p>La loi de probabilité donnant le nombre de succès sur ces $n$ répétitions est la <strong>loi binomiale</strong> de paramètres $n$ et $p$ (notée $\mathcal{B}(n; p)$).</p>
+        </div>
+    </section>
+    <section>
+        <h3>Calculs de probabilités</h3>
+        <div class="formula" data-api-v2-title="Probabilité d'un nombre de succès">
+            <p>Soit $X$ une variable aléatoire suivant une loi $\mathcal{B}(n; p)$. Alors pour tout entier $k$ compris entre $0$ et $n$, on a $\displaystyle{p(X = k) = \binom{n}{k} p^k (1-p)^{n-k}}$.</p>
+        </div>
+        <p>Comme on l'a dit précédemment, il est tout-à-fait possible d'utiliser des arbres de probabilités pour répondre à ce genre de questions. Cependant, essayez de représenter la situation donnée dans l'exemple précédent à l'aide d'un tel arbre et vous vous rendrez vite compte qu'il est beaucoup plus facile d'utiliser les propriétés de la loi binomiale.</p>
+    </section>
+    <section>
+        <h3>Espérance, variance et écart-type</h3>
+        <div class="formula" data-api-v2-title="Espérance, variance et écart-type">
+            <p>Soit $X$ une variable aléatoire suivant $\mathcal{B}(n; p)$. Alors :</p>
+            <ul>
+                <li>$E(X) = np$.</li>
+                <li>$V(X) = np(1-p)$.</li>
+                <li>$\sigma(X) = \sqrt{np(1-p)}$.</li>
+            </ul>
+        </div>
+    </section>
+</section>

@@ -1,62 +1,37 @@
 ---
-layout: lesson
+layout: default
 lesson: "polynomes_second_degre"
 level: "premiere"
 permalink: "/cours/premiere/polynomes-second-degre/"
-js:
-  - "/assets/js/lessons/premiere/polynomes_second_degre.js"
 ---
 
 <section>
-
-    <h2>Qu'est-ce-qu'une fonction polynômiale du second degré ?</h2>
-
+    <h2>Qu'est-ce qu'une fonction polynômiale du second degré ?</h2>
     <section>
-
         <h3>Définition</h3>
-
-        <p>On appelle <strong>fonction polynômiale du second degré</strong> (ou encore <strong>fonction du second degré</strong>) une fonction $f$ de la forme :</p>
-
-        <p class="formula">$f(x) = ax^2 + bx + c$ avec $a \neq 0$, $b$ et $c$ réels qui sont les <strong>coefficients</strong> de $f$.</p>
-
-        <p>
-            En classe de Première, ces fonctions auront pour ensemble de départ et d'arrivée $\mathbb{R}$
-            mais il faut savoir qu'il est possible d'en prendre d'autres.
-        </p>
-
-    </section>
-
-    <section>
-
-        <h3>Représentation graphique</h3>
-
-        <p>Soit $f$ une fonction polynômiale. Alors :</p>
-
-        <p class="formula">La courbe représentative de $f$ (notée $\mathcal{C}_f$) est une <strong>parabole</strong>.</p>
-
-        <div id="representation-1" class="plot" data-api-v2-geogebra-id="drmymnkb"></div>
-
-        <div class="tip">
-            <p>
-                On voit sur la représentation ci-dessus que la courbe est symétrique par rapport à l'axe des ordonnées :
-                la fonction $f$ représentée est <strong>paire</strong> (i.e. pour tout $x \in D_f$, $f(-x) = f(x)$).
-            </p>
-            <p>
-                Inversement si une fonction $f$ est symétrique par rapport à l'axe des abscisses,
-                elle est dite <strong>impaire</strong> (i.e. pour tout $x \in D_f$, $-f(x) = f(x)$).
-            </p>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soit $f$ une fonction. $f$ est une fonction polynômiale si elle est de la forme $f : x \mapsto ax^2 + bx + c$ avec $a \neq 0$, $b$ et $c$ réels qui sont les <strong>coefficients</strong> de $f$.</p>
         </div>
-
-        <p>
-            Chaque coefficient de $f$ a un rôle dans le tracé de la parabole.
-            Ainsi si $f$ est de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels) :
-        </p>
-
-        <ul class="formula">
-            <li>$a$ et $b$ contrôlent <strong>l'allure générale</strong> de la courbe (son orientation, son inclinaison, ...).</li>
-            <li>$c$ contrôle l'éloignement de la courbe par rapport à <strong>l'axe des abscisses</strong>.</li>
-        </ul>
-
+        <p>En classe de Première, ces fonctions auront pour ensemble de départ et d'arrivée $\mathbb{R}$ mais il faut savoir qu'il est possible d'en prendre d'autres.</p>
+    </section>
+    <section>
+        <h3>Représentation graphique</h3>
+        <div class="formula" data-api-v2-title="Parabole">
+            <p>Soit $f$ une fonction polynômiale. Alors la courbe représentative de $f$ (notée $\mathcal{C}_f$) est une <strong>parabole</strong>.</p>
+        </div>
+        <div id="representation-1" class="plot" data-api-v2-geogebra-id="drmymnkb"></div>
+        <div class="tip" data-api-v2-title="Parité d'une fonction">
+            <p>On voit sur la représentation ci-dessus que la courbe est symétrique par rapport à l'axe des ordonnées : la fonction $f$ représentée est <strong>paire</strong> (i.e. pour tout $x \in D_f$, $f(-x) = f(x)$).</p>
+            <p>Inversement si une fonction $f$ est symétrique par rapport à l'axe des abscisses, elle est dite <strong>impaire</strong> (i.e. pour tout $x \in D_f$, $-f(x) = f(x)$).</p>
+        </div>
+        <p>Chaque coefficient d'une fonction polynômiale a un rôle dans le tracé de sa parabole.</p>
+        <div class="formula" data-api-v2-title="Rôle des coefficients dans la représentation graphique">
+            <p>Soit $f$ de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels). Alors on a que :</p>
+            <ul>
+                <li>$a$ et $b$ contrôlent <strong>l'allure générale</strong> de la courbe (son orientation, son inclinaison, ...).</li>
+                <li>$c$ contrôle l'éloignement de la courbe par rapport à <strong>l'axe des abscisses</strong>.</li>
+            </ul>
+        </div>
         <div class="tip">
             <p>Rien que le signe de $a$ peut changer toute l'allure de la courbe :</p>
             <ul>
@@ -64,204 +39,123 @@ js:
                 <li>Si $a \gt 0$, la fonction est croissante puis décroissante.</li>
             </ul>
         </div>
-
     </section>
-
 </section>
-
 <section>
-
     <h2>Recherche de racines</h2>
-
     <section>
-
         <h3>Qu'est-ce qu'une racine ?</h3>
-
-        <p>Soient $f$ une fonction polynômiale du second degré et $x_0 \in \mathbb{R}$ :</p>
-
-        <p class="formula">On dit que $x_0$ est <strong>une racine</strong> de $f$ si $f(x_0) = 0$.</p>
-
-        <p class="tip">
-            Autrement dit, résoudre l'équation $f(x) = 0$ revient à rechercher les racines de $f$.
-            Pour cela il existe beaucoup de méthodes et nous en détaillerons certaines par la suite.
-        </p>
-
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soient $f$ une fonction polynômiale du second degré et $x_0 \in \mathbb{R}$. On dit que $x_0$ est <strong>une racine</strong> de $f$ si $f(x_0) = 0$.</p>
+        </div>
+        <div class="tip">
+            <p>Autrement dit, résoudre l'équation $f(x) = 0$ revient à rechercher les racines de $f$. Pour cela il existe beaucoup de méthodes et nous en détaillerons certaines par la suite.</p>
+        </div>
     </section>
-
     <section>
-
         <h3>Discriminant</h3>
-
-        <p>
-            Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx + c$ (avec $a \neq 0$, $b$ et $c$ réels),
-            on appelle <strong>discriminant</strong> de $f$ le réel suivant :
-        </p>
-
-        <p class="formula">$\Delta = b^2 - 4ac$</p>
-
-        <p>Plusieurs propriétés découlent du signe de $\Delta$ :</p>
-
-        <ul class="formula">
-            <li>Si $\Delta \lt 0$ alors $f$ n'admet pas de racine réelle.</li>
-            <li>Si $\Delta = 0$ alors $f$ admet une unique racine réelle : $x_0 = \displaystyle{\frac{-b}{2a}}$.</li>
-            <li>Si $\Delta \gt 0$ alors $f$ admet deux racines réelles : $x_1 = \displaystyle{\frac{-b - \sqrt{\Delta}}{2a}}$ et $x_2 = \displaystyle{\frac{-b + \sqrt{\Delta}}{2a}}$.</li>
-        </ul>
-
-        <div class="tip">
-            <p>
-                <strong>Exemple :</strong> Résoudre l'équation $x^2 = 4$ pour $x \in \mathbb{R}$.
-            </p>
-            <p>
-                On a $x^2 = 4 \iff x^2 - 4 = 0$.
-                Il s'agit en fait de chercher les racines de la fonction du second degré définie pour $x \in \mathbb{R}$ par $f(x) = x^2 - 4$.
-                <br>On identifie les coefficients : $a = 1$, $b = 0$ et $c = -4$ ;
-                puis on calcule le discriminant $\Delta = b^2 - 4ac = 0 - 4 \times 1 \times -4 = 16$.
-            </p>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx + c$ (avec $a \neq 0$, $b$ et $c$ réels). On appelle <strong>discriminant</strong> de $f$ le réel suivant : $\Delta = b^2 - 4ac$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Propriétés">
+            <p>Plusieurs propriétés découlent du signe de $\Delta$ :</p>
+            <ul>
+                <li>Si $\Delta \lt 0$ alors $f$ n'admet pas de racine réelle.</li>
+                <li>Si $\Delta = 0$ alors $f$ admet une unique racine réelle : $x_0 = \displaystyle{\frac{-b}{2a}}$.</li>
+                <li>Si $\Delta \gt 0$ alors $f$ admet deux racines réelles : $x_1 = \displaystyle{\frac{-b - \sqrt{\Delta}}{2a}}$ et $x_2 = \displaystyle{\frac{-b + \sqrt{\Delta}}{2a}}$.</li>
+            </ul>
+        </div>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>Résolvons l'équation $x^2 = 4$ pour $x \in \mathbb{R}$.</p>
+            <p>On a $x^2 = 4 \iff x^2 - 4 = 0$. Il s'agit en fait de chercher les racines de la fonction du second degré définie pour tout $x \in \mathbb{R}$ par $f(x) = x^2 - 4$.</p>
+            <p>On identifie les coefficients : $a = 1$, $b = 0$ et $c = -4$ ; puis on calcule le discriminant $\Delta = b^2 - 4ac = 0 - 4 \times 1 \times -4 = 16$.</p>
             <p>Comme $\Delta \gt 0$, on a deux racines réelles :</p>
-            <p>
-                $\displaystyle{x_1 = \frac{-b - \sqrt{\Delta}}{2a} = \frac{-4}{2} = -2}$
-                <br>$\displaystyle{x_2 = \frac{-b + \sqrt{\Delta}}{2a} = \frac{4}{2} = 2}$
-            </p>
-            <p>D'où $S = {% raw %}\{-2; 2\}{% endraw %}$.</p>
+            <p>$\displaystyle{x_1 = \frac{-b - \sqrt{\Delta}}{2a} = -2}$ et $\displaystyle{x_2 = \frac{-b + \sqrt{\Delta}}{2a} = 2}$.</p>
+            <p>Donc l'ensemble des solutions est $S = \{-2; 2\}$.</p>
         </div>
-
     </section>
-
     <section>
-
         <h3>Racines évidentes</h3>
-
-        <p>
-            Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels).
-            On note $D_c$ l'ensemble des diviseurs de $c$ et $D_a$ l'ensemble des diviseurs de $a$. Alors :
-        </p>
-
-        <div class="formula">
-            <p>
-                Pour trouver une éventuelle racine rationnelle de $f$, on calcule $\displaystyle{f\left(\frac{p}{q}\right)}$ (avec $p \in D_c$ et $q \in D_a$)
-                jusqu'à tomber sur $0$.
-            </p>
+        <div class="formula" data-api-v2-title="Recherche des racines rationnelles">
+            <p>Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels). On note $D_c$ l'ensemble des diviseurs de $c$ et $D_a$ l'ensemble des diviseurs de $a$. Alors :</p>
+            <p>Pour trouver une éventuelle racine rationnelle de $f$, on calcule $\displaystyle{f\left(\frac{p}{q}\right)}$ pour tout $p \in D_c$ et $q \in D_a$, jusqu'à tomber sur $0$.</p>
         </div>
-
-        <div class="tip">
-            <p>
-                <strong>Exemple :</strong> Utilisons cette méthode pour déterminer les éventuelles racines rationnelles
-                de la fonction $f$ définie sur $\mathbb{R}$ par $f(x) = 4x^2 - 1$.
-            </p>
-            <p>
-                On a ici $a = 2$, $b = 0$ et $c = -1$ ; la liste des diviseurs de $c$ est : $-1$ et $1$.
-                <br>La liste des diviseurs de $a$ est : $4$, $2$, $1$, $-1$, $-2$ et $-4$.
-            </p>
-            <p>
-                Il ne reste qu'à tester :
-            </p>
-            <p>
-                $\displaystyle{f\left(\frac{-1}{4}\right)=f\left(\frac{1}{-4}\right) \neq 0}$
-                <br>$\displaystyle{f\left(\frac{-1}{2}\right)=f\left(\frac{1}{-2}\right)=0}$ <strong>Une racine !</strong>
-                <br>$\displaystyle{f\left(\frac{-1}{1}\right)=f(-1) \neq 0}$
-                <br>$\displaystyle{f\left(\frac{-1}{-1}\right)=f(1) \neq 0}$
-                <br>$\displaystyle{f\left(\frac{-1}{-2}\right)=f\left(\frac{1}{2}\right)=0}$ <strong>Une racine !</strong>
-            </p>
-            <p>
-                On a deux racines rationnelles : $\displaystyle{-\frac{1}{2}}$ et $\displaystyle{\frac{1}{2}}$.
-                Pas besoin d'aller plus loin car on a trouvé deux racines et un polynôme du second degré n'admet que deux racines maximum.
-            </p>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>Utilisons cette méthode pour déterminer les éventuelles racines rationnelles de la fonction $f$ définie sur $\mathbb{R}$ par $f(x) = 4x^2 - 1$.</p>
+            <p>On a ici $a = 2$, $b = 0$ et $c = -1$ ; la liste des diviseurs de $c$ est : $-1$ et $1$.</p>
+            <p>La liste des diviseurs de $a$ est : $4$, $2$, $1$, $-1$, $-2$ et $-4$.</p>
+            <p>Il ne reste qu'à tester :</p>
+            <p>$\displaystyle{f\left(\frac{-1}{4}\right)=f\left(\frac{1}{-4}\right) \neq 0}$</p>
+            <p>$\displaystyle{f\left(\frac{-1}{2}\right)=f\left(\frac{1}{-2}\right)=0}$ <strong>Une racine !</strong></p>
+            <p>$\displaystyle{f\left(\frac{-1}{1}\right)=f(-1) \neq 0}$</p>
+            <p>$\displaystyle{f\left(\frac{-1}{-1}\right)=f(1) \neq 0}$</p>
+            <p>$\displaystyle{f\left(\frac{-1}{-2}\right)=f\left(\frac{1}{2}\right)=0}$ <strong>Une racine !</strong></p>
+            <p>On a deux racines rationnelles : $\displaystyle{-\frac{1}{2}}$ et $\displaystyle{\frac{1}{2}}$.</p>
+            <p>Pas besoin d'aller plus loin car on a trouvé deux racines et un polynôme du second degré n'admet que deux racines maximum.</p>
+            <p>Signalons de plus que l'on aurait pu s'arrêter après avoir trouvé la première racine car $f$ est une fonction paire.</p>
         </div>
-
     </section>
-
     <section>
-
         <h3>Somme et produit de racines</h3>
-
-        <p>
-            Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels) admettant deux racines réelles $x_1$ et $x_2$.
-            Alors :
-        </p>
-
-        <ul class="formula">
-            <li>La somme $S = x_1 + x_2$ des racines vaut également $\displaystyle{-\frac{b}{a}}$.
-            <li>Le produit $P = x_1 \times x_2$ des racines vaut également $\displaystyle{\frac{c}{a}}$.
-        </ul>
-
-        <div class="tip">
+        <div class="formula" data-api-v2-title="Relations">
+            <p>Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels) admettant deux racines réelles $x_1$ et $x_2$. Alors :</p>
+            <ul>
+                <li>La somme $S = x_1 + x_2$ des racines vaut également $\displaystyle{-\frac{b}{a}}$.</li>
+                <li>Le produit $P = x_1 \times x_2$ des racines vaut également $\displaystyle{\frac{c}{a}}$.</li>
+            </ul>
+        </div>
+        <div class="tip" data-api-v2-title="Exemple">
             <p>Il peut être très utile de combiner cette méthode avec celle des racines évidentes !</p>
             <p>Par exemple, cherchons les solutions de l'équation $x^2 + 2x + 1 = 0$.</p>
-            <p>Il faut donc chercher les racines de la fonction de degré 2 définie pour $x \in \mathbb{R}$ par $f(x) = x^2 + 2x + 1$.</p>
+            <p>Il faut donc chercher les racines de la fonction de degré 2 définie pour tout $x \in \mathbb{R}$ par $f(x) = x^2 + 2x + 1$.</p>
             <p>On a $a = 1$, $b = 2$ et $c = 1$. Avec la méthode des racines évidentes, on trouve une racine $x_1 = -1$.</p>
             <p>Or, on a $\displaystyle{x_1 \times x_2 = \frac{c}{a} \iff x_2 = -1}$. La deuxième racine vaut aussi $-1$.</p>
             <p>On dit que $-1$ est <strong>racine double</strong>.</p>
         </div>
-
     </section>
-
     <section>
-
         <h3>Forme factorisée</h3>
-
-        <p>
-            Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels) admettant deux racines réelles $x_1$ et $x_2$.
-            Alors $f$ admet une <strong>forme factorisée</strong> :
-        </p>
-
-        <p class="formula">$f(x) = a(x-x_1)(x-x_2)$</p>
-
-        <div class="tip">
-            <p><strong>Exemple :</strong> Chercher les racines de la fonction définie pour $x \in \mathbb{R}$ par $f(x) = x^2 - 6x + 9$.</p>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels) admettant deux racines réelles $x_1$ et $x_2$. Alors :</p>
+            <p>$f$ admet une <strong>forme factorisée</strong> qui vaut $f(x) = a(x-x_1)(x-x_2)$ pour tout $x \in \mathbb{R}$.</p>
+        </div>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>Chercher les racines de la fonction définie pour tout $x \in \mathbb{R}$ par $f(x) = x^2 - 6x + 9$.</p>
             <p>Avec une identité remarquable, on factorise $f$ : $f(x) = (x - 3)^2$.</p>
             <p>Cela correspond à la forme factorisée de $f$ et elle nous permet d'en déduire que $3$ est une racine double de $f$.</p>
         </div>
-
         <p>Une propriété découle immédiatement de cette méthode :</p>
-
-        <p class="formula">Si $c = 0$, alors $\displaystyle{-\frac{b}{a}}$ et $0$ sont racines.</p>
-
+        <div class="formula">
+            <p>Si $c = 0$, alors $\displaystyle{-\frac{b}{a}}$ et $0$ sont racines.</p>
+        </div>
     </section>
-
 </section>
-
 <section>
-
     <h2>Étude des fonctions polynômiales du second degré</h2>
-
     <section>
-
         <h3>Signe</h3>
-
-        <p>
-            Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels) admettant deux racines réelles $x_1$ et $x_2$.
-            On suppose ici que $x_1 \lt x_2$, alors :
-        </p>
-
-        <ul class="formula">
-            <li>Si $a \lt 0$ : $f(x) \lt 0$ sur $]-\infty; x_1[ \cup ]x_2; +\infty[$ et $f(x) \gt 0$ sur $]x_1; x_2[$.</li>
-            <li>Si $a \gt 0$ : $f(x) \gt 0$ sur $]-\infty; x_1[ \cup ]x_2; +\infty[$ et $f(x) \lt 0$ sur $]x_1; x_2[$.</li>
-        </ul>
-
-        <p class="tip">Si $x_1 = x_2$ ou si $f$ n'admet pas de racine, alors $f$ est du signe de $a$.</p>
-
+        <div class="formula" data-api-v2-title="Signe d'une fonction du second degré">
+            <p>Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels) admettant deux racines réelles $x_1$ et $x_2$. On suppose ici que $x_1 \lt x_2$, alors :</p>
+            <ul>
+                <li>Si $a \lt 0$ : $f(x) \lt 0$ sur $]-\infty; x_1[ \, \cup \, ]x_2; +\infty[$ et $f(x) \gt 0$ sur $]x_1; x_2[$.</li>
+                <li>Si $a \gt 0$ : $f(x) \gt 0$ sur $]-\infty; x_1[ \, \cup \, ]x_2; +\infty[$ et $f(x) \lt 0$ sur $]x_1; x_2[$.</li>
+            </ul>
+        </div>
+        <div class="tip">
+            <p>Si $x_1 = x_2$ ou si $f$ n'admet pas de racine, alors $f$ est du signe de $a$.</p>
+        </div>
     </section>
-
     <section>
-
         <h3>Variations</h3>
-
-        <p>
-            Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels),
-            alors pour tout $x \in \mathbb{R}$, on peut écrire $f$ de la forme :
-        </p>
-
-        <p class="formula">
-            $f(x) = a(x - \alpha)^2 + \beta$ avec $\displaystyle{\alpha = -\frac{b}{2a}}$ et $\beta = f(\alpha)$.
-        </p>
-
-        <p>Cette forme est appelée <strong>forme canonique</strong> de $f$. Avec cette forme on peut trouver le sommet $S$ de la parabole $\mathcal{C}_f$ :</p>
-
-        <p class="formula">
-            Les coordonnées de $S$ sont $(\alpha, \beta)$.
-            <br>Si $a \lt 0$, ce sommet est un maximum et si $a \gt 0$, ce sommet est un minimum.
-        </p>
-
+        <div class="formula" data-api-v2-title="Forme canonique">
+            <p>Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels), alors pour tout $x \in \mathbb{R}$, on peut écrire $f$ de la forme :</p>
+            <p>$f(x) = a(x - \alpha)^2 + \beta$ avec $\displaystyle{\alpha = -\frac{b}{2a}}$ et $\beta = f(\alpha)$.</p>
+        </div>
+        <p>Cette forme est appelée <strong>forme canonique</strong> de $f$ et elle possède de nombreuses propriétés intéressantes.</p>
+        <div class="formula" data-api-v2-title="Sommet de la parabole">
+            <p>Soit $S$ le sommet de la parabole $\mathcal{C}_f$. Alors les coordonnées de $S$ sont $(\alpha, \beta)$.</p>
+            <p>Si $a \lt 0$, ce sommet est un maximum et si $a \gt 0$, ce sommet est un minimum.</p>
+        </div>
         <div class="tip">
             <p>Cela veut tout simplement dire que :</p>
             <ul>
@@ -269,35 +163,22 @@ js:
                 <li>Si $a \gt 0$, le minimum de $f$ est atteint en $\alpha$ et vaut $\beta$ (donc pour tout $x \in \mathbb{R}$, $f(x) \geq \beta$).</li>
             </ul>
         </div>
-
-        <p>
-            Avec les remarques données précédemment, on peut en déduire les variations de la fonction $f$ :
-        </p>
-
-        <ul class="formula">
-            <li>Si $a \lt 0$ : $f$ est strictement croissante sur $]-\infty; \alpha]$ et est strictement décroissante sur $]\alpha; +\infty]$.</li>
-            <li>Si $a \gt 0$ : $f$ est strictement décroissante sur $]-\infty; \alpha]$ et est strictement croissante sur $]\alpha; +\infty]$.</li>
-        </ul>
-
+        <p>Avec les remarques données précédemment, on peut en déduire les variations de la fonction $f$.</p>
+        <div class="formula" data-api-v2-title="Sens de variation">
+            <ul>
+                <li>Si $a \lt 0$ : $f$ est strictement croissante sur $]-\infty; \alpha]$ et est strictement décroissante sur $]\alpha; +\infty]$.</li>
+                <li>Si $a \gt 0$ : $f$ est strictement décroissante sur $]-\infty; \alpha]$ et est strictement croissante sur $]\alpha; +\infty]$.</li>
+            </ul>
+        </div>
     </section>
-
     <section>
-
         <h3>Axe de symétrie</h3>
-
-        <p>
-            Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels).
-            On note $\mathcal{C}_f$ sa courbe représentative. Alors :
-        </p>
-
-        <p class="formula">
-            $\mathcal{C}_f$ possède un axe de symétrie : la droite $\mathcal{D}$ d'équation $\displaystyle{x = -\frac{b}{2a}}$.
-        </p>
-
-        <p class="tip">
-            En fait, $\mathcal{D}$ est juste la droite verticale passant par le <a href="#2-variations" data-api-v2-hash="#2-variations">sommet</a> de la parabole.
-        </p>
-
+        <div class="formula" data-api-v2-title="Axe de symétrie">
+            <p>Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels). On note $\mathcal{C}_f$ sa courbe représentative. Alors :</p>
+            <p>$\mathcal{C}_f$ possède un axe de symétrie : la droite $\mathcal{D}$ d'équation $\displaystyle{x = -\frac{b}{2a}}$.</p>
+        </div>
+        <div class="tip">
+            <p>En fait, $\mathcal{D}$ est juste la droite verticale passant par le <a href="#2-variations" data-api-v2-hash="#2-variations">sommet</a> de la parabole.</p>
+        </div>
     </section>
-
 </section>

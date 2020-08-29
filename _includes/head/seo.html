@@ -1,0 +1,37 @@
+<!-- Titre -->
+<title>{{ include.title }}</title>
+
+<!-- Description -->
+<meta name="description" content="{{ include.description }}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- JSON-LD -->
+{% if page.path != 'pages/404.html' %}
+    {% if lesson %}
+        {% assign canonicalURL = site.url | append: '/cours/' | append: site.data.levels[lesson.level].url | append: '/' | append: lesson.url | append: '/' %}
+        {% if page.summary %}
+            {% assign canonicalURL = canonicalURL | append: 'resume/' %}
+        {% endif %}
+    {% else %}
+        {% assign canonicalURL = site.url | append: page.url %}
+    {% endif %}
+{% endif %}
+
+<script type="application/ld+json">
+    {
+        "@context":"http://schema.org",
+        "@type":{% if page.path == 'pages/index.html' %}{{ "WebSite" | jsonify }}{% else %}{{ "WebPage" | jsonify }}{% endif %},
+        {% if canonicalURL %}
+            "url":{{ canonicalURL | jsonify }},
+        {% endif %}
+        "name":{{ site.title | jsonify }},
+        "headline":{{ include.title | jsonify }},
+        "description":{{ include.description | jsonify }},
+        "inLanguage": "fr"
+    }
+</script>
+
+{% if canonicalURL %}
+    <!-- Lien canonique -->
+    <link rel="canonical" href="{{ canonicalURL }}">
+{% endif %}

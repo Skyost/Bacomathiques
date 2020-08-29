@@ -1,352 +1,223 @@
 ---
-layout: lesson
+layout: default
 lesson: "geometrie_reperee"
 level: "premiere"
 permalink: "/cours/premiere/geometrie-reperee/"
-js: "/assets/js/lessons/premiere/geometrie_reperee.js"
 ---
 
 <section>
-
     <h2>Le produit scalaire</h2>
-
     <section>
-
         <h3>Définition</h3>
-
-        <p>
-            Soient $\overrightarrow{u} = \begin{pmatrix} {x_1} \\ {y_1}\end{pmatrix}$ et $\overrightarrow{v} = \begin{pmatrix} {x_2} \\ {y_2}\end{pmatrix}$
-            deux vecteurs du plan (c'est-à-dire possédant chacun deux coordonnées).
-            Le <strong>produit scalaire</strong> entre $u$ et $v$, noté $\overrightarrow{u} \cdot \overrightarrow{v}$ est le réel suivant :
-        </p>
-
-        <p class="formula">$\overrightarrow{u} \cdot \overrightarrow{v} = x_1 \times x_2 + y_1 \times y_2$</p>
-
-        <p>De plus, soient $\overrightarrow{u}$, $\overrightarrow{v}$ et $\overrightarrow{w}$ des vecteurs du plan et $\lambda \in \mathbb{R}$ on a les propriétés suivantes :</p>
-
-        <ul class="formula">
-            <li>$\overrightarrow{u} \cdot \overrightarrow{v} = \overrightarrow{v} \cdot \overrightarrow{u}$</li>
-            <li>$\overrightarrow{u} \cdot (\overrightarrow{v} + \overrightarrow{w}) = \overrightarrow{u} \cdot \overrightarrow{v} + \overrightarrow{u} \cdot \overrightarrow{w}$</li>
-            <li>$\lambda(\overrightarrow{u} \cdot \overrightarrow{v}) = (\lambda \overrightarrow{u}) \cdot \overrightarrow{v} = \overrightarrow{u} \cdot (\lambda \overrightarrow{v})$</li>
-        </ul>
-
-        <p>
-            À l'aide du produit scalaire, il est possible de calculer la <strong>norme</strong> d'un vecteur.
-            Ainsi, soit $\overrightarrow{u}$ un vecteur du plan, sa norme notée $||\overrightarrow{u}||$ vaut :
-        </p>
-
-        <p class="formula">$||\overrightarrow{u}|| = \sqrt{\overrightarrow{u} \cdot \overrightarrow{u}}$</p>
-
-        <div class="tip">
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soient $\overrightarrow{u} = \begin{pmatrix} {x_1} \\ {y_1}\end{pmatrix}$ et $\overrightarrow{v} = \begin{pmatrix} {x_2} \\ {y_2}\end{pmatrix}$ deux vecteurs du plan (c'est-à-dire possédant chacun deux coordonnées).</p>
+            <p>Le <strong>produit scalaire</strong> entre $u$ et $v$, noté $\overrightarrow{u} \cdot \overrightarrow{v}$ est le réel suivant :</p>
+            <p>$\overrightarrow{u} \cdot \overrightarrow{v} = x_1 x_2 + y_1 y_2$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Propriétés">
+            <p>Soient $\overrightarrow{u}$, $\overrightarrow{v}$ et $\overrightarrow{w}$ des vecteurs du plan et $\lambda \in \mathbb{R}$, on a les propriétés suivantes :</p>
+            <ul>
+                <li>$\overrightarrow{u} \cdot \overrightarrow{v} = \overrightarrow{v} \cdot \overrightarrow{u}$</li>
+                <li>$\overrightarrow{u} \cdot (\overrightarrow{v} + \overrightarrow{w}) = \overrightarrow{u} \cdot \overrightarrow{v} + \overrightarrow{u} \cdot \overrightarrow{w}$</li>
+                <li>$\lambda(\overrightarrow{u} \cdot \overrightarrow{v}) = (\lambda \overrightarrow{u}) \cdot \overrightarrow{v} = \overrightarrow{u} \cdot (\lambda \overrightarrow{v})$</li>
+            </ul>
+        </div>
+        <p>À l'aide du produit scalaire, il est possible de calculer la <strong>norme</strong> d'un vecteur.</p>
+        <div class="formula" data-api-v2-title="Calcul de la norme">
+            <p>Soit $\overrightarrow{u} = \begin{pmatrix} {x} \\ {y} \end{pmatrix}$ un vecteur du plan : sa norme (notée $||\overrightarrow{u}||$) vaut $||\overrightarrow{u}|| = \sqrt{\overrightarrow{u} \cdot \overrightarrow{u}} = \sqrt{x^2 + y^2}$.</p>
+        </div>
+        <div class="tip" data-api-v2-title="Caractéristiques d'un vecteur">
             <p>On rappelle qu'un vecteur possède 3 caractéristiques :</p>
             <ul>
                 <li>Une <strong>norme</strong> (sa longueur, par exemple si $\overrightarrow{u} = \overrightarrow{AB}$ alors $||\overrightarrow{u}|| = AB$)</li>
                 <li>Un <strong>sens</strong> (exemple : <q>de $A$ vers $B$</q> ou <q>de haut en bas</q>)</li>
-                <li>Une <strong>direction</strong> (la direction de la droite que porte le vecteur)</li>
+                <li>Une <strong>direction</strong> (la direction de la droite que porte le vecteur, horizontale ou verticale par exemple)</li>
             </ul>
         </div>
-
     </section>
-
     <section>
-
         <h3>Calcul</h3>
-
-        <p>
-            Il existe plusieurs méthode pour calculer le produit scalaire en fonction de la situation dans laquelle on se trouve.
-            Ainsi, soient $\overrightarrow{u}$, $\overrightarrow{v}$ deux vecteurs du plan et $\theta$ l'angle orienté entre les deux. On a :
-        </p>
-
-        <p class="formula">$\overrightarrow{u} \cdot \overrightarrow{v} = ||\overrightarrow{u}|| \times ||\overrightarrow{v}|| \times \cos(\theta)$</p>
-
-        <p>
-            Soient $A$, $B$ et $C$ trois points distincts du plan. On pose $P$ le projeté orthogonal de $C$ sur $(AB)$. Alors :
-        </p>
-
-        <ul class="formula">
-            <li>Si $P \in [AB)$ alors $\overrightarrow{AB} \cdot \overrightarrow{AC} = AB \times AP$</li>
-            <li>Si $P \notin [AB)$ alors $\overrightarrow{AB} \cdot \overrightarrow{AC} = - AB \times AP$</li>
-        </ul>
-
-        <p>
-            Si on ne possède que les normes de nos vecteurs, il est possible d'utiliser la formule de polarisation.
-            Ainsi, soient $\overrightarrow{u}$ et $\overrightarrow{v}$ deux vecteurs du plan :
-        </p>
-
-        <p class="formula">$\overrightarrow{u} \cdot \overrightarrow{v} = \displaystyle{\frac{1}{2} (||\overrightarrow{u + v}||^2 + ||\overrightarrow{u}||^2 + ||\overrightarrow{v}||^2)}$</p>
-
-        <div class="tip">
+        <p>Il existe plusieurs méthode pour calculer le produit scalaire en fonction de la situation dans laquelle on se trouve.</p>
+        <div class="formula" data-api-v2-title="Calcul avec un angle">
+            <p>Soient $\overrightarrow{u}$, $\overrightarrow{v}$ deux vecteurs du plan et $\theta$ l'angle orienté entre les deux. On a :</p>
+            <p>$\overrightarrow{u} \cdot \overrightarrow{v} = ||\overrightarrow{u}|| \times ||\overrightarrow{v}|| \times \cos(\theta)$</p>
+        </div>
+        <div class="formula" data-api-v2-title="Calcul avec un projeté orthogonal">
+            <p>Soient $A$, $B$ et $C$ trois points distincts du plan. On pose $P$ le projeté orthogonal de $C$ sur $(AB)$. Alors :</p>
+            <ul>
+                <li>Si $P \in [AB)$ alors $\overrightarrow{AB} \cdot \overrightarrow{AC} = AB \times AP$</li>
+                <li>Si $P \notin [AB)$ alors $\overrightarrow{AB} \cdot \overrightarrow{AC} = - AB \times AP$</li>
+            </ul>
+        </div>
+        <p>Si on ne possède que les normes de nos vecteurs, il est possible d'utiliser la formule de polarisation.</p>
+        <div class="formula" data-api-v2-title="Formule de polarisation">
+            <p>Soient $\overrightarrow{u}$ et $\overrightarrow{v}$ deux vecteurs du plan :</p>
+            <p>$\overrightarrow{u} \cdot \overrightarrow{v} = \displaystyle{\frac{1}{2} \left(||\overrightarrow{u + v}||^2 + ||\overrightarrow{u}||^2 + ||\overrightarrow{v}||^2\right)}$.</p>
+        </div>
+        <div class="tip" data-api-v2-title="Utilisation des formules">
             <p>Il faut vraiment trouver la formule à utiliser selon l'énoncé de l'exercice.</p>
-            <p>
-                Par exemple, si on se trouve dans un repère et que l'on a les coordonnées des vecteurs,
-                on pourra utiliser la formule de la <a href="1-définition" data-api-v2-hash="#1-définition">définition</a>.
-                À l'inverse, si on ne possède pas les coordonnées de nos vecteurs mais que l'on possède leur normes,
-                il est possible d'utiliser la formule de polarisation.
-            </p>
+            <p>Par exemple, si on se trouve dans un repère et que l'on a les coordonnées des vecteurs, on pourra utiliser la formule de la <a href="#1-définition" data-api-v2-hash="#1-définition">définition</a>. À l'inverse, si on ne possède pas les coordonnées de nos vecteurs mais que l'on possède leur normes, il est possible d'utiliser la formule de polarisation.</p>
             <p>Voici un tableau récapitulatif pour $\overrightarrow{u}$ et $\overrightarrow{v}$ vecteurs du plan :</p>
-
             <table class="table table-bordered table-hover">
                 <thead>
-                    <tr>
-                        <th>Paramètres</th>
-                        <th>Formule</th>
-                        <th>À utiliser si on possède...</th>
-                    </tr>
+                <tr>
+                    <th>Données</th>
+                    <th>Formule</th>
+                    <th>À utiliser si on possède...</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>$\overrightarrow{u} = \begin{pmatrix} {x_1} \\ {y_1}\end{pmatrix}$ et $\overrightarrow{v} = \begin{pmatrix} {x_2} \\ {y_2}\end{pmatrix}$.</td>
-                        <td>$\overrightarrow{u} \cdot \overrightarrow{v} = x_1 \times x_2 + y_1 \times y_2$<br>(Calcul à partir des coordonnées.)</td>
-                        <td>Les coordonnées de $\overrightarrow{u}$ et $\overrightarrow{v}$.</td>
-                    </tr>
-                    <tr>
-                        <td>$\theta$ est l'angle orienté entre $\overrightarrow{u}$ et $\overrightarrow{v}$.</td>
-                        <td>$\overrightarrow{u} \cdot \overrightarrow{v} = ||\overrightarrow{u}|| \times ||\overrightarrow{v}|| \times \cos(\theta)$<br>(Calcul à partir des normes et d'un angle.)</td>
-                        <td>La norme de $\overrightarrow{u}$, la norme de $\overrightarrow{v}$ et l'angle entre les deux vecteurs.</td>
-                    </tr>
-                    <tr>
-                        <td>On note $A$ et $B$ les deux extrémités de $\overrightarrow{u}$ (idem pour $A$ et $C$ avec $\overrightarrow{v}$), $P$ est le projeté orthogonal de $C$ sur $(AB)$.</td>
-                        <td>$\overrightarrow{u} \cdot \overrightarrow{v} = \overrightarrow{AB} \cdot \overrightarrow{AC} = \pm AB \times AP$;<br>$+$ si $P \in [AB)$ et $-$ sinon.<br>(Calcul à partir d'une projection orthogonale.)</td>
-                        <td>3 points distincts.</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>$\displaystyle{\frac{1}{2} (||\overrightarrow{u + v}||^2 + ||\overrightarrow{u}||^2 + ||\overrightarrow{v}||^2)}$<br>(Calcul à partir des normes.)</td>
-                        <td>On possède la norme de $\overrightarrow{u}$, celle de $\overrightarrow{v}$ mais surtout celle de $\overrightarrow{u} + \overrightarrow{v}$.</td>
-                    </tr>
+                <tr>
+                    <td>$\overrightarrow{u} = \begin{pmatrix} {x_1} {y_1} \end{pmatrix}$ \medskip $\overrightarrow{v} = \begin{pmatrix} {x_2} {y_2} \end{pmatrix}$.</td>
+                    <td>$\overrightarrow{u} \cdot \overrightarrow{v} = x_1 \times x_2 + y_1 \times y_2$ \medskip (Calcul à partir des coordonnées.)</td>
+                    <td>Les coordonnées de $\overrightarrow{u}$ et $\overrightarrow{v}$.</td>
+                </tr>
+                <tr>
+                    <td>$\theta$ est l'angle orienté entre $\overrightarrow{u}$ et $\overrightarrow{v}$.</td>
+                    <td>$\overrightarrow{u} \cdot \overrightarrow{v} = ||\overrightarrow{u}|| \times ||\overrightarrow{v}|| \times \cos(\theta)$ \medskip (Calcul à partir des normes et d'un angle.)</td>
+                    <td>La norme de $\overrightarrow{u}$, la norme de $\overrightarrow{v}$ et l'angle $\theta$ entre les deux vecteurs.</td>
+                </tr>
+                <tr>
+                    <td>$A$ et $B$ sont les deux extrémités de $\overrightarrow{u}$, $A$ et $C$ sont les deux extrémités de $\overrightarrow{v}$, et $P$ est le projeté orthogonal de $C$ sur $(AB)$.</td>
+                    <td>$\overrightarrow{u} \cdot \overrightarrow{v} = \overrightarrow{AB} \cdot \overrightarrow{AC} = \pm AB \times AP$ \medskip $+$ si $P \in [AB)$ et $-$ sinon. \medskip (Calcul à partir d'une projection orthogonale.)</td>
+                    <td>3 points distincts (qui sont ici $A$, $B$ et $C$).</td>
+                </tr>
+                <tr>
+                    <td>& $\displaystyle{\frac{||\overrightarrow{u + v}||^2 + ||\overrightarrow{u}||^2 + ||\overrightarrow{v}||^2}{2}}$ \medskip (Calcul à partir des normes.)</td>
+                    <td>On possède la norme de $\overrightarrow{u}$, celle de $\overrightarrow{v}$ mais surtout celle de $\overrightarrow{u} + \overrightarrow{v}$.</td>
+                </tr>
                 </tbody>
             </table>
         </div>
-
     </section>
-
     <section>
-
         <h3>Théorème d'Al-Kashi</h3>
-
-        <p>
-            Le <strong>théorème d'Al-Kashi</strong> permet de calculer la longueur des côtés de n'importe quel triangle, qu'il soit rectangle ou non.
-            Ainsi, soient $A$, $B$ et $C$ trois points du plan non alignés (formant donc un triangle) :
-        </p>
-
-        <div class="formula">
-            <p>On pose $a = BC$, $b = CA$ et $c = AB$. Alors :</p>
+        <p>Le <strong>théorème d'Al-Kashi</strong> permet de calculer la longueur des côtés de n'importe quel triangle, qu'il soit rectangle ou non. Ainsi,</p>
+        <div class="formula" data-api-v2-title="Théorème d'Al-Kashi">
+            <p>Soient $A$, $B$ et $C$ trois points du plan non alignés (formant donc un triangle). On pose $a = BC$, $b = CA$ et $c = AB$. Alors :</p>
             <p>$c^2 = a^2 + b^2 - 2 \times a \times b \times \cos(\widehat{ACB})$</p>
         </div>
-
-        <div class="proof">
+        <div class="proof" data-api-v2-title="Théorème d'Al-Kashi">
             <p>En reprenant les notations de l'énoncé :</p>
-            <p>
-                $c^2$
-                <br>$= ||\overrightarrow{AB}||^2$
-                <br>$= ||\overrightarrow{CB} - \overrightarrow{CA}||^2$
-                <br>$= ||\overrightarrow{CB}||^2 - 2(\overrightarrow{CB} \cdot \overrightarrow{CA}) + ||\overrightarrow{CA}||^2$ (par la formule de polarisation)
-                <br>$= CB^2 - 2(CB \times CA \times \cos(\widehat{ACB})) + CA^2$
-                <br>$= a^2 + b^2 - 2 \times a \times b \times \cos(\widehat{ACB})$
-            </p>
+            <p>$c^2$</p>
+            <p>$= ||\overrightarrow{AB}||^2$</p>
+            <p>$= ||\overrightarrow{CB} - \overrightarrow{CA}||^2$</p>
+            <p>$= ||\overrightarrow{CB}||^2 - 2(\overrightarrow{CB} \cdot \overrightarrow{CA}) + ||\overrightarrow{CA}||^2$ (par la formule de polarisation)</p>
+            <p>$= CB^2 - 2(CB \times CA \times \cos(\widehat{ACB})) + CA^2$</p>
+            <p>$= a^2 + b^2 - 2 \times a \times b \times \cos(\widehat{ACB})$</p>
         </div>
-
     </section>
-
 </section>
-
 <section>
-
     <h2>Géométrie</h2>
-
     <section>
-
         <h3>Équation cartésienne d'une droite</h3>
-
-        <p>
-            Soit $\mathcal{D}$ une droite. Il est possible de décrire tous les points appartenant à $\mathcal{D}$ par une équation appelée
-            <strong>équation cartésienne</strong>.
-        </p>
-
-        <p class="formula">
-            Une équation cartésienne de $\mathcal{D}$ est de la forme $ax + by + c = 0$ avec $a \neq 0$, $b \neq 0$ et $c$ réels.
-            <br>$x$ et $y$ sont des coordonnées de points.
-        </p>
-
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Il est possible de décrire tous les points appartenant à une droite $\mathcal{D}$ par une équation appelée <strong>équation cartésienne</strong>.</p>
+            <p>Une équation cartésienne de $\mathcal{D}$ est de la forme $ax + by + c = 0$ avec $a \neq 0$, $b \neq 0$ et $c$ réels, et où $x$ et $y$ sont des coordonnées de points.</p>
+        </div>
         <div class="tip">
             <p>Il est très facile de dire si oui ou non un point appartient à une droite si l'on possède l'équation cartésienne de cette droite.</p>
             <p>Par exemple, on définit la droite $\mathcal{D}$ par l'équation $y = x - 1$.</p>
-            <p>
-                Est-ce-que $A = (0; 1)$ appartient à $\mathcal{D}$ ? Remplaçons $x$ et $y$ par les coordonnées de $A$ : $1 = -1$ :
-                c'est faux donc $A$ n'appartient pas à $\mathcal{D}$ car les coordonnées de $A$ ne vérifient par l'équation cartésienne de $\mathcal{D}$.
-            </p>
-            <p>
-                Est-ce-que $B = (4; 3)$ appartient à $\mathcal{D}$ ? Remplaçons $x$ et $y$ par les coordonnées de $B$ : $3 = 3$ :
-                c'est vrai donc $B$ appartient à $\mathcal{D}$ car les coordonnées de $B$ vérifient l'équation cartésienne de $\mathcal{D}$.
-            </p>
+            <p>Est-ce-que $A = (0; 1)$ appartient à $\mathcal{D}$ ? Remplaçons $x$ et $y$ par les coordonnées de $A$ : $1 = -1$ : c'est faux donc $A$ n'appartient pas à $\mathcal{D}$ car les coordonnées de $A$ ne vérifient par l'équation cartésienne de $\mathcal{D}$.</p>
+            <p>Est-ce-que $B = (4; 3)$ appartient à $\mathcal{D}$ ? Remplaçons $x$ et $y$ par les coordonnées de $B$ : $3 = 3$ : c'est vrai donc $B$ appartient à $\mathcal{D}$ car les coordonnées de $B$ vérifient l'équation cartésienne de $\mathcal{D}$.</p>
         </div>
-
     </section>
-
     <section>
-
         <h3>Vecteurs directeurs d'une droite</h3>
-
-        <p>Soient $\mathcal{D}$ une droite et $\overrightarrow{u}$ un vecteur du plan non nul :</p>
-
-        <p class="formula">
-            $\overrightarrow{u}$ est un <strong>vecteur directeur</strong> de $\mathcal{D}$ si et seulement s'il existe deux points $A$ et $B$ appartenants à $\mathcal{D}$ et tels
-            que $\overrightarrow{u} = \overrightarrow{AB}$.
-        </p>
-
-        <div id="representation-1" class="plot" data-api-v2-geogebra-id="kccrxa9q"></div>
-
-        <p>De plus, on a la propriété suivante qui peut s'avérer très utile :</p>
-
-        <p class="formula">$\overrightarrow{v}$ est un vecteur directeur de $\mathcal{D}$ si et seulement s'il est colinéaire au vecteur $\overrightarrow{u}$ précédent.</p>
-
-        <p>Tous les vecteurs directeurs d'une droite sont donc colinéaires entre-eux.</p>
-
-        <div class="tip">
-            <p>
-                <strong>Exemple :</strong> Soit $\mathcal{D}$ la droite définie par l'équation $y = 2x + 1$,
-                montrer que $\overrightarrow{v} = \begin{pmatrix} 2 \\ 4\end{pmatrix}$ est un vecteur directeur de $\mathcal{D}$.
-            </p>
-            <p>
-                Prenons deux points au hasard situés sur cette droite :
-                <br>$x = 0$ donne $y = 1$, donc le point $A = (0; 1)$ appartient à $\mathcal{D}$.
-                <br>$x = 1$ donne $y = 3$, donc le point $B = (1; 3)$ appartient à $\mathcal{D}$.
-            </p>
-            <p>
-                Ainsi, un vecteur directeur de $\mathcal{D}$ est $\overrightarrow{u} = \overrightarrow{AB} = \begin{pmatrix} 1-0 \\ 3-1\end{pmatrix} = \begin{pmatrix} 1 \\ 2\end{pmatrix}$.
-            </p>
-            <p>
-                Il reste à vérifier que $\overrightarrow{u}$ et $\overrightarrow{v}$ sont bien colinéaires, pour cela on peut utiliser la formule vue en seconde :
-                <br>$2 \times 2 - 1 \times 4 = 0$ : $\overrightarrow{u}$ et $\overrightarrow{v}$ sont bien colinéaires et donc $\overrightarrow{v}$ est un vecteur directeur de $\mathcal{D}$.
-            </p>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soient $\mathcal{D}$ une droite et $\overrightarrow{u}$ un vecteur du plan non nul. Alors $\overrightarrow{u}$ est un <strong>vecteur directeur</strong> de $\mathcal{D}$ s'il existe deux points $A$ et $B$ appartenants à $\mathcal{D}$ et tels que $\overrightarrow{u} = \overrightarrow{AB}$.</p>
         </div>
-
-        <p>
-            Il est facile de trouver un vecteur directeur d'une droite dont on connaît l'équation cartésienne.
-            Soit $\mathcal{D}$ une droite définie par l'équation $ax + by + c = 0$. Alors :
-        </p>
-
-        <p class="formula">$\overrightarrow{u} = \begin{pmatrix} -b \\ a\end{pmatrix}$ est un vecteur directeur de $\mathcal{D}$.</p>
-
-        <div class="tip">
-            <p>
-                <strong>Exemple :</strong> Déterminer l'équation cartésienne de la droite $\mathcal{D}$ de vecteur directeur $\overrightarrow{u} = \begin{pmatrix} 1 \\ 2\end{pmatrix}$
-                et passant par $A = (1; 0)$.
-            </p>
-            <p>
-                On a déjà $a$ et $b$ par la propriété précédente :
-                <br>$-b = 1 \iff b = -1$
-                <br>$a = 2$
-            </p>
-            <p>
-                Une équation cartésienne de la droite est $2x - y + c = 0$. Il reste à trouver $c$.
-                Mais comme $\mathcal{D}$ passe par $A$, les coordonnées de $A$ vérifient l'équation cartésienne de $\mathcal{D}$.
-            </p>
-            <p>
-                Remplaçons $x$ et $y$ par les coordonnées de $A$ dans l'équation cartésienne :
-                $2 + c = 0 \iff c = -2$.
-            </p>
+        <div id="representation-1" class="plot" data-api-v2-geogebra-id="kccrxa9q"></div>
+        <p>De plus, on a la propriété suivante qui peut s'avérer très utile :</p>
+        <div class="formula" data-api-v2-title="Colinéarité des vecteurs directeurs">
+            <p>$\overrightarrow{v}$ est un vecteur directeur de $\mathcal{D}$ si et seulement s'il est colinéaire au vecteur $\overrightarrow{u}$ précédent.</p>
+        </div>
+        <p>Tous les vecteurs directeurs d'une droite sont donc colinéaires entre-eux.</p>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>Soit $\mathcal{D}$ la droite définie par l'équation $y = 2x + 1$, montrons que $\overrightarrow{v} = \begin{pmatrix} 2 \\ 4\end{pmatrix}$ est un vecteur directeur de $\mathcal{D}$.</p>
+            <p>Prenons deux points au hasard situés sur cette droite :</p>
+            <p>$x = 0$ donne $y = 1$, donc le point $A = (0; 1)$ appartient à $\mathcal{D}$.</p>
+            <p>$x = 1$ donne $y = 3$, donc le point $B = (1; 3)$ appartient à $\mathcal{D}$.</p>
+            <p>Ainsi, un vecteur directeur de $\mathcal{D}$ est $\overrightarrow{u} = \overrightarrow{AB} = \begin{pmatrix} 1-0 \\ 3-1\end{pmatrix} = \begin{pmatrix} 1 \\ 2\end{pmatrix}$.</p>
+            <p>Il reste à vérifier que $\overrightarrow{u}$ et $\overrightarrow{v}$ sont bien colinéaires, pour cela on peut utiliser la formule vue en seconde :</p>
+            <p>$2 \times 2 - 1 \times 4 = 0$ : $\overrightarrow{u}$ et $\overrightarrow{v}$ sont bien colinéaires et donc $\overrightarrow{v}$ est un vecteur directeur de $\mathcal{D}$.</p>
+        </div>
+        <p>Il est facile de trouver un vecteur directeur d'une droite dont on connaît l'équation cartésienne.</p>
+        <div class="formula" data-api-v2-title="Coordonnées d'un vecteur directeur">
+            <p>Soit $\mathcal{D}$ une droite définie par l'équation $ax + by + c = 0$. Alors $\overrightarrow{u} = \begin{pmatrix} -b \\ a\end{pmatrix}$ est un vecteur directeur de $\mathcal{D}$.</p>
+        </div>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>Déterminons l'équation cartésienne de la droite $\mathcal{D}$ de vecteur directeur $\overrightarrow{u} = \begin{pmatrix} 1 \\ 2\end{pmatrix}$ et passant par $A = (1; 0)$.</p>
+            <p>On a déjà $a$ et $b$ par la propriété précédente :</p>
+            <p>$-b = 1 \iff b = -1$</p>
+            <p>$a = 2$</p>
+            <p>Une équation cartésienne de la droite est $2x - y + c = 0$. Il reste à trouver $c$. Mais comme $\mathcal{D}$ passe par $A$, les coordonnées de $A$ vérifient l'équation cartésienne de $\mathcal{D}$.</p>
+            <p>Remplaçons $x$ et $y$ par les coordonnées de $A$ dans l'équation cartésienne : $2 + c = 0 \iff c = -2$.</p>
             <p>L'équation cartésienne recherchée est donc $2x - y - 2 = 0$ ou encore $y = 2x - 2$.</p>
         </div>
-
-        <p>Soient $\mathcal{D}_1$ et $\mathcal{D}_2$ deux droites respectivement de vecteurs directeurs $\overrightarrow{u}$ et $\overrightarrow{v}$. Alors :</p>
-
-        <ul class="formula">
-            <li>$\mathcal{D}_1$ est parallèle à $\mathcal{D}_2$ si et seulement si $\overrightarrow{u}$ et $\overrightarrow{v}$ sont colinéaires.</li>
-            <li>$\mathcal{D}_1$ est perpendiculaire à $\mathcal{D}_2$ si et seulement si $\overrightarrow{u} \cdot \overrightarrow{v} = 0$.</li>
-        </ul>
-
-        <p class="formula">
-            Si $\overrightarrow{u} \cdot \overrightarrow{v} = 0$ alors $\overrightarrow{u}$ et $\overrightarrow{v}$ sont dits <strong>orthogonaux</strong>.
-        </p>
-
+        <div class="formula" data-api-v2-title="Propriétés">
+            <p>Soient $\mathcal{D}_1$ et $\mathcal{D}_2$ deux droites respectivement de vecteurs directeurs $\overrightarrow{u}$ et $\overrightarrow{v}$. Alors :</p>
+            <ul>
+                <li>$\mathcal{D}_1$ est parallèle à $\mathcal{D}_2$ si et seulement si $\overrightarrow{u}$ et $\overrightarrow{v}$ sont colinéaires.</li>
+                <li>$\mathcal{D}_1$ est perpendiculaire à $\mathcal{D}_2$ si et seulement si $\overrightarrow{u} \cdot \overrightarrow{v} = 0$.</li>
+            </ul>
+        </div>
+        <div class="formula" data-api-v2-title="Orthogonalité">
+            <p>Si $\overrightarrow{u} \cdot \overrightarrow{v} = 0$ alors $\overrightarrow{u}$ et $\overrightarrow{v}$ sont dits <strong>orthogonaux</strong>.</p>
+        </div>
     </section>
-
     <section>
-
         <h3>Vecteurs normaux à une droite</h3>
-
-        <p>Soient $\mathcal{D}$ une droite de vecteur directeur $\overrightarrow{u}$ et $\overrightarrow{n}$ un vecteur du plan non nul :</p>
-
-        <p class="formula">
-            $\overrightarrow{n}$ est un <strong>vecteur normal</strong> à $\mathcal{D}$ si et seulement si $\overrightarrow{u}$ et $\overrightarrow{n}$ sont normaux entre-eux.
-        </p>
-
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soient $\mathcal{D}$ une droite de vecteur directeur $\overrightarrow{u}$ et $\overrightarrow{n}$ un vecteur du plan non nul. Alors $\overrightarrow{n}$ est un <strong>vecteur normal</strong> à $\mathcal{D}$ si $\overrightarrow{u}$ et $\overrightarrow{n}$ sont orthogonaux entre-eux.</p>
+        </div>
         <div id="representation-2" class="plot" data-api-v2-geogebra-id="ydshrp8y"></div>
-
         <p>De plus, on a la propriété suivante qui peut s'avérer très utile :</p>
-
-        <p class="formula">$\overrightarrow{m}$ est un vecteur normal à $\mathcal{D}$ si et seulement s'il est colinéaire au vecteur $\overrightarrow{n}$ précédent.</p>
-
+        <div class="formula" data-api-v2-title="Colinéarité des vecteurs normaux">
+            <p>$\overrightarrow{m}$ est un vecteur normal à $\mathcal{D}$ si et seulement s'il est colinéaire au vecteur $\overrightarrow{n}$ précédent.</p>
+        </div>
         <p>Tous les vecteurs normaux d'une droite sont donc colinéaires entre-eux.</p>
-
-        <p>
-            Il est facile de trouver un vecteur normal à une droite dont on connaît l'équation cartésienne.
-            Soit $\mathcal{D}$ une droite définie par l'équation $ax + by + c = 0$. Alors :
-        </p>
-
-        <p class="formula">$\overrightarrow{n} = \begin{pmatrix} a \\ b\end{pmatrix}$ est un vecteur normal à $\mathcal{D}$.</p>
-
+        <p>Il est facile de trouver un vecteur normal à une droite dont on connaît l'équation cartésienne.</p>
+        <div class="formula" data-api-v2-title="Coordonnées d'un vecteur normal">
+            <p>Soit $\mathcal{D}$ une droite définie par l'équation $ax + by + c = 0$. Alors $\overrightarrow{n} = \begin{pmatrix} a \\ b\end{pmatrix}$ est un vecteur normal à $\mathcal{D}$.</p>
+        </div>
         <p>Soient $\mathcal{D}_1$ et $\mathcal{D}_2$ deux droites respectivement de vecteurs directeurs $\overrightarrow{u}$ et $\overrightarrow{v}$. Alors :</p>
-
-        <p class="formula">$\mathcal{D}_1$ est perpendiculaire à $\mathcal{D}_2$ si et seulement si $\overrightarrow{u}$ est normal à $\mathcal{D}_2$.</p>
-
-        <div class="tip">
-            <p>
-                <strong>Exemple :</strong> Déterminer l'équation cartésienne de la droite $\mathcal{D}$ admettant pour vecteur normal
-                $\overrightarrow{n} = \begin{pmatrix} -1 \\ -1\end{pmatrix}$ et passant par l'origine $O = (0; 0)$.
-            </p>
-            <p>
-                On a déjà $a$ et $b$ par la propriété précédente :
-                <br>$a = -1$
-                <br>$b = -1$
-            </p>
-            <p>
-                Une équation cartésienne de la droite est $-x - y + c = 0$. Il reste à trouver $c$.
-                Mais comme $\mathcal{D}$ passe par l'origine, les coordonnées de $O$ vérifient l'équation cartésienne de $\mathcal{D}$.
-            </p>
-            <p>
-                Remplaçons $x$ et $y$ par les coordonnées de $O$ dans l'équation cartésienne :
-                $c = 0$.
-            </p>
+        <div class="formula">
+            <p>$\mathcal{D}_1$ est perpendiculaire à $\mathcal{D}_2$ si et seulement si $\overrightarrow{u}$ est normal à $\mathcal{D}_2$.</p>
+        </div>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>Déterminons l'équation cartésienne de la droite $\mathcal{D}$ admettant pour vecteur normal $\overrightarrow{n} = \begin{pmatrix} -1 \\ -1\end{pmatrix}$ et passant par l'origine $O = (0; 0)$.</p>
+            <p>On a déjà $a$ et $b$ par la propriété précédente :</p>
+            <p>$a = -1$</p>
+            <p>$b = -1$</p>
+            <p>Une équation cartésienne de la droite est $-x - y + c = 0$. Il reste à trouver $c$. Mais comme $\mathcal{D}$ passe par l'origine, les coordonnées de $O$ vérifient l'équation cartésienne de $\mathcal{D}$.</p>
+            <p>Remplaçons $x$ et $y$ par les coordonnées de $O$ dans l'équation cartésienne : $c = 0$.</p>
             <p>L'équation cartésienne recherchée est donc $-x - y = 0$ ou encore $y = -x$.</p>
         </div>
-
     </section>
-
     <section>
-
-        <h3>Équation cartésienne d'un cercle</h3>
-
-        <p>
-            De la même manière que pour les droite, il est possible de décrire l'ensemble des points appartenant à un cercle à l'aide d'une équation.
-            Soit $\mathcal{C}$ un cercle de centre $O = (x_O; y_O)$ et de rayon $R$.
-        </p>
-
-        <p class="formula">
-            Une équation cartésienne de $\mathcal{C}$ est de la forme $(x - x_O)^2 + (y - y_O)^2 = R^2$ avec $x$ et $y$ qui sont des coordonnées de points.
-        </p>
-
-        <p>Soient $A$ et $B$ deux points du plan. Alors :</p>
-
-        <p class="formula">L'ensemble des points $M$ tels que $\overrightarrow{MA} \cdot \overrightarrow{MB} = 0$ est le cercle de diamètre $[AB]$.</p>
-
-        <div class="proof">
+        <h3>Description d'un cercle</h3>
+        <p>De la même manière que pour les droite, il est possible de décrire l'ensemble des points appartenant à un cercle à l'aide d'une équation.</p>
+        <div class="formula" data-api-v2-title="Description par équation cartésienne">
+            <p>Soit $\mathcal{C}$ un cercle de centre $O = (x_O; y_O)$ et de rayon $R$.</p>
+            <p>Une équation cartésienne de $\mathcal{C}$ est de la forme $(x - x_O)^2 + (y - y_O)^2 = R^2$ avec $x$ et $y$ qui sont des coordonnées de points.</p>
+        </div>
+        <p>On peut de manière équivalente, décrire un cercle à l'aide du produit scalaire.</p>
+        <div class="formula" data-api-v2-title="Description par produit scalaire">
+            <p>Soient $A$ et $B$ deux points du plan. Alors l'ensemble des points $M$ tels que $\overrightarrow{MA} \cdot \overrightarrow{MB} = 0$ est le cercle de diamètre $[AB]$.</p>
+        </div>
+        <div class="proof" data-api-v2-title="Description par produit scalaire">
             <p>On pose $A = (x_A; y_A)$, $B = (x_B; y_B)$ et on cherche les points $M = (x; y)$ tels que $\overrightarrow{MA} \cdot \overrightarrow{MB} = 0$.</p>
             <p>Soit $O$ le milieu de $[AB]$ :</p>
-            <p>
-                $\overrightarrow{MA} \cdot \overrightarrow{MB} = 0$
-                <br>$\iff (\overrightarrow{MO} + \overrightarrow{OA}) \cdot (\overrightarrow{MO} + \overrightarrow{OB}) = 0$
-                <br>$\iff (\overrightarrow{MO} + \overrightarrow{OA}) \cdot (\overrightarrow{MO} - \overrightarrow{OA}) = 0$
-                <br>$\iff (\overrightarrow{MO} \cdot \overrightarrow{MO}) - (\overrightarrow{OA} \cdot \overrightarrow{OA}) = 0$
-                <br>$\iff MO^2 - OA^2 = 0$
-                <br>$\iff MO = OA$
-            </p>
+            <p>$\overrightarrow{MA} \cdot \overrightarrow{MB} = 0$</p>
+            <p>$\iff (\overrightarrow{MO} + \overrightarrow{OA}) \cdot (\overrightarrow{MO} + \overrightarrow{OB}) = 0$</p>
+            <p>$\iff (\overrightarrow{MO} + \overrightarrow{OA}) \cdot (\overrightarrow{MO} - \overrightarrow{OA}) = 0$</p>
+            <p>$\iff (\overrightarrow{MO} \cdot \overrightarrow{MO}) - (\overrightarrow{OA} \cdot \overrightarrow{OA}) = 0$</p>
+            <p>$\iff MO^2 - OA^2 = 0$</p>
+            <p>$\iff MO = OA$</p>
             <p>Donc l'ensemble cherché est l'ensemble des points situés à une distance $OA$ du point $O$, c'est bien le cercle de centre $O$ et de diamètre $[AB]$.</p>
         </div>
-
         <p>En réalité, les deux points précédents sont deux manières différentes de décrire un cercle.</p>
-
     </section>
-
 </section>

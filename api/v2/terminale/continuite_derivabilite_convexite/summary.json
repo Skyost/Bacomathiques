@@ -1,0 +1,5 @@
+---
+layout: api_file
+permalink: "/api/v2/terminale/continuite-derivabilite-convexite/summary/"
+---
+{% include _includes/api/v2/lessons/summary/summary.json lesson='continuite_derivabilite_convexite' level='terminale' %}

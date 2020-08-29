@@ -1,0 +1,7 @@
+{% assign currentLevel = site.data.levels[include.level] %}
+{% capture info %}
+    <h3>{{ currentLevel.name }}</h3>
+    <p class="mb-0">{{ currentLevel.description }}</p>
+{% endcapture %}
+
+{% include _includes/components/image_header.html image=currentLevel.image content=info %}

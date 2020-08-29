@@ -1,0 +1,270 @@
+---
+layout: default
+lesson: "continuite_derivabilite_convexite"
+level: "terminale"
+permalink: "/cours/terminale/continuite-derivabilite-convexite/"
+redirect_from: "/cours/terminale/continuite-derivabilite/"
+---
+
+<section>
+	<h2>Continuité</h2>
+	<section>
+		<h3>Définition</h3>
+		<div class="formula" data-api-v2-title="Définition">
+			<p>Soient $f$ une fonction définie sur un intervalle $I$ et un réel $a \in I$. La fonction $f$ est continue en $a$ si on a $\lim\limits_{\substack{x \rightarrow a}} f(x) = f(a)$.</p>
+			<p>$f$ est dite <strong>continue</strong> sur $I$, si on peut appliquer la formule ci-dessus à tous les réels de l'intervalle $I$.</p>
+		</div>
+		<p>On dit de manière générale qu'une fonction est continue sur un intervalle s'il est possible de tracer sa courbe représentative sur cet intervalle <q>sans lever le crayon</q>.</p>
+		<div class="formula" data-api-v2-title="Opérations sur les fonctions continues">
+			<ul>
+				<li>Toute somme, produit, composée ou quotient (avec le dénominateur ne s'annulant pas) de fonctions continues est également continue sur le même intervalle.</li>
+				<li>Toute fonction dérivable sur un intervalle est continue sur cet intervalle (la réciproque n'est pas vraie cependant).</li>
+			</ul>
+		</div>
+		<div class="tip" data-api-v2-title="Exemple">
+			<p>La fonction $x \mapsto \frac{1}{x}$ est continue en tout point de son ensemble de définition ($\mathbb{R}^{*}$) mais n'est pas continue sur $\mathbb{R}$.</p>
+		</div>
+	</section>
+	<section>
+		<h3>Théorème des valeurs intermédiaires</h3>
+		<div class="formula" data-api-v2-title="Théorème des valeurs intermédiaires">
+			<p>Si une fonction $f$ est continue sur un intervalle $[a;b]$, alors pour tout réel $y_0$ tel que $f(a) \lt y_0 \lt f(b)$ (ou $f(a) \gt y_0 \gt f(b)$), il existe <strong>au moins</strong> un réel $x_0 \in [a;b]$ tel que $f(x_0) = y_0$.</p>
+		</div>
+		<div class="tip" data-api-v2-title="Exemple">
+			<p>Ce théorème est <strong>très important</strong> ! Voici un exemple : soit $f$ définie pour tout $x \in \mathbb{R}$ par $f(x) = x^3+x^2-x$. Prouvons qu'il existe au moins un réel $x_0 \in [0;3]$ tel que $f(x_0) = 5$. On a $f(0) = 0$ et $f(3) = 33$. D'après le théorème des valeurs intermédiaires, comme $f$ est continue sur $[0;3]$ et que $0 \lt 5 \lt 33$,</p>
+			<p>il existe un réel $x_0 \in [0,3]$ tel que $f(x_0) = 5$.</p>
+			<p>On peut encore tenter d'affiner la précision : $f(1) = 1$ et $f(2) = 10$. On a bien $1 \lt 5 \lt 10$ donc $x_0 \in [1;2]$, etc...</p>
+		</div>
+		<div class="tip">
+			<p>Une conséquence de ce théorème est que si $f(a)$ et $f(b)$ sont de signes opposés, alors la fonction $f$ s'annule au moins une fois entre $a$ et $b$.</p>
+		</div>
+		<p>Enfin, il existe un corollaire permettant qui donne en plus <strong>l'unicité</strong> du point $x_0$.</p>
+		<div class="formula" data-api-v2-title="Corollaire">
+			<p>Si $f$ est continue sur $[a;b]$ et que $f$ est <strong>strictement monotone</strong> sur cet intervalle, alors pour tout réel $y_0$ tel que $f(a) \lt y_0 \lt f(b)$ (ou $f(a) \gt y_0 \gt f(b)$), il existe <strong>un unique</strong> réel $x_0 \in [a;b]$ tel que $f(x_0) = y_0$.</p>
+		</div>
+	</section>
+	<section>
+		<h3>La partie entière $[x]$</h3>
+		<div class="formula" data-api-v2-title="Définition">
+			<p>Soit $x \in \mathbb{R}$. La <strong>partie entière</strong> de $x$ notée $[x]$ (ou $E(x)$) est l'unique réel tel que : $[x] \leq x \lt [x] + 1$.</p>
+		</div>
+		<div class="tip" data-api-v2-title="Exemple">
+			<p>$[1,216] = 1$ et $[-2,198] = -3$.</p>
+		</div>
+		<p>La fonction partie entière définie par $x \mapsto [x]$ <strong>n'est pas continue</strong> sur $\mathbb{R}$ :</p>
+		<div id="representation-1" class="plot" data-api-v2-geogebra-id="cpzeryjp"></div>
+	</section>
+</section>
+<section>
+	<h2>Dérivation</h2>
+	<section>
+		<h3>Nombre dérivé</h3>
+		<div class="formula" data-api-v2-title="Définition">
+			<p>Soient $f$ une fonction définie sur un intervalle $I$ et deux réels $a \in I$ et $h \neq 0$ tels que $(a + h) \in I$.</p>
+			<p>La fonction $f$ est <strong>dérivable</strong> en $a$ si la limite ci-dessous existe et est finie :</p>
+			<p>$\displaystyle{\lim\limits_{\substack{h \rightarrow 0}} \frac{f(a + h) - f(a)}{h}}$</p>
+			<p>Ou en posant $x = a + h$ :</p>
+			<p>$\displaystyle{\lim\limits_{\substack{x \rightarrow a}} \frac{f(x) - f(a)}{x-a}}$</p>
+			<p>Si cette limite existe et est finie, alors elle est égale au <strong>nombre dérivé</strong> de $f$ en $a$, noté $f'(a)$.</p>
+		</div>
+		<div class="tip" data-api-v2-title="Remarque">
+			<p>Notez bien que toute fonction dérivable en un point est continue en ce point.</p>
+		</div>
+	</section>
+	<section>
+		<h3>La tangente</h3>
+		<div class="formula" data-api-v2-title="Équation de la tangente">
+			<p>Soient $f$ une fonction définie sur un intervalle $I$ et un réel $a \in I$. Si $f$ est dérivable en $a$, alors la courbe représentative de $f$ admet une tangente $\mathcal{T}$ au point de coordonnées $(a; f(a))$.</p>
+			<p>De plus, $f'(a)$ est le coefficient directeur de $\mathcal{T}$, et une équation de $\mathcal{T}$ est $y = f'(a)(x-a)+f(a)$.</p>
+		</div>
+		<div class="tip" data-api-v2-title="Exemple">
+			<p>Soit $f(x) = e^x$ définie sur $\mathbb{R}$ (voir cours sur <a href="https://bacomathiqu.es/cours/premiere/fonction-exponentielle/" data-api-v2-level="premiere" data-api-v2-lesson="fonction-exponentielle">la fonction exponentielle</a>).</p>
+			<p>Cherchons une équation de la tangente au point d'abscisse $x = 0$ :</p>
+			<p>On a $f'(x) = f(x)$ donc $f'(0) = 1$.</p>
+			<p>Par conséquent, une équation de la tangente est $y = f'(0)(x-0)+f(0) = x + 1$ : on retrouve ce qui a été constaté sur <a href="https://bacomathiqu.es/cours/premiere/fonction-exponentielle/" data-api-v2-level="premiere" data-api-v2-lesson="fonction-exponentielle" data-api-v2-hash="#3-représentation-graphique">la représentation graphique</a> de la fonction exponentielle.</p>
+		</div>
+		<div id="representation-2" class="plot" data-api-v2-geogebra-id="znryeret"></div>
+	</section>
+	<section>
+		<h3>Fonction dérivée</h3>
+		<div class="formula" data-api-v2-title="Définition">
+			<p>Soit $f$ une fonction dérivable sur un intervalle $I$.</p>
+			<p>On appelle fonction dérivée (ou plus simplement <strong>dérivée</strong>) de $f$ la fonction $g$ qui à tout réel $x$ de $I$, associe le nombre dérivé $f'(x)$ (i.e. $g(x) = f'(x)$).</p>
+		</div>
+		<p>Très souvent, la fonction $g$ sera notée $f'$.</p>
+	</section>
+	<section>
+		<h3>Applications</h3>
+		<p>Plusieurs applications peuvent être trouvées aux dérivées. Avec le signe de la dérivée d'une fonction, il est possible d'obtenir le sens de variation de cette fonction.</p>
+		<div class="formula" data-api-v2-title="Variations d'une fonction">
+			<p>Soit une fonction $f$ dérivable sur un intervalle $I$.</p>
+			<ul>
+				<li>Si $f' \gt 0$ sur $I$, alors $f$ est strictement croissante sur $I$.</li>
+				<li>Si $f' \lt 0$ sur $I$, alors $f$ est strictement décroissante sur $I$.</li>
+				<li>Si $f' = 0$ sur $I$, alors $f$ est constante sur $I$.</li>
+			</ul>
+		</div>
+		<div id="representation-3" class="plot" data-api-v2-geogebra-id="sjeph3eh"></div>
+		<p>Il est également possible d'en déduire diverses propriétés sur les extrema dits <q>locaux</q> (sur un certain intervalle) d'une fonction.</p>
+		<div class="formula" data-api-v2-title="Étude des extrema">
+			<p>Soient $f$ dérivable sur un intervalle $I$, et $a \in I$ :</p>
+			<ul>
+				<li>Si $f$ admet un extremum local en $a$, alors on a $f'(a) = 0$.</li>
+				<li>Si $f'(a) = 0$ et que le signe de $f'$ est différent avant et après $a$, alors $f'(a)$ est un extremum local de $f$.</li>
+				<li>Si $f'(a) = 0$ et qu'on est négatif avant $a$ et positif après, cet extremum local est un minimum local.</li>
+				<li>Si $f'(a) = 0$ et qu'on est positif avant $a$ et négatif après, cet extremum local est un maximum local.</li>
+			</ul>
+		</div>
+	</section>
+</section>
+<section>
+	<h2>Tables de dérivation</h2>
+	<section>
+		<h3>Dérivées usuelles</h3>
+		<p>Le tableau suivant est à connaître et nous donne la dérivée de la plupart des fonctions usuelles :</p>
+		<div class="formula">
+			<p>Soit $\lambda$ une constante réelle.</p>
+			<table class="table table-bordered table-hover">
+				<tr>
+					<td><strong>Fonction</strong></td><td><strong>Dérivée</strong></td><td><strong>Domaine de dérivabilité</strong> </td>
+				</tr>
+				<tr>
+					<td>$\lambda$</td><td>$0$</td><td>$\mathbb{R}$ </td>
+				</tr>
+				<tr>
+					<td>$x^n$ avec $n \in \mathbb{N}^*$</td><td>$nx^{n-1}$</td><td>$\mathbb{R}$ </td>
+				</tr>
+				<tr>
+					<td>$\displaystyle{\frac{1}{x}}$</td><td>$\displaystyle{-\frac{1}{x^2}}$</td><td>$\mathbb{R^*}$ </td>
+				</tr>
+				<tr>
+					<td>$\sqrt{x}$</td><td>$\displaystyle{\frac{1}{2\sqrt{x}}}$</td><td>$\mathbb{R^+_*}$ </td>
+				</tr>
+				<tr>
+					<td>$e^x$</td><td>$e^x$</td><td>$\mathbb{R}$ </td>
+				</tr>
+				<tr>
+					<td>$\ln(x)$</td><td>$\displaystyle{\frac{1}{x}}$</td><td>$\mathbb{R^+_*}$ </td>
+				</tr>
+				<tr>
+					<td>$\sin(x)$</td><td>$\cos(x)$</td><td>$\mathbb{R}$ </td>
+				</tr>
+				<tr>
+					<td>$\cos(x)$</td><td>$-\sin(x)$</td><td>$\mathbb{R}$ </td>
+				</tr>
+			</table>
+		</div>
+	</section>
+	<section>
+		<h3>Opérations sur les dérivées</h3>
+		<p>Le tableau suivant est également à connaître et nous donne la dérivée qui dépend des opérations sur les fonctions $u$ et $v$ :</p>
+		<div class="formula">
+			<p>Soient deux fonctions $u$ et $v$ et soit $\lambda$ une constante réelle.</p>
+			<table class="table table-bordered table-hover">
+				<tr>
+					<td><strong>Fonction</strong></td><td><strong>Dérivée</strong></td><td><strong>Domaine de dérivabilité</strong> </td>
+				</tr>
+				<tr>
+					<td>$\lambda \times u$</td><td>$\lambda \times u'$</td><td>En tout point où $u$ est dérivable. </td>
+				</tr>
+				<tr>
+					<td>$u + v$</td><td>$u' + v'$</td><td>En tout point où $u$ et $v$ sont dérivables. </td>
+				</tr>
+				<tr>
+					<td>$u \times v$</td><td>$u' \times v + u \times v'$</td><td>En tout point où $u$ et $v$ sont dérivables. </td>
+				</tr>
+				<tr>
+					<td>$\displaystyle{\frac{1}{v}}$</td><td>$\displaystyle{-\frac{v'}{v^2}}$</td><td>En tout point où $v$ est dérivable et non nulle. </td>
+				</tr>
+				<tr>
+					<td>$\displaystyle{\frac{u}{v}}$</td><td>$\frac{u' \times v - u \times v'}{v^2}$</td><td>En tout point où $u$ et $v$ sont dérivables et non nulles. </td>
+				</tr>
+			</table>
+		</div>
+	</section>
+	<section>
+		<h3>Dérivées de composées</h3>
+		<p>Le tableau suivant, toujours à connaître, nous donne la dérivée des fonctions composées usuelles :</p>
+		<div class="formula">
+			<p>Soit $u$ une fonction.</p>
+			<table class="table table-bordered table-hover">
+				<tr>
+					<td><strong>Fonction</strong></td><td><strong>Dérivée</strong></td><td><strong>Domaine de dérivabilité</strong> </td>
+				</tr>
+				<tr>
+					<td>$u^n$ avec $n \in \mathbb{N}^*$</td><td>$nu'u^{n-1}$</td><td>En tout point où $u$ est dérivable. </td>
+				</tr>
+				<tr>
+					<td>$\displaystyle{\frac{1}{u}}$</td><td>$\displaystyle{-\frac{u'}{u^2}}$</td><td>En tout point où $u$ est dérivable et non nulle. </td>
+				</tr>
+				<tr>
+					<td>$\sqrt{u}$</td><td>$\displaystyle{\frac{u'}{2\sqrt{u}}}$</td><td>En tout point où $u$ est dérivable et strictement positive. </td>
+				</tr>
+				<tr>
+					<td>$e^u$</td><td>$u'e^u$</td><td>En tout point où $u$ est dérivable. </td>
+				</tr>
+				<tr>
+					<td>$\ln(u)$</td><td>$\displaystyle{\frac{u'}{u}}$</td><td>En tout point où $u$ est dérivable et strictement positive. </td>
+				</tr>
+				<tr>
+					<td>$\sin(u)$</td><td>$u'\cos(u)$</td><td>En tout point où $u$ est dérivable. </td>
+				</tr>
+				<tr>
+					<td>$\cos(u)$</td><td>$-u'\sin(u)$</td><td>En tout point où $u$ est dérivable. </td>
+				</tr>
+			</table>
+		</div>
+		<p>Il est cependant possible de donner une formule plus générale.</p>
+		<div class="formula" data-api-v2-title="Dérivée d'une composée">
+			<p>Soient $f$ dérivable sur $I$ et $g$ dérivable sur l'ensemble des valeurs prises par $f$ sur $I$. On a alors $(g \circ f)' = (g' \circ f) \times f'$.</p>
+		</div>
+		<div class="tip" data-api-v2-title="Fonction composée">
+			<p>On rappelle que la fonction $g \circ f$ est la fonction définie pour tout $x$ par $(g \circ f)(x) = g(f(x))$.</p>
+		</div>
+	</section>
+</section>
+<section>
+	<h2>Convexité</h2>
+	<section>
+		<h3>Dérivée seconde d'une fonction</h3>
+		<div class="formula" data-api-v2-title="Définition">
+			<p>Soit $f$ une fonction dérivable sur un intervalle $I$, de dérivée $f'$ dérivable sur $I$.</p>
+			<p>On appelle <strong>dérivée seconde</strong> (notée $f''$) de $f$, la fonction dérivée de $f'$.</p>
+		</div>
+		<p>Ainsi, pour calculer $f''$, on calcule d'abord $f'$, puis on dérive $f'$.</p>
+		<div class="tip" data-api-v2-title="Exemple">
+			<p>Soit $f$ la fonction définie pour tout $x \in \mathbb{R}$ par $f(x) = \sin(2x)$. Calculons $f''$.</p>
+			<p>On applique la formule pour dérivée $\sin(u)$ (où $u$ est la fonction $u : x \mapsto 2x$) :</p>
+			<p>Pour tout $x \in \mathbb{R}$, $f'(x) = u' \cos(u) = 2 \cos(2x)$.</p>
+			<p>Pour finir, il suffit juste de dériver $f'$ : pour tout $x \in \mathbb{R}$, $f''(x) = 2 \times (-2 \sin(2x)) = -4 \sin(2x)$.</p>
+		</div>
+	</section>
+	<section>
+		<h3>Fonction convexe</h3>
+		<div class="formula" data-api-v2-title="Définition">
+			<p>Soit $f$ une fonction dérivable sur un intervalle $I$, de dérivée $f'$ dérivable sur $I$.</p>
+			<ul>
+				<li>On dit que $f$ est <strong>convexe</strong> sur $I$ si $f''$ est positive sur $I$.</li>
+				<li>On dit que $f$ est <strong>concave</strong> sur $I$ si $f''$ est négative sur $I$.</li>
+				<li>On dit que $a \in I$ est un <strong>point d'inflexion</strong> si $f''$ change de signe en $a$ (i.e. $f''(a) = 0$ et $f''$ est positive avant $a$ puis négative après ou inversement).</li>
+			</ul>
+		</div>
+		<div class="tip">
+			<p>Dire que $f''$ est positive sur $I$ revient à dire que $f'$ est croissante sur $I$. De même, dire que $f''$ est négative sur $I$ revient à dire que $f'$ est décroissante sur $I$.</p>
+		</div>
+	</section>
+	<section>
+		<h3>Lien avec les tangentes</h3>
+		<div class="formula" data-api-v2-title="Lien avec la représentation graphique">
+			<p>Soit $f$ une fonction dérivable sur un intervalle $I$, de dérivée $f'$ dérivable sur $I$. On note $\mathcal{C}_f$ la courbe représentative de $f$.</p>
+			<ul>
+				<li>$f$ est <strong>convexe</strong> sur $I$ si $\mathcal{C}_f$ est au-dessus de chacune de ses tangentes sur $I$.</li>
+				<li>$f$ est <strong>concave</strong> sur $I$ si $\mathcal{C}_f$ est en-dessous de chacune de ses tangentes sur $I$.</li>
+			</ul>
+		</div>
+		<div id="representation-4" class="plot" data-api-v2-geogebra-id="v74xn9rx"></div>
+		<div class="tip" data-api-v2-title="Exemple">
+			<p>À titre d'exemple, la fonction exponentielle est une fonction convexe.</p>
+		</div>
+	</section>
+</section>

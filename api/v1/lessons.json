@@ -1,4 +1,0 @@
----
-layout: compress
----
-[{% for data in site.data.lessons['terminale'] %}{% assign lesson = data[1] %}{"id": "{{ lesson.id }}", "title": "{{ lesson.title }}", "preview": "assets/img/lessons/{{ lesson.level }}/{{ lesson.id }}/preview.jpg", "caption": "{{ lesson.caption | escape }}", "excerpt": "{{ lesson.excerpt | escape }}", "content": "api/v1/content/{{ lesson.id }}.json", "summary": "api/v1/summary/{{ lesson.id }}.json", "comments": "api/v1/comments/{{ lesson.id }}.json"}{% unless forloop.last %},{% endunless %}{% endfor %}]

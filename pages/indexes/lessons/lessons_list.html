@@ -1,0 +1,10 @@
+{% assign currentLevel = site.data.levels[include.level] %}
+
+{% capture lessonsCards %}
+	{% for data in site.data.lessons[currentLevel.id] %}
+		{% assign lesson = data[1] %}
+		{% include _includes/components/cards/lesson_card.html lesson=lesson %}
+	{% endfor %}
+{% endcapture %}
+
+{% include _includes/components/cards/cards_row.html content=lessonsCards %}

@@ -1,14 +1,12 @@
-$(document).ready(function () {
-    if (typeof createPlots !== 'undefined' && $.isFunction(createPlots)) {
-        createPlots();
-    }
-});
+$(document).ready(createPlots);
 
-/*$(window).resize(function () {
-    if (typeof createPlots !== 'undefined' && $.isFunction(createPlots)) {
-        createPlots();
-    }
-});*/
+/*$(window).resize(createPlots);*/
+
+function createPlots() {
+    $('.plot').each(function() {
+        createGeoGebraInstance($(this).attr('data-api-v2-geogebra-id')).inject($(this).attr('id'));
+    });
+}
 
 function createGeoGebraInstance(materialId) {
     let windowWidth = $(window).width();

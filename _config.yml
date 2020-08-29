@@ -47,18 +47,10 @@ plugins:
 
 defaults:
   - scope:
-      path:            "api/*"
+      path: "api/*"
     values:
-      sitemap:         false
+      sitemap: false
   - scope:
-      path:            "assets/*"
+      path: "assets/*"
     values:
-      sitemap:         false
-  - scope:
-      path:            "summaries/*"
-    values:
-      sitemap:         false
-  - scope:
-      path:            "lessons/indexes/lessons-index.html"
-    values:
-      sitemap:         false
+      sitemap: false

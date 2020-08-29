@@ -1,0 +1,155 @@
+---
+layout: default
+lesson: "primitives_equations_differentielles"
+level: "terminale"
+permalink: "/cours/terminale/primitives-equations-differentielles/"
+redirect_from: "/cours/terminale/primitives/"
+---
+
+<section>
+    <h2>Primitives de fonctions continues</h2>
+    <section>
+        <h3>Définition</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soit $f$ un fonction définie et continue sur un intervalle $I$. On appelle <strong>primitive</strong> de $f$, toute fonction $F$ définie sur $I$ et qui vérifie pour tout $x \in I$ : $F'(x) = f(x)$.</p>
+        </div>
+        <div class="tip" data-api-v2-title="Note">
+            <p>Une primitive est toujours définie à une constante près.</p>
+            <p>En effet. On considère la fonction $f$ définie pour tout $x \in \mathbb{R}$ par $f(x) = 2x$.</p>
+            <p>Alors, $F_{1}(x) = x^2 + 1$ est une primitive de la fonction $f$ (car $F'(x) = 2x = f(x)$).</p>
+            <p>Mais $F_{1}(x)$ <strong>n'est pas la seule primitive</strong> de $f$ !</p>
+            <p>On peut citer par exemple $F_{2}(x) = x^2 + 10$ et $F_{3}(x) = x^2 + 3$ qui sont également des primitives de $f$.</p>
+            <p>C'est pour cette raison que l'ont dit que les primitives sont définies à une constante près (lorsque l'on dérive, la constante devient nulle).</p>
+        </div>
+        <p>Ainsi, toute <strong>fonction continue</strong> sur un intervalle admet <strong>une infinité de primitives</strong> d'une forme particulière sur cet intervalle. Plus formellement :</p>
+        <div class="formula" data-api-v2-title="Infinité de primitives">
+            <p>Une fonction continue $f$ sur un intervalle $I$ admet une infinité de primitives sur $I$ de la forme $x \mapsto F_0(x) + c$ avec $c \in \mathbb{R}$ (où $F_0$ est une primitive de $f$).</p>
+        </div>
+        <div class="proof" data-api-v2-title="Infinité de primitives">
+            <p>Soit $F$ une autre primitive de $f$ sur $I$. On a pour tout $x \in I$ :</p>
+            <p>$(F - F_0)'(x) = F'(x) - F_0'(x) = f(x) - f(x) = 0$ (car $F_0$ et $F$ sont deux primitives de $f$).</p>
+            <p>Donc il existe une constante réelle $c$ telle que $F - F_0 = c$. D'où pour tout $x \in I$, $F(x) = F_0(x) + c$ : ce qu'il fallait démontrer.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Primitive de fonctions usuelles</h3>
+        <p>Le tableau suivant est à connaître (mais il peut être obtenu en prenant celui des dérivées usuelles à l'envers) :</p>
+        <div class="formula">
+            <p>Soit $\lambda$ une constante réelle.</p>
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <td><strong>Fonction</strong></td><td><strong>Primitive</strong></td><td><strong>Domaine de définition de la primitive</strong> </td>
+                </tr>
+                <tr>
+                    <td>$\lambda$</td><td>$\lambda x$</td><td>$\mathbb{R}$ </td>
+                </tr>
+                <tr>
+                    <td>$e^x$</td><td>$e^x$</td><td>$\mathbb{R}$ </td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{1}{x}}$</td><td>$\ln(x)$</td><td>$\mathbb{R}^{*}_{+}$ </td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{1}{\sqrt{x}}}$</td><td>$2\sqrt{x}$</td><td>$\mathbb{R}^{*}_{+}$ </td>
+                </tr>
+                <tr>
+                    <td>$x^a$ avec $a \in \mathbb{R}$ et $a \neq -1$</td><td>$\displaystyle{\frac{1}{a + 1} x^{a + 1}}$</td><td>$\mathbb{R}^{*}_{+}$ </td>
+                </tr>
+                <tr>
+                    <td>$\sin(x)$</td><td>$-\cos(x)$</td><td>$\mathbb{R}$ </td>
+                </tr>
+                <tr>
+                    <td>$\cos(x)$</td><td>$\sin(x)$</td><td>$\mathbb{R}$ </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <section>
+        <h3>Opérations sur les primitives</h3>
+        <p>Le tableau suivant est également à connaître (mais il peut être obtenu en prenant celui des dérivées usuelles à l'envers) :</p>
+        <div class="formula">
+            <p>Soit $u$ une fonction continue.</p>
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <td><strong>Fonction</strong></td><td><strong>Primitive</strong></td><td><strong>Domaine de définition de la primitive</strong> </td>
+                </tr>
+                <tr>
+                    <td>$u'e^u$</td><td>$e^u$</td><td>En tout point où $u$ est définie. </td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{u'}{u}}$</td><td>$\ln(|u|)$</td><td>En tout point où $u$ est définie et est non-nulle. On peut retirer la valeur absolue si $u$ est positive. </td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{u'}{\sqrt{u}}}$</td><td>$2\sqrt{u}$</td><td>En tout point où $u$ est définie et est strictement positive. </td>
+                </tr>
+                <tr>
+                    <td>$u' (u)^a$ avec $a \in \mathbb{R}$ et $a \neq -1$</td><td>$\displaystyle{\frac{1}{a + 1} u^{a + 1}}$</td><td>En tout point où $u$ est définie. </td>
+                </tr>
+                <tr>
+                    <td>$u' \sin(u)$</td><td>$-\cos(u)$</td><td>En tout point où $u$ est définie. </td>
+                </tr>
+                <tr>
+                    <td>$u' \cos(u)$</td><td>$\sin(u)$</td><td>En tout point où $u$ est définie. </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>Équations différentielles</h2>
+    <section>
+        <h3>Qu'est-ce-qu'une équation différentielle ?</h3>
+        <p>Commençons cette partie par quelques définitions.</p>
+        <div class="formula" data-api-v2-title="Définition">
+            <ul>
+                <li>Une <strong>équation différentielle</strong> est une égalité liant une fonction inconnue $y$ à ses dérivées successives ($y'$, $y''$, ...) contenant éventuellement d'autres fonctions connues.</li>
+                <li>Une <strong>solution</strong> d'une équation différentielle est une fonction vérifiant l'égalité décrite précédemment.</li>
+            </ul>
+        </div>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>La fonction logarithme est une solution de l'équation différentielle $y' = \frac{1}{x}$.</p>
+            <p>La fonction exponentielle est une solution de l'équation différentielle $y' = y$, mais aussi de l'équation différentielle $y'' = y$, etc...</p>
+        </div>
+    </section>
+    <section>
+        <h3>Résolution d'équations différentielles de la forme $y'=ay$</h3>
+        <p>Nous allons donner une formule permettant de résoudre des équations différentielles de la forme $y' = ay$.</p>
+        <div class="formula" data-api-v2-title="Formule">
+            <p>On pose $(E) : y'=ay$ (où $a$ est un réel). Alors l'ensemble des solutions de $(E)$ est l'ensemble des fonctions $x \mapsto c e^{ax}$ où $c \in \mathbb{R}$.</p>
+        </div>
+        <div class="proof">
+            <p>Vérifions tout d'abord que les fonctions $x \mapsto k e^{ax}$ sont solutions de $(E)$. Soit $c \in \mathbb{R}$, posons pour tout $x \in \mathbb{R}$, $y_c(x) = c e^{ax}$.</p>
+            <p>Alors pour tout $x \in \mathbb{R}$, $y'_c(x) = ac e^{ax}$ et $ay_c(x) = ac e^{ax}$. Donc $y'_c = a y_c$ : $y_c$ est bien solution de $(E)$.</p>
+            <p>Montrons que les fonctions $y_c$ sont les seules solutions de $(E)$. Soit $y$ une solution quelconque de $(E)$ sur $\mathbb{R}$. Pour tout $x \in \mathbb{R}$, on pose $z(x) = y(x) e^{-ax}$. En dérivant :</p>
+            <p>$z'(x) = y'(x) e^{-ax} + y(x) (-ae^{-ax}) = e^{-ax}(y'(x) - ay(x))$</p>
+            <p>De plus, comme $y$ est solution de $(E)$, on a $y' - ay = 0$, donc $z' = 0$.</p>
+            <p>Ainsi, il existe une constante réelle $c$ telle que $z = c$. C'est-à-dire que pour tout $x \in \mathbb{R}$ :</p>
+            <p>$c = y(x) e^{-ax} \iff y(x) = c e^{ax}$. Ce qui termine la preuve.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Théorème">
+            <p>Pour tout réels $x_0$ et $y_0$, il existe une <strong>unique</strong> fonction $y$ solution de l'équation différentielle $(E)$ telle que $y(x_0) = y_0$.</p>
+        </div>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>Résolvons l'équation différentielle $(E) : y' - 5y = 0$ sous condition d'avoir $y(0) = 1$.</p>
+            <p>Dans une premier temps, on écrit l'équation sous une meilleure forme : $y' - 5y = 0 \iff y' = 5y$. On a donc $a = 5$. Les solutions de l'équation $(E)$ sont les fonctions définies $x \mapsto c e^{5x}$ où $c \in \mathbb{R}$.</p>
+            <p>Maintenant, il faut trouver la fonction $y$ qui vaut $1$ en $0$. Soit donc $y$ une telle solution de $(E)$. Alors :</p>
+            <p>$y(0) = 1 \iff c e^{5 \times 0} = 1 \iff c = e^{-1}$. La solution recherchée est donc la fonction $y : x \mapsto e^{-1} e^{5x}$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Résolution d'équations différentielles de la forme $y'=ay+b$</h3>
+        <p>Nous allons donner une formule permettant de résoudre des équations différentielles de la forme $y' = ay+b$.</p>
+        <div class="formula" data-api-v2-title="Formule">
+            <p>On pose $(E) : y'=ay+b$ (où $a$ est un réel non-nul et $b$ est un réel). Alors l'ensemble des solutions de $(E)$ est l'ensemble des fonctions $x \mapsto c e^{ax} - \frac{b}{a}$ où $c \in \mathbb{R}$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Théorème">
+            <p>Pour tout réels $x_0$ et $y_0$, il existe une <strong>unique</strong> fonction $y$ solution de l'équation différentielle $(E)$ telle que $y(x_0) = y_0$.</p>
+        </div>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>Résolvons l'équation différentielle $(E) : y'=2y-1$ sous condition d'avoir $y(1) = 0$.</p>
+            <p>On a donc $a = 2$ et $b = -1$. Les solutions de l'équation $(E)$ sont les fonctions définies $x \mapsto c e^{2x} + \frac{1}{2}$ où $c \in \mathbb{R}$.</p>
+            <p>Maintenant, il faut trouver la fonction $y$ qui vaut $0$ en $1$. Soit donc $y$ une telle solution de $(E)$. Alors :</p>
+            <p>$y(1) =  0 \iff c e^{2 \times 1} + \frac{1}{2} = 0 \iff c = -\frac{1}{2e^2}$. La solution recherchée est donc la fonction $y : x \mapsto -\frac{e^{2x}}{2e^2} + \frac{1}{2}$.</p>
+        </div>
+    </section>
+</section>

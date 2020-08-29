@@ -1,0 +1,36 @@
+{% capture codeCredits %}
+    Ce site web a été créé avec le framework <a href="https://getbootstrap.com/">Bootstrap</a>,
+    ainsi que <a href="https://jquery.com/">jQuery</a>.
+    <a href="https://www.mathjax.org/">MathJax</a>,
+    <a href="https://www.geogebra.org">GeoGebra</a>,
+    <a href="https://github.hubspot.com/pace/">PACE</a>,
+    <a href="https://lunrjs.com/">Lunr.js</a>,
+    <a href="https://www.bryanbraun.com/anchorjs/">AnchorJS</a>,
+    <a href="https://tscanlin.github.io/tocbot/">Tocbot</a>,
+    et <a href="https://github.com/zeusdeux/isInViewport">isInViewport.js</a> sont utilisés.
+{% endcapture %}
+
+{% include _includes/components/cards/small_card.html image="/assets/img/about/code.svg" content=codeCredits size=3 %}
+
+{% capture frameworkCredits %}
+    Le site utilise le moteur <a href="https://jekyllrb.com/">Jekyll</a> pour générer ses contenus et
+    est hébergé sur <a href="https://pages.github.com/">Github Pages</a>.
+{% endcapture %}
+
+{% include _includes/components/cards/small_card.html image="/assets/img/about/flask.svg" content=frameworkCredits size=3 %}
+
+{% capture imagesCredits %}
+    Les icônes de la <a href="https://www.iconfinder.com/iconsets/small-n-flat">page de présentation</a>,
+    du <a href="https://www.flaticon.com/packs/education-1-11">carousel</a>,
+    des <a href="https://www.flaticon.com/packs/greek-symbols">niveaux</a>,
+    des <a href="https://www.flaticon.com/packs/logos-and-brands">magasins d'applications</a>,
+    de <a href="https://www.flaticon.com/free-icon/pdf_136522">fichier PDF</a>,
+    d'<a href="https://www.flaticon.com/free-icon/printer_201579">imprimante</a>,
+    de <a href="https://www.flaticon.com/free-icon/pdf_136522">partage</a>,
+    d'<a href="https://www.flaticon.com/free-icon/pdf_136522">avertissement</a>,
+    de <a href="https://www.flaticon.com/free-icon/magnifying-glass_3003596">recherche</a>,
+    et <a href="https://www.iconfinder.com/iconsets/tutor-icon-set">Bacomathiques</a> proviennent de IconFinder et de FlatIcon.
+    <br>Les autres icônes proviennent de <a href="https://fontawesome.io/">FontAwesome</a>.
+{% endcapture %}
+
+{% include _includes/components/cards/small_card.html image="/assets/img/about/pencil.svg" content=imagesCredits size=3 %}

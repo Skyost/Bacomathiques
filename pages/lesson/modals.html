@@ -1,0 +1,60 @@
+<div id="modal-share" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-share-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="modal-share-title" class="modal-title">Partager le cours</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Vous pouvez partager cette page sur les réseaux sociaux :</p>
+                <div class="list-group rounded-0 mb-4">
+                    <a class="list-group-item list-group-item-action" href="https://twitter.com/intent/tweet?text=Retrouvez%20le%20cours%20intitul%C3%A9%20%22{{ lesson.title | uri_escape }}%22%20sur%20{{ site.title }}%20!&url={{ site.url }}{{ page.url }}" target="_blank">
+                        <i class="fa fa-twitter fa-prefix" aria-hidden="true"></i> Partager sur Twitter
+                    </a>
+                    <a class="list-group-item list-group-item-action" href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}&t=" target="_blank">
+                        <i class="fa fa-facebook fa-prefix" aria-hidden="true"></i> Partager sur Facebook
+                    </a>
+                    <a class="list-group-item list-group-item-action" href="https://www.tumblr.com/share?v=3&u={{ site.url }}{{ page.url }}&t=&s=" target="_blank">
+                        <i class="fa fa-tumblr fa-prefix" aria-hidden="true"></i> Partager sur Tumblr
+                    </a>
+                    <a class="list-group-item list-group-item-action" href="mailto:?subject=&body=Retrouvez%20le%20cours%20intitul%C3%A9%20%22{{ lesson.title | uri_escape }}%22%20sur%20{{ site.title }}%20!%20{{ site.url }}{{ page.url }}" target="_blank">
+                        <i class="fa fa-envelope fa-prefix" aria-hidden="true"></i> Partager par Email
+                    </a>
+                </div>
+
+                <p>Sinon, vous pouvez directement copier le lien vers ce cours dans votre presse-papier :</p>
+                <input class="form-control w-100 rounded-0" type="text" value="{{ site.url }}{{ page.url }}" readonly/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-caveat" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-caveat-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="modal-caveat-title" class="modal-title">Signaler une erreur</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Pour apporter une correction à un cours, vous avez deux solutions :</p>
+                <ul>
+                    <li>Vous pouvez <a href="/a-propos/#contact">me contacter</a> en m'indiquant où se trouve la faute ou l'amélioration que vous souhaitez apporter.</li>
+                    <li>
+                        Vous pouvez modifier directement le
+                        {% if site.github.repository_url %}
+                        <a href="{{ site.github.repository_url }}/edit/master/{{ page.path }}">code source</a>
+                        {% else %}
+                        code source
+                        {% endif %}
+                        de la page.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

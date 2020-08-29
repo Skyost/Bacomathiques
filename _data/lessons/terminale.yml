@@ -10,37 +10,32 @@
   excerpt: "En mathématiques, une suite est une famille d'éléments – appelés ses <q>termes</q> – indexée par les entiers naturels. Ce cours va donc vous apprendre comment définir une suite et l'étudier. On y verra notamment l'étude du sens de variation, des limites, et plus !<br>Le raisonnement par récurrence est également au programme de ce chapitre."
   difficulty: 4
   specialty: false
-  annals:
-    - "2018/liban/specifique"
-    - "2018/polynesie/specifique"
-    - "2017/antilles-guyane/specifique"
-    - "2017/pondichery/specifique"
-    - "2016/asie/specifique"
-    - "2016/liban/specifique"
-    - "2016/metropole/specifique"
-    - "2015/pondichery/specifique"
 
-"continuite_derivabilite":
-  id: "continuite_derivabilite"
-  level: 'terminale'
-  path: "/lessons/terminale/continuite_derivabilite.html"
-  summary: "/summaries/terminale/continuite_derivabilite.html"
-  url: "continuite-derivabilite"
-  title: "Chapitre II – Continuité et dérivabilité"
+"limites_fonctions":
+  id: "limites_fonctions"
+  level: "terminale"
+  path: "/lessons/terminale/limites_fonctions.html"
+  summary: "/summaries/terminale/limites_fonctions.html"
+  url: "limites-fonctions"
+  title: "Chapitre II – Limites de fonctions"
   chapter: 2
+  caption: "L'étude de l'infini peut être utilisé dans le domaine spacial."
+  excerpt: "En mathématiques, la limite d'une suite ou d'une fonction en un point est, le cas échéant, la valeur particulière dont elle <q>s'approche</q> lorsque la variable ou l'indice <q>s'approche</q> du point en question. Cette valeur et ce point peuvent être un réel ou infini.<br>Nous verrons ainsi dans ce cours toutes les définitions nécessaires afin de travailler avec les limites (ainsi que les formules de limite de sommes, de produits, de quotients et de composées de fonctions)."
+  difficulty: 5
+  specialty: false
+
+"continuite_derivabilite_convexite":
+  id: "continuite_derivabilite_convexite"
+  level: 'terminale'
+  path: "/lessons/terminale/continuite_derivabilite_convexite.html"
+  summary: "/summaries/terminale/continuite_derivabilite_convexite.html"
+  url: "continuite-derivabilite-convexite"
+  title: "Chapitre III – Continuité, dérivabilité et convexité"
+  chapter: 3
   caption: "Ce chapitre a beaucoup d'applications, notamment dans l'étude de fonctions et dans la physique."
   excerpt: "Il est possible de définir la continuité d'une fonction comme le fait de pouvoir tracer sa courbe représentative <q>sans lever le crayon</q>. La notion de dérivabilité, elle est plus complexe et sera élaborée dans ce chapitre (on parlera notamment de la fonction partie entière, du théorème des valeurs intermédiaires, etc...).<br>Ce cours contient également les différentes tables de dérivation."
   difficulty: 4
   specialty: false
-  annals:
-    - "2018/liban/specifique"
-    - "2018/polynesie/specifique"
-    - "2017/antilles-guyane/specifique"
-    - "2017/nouvelle-caledonie/specifique"
-    - "2016/antilles-guyane/specifique"
-    - "2016/polynesie/specifique"
-    - "2015/polynesie/specifique"
-    - "2015/rochambeau/specifique"
 
 "fonctions_trigonometriques":
   id: "fonctions_trigonometriques"
@@ -48,43 +43,12 @@
   path: "/lessons/terminale/fonctions_trigonometriques.html"
   summary: "/summaries/terminale/fonctions_trigonometriques.html"
   url: "fonctions-trigonometriques"
-  title: "Chapitre III – Les fonctions trigonométriques"
-  chapter: 3
+  title: "Chapitre IV – Les fonctions trigonométriques"
+  chapter: 4
   caption: "On retrouve les fonctions trigonométriques dans le son et l'acoustique."
   excerpt: "La trigonométrie est une branche des mathématiques qui traite des relations entre distances et angles dans les triangles et des fonctions trigonométriques telles que sinus, cosinus et tangente. Ce cours permettra d'étudier ces fonctions et d'en visualiser des propriétés (périodicité, parité, valeurs remarquables, et plus encore)."
   difficulty: 3
   specialty: false
-  annals:
-    - "2018/polynesie/specifique"
-    - "2017/centres-etrangers/specifique"
-    - "2017/metropole/specifique"
-    - "2016/centres-etrangers/specifique"
-    - "2016/metropole/specifique"
-    - "2016/pondichery/specifique"
-    - "2015/nouvelle-caledonie/specifique"
-    - "2015/rochambeau/specifique"
-
-"fonction_exponentielle":
-  id: "fonction_exponentielle"
-  level: 'terminale'
-  path: "/lessons/terminale/fonction_exponentielle.html"
-  summary: "/summaries/terminale/fonction_exponentielle.html"
-  url: "fonction-exponentielle"
-  title: "Chapitre IV – La fonction exponentielle"
-  chapter: 4
-  caption: "La fonction exponentielle permet de résoudre certaines équations différentielles."
-  excerpt: "La fonction exponentielle est la fonction qui est sa propre dérivée et qui prend la valeur 1 en 0. Elle est utilisée pour modéliser des phénomènes dans lesquels une différence constante sur la variable conduit à un rapport constant sur les images.<br>Dans ce chapitre, on va étudier les propriétés de cette fonction (relations algébriques, dérivées, variations, signe, ...)."
-  difficulty: 3
-  specialty: false
-  annals:
-    - "2018/asie/specifique"
-    - "2018/nouvelle-caledonie/specifique"
-    - "2017/asie/specifique"
-    - "2017/nouvelle-caledonie/specifique"
-    - "2016/antilles-guyane/specifique"
-    - "2016/liban/specifique"
-    - "2016/polynesie/specifique"
-    - "2015/liban/specifique"
 
 "fonction_logarithme":
   id: "fonction_logarithme"
@@ -98,81 +62,32 @@
   excerpt: "Une fonction logarithme est une fonction possédant la propriété de pouvoir transformer des produits en sommes. L'utilisation de telles fonctions permet de faciliter les calculs comprenant de nombreuses multiplications, divisions et élévations à des puissances rationnelles. Ici, nous étudierons la fonction logarithme népérien : relations algébriques, signe, dérivée, variations, représentation et plus encore !"
   difficulty: 4
   specialty: false
-  annals:
-    - "2018/centres-etrangers/specifique"
-    - "2018/rochambeau/specifique"
-    - "2017/antilles-guyane/specifique"
-    - "2017/nouvelle-caledonie/specifique"
-    - "2016/liban/specifique"
-    - "2016/metropole/specifique"
-    - "2016/rochambeau/specifique"
-    - "2015/antilles-guyane/specifique"
 
-"primitives":
-  id: "primitives"
+"primitives_equations_differentielles":
+  id: "primitives_equations_differentielles"
   level: 'terminale'
-  path: "/lessons/terminale/primitives.html"
-  summary: "/summaries/terminale/primitives.html"
-  url: "primitives"
-  title: "Chapitre VI – Les primitives de fonctions continues"
+  path: "/lessons/terminale/primitives_equations_differentielles.html"
+  summary: "/summaries/terminale/primitives_equations_differentielles.html"
+  url: "primitives-equations-differentielles"
+  title: "Chapitre VI – Primitives et équations différentielles"
   chapter: 6
   caption: "Les primitives sont notamment utilisées dans dans le cadre de la dynamique Newtonienne."
   excerpt: "Une primitive d'une fonction d'une variable réelle définie sur un intervalle est une autre fonction, définie et dérivable sur cet intervalle, et dont la dérivée et notre fonction de départ.<br>Ce cours ne contient essentiellement (en plus de la définition d'une primitive) que les tableaux à connaître pour pouvoir trouver les primitives des fonctions usuelles."
-  difficulty: 2
+  difficulty: 3
   specialty: false
-  annals:
-    - "2018/asie/specifique"
-    - "2018/centres-etrangers/specifique"
-    - "2017/asie/specifique"
-    - "2017/metropole/specifique"
-    - "2016/antilles-guyane/specifique"
-    - "2016/centres-etrangers/specifique"
-    - "2016/liban/specifique"
-    - "2015/antilles-guyane/specifique"
 
-"integrales":
-  id: "integrales"
+"calcul_integral":
+  id: "calcul_integral"
   level: 'terminale'
-  path: "/lessons/terminale/integrales.html"
-  summary: "/summaries/terminale/integrales.html"
-  url: "integrales"
-  title: "Chapitre VII – Les intégrales"
+  path: "/lessons/terminale/calcul_integral.html"
+  summary: "/summaries/terminale/calcul_integral.html"
+  url: "calcul-integral"
+  title: "Chapitre VII – Calcul intégral"
   chapter: 7
   caption: "Les intégrales sont utilisées dans beaucoup de domaines, particulièrement dans le calcul d'aires et même de volumes."
   excerpt: "L'intégration est une opération très utilisée en mathématiques et permet notamment de calculer l'aire sous la courbe d'une fonction sur un intervalle donné. Ici nous étudierons principalement les méthodes de calcul mais également les propriétés remarquables des intégrales.<br>Attention cependant; il est fortement recommandé d'avoir une bonne connaissance du Chapitre VI sur les primitives de fonctions continues."
   difficulty: 4
   specialty: false
-  annals:
-    - "2018/antilles-guyane/specifique"
-    - "2018/rochambeau/specifique"
-    - "2017/antilles-guyane/specifique"
-    - "2017/pondichery/specifique"
-    - "2016/antilles-guyane/specifique"
-    - "2016/asie/specifique"
-    - "2016/centres-etrangers/specifique"
-    - "2016/pondichery/specifique"
-
-"nombres_complexes":
-  id: "nombres_complexes"
-  level: 'terminale'
-  path: "/lessons/terminale/nombres_complexes.html"
-  summary: "/summaries/terminale/nombres_complexes.html"
-  url: "nombres-complexes"
-  title: "Chapitre VIII – Les nombres complexes"
-  chapter: 8
-  caption: "Ce chapitre un peu abstrait possède notamment des applications en électronique."
-  excerpt: "L'ensemble des nombres complexes est créé comme extension de l'ensemble des nombres réels, contenant en particulier un nombre dit <q>imaginaire</q> tel quel, mis au carré, ce nombre donne -1. Dans ce cours un peu abstrait, nous étudierons les nombres complexes : nous découvrirons comment les représenter, quelles-en sont les propriétés et bien plus encore !"
-  difficulty: 5
-  specialty: false
-  annals:
-    - "2018/metropole/specifique"
-    - "2018/pondichery/specifique"
-    - "2017/antilles-guyane/specifique"
-    - "2017/pondichery/specifique"
-    - "2016/nouvelle-caledonie/specifique"
-    - "2016/polynesie/specifique"
-    - "2016/rochambeau/specifique"
-    - "2015/metropole/specifique"
 
 "geometrie_espace":
   id: "geometrie_espace"
@@ -180,65 +95,51 @@
   path: "/lessons/terminale/geometrie_espace.html"
   summary: "/summaries/terminale/geometrie_espace.html"
   url: "geometrie-espace"
-  title: "Chapitre IX – Géométrie dans l'espace"
-  chapter: 9
+  title: "Chapitre VIII – Géométrie dans l'espace"
+  chapter: 8
   caption: "La géométrie dans l'espace s'applique dans beaucoup de domaines : la modélisation 3D par exemple."
   excerpt: "La géométrie dans l'espace est une forme de géométrie dans laquelle les objets peuvent notamment être des solides. Ce chapitre va vous servir à mieux comprendre différentes notions comme la coplanarité, le produit scalaire dans l'espace mais aussi les représentations paramétriques ou encore les intersections et orthogonalités."
   difficulty: 2
   specialty: false
-  annals:
-    - "2018/asie/specifique"
-    - "2018/pondichery/specifique"
-    - "2017/polynesie/specifique"
-    - "2017/pondichery/specifique"
-    - "2016/antilles-guyane/specifique"
-    - "2016/liban/specifique"
-    - "2016/metropole/specifique"
-    - "2015/nouvelle-caledonie/specifique"
 
-"probabilites":
-  id: "probabilites"
+"denombrement":
+  id: "denombrement"
   level: 'terminale'
-  path: "/lessons/terminale/probabilites.html"
-  summary: "/summaries/terminale/probabilites.html"
-  url: "probabilites"
-  title: "Chapitre X – Lois de probabilité"
-  chapter: 10
-  caption: "Les probabilités peuvent servir à comprendre les jeux de hasard; par exemple : pourquoi avons-nous plus de chances de perdre que de gagner ?"
-  excerpt: "La théorie des probabilités est l'étude des phénomènes caractérisés par le hasard et l'incertitude. Elle forme avec la statistique les deux sciences du hasard qui sont partie intégrante des mathématiques.<br>Dans ce chapitre, nous étudierons certaines lois de probabilités discrètes (conditionnelles, variables aléatoires, loi binomiale, ...) mais également quelques lois de probabilités continues (loi uniforme, exponentielle, normale, ...)."
+  path: "/lessons/terminale/denombrement.html"
+  summary: "/summaries/terminale/denombrement.html"
+  url: "denombrement"
+  title: "Chapitre IX – Dénombrement"
+  chapter: 9
+  caption: "On peut utiliser le dénombrement pour connaître le nombre de combinaisons possibles dans un jeu de cartes."
+  excerpt: "En mathématiques, le dénombrement est la détermination du nombre d'éléments d'un ensemble.<br>Nous allons voir, dans ce chapitre, toutes les formules utiles au dénombrement (combinaisons, permutations, nombre de sous-ensembles, principe additif et multiplicatif, etc...). Nous ferons également quelques rappels concernant la théorie des ensembles."
   difficulty: 2
   specialty: false
-  annals:
-    - "2018/liban/specifique"
-    - "2018/nouvelle-caledonie/specifique"
-    - "2017/nouvelle-caledonie/specifique"
-    - "2017/pondichery/specifique"
-    - "2016/metropole/specifique"
-    - "2016/pondichery/specifique"
-    - "2015/asie/specifique"
-    - "2015/polynesie/specifique"
 
-"echantillonnage_estimation":
-  id: "echantillonnage_estimation"
+"lois_bernoulli_binomiale":
+  id: "lois_bernoulli_binomiale"
   level: 'terminale'
-  path: "/lessons/terminale/echantillonnage_estimation.html"
-  summary: "/summaries/terminale/echantillonnage_estimation.html"
-  url: "echantillonnage-estimation"
-  title: "Chapitre XI – Échantillonnage et estimation"
-  chapter: 11
-  caption: "Les notions de ce chapitre sont utilisées dans l'industrie mais aussi plus généralement dans la collecte de données."
-  excerpt: "L'echantillonnage est le procédé qui concède en la création d'échantillons; qui permettent par la suite notamment d'étudier les propriétés de populations. Ici nous verrons ce que cela représente, qu'est-ce-qu'un intervalle de confiance, un intervalle de fluctuation, et plus !"
-  difficulty: 1
+  path: "/lessons/terminale/lois_bernoulli_binomiale.html"
+  summary: "/summaries/terminale/lois_bernoulli_binomiale.html"
+  url: "lois-bernoulli-binomiale"
+  title: "Chapitre X – Lois de Bernoulli et binomiale"
+  chapter: 10
+  caption: "Ces lois jouent un rôle dans l'étude des décisions binaires."
+  excerpt: "La loi binomiale (qui est en quelque sorte, une généralisation de la loi de Bernoulli) aide à la modélisation de décisions binaires.<br>Ce chapitre va tout d'abord effectuer quelques rappels sur les variables aléatoires, puis va donner des propriétés que possèdent les loi de Bernoulli et binomiale (espérance, variance, ecart-type, etc...)."
+  difficulty: 4
   specialty: false
-  annals:
-    - "2018/polynesie/specifique"
-    - "2018/pondichery/specifique"
-    - "2017/metropole/specifique"
-    - "2017/nouvelle-caledonie/specifique"
-    - "2016/antilles-guyane/specifique"
-    - "2016/asie/specifique"
-    - "2016/centres-etrangers/specifique"
-    - "2015/centres-etrangers/specifique"
+
+"variables_aleatoires_concentration_grands_nombres":
+  id: "variables_aleatoires_concentration_grands_nombres"
+  level: 'terminale'
+  path: "/lessons/terminale/variables_aleatoires_concentration_grands_nombres.html"
+  summary: "/summaries/terminale/variables_aleatoires_concentration_grands_nombres.html"
+  url: "variables-aleatoires-concentration-grands-nombres"
+  title: "Chapitre XI –  Variables aléatoires, concentration et loi des grands nombres"
+  chapter: 11
+  caption: "Les variables aléatoires servent à décrire toutes sortes de phénomènes probabilistes."
+  excerpt: "En mathématiques, la loi des grands nombres permet d’interpréter la probabilité comme une fréquence de réalisation, justifiant ainsi le principe des sondages, et présente l’espérance comme une moyenne.<br>Nous commencerons ce chapitre par quelques rappels sur les variables aléatoires. Nous approfondirons cette notions en sommant plusieurs variables aléatoires, puis nous verrons certains résultats très importants en probabilités, comme l'inégalité de Bienaymé-Tchebychev, l'inégalité de concentration et la loi des grands nombres."
+  difficulty: 5
+  specialty: false
 
 "algorithmique":
   id: "algorithmique"
@@ -252,15 +153,19 @@
   excerpt: "L'algorithmique est l'étude et la production de règles et techniques qui sont impliquées dans la définition et la conception d'algorithmes, c'est-à-dire de processus systématiques de résolution d'un problème permettant de décrire précisément des étapes pour résoudre un problème algorithmique.<br>Ce cours qui n'est pas au programme va quand même vous servir sur les exercices contenant des algorithmes au baccalauréat."
   difficulty: 5
   specialty: false
-  annals:
-    - "2018/metropole/specifique"
-    - "2018/pondichery/specifique"
-    - "2017/asie/specifique"
-    - "2017/nouvelle-caledonie/specifique"
-    - "2016/liban/specifique"
-    - "2016/metropole/specifique"
-    - "2016/polynesie/specifique"
-    - "2015/liban/specifique"
+
+"nombres_complexes":
+  id: "nombres_complexes"
+  level: 'terminale'
+  path: "/lessons/terminale/nombres_complexes.html"
+  summary: "/summaries/terminale/nombres_complexes.html"
+  url: "nombres-complexes"
+  title: "Chapitre XIII – Les nombres complexes (Maths expertes)"
+  chapter: 13
+  caption: "Ce chapitre un peu abstrait possède notamment des applications en électronique."
+  excerpt: "L'ensemble des nombres complexes est créé comme extension de l'ensemble des nombres réels, contenant en particulier un nombre dit <q>imaginaire</q> tel quel, mis au carré, ce nombre donne -1. Dans ce cours un peu abstrait, nous étudierons les nombres complexes : nous découvrirons comment les représenter, quelles-en sont les propriétés et bien plus encore !"
+  difficulty: 5
+  specialty: true
 
 "arithmetique":
   id: "arithmetique"
@@ -268,40 +173,35 @@
   path: "/lessons/terminale/arithmetique.html"
   summary: "/summaries/terminale/arithmetique.html"
   url: "arithmetique"
-  title: "Chapitre XIII – Arithmétique (Spécialité)"
-  chapter: 13
+  title: "Chapitre XIV – Arithmétique (Maths expertes)"
+  chapter: 14
   caption: "L'arithmétique sert beaucoup en cryptographie (avec les cartes bancaires, le web mais également dans le domaine militaire)."
   excerpt: "L'arithmétique est une branche des mathématiques qui étudie la science des nombres. Ici, nous aborderons les notions de divisibilité et de congruence. Nous verrons comment résoudre des problèmes contenant des congruences et nous étudierons certains théorèmes fondamentaux de l'arithmétique (théorème de Bézout et de Gauss notamment)."
   difficulty: 5
   specialty: true
-  annals:
-    - "2018/centres-etrangers/specialite"
-    - "2018/metropole/specialite"
-    - "2017/polynesie/specialite"
-    - "2017/pondichery/specialite"
-    - "2017/rochambeau/specialite"
-    - "2016/metropole/specialite"
-    - "2016/polynesie/specialite"
-    - "2015/pondichery/specialite"
 
-"matrices":
-  id: "matrices"
+"matrices_graphes":
+  id: "matrices_graphes"
   level: 'terminale'
-  path: "/lessons/terminale/matrices.html"
-  summary: "/summaries/terminale/matrices.html"
-  url: "matrices"
-  title: "Chapitre XIV – Les matrices (Spécialité)"
-  chapter: 14
+  path: "/lessons/terminale/matrices_graphes.html"
+  summary: "/summaries/terminale/matrices_graphes.html"
+  url: "matrices-graphes"
+  title: "Chapitre XIV – Matrices et graphes (Maths expertes)"
+  chapter: 15
   caption: "Les matrices sont utilisées dans le domaine de la photographie et du traitement d'images."
   excerpt: "En mathématiques, les matrices sont des tableaux de nombres qui servent à interpréter en termes calculatoires et donc opérationnels les résultats théoriques de l'algèbre linéaire et même de l'algèbre bilinéaire.<br>Dans ce chapitre nous étudierons les propriétés des matrices et nous nous en servirons notamment dans l'étude de marches aléatoires."
-  difficulty: 5
+  difficulty: 4
   specialty: true
-  annals:
-    - "2018/asie/specialite"
-    - "2018/rochambeau/specialite"
-    - "2017/centres-etrangers/specialite"
-    - "2017/pondichery/specialite"
-    - "2017/rochambeau/specialite"
-    - "2016/antilles-guyane/specialite"
-    - "2016/asie/specialite"
-    - "2015/nouvelle-caledonie/specialite"
+
+"chaines_markov":
+  id: "chaines_markov"
+  level: 'terminale'
+  path: "/lessons/terminale/chaines_markov.html"
+  summary: "/summaries/terminale/chaines_markov.html"
+  url: "chaines-markov"
+  title: "Chapitre XIV – Chaînes de Markov (Maths expertes)"
+  chapter: 16
+  caption: "On utilise les chaînes de Markov pour étudier et modéliser des réseaux."
+  excerpt: "Ce chapitre et son contenu sont en cours de rédaction. Veuillez revenir aux alentours du 10 septembre !"
+  difficulty: 4
+  specialty: true

@@ -1,0 +1,113 @@
+---
+layout: default
+lesson: "denombrement"
+level: "terminale"
+summary: true
+permalink: "/cours/terminale/denombrement/resume/"
+---
+
+<section>
+    <h2>Définitions</h2>
+    <section>
+        <h3>Ensemble d'éléments</h3>
+        <p>Cette partie donne quelques rappels sur la notion d'ensemble en mathématiques.</p>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Un <strong>ensemble</strong> $E$ désigne une collection finie ou infinie d'objets distincts qu'on appelle ses <strong>éléments</strong>.</p>
+            <p>On note $x \in E$ si l'objet $x$ appartient à $E$. Dans le cas contraire, on note $x \notin E$.</p>
+        </div>
+        <p>À noter que l'ordre des objets n'a aucune importance lorsque l'on compare deux ensembles.</p>
+        <div class="formula" data-api-v2-title="Réunion et intersection">
+            <p>Soient $E$ et $F$ deux ensembles.</p>
+            <ul>
+                <li>Leur <strong>réunion</strong> notée $E \, \cup \, F$ est l'ensemble constitué des éléments de $E$ et des éléments de $F$.</li>
+                <li>Leur <strong>intersection</strong> notée $E \, \cap \, F$ est l'ensemble constitué des éléments communs à $E$ et $F$.</li>
+                <li>Si $E \, \cap \, F = \emptyset$, on dit que $E$ et $F$ sont <strong>disjoints</strong>.</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Sous-ensemble</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soient $E$ et $F$ deux ensembles. On dit que $F$ est un <strong>sous-ensemble</strong> (ou une partie) de $E$ si tout élément de $F$ est un élément de $E$.</p>
+            <p>On note ceci par $F \subset E$ (qui signifie <q>$F$ est inclus dans $E$</q>).</p>
+        </div>
+    </section>
+    <section>
+        <h3>Liste d'éléments</h3>
+        <p>Nous allons désormais voir un type de collection similaire aux ensembles, mais qui prend en compte l'ordre des éléments.</p>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Un <strong>$p$-uplet</strong> (ou une $p$-liste) d'un ensemble $E$ désigne une collection ordonnée de $p$ éléments de $E$.</p>
+        </div>
+        <p>Remarquons que l'on ne demande pas que les éléments d'un $p$-plet soient tous distincts.</p>
+    </section>
+</section>
+<section>
+    <h2>Combinaisons</h2>
+    <section>
+        <h3>Factorielle</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soit $n$ un nombre entier. On appelle factorielle de $n$ le nombre entier $n! = 1 \times 2 \times \text{ ... } \times n$.</p>
+        </div>
+        <p>Il est très courant de rencontrer des calculs avec des factorielles en mathématiques, leur utilisation ne se limitant pas au dénombrement.</p>
+    </section>
+    <section>
+        <h3>Qu'est-ce-qu'une combinaison ?</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Une <strong>combinaison</strong> de $k$ éléments parmi $n$ éléments, notée $\displaystyle{\binom{n}{k}}$, est le nombre de sous-ensembles de $k$ éléments que possède un ensemble de $n$ éléments.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Calcul d'une combinaison">
+            <p>Soient $n$ et $k$ deux entiers. Alors $\displaystyle{\binom{n}{k} = \frac{n!}{(n-k)!k!}}$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Formules</h3>
+        <div class="formula" data-api-v2-title="Formules">
+            <p>Soient $n$ et $k$ deux entiers.</p>
+            <ul>
+                <li>$\displaystyle{\binom{n}{0} = \binom{n}{n} = 1}$</li>
+                <li>$\displaystyle{\binom{n}{1} = \binom{n}{n-1} = n}$</li>
+                <li>$\displaystyle{\binom{n}{k} = \binom{n}{n-k}}$</li>
+            </ul>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>Dénombrement</h2>
+    <section>
+        <h3>Principe additif</h3>
+        <div class="formula" data-api-v2-title="Principe additif">
+            <p>Soient $E$ et $F$ deux ensembles disjoints contenant respectivement $n$ et $m$ éléments. Alors $E \, \cup \, F$ contient $n + m$ éléments.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Principe multiplicatif</h3>
+        <p>Commençons cette sous-section par une définition.</p>
+        <div class="formula" data-api-v2-title="Produit cartésien">
+            <p>Soient $E$ et $F$ deux ensembles. Leur produit cartésien $E \times F$ est l'ensemble des couples $(e; f)$ où $e \in E$ et $f \in F$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Principe multiplicatif">
+            <p>Soient $E$ et $F$ deux ensembles contenant respectivement $n$ et $m$ éléments. Alors $E \times F$ contient $n \times m$ éléments.</p>
+        </div>
+        <p>Ce principe (tout comme le principe additif vu précédemment) sont notamment utilisés en probabilités.</p>
+    </section>
+    <section>
+        <h3>Formules de dénombrement</h3>
+        <div class="formula" data-api-v2-title="Permutations">
+            <p>Soit $E$ un ensemble de taille $n$. On appelle <strong>permutation</strong> de $E$ tout $n$-uplet d'éléments distincts de $E$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Formules">
+            <p>Soit $E$ un ensemble possédant $n$ éléments.</p>
+            <ul>
+                <li>Le nombre de $p$-uplets d'éléments de $E$ est égal à $n^p$.</li>
+                <li>Le nombre de $p$-uplets d'éléments distincts de $E$ est égal à $\frac{n!}{(n-p)!}$.</li>
+                <li>Le nombre de permutations de $E$ est égal à $n!$.</li>
+                <li>Le nombre de sous-ensembles de $E$ est égal à $2^n$.</li>
+                <li>Le nombre de sous-ensembles de $k$ éléments que possède $E$ est égal à $\displaystyle{\binom{n}{k}}$ (pour rappel).</li>
+            </ul>
+        </div>
+        <p>À noter également une dernière petite formule qu'il peut-être utile de savoir démontrer à l'aide des formules ci-dessus.</p>
+        <div class="formula">
+            <p>$\displaystyle{\sum_{k = 0}^n \binom{n}{k} = 2^n}$ pour tout $n \in \mathbb{N}$.</p>
+        </div>
+    </section>
+</section>

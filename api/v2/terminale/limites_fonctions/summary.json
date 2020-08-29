@@ -1,0 +1,5 @@
+---
+layout: api_file
+permalink: "/api/v2/terminale/limites-fonctions/summary/"
+---
+{% include _includes/api/v2/lessons/summary/summary.json lesson='limites_fonctions' level='terminale' %}

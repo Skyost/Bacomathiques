@@ -1,8 +1,27 @@
-/* MAIN COLORS */
-
 $main-color: #3498db;
 
-/* SCROLLBARS */
+$page-text: #222222;
+$blue-background-text: #ececec;
+
+$card-hover: #f5f5f5;
+
+$green-button: #43baa8;
+
+$home-review: #f1c40f;
+
+$lesson-difficulty-1: #27ae60;
+$lesson-difficulty-2: #16a085;
+$lesson-difficulty-3: #f1c40f;
+$lesson-difficulty-4: #d35400;
+$lesson-difficulty-5: #912c21;
+
+$lesson-h2: #23618a;
+$lesson-h3: $main-color;
+
+$lesson-anchor: #95a5a6;
+$lesson-anchor-hover: #7f8c8d;
+
+$header-carousel-dots: #ececec;
 
 $scrollbar-thumb-background: #999999;
 $scrollbar-thumb-background-hover: #777777;
@@ -14,90 +33,3 @@ $scrollbar-track-background-active: transparent;
 $scrollbar-track-border: white;
 
 $scrollbar-corner-background: transparent;
-
-/* READING COLORS */
-
-/** Text : **/
-
-$default-text-color: #222222;
-
-/** Cards : **/
-
-$cards-link-color: #7f8c8d;
-
-/** Navbar : **/
-
-$nav-link-color: #8c8c8c;
-
-/** Selection : **/
-
-$default-selection-color: #bfdfff;
-
-/* LESSON COLORS */
-
-/** Titles : **/
-
-$lesson-h1-color: #912c21;
-$lesson-h2-color: #1c567d;
-$lesson-h3-color: #2980b9;
-
-$lesson-specialty-color: #29cbb1;
-
-/** Difficulties : **/
-
-$lesson-difficulty-1: #27ae60;
-$lesson-difficulty-2: #16a085;
-$lesson-difficulty-3: #f1c40f;
-$lesson-difficulty-4: #d35400;
-$lesson-difficulty-5: #912c21;
-
-/** Social : **/
-
-$social-twitter-color: #32ccfe;
-$social-facebook-color: #3c599f;
-$social-googleplus-color: #cf3d2e;
-$social-tumblr-color: #314e6c;
-$social-mail-color: #504e54;
-
-/** Formulas, tips, annals and book : **/
-
-$formula-border-color: $main-color;
-$formula-background-color: #ebf3fb;
-
-$tip-border-color: #26a65b;
-$tip-background-color: #dcf3d8;
-
-$annals-border-color: #e74c3c;
-$annals-background-color: #fceae9;
-
-$book-border-color: #9b59b6;
-$book-background-color: #f6e2ff;
-
-$proof-border-color: #f1c40f;
-$proof-background-color: #fff8de;
-
-/* PRETTY LAYOUT COLORS */
-
-/** Global colors : **/
-
-$pretty-selection-color: #aef2e7;
-$pretty-footer-color: rgba(255, 255, 255, 0.8);
-$pretty-footer-h3-color: rgba(255, 255, 255, 0.9);
-$pretty-footer-links-color: #4cdbc4;
-$pretty-footer-heart-color: #e74c3c;
-$pretty-footer-links-background-color: #0a1922;
-
-$pretty-header-paragraph-color: rgba(255, 255, 255, 0.7);
-
-$pretty-text-color: rgba(0, 0, 0, 0.7);
-$pretty-section-2n-color: #f2f2f2;
-$pretty-col-fa-color: rgba(0, 0, 0, 0.2);
-
-$pretty-h3-line-on-sides-color: #dddddd;
-
-/** Index colors : **/
-
-$review-background-color: $pretty-section-2n-color;
-$review-border-color: rgba(0, 0, 0, 0.2);
-$review-quote-icon-color: rgba(0, 0, 0, 0.1);
-$review-stars-color: #f1c40f;

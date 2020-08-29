@@ -1,106 +1,72 @@
 ---
-layout: "compress"
+layout: default
+lesson: "fonction_exponentielle"
+level: "premiere"
+summary: true
 permalink: "/cours/premiere/fonction-exponentielle/resume/"
 ---
 
 <section>
-
     <h2>Le nombre $e$</h2>
-
-    <p>Le <strong>nombre d'Euler</strong> $e$ (également appelé constante de Neper) est une constante mathématique dont une valeur approchée est :</p>
-
-    <p class="formula">$e \approx 2,71828$</p>
-
-    <p>Cependant, une définition plus exacte de $e$ existe :</p>
-
-    <div class="formula">
-        <p>On définit la suite $(e_n)_{n \in \mathbb{N}}$ pour tout $n \in \mathbb{N}$ par $\displaystyle{e_n = \left(1 + \frac{1}{n}\right)^n}$.</p>
-        <p>Alors la limite de la suite $(e_n)_{n \in \mathbb{N}}$ en $+\infty$ est $e$.</p>
+    <p>Le <strong>nombre d'Euler</strong> $e$ (également appelé constante de Neper) est une constante mathématique irrationnelle qui possède de nombreuses propriétés.</p>
+    <div class="formula" data-api-v2-title="Valeur approchée">
+        <p>Une valeur approchée de $e$ est $\approx 2,71828$.</p>
     </div>
-
 </section>
-
 <section>
-
     <h2>La fonction exponentielle</h2>
-
     <section>
-
-        <p>
-            La fonction exponentielle notée $e^x$ (ou parfois $\exp(x)$) pour tout $x$ réel est l'unique fonction $f$
-            définie sur $\mathbb{R}$ remplissant les critères suivants :
-        </p>
-
-        <ul class="formula">
-            <li>$f$ est dérivable sur $\mathbb{R}$ et $f'$ = $f$</li>
-            <li>$f \gt 0$ sur $\mathbb{R}$</li>
-            <li>$f(0) = 1$</li>
-        </ul>
-
-    </section>
-
-    <section>
-
-        <div class="formula">
-            <p>
-                Comme la fonction exponentielle est composée d'un réel ($e \approx 2,718 $) et d'un exposant réel ($x$), <strong>les opérations sur les exposants</strong> sont disponibles,
-                comme par exemple pour $x, y \in \mathbb{R}$ :
-            </p>
+        <h3>Définition</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>La fonction exponentielle notée pour tout $x \in \mathbb{R}$ par $e^x$ (ou parfois $\exp(x)$) est l'unique fonction $f$ définie sur $\mathbb{R}$ remplissant les critères suivants :</p>
             <ul>
-                <li>$e^{x+y} = e^x \times e^y$</li>
-                <li>$e^{x-y} = \displaystyle{\frac{e^x}{e^y}}$</li>
-                <li>$e^{-x} = \displaystyle{\frac{1}{e^x}}$</li>
-                <li>$(e^x)^y = e^{x \times y}$</li>
+                <li>$f$ est dérivable sur $\mathbb{R}$ et $f'$ = $f$</li>
+                <li>$f \gt 0$ sur $\mathbb{R}$</li>
+                <li>$f(0) = 1$</li>
             </ul>
-            <p>Et bien entendu, $e^0 = 1$.</p>
         </div>
-
-        <p>De plus, pour tous réels $x$ et $y$ :</p>
-
-        <ul class="formula">
-            <li>$e^x = e^y \iff x = y$</li>
-            <li>$e^x \lt e^y \iff x \lt y$</li>
-        </ul>
-
     </section>
-
+    <section>
+        <h3>Relations algébriques</h3>
+        <div class="formula" data-api-v2-title="Relations algébriques">
+            <p>La fonction exponentielle a plusieurs propriétés algébriques qu'il faut connaître. Ainsi, pour tous réels $x$ et $y$ :</p>
+            <ul>
+                <li>$e^x = e^y \iff x = y$</li>
+                <li>$e^x \lt e^y \iff x \lt y$</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Représentation graphique</h3>
+        <p>Voici une représentation graphique de la fonction exponentielle (courbe bleue) et de sa tangente au point d'abscisse $0$ :</p>
+        <div id="representation-1" class="plot" data-api-v2-geogebra-id="d62ctre4"></div>
+        <p>On voit plusieurs propriétés données précédemment : $e^0 = 1$, $e \approx 2,718$, etc... Mais également d'autres propriétés que verrons par la suite comme le fait que la fonction soit <strong>strictement positive</strong> sur $\mathbb{R}$. À noter que la <strong>tangente</strong> à sa courbe représentative en $x = 0$ est $y = x + 1$.</p>
+    </section>
 </section>
-
 <section>
-
     <h2>Étude de la fonction</h2>
-
     <section>
-
-        <p>Soit une fonction $u$ dérivable sur un intervalle $I$, on a pour tout $x$ appartenant à cet intervalle :</p>
-
-        <p class="formula">$(e^{u(x)})' = u'(x)e^{u(x)}$</p>
-
-        <p>Ainsi, si pour tout $x \in I$ on a $u(x) = x$ :</p>
-
-        <p class="formula">$({e^x})' = e^x$</p>
-
+        <h3>Dérivée</h3>
+        <div class="formula" data-api-v2-title="Dérivée d'une composée">
+            <p>Soit une fonction $u$ dérivable sur un intervalle $I$, on a pour tout $x$ appartenant à cet intervalle : $(e^{u(x)})' = u'(x)e^{u(x)}$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Dérivée">
+            <p>Ainsi, si pour tout $x \in I$ on a $u(x) = x$, on retrouve : $({e^x})' = e^x$.</p>
+        </div>
+        <p>Cette propriété a été donnée dans la section <a href="#1-définition" data-api-v2-hash="#1-définition"><q>Définition</q></a>.</p>
     </section>
-
     <section>
-
-        <p>Avec la dérivée donnée précédemment, il est désormais possible d'obtenir les variations de la fonction exponentielle :</p>
-
-        <figure class="formula math-table">
-            <img src="/assets/img/lessons/premiere/fonction_exponentielle/variations.svg" title="Tableau de variation de la fonction exponentielle" alt="Tableau de variation de la fonction exponentielle"/>
-            <figcaption>
-                <p>On remarque sur le tableau de variation que la fonction exponentielle est strictement positive et croissante sur $\mathbb{R}$.</p>
-            </figcaption>
-        </figure>
-
+        <h3>Variations</h3>
+        <p>Avec la dérivée donnée précédemment, il est désormais possible d'obtenir les variations de la fonction exponentielle.</p>
+        <div class="formula" data-api-v2-title="Variations">
+            <img src="/assets/img/lessons/premiere/fonction_exponentielle/variations.svg" alt="Tableau de variations de la fonction exponentielle">
+            <p>On remarque sur le tableau de variation que la fonction exponentielle est strictement positive et croissante sur $\mathbb{R}$.</p>
+        </div>
     </section>
-
     <section>
-
-        <p>Soit $a \in \mathbb{R}$ :</p>
-
-        <p class="formula">La suite $(e^{na})_{n \in \mathbb{N}}$ est une suite géométrique de raison $a$ et de premier terme $1$.</p>
-
+        <h3>La suite $(e^{na})$</h3>
+        <div class="formula">
+            <p>Soit $a \in \mathbb{R}$. La suite $(e^{na})$ est une suite géométrique de raison $e^a$ et de premier terme $1$.</p>
+        </div>
     </section>
-
 </section>

@@ -1,0 +1,30 @@
+<!-- Smartbanner -->
+<meta name="smartbanner:title" content="{{ site.title }}">
+<meta name="smartbanner:author" content="Skyost">
+<meta name="smartbanner:price" content="GRATUIT">
+<meta name="smartbanner:price-suffix-apple" content=" - Sur l'App Store">
+<meta name="smartbanner:price-suffix-google" content=" - Sur Google Play">
+<meta name="smartbanner:icon-apple" content="/assets/img/logo.svg">
+<meta name="smartbanner:icon-google" content="/assets/img/logo.svg">
+<meta name="smartbanner:button" content="VOIR">
+<meta name="smartbanner:button-url-apple" content="https://itunes.apple.com/app/id1458503418">
+<meta name="smartbanner:button-url-google" content="https://play.google.com/store/apps/details?id=fr.bacomathiques">
+<meta name="smartbanner:enabled-platforms" content="android,ios">
+<meta name="smartbanner:close-label" content="Fermer">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/smartbanner.js@1.16.0/dist/smartbanner.min.css" integrity="sha256-ER1TSTgano9uL7VRoG3pj+t7eVe6Hv84RD+eaWUZaDs=" crossorigin="anonymous">
+
+<!-- Pace -->
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js" integrity="sha256-wNhWj+b52Df2ZAAPGXPyIAnXdqq7Sb1tr2kpEoJfbig=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/themes/silver/pace-theme-flash.min.css">
+
+<!-- Maths & autres -->
+{% include _includes/head/maths.html %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.11.2/dist/tocbot.css" integrity="sha256-XUbSD3m+xLW27W/mp9kMn+fI9AU2MoBkiMMSVVYWI+o=" crossorigin="anonymous">
+{% if page.summary != true %}
+    <link rel="stylesheet" href="/assets/css/forms/comment.css">
+{% endif %}
+<link rel="stylesheet" href="/assets/css/lesson.css">
+
+<!-- Adsense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

@@ -1,0 +1,5 @@
+<li class="nav-item {% if include.path == page.path %} active{% endif %}">
+    <a href="{{ include.href }}" class="nav-link">
+        <i class="fa fa-{{ include.icon }}" aria-hidden="true"></i> {{ include.title }}
+    </a>
+</li>

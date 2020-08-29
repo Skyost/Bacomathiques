@@ -1,5 +1,0 @@
----
-layout: api_file
-permalink: "/api/v2/terminale/echantillonnage-estimation/comments/"
----
-{% include _includes/api/v2/lessons/comments/comments.json lesson='echantillonnage_estimation' level='terminale' %}

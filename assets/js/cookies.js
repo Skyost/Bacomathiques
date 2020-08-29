@@ -5,10 +5,14 @@ $(document).ready(function() {
 });
 
 function showCookieBanner() {
-	let html = '<div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; right: 0; background-color: #2c3e50; text-align: center; padding: 20px;">';
-	html += '<p style="color: white;">🍪 Ce site web utilise des cookies. En continuant la navigation, vous consentez à l\'utilisation des cookies nécessaires au bon fonctionnement du site et au suivi statistique anonyme.</p>';
-	html += '<button type="button" class="btn btn-success" onclick="hideCookieBanner();">Fermer ce message</button>';
-	html += '</div>';
+	let html = `
+		<div id="cookie-banner" class="fixed-bottom text-center p-4" style="background-color: #2c3e50;">
+			<p style="color: white;">🍪 Ce site web utilise des cookies. En continuant la navigation, vous consentez à l'utilisation des cookies nécessaires au bon fonctionnement du site et au suivi statistique anonyme.</p>
+			<button type="button" class="btn btn-green" onclick="hideCookieBanner();">Fermer ce message</button>
+		</div>
+		'
+	`
+
 	$('body').append($(html));
 }
 
