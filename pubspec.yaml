@@ -26,7 +26,6 @@ dependencies:
   google_fonts: ^1.1.0
   admob_flutter: ^1.0.0-beta.5
   catcher: ^0.3.17
-  fluttertoast: '<7.0.3'
   flutter:
     sdk: flutter
 
