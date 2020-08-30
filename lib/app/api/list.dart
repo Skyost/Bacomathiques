@@ -141,7 +141,7 @@ class _LevelIconButtonState extends State<_LevelIconButton> {
       );
 
   /// Creates the icon.
-  Widget createIcon() => Icon(
+  Widget createIcon() => const Icon(
         Icons.view_day,
         color: Colors.white,
       );

@@ -124,7 +124,7 @@ class LessonContent extends APIEndpointResultHTML {
                 children: [
                   TextSpan(
                     text: titleParts.first,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
@@ -137,14 +137,14 @@ class LessonContent extends APIEndpointResultHTML {
             ),
       actions: [
         IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.share,
             color: Colors.white,
           ),
           onPressed: () => Share.share('Lisez le cours intitulé « ' + lesson.title + ' » en téléchargeant l\'application Bacomathiques !\n' + storePage),
         ),
         IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.message,
             color: Colors.white,
           ),

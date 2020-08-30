@@ -118,7 +118,7 @@ class _CommentWidget extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 8),
         child: Text(
           comment.author.name + (comment.author.isModerator ? ' (Modérateur)' : ''),
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
       );
 

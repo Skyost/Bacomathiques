@@ -66,14 +66,14 @@ class LessonComments extends APIEndpointResult {
         title: Text('Commentaires sur ' + lesson.title),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.person,
               color: Colors.white,
             ),
             onPressed: () => UserDialog.show(context, comments: this),
           ),
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.create,
               color: Colors.white,
             ),
