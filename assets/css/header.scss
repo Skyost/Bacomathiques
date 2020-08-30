@@ -1,6 +1,7 @@
 ---
 ---
 
+@import "breakpoints";
 @import "colors";
 
 #page-header {
@@ -46,5 +47,12 @@
         background-color: white;
       }
     }
+  }
+
+  @media(max-width: $tablet-width) {
+    padding: 30px 0;
+  }
+  @media(max-width: $mobile-width) {
+    padding: 20px 0;
   }
 }

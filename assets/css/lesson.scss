@@ -15,6 +15,7 @@
   overflow-x: auto;
   page-break-inside: avoid;
   list-style-type: none;
+  text-align: left;
 
   &:before {
     content: $text;

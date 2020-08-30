@@ -14,6 +14,10 @@
       max-width: 150px;
     }
   }
+
+  @media(max-width: $mobile-width) {
+    padding-bottom: 40px;
+  }
 }
 
 #page-content {
