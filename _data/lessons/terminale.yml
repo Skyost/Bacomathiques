@@ -33,7 +33,7 @@
   title: "Chapitre III – Continuité, dérivabilité et convexité"
   chapter: 3
   caption: "Ce chapitre a beaucoup d'applications, notamment dans l'étude de fonctions et dans la physique."
-  excerpt: "Il est possible de définir la continuité d'une fonction comme le fait de pouvoir tracer sa courbe représentative <q>sans lever le crayon</q>. La notion de dérivabilité, elle est plus complexe et sera élaborée dans ce chapitre (on parlera notamment de la fonction partie entière, du théorème des valeurs intermédiaires, etc...).<br>Ce cours contient également les différentes tables de dérivation."
+  excerpt: "Il est possible de définir la continuité d'une fonction comme le fait de pouvoir tracer sa courbe représentative <q>sans lever le crayon</q>. La notion de dérivabilité, elle est plus complexe et sera élaborée dans ce chapitre (on parlera notamment de la fonction partie entière, du théorème des valeurs intermédiaires, etc...).<br>Ce cours contient également les différentes tables de dérivation ainsi que des propriétés sur les fonctions convexes."
   difficulty: 4
   specialty: false
 
@@ -72,7 +72,7 @@
   title: "Chapitre VI – Primitives et équations différentielles"
   chapter: 6
   caption: "Les primitives sont notamment utilisées dans dans le cadre de la dynamique Newtonienne."
-  excerpt: "Une primitive d'une fonction d'une variable réelle définie sur un intervalle est une autre fonction, définie et dérivable sur cet intervalle, et dont la dérivée et notre fonction de départ.<br>Ce cours ne contient essentiellement (en plus de la définition d'une primitive) que les tableaux à connaître pour pouvoir trouver les primitives des fonctions usuelles."
+  excerpt: "Une primitive d'une fonction d'une variable réelle définie sur un intervalle est une autre fonction, définie et dérivable sur cet intervalle, et dont la dérivée et notre fonction de départ.<br>Ce cours contient essentiellement (en plus de la définition d'une primitive) que les tableaux à connaître pour pouvoir trouver les primitives des fonctions usuelles, mais également des méthodes de résolution pour certaines équations différentielles !"
   difficulty: 3
   specialty: false
 
@@ -189,7 +189,7 @@
   title: "Chapitre XIV – Matrices et graphes (Maths expertes)"
   chapter: 15
   caption: "Les matrices sont utilisées dans le domaine de la photographie et du traitement d'images."
-  excerpt: "En mathématiques, les matrices sont des tableaux de nombres qui servent à interpréter en termes calculatoires et donc opérationnels les résultats théoriques de l'algèbre linéaire et même de l'algèbre bilinéaire.<br>Dans ce chapitre nous étudierons les propriétés des matrices et nous nous en servirons notamment dans l'étude de marches aléatoires."
+  excerpt: "En mathématiques, les matrices sont des tableaux de nombres qui servent à interpréter en termes calculatoires et donc opérationnels les résultats théoriques de l'algèbre linéaire et même de l'algèbre bilinéaire.<br>Dans ce chapitre nous étudierons les propriétés des matrices et nous nous en servirons notamment dans l'étude des graphes."
   difficulty: 4
   specialty: true
 
