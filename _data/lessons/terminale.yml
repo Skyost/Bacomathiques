@@ -124,7 +124,7 @@
   title: "Chapitre X – Lois de Bernoulli et binomiale"
   chapter: 10
   caption: "Ces lois jouent un rôle dans l'étude des décisions binaires."
-  excerpt: "La loi binomiale (qui est en quelque sorte, une généralisation de la loi de Bernoulli) aide à la modélisation de décisions binaires.<br>Ce chapitre va tout d'abord effectuer quelques rappels sur les variables aléatoires, puis va donner des propriétés que possèdent les loi de Bernoulli et binomiale (espérance, variance, ecart-type, etc...)."
+  excerpt: "La loi binomiale (qui est en quelque sorte, une généralisation de la loi de Bernoulli) aide à la modélisation de décisions binaires.<br>Ce chapitre va tout d'abord effectuer quelques rappels sur les variables aléatoires, puis va donner des propriétés que possèdent les loi de Bernoulli et binomiale (espérance, variance, écart-type, etc...)."
   difficulty: 4
   specialty: false
 
@@ -137,7 +137,7 @@
   title: "Chapitre XI –  Variables aléatoires, concentration et loi des grands nombres"
   chapter: 11
   caption: "Les variables aléatoires servent à décrire toutes sortes de phénomènes probabilistes."
-  excerpt: "En mathématiques, la loi des grands nombres permet d’interpréter la probabilité comme une fréquence de réalisation, justifiant ainsi le principe des sondages, et présente l’espérance comme une moyenne.<br>Nous commencerons ce chapitre par quelques rappels sur les variables aléatoires. Nous approfondirons cette notions en sommant plusieurs variables aléatoires, puis nous verrons certains résultats très importants en probabilités, comme l'inégalité de Bienaymé-Tchebychev, l'inégalité de concentration et la loi des grands nombres."
+  excerpt: "En mathématiques, la loi des grands nombres permet d’interpréter la probabilité comme une fréquence de réalisation, justifiant ainsi le principe des sondages, et présente l’espérance comme une moyenne.<br>Nous commencerons ce chapitre par quelques rappels sur les variables aléatoires. Nous approfondirons cette notions en sommant plusieurs variables aléatoires, puis nous verrons certains résultats très importants en probabilités et en statistiques, comme l'inégalité de Bienaymé-Tchebychev, l'inégalité de concentration et la loi des grands nombres."
   difficulty: 5
   specialty: false
 
