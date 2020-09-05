@@ -33,12 +33,12 @@
       }
     }
 
-    > h2, > p {
+    > h2 {
       color: white;
     }
 
     > p {
-      font-weight: lighter;
+      color: rgba(white, 0.8);
     }
 
     > p:last-of-type {

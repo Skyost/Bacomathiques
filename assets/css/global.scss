@@ -68,16 +68,15 @@
 
 .blue {
   background-color: $main-color !important;
-  color: white !important;
-  font-weight: lighter !important;
+  color: rgba(white, 0.8) !important;
+
+  h1, h2, h3, h4 {
+    color: white !important;
+  }
 
   a {
     color: white;
     font-weight: normal;
-
-    &:hover, &:active {
-      color: $blue-background-text;
-    }
   }
 
   hr {
