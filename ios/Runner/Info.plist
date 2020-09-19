@@ -58,5 +58,7 @@
 	<false/>
 	<key>io.flutter.embedded_views_preview</key>
 	<true/>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Nous utiliserons votre IDFA pour vous délivrer du contenu personnalisé. Cela vous permettera de soutenir le développement de cette application.</string>
 </dict>
 </plist>
