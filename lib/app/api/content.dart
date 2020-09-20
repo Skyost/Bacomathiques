@@ -59,6 +59,9 @@ class LessonContent extends APIEndpointResultHTML {
     )
   ];
 
+  /// The share button key.
+  final GlobalKey _shareButtonKey = GlobalKey();
+
   /// The "api" field.
   final APIStatus api;
 
@@ -80,7 +83,7 @@ class LessonContent extends APIEndpointResultHTML {
   final List<LessonAnnal> annals;
 
   /// Creates a new lesson content instance.
-  const LessonContent({
+  LessonContent({
     @required this.api,
     @required this.lesson,
     @required this.difficulty,
@@ -137,11 +140,20 @@ class LessonContent extends APIEndpointResultHTML {
             ),
       actions: [
         IconButton(
+          key: _shareButtonKey,
           icon: const Icon(
             Icons.share,
             color: Colors.white,
           ),
-          onPressed: () => Share.share('Lisez le cours intitulé « ' + lesson.title + ' » en téléchargeant l\'application Bacomathiques !\n' + storePage),
+          onPressed: () async {
+            RenderBox renderBox = _shareButtonKey.currentContext.findRenderObject();
+            Offset position = renderBox.localToGlobal(Offset.zero);
+
+            await Share.share(
+              'Lisez le cours intitulé « ' + lesson.title + ' » en téléchargeant l\'application Bacomathiques !\n' + storePage,
+              sharePositionOrigin: Rect.fromLTWH(position.dx, position.dy, 24, 12),
+            );
+          },
         ),
         IconButton(
           icon: const Icon(
