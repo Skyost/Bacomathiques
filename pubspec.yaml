@@ -9,7 +9,7 @@ environment:
 
 dependencies:
   http: ^0.12.2
-  webview_flutter: ^0.3.22
+  webview_flutter: ^0.3.24
   mime: ^0.9.7
   flutter_html: ^1.0.2
   url_launcher: ^5.4.11
@@ -17,14 +17,14 @@ dependencies:
   share: ^0.6.5
   transparent_image: ^1.0.0
   rate_my_app: ^0.7.2
-  path_provider: ^1.6.16
-  shared_preferences: ^0.5.10
+  path_provider: ^1.6.18
+  shared_preferences: ^0.5.12
   pedantic: ^1.9.0
   provider: ^4.3.2
   day_night_switcher: ^0.1.1
   flutter_layout_grid: ^0.10.2
   google_fonts: ^1.1.0
-  admob_flutter: ^1.0.0-beta.7
+  admob_flutter: ^1.0.0
   catcher: ^0.3.20
   flutter:
     sdk: flutter
