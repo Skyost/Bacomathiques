@@ -314,9 +314,8 @@ redirect_from: "/cours/suites/"
         <p>On note $\mathcal{P}_n$ la propriété définie pour tout $n \in \mathbb{N}$ par $\mathcal{P}_n$ : $4 \leq u_n \leq 5$.</p>
         <p>On constate que $u_{n+1} = \frac{4u_n + 17}{u_n + 4} = \frac{4(u_n + 4) + 1}{u_n + 4} = 4 + \frac{1}{u_n + 4}$.</p>
         <p><strong>Initialisation :</strong> On teste la propriété au rang $0$ :</p>
-        <p>$\mathcal{P}_0$ : $4 \leq u_0 \leq 5 \iff 4 \leq 4 \leq 5$. C'est vrai.</p>
-        <p>La propriété est vraie au rang $0$. Supposons la vraie à un rang $n \in \mathbb{N}$ et vérifions qu'elle est vraie au rang $n+1$.</p>
-        <p><strong>Hérédité :</strong></p>
+        <p>$\mathcal{P}_0$ : $4 \leq u_0 \leq 5 \iff 4 \leq 4 \leq 5$. C'est vrai : la propriété est vraie au rang $0$.</p>
+        <p><strong>Hérédité :</strong> Supposons la propriété vraie à un rang $n \in \mathbb{N}$ et vérifions qu'elle est vraie au rang $n+1$.</p>
         <p>D'après $\mathcal{P}_n$ : $4 \leq u_n \leq 5$. Donc on a :</p>
         <p>$\iff 4 \leq u_n \leq 5$</p>
         <p>$\iff 4 + 4 \leq u_n + 4 \leq 5 + 4$</p>
@@ -334,11 +333,10 @@ redirect_from: "/cours/suites/"
         <p>Soit $x \in [-1, 0[ \, \cup \, ]0, +\infty[$. On note $\mathcal{P}_n$ la propriété définie pour tout $n \geq 2$ par $\mathcal{P}_n$ : $(1+x)^n \gt 1+nx$. Montrons $\mathcal{P}_n$ par récurrence.</p>
         <p><strong>Initialisation :</strong> On teste la propriété au rang $2$ :</p>
         <p>$\mathcal{P}_2$: $(1+x)^2 = 1 + 2x + x^2 \gt 1 + 2x$ (car $x^2 \gt 0$).</p>
-        <p>La propriété est vraie au rang $2$. Supposons la vraie à un rang $n \geq 2$ et vérifions qu'elle est vraie au rang $n+1$.</p>
-        <p><strong>Hérédité :</strong></p>
+        <p>La propriété est vraie au rang $2$.</p>
+        <p><strong>Hérédité :</strong> Supposons la propriété vraie à un rang $n \geq 2$ et vérifions qu'elle est vraie au rang $n+1$.</p>
         <p>En multipliant les deux membres de l'inégalité de l'hypothèse de récurrence par $1+x \geq 0$ (qui ne change donc pas le sens de l'inégalité), on obtient :</p>
-        <p>$(1+x)^n (1+x) \geq (1+nx)(1+x)$</p>
-        <p><br> $\iff (1+x)^{n+1} \geq 1 + (n+1)x + nx^2 \gt 1 + (n+1)x$</p>
+        <p>$(1+x)^n (1+x) \geq (1+nx)(1+x)$<br>$\iff (1+x)^{n+1} \geq 1 + (n+1)x + nx^2 \gt 1 + (n+1)x$</p>
         <p><strong>Conclusion :</strong></p>
         <p>La propriété est initialisée au rang $2$ et est héréditaire. Ainsi, $\mathcal{P}_n$ est vraie pour tout $n \geq 2$.</p>
     </div>

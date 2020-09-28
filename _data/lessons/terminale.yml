@@ -163,7 +163,7 @@
   title: "Chapitre XIII – Les nombres complexes (Maths expertes)"
   chapter: 13
   caption: "Ce chapitre un peu abstrait possède notamment des applications en électronique."
-  excerpt: "L'ensemble des nombres complexes est créé comme extension de l'ensemble des nombres réels, contenant en particulier un nombre dit <q>imaginaire</q> tel quel, mis au carré, ce nombre donne -1. Dans ce cours un peu abstrait, nous étudierons les nombres complexes : nous découvrirons comment les représenter, quelles-en sont les propriétés et bien plus encore !"
+  excerpt: "L'ensemble des nombres complexes est créé comme extension de l'ensemble des nombres réels, contenant en particulier un nombre dit <q>imaginaire</q> tel quel, mis au carré, ce nombre donne -1. Dans ce cours un peu abstrait, nous étudierons cet ensemble : ses propriétés, ses règles, ... Nous verrons également qu'il est possible de faire de la géométrie à l'aide des complexes !"
   difficulty: 5
   specialty: true
 
