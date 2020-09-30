@@ -219,10 +219,15 @@
   box-shadow: 0 0 30px rgba(black, 0.2);
   z-index: 1;
 
+  section:first-child h2 {
+    margin-top: 0;
+  }
+
   h2 {
     font-size: 2.4rem;
     color: $lesson-h2;
     padding-bottom: 0.5rem;
+    margin-top: 2.4rem;
     margin-bottom: 1.4rem;
     border-bottom: 1px solid rgba(black, 0.1);
     text-align: left;
