@@ -176,7 +176,7 @@
   title: "Chapitre XIV – Arithmétique (Maths expertes)"
   chapter: 14
   caption: "L'arithmétique sert beaucoup en cryptographie (avec les cartes bancaires, le web mais également dans le domaine militaire)."
-  excerpt: "L'arithmétique est une branche des mathématiques qui étudie la science des nombres. Ici, nous aborderons les notions de divisibilité et de congruence. Nous verrons comment résoudre des problèmes contenant des congruences et nous étudierons certains théorèmes fondamentaux de l'arithmétique (théorème de Bézout et de Gauss notamment)."
+  excerpt: "L'arithmétique (des entiers) est une branche des mathématiques qui étudie la science des nombres. Ici, nous aborderons les notions de divisibilité et de congruence. Nous verrons comment résoudre des problèmes contenant des congruences et nous étudierons certains théorèmes fondamentaux de l'arithmétique (théorème de Bézout et de Gauss notamment)."
   difficulty: 5
   specialty: true
 
@@ -186,10 +186,10 @@
   path: "/lessons/terminale/matrices_graphes.html"
   summary: "/summaries/terminale/matrices_graphes.html"
   url: "matrices-graphes"
-  title: "Chapitre XIV – Matrices et graphes (Maths expertes)"
+  title: "Chapitre XV – Matrices et graphes (Maths expertes)"
   chapter: 15
   caption: "Les matrices sont utilisées dans le domaine de la photographie et du traitement d'images."
-  excerpt: "En mathématiques, les matrices sont des tableaux de nombres qui servent à interpréter en termes calculatoires et donc opérationnels les résultats théoriques de l'algèbre linéaire et même de l'algèbre bilinéaire.<br>Dans ce chapitre nous étudierons les propriétés des matrices et nous nous en servirons notamment dans l'étude des graphes."
+  excerpt: "En mathématiques, les matrices sont des tableaux de nombres qui servent à interpréter en termes calculatoires et donc opérationnels les résultats théoriques de l'algèbre linéaire et même de l'algèbre bilinéaire.<br>Dans ce chapitre nous étudierons les propriétés et les lois qui régissent l'algèbre des matrices.<br>Ce cours contient également une partie sur les graphes, et permet faire un lien entre ces deux notions (via les matrices d'adjacence, notamment)."
   difficulty: 4
   specialty: true
 
@@ -199,7 +199,7 @@
   path: "/lessons/terminale/chaines_markov.html"
   summary: "/summaries/terminale/chaines_markov.html"
   url: "chaines-markov"
-  title: "Chapitre XIV – Chaînes de Markov (Maths expertes)"
+  title: "Chapitre XVI – Chaînes de Markov (Maths expertes)"
   chapter: 16
   caption: "On utilise les chaînes de Markov pour étudier et modéliser des réseaux."
   excerpt: "Ce chapitre et son contenu sont en cours de rédaction. Veuillez revenir plus tard !"

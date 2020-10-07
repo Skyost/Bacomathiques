@@ -6,4 +6,332 @@ permalink: "/cours/terminale/matrices-graphes/"
 redirect_from: "/cours/terminale/matrices/"
 ---
 
-<em>Ce chapitre et son contenu sont en cours de rédaction. Veuillez revenir plus tard !</em>
+<section>
+    <h2>Matrices</h2>
+    <section>
+        <h3>Définition</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soient $m$ et $n$ deux entiers non nuls. Une <strong>matrice réelle</strong> $A$ de taille $m \times n$ est un tableau de réels tel que :</p>
+            <p>$\displaystyle{A = \begin{pmatrix}a_{1,1} & a_{1,2} & \text{...} & a_{1,n} \\ a_{2,1} & a_{2,2} & \text{...} & a_{2,n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m,1} & a_{m,2} & \text{...} & a_{m,n}\end{pmatrix}}$</p>
+            <p>Où $a_{1,1}$, $a_{1,2}$, $a_{2,1}$, ..., $a_{m,n}$ sont les <strong>coefficients</strong> de la matrice. L'ensemble des matrices à coefficients réels est noté $\mathcal{M}_{m,n}(\mathbb{R})$.</p>
+        </div>
+        <p>Il serait également possible de prendre des matrices à coefficients entiers ou même complexes, mais nous nous limiterons ici au cas des matrices réelles.</p>
+        <div class="formula" data-api-v2-title="Types de matrices">
+            <p>Selon leur taille, on peut avoir différents types de matrices :</p>
+            <ul>
+                <li>Une matrice $1 \times n$ est une <strong>matrice ligne de taille $n$</strong>.</li>
+                <li>Une matrice $m \times 1$ est une <strong>matrice colonne de taille $m$</strong>.</li>
+                <li>Une matrice $n \times n$ est une <strong>matrice carrée d'ordre $n$</strong>. L'ensemble de ces matrices est noté $\mathcal{M}_n(\mathbb{R})$.</li>
+                <li>Une matrice $1 \times 1$ est un <strong>réel</strong>.</li>
+                <li>La matrice $m \times n$ dont tous les termes sont nuls est la <strong>matrice nulle</strong> et est notée $0_{\mathcal{M}_{m,n}(\mathbb{R})}$ (ou plus simplement $0_{m,n}$).</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Types de matrices carrées</h3>
+        <div class="formula" data-api-v2-title="Types de matrices carrées">
+            <p>Il existe différentes matrices carrées remarquables :</p>
+            <ul>
+                <li>Une matrice carrée dont tous les coefficients en dessous de la diagonale principale sont nuls est une <strong>matrice triangulaire supérieure</strong>.</li>
+                <li>Une matrice triangulaire supérieure dont les coefficients sur la diagonale sont nuls est une <strong>matrice triangulaire supérieure stricte</strong>.</li>
+                <li>Une matrice carrée dont tous les coefficients au-dessus de la diagonale principale sont nuls est une <strong>matrice triangulaire inférieure</strong>.</li>
+                <li>Une matrice triangulaire inférieure dont les coefficients sur la diagonale sont nuls est une <strong>matrice triangulaire inférieure stricte</strong>.</li>
+                <li>Une matrice carrée dont tous les coefficients qui ne sont pas sur la diagonale sont nuls est une <strong>matrice diagonale</strong>.</li>
+                <li>Une matrice diagonale dont les coefficients sont égaux à $1$ est une <strong>matrice identité</strong>. Si la taille d'une telle matrice est $n$, alors on la note $I_n$.</li>
+            </ul>
+        </div>
+        <div class="tip" data-api-v2-title="Diagonale d'une matrice carrée">
+            <p>La diagonale d'une matrice carrée d'ordre $n$ représente l'ensemble des coefficients $a_{i,i}$ où $i$ varie de $1$ à $n$.</p>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>Opérations sur les matrices</h2>
+    <section>
+        <h3>Somme</h3>
+        <div class="formula" data-api-v2-title="Somme de deux matrices">
+            <p>Pour additionner deux matrices de même taille, il suffit d'additionner leurs coefficients deux-à-deux. Plus spécifiquement :</p>
+            <p>$\displaystyle{\begin{pmatrix}a_{1,1} & a_{1,2} & \text{...} & a_{1,n} \\ a_{2,1} & a_{2,2} & \text{...} & a_{2,n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m,1} & a_{m,2} & \text{...} & a_{m,n}\end{pmatrix} + \begin{pmatrix}b_{1,1} & b_{1,2} & \text{...} & b_{1,n} \\ b_{2,1} & b_{2,2} & \text{...} & b_{2,n} \\ \vdots & \vdots & \ddots & \vdots \\ b_{m,1} & b_{m,2} & \text{...} & b_{m,n}\end{pmatrix} = \begin{pmatrix}a_{1,1} + b_{1,1} & a_{1,2} + b_{1,2} & \text{...} & a_{1,n} + b_{1,n} \\ a_{2,1} + b_{2,1} & a_{2,2} + b_{2,2} & \text{...} & a_{2,n} + b_{2,n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m,1} + b_{m,1} & a_{m,2} + b_{m,2} & \text{...} & a_{m,n} + b_{m,n}\end{pmatrix}}$</p>
+        </div>
+        <div class="tip" data-api-v2-title="Attention !">
+            <p>Il n'est possible d'additionner que deux matrices de même taille.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Produit</h3>
+        <div class="formula" data-api-v2-title="Multiplication d'une matrice par un réel">
+            <p>Soit $\lambda$ un réel. Le produit d'une matrice par $\lambda$ est la matrice de même taille dont les coefficients sont tous multipliés par $\lambda$. Plus spécifiquement :</p>
+            <p>$\displaystyle{\lambda \times \begin{pmatrix}a_{1,1} & a_{1,2} & \text{...} & a_{1,n} \\ a_{2,1} & a_{2,2} & \text{...} & a_{2,n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m,1} & a_{m,2} & \text{...} & a_{m,n}\end{pmatrix} = \begin{pmatrix}\lambda \times a_{1,1} & \lambda \times a_{1,2} & \text{...} & \lambda \times a_{1,n} \\ \lambda \times a_{2,1} & \lambda \times a_{2,2} & \text{...} & \lambda \times a_{2,n} \\ \vdots & \vdots & \ddots & \vdots \\ \lambda \times a_{m,1} & \lambda \times a_{m,2} & \text{...} & \lambda \times a_{m,n}\end{pmatrix}}$</p>
+            <p>Si $A$ est la matrice de gauche, on note $\lambda A$ la matrice de droite.</p>
+        </div>
+        <div class="tip" data-api-v2-title="Soustraction de deux matrices">
+            <p>Pour soustraire deux matrices $A$ et $B$, on additionne $A$ et $(-1)B$ i.e. $A - B = A + (-1)B$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Produit d'une matrice ligne et d'une matrice colonne">
+            <p>Soient $L = \begin{pmatrix}l_1 & ... & l_n\end{pmatrix}$ une matrice ligne de taille $n$ et $C = \begin{pmatrix}c_1 \\ \vdots \\ c_n\end{pmatrix}$ une matrice colonne de taille $n$.</p>
+            <p>Le produit de ces deux matrices (noté $LC$) est le réel $LC = l_1 \times c_1 + \text{ ... } + l_n \times c_n$.</p>
+        </div>
+        <p>Plus généralement, le produit matriciel ne se limite pas qu'à la multiplication d'une matrice ligne avec une matrice colonne.</p>
+        <div class="formula" data-api-v2-title="Produit de deux matrices">
+            <p>Soient $A$ une matrice de taille $m \times n$ et $B$ une matrice de taille $n \times p$ deux matrices. Le produit de ces deux matrices (notée $A \times B$ ou $AB$) est la matrice de taille $m \times p$ dont le coefficient à la position $(i; j)$ est égal au produit de la $i$-ième ligne de $A$ par la $j$-ième colonne de $B$. Plus spécifiquement, en notant $L_i$ la $i$-ème ligne de $A$ et $C_j$ la $j$-ième colonne de $B$ :</p>
+            <p>$\displaystyle{AB = \begin{pmatrix}c_{1,1} & c_{1,2} & \text{...} & c_{1,p} \\ c_{2,1} & c_{2,2} & \text{...} & c_{2,p} \\ \vdots & \vdots & \ddots & \vdots \\ c_{m,1} & c_{m,2} & \text{...} & c_{m,p}\end{pmatrix}}$ où $c_{i,j} = L_i \times C_j$.</p>
+        </div>
+        <div class="tip" data-api-v2-title="Attention !">
+            <p>Le produit matriciel n'est pas commutatif ! Donc en général, $AB \neq BA$.</p>
+            <p>De plus, il faut bien s'assurer que le nombre de lignes de $A$ est égal au nombre de colonnes de $B$.</p>
+        </div>
+        <div class="tip">
+            <p>Si $A$ et $B$ sont deux matrices diagonales de taille $n$. Leur produit est la matrice diagonale de même taille dont le coefficient à la position $(i; i)$ est le produit du coefficient de $A$ à la position $(i;i)$ par celui du coefficient de $B$ à la position $(i;i)$. Plus spécifiquement, en notant $A = (a_{i,j})$ et $B = (b_{i,j})$ :</p>
+            <p>$\displaystyle{\begin{pmatrix}a_{1,1} & 0 & \text{...} & 0 \\ 0 & a_{2,2} & \text{...} & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \text{...} & a_{n,n}\end{pmatrix} \times \begin{pmatrix}b_{1,1} & 0 & \text{...} & 0 \\ 0 & b_{2,2} & \text{...} & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \text{...} & b_{n,n}\end{pmatrix} = \begin{pmatrix}a_{1,1} \times b_{1,1} & 0 & \text{...} & 0 \\ 0 & a_{2,2} \times b_{2,2} & \text{...} & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \text{...} & a_{n,n} \times b_{n,n}\end{pmatrix}}$</p>
+            <p>De plus, on a $AB = BA$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Propriétés du produit matriciel">
+            <p>Soient $A$, $B$ et $C$ trois matrices carrées d'ordre $n$. Alors :</p>
+            <ul>
+                <li>Le produit matriciel est <strong>associatif</strong> : $A(BC) = (AB)C$.</li>
+                <li>Le produit matriciel est <strong>distributif</strong> : $A(B + C) = AB + AC$.</li>
+                <li>$I_n$ est l'<strong>unité</strong> de $\mathbb{M}_{n}(\mathbb{R})$ : $AI_n = I_nA = A$.</li>
+                <li>$0_n$ est le <strong>zéro</strong> de $\mathbb{M}_{n}(\mathbb{R})$ : $A0_n = 0_nA = 0_n$ et $A + 0_n = A$.</li>
+                <li>Pour tout $\lambda \in \mathbb{R}$, $\lambda (AB) = (\lambda A)B = A(\lambda B)$.</li>
+            </ul>
+        </div>
+        <div class="tip" data-api-v2-title="Attention !">
+            <p>Si on a une égalité du type $A \times B = 0$, cela n'implique pas forcément que $A = 0$ ou $B = 0$ !</p>
+            <p>De plus, si on a $AB = AC$, on n'a pas forcément $B = C$.</p>
+        </div>
+        <p>Cela peut sembler logique, mais on signale tout de même que les priorités les opératoires sont <q>les mêmes</q> que dans les ensembles de nombres comme $\mathbb{R}$ ou $\mathbb{C}$ (la multiplication prime sur l'addition, etc...).</p>
+    </section>
+    <section>
+        <h3>Inverse et déterminant</h3>
+        <div class="formula" data-api-v2-title="Inverse d'une matrice">
+            <p>Soit $A$ une matrice carrée d'ordre $n$. $A$ est dite inversible s'il existe une matrice $A^{-1}$ telle que $A \times A^{-1} = I_n$.</p>
+            <p>Si cette matrice existe, elle est unique et s'appelle <strong>inverse</strong> de $A$. De plus, $A$ et $A^{-1}$ commutent.</p>
+        </div>
+        <p>Le <strong>déterminant</strong> permet, entre autres, de calculer l'inverse d'une matrice (s'il existe). Nous nous limiterons ici au cas des matrices carrées d'ordre $2$, mais il est possible de le généraliser encore plus.</p>
+        <div class="formula" data-api-v2-title="Déterminant d'une matrice $2 \times 2$">
+            <p>Soit $\displaystyle{A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}}$ une matrice carrée d'ordre $2$.</p>
+            <p>Alors le déterminant de $A$ (noté $\det(A)$) est le réel $\det(A) = ac - bd$. De plus, $A$ est inversible si et seulement si $\det(A) \neq 0$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Inverse d'une matrice $2 \times 2$">
+            <p>Soit $\displaystyle{A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}}$ une matrice carrée d'ordre $2$ dont le déterminant ne s'annule pas.</p>
+            <p>Alors $\displaystyle{A^{-1} = \frac{1}{\det(A)} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}}$.</p>
+        </div>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>Calculons le produit de $\displaystyle{A = \begin{pmatrix}2 & 1 \\ 6 & 4\end{pmatrix}}$ par $\displaystyle{B = \begin{pmatrix}4 & -1 \\ -6 & 2\end{pmatrix}}$, et déduisons-en que $A$ est inversible sans utiliser la formule donnée précédemment.</p>
+            <p>Le produit nous donnera une matrice carrée d'ordre $2$ car on multiplie deux matrices carrées d'ordre $2$ :</p>
+            <p>$\displaystyle{\begin{pmatrix} 2 & 1 \\ 6 & 4 \end{pmatrix} \times \begin{pmatrix} 4 & -1 \\ -6 & 2\end{pmatrix} = \begin{pmatrix}8-6 & -2+2 \\ 24-24 & -6+8 \end{pmatrix} = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}}$</p>
+            <p>Donc $A \times B = 2I_2$. Ainsi, $A$ est inversible et $A^{-1} = \frac{1}{2} B$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Puissance</h3>
+        <div class="formula" data-api-v2-title="Puissance d'une matrice carrée">
+            <p>Soient $A$ une matrice carrée d'ordre $n$ et $i$ un entier naturel :</p>
+            <ul>
+                <li>Si $i \gt 0$, $\displaystyle{A^i = \underbrace{A \times \text{ ... } \times A}_{i \text{ fois}} = A^{i-1} \times A}$.</li>
+                <li>Si $i = 0$, $A^i = A^0 = I_n$.</li>
+                <li>Si $i \lt 0$, $\displaystyle{A^i = \underbrace{A^{-1} \times \text{ ... } \times A^{-1}}_{i \text{ fois}} = A^{i-1} \times A^{-1}}$.</li>
+            </ul>
+            <p>De plus, pour tout entier naturel $j$, on a $A^i \times A^j = A^{i+j}$.</p>
+        </div>
+        <div class="tip" data-api-v2-title="Puissance d'une matrice diagonale">
+            <p>Si $A$ est une matrice diagonale, alors $A^i$ est la matrice de même taille où tous les termes de la diagonale sont mis à la puissance $i$ (cela vaut aussi si $i$ est négatif et que la diagonale ne comporte pas de $0$).</p>
+        </div>
+    </section>
+    <section>
+        <h3>Transposition</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soit $A$ une matrice. La <strong>matrice transposée</strong> de $A$ (notée $^tA$) est la matrice dont la $i$-ième ligne correspond à la $i$-ième colonne de $A$.</p>
+        </div>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>Soient $\displaystyle{A = \begin{pmatrix} 2 & 5 & 9 \\ 3 & 6 & 10 \end{pmatrix}}$ et $\displaystyle{B = \begin{pmatrix} 0 & 1 & 1 \\ 2 & 3 & 5 \\ 8 & 13 & 21 \end{pmatrix}}$. Calculons $^tA$ et $^tB$.</p>
+            <p>On a $\displaystyle{^tA = \begin{pmatrix} 2 & 3 \\ 5 & 6 \\ 9 & 10 \end{pmatrix}}$ et $\displaystyle{^tB = \begin{pmatrix} 0 & 2 & 8 \\ 1 & 3 & 13 \\ 1 & 5 & 21 \end{pmatrix}}$.</p>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>Applications</h2>
+    <section>
+        <h3>Écriture matricielle d'un système d'équations linéaires</h3>
+        <div class="formula" data-api-v2-title="Lien entre système d'équations linéaires et matrices">
+            <p>Soient quatre réels $a$, $b$, $c$ et $d$ et soient deux réels $\alpha$ et $\beta$. Le système d'équations linéaires à deux inconnues $\displaystyle{(S) : \begin{cases}ax + by = \alpha \\ cx + dy = \beta\end{cases}}$ (d'inconnues $x$ et $y$) peut s'écrire matriciellement :</p>
+            <p>$\displaystyle{(S) \iff \underbrace{\begin{pmatrix}a & b \\ c & d\end{pmatrix}}_{= \, A} \underbrace{\begin{pmatrix}x \\ y\end{pmatrix}}_{= \, X} = \underbrace{\begin{pmatrix}\alpha \\ \beta\end{pmatrix}}_{= \, B}}$</p>
+        </div>
+        <div class="formula" data-api-v2-title="Résolution du système $(S)$">
+            <p>Avec les notations ci-dessus, si $A$ est inversible (voir les paragraphes suivants) alors le système $(S)$ admet une unique solution $X = A^{-1}B$.</p>
+        </div>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>Cela peut sembler compliqué à appliquer, mais il n'en est rien !</p>
+            <p>Par exemple, transformons le système $\displaystyle{(S) : \begin{cases}x + 2y = 1 \\ 2x + 5y = 4 \end{cases}}$ en une égalité de matrices :</p>
+            <p>$\displaystyle{(S) \iff \begin{pmatrix}1 & 2 \\ 2 & 5\end{pmatrix} \begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}1 \\ 4 \end{pmatrix}}$</p>
+            <p>Or l'inverse de $\displaystyle{\begin{pmatrix}1 & 2 \\ 2 & 5\end{pmatrix}}$ est $\displaystyle{\begin{pmatrix}5 & -2 \\ -2 & 1\end{pmatrix}}$. D'où $\displaystyle{\begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}5 & -2 \\ -2 & 1\end{pmatrix} \begin{pmatrix}1 \\ 4\end{pmatrix} = \begin{pmatrix}-3 \\ 2\end{pmatrix}}$.</p>
+            <p>Or deux matrices sont égales si et seulement si leurs coefficients sont tous égaux. Donc on a $x = -3$ et $y = 2$.</p>
+        </div>
+        <p>Nous avons travaillé ici avec un système de deux équations, mais il est tout-à-fait possible de généraliser cette méthode à plus de deux équations !</p>
+    </section>
+    <section>
+        <h3>Suites de matrices colonnes</h3>
+        <div class="formula">
+            <p>Soit $(U_n)$ une suite de matrices colonnes de taille $m$ vérifiant une relation du type $U_{n+1} = A U_n$ pour tout $n \in \mathbb{N}$ et où $A \in \mathcal{M}_m(\mathbb{R})$.</p>
+            <p>Alors, pour tout $n \in \mathbb{N}$, $U_n = A^n U_0$.</p>
+        </div>
+        <div class="tip">
+            <p>Il peut sembler étrange de manipuler des suites de matrices, mais c'est en réalité très intuitif. Par exemple, définissions la suite $(U_n)$ par $\displaystyle{U_0 = \begin{pmatrix} 1 \\ 2 \end{pmatrix}}$ et pour tout $n \geq 1$ par $\displaystyle{U_{n+1} = \underbrace{\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}}_{= A} U_n}$ et cherchons son terme général.</p>
+            <p>Par la formule précédente, pour tout $n \in \mathbb{N}$, $U_n = A^n U_0$. Or, $A$ est une matrice diagonale, donc $\displaystyle{A^n = \begin{pmatrix} 1^n & 0 \\ 0 & 2^n \end{pmatrix}}$, et ainsi :</p>
+            <p>$\displaystyle{U_n = \begin{pmatrix} 1 & 0 \\ 0 & 2^n \end{pmatrix} \begin{pmatrix} 1 \\ 2 \end{pmatrix} = \begin{pmatrix} 1 \\ 2^{n+1} \end{pmatrix}}$</p>
+            <p>On remarque en particulier que la suite $(U_n)$ est divergente (à cause de sa deuxième coordonnée qui tend vers $+\infty$).</p>
+        </div>
+        <div class="formula">
+            <p>Soit $(V_n)$ une suite de matrices colonnes de taille $m$ vérifiant une relation du type $V_{n+1} = A V_n + B$ pour tout $n \in \mathbb{N}$ et où $A$, $B \in \mathcal{M}_m(\mathbb{R})$. Supposons qu'il existe une matrice $X \in \mathcal{M}_m(\mathbb{R})$ telle que $AX + B = X$.</p>
+            <p>Alors, pour tout $n \in \mathbb{N}$, $U_n = A^n (U_0 - X) + X$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Transformations géométriques du plan</h3>
+        <p>Il est possible de faire le lien entre les matrices et certains types de transformations géométriques du plan.</p>
+        <div class="formula">
+            <p>On se place dans un repère $(O; \overrightarrow{i}, \overrightarrow{j})$. Soient $A = (x_A; y_A)$ et $B = (x_B; y_B)$ deux points du plan.</p>
+            <ul>
+                <li>$B$ est l'image de $A$ par la translation de vecteur $\displaystyle{\overrightarrow{u} = \begin{pmatrix} x_{\overrightarrow{u}} \\ y_{\overrightarrow{u}} \end{pmatrix}}$ si et seulement si $\displaystyle{\begin{pmatrix} x_B \\ y_B \end{pmatrix} = \begin{pmatrix} x_{\overrightarrow{u}} \\ y_{\overrightarrow{u}} \end{pmatrix} + \begin{pmatrix} x_A \\ y_A \end{pmatrix}}$.</li>
+                <li>$B$ est l'image de $A$ par la rotation de centre $O$ et d'angle $\theta \in \mathbb{R}$ si et seulement si $\displaystyle{\begin{pmatrix} x_B \\ y_B \end{pmatrix} = \begin{pmatrix} \cos(\theta) & -\sin(\theta) \\ \sin(\theta) & \cos(\theta) \end{pmatrix} \begin{pmatrix} x_A \\ y_A \end{pmatrix}}$.</li>
+            </ul>
+        </div>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>On pose $A = (1; 1)$. Calculons les coordonnées de $B$ qui est l'image de $A$ par la translation de vecteur $\displaystyle{\overrightarrow{u} = \begin{pmatrix} -1 \\ -2 \end{pmatrix}}$, et de $C$ qui est l'image de $A$ par la rotation de centre $O$ et d'angle $\displaystyle{\frac{\pi}{4}}$.</p>
+            <p>On a :</p>
+            <p>$\displaystyle{\begin{pmatrix} x_B \\ y_B \end{pmatrix} = \begin{pmatrix} -1 \\ -2 \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix}}$ et $\displaystyle{\begin{pmatrix} x_C \\ y_C \end{pmatrix} = \begin{pmatrix} \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2} \\ \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix}}$.</p>
+            <p>Donc $B = (-1; 1)$ et $C = (0; \sqrt{2})$.</p>
+            <div id="representation-1" class="plot" data-api-v2-geogebra-id="tjwgwr8j"></div>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>Graphes</h2>
+    <section>
+        <h3>Graphes non-orientés et orientés</h3>
+        <div class="formula" data-api-v2-title="Graphe non-orienté">
+            <p>Un <strong>graphe $G$ non-orienté</strong> est un couple $(S; A)$ où :</p>
+            <ul>
+                <li>$S$ est l'ensemble des <strong>sommets</strong> de $G$.</li>
+                <li>$A$ est un ensemble contenant les éléments de la forme $\{s_i; s_j\}$ où $s_i$, $s_j \in S$, et correspond aux <strong>arêtes</strong> de $G$.</li>
+            </ul>
+        </div>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>Par exemple, $G = (\{A; B; C; D; E\}, \{\{A; B\}; \{B; C\}; \{C; D\}; \{D; A\}; \{D; E\}; \{E; A\}\}$ est un graphe non-orienté que l'on peut représenter comme tel :</p>
+            <div class="text-center">
+                <img src="/assets/img/lessons/terminale/matrices_graphes/graphe_1.svg" alt="Graphe 1" width="200">
+            </div>
+            <p>Signalons tout de même que l'ordre dans lequel on relie les sommets n'a pas d'importance.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Graphe orienté">
+            <p>Un <strong>graphe $G$ orienté</strong> est un couple $(S; A)$ où :</p>
+            <ul>
+                <li>$S$ est l'ensemble des <strong>sommets</strong> de $G$.</li>
+                <li>$A$ est un sous-ensemble de $S \times S$, et correspond aux <strong>arêtes orientées</strong> de $G$.</li>
+            </ul>
+        </div>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>Par exemple, $G = (\{A; B; C; D; E\}, \{(A; B); (B; C); (C; D); (D; E); (A; E)\}$ est un graphe orienté que l'on peut représenter comme tel :</p>
+            <div class="text-center">
+                <img src="/assets/img/lessons/terminale/matrices_graphes/graphe_2.svg" alt="Graphe 2" width="200">
+            </div>
+        </div>
+        <div class="tip">
+            <p>À noter que dans les deux cas, il est possible de relier un sommet à lui-même (en faisant <strong>une boucle</strong>).</p>
+        </div>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soit $G = (S; A)$ un graphe. Donnons quelques définitions nécessaires pour la suite :</p>
+            <ul>
+                <li><strong>L'ordre de $G$</strong> est le nombre de sommets que possède $G$ (i.e. le cardinal de $S$).</li>
+                <li><strong>Le degré</strong> d'un sommet est le nombre d'arêtes qui passent par ce sommet (quelque-soit le sens de l'arête dans le cas où $G$ est orienté). Les boucles comptent pour $2$.</li>
+                <li>Un sommet $A$ est <strong>adjacent</strong> à un autre sommet $B$ s'il existe une arête reliant $A$ à $B$ (i.e. si $(A; B) \in A$ dans le cas où $G$ est orienté / si $(A; B)$ ou $(B; A) \in A$ si $G$ n'est pas orienté). Si $A$ n'est adjacent à aucun autre sommet, alors $A$ est un sommet <strong>isolé</strong>.</li>
+                <li>$G$ est dit <strong>complet</strong> si tout sommet de $A$ est adjacent à chacun des autres.</li>
+            </ul>
+        </div>
+        <div class="formula">
+            <p>Soit $G$ un graphe. On note par $a$ son nombre d'arêtes, et par $d$ la somme des degrés de ses sommets. Alors $d = 2a$.</p>
+        </div>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>On considère le graphe orienté $G$ suivant :</p>
+            <div class="text-center">
+                <img src="/assets/img/lessons/terminale/matrices_graphes/graphe_3.svg" alt="Graphe 3" width="200">
+            </div>
+            <p>Alors :</p>
+            <ul>
+                <li>$G$ n'est pas complet.</li>
+                <li>L'ordre de $G$ est égal à $5$.</li>
+                <li>$G$ a $4$ arêtes (donc la somme des degrés des sommets de $G$ vaut $2 \times 4 = 8$).</li>
+                <li>Le degré des sommets $A$ et $B$ est égal à $1$.</li>
+                <li>Le degré des sommets $C$, $D$ et $E$ est égal à $2$.</li>
+                <li>Le sommet $A$ est adjacent au sommet $E$ (mais $E$ n'est pas adjacent à $A$).</li>
+                <li>$C$ est un sommet isolé.</li>
+                <li>L'arête orientée qui va de $C$ à $C$ est une boucle.</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Chaînes et chemins</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soit $G$ un graphe non-orienté. On appelle <strong>chaîne de taille $n$</strong>, toute succession de $n$ arêtes de $G$ telle que l'extrémité de chacune est l'origine de la suivante.</p>
+            <p>Si $G$ est un graphe orienté, on parle de <strong>chemin</strong> plutôt que de chaîne.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Dans un graphe $G$ non-orienté :</p>
+            <ul>
+                <li>Si l'origine d'une chaîne coïncide avec sa fin, on parle de <strong>chaîne fermé</strong> (ou de <strong>chemin fermée</strong> si $G$ est orienté).</li>
+                <li>Si la chaîne est composée d'arêtes toutes distinctes, on parle de <strong>cycle</strong> (ou de <strong>circuit</strong> si $G$ est orienté).</li>
+            </ul>
+        </div>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>On considère le graphe non-orienté suivant :</p>
+            <div class="text-center">
+                <img src="/assets/img/lessons/terminale/matrices_graphes/graphe_4.svg" alt="Graphe 4" width="200">
+            </div>
+            <p>Alors :</p>
+            <ul>
+                <li>$A-B-C-D-A$ est un chemin fermé de longueur $4$ (c'est même un cycle).</li>
+                <li>$A-C-B-D$ est un chemin de longueur $3$ reliant $A$ à $D$ (mais il y en a beaucoup d'autres).</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Matrices d'adjacence</h3>
+        <p>Le but de cette section est d'étudier le lien étroit qui relie les matrices et les graphes.</p>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soit $G = (S; A)$ un graphe d'ordre $n$. On note $S = \{s_1, \text{ ... }, s_n\}$ l'ensemble des sommets de $G$.</p>
+            <p>On fait correspondre à $G$ la matrice carrée d'ordre $n$ dont le coefficient à la ligne $i$ et la colonne $j$ est égal au nombre d'arêtes reliant le sommet $s_i$ au sommet $s_j$. Cette matrice est appelée <strong>matrice d'adjacence</strong> du graphe $G$.</p>
+        </div>
+        <p>On notera qu'une telle matrice est <strong>symétrique</strong> (par rapport à sa diagonale) si le graphe en question est non-orienté.</p>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>On considère le graphe orienté $G_1$ suivant :</p>
+            <div class="text-center">
+                <img src="/assets/img/lessons/terminale/matrices_graphes/graphe_5.svg" alt="Graphe 5" width="200">
+            </div>
+            <p>Sa matrice d'adjacence est la matrice $\displaystyle{M_1 = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{pmatrix}}$.</p>
+        </div>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>On considère le graphe non-orienté $G_2$ suivant (i.e. le même que le $G_1$ mais sans les orientations) :</p>
+            <div class="text-center">
+                <img src="/assets/img/lessons/terminale/matrices_graphes/graphe_6.svg" alt="Graphe 6" width="200">
+            </div>
+            <p>Sa matrice d'adjacence est la matrice $\displaystyle{M_2 = \begin{pmatrix} 0 & 1 & 1 \\ 1 & 0 & 1 \\ 1 & 1 & 0 \end{pmatrix}}$.</p>
+        </div>
+        <p>Remarquons sur ces deux exemples que le caractère orienté ou non d'un graphe change sa matrice d'adjacence !</p>
+        <div class="formula" data-api-v2-title="Nombre de chemins de longueur $k$">
+            <p>Soient $G = (S; A)$ un graphe orienté d'ordre $n$ et $M$ sa matrice d'adjacence. On note $S = \{s_1, \text{ ... }, s_n\}$ l'ensemble des sommets de $G$.</p>
+            <p>Alors le coefficient à la ligne $i$ et à la colonne $j$ de $M^k$ est le nombre de chemins de longueur $k$ reliant le sommet $s_i$ au sommet $s_j$.</p>
+        </div>
+        <div class="proof" data-api-v2-title="Nombre de chemins de longueur $k$">
+            <p>On pose $m_{i,j}^{(k)}$ le coefficient à la ligne $i$ et à la colonne $j$ de $M^k$ et on note $\mathcal{P}_k$ la propriété définie pour tout $k \geq 1$ par $\mathcal{P}_k$ : ``$m_{i,j}^{(k)}$ est le nombre de chemins de longueur $k$ reliant le sommet $s_i$ au sommet $s_j$''. Montrons $\mathcal{P}_n$ par récurrence.</p>
+            <p><strong>Initialisation :</strong> On teste la propriété au rang $1$ :</p>
+            <p>$\mathcal{P}_1$ est vraie car $m_{i,j}^{(1)}$ est égal au nombre d'arêtes (i.e. de chemins de longueur $1$) reliant le sommet $s_i$ au sommet $s_j$.</p>
+            <p><strong>Hérédité :</strong> Supposons la propriété vraie jusqu'à un rang $k \geq 1$ et vérifions qu'elle est vraie au rang $k+1$.</p>
+            <p>On a $M^{n+1} = M^{n} \times M$. Donc $m_{i,j}^{(k+1)} = m_{i,1}^{(k)}m_{1,j}^{(1)} + m_{i,2}^{(k)}m_{2,j}^{(1)} + \text{ ... } + m_{i,n}^{(k)}m_{n,j}^{(1)}$.</p>
+            <p>Or, par hypothèse, pour tout $l \in \{1; \text{ ... }; n\}$, $m_{i,l}^{(n)}$ est le nombre de chemins de longueur $n$ reliant $s_i$ à $s_l$ et $m_{l,j}$ est le nombre d'arêtes reliant le sommet $s_l$ au sommet $s_j$.</p>
+            <p>Ainsi, $m_{i,l}^{(k)}m_{l,j}^{(1)}$ est le nombre de chemins de longueur $n+1$ passant par $s_l$ et reliant $s_i$ à $s_j$.</p>
+            <p>Donc en sommant pour tous les sommets $s_l$, on obtient le nombre de chemins de longueur $n+1$ reliant $s_i$ à $s_j$. Donc $\mathcal{P}_{n+1}$ est vraie.</p>
+            <p><strong>Conclusion :</strong></p>
+            <p>La propriété est initialisée au rang $1$ et est héréditaire. Ainsi, $\mathcal{P}_n$ est vraie pour tout $n \geq 1$.</p>
+        </div>
+    </section>
+</section>
