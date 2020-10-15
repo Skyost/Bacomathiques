@@ -1,7 +1,7 @@
 <div class="comment row">
     <div class="col-lg-3 col-12 mb-lg-0 mb-4">
         <a href="#commentaire-{{ comment._id }}">
-            <img class="avatar" src="{% if site.comments.moderators contains comment.author %}{{ site.comments.moderators[comment.author] }}{% else %}https://api.adorable.io/avatars/64/{{ comment.author }}.png{% endif %}" title="{{ comment.author }}" alt="{{ comment.author }}"/>
+            <img class="avatar" src="{% if site.comments.moderators contains comment.author %}{{ site.comments.moderators[comment.author] }}{% else %}https://avatars.dicebear.com/api/bottts/{{ comment.author }}.svg{% endif %}" title="{{ comment.author }}" alt="{{ comment.author }}"/>
         </a>
     </div>
     <div class="col-lg-9 col-12">

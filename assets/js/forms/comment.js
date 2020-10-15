@@ -47,5 +47,5 @@ function getAvatarUrl(username) {
     if(username == null || username.length === 0) {
         username = 'Anonyme';
     }
-    return 'https://api.adorable.io/avatars/56/' + username + '.png';
+    return 'https://avatars.dicebear.com/api/bottts/' + username + '.svg';
 }

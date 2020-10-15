@@ -1,7 +1,7 @@
 {% if site.comments.moderators contains comment.author %}
     {% assign avatar = site.comments.moderators[comment.author] %}
 {% else %}
-    {% assign avatar = 'https://api.adorable.io/avatars/128/' | append: include.comment.author | append: '.png' %}
+    {% assign avatar = 'https://avatars.dicebear.com/api/bottts/' | append: include.comment.author | append: '.svg' %}
 {% endif %}
 
 {
