@@ -1,4 +1,4 @@
-{% assign titleUrl = lesson.title | replace: '–', '-' | replace: 'É', 'E' | replace: 'é', 'e' | replace: 'ô', 'o' | url_param_escape %}
+{% assign titleUrl = lesson.title | replace: '–', '-' | replace: 'É', 'E' | replace: 'é', 'e' | replace: 'ô', 'o' | replace: 'î', 'i' | url_param_escape %}
 {% assign pdf = '/assets/pdf/cours/' | append: lesson.level | append: '/' | append: titleUrl | append: '.pdf' %}
 {% assign image = '/assets/img/lessons/' | append: lesson.level | append: '/' | append: lesson.id | append: '/preview.jpg' %}
 

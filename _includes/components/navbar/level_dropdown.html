@@ -4,5 +4,5 @@
 
 {% for data in lessons_hashes %}
     {% assign dataLesson = data[1] %}
-    <a class="dropdown-item lesson-item{% if dataLesson.path == page.path %} current{% endif %}" href="/cours/{{ site.data.levels[dataLesson.level].url }}/{{ dataLesson.url }}/" data-search="{{ dataLesson.title | downcase | replace: 'é', 'e' | replace: 'ô', 'o' }} ({{ level.name | downcase | replace: 'è', 'e' }})" data-level="{{ level.id }}">{{ dataLesson.title }}</a>
+    <a class="dropdown-item lesson-item{% if dataLesson.path == page.path %} current{% endif %}" href="/cours/{{ site.data.levels[dataLesson.level].url }}/{{ dataLesson.url }}/" data-search="{{ dataLesson.title | downcase | replace: 'é', 'e' | replace: 'ô', 'o' | replace: 'î', 'i' }} ({{ level.name | downcase | replace: 'è', 'e' }})" data-level="{{ level.id }}">{{ dataLesson.title }}</a>
 {% endfor %}

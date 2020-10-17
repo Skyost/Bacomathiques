@@ -2,7 +2,7 @@
 {% capture lessonContent %}{% include {{ lesson.path }} %}{% endcapture %}
 {% assign parts = lessonContent | split: "---" %}
 {% assign lessonContent = parts[2] %}
-{% assign titleUrl = lesson.title | replace: '–', '-' | replace: 'É', 'E' | replace: 'é', 'e' | replace: 'ô', 'o' | url_param_escape %}
+{% assign titleUrl = lesson.title | replace: '–', '-' | replace: 'É', 'E' | replace: 'é', 'e' | replace: 'ô', 'o' | replace: 'î', 'i' | url_param_escape %}
 
 {
     "api": {% include _includes/api/v2/api_info.json %},
