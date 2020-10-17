@@ -5,8 +5,8 @@ import 'package:bacomathiques/app/dialogs.dart';
 import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:provider/provider.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -231,7 +231,7 @@ class _PreviewWidget extends StatelessWidget {
   Widget _createDescriptionWidget() {
     Widget description = Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
-      child: Html(data: item.excerpt),
+      child: HtmlWidget(item.excerpt),
     );
 
     return tablet ? Expanded(child: description) : description;

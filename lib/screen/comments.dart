@@ -4,6 +4,7 @@ import 'package:bacomathiques/app/app.dart';
 import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 /// The comments screen, where previews are shown.
@@ -82,10 +83,9 @@ class _CommentWidget extends StatelessWidget {
   /// Creates the avatar widget.
   Widget _createAvatarWidget(AppTheme theme) => Padding(
         padding: const EdgeInsets.only(right: 10),
-        child: CircleAvatar(
-          backgroundImage: NetworkImage(comment.author.avatar),
-          backgroundColor: theme.themeData.primaryColor.withAlpha(50),
-          radius: 30,
+        child: _AvatarWidget(
+          url: comment.author.avatar,
+          primaryColor: theme.themeData.primaryColor,
         ),
       );
 
@@ -145,4 +145,41 @@ class _CommentWidget extends StatelessWidget {
 
   /// Returns a formatted date string.
   String _dateToString(DateTime date) => date.day.toString().padLeft(2, '0') + '/' + date.month.toString().padLeft(2, '0') + '/' + date.year.toString();
+}
+
+/// Allows to display an avatar.
+class _AvatarWidget extends StatelessWidget {
+  /// The avatar URL.
+  final String url;
+
+  /// The color.
+  final Color primaryColor;
+
+  /// Creates a new avatar widget instance.
+  const _AvatarWidget({
+    @required this.url,
+    @required this.primaryColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (url.endsWith('.svg')) {
+      return SvgPicture.network(
+        url,
+        width: 60,
+        placeholderBuilder: (context) => Container(
+          decoration: BoxDecoration(
+            color: primaryColor.withAlpha(50),
+            shape: BoxShape.circle,
+          ),
+        ),
+      );
+    }
+
+    return CircleAvatar(
+      backgroundImage: NetworkImage(url),
+      backgroundColor: primaryColor.withAlpha(50),
+      radius: 30,
+    );
+  }
 }
