@@ -12,7 +12,6 @@ import 'package:bacomathiques/screen/levels.dart';
 import 'package:bacomathiques/utils/server.dart';
 import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_funding_choices/flutter_funding_choices.dart';
 import 'package:provider/provider.dart';
 
 /// Hello world !
@@ -49,21 +48,7 @@ class _BacomathiquesAppState extends State<BacomathiquesApp> {
   @override
   void initState() {
     super.initState();
-
-    showFormIfRequired();
-  }
-
-  /// Shows the consent form (if required).
-  Future<void> showFormIfRequired() async {
-    ConsentInformation consentInfo = await FlutterFundingChoices.requestConsentInformation();
-    if(!consentInfo.isConsentFormAvailable) {
-      return;
-    }
-
-    if (mounted && consentInfo.consentStatus == ConsentStatus.REQUIRED) {
-      await FlutterFundingChoices.showConsentForm();
-      consentInfo = await FlutterFundingChoices.requestConsentInformation();
-    }
+    Admob.requestTrackingAuthorization();
   }
 
   @override
