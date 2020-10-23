@@ -47,6 +47,10 @@ plugins:
 
 defaults:
   - scope:
+      path: "pages/*"
+    values:
+      sitemap: false
+  - scope:
       path: "api/*"
     values:
       sitemap: false
