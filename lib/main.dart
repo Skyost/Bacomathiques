@@ -11,6 +11,7 @@ import 'package:bacomathiques/screen/lessons.dart';
 import 'package:bacomathiques/screen/levels.dart';
 import 'package:bacomathiques/utils/server.dart';
 import 'package:catcher/catcher.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,38 +20,32 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Admob.initialize();
 
-  CatcherOptions releaseConfig = CatcherOptions(
-    SilentReportMode(),
-    [
-      DiscordHandler(
-        Credentials.DISCORD_WEBHOOK,
-        printLogs: true,
-        enableDeviceParameters: false,
-        enableApplicationParameters: true,
-        enableCustomParameters: true,
-        enableStackTrace: true,
-      ),
-    ],
-    customParameters: {'platform': Platform.isAndroid ? 'Android' : 'iOS'},
-  );
+  Widget main = BacomathiquesApp();
+  if(kDebugMode) {
+    runApp(main);
+  }
+  else {
+    CatcherOptions releaseConfig = CatcherOptions(
+      SilentReportMode(),
+      [
+        DiscordHandler(
+          Credentials.DISCORD_WEBHOOK,
+          printLogs: true,
+          enableDeviceParameters: false,
+          enableApplicationParameters: true,
+          enableCustomParameters: true,
+          enableStackTrace: true,
+        ),
+      ],
+      customParameters: {'platform': Platform.isAndroid ? 'Android' : 'iOS'},
+    );
 
-  Catcher(BacomathiquesApp(), releaseConfig: releaseConfig);
+    Catcher(main, releaseConfig: releaseConfig);
+  }
 }
 
 /// The app main class.
-class BacomathiquesApp extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => _BacomathiquesAppState();
-}
-
-/// The app main class state.
-class _BacomathiquesAppState extends State<BacomathiquesApp> {
-  @override
-  void initState() {
-    super.initState();
-    Admob.requestTrackingAuthorization();
-  }
-
+class BacomathiquesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MultiProvider(
         providers: [

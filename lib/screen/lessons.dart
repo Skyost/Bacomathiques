@@ -43,17 +43,20 @@ class _LessonsPageState extends RequestScaffold<LessonsPage, LessonList> {
   void initState() {
     super.initState();
 
-    RateMyApp rateMyApp = RateMyApp();
+    RateMyApp rateMyApp = RateMyApp(appStoreIdentifier: '1458503418');
     rateMyApp.init().then((_) {
       if (rateMyApp.shouldOpenDialog) {
-        WidgetsBinding.instance.addPostFrameCallback((duration) => rateMyApp.showRateDialog(
-              context,
-              title: 'Noter l\'application',
-              message: 'Si vous aimez cette application, n\'hésitez pas à prendre un peu de votre temps pour la noter !\nCe serait d\'une grande aide et cela ne devrait pas vous prendre plus d\'une minute.',
-              rateButton: 'Noter'.toUpperCase(),
-              noButton: 'Non merci'.toUpperCase(),
-              laterButton: 'Plus tard'.toUpperCase(),
-            ));
+        WidgetsBinding.instance.addPostFrameCallback(
+          (duration) => rateMyApp.showRateDialog(
+            context,
+            title: 'Noter l\'application',
+            message: 'Si vous aimez cette application, n\'hésitez pas à prendre un peu de votre temps pour la noter !\nCe serait d\'une grande aide et cela ne devrait pas vous prendre plus d\'une minute.',
+            rateButton: 'Noter'.toUpperCase(),
+            noButton: 'Non merci'.toUpperCase(),
+            laterButton: 'Plus tard'.toUpperCase(),
+            ignoreNativeDialog: false,
+          ),
+        );
       }
     });
   }
@@ -211,9 +214,9 @@ class _PreviewWidget extends StatelessWidget {
 
   /// Creates a new preview widget.
   Widget _createPreviewWidget() => Padding(
-    padding: const EdgeInsets.only(bottom: 10),
-    child: _PreviewImage(item: item),
-  );
+        padding: const EdgeInsets.only(bottom: 10),
+        child: _PreviewImage(item: item),
+      );
 
   /// Creates a new title widget.
   Widget _createTitleWidget(AppTheme theme) => Container(
@@ -282,7 +285,9 @@ class _PreviewImage extends StatefulWidget {
   /// The lesson to preview.
   final LessonListItem item;
 
-  const _PreviewImage({@required this.item,});
+  const _PreviewImage({
+    @required this.item,
+  });
 
   @override
   State<StatefulWidget> createState() => _PreviewImageState();
@@ -294,45 +299,45 @@ class _PreviewImageState extends State<_PreviewImage> {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-    onTap: _toggleCaption,
-    child: Stack(
-      children: [
-        Positioned.fill(
-          child: Container(
-            alignment: const Alignment(0, 0),
-            foregroundDecoration: BoxDecoration(
-              color: Colors.black.withAlpha(30),
-            ),
-          ),
-        ),
-        FadeInImage.memoryNetwork(
-          image: API.BASE_URL + widget.item.preview,
-          placeholder: kTransparentImage,
-          height: 100,
-          fit: BoxFit.cover,
-        ),
-        Positioned.fill(
-          child: AnimatedOpacity(
-            opacity: showCaption ? 1 : 0,
-            duration: const Duration(milliseconds: 200),
-            child: Container(
-              alignment: const Alignment(0, 0),
-              decoration: BoxDecoration(color: Colors.black.withAlpha(175)),
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(
-                widget.item.caption,
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.white),
+        onTap: _toggleCaption,
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Container(
+                alignment: const Alignment(0, 0),
+                foregroundDecoration: BoxDecoration(
+                  color: Colors.black.withAlpha(30),
+                ),
               ),
             ),
-          ),
+            FadeInImage.memoryNetwork(
+              image: API.BASE_URL + widget.item.preview,
+              placeholder: kTransparentImage,
+              height: 100,
+              fit: BoxFit.cover,
+            ),
+            Positioned.fill(
+              child: AnimatedOpacity(
+                opacity: showCaption ? 1 : 0,
+                duration: const Duration(milliseconds: 200),
+                child: Container(
+                  alignment: const Alignment(0, 0),
+                  decoration: BoxDecoration(color: Colors.black.withAlpha(175)),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(
+                    widget.item.caption,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
-      ],
-    ),
-  );
+      );
 
   /// Toggles the current caption.
   void _toggleCaption() => setState(() {
-    showCaption = !showCaption;
-  });
+        showCaption = !showCaption;
+      });
 }

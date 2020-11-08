@@ -7,11 +7,12 @@ import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/utils/server.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_funding_choices/flutter_funding_choices.dart';
 import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 /// Allows to display the html content with an AdMob banner.
-class AdMobHTMLPage extends StatelessWidget {
+class AdMobHTMLPage extends StatefulWidget {
   /// The endpoint to display.
   final APIEndpoint<APIEndpointResultHTML> endpoint;
 
@@ -25,12 +26,44 @@ class AdMobHTMLPage extends StatelessWidget {
   });
 
   @override
+  State<StatefulWidget> createState() => _AdMobHTMLPageState();
+}
+
+/// The AdMob HTML page state.
+class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
+  /// The consent information.
+  ConsentInformation consentInformation;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => askConsent());
+  }
+
+  /// Asks for the user consent.
+  Future<void> askConsent() async {
+    ConsentInformation consentInformation = await FlutterFundingChoices.requestConsentInformation();
+    setState(() => this.consentInformation = consentInformation);
+    if (consentInformation.isConsentFormAvailable && consentInformation.consentStatus == ConsentStatus.REQUIRED) {
+      await FlutterFundingChoices.showConsentForm();
+      consentInformation = await FlutterFundingChoices.requestConsentInformation();
+      setState(() => this.consentInformation = consentInformation);
+    }
+    await Admob.requestTrackingAuthorization();
+  }
+
+  @override
   Widget build(BuildContext context) {
     SettingsModel settingsModel = Provider.of<SettingsModel>(context);
     Widget htmlPage = _HTMLPage(
-      endpoint: endpoint,
-      anchor: anchor,
+      endpoint: widget.endpoint,
+      anchor: widget.anchor,
     );
+
+    if (consentInformation == null || (consentInformation.consentStatus != ConsentStatus.OBTAINED && consentInformation.consentStatus != ConsentStatus.NOT_REQUIRED)) {
+      return htmlPage;
+    }
+
     AdmobBanner banner = settingsModel.createAdMobBanner(context);
     if (banner == null) {
       return htmlPage;
