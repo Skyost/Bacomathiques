@@ -52,7 +52,7 @@ permalink: "/cours/premiere/geometrie-reperee/"
         <p>Si on ne possède que les normes de nos vecteurs, il est possible d'utiliser la formule de polarisation.</p>
         <div class="formula" data-api-v2-title="Formule de polarisation">
             <p>Soient $\overrightarrow{u}$ et $\overrightarrow{v}$ deux vecteurs du plan :</p>
-            <p>$\overrightarrow{u} \cdot \overrightarrow{v} = \displaystyle{\frac{1}{2} \left(||\overrightarrow{u + v}||^2 + ||\overrightarrow{u}||^2 + ||\overrightarrow{v}||^2\right)}$.</p>
+            <p>$\overrightarrow{u} \cdot \overrightarrow{v} = \displaystyle{\frac{1}{2} \left(||\overrightarrow{u + v}||^2 - ||\overrightarrow{u}||^2 - ||\overrightarrow{v}||^2\right)}$.</p>
         </div>
         <div class="tip" data-api-v2-title="Utilisation des formules">
             <p>Il faut vraiment trouver la formule à utiliser selon l'énoncé de l'exercice.</p>
@@ -83,7 +83,7 @@ permalink: "/cours/premiere/geometrie-reperee/"
                     <td>3 points distincts (qui sont ici $A$, $B$ et $C$).</td>
                 </tr>
                 <tr>
-                    <td>& $\displaystyle{\frac{||\overrightarrow{u + v}||^2 + ||\overrightarrow{u}||^2 + ||\overrightarrow{v}||^2}{2}}$ \medskip (Calcul à partir des normes.)</td>
+                    <td>& $\displaystyle{\overrightarrow{u} \cdot \overrightarrow{v} = \frac{||\overrightarrow{u + v}||^2 + ||\overrightarrow{u}||^2 + ||\overrightarrow{v}||^2}{2}}$ \medskip (Calcul à partir des normes.)</td>
                     <td>On possède la norme de $\overrightarrow{u}$, celle de $\overrightarrow{v}$ mais surtout celle de $\overrightarrow{u} + \overrightarrow{v}$.</td>
                 </tr>
                 </tbody>
@@ -101,7 +101,7 @@ permalink: "/cours/premiere/geometrie-reperee/"
             <p>En reprenant les notations de l'énoncé :</p>
             <p>$c^2$</p>
             <p>$= ||\overrightarrow{AB}||^2$</p>
-            <p>$= ||\overrightarrow{CB} - \overrightarrow{CA}||^2$</p>
+            <p>$= ||\overrightarrow{CB} - \overrightarrow{CA}||^2$ (par la relation de Chasles)</p>
             <p>$= ||\overrightarrow{CB}||^2 - 2(\overrightarrow{CB} \cdot \overrightarrow{CA}) + ||\overrightarrow{CA}||^2$ (par la formule de polarisation)</p>
             <p>$= CB^2 - 2(CB \times CA \times \cos(\widehat{ACB})) + CA^2$</p>
             <p>$= a^2 + b^2 - 2 \times a \times b \times \cos(\widehat{ACB})$</p>
