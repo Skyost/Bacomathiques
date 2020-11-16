@@ -50,6 +50,9 @@
                 <img id="option-pdf" class="option" src="/assets/img/lessons/pdf.svg" alt="PDF" title="Télécharger le PDF" data-link="{{ pdf }}">
                 <img id="option-share" class="option" src="/assets/img/lessons/share.svg" alt="Partager" title="Partager le cours" data-toggle="modal" data-target="#modal-share">
                 <img id="option-caveat" class="option" src="/assets/img/lessons/alert.svg" alt="Erreur" title="Signaler une erreur" data-toggle="modal" data-target="#modal-caveat">
+                {% if lesson.e3c.first %}
+                    <img id="option-e3c" class="option" src="/assets/img/lessons/graduation.svg" alt="E3C" title="Voir les E3C en rapport avec le cours" data-toggle="modal" data-target="#modal-e3c">
+                {% endif %}
             </div>
         </div>
     {% endif %}

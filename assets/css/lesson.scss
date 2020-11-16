@@ -238,7 +238,7 @@
     margin-bottom: 1rem;
     text-align: left;
   }
-  
+
   h4 {
     text-align: left;
   }
@@ -299,6 +299,10 @@
   @media(max-width: $mobile-width) {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  #lesson-e3c .btn {
+    font-weight: normal !important;
   }
 }
 
@@ -378,4 +382,20 @@
 
 .smartbanner {
   z-index: 3;
+}
+
+#modal-e3c {
+  .modal-e3c-item {
+    margin: 15px 15px 0 15px;
+    padding: 20px;
+    background-color: $lesson-modal-e3c-item-background;
+
+    .modal-e3c-item-id {
+      color: darken($lesson-modal-e3c-item-background, 50%);
+    }
+  }
+
+  .modal-e3c-item:first-child {
+    margin-top: 0;
+  }
 }

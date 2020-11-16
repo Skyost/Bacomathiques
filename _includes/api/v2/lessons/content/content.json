@@ -10,9 +10,10 @@
     "difficulty": {{ lesson.difficulty | jsonify }},
     "pdf": {{ '/assets/pdf/cours/' | append: lesson.level | append: '/' | append: titleUrl | append: '.pdf' | jsonify }},
     "html": {{ lessonContent | replace: '<img src="/', '<img src="https://bacomathiqu.es/' | jsonify }},
-    "annals": [
-        {% for annal in lesson.annals %}
-            {% include _includes/api/v2/lessons/content/annals/annal.json annal=annal %}
+    "annals": [],
+    "e3c": [
+        {% for e3c in lesson.e3c %}
+            {{ site.data.e3c[e3c] | jsonify }}
             {% unless forloop.last %},{% endunless %}
         {% endfor %}
     ]

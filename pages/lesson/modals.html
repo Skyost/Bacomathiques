@@ -58,3 +58,30 @@
         </div>
     </div>
 </div>
+
+{% if lesson.e3c.first %}
+    <div id="modal-e3c" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-e3c-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="modal-e3c-title" class="modal-title">E3C en rapport avec le cours</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% for e3c in lesson.e3c %}
+                        {% include pages/lesson/e3c.html e3c=e3c %}
+                    {% endfor %}
+                    <small class="d-block text-right mt-4">
+                        Sujets disponibles en libre accès sur
+                        <a href="http://quandjepasselebac.education.fr/revisions-la-banque-nationale-de-sujets/">le site du ministère</a>.
+                        <br>Merci à <a href="https://ccbac.fr/index.php">CCBac</a> pour la liste des corrigés.
+                        <br>Une erreur ou un manque dans cette liste ?
+                        <a href="#" data-toggle="modal" data-target="#modal-caveat" data-dismiss="modal">Proposez votre correction</a> !
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

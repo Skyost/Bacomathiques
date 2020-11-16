@@ -4,6 +4,15 @@
     <div class="row">
         <article id="page-content" class="col-lg-9 col-12">
             {{ content }}
+
+            {% if lesson.e3c.first %}
+                <section id="lesson-e3c" class="row ml-0 mr-0 mt-5">
+                    <button type="button" class="offset-xs-0 col-xs-12 offset-md-1 col-md-10 btn btn-blue" data-toggle="modal" data-target="#modal-e3c">
+                        Vous pensez avoir tout compris ?
+                        <br>Testez-vous sur les <strong>E3C</strong> !
+                    </button>
+                </section>
+            {% endif %}
         </article>
         <div class="position-relative col-lg-3 d-lg-block d-none pl-0 pr-0">
             <nav id="lesson-navigation"></nav>
