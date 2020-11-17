@@ -41,11 +41,12 @@ class SettingsModel extends ChangeNotifier {
   }
 
   /// Creates the banner ad.
-  AdmobBanner createAdMobBanner(BuildContext context) => !_adMobEnabled || _adMobBannerId == null
+  AdmobBanner createAdMobBanner(BuildContext context, bool nonPersonalizedAds) => !_adMobEnabled || _adMobBannerId == null
       ? null
       : AdmobBanner(
           adUnitId: _adMobBannerId,
           adSize: _getAdMobBannerSize(context),
+          nonPersonalizedAds: nonPersonalizedAds,
         );
 
   /// Calculates the banner size.

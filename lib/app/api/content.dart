@@ -79,8 +79,8 @@ class LessonContent extends APIEndpointResultHTML {
   @override
   final String html;
 
-  /// The "annals" field.
-  final List<LessonAnnal> annals;
+  /// The "e3c" field.
+  final List<LessonE3C> e3c;
 
   /// Creates a new lesson content instance.
   LessonContent({
@@ -89,7 +89,7 @@ class LessonContent extends APIEndpointResultHTML {
     @required this.difficulty,
     @required this.pdf,
     @required this.html,
-    @required this.annals,
+    @required this.e3c,
   });
 
   /// Creates a new lesson content instance from a parsed JSON string.
@@ -100,61 +100,33 @@ class LessonContent extends APIEndpointResultHTML {
           difficulty: parsedJSON['difficulty'],
           pdf: parsedJSON['pdf'],
           html: parsedJSON['html'],
-          annals: parsedJSON['annals'].map<LessonAnnal>((annal) => LessonAnnal.fromParsedJSON(annal)).toList(),
+          e3c: parsedJSON['e3c'].map<LessonE3C>((e3c) => LessonE3C.fromParsedJSON(e3c)).toList(),
         );
 
   @override
   AppBar createAppBar(BuildContext context) {
-    List<_ActionMenu> actions = List.of(_actions);
-    if (annals.isNotEmpty) {
-      actions.insert(
-        0,
-        _ActionMenu(
-          icon: Icons.assignment_turned_in,
-          label: 'Annales…',
-          callback: (context, object) => dialogs.AnnalsDialog.show(context, annals: annals),
-        ),
-      );
-    }
-
     AppTheme appTheme = Provider.of<SettingsModel>(context).appTheme;
-    List<String> titleParts = lesson.title.split(' – ');
+    _ActionMenu shareActionMenu = createShareActionMenu();
     return AppBar(
-      title: titleParts.length < 2
-          ? Text(lesson.title)
-          : RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: titleParts.first,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  TextSpan(
-                    text: '\n' + titleParts[1],
-                  ),
-                ],
-              ),
-            ),
+      title: createTitle(lesson.title),
       actions: [
-        IconButton(
-          key: _shareButtonKey,
-          icon: const Icon(
-            Icons.share,
-            color: Colors.white,
+        if (e3c.isEmpty)
+          IconButton(
+            key: _shareButtonKey,
+            icon: Icon(
+              shareActionMenu.icon,
+              color: Colors.white,
+            ),
+            onPressed: () => shareActionMenu.callback(context, null),
           ),
-          onPressed: () async {
-            RenderBox renderBox = _shareButtonKey.currentContext.findRenderObject();
-            Offset position = renderBox.localToGlobal(Offset.zero);
-
-            await Share.share(
-              'Lisez le cours intitulé « ' + lesson.title + ' » en téléchargeant l\'application Bacomathiques !\n' + storePage,
-              sharePositionOrigin: Rect.fromLTWH(position.dx, position.dy, 24, 12),
-            );
-          },
-        ),
+        if (e3c.isNotEmpty)
+          IconButton(
+            icon: const Icon(
+              Icons.assignment_turned_in,
+              color: Colors.white,
+            ),
+            onPressed: () => dialogs.E3CDialog.show(context, e3c: e3c),
+          ),
         IconButton(
           icon: const Icon(
             Icons.message,
@@ -167,61 +139,80 @@ class LessonContent extends APIEndpointResultHTML {
           },
         ),
         PopupMenuButton<_ActionMenu>(
+          key: e3c.isNotEmpty ? _shareButtonKey : null,
           color: appTheme.themeData.scaffoldBackgroundColor,
           onSelected: (action) => action.callback(context, this),
-          itemBuilder: (context) => actions
-              .map(
-                (action) => PopupMenuItem<_ActionMenu>(
-                  value: action,
-                  child: action.createWidget(appTheme),
-                ),
-              )
-              .toList(),
+          itemBuilder: (context) => [
+            if (e3c.isNotEmpty) shareActionMenu.createPopupMenuItem(appTheme),
+            ..._actions.map((action) => action.createPopupMenuItem(appTheme)),
+          ],
         ),
       ],
     );
   }
+
+  /// Creates the title widget.
+  static Widget createTitle(String text) {
+    List<String> titleParts = text.split(' – ');
+    return titleParts.length < 2
+        ? Text(text)
+        : RichText(
+      text: TextSpan(
+        children: [
+          TextSpan(
+            text: titleParts.first,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          TextSpan(
+            text: '\n' + titleParts[1],
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Creates the share action menu.
+  _ActionMenu createShareActionMenu() => _ActionMenu(
+      icon: Icons.share,
+      label: 'Partager le cours…',
+      callback: (context, content) async {
+        RenderBox renderBox = _shareButtonKey.currentContext.findRenderObject();
+        Offset position = renderBox.localToGlobal(Offset.zero);
+
+        await Share.share(
+          'Lisez le cours intitulé « ' + lesson.title + ' » en téléchargeant l\'application Bacomathiques !\n' + storePage,
+          sharePositionOrigin: Rect.fromLTWH(position.dx, position.dy, 24, 12),
+        );
+      });
 }
 
-/// A lesson annal.
-class LessonAnnal {
+/// Represents an E3C.
+class LessonE3C {
   /// The "id" field.
   final String id;
-
-  /// The "name" field.
-  final String name;
-
-  /// The "year" field.
-  final int year;
-
-  /// The "specific" field.
-  final bool specific;
 
   /// The "subject" field.
   final String subject;
 
-  /// The "correction" field.
-  final String correction;
+  /// The "corrections" field.
+  final List<String> corrections;
 
-  /// Creates a new lesson annal instance.
-  const LessonAnnal({
+  /// Creates a new lesson E3C instance.
+  const LessonE3C({
     @required this.id,
-    @required this.name,
-    @required this.year,
-    @required this.specific,
     @required this.subject,
-    @required this.correction,
+    @required this.corrections,
   });
 
-  /// Creates a new lesson annal instance from a parsed JSON string.
-  LessonAnnal.fromParsedJSON(Map<String, dynamic> parsedJSON)
+  /// Creates a new lesson E3C instance from a parsed JSON string.
+  LessonE3C.fromParsedJSON(Map<String, dynamic> parsedJSON)
       : this(
           id: parsedJSON['id'],
-          name: parsedJSON['name'],
-          year: parsedJSON['year'],
-          specific: parsedJSON['specific'],
           subject: parsedJSON['subject'],
-          correction: parsedJSON['correction'],
+          corrections: List<String>.from(parsedJSON['corrections']),
         );
 }
 
@@ -260,5 +251,11 @@ class _ActionMenu {
             style: TextStyle(color: appTheme.themeData.textColor),
           ),
         ],
+      );
+
+  /// Creates the popup menu item associated with this action.
+  PopupMenuItem<_ActionMenu> createPopupMenuItem(AppTheme appTheme) => PopupMenuItem<_ActionMenu>(
+        value: this,
+        child: createWidget(appTheme),
       );
 }

@@ -4,10 +4,10 @@ import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/content.dart';
 import 'package:bacomathiques/app/settings.dart';
+import 'package:bacomathiques/utils/consent_dialog.dart';
 import 'package:bacomathiques/utils/server.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_funding_choices/flutter_funding_choices.dart';
 import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -42,14 +42,16 @@ class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
 
   /// Asks for the user consent.
   Future<void> askConsent() async {
-    ConsentInformation consentInformation = await FlutterFundingChoices.requestConsentInformation();
-    setState(() => this.consentInformation = consentInformation);
-    if (consentInformation.isConsentFormAvailable && consentInformation.consentStatus == ConsentStatus.REQUIRED) {
-      await FlutterFundingChoices.showConsentForm();
-      consentInformation = await FlutterFundingChoices.requestConsentInformation();
-      setState(() => this.consentInformation = consentInformation);
-    }
+    ConsentInformation consentInformation = await ConsentInformation.askIfNeeded(
+      context: context,
+      appMessage: 'Nous souhaitons votre accord pour vous afficher des publicités personnalisées. Sachez que cette application et son contenu sont mis à disposition gratuitement pour les utilisateurs et que les publicités constituent les seuls revenus de cette application.',
+      question: 'Pouvons-nous utiliser vos données pour vous afficher des publicités personnalisées ?',
+      privacyPolicyMessage: 'Vous pourrez changer votre choix dans le menu déroulant de l\'application. Sachez que des cookies seront stockés sur votre appareil. Consultez notre <a href="https://bacomathiqu.es/assets/pdf/politique-de-confidentialite.pdf">politique de confidentialité</a> pour plus d\'informations.',
+      personalizedAdsButton: 'Oui, je souhaite voir des annonces pertinentes'.toUpperCase(),
+      nonPersonalizedAdsButton: 'Non, je souhaite voir des annonces moins pertinentes'.toUpperCase(),
+    );
     await Admob.requestTrackingAuthorization();
+    setState(() => this.consentInformation = consentInformation);
   }
 
   @override
@@ -60,11 +62,11 @@ class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
       anchor: widget.anchor,
     );
 
-    if (consentInformation == null || (consentInformation.consentStatus != ConsentStatus.OBTAINED && consentInformation.consentStatus != ConsentStatus.NOT_REQUIRED)) {
+    if(consentInformation == null) {
       return htmlPage;
     }
 
-    AdmobBanner banner = settingsModel.createAdMobBanner(context);
+    AdmobBanner banner = settingsModel.createAdMobBanner(context, consentInformation.wantsNonPersonalizedAds);
     if (banner == null) {
       return htmlPage;
     }

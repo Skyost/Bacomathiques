@@ -111,13 +111,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_funding_choices:
-    dependency: "direct main"
-    description:
-      name: flutter_funding_choices
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.1+2"
   flutter_layout_grid:
     dependency: "direct main"
     description:
@@ -526,7 +519,7 @@ packages:
       name: webview_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.6"
+    version: "1.0.7"
   win32:
     dependency: transitive
     description:

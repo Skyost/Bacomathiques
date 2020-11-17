@@ -53,13 +53,12 @@ class LessonComments extends APIEndpointResult {
   }
 
   /// Creates a new lesson comments instance from a parsed JSON string.
-  LessonComments.fromParsedJSON(Map<String, dynamic> parsedJSON)
-      : this(
-          api: APIStatus.fromParsedJSON(parsedJSON['api']),
-          lesson: Lesson.fromParsedJSON(parsedJSON['lesson']),
-          post: LessonCommentsPostData.fromParsedJSON(parsedJSON['post']),
-          list: parsedJSON['list'].map<LessonComment>((comment) => LessonComment.fromParsedJSON(comment)).toList(),
-        );
+  factory LessonComments.fromParsedJSON(Map<String, dynamic> parsedJSON) => LessonComments(
+        api: APIStatus.fromParsedJSON(parsedJSON['api']),
+        lesson: Lesson.fromParsedJSON(parsedJSON['lesson']),
+        post: LessonCommentsPostData.fromParsedJSON(parsedJSON['post']),
+        list: parsedJSON['list'].map<LessonComment>((comment) => LessonComment.fromParsedJSON(comment)).toList(),
+      );
 
   @override
   AppBar createAppBar(BuildContext context) => AppBar(

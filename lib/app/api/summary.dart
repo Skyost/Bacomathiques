@@ -1,4 +1,5 @@
 import 'package:bacomathiques/app/api/common.dart';
+import 'package:bacomathiques/app/api/content.dart';
 import 'package:flutter/material.dart';
 
 /// /api/v2/:level/summary/ endpoint.
@@ -44,6 +45,6 @@ class LessonSummary extends APIEndpointResultHTML {
 
   @override
   AppBar createAppBar(BuildContext context) => AppBar(
-        title: Text(lesson.title),
+        title: LessonContent.createTitle(lesson.title),
       );
 }

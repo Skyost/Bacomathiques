@@ -78,10 +78,10 @@ abstract class AppThemeData {
   final Color actionBarColor;
 
   /// The lesson button color.
-  final Color lessonButtonColor;
+  final Color blueButtonColor;
 
   /// The speciality button color.
-  final Color specialityButtonColor;
+  final Color greenButtonColor;
 
   /// The comments border radius.
   final double commentBorderRadius;
@@ -113,8 +113,8 @@ abstract class AppThemeData {
     @required this.primaryColorDark,
     @required this.accentColor,
     @required this.actionBarColor,
-    this.lessonButtonColor = const Color(0xFF217DBB),
-    this.specialityButtonColor = const Color(0xFF3CA797),
+    this.blueButtonColor = const Color(0xFF217DBB),
+    this.greenButtonColor = const Color(0xFF3CA797),
     this.commentBorderRadius = 15,
     @required this.commentBackgroundColor,
     @required this.commentDateColor,

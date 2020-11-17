@@ -219,7 +219,7 @@ class _PreviewWidget extends StatelessWidget {
       );
 
   /// Creates a new title widget.
-  Widget _createTitleWidget(AppTheme theme) => Container(
+  Widget _createTitleWidget(AppTheme theme) => Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
         child: Text(
           item.lesson.title,
@@ -233,7 +233,7 @@ class _PreviewWidget extends StatelessWidget {
   /// Creates a new description widget.
   Widget _createDescriptionWidget() {
     Widget description = Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 21),
       child: HtmlWidget(item.excerpt),
     );
 
@@ -244,7 +244,7 @@ class _PreviewWidget extends StatelessWidget {
   Widget _createLessonButton(BuildContext context, AppTheme theme) => Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
         child: FlatButton(
-          color: theme.themeData.lessonButtonColor,
+          color: theme.themeData.blueButtonColor,
           child: Text(
             'Lire le cours'.toUpperCase(),
             style: const TextStyle(fontSize: 14, color: Colors.white),
@@ -264,7 +264,7 @@ class _PreviewWidget extends StatelessWidget {
   Widget _createSummaryButton(BuildContext context, AppTheme theme) => Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
         child: FlatButton(
-          color: theme.themeData.specialityButtonColor,
+          color: theme.themeData.greenButtonColor,
           child: Text(
             'Lire le résumé'.toUpperCase(),
             style: const TextStyle(fontSize: 14, color: Colors.white),
