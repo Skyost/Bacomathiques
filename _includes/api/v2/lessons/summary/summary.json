@@ -2,9 +2,10 @@
 {% capture summaryContent %}{% include {{ lesson.summary }} %}{% endcapture %}
 {% assign parts = summaryContent | split: "---" %}
 {% assign summaryContent = parts[2] %}
+{% assign imageTagPrefix = '<img src="' | append: site.url | append: '/' %}
 
 {
     "api": {% include _includes/api/v2/api_info.json %},
     "lesson" : {% include _includes/api/v2/lessons/lesson_info.json lesson=lesson isSummary=true %},
-    "html": {{ summaryContent | normalize_whitespace | replace: ' <span class="o">~~</span>', '\t' | jsonify }}
+    "html": {{ summaryContent | replace: '<img src="/', imageTagPrefix | jsonify }}
 }

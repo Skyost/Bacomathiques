@@ -44,7 +44,7 @@ function onCommentSent(event) {
 }
 
 function getAvatarUrl(username) {
-    if(username == null || username.length === 0) {
+    if (username == null || username.length === 0) {
         username = 'Anonyme';
     }
     return 'https://avatars.dicebear.com/api/bottts/' + username + '.svg';

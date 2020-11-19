@@ -1,3 +1,3 @@
 ---
 ---
-{{ content | replace: '    ', '' | strip_newlines }}
+{% if page.compressed == false %}{{ content }}{% else %}{{ content | replace: '    ', '' | strip_newlines }}{% endif %}

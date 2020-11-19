@@ -31,7 +31,7 @@ permalink: "/cours/terminale/chaines-markov/"
                 <li>Il y a au plus $1$ arrête orientée reliant chaque sommet.</li>
             </ul>
         </div>
-        <p>Il peut être utile de faire l'analogie entre les graphes probabilistes et <a href="https://bacomathiqu.es/cours/premiere/probabilites/#2-arbre-de-probabilit%C3%A9" data-api-v2-level="premiere" data-api-v2-lesson="probabilites" data-api-v2-hash="#2-arbre-de-probabilit%C3%A9">les arbres de probabilité</a> vus en classe de Première.</p>
+        <p>Il peut être utile de faire l'analogie entre les graphes probabilistes et <a href="/cours/premiere/probabilites/#2-arbre-de-probabilit%C3%A9" data-api-v2-level="premiere" data-api-v2-lesson="probabilites" data-api-v2-hash="#2-arbre-de-probabilit%C3%A9">les arbres de probabilité</a> vus en classe de Première.</p>
         <div class="tip" data-api-v2-title="Exemple">
             <p>Faisons un exemple concret. On souhaite étudier l'évolution d'une maladie chez un certain individu. À un jour donné, cet individu est soit malade (que l'on note $M$), soit soigné (que l'on note $S$). On suppose que pour cette maladie :</p>
             <ul>
@@ -61,7 +61,7 @@ permalink: "/cours/terminale/chaines-markov/"
     <h2>Chaînes de Markov</h2>
     <section>
         <h3>Qu'est-ce qu'une chaîne de Markov ?</h3>
-        <p>Il vous est fortement conseillé de relire (et de maîtriser) le cours sur <a href="https://bacomathiqu.es/cours/terminale/variables-aleatoires-concentration-grands-nombres/" data-api-v2-level="terminale" data-api-v2-lesson="variables-aleatoires-concentration-grands-nombres">les variables aléatoires</a> avant d'aborder cette section. De plus, sachez que cette partie est sans doute la plus difficile du programme de Terminale. Mais ne vous découragez pas car elle reste parfaitement accessible !</p>
+        <p>Il vous est fortement conseillé de relire (et de maîtriser) le cours sur <a href="/cours/terminale/variables-aleatoires-concentration-grands-nombres/" data-api-v2-level="terminale" data-api-v2-lesson="variables-aleatoires-concentration-grands-nombres">les variables aléatoires</a> avant d'aborder cette section. De plus, sachez que cette partie est sans doute la plus difficile du programme de Terminale. Mais ne vous découragez pas car elle reste parfaitement accessible !</p>
         <div class="formula" data-api-v2-title="Définition">
             <p>Soit $(X_n)$ une suite de variables aléatoires discrètes définies sur un même univers $\Omega$ et à valeurs dans un ensemble $E$. On dit que $(X_n)$ définit une <strong>chaîne de Markov</strong> sur $E$ si pour tout $n \in \mathbb{N}$ et tout $x_0, x_1, x_2, \text{ ... }, x_n \in E$, l'événement $(X_n = x_n)$ ne dépend que de l'événement antérieur $(X_{n-1} = x_{n-1})$ (et pas des précédents) ; autrement dit, si $p_{(X_{n-1} = x_{n-1}) \, \cap \text{ ... } \cap \, (X_0 = x_0)}(X_n = x_n) = p_{(X_{n-1} = x_{n-1})}(X_n = x_n)$.</p>
             <p>De plus, l'ensemble $E$ est appelé <strong>espace des états</strong> de la chaîne de Markov.</p>
