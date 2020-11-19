@@ -7,9 +7,6 @@ PODS:
   - device_info (0.0.1):
     - Flutter
   - Flutter (1.0.0)
-  - flutter_funding_choices (0.1.1):
-    - Flutter
-    - GoogleUserMessagingPlatform (~> 1.2.0)
   - flutter_mailer (0.0.1):
     - Flutter
   - fluttertoast (0.0.2):
@@ -69,7 +66,6 @@ DEPENDENCIES:
   - catcher (from `.symlinks/plugins/catcher/ios`)
   - device_info (from `.symlinks/plugins/device_info/ios`)
   - Flutter (from `Flutter`)
-  - flutter_funding_choices (from `.symlinks/plugins/flutter_funding_choices/ios`)
   - flutter_mailer (from `.symlinks/plugins/flutter_mailer/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
@@ -99,8 +95,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/device_info/ios"
   Flutter:
     :path: Flutter
-  flutter_funding_choices:
-    :path: ".symlinks/plugins/flutter_funding_choices/ios"
   flutter_mailer:
     :path: ".symlinks/plugins/flutter_mailer/ios"
   fluttertoast:
@@ -125,7 +119,6 @@ SPEC CHECKSUMS:
   catcher: e5585ed31458c849f4fd9c3719b2fcb0188b8918
   device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  flutter_funding_choices: 84139f2e05cc74e61ced1c018541735d9d6bf03c
   flutter_mailer: 2ef5a67087bc8c6c4cefd04a178bf1ae2c94cd83
   fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
   Google-Mobile-Ads-SDK: af735e001ee534d9dd2ce0a87cd8c355b19844b5
@@ -145,4 +138,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: a75497545d4391e2d394c3668e20cfb1c2bbd4aa
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0
