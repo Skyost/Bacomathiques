@@ -14,6 +14,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 /// Contains the user consent info.
 class ConsentInformation {
+  /// Cached consent information instance.
+  static ConsentInformation _cached;
+
   /// The preferences key for the "should display" parameter.
   static const String PREFERENCES_SHOULD_DISPLAY = 'consent.should-display';
 
@@ -29,17 +32,18 @@ class ConsentInformation {
   /// Creates a new consent information instance.
   const ConsentInformation._internal({
     this.isRequestLocationInEeaOrUnknown = true,
-    this.wantsNonPersonalizedAds = false,
+    this.wantsNonPersonalizedAds = true,
   });
 
   /// Reads the consent information from the shared preferences.
   static Future<ConsentInformation> read() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     if (preferences.containsKey(PREFERENCES_SHOULD_DISPLAY) && preferences.containsKey(PREFERENCES_WANTS_NON_PERSONALIZED_ADS)) {
-      return ConsentInformation._internal(
+      _cached = ConsentInformation._internal(
         isRequestLocationInEeaOrUnknown: preferences.getBool(PREFERENCES_SHOULD_DISPLAY),
         wantsNonPersonalizedAds: preferences.getBool(PREFERENCES_WANTS_NON_PERSONALIZED_ADS),
       );
+      return _cached;
     }
     return null;
   }
@@ -74,14 +78,14 @@ class ConsentInformation {
             ),
             barrierDismissible: false,
           ))
-        : true;
+        : false;
 
-    ConsentInformation result = ConsentInformation._internal(
+    _cached = ConsentInformation._internal(
       isRequestLocationInEeaOrUnknown: needToAsk,
       wantsNonPersonalizedAds: wantsNonPersonalizedAds,
     );
-    await result.write();
-    return result;
+    await _cached.write();
+    return _cached;
   }
 
   /// Reads or asks for the consent information if required.
@@ -94,6 +98,10 @@ class ConsentInformation {
     @required String nonPersonalizedAdsButton,
   }) async {
     try {
+      if(_cached != null) {
+        return _cached;
+      }
+
       ConsentInformation result = (await read()) ??
           (await ask(
             context: context,
@@ -103,6 +111,7 @@ class ConsentInformation {
             personalizedAdsButton: personalizedAdsButton,
             nonPersonalizedAdsButton: nonPersonalizedAdsButton,
           ));
+
       if (result != null) {
         return result;
       }
@@ -227,7 +236,7 @@ class _PersonalizedAdsConsentDialog extends StatelessWidget {
   /// Creates the personalized ads button widget.
   Widget _createPersonalizedAdsButton(BuildContext context, AppTheme theme) => FlatButton(
         color: theme.themeData.blueButtonColor,
-        onPressed: () => Navigator.pop(context, true),
+        onPressed: () => Navigator.pop(context, false),
         child: Text(
           personalizedAdsButton,
           textAlign: TextAlign.center,
@@ -240,7 +249,7 @@ class _PersonalizedAdsConsentDialog extends StatelessWidget {
   /// Creates the non personalized ads button widget.
   Widget _createNonPersonalizedAdsButton(BuildContext context, AppTheme theme) => FlatButton(
         color: theme.themeData.blueButtonColor,
-        onPressed: () => Navigator.pop(context, false),
+        onPressed: () => Navigator.pop(context, true),
         child: Text(
           nonPersonalizedAdsButton,
           textAlign: TextAlign.center,

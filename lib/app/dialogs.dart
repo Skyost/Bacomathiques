@@ -152,7 +152,7 @@ class AdsDialog extends StatelessWidget {
           onPressed: () async {
             settingsModel.adMobEnabled = true;
             await settingsModel.flush();
-            await (await SharedPreferences.getInstance()).setBool(ConsentInformation.PREFERENCES_WANTS_NON_PERSONALIZED_ADS, true);
+            await (await SharedPreferences.getInstance()).setBool(ConsentInformation.PREFERENCES_WANTS_NON_PERSONALIZED_ADS, false);
             await _showRestartDialog(context);
             Navigator.pop(context);
           },
@@ -163,7 +163,7 @@ class AdsDialog extends StatelessWidget {
           onPressed: () async {
             settingsModel.adMobEnabled = true;
             await settingsModel.flush();
-            await (await SharedPreferences.getInstance()).setBool(ConsentInformation.PREFERENCES_WANTS_NON_PERSONALIZED_ADS, false);
+            await (await SharedPreferences.getInstance()).setBool(ConsentInformation.PREFERENCES_WANTS_NON_PERSONALIZED_ADS, true);
             await _showRestartDialog(context);
             Navigator.pop(context);
           },

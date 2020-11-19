@@ -111,7 +111,7 @@ class Lesson {
   final APIEndpoint<LessonSummary> summary;
 
   /// Creates a new lesson instance.
-  Lesson({
+  const Lesson({
     @required this.id,
     @required this.level,
     @required this.title,
