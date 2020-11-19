@@ -37,8 +37,7 @@ function onCommentSent(event) {
         commentAuthor.val('');
         $('#comment-message').val('');
     })
-        .fail(function (err) {
-            console.log(err);
+        .fail(function () {
             $('#comment-error').removeClass('d-none');
             $('#comment-form button').attr('disabled', '');
         });
