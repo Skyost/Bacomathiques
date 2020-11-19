@@ -376,7 +376,7 @@ class WriteCommentDialog extends StatelessWidget {
               return;
             }
 
-            WaitingDialog.show(context, message: 'Envoi en cours, veuillez patienter environ 10 secondes…');
+            WaitingDialog.show(context, message: 'Envoi en cours, veuillez patienter…');
             List<LessonCommentsPostDataFieldValue> fields = [];
             for (LessonCommentsPostDataField field in comments.post.fields) {
               switch (field.name) {
