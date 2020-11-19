@@ -4,7 +4,7 @@
     "api": {% include _includes/api/v2/api_info.json %},
     "lesson": {% include _includes/api/v2/lessons/lesson_info.json lesson=lesson %},
     "post": {
-        "url" : {{ 'https://skyost-staticman.herokuapp.com/v3/entry/github/Skyost/Bacomathiques/master/comments' | jsonify }},
+        "url" : {{ 'https://postman.bacomathiqu.es/v3/entry/github/Skyost/Bacomathiques/master/comments' | jsonify }},
         "fields": [
             {% include _includes/api/v2/lessons/comments/comment_field.json name='slug' type='options' %},
             {% include _includes/api/v2/lessons/comments/comment_field.json name='lesson' type='fields' %},

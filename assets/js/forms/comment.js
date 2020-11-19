@@ -32,12 +32,13 @@ function onCommentSent(event) {
     $('#comment-form button').attr('disabled', true);
 
     event.preventDefault();
-    $.post('https://skyost-staticman.herokuapp.com/v3/entry/github/Skyost/Bacomathiques/master/comments', $(this).serialize(), function () {
+    $.post('https://postman.bacomathiqu.es/v3/entry/github/Skyost/Bacomathiques/master/comments', $(this).serialize(), function () {
         $('#comment-success').removeClass('d-none');
         commentAuthor.val('');
         $('#comment-message').val('');
     })
-        .fail(function () {
+        .fail(function (err) {
+            console.log(err);
             $('#comment-error').removeClass('d-none');
             $('#comment-form button').attr('disabled', '');
         });
