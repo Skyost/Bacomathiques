@@ -1,6 +1,6 @@
 name: bacomathiques
 description: Cours gratuits pour réviser les maths au lycée !
-version: 1.3.6+37
+version: 2.0.0+38
 homepage: https://bacomathiqu.es
 
 environment:
@@ -9,12 +9,10 @@ environment:
 
 dependencies:
   http: ^0.12.2
-  webview_flutter: ^1.0.7
   mime: ^0.9.7
   url_launcher: ^5.4.11
   flutter_svg: ^0.19.1
   share: ^0.6.5
-  transparent_image: ^1.0.0
   rate_my_app: ^0.7.2
   path_provider: ^1.6.24
   shared_preferences: ^0.5.12
@@ -24,7 +22,8 @@ dependencies:
   flutter_layout_grid: ^0.10.2
   google_fonts: ^1.1.1
   admob_flutter: ^1.0.1
-  catcher: ^0.3.22
+  catcher: ^0.3.23
+  flutter_math: ^0.2.0
   flutter_widget_from_html_core: ^0.5.1
   flutter:
     sdk: flutter
@@ -38,27 +37,5 @@ flutter:
   assets:
     - assets/
     - assets/images/
-    - assets/images/
     - assets/fonts/
-    - assets/webview/
-    - assets/webview/css/
-    - assets/webview/css/bootstrap/
-    - assets/webview/js/
-    - assets/webview/js/anchor/
-    - assets/webview/js/jquery/
-    - assets/webview/js/mathjax/
-    - assets/webview/js/mathjax/es5/
-    - assets/webview/js/mathjax/es5/a11y/
-    - assets/webview/js/mathjax/es5/adaptors/
-    - assets/webview/js/mathjax/es5/input/
-    - assets/webview/js/mathjax/es5/input/tex/
-    - assets/webview/js/mathjax/es5/input/tex/extensions/
-    - assets/webview/js/mathjax/es5/output/
-    - assets/webview/js/mathjax/es5/output/chtml/
-    - assets/webview/js/mathjax/es5/output/chtml/fonts/
-    - assets/webview/js/mathjax/es5/output/chtml/fonts/woff-v2/
-    - assets/webview/js/mathjax/es5/sre/
-    - assets/webview/js/mathjax/es5/sre/mathmaps/
-    - assets/webview/js/mathjax/es5/ui/
-    - assets/webview/js/polyfill/
     - google_fonts/

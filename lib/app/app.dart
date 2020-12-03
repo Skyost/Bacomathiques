@@ -107,6 +107,8 @@ abstract class AppThemeData {
   /// The highlight color.
   final Color highlightColor;
 
+  final Map<Bubble, BubbleTheme> bubbleThemes;
+
   /// Creates a new app theme data instance.
   const AppThemeData({
     @required this.primaryColor,
@@ -123,6 +125,7 @@ abstract class AppThemeData {
     this.textColor,
     @required this.progressIndicatorColor,
     this.highlightColor = Colors.black12,
+    @required this.bubbleThemes,
   });
 }
 
@@ -138,6 +141,24 @@ class LightAppThemeData extends AppThemeData {
           commentBackgroundColor: const Color(0xFFE1F0FA),
           commentDateColor: const Color(0xFF6C757D),
           progressIndicatorColor: const Color(0xFF29CBB1),
+          bubbleThemes: const {
+            Bubble.FORMULA: BubbleTheme(
+              backgroundColor: Color(0xffebf3fb),
+              leftBorderColor: Color(0xff3498db),
+              linkColor: Color(0xff217dbb),
+              linkDecorationColor: Color(0xffa0cfee),
+            ),
+            Bubble.TIP: BubbleTheme(
+              backgroundColor: Color(0xffdcf3d8),
+              leftBorderColor: Color(0xff208d4d),
+              linkColor: Color(0xff13532e),
+              linkDecorationColor: Color(0xff219150),
+            ),
+            Bubble.PROOF: BubbleTheme(
+              backgroundColor: Color(0xfffff8de),
+              leftBorderColor: Color(0xfff1c40f),
+            ),
+          },
         );
 }
 
@@ -156,5 +177,69 @@ class DarkAppThemeData extends AppThemeData {
           lessonBackgroundColor: const Color(0xFF192734),
           textColor: Colors.white,
           progressIndicatorColor: Colors.white,
+          bubbleThemes: const {
+            Bubble.FORMULA: BubbleTheme(
+              leftBorderColor: Color(0xff3498db),
+              linkColor: Color(0xff217dbb),
+              linkDecorationColor: Color(0xffa0cfee),
+            ),
+            Bubble.TIP: BubbleTheme(
+              leftBorderColor: Color(0xff208d4d),
+              linkColor: Color(0xff13532e),
+              linkDecorationColor: Color(0xff219150),
+            ),
+            Bubble.PROOF: BubbleTheme(leftBorderColor: Color(0xfff1c40f)),
+          },
         );
+}
+
+/// Contains all possible bubbles.
+enum Bubble {
+  /// Formula bubble.
+  FORMULA,
+
+  /// Tip bubble.
+  TIP,
+
+  /// Proof bubble.
+  PROOF
+}
+
+/// The bubble class extension.
+extension BubbleClass on Bubble {
+  /// Returns the bubble CSS class name.
+  String get className {
+    switch (this) {
+      case Bubble.FORMULA:
+        return 'formula';
+      case Bubble.TIP:
+        return 'tip';
+      case Bubble.PROOF:
+        return 'proof';
+    }
+    return null;
+  }
+}
+
+/// A bubble theme.
+class BubbleTheme {
+  /// The background color.
+  final Color backgroundColor;
+
+  /// The left border color.
+  final Color leftBorderColor;
+
+  /// The link color.
+  final Color linkColor;
+
+  /// The link decoration color.
+  final Color linkDecorationColor;
+
+  /// Creates a new bubble theme instance.
+  const BubbleTheme({
+    this.backgroundColor,
+    @required this.leftBorderColor,
+    this.linkColor,
+    this.linkDecorationColor,
+  });
 }

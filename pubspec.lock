@@ -21,7 +21,7 @@ packages:
       name: catcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.22"
+    version: "0.3.23"
   characters:
     dependency: transitive
     description:
@@ -77,7 +77,7 @@ packages:
       name: device_info
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.2+10"
+    version: "1.0.0"
   device_info_platform_interface:
     dependency: transitive
     description:
@@ -125,6 +125,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  flutter_math:
+    dependency: "direct main"
+    description:
+      name: flutter_math
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0+2"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -150,7 +157,7 @@ packages:
       name: fluttertoast
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.1.1"
+    version: "7.1.5"
   google_fonts:
     dependency: "direct main"
     description:
@@ -443,13 +450,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  transparent_image:
-    dependency: "direct main"
+  tuple:
+    dependency: transitive
     description:
-      name: transparent_image
+      name: tuple
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.3"
   typed_data:
     dependency: transitive
     description:
@@ -513,13 +520,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0-nullsafety.3"
-  webview_flutter:
-    dependency: "direct main"
-    description:
-      name: webview_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.7"
   win32:
     dependency: transitive
     description:

@@ -141,8 +141,7 @@ class AdsDialog extends StatelessWidget {
           Sachez cependant que cette application et son contenu sont mis à disposition gratuitement pour les utilisateurs et que les publicités
           constituent les seuls revenus de cette application.
           Consultez notre <a href="https://bacomathiqu.es/assets/pdf/politique-de-confidentialite.pdf">politique de confidentialité</a> pour plus d'informations.
-          '''
-          ,
+          ''',
         ),
       );
 
@@ -505,20 +504,7 @@ class WaitingDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) => AlertDialog(
         title: const Text('Veuillez patienter…'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(bottom: 15),
-              child: CircularProgressIndicator(),
-            ),
-            Text(
-              message,
-              style: const TextStyle(fontStyle: FontStyle.italic),
-              textAlign: TextAlign.center,
-            )
-          ],
-        ),
+        content: CenteredCircularProgressIndicator(message: message),
       );
 
   /// Shows the dialog.

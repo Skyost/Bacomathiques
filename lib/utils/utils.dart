@@ -1,8 +1,7 @@
 import 'dart:io';
-import 'dart:math';
+import 'dart:math' as math;
+import 'dart:typed_data';
 
-import 'package:bacomathiques/app/api/common.dart';
-import 'package:bacomathiques/app/dialogs.dart';
 import 'package:bacomathiques/app/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +9,74 @@ import 'package:url_launcher/url_launcher.dart';
 
 /// The app store page.
 final String storePage = Platform.isAndroid ? 'https://play.google.com/store/apps/details?id=fr.bacomathiques' : 'http://itunes.apple.com/app/id1458503418';
+
+/// Shows a transparent image.
+Uint8List kTransparentImage = Uint8List.fromList(const [
+  0x89,
+  0x50,
+  0x4E,
+  0x47,
+  0x0D,
+  0x0A,
+  0x1A,
+  0x0A,
+  0x00,
+  0x00,
+  0x00,
+  0x0D,
+  0x49,
+  0x48,
+  0x44,
+  0x52,
+  0x00,
+  0x00,
+  0x00,
+  0x01,
+  0x00,
+  0x00,
+  0x00,
+  0x01,
+  0x08,
+  0x06,
+  0x00,
+  0x00,
+  0x00,
+  0x1F,
+  0x15,
+  0xC4,
+  0x89,
+  0x00,
+  0x00,
+  0x00,
+  0x0A,
+  0x49,
+  0x44,
+  0x41,
+  0x54,
+  0x78,
+  0x9C,
+  0x63,
+  0x00,
+  0x01,
+  0x00,
+  0x00,
+  0x05,
+  0x00,
+  0x01,
+  0x0D,
+  0x0A,
+  0x2D,
+  0xB4,
+  0x00,
+  0x00,
+  0x00,
+  0x00,
+  0x49,
+  0x45,
+  0x4E,
+  0x44,
+  0xAE,
+]);
 
 /// Opens an URL with the default browser.
 void openURL(String url) async {
@@ -20,18 +87,45 @@ void openURL(String url) async {
 
 /// Returns whether the current screen is a tablet.
 bool isTablet(Size screenSize) {
-  double diagonal = sqrt(pow(screenSize.width, 2) + pow(screenSize.height, 2));
+  double diagonal = math.sqrt(math.pow(screenSize.width, 2) + math.pow(screenSize.height, 2));
   return diagonal > 1100 || screenSize.shortestSide >= 600;
 }
 
 /// A centered circular progress indicator.
 class CenteredCircularProgressIndicator extends StatelessWidget {
+  /// The message to show.
+  final String message;
+
+  /// Creates a new centered circular progress indicator instance.
+  const CenteredCircularProgressIndicator({
+    this.message,
+  });
+
   @override
-  Widget build(BuildContext context) => Center(
-        child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(Provider.of<SettingsModel>(context).appTheme.themeData.progressIndicatorColor),
-        ),
-      );
+  Widget build(BuildContext context) {
+    Widget progressIndicator = CircularProgressIndicator(
+      valueColor: AlwaysStoppedAnimation<Color>(Provider.of<SettingsModel>(context).appTheme.themeData.progressIndicatorColor),
+    );
+
+    return Center(
+      child: message == null
+          ? progressIndicator
+          : Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 15),
+                  child: progressIndicator,
+                ),
+                Text(
+                  message,
+                  style: const TextStyle(fontStyle: FontStyle.italic),
+                  textAlign: TextAlign.center,
+                )
+              ],
+            ),
+    );
+  }
 }
 
 /// Contains some useful methods for doubles.
@@ -43,139 +137,49 @@ extension DoubleUtils on double {
   }
 }
 
-/// A scaffold that allows to request remote objects.
-abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointResult> extends State<W> {
-  /// Whether the screen is currently loading.
-  bool _loading = true;
+/// Contains some useful methods for integers.
+extension IntUtils on int {
+  /// The numerals.
+  static const Map<String, int> _NUMERALS = {
+    'M': 1000,
+    'CM': 900,
+    'D': 500,
+    'CD': 400,
+    'C': 100,
+    'XC': 90,
+    'L': 50,
+    'XL': 40,
+    'X': 10,
+    'IX': 9,
+    'V': 5,
+    'IV': 4,
+    'I': 1,
+  };
 
-  /// The API endpoint.
-  APIEndpoint<R> endpoint;
-
-  /// The object.
-  R _result;
-
-  /// When the request fails.
-  String failMessage;
-
-  /// The success callback.
-  VoidCallback successCallback;
-
-  /// Fail dialog options.
-  FailDialogOptions failDialogOptions;
-
-  /// Whether to cache requests.
-  bool cacheRequest;
-
-  /// Creates a new loading scaffold instance.
-  RequestScaffold({
-    @required this.endpoint,
-    @required this.failMessage,
-    this.successCallback,
-    this.failDialogOptions = const FailDialogOptions(),
-    this.cacheRequest = true,
-  });
-
-  @override
-  void initState() {
-    super.initState();
-    triggerRequest();
+  /// Returns the roman writing of this integer.
+  String romanize() {
+    int number = this;
+    String result = '';
+    _NUMERALS.forEach((key, value) {
+      int quotient = (number / value).floor();
+      number -= quotient * value;
+      result += _repeatString(key, quotient);
+    });
+    return result;
   }
 
-  /// Creates the app bar.
-  AppBar createAppBar(BuildContext context) {
-    if (_result == null) {
-      return AppBar(
-        title: Text(_loading ? 'Chargement…' : 'Erreur'),
-      );
+  /// Repeats the given string n times.
+  String _repeatString(String input, int n) {
+    String result = '';
+    while (n-- > 0) {
+      result += input;
     }
-
-    return _result.createAppBar(context);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Widget body;
-    if (_loading) {
-      body = CenteredCircularProgressIndicator();
-    } else if (_result == null) {
-      body = createNoObjectBody(context);
-    } else {
-      body = createBody(context);
-    }
-
-    return Scaffold(
-      appBar: createAppBar(context),
-      body: body,
-    );
-  }
-
-  /// Sets whether the screen is currently loading.
-  set loading(bool loading) {
-    setState(() => _loading = loading);
-  }
-
-  /// Returns whether the current screen is loading.
-  bool get loading => _loading;
-
-  /// Triggers a request.
-  Future<void> triggerRequest() async {
-    R result = await endpoint.request(cache: cacheRequest);
-    if (result != null) {
-      this.result = result;
-      if (successCallback != null) {
-        successCallback();
-      }
-      return;
-    }
-
-    if (failDialogOptions.show) {
-      await MessageDialog.show(
-        context,
-        message: failMessage + '\nVeuillez vérifier votre connexion internet et réessayer plus tard.',
-        okButtonPressed: () => Navigator.pop(context),
-        onCancelled: failDialogOptions.callback ?? () => Navigator.pop(context),
-      );
-    }
-
-    if (mounted) {
-      setState(() => _loading = false);
-    }
-  }
-
-  /// Creates the body with a non-null object.
-  Widget createBody(BuildContext context);
-
-  /// Creates the body with a null object.
-  Widget createNoObjectBody(BuildContext context) => null;
-
-  /// Returns the current result.
-  R get result => _result;
-
-  /// Updates the current result.
-  set result(R result) {
-    if (mounted) {
-      setState(() {
-        _loading = false;
-        _result = result;
-      });
-    } else {
-      _loading = false;
-      _result = result;
-    }
+    return result;
   }
 }
 
-/// Options for the fail dialog.
-class FailDialogOptions {
-  /// Whether to show it.
-  final bool show;
-
-  /// The dialog callback.
-  final VoidCallback callback;
-
-  /// Creates a new fail dialog options instance.
-  const FailDialogOptions({
-    this.show = true,
-    this.callback,
-  });
+/// Contains some useful methods for strings.
+extension StringUtils on String {
+  /// Urlify this string.
+  String urlify() => trim().replaceAll(RegExp(r"'", caseSensitive: false), '').replaceAll(RegExp(r'[& +$,:;=?@"' r"#{}|^~[`%!'<>\]./()*\\\n\t\b\v\u00A0]"), '-').replaceAll(RegExp(r'-{2,}'), '-').replaceAll(RegExp(r'^-+|-+$', multiLine: true), '').toLowerCase();
 }

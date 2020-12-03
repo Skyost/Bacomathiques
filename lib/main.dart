@@ -4,12 +4,11 @@ import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bacomathiques/app/app.dart';
 import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/credentials.dart';
-import 'package:bacomathiques/screen/comments.dart';
-import 'package:bacomathiques/screen/home.dart';
-import 'package:bacomathiques/screen/html.dart';
-import 'package:bacomathiques/screen/lessons.dart';
-import 'package:bacomathiques/screen/levels.dart';
-import 'package:bacomathiques/utils/server.dart';
+import 'package:bacomathiques/pages/comments.dart';
+import 'package:bacomathiques/pages/home.dart';
+import 'package:bacomathiques/pages/html/page.dart';
+import 'package:bacomathiques/pages/lessons.dart';
+import 'package:bacomathiques/pages/levels.dart';
 import 'package:catcher/catcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -49,11 +48,6 @@ class BacomathiquesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MultiProvider(
         providers: [
-          Provider<Server>(
-            create: (_) => Server()..start(),
-            dispose: (_, server) => server.close(),
-            lazy: false,
-          ),
           ChangeNotifierProvider<SettingsModel>(
             create: (_) => SettingsModel()..load(context),
             lazy: false,

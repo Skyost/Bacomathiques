@@ -1,8 +1,0 @@
-@font-face {
-  font-family: 'FuturaBT';
-  src: url('../fonts/FuturaBT-Medium.ttf') format('ttf');
-}
-
-#page-content h2, #page-content h3, #page-content h4 {
-  font-family: 'FuturaBT';
-}

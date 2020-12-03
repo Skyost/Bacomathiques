@@ -140,6 +140,9 @@ class Lesson {
             path: parsedJSON['summary'],
           ),
         );
+
+  /// Returns the images directory URL.
+  String get imagesDirectoryURL => '${API.BASE_URL}/assets/img/lessons/$level/$id';
 }
 
 /// An API endpoint.
