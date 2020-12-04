@@ -1,4 +1,5 @@
 import 'package:bacomathiques/pages/html/representation_preview.dart';
+import 'package:bacomathiques/pages/html/title_widget.dart';
 import 'package:bacomathiques/pages/html/widget_factory.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +42,10 @@ class AppHtmlWidget extends StatelessWidget {
 
   /// Builds the widget of an element.
   Widget buildCustomWidget(dom.Element element) {
+    if (element.localName == 'h2' || element.localName == 'h3' || element.localName == 'h4') {
+      return TitleWidget.fromElement(textStyle: textStyle, element: element);
+    }
+
     if (element.attributes.containsKey('data-api-v2-geogebra-id') && imagesDirectoryURL != null) {
       return RepresentationPreview(
         imagesDirectoryURL: imagesDirectoryURL,
@@ -49,7 +54,6 @@ class AppHtmlWidget extends StatelessWidget {
       );
     }
 
-    // TODO: May need to override h2 and h3 in order to display math in it
     return null;
   }
 
@@ -60,30 +64,6 @@ class AppHtmlWidget extends StatelessWidget {
     };
 
     switch (element.localName) {
-      case 'h2':
-        return {
-          'font-size': '2.4em',
-          'font-family': 'FuturaBT',
-          'color': '#23618a',
-          'font-weight': '100',
-          'border-bottom': '1px solid rgba(0, 0, 0, 0.1)',
-          ...style,
-        };
-      case 'h3':
-        return {
-          'font-size': '1.75em',
-          'font-family': 'FuturaBT',
-          'color': '#3498db',
-          'font-weight': '100',
-          ...style,
-        };
-      case 'h4':
-        return {
-          'font-size': '1.25em',
-          'font-family': 'FuturaBT',
-          'font-weight': '100',
-          ...style,
-        };
       case 'p':
         return {
           'margin-top': '0',

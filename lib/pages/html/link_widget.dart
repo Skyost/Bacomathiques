@@ -29,6 +29,9 @@ class LinkWidget extends StatelessWidget {
   /// The text style.
   final TextStyle textStyle;
 
+  /// The parent bubble (if any).
+  final Bubble bubble;
+
   /// Creates a new link widget.
   const LinkWidget({
     @required this.text,
@@ -38,6 +41,7 @@ class LinkWidget extends StatelessWidget {
     this.hash,
     this.targetLessonEndpoint,
     this.textStyle = const TextStyle(),
+    this.bubble,
   });
 
   LinkWidget.fromElement({
@@ -51,15 +55,12 @@ class LinkWidget extends StatelessWidget {
           hash: element.attributes['data-api-v2-hash'],
           targetLessonEndpoint: element.attributes.containsKey('data-target-lesson-endpoint') ? LessonContentEndpoint(path: element.attributes['data-target-lesson-endpoint']) : null,
           textStyle: textStyle,
+          bubble: BubbleUtils.getByClassName(element.attributes['data-parent-bubble'])
         );
 
   @override
   Widget build(BuildContext context) {
-    BubbleTheme bubbleTheme;
-    try {
-      bubbleTheme = context.watch<BubbleTheme>();
-    } on ProviderNotFoundException catch (_) {}
-    bubbleTheme ??= context.watch<SettingsModel>().appTheme.themeData.bubbleThemes[Bubble.FORMULA];
+    BubbleTheme bubbleTheme = context.watch<SettingsModel>().appTheme.themeData.bubbleThemes[bubble ?? Bubble.FORMULA];
 
     return GestureDetector(
       onTap: () async {

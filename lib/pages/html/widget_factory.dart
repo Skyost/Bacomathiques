@@ -88,38 +88,14 @@ class AppWidgetFactory extends WidgetFactory {
         ),
       );
       meta.register(math);
-    } else if (meta.element.classes.contains('formula')) {
-      formula ??= BuildOp(
-        onWidgets: (meta, children) => [
-          BubbleWidget.fromElement(
-            bubble: Bubble.FORMULA,
-            element: meta.element,
-            children: children.toList(),
-          )
-        ],
-      );
+    } else if (meta.element.classes.contains(Bubble.FORMULA.className)) {
+      formula ??= _createBubbleBuildOp(Bubble.FORMULA, meta);
       meta.register(formula);
-    } else if (meta.element.classes.contains('tip')) {
-      tip ??= BuildOp(
-        onWidgets: (meta, children) => [
-          BubbleWidget.fromElement(
-            bubble: Bubble.TIP,
-            element: meta.element,
-            children: children.toList(),
-          )
-        ],
-      );
+    } else if (meta.element.classes.contains(Bubble.TIP.className)) {
+      tip ??= _createBubbleBuildOp(Bubble.TIP, meta);
       meta.register(tip);
-    } else if (meta.element.classes.contains('proof')) {
-      proof ??= BuildOp(
-        onWidgets: (meta, children) => [
-          BubbleWidget.fromElement(
-            bubble: Bubble.PROOF,
-            element: meta.element,
-            children: children.toList(),
-          )
-        ],
-      );
+    } else if (meta.element.classes.contains(Bubble.PROOF.className)) {
+      proof ??= _createBubbleBuildOp(Bubble.PROOF, meta);
       meta.register(proof);
     }
   }
@@ -161,6 +137,21 @@ class AppWidgetFactory extends WidgetFactory {
 
     return super.imageProvider(imgSrc);
   }
+
+  /// Creates a bubble build op.
+  BuildOp _createBubbleBuildOp(Bubble bubble, BuildMetadata meta) => BuildOp(
+    onChild: (meta) {
+      if(meta.element.localName == 'a') {
+        meta.element.attributes['data-parent-bubble'] = bubble.className;
+      }
+    },
+    onWidgets: (meta, children) => [
+      BubbleWidget.fromElement(
+        element: meta.element,
+        children: children.toList(),
+      )
+    ],
+  );
 
   /// Builds a picture provider from the specified url.
   PictureProvider _imageSvgPictureProvider(String url) {

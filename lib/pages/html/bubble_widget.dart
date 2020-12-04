@@ -1,6 +1,6 @@
 import 'package:bacomathiques/app/app.dart';
 import 'package:bacomathiques/app/settings.dart';
-import 'package:bacomathiques/pages/html/html_widget.dart';
+import 'package:bacomathiques/pages/html/title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:provider/provider.dart';
@@ -29,11 +29,10 @@ class BubbleWidget extends StatelessWidget {
 
   /// Creates a new bubble widget from a dom element.
   BubbleWidget.fromElement({
-    @required Bubble bubble,
     @required dom.Element element,
     @required List<Widget> children,
   }) : this(
-          bubble: bubble,
+          bubble: BubbleUtils.of(element),
           title: element.attributes['data-api-v2-title'],
           children: children,
           inScrollableView: element.getElementsByTagName('table').isNotEmpty,
@@ -63,48 +62,22 @@ class BubbleWidget extends StatelessWidget {
     );
   }
 
-  Widget _createTitle({
-    @required String title,
-    @required TextStyle textStyle,
-  }) {
-    if (title.contains('<math>')) {
-      return AppHtmlWidget(
-        data: title,
-        buildAsync: false,
-        textStyle: textStyle,
-      );
-    }
-    return Text(
-      title,
-      style: textStyle,
-    );
-  }
-
   /// Creates the content column.
-  Widget _createColumn(theme) => Provider<BubbleTheme>.value(
-        value: theme,
-        child: title == null
-            ? null
-            : Padding(
+  Widget _createColumn(theme) => Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (title != null)
+              Padding(
                 padding: const EdgeInsets.only(bottom: 12),
-                child: _createTitle(
-                  title: title,
-                  textStyle: TextStyle(
-                    color: theme.leftBorderColor,
-                    fontSize: 20,
-                    fontFamily: 'FuturaBT',
-                  ),
+                child: TitleWidget.h4(
+                  html: title,
+                  textStyle: TextStyle(color: theme.leftBorderColor),
                 ),
               ),
-        builder: (context, child) => Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (child != null) child,
-              ...children,
-            ],
-          ),
+            ...children,
+          ],
         ),
       );
 }
