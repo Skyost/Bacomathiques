@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bacomathiques/app/app.dart';
 import 'package:bacomathiques/app/settings.dart';
+import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/credentials.dart';
 import 'package:bacomathiques/pages/comments.dart';
 import 'package:bacomathiques/pages/home.dart';
@@ -56,8 +57,11 @@ class BacomathiquesApp extends StatelessWidget {
         child: Consumer<SettingsModel>(
           builder: (context, settings, _) => MaterialApp(
             title: App.APP_NAME,
-            theme: settings.appTheme.flutterThemeData,
             initialRoute: '/',
+            navigatorKey: Catcher.navigatorKey,
+            theme: AppTheme.LIGHT.flutterThemeData,
+            darkTheme: AppTheme.DARK.flutterThemeData,
+            themeMode: settings?.themeMode ?? ThemeMode.system,
             routes: {
               '/': (context) => HomePage(),
               '/levels': (context) => LevelsPage(),

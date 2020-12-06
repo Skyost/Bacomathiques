@@ -39,7 +39,7 @@ class _ListViewWidgetState extends State<ListViewWidget> {
   Widget build(BuildContext context) => ListView(
         controller: scrollController,
         shrinkWrap: true,
-        padding: const EdgeInsets.all(20).copyWith(top: 0),
+        padding: const EdgeInsets.all(20),
         children: widget.children,
       );
 

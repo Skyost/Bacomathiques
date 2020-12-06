@@ -1,5 +1,4 @@
 import 'package:bacomathiques/app/api/common.dart';
-import 'package:bacomathiques/app/api/content.dart';
 import 'package:flutter/material.dart';
 
 /// /api/v2/:level/summary/ endpoint.
@@ -29,7 +28,7 @@ class LessonSummary extends APIEndpointResultHTML {
   final String html;
 
   /// Creates a new lesson summary instance.
-  LessonSummary({
+  const LessonSummary({
     @required this.api,
     @required this.lesson,
     @required this.html,
@@ -42,9 +41,4 @@ class LessonSummary extends APIEndpointResultHTML {
           lesson: Lesson.fromParsedJSON(parsedJSON['lesson']),
           html: parsedJSON['html'],
         );
-
-  @override
-  AppBar createAppBar(BuildContext context) => AppBar(
-        title: LessonContent.createTitle(lesson.title),
-      );
 }

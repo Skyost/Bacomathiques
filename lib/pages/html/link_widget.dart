@@ -1,9 +1,8 @@
 import 'package:bacomathiques/app/api/content.dart';
-import 'package:bacomathiques/app/app.dart';
-import 'package:bacomathiques/app/settings.dart';
+import 'package:bacomathiques/app/theme/bubble.dart';
+import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:html/dom.dart' as dom;
-import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Allows to display a link.
@@ -60,7 +59,7 @@ class LinkWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BubbleTheme bubbleTheme = context.watch<SettingsModel>().appTheme.themeData.bubbleThemes[bubble ?? Bubble.FORMULA];
+    BubbleTheme bubbleTheme = context.resolveTheme().bubbleThemes[bubble ?? Bubble.FORMULA];
 
     return GestureDetector(
       onTap: () async {

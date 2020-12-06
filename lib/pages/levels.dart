@@ -1,11 +1,11 @@
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/index.dart';
-import 'package:bacomathiques/app/settings.dart';
+import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/utils/request_scaffold.dart';
+import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pedantic/pedantic.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// The page that allows the user to show his level.
@@ -26,17 +26,18 @@ class _LevelsPageState extends RequestScaffold<LevelsPage, APIIndex> {
         );
 
   @override
-  Widget createBody(BuildContext context) => Consumer<SettingsModel>(
-        builder: (context, settings, _) => ListView.builder(
-          padding: const EdgeInsets.all(20),
-          itemBuilder: (context, index) => _LevelWidget(
-            color: settings.appTheme.themeData.primaryColor,
-            level: result.levels[index],
-          ),
-          itemCount: result.levels.length,
-          semanticChildCount: result.levels.length,
-        ),
-      );
+  Widget createBody(BuildContext context) {
+    AppTheme theme = context.resolveTheme();
+    return ListView.builder(
+      padding: const EdgeInsets.all(20),
+      itemBuilder: (context, index) => _LevelWidget(
+        color: theme.primaryColor,
+        level: result.levels[index],
+      ),
+      itemCount: result.levels.length,
+      semanticChildCount: result.levels.length,
+    );
+  }
 
   @override
   Widget createNoObjectBody(BuildContext context) => Padding(

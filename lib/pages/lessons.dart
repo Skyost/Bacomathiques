@@ -1,15 +1,13 @@
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/list.dart';
-import 'package:bacomathiques/app/app.dart';
-import 'package:bacomathiques/app/dialogs.dart';
-import 'package:bacomathiques/app/settings.dart';
+import 'package:bacomathiques/app/dialogs/message.dart';
+import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/utils/fade_stack_widget.dart';
 import 'package:bacomathiques/utils/request_scaffold.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
-import 'package:provider/provider.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -192,26 +190,27 @@ class _PreviewWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => Consumer<SettingsModel>(
-        builder: (context, settings, _) => Padding(
-          padding: const EdgeInsets.all(15),
-          child: Card(
-            shape: const BeveledRectangleBorder(),
-            color: settings.appTheme.themeData.lessonBackgroundColor,
-            elevation: 10,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                _createPreviewWidget(),
-                _createTitleWidget(settings.appTheme),
-                _createDescriptionWidget(),
-                _createLessonButton(context, settings.appTheme),
-                _createSummaryButton(context, settings.appTheme),
-              ],
-            ),
-          ),
+  Widget build(BuildContext context) {
+    AppTheme theme = context.resolveTheme();
+    return Padding(
+      padding: const EdgeInsets.all(15),
+      child: Card(
+        shape: const BeveledRectangleBorder(),
+        color: theme.lessonBackgroundColor,
+        elevation: 10,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _createPreviewWidget(),
+            _createTitleWidget(theme),
+            _createDescriptionWidget(),
+            _createLessonButton(context, theme),
+            _createSummaryButton(context, theme),
+          ],
         ),
-      );
+      ),
+    );
+  }
 
   /// Creates a new preview widget.
   Widget _createPreviewWidget() => Padding(
@@ -266,7 +265,7 @@ class _PreviewWidget extends StatelessWidget {
   Widget _createLessonButton(BuildContext context, AppTheme theme) => Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
         child: FlatButton(
-          color: theme.themeData.blueButtonColor,
+          color: theme.blueButtonColor,
           child: Text(
             'Lire le cours'.toUpperCase(),
             style: const TextStyle(fontSize: 14, color: Colors.white),
@@ -286,7 +285,7 @@ class _PreviewWidget extends StatelessWidget {
   Widget _createSummaryButton(BuildContext context, AppTheme theme) => Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
         child: FlatButton(
-          color: theme.themeData.greenButtonColor,
+          color: theme.greenButtonColor,
           child: Text(
             'Lire le résumé'.toUpperCase(),
             style: const TextStyle(fontSize: 14, color: Colors.white),

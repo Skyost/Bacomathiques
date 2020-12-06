@@ -1,5 +1,5 @@
 import 'package:bacomathiques/app/api/common.dart';
-import 'package:bacomathiques/app/dialogs.dart';
+import 'package:bacomathiques/app/dialogs/message.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 

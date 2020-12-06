@@ -6,7 +6,12 @@ import 'package:bacomathiques/app/api/content.dart';
 import 'package:bacomathiques/app/api/list.dart';
 import 'package:bacomathiques/app/api/summary.dart';
 import 'package:bacomathiques/app/app.dart';
-import 'package:flutter/material.dart';
+import 'package:bacomathiques/app/dialogs/about.dart';
+import 'package:bacomathiques/app/dialogs/ads.dart';
+import 'package:bacomathiques/app/dialogs/theme_mode.dart';
+import 'package:bacomathiques/app/theme/theme.dart';
+import 'package:bacomathiques/utils/utils.dart';
+import 'package:flutter/material.dart' hide AboutDialog;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -203,31 +208,34 @@ abstract class APIEndpointResult {
 
   /// Creates the app bar.
   AppBar createAppBar(BuildContext context) => AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _createLogoWidget(context),
-            _createTitleWidget(context),
-          ],
-        ),
+        title: createTitle(context),
         actions: createActions(context),
+      );
+
+  /// Creates the title widget.
+  Widget createTitle(BuildContext context) => Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _createLogoWidget(context),
+          _createTitleTextWidget(context),
+        ],
       );
 
   /// Creates the logo widget.
   Widget _createLogoWidget(BuildContext context) => SvgPicture.asset(
         'assets/images/logo.svg',
-        width: MediaQuery.of(context).size.width > App.DAY_NIGHT_SWITCH_WIDTH_BREAKPOINT ? 30 : 26,
+        width: 30,
         semanticsLabel: 'Logo',
       );
 
   /// Creates the title widget.
-  Widget _createTitleWidget(BuildContext context) => Padding(
+  Widget _createTitleTextWidget(BuildContext context) => Padding(
         padding: const EdgeInsets.only(top: 5, left: 7),
         child: Text(
           App.APP_NAME,
-          style: GoogleFonts.handlee(fontSize: MediaQuery.of(context).size.width > App.DAY_NIGHT_SWITCH_WIDTH_BREAKPOINT ? 26 : 30),
+          style: GoogleFonts.handlee(fontSize: 26),
         ),
       );
 
@@ -245,4 +253,115 @@ abstract class APIEndpointResultHTML extends APIEndpointResult {
 
   /// The HTML body.
   String get html;
+
+  @override
+  Widget createTitle(BuildContext context) {
+    List<String> titleParts = lesson.title.split(' – ');
+    return titleParts.length < 2
+        ? Text(lesson.title)
+        : RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: titleParts.first,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                TextSpan(
+                  text: '\n' + titleParts[1],
+                ),
+              ],
+            ),
+          );
+  }
+
+  @override
+  List<Widget> createActions(BuildContext context) => [createPopupMenuButton(context)];
+
+  /// Creates the popup menu button.
+  Widget createPopupMenuButton(BuildContext context) {
+    AppTheme theme = context.resolveTheme(listen: false);
+    return PopupMenuButton<ActionMenu>(
+      color: theme.scaffoldBackgroundColor,
+      onSelected: (action) => action.callback(context, this),
+      itemBuilder: (context) => [
+        ...createActionMenus(context).map((action) => action.createPopupMenuItem(theme)),
+      ],
+    );
+  }
+
+  /// Creates the action menus.
+  List<ActionMenu> createActionMenus(BuildContext context) => [
+    ActionMenu(
+      icon: Icons.nightlight_round,
+      label: 'Thème de l\'application…',
+      callback: (context, endpointResult) => ThemeModeDialog.show(context),
+    ),
+    ActionMenu(
+      icon: Icons.subtitles,
+      label: 'Publicités…',
+      callback: (context, endpointResult) => AdsDialog.show(context),
+    ),
+    ActionMenu(
+      icon: Icons.thumb_up,
+      label: 'Noter l\'application',
+      callback: (context, endpointResult) => openURL(storePage),
+    ),
+    ActionMenu(
+      icon: Icons.sms_failed,
+      label: 'Signaler un bug',
+      callback: (context, endpointResult) => openURL('https://github.com/Skyost/Bacomathiques/issues/new?title=[Application]%20Rapport%20de%20bug'),
+    ),
+    ActionMenu(
+      icon: Icons.help,
+      label: 'À propos…',
+      callback: (context, endpointResult) => AboutDialog.show(context),
+    )
+  ];
+}
+
+/// An action menu with text, icon and callback.
+class ActionMenu {
+  /// The menu icon.
+  final IconData icon;
+
+  /// The menu label.
+  final String label;
+
+  /// The callback.
+  final Function(BuildContext, APIEndpointResultHTML) callback;
+
+  /// Creates a new action menu.
+  const ActionMenu({
+    this.icon,
+    this.label,
+    this.callback,
+  });
+
+  /// Creates and returns the widget corresponding to this action menu.
+  Widget createWidget(AppTheme appTheme) => Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
+        spacing: 5,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 5),
+            child: Icon(
+              icon,
+              color: appTheme.textColor ?? Colors.black,
+            ),
+          ),
+          Text(
+            label,
+            style: TextStyle(color: appTheme.textColor),
+          ),
+        ],
+      );
+
+  /// Creates the popup menu item associated with this action.
+  PopupMenuItem<ActionMenu> createPopupMenuItem(AppTheme appTheme) => PopupMenuItem<ActionMenu>(
+        value: this,
+        child: createWidget(appTheme),
+      );
 }

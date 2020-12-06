@@ -1,15 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:bacomathiques/app/app.dart';
-import 'package:bacomathiques/app/settings.dart';
+import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/credentials.dart';
+import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Contains the user consent info.
@@ -98,7 +97,7 @@ class ConsentInformation {
     @required String nonPersonalizedAdsButton,
   }) async {
     try {
-      if(_cached != null) {
+      if (_cached != null) {
         return _cached;
       }
 
@@ -164,44 +163,45 @@ class _PersonalizedAdsConsentDialog extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => WillPopScope(
-        child: AlertDialog(
-          contentPadding: EdgeInsets.zero,
-          content: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Consumer<SettingsModel>(
-              builder: (context, settings, child) => ListView(
-                shrinkWrap: true,
-                padding: const EdgeInsets.all(24),
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 25),
-                    child: _createLogo(),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: _createAppMessage(),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: _createQuestionMessage(),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: _createPrivacyPolicyMessage(),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    child: _createPersonalizedAdsButton(context, settings.appTheme),
-                  ),
-                  _createNonPersonalizedAdsButton(context, settings.appTheme),
-                ],
+  Widget build(BuildContext context) {
+    AppTheme theme = context.resolveTheme();
+    return WillPopScope(
+      child: AlertDialog(
+        contentPadding: EdgeInsets.zero,
+        content: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: ListView(
+            shrinkWrap: true,
+            padding: const EdgeInsets.all(24),
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 25),
+                child: _createLogo(),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: _createAppMessage(),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: _createQuestionMessage(),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: _createPrivacyPolicyMessage(),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 15),
+                child: _createPersonalizedAdsButton(context, theme),
+              ),
+              _createNonPersonalizedAdsButton(context, theme),
+            ],
           ),
         ),
-        onWillPop: () => Future<bool>.value(false),
-      );
+      ),
+      onWillPop: () => Future<bool>.value(false),
+    );
+  }
 
   /// Creates the logo widget.
   Widget _createLogo() => Align(
@@ -235,7 +235,7 @@ class _PersonalizedAdsConsentDialog extends StatelessWidget {
 
   /// Creates the personalized ads button widget.
   Widget _createPersonalizedAdsButton(BuildContext context, AppTheme theme) => FlatButton(
-        color: theme.themeData.blueButtonColor,
+        color: theme.blueButtonColor,
         onPressed: () => Navigator.pop(context, false),
         child: Text(
           personalizedAdsButton,
@@ -248,7 +248,7 @@ class _PersonalizedAdsConsentDialog extends StatelessWidget {
 
   /// Creates the non personalized ads button widget.
   Widget _createNonPersonalizedAdsButton(BuildContext context, AppTheme theme) => FlatButton(
-        color: theme.themeData.blueButtonColor,
+        color: theme.blueButtonColor,
         onPressed: () => Navigator.pop(context, true),
         child: Text(
           nonPersonalizedAdsButton,

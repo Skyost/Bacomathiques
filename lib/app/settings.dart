@@ -1,5 +1,5 @@
 import 'package:admob_flutter/admob_flutter.dart';
-import 'package:bacomathiques/app/app.dart';
+import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/credentials.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -10,14 +10,11 @@ class SettingsModel extends ChangeNotifier {
   /// The banner ad identifier.
   String _adMobBannerId;
 
-  /// The app theme.
-  final AppTheme appTheme = AppTheme();
+  /// The app theme mode.
+  ThemeMode _themeMode = ThemeMode.system;
 
   /// Whether AdMob is enabled.
   bool _adMobEnabled = false;
-
-  /// Whether the app is in dark mode.
-  bool _darkModeEnabled = false;
 
   /// Creates a new AdMob instance.
   SettingsModel({
@@ -27,9 +24,8 @@ class SettingsModel extends ChangeNotifier {
   /// Loads the class data.
   Future<void> load(BuildContext context) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
+    _themeMode = ThemeMode.values[preferences.getInt('app.themeMode') ?? ThemeMode.system.index];
     _adMobEnabled = preferences.getBool('admob.enable') ?? true;
-    _darkModeEnabled = preferences.getBool('app.dark-mode') ?? false;
-    appTheme.load(!_darkModeEnabled);
 
     if (kDebugMode || !_adMobEnabled) {
       notifyListeners();
@@ -55,22 +51,21 @@ class SettingsModel extends ChangeNotifier {
   /// Returns the AdMob banner size.
   AdmobBannerSize _getAdMobBannerSize(BuildContext context) => AdmobBannerSize.ADAPTIVE_BANNER(width: MediaQuery.of(context).size.width.ceil());
 
+  /// Returns the theme mode.
+  ThemeMode get themeMode => _themeMode;
+
+  /// Sets the theme mode.
+  set themeMode(ThemeMode themeMode) {
+    _themeMode = themeMode;
+    notifyListeners();
+  }
+
   /// Returns whether AdMob should be enabled.
   bool get adMobEnabled => _adMobEnabled;
 
   /// Sets whether AdMob should be enabled.
-  set adMobEnabled(isEnabled) {
+  set adMobEnabled(bool isEnabled) {
     _adMobEnabled = isEnabled;
-    notifyListeners();
-  }
-
-  /// Returns whether the dark mode is enabled.
-  bool get darkModeEnabled => _darkModeEnabled;
-
-  /// Enables or disables the dark mode.
-  set darkModeEnabled(bool isDarkMode) {
-    _darkModeEnabled = isDarkMode;
-    appTheme.load(!isDarkMode);
     notifyListeners();
   }
 
@@ -78,6 +73,21 @@ class SettingsModel extends ChangeNotifier {
   Future<void> flush() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setBool('admob.enable', _adMobEnabled);
-    await preferences.setBool('app.dark-mode', _darkModeEnabled);
+    await preferences.setInt('app.themeMode', _themeMode.index);
   }
+
+  /// Resolves the theme from the specified context.
+  AppTheme resolveTheme(BuildContext context) {
+    switch (_themeMode) {
+      case ThemeMode.light:
+        return getThemeFromBrightness(Brightness.light);
+      case ThemeMode.dark:
+        return getThemeFromBrightness(Brightness.dark);
+      default:
+        return getThemeFromBrightness(MediaQuery.platformBrightnessOf(context));
+    }
+  }
+
+  /// Returns the theme corresponding to the specified brightness.
+  AppTheme getThemeFromBrightness(Brightness brightness) => brightness == Brightness.light ? AppTheme.LIGHT : AppTheme.DARK;
 }

@@ -1,11 +1,10 @@
 import 'package:bacomathiques/app/api/comments.dart';
 import 'package:bacomathiques/app/api/common.dart';
-import 'package:bacomathiques/app/app.dart';
-import 'package:bacomathiques/app/settings.dart';
+import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/utils/request_scaffold.dart';
+import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 
 /// The comments screen, where previews are shown.
 class CommentsPage extends StatefulWidget {
@@ -67,25 +66,25 @@ class _CommentWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(top: 20),
-        child: Consumer<SettingsModel>(
-          builder: (context, settings, _) => Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _createAvatarWidget(settings.appTheme),
-              _createContentWidget(context, settings.appTheme),
-            ],
-          ),
+  Widget build(BuildContext context) {
+    AppTheme theme = context.resolveTheme();
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _createAvatarWidget(theme),
+            _createContentWidget(context, theme),
+          ],
         ),
-      );
-
+    );
+  }
   /// Creates the avatar widget.
   Widget _createAvatarWidget(AppTheme theme) => Padding(
         padding: const EdgeInsets.only(right: 10),
         child: _AvatarWidget(
           url: comment.author.avatar,
-          primaryColor: theme.themeData.primaryColor,
+          primaryColor: theme.primaryColor,
         ),
       );
 
@@ -94,11 +93,11 @@ class _CommentWidget extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
-              topRight: Radius.circular(theme.themeData.commentBorderRadius),
-              bottomRight: Radius.circular(theme.themeData.commentBorderRadius),
-              bottomLeft: Radius.circular(theme.themeData.commentBorderRadius),
+              topRight: Radius.circular(theme.commentBorderRadius),
+              bottomRight: Radius.circular(theme.commentBorderRadius),
+              bottomLeft: Radius.circular(theme.commentBorderRadius),
             ),
-            color: theme.themeData.commentBackgroundColor,
+            color: theme.commentBackgroundColor,
           ),
           padding: const EdgeInsets.all(20),
           child: Column(
@@ -138,7 +137,7 @@ class _CommentWidget extends StatelessWidget {
           textAlign: TextAlign.right,
           style: TextStyle(
             fontSize: 12,
-            color: theme.themeData.commentDateColor,
+            color: theme.commentDateColor,
           ),
         ),
       );

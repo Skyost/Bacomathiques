@@ -1,9 +1,8 @@
-import 'package:bacomathiques/app/app.dart';
-import 'package:bacomathiques/app/settings.dart';
+import 'package:bacomathiques/app/theme/bubble.dart';
 import 'package:bacomathiques/pages/html/title_widget.dart';
+import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:html/dom.dart' as dom;
-import 'package:provider/provider.dart';
 
 /// Allows to display a bubble (formula, tip, proof, ...).
 class BubbleWidget extends StatelessWidget {
@@ -40,9 +39,9 @@ class BubbleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BubbleTheme theme = context.watch<SettingsModel>().appTheme.themeData.bubbleThemes[bubble];
+    BubbleTheme theme = context.resolveTheme().bubbleThemes[bubble];
     Widget column = _createColumn(theme);
-    return Container(
+    Widget bubbleWidget = Container(
       decoration: BoxDecoration(
         color: theme.backgroundColor,
         border: Border(
@@ -59,6 +58,15 @@ class BubbleWidget extends StatelessWidget {
               child: column,
             )
           : column,
+    );
+
+    if (!bubble.isExpandable) {
+      return bubbleWidget;
+    }
+
+    return _Expandable(
+      expandText: 'Démonstration',
+      content: bubbleWidget,
     );
   }
 
@@ -80,4 +88,50 @@ class BubbleWidget extends StatelessWidget {
           ],
         ),
       );
+}
+
+class _Expandable extends StatefulWidget {
+  final String expandText;
+  final Widget content;
+
+  const _Expandable({
+    @required this.expandText,
+    @required this.content,
+  });
+
+  @override
+  State<StatefulWidget> createState() => _ExpandableState();
+}
+
+class _ExpandableState extends State<_Expandable> {
+  bool expanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    Widget expandButton = Container(
+      width: MediaQuery.of(context).size.width,
+      padding: const EdgeInsets.only(bottom: 16),
+      child: InkWell(
+        onTap: () {
+          setState(() => expanded = !expanded);
+        },
+        child: Text(
+          (expanded ? '▼ ' : '▶ ') + widget.expandText,
+          textAlign: TextAlign.right,
+          style: const TextStyle(color: Colors.black54),
+        ),
+      ),
+    );
+
+    return expanded
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              expandButton,
+              widget.content,
+            ],
+          )
+        : expandButton;
+  }
 }

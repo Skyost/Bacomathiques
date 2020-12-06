@@ -1,9 +1,9 @@
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bacomathiques/app/api/common.dart';
-import 'package:bacomathiques/app/app.dart';
+import 'package:bacomathiques/app/dialogs/consent.dart';
 import 'package:bacomathiques/app/settings.dart';
+import 'package:bacomathiques/app/theme/bubble.dart';
 import 'package:bacomathiques/pages/html/html_widget.dart';
-import 'package:bacomathiques/utils/consent_dialog.dart';
 import 'package:bacomathiques/utils/request_scaffold.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -160,7 +160,7 @@ class HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
     List<dom.Element> titles = parent.getElementsByTagName('$tagName');
     for (int i = 0; i < titles.length; i++) {
       dom.Element title = titles[i];
-      title.text = formatter(i + 1, title.text);
+      title.innerHtml = formatter(i + 1, title.innerHtml);
       title.id = title.text.urlify();
     }
   }

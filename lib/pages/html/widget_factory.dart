@@ -1,4 +1,4 @@
-import 'package:bacomathiques/app/app.dart';
+import 'package:bacomathiques/app/theme/bubble.dart';
 import 'package:bacomathiques/pages/html/bubble_widget.dart';
 import 'package:bacomathiques/pages/html/link_widget.dart';
 import 'package:bacomathiques/pages/html/lv_widget.dart';

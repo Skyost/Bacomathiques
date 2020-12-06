@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'dart:typed_data';
 
 import 'package:bacomathiques/app/settings.dart';
+import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -104,7 +105,7 @@ class CenteredCircularProgressIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget progressIndicator = CircularProgressIndicator(
-      valueColor: AlwaysStoppedAnimation<Color>(Provider.of<SettingsModel>(context).appTheme.themeData.progressIndicatorColor),
+      valueColor: AlwaysStoppedAnimation<Color>(context.resolveTheme().progressIndicatorColor),
     );
 
     return Center(
@@ -182,4 +183,10 @@ extension IntUtils on int {
 extension StringUtils on String {
   /// Urlify this string.
   String urlify() => trim().replaceAll(RegExp(r"'", caseSensitive: false), '').replaceAll(RegExp(r'[& +$,:;=?@"' r"#{}|^~[`%!'<>\]./()*\\\n\t\b\v\u00A0]"), '-').replaceAll(RegExp(r'-{2,}'), '-').replaceAll(RegExp(r'^-+|-+$', multiLine: true), '').toLowerCase();
+}
+
+/// Contains some useful methods for build context.
+extension BuildContextUtils on BuildContext {
+  /// Resolves the theme from the specified context.
+  AppTheme resolveTheme({bool listen = true}) => Provider.of<SettingsModel>(this, listen: listen).resolveTheme(this);
 }
