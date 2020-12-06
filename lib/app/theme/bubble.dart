@@ -57,6 +57,9 @@ extension BubbleUtils on Bubble {
 
   /// Returns whether this bubble is expandable.
   bool get isExpandable => this == Bubble.PROOF;
+
+  /// Returns the expand button of this bubble (if it's expandable).
+  String get expandButton => this == Bubble.PROOF ? 'Démonstration' : null;
 }
 
 /// A bubble theme.

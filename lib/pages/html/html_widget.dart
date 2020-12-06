@@ -1,6 +1,6 @@
-import 'package:bacomathiques/pages/html/representation_preview.dart';
-import 'package:bacomathiques/pages/html/title_widget.dart';
 import 'package:bacomathiques/pages/html/widget_factory.dart';
+import 'package:bacomathiques/pages/html/widgets/representation_preview_widget.dart';
+import 'package:bacomathiques/pages/html/widgets/title_widget.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -43,11 +43,11 @@ class AppHtmlWidget extends StatelessWidget {
   /// Builds the widget of an element.
   Widget buildCustomWidget(dom.Element element) {
     if (element.localName == 'h2' || element.localName == 'h3' || element.localName == 'h4') {
-      return TitleWidget.fromElement(textStyle: textStyle, element: element);
+      return TitleWidget.fromElement(element: element);
     }
 
     if (element.attributes.containsKey('data-api-v2-geogebra-id') && imagesDirectoryURL != null) {
-      return RepresentationPreview(
+      return RepresentationPreviewWidget(
         imagesDirectoryURL: imagesDirectoryURL,
         representationId: element.id,
         geogebraId: element.attributes['data-api-v2-geogebra-id'],
@@ -90,6 +90,17 @@ class AppHtmlWidget extends StatelessWidget {
       case 'li':
         return {
           'margin-bottom': '0.8em',
+          ...style,
+        };
+      case 'table':
+        return {
+          'background-color': '#2E455C',
+          ...style,
+        };
+      case 'img':
+        return {
+          'margin-bottom': '1em', // TODO: Doesn't work
+          // TODO: Center images
           ...style,
         };
     }

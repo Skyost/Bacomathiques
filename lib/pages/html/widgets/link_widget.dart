@@ -25,11 +25,11 @@ class LinkWidget extends StatelessWidget {
   /// The target endpoint (if any).
   final LessonContentEndpoint targetLessonEndpoint;
 
-  /// The text style.
-  final TextStyle textStyle;
-
   /// The parent bubble (if any).
   final Bubble bubble;
+
+  /// The text size.
+  final double fontSize;
 
   /// Creates a new link widget.
   const LinkWidget({
@@ -39,13 +39,13 @@ class LinkWidget extends StatelessWidget {
     this.lesson,
     this.hash,
     this.targetLessonEndpoint,
-    this.textStyle = const TextStyle(),
     this.bubble,
+    this.fontSize = 16,
   });
 
   LinkWidget.fromElement({
     @required dom.Element element,
-    TextStyle textStyle = const TextStyle(),
+    double fontSize = 16,
   }) : this(
           text: element.text,
           href: element.attributes['href'],
@@ -53,8 +53,8 @@ class LinkWidget extends StatelessWidget {
           lesson: element.attributes['data-api-v2-lesson'],
           hash: element.attributes['data-api-v2-hash'],
           targetLessonEndpoint: element.attributes.containsKey('data-target-lesson-endpoint') ? LessonContentEndpoint(path: element.attributes['data-target-lesson-endpoint']) : null,
-          textStyle: textStyle,
-          bubble: BubbleUtils.getByClassName(element.attributes['data-parent-bubble'])
+          bubble: BubbleUtils.getByClassName(element.attributes['data-parent-bubble']),
+          fontSize: fontSize,
         );
 
   @override
@@ -73,14 +73,14 @@ class LinkWidget extends StatelessWidget {
 
         if (endpoint != null) {
           await Navigator.pushReplacementNamed(context, '/html', arguments: {'endpoint': endpoint, 'anchor': hash});
-        }
-        else if (await canLaunch(href)) {
+        } else if (await canLaunch(href)) {
           await launch(href);
         }
       },
       child: Text(
         text,
-        style: textStyle.copyWith(
+        style: TextStyle(
+          fontSize: fontSize,
           color: bubbleTheme.linkColor,
           decoration: TextDecoration.underline,
           decorationColor: bubbleTheme.linkDecorationColor,

@@ -1,5 +1,6 @@
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bacomathiques/app/api/common.dart';
+import 'package:bacomathiques/app/api/content.dart';
 import 'package:bacomathiques/app/dialogs/consent.dart';
 import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/app/theme/bubble.dart';
@@ -107,16 +108,16 @@ class _HTMLPage extends StatefulWidget {
   });
 
   @override
-  State<StatefulWidget> createState() => HTMLPageState(endpoint: endpoint);
+  State<StatefulWidget> createState() => endpoint is LessonContentEndpoint ? _LessonContentHTMLPageState(endpoint: endpoint) : _HTMLPageState(endpoint: endpoint);
 }
 
 /// State of HTML screens.
-class HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
+class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
   /// Contains the parsed HTML.
   String parsedHtml;
 
   /// Creates a new HTML screen state instance.
-  HTMLPageState({
+  _HTMLPageState({
     @required APIEndpoint<APIEndpointResultHTML> endpoint,
   }) : super(
           endpoint: endpoint,
@@ -207,4 +208,20 @@ class HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
       lastChild.classes.add('mb-0');
     }
   }
+}
+
+/// Page state for lessons contents.
+class _LessonContentHTMLPageState extends _HTMLPageState {
+  /// The share button key.
+  GlobalKey shareButtonKey = GlobalKey();
+
+  /// Creates a new lesson content HTML page state instance.
+  _LessonContentHTMLPageState({
+    @required LessonContentEndpoint endpoint,
+  }) : super(
+          endpoint: endpoint,
+        );
+
+  @override
+  AppBar createAppBar(BuildContext context) => result == null ? super.createAppBar(context) : (result as LessonContent).createAppBar(context, shareButtonKey: shareButtonKey);
 }

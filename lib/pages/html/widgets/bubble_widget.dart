@@ -1,5 +1,5 @@
 import 'package:bacomathiques/app/theme/bubble.dart';
-import 'package:bacomathiques/pages/html/title_widget.dart';
+import 'package:bacomathiques/pages/html/widgets/title_widget.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:html/dom.dart' as dom;
@@ -65,13 +65,13 @@ class BubbleWidget extends StatelessWidget {
     }
 
     return _Expandable(
-      expandText: 'Démonstration',
+      expandText: bubble.expandButton,
       content: bubbleWidget,
     );
   }
 
   /// Creates the content column.
-  Widget _createColumn(theme) => Padding(
+  Widget _createColumn(BubbleTheme theme) => Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,7 +81,7 @@ class BubbleWidget extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 12),
                 child: TitleWidget.h4(
                   html: title,
-                  textStyle: TextStyle(color: theme.leftBorderColor),
+                  colorGetter: (_) => theme.leftBorderColor,
                 ),
               ),
             ...children,
@@ -90,10 +90,15 @@ class BubbleWidget extends StatelessWidget {
       );
 }
 
+/// Allows to show an expandable widget.
 class _Expandable extends StatefulWidget {
+  /// The expand text.
   final String expandText;
+
+  /// The expanded content.
   final Widget content;
 
+  /// Creates a new expandable widget instance.
   const _Expandable({
     @required this.expandText,
     @required this.content,
@@ -103,7 +108,9 @@ class _Expandable extends StatefulWidget {
   State<StatefulWidget> createState() => _ExpandableState();
 }
 
+/// The expandable state.
 class _ExpandableState extends State<_Expandable> {
+  /// Whether this widget is expanded.
   bool expanded = false;
 
   @override
@@ -118,7 +125,7 @@ class _ExpandableState extends State<_Expandable> {
         child: Text(
           (expanded ? '▼ ' : '▶ ') + widget.expandText,
           textAlign: TextAlign.right,
-          style: const TextStyle(color: Colors.black54),
+          style: TextStyle(color: context.resolveTheme().accentColor),
         ),
       ),
     );

@@ -51,6 +51,16 @@ abstract class AppTheme {
   /// The highlight color.
   final Color highlightColor;
 
+  /// The headline 2 color.
+  final Color h2Color;
+
+  /// The headline 3 color.
+  final Color h3Color;
+
+  /// The horizontal rule color.
+  final Color hrColor;
+
+  /// Contains all bubble themes.
   final Map<Bubble, BubbleTheme> bubbleThemes;
 
   /// Creates a new app theme data instance.
@@ -69,6 +79,9 @@ abstract class AppTheme {
     this.textColor,
     @required this.progressIndicatorColor,
     this.highlightColor = Colors.black12,
+    this.h2Color,
+    this.h3Color,
+    this.hrColor,
     @required this.bubbleThemes,
   });
 
@@ -117,6 +130,9 @@ class _LightAppTheme extends AppTheme {
           commentBackgroundColor: const Color(0xFFE1F0FA),
           commentDateColor: const Color(0xFF6C757D),
           progressIndicatorColor: const Color(0xFF29CBB1),
+          h2Color: const Color(0xff23618a),
+          h3Color: const Color(0xff3498db),
+          hrColor: Colors.black12,
           bubbleThemes: const {
             Bubble.FORMULA: BubbleTheme(
               backgroundColor: Color(0xffebf3fb),
@@ -153,18 +169,22 @@ class _DarkAppTheme extends AppTheme {
           lessonBackgroundColor: const Color(0xFF192734),
           textColor: Colors.white,
           progressIndicatorColor: Colors.white,
+          hrColor: Colors.white12,
           bubbleThemes: const {
             Bubble.FORMULA: BubbleTheme(
+              backgroundColor: Color(0xff192734),
               leftBorderColor: Color(0xff3498db),
-              linkColor: Color(0xff217dbb),
-              linkDecorationColor: Color(0xffa0cfee),
+              linkColor: Colors.white,
+              linkDecorationColor: Colors.white,
             ),
             Bubble.TIP: BubbleTheme(
+              backgroundColor: Color(0xff192734),
               leftBorderColor: Color(0xff208d4d),
-              linkColor: Color(0xff13532e),
-              linkDecorationColor: Color(0xff219150),
             ),
-            Bubble.PROOF: BubbleTheme(leftBorderColor: Color(0xfff1c40f)),
+            Bubble.PROOF: BubbleTheme(
+              backgroundColor: Color(0xff192734),
+              leftBorderColor: Color(0xfff1c40f),
+            ),
           },
         );
 }

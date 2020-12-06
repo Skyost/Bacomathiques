@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Allows to preview representations.
-class RepresentationPreview extends StatelessWidget {
+class RepresentationPreviewWidget extends StatelessWidget {
   /// The image path.
   final String imagesDirectoryURL;
 
@@ -15,7 +15,7 @@ class RepresentationPreview extends StatelessWidget {
   final String geogebraId;
 
   /// Creates a new representation preview instance.
-  const RepresentationPreview({
+  const RepresentationPreviewWidget({
     @required this.imagesDirectoryURL,
     @required this.representationId,
     @required this.geogebraId,

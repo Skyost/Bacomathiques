@@ -1,9 +1,9 @@
 import 'package:bacomathiques/app/theme/bubble.dart';
-import 'package:bacomathiques/pages/html/bubble_widget.dart';
-import 'package:bacomathiques/pages/html/link_widget.dart';
-import 'package:bacomathiques/pages/html/lv_widget.dart';
+import 'package:bacomathiques/pages/html/widgets/bubble_widget.dart';
+import 'package:bacomathiques/pages/html/widgets/link_widget.dart';
+import 'package:bacomathiques/pages/html/widgets/list_view_widget.dart';
+import 'package:bacomathiques/pages/html/widgets/math_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_math/flutter_math.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 
@@ -70,7 +70,13 @@ class AppWidgetFactory extends WidgetFactory {
     } else if (meta.element.localName == 'a') {
       a ??= BuildOp(
         onTree: (meta, tree) => tree.replaceWith(
-          WidgetBit.inline(tree, LinkWidget.fromElement(element: meta.element, textStyle: textStyle)),
+          WidgetBit.inline(
+            tree,
+            LinkWidget.fromElement(
+              element: meta.element,
+              fontSize: textStyle.fontSize,
+            ),
+          ),
         ),
       );
       meta.register(a);
@@ -79,10 +85,9 @@ class AppWidgetFactory extends WidgetFactory {
         onTree: (meta, tree) => tree.replaceWith(
           WidgetBit.inline(
             tree,
-            Math.tex(
-              meta.element.text,
+            MathWidget(
+              content: meta.element.text,
               textStyle: textStyle,
-              mathStyle: MathStyle.displayCramped,
             ),
           ),
         ),
@@ -140,18 +145,18 @@ class AppWidgetFactory extends WidgetFactory {
 
   /// Creates a bubble build op.
   BuildOp _createBubbleBuildOp(Bubble bubble, BuildMetadata meta) => BuildOp(
-    onChild: (meta) {
-      if(meta.element.localName == 'a') {
-        meta.element.attributes['data-parent-bubble'] = bubble.className;
-      }
-    },
-    onWidgets: (meta, children) => [
-      BubbleWidget.fromElement(
-        element: meta.element,
-        children: children.toList(),
-      )
-    ],
-  );
+        onChild: (meta) {
+          if (meta.element.localName == 'a') {
+            meta.element.attributes['data-parent-bubble'] = bubble.className;
+          }
+        },
+        onWidgets: (meta, children) => [
+          BubbleWidget.fromElement(
+            element: meta.element,
+            children: children.toList(),
+          ),
+        ],
+      );
 
   /// Builds a picture provider from the specified url.
   PictureProvider _imageSvgPictureProvider(String url) {

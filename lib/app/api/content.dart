@@ -27,9 +27,6 @@ class LessonContentEndpoint extends APIEndpoint<LessonContent> {
 
 /// A lesson content object.
 class LessonContent extends APIEndpointResultHTML {
-  /// The share button key.
-  final GlobalKey _shareButtonKey = GlobalKey();
-
   /// The "api" field.
   final APIStatus api;
 
@@ -72,12 +69,18 @@ class LessonContent extends APIEndpointResultHTML {
         );
 
   @override
-  List<Widget> createActions(BuildContext context) {
-    ActionMenu shareActionMenu = e3c.isEmpty ? createShareActionMenu() : null;
+  AppBar createAppBar(BuildContext context, {GlobalKey shareButtonKey}) => AppBar(
+    title: createTitle(context),
+    actions: createActions(context, shareButtonKey: shareButtonKey),
+  );
+
+  @override
+  List<Widget> createActions(BuildContext context, {GlobalKey shareButtonKey}) {
+    ActionMenu shareActionMenu = e3c.isEmpty ? createShareActionMenu(shareButtonKey) : null;
     return [
       if (shareActionMenu != null)
         IconButton(
-          key: _shareButtonKey,
+          key: shareButtonKey,
           icon: Icon(
             shareActionMenu.icon,
             color: Colors.white,
@@ -103,21 +106,21 @@ class LessonContent extends APIEndpointResultHTML {
           });
         },
       ),
-      ...super.createActions(context),
+      createPopupMenuButton(context),
     ];
   }
 
   @override
-  Widget createPopupMenuButton(BuildContext context) => e3c.isEmpty
+  Widget createPopupMenuButton(BuildContext context, {GlobalKey shareButtonKey}) => e3c.isEmpty
       ? super.createPopupMenuButton(context)
       : Container(
-          key: _shareButtonKey,
+          key: shareButtonKey,
           child: super.createPopupMenuButton(context),
         );
 
   @override
-  List<ActionMenu> createActionMenus(BuildContext context) => [
-        if (e3c.isNotEmpty) createShareActionMenu(),
+  List<ActionMenu> createActionMenus(BuildContext context, {GlobalKey shareButtonKey}) => [
+        if (e3c.isNotEmpty) createShareActionMenu(shareButtonKey),
         ActionMenu(
           icon: Icons.save,
           label: 'Enregistrer le PDF',
@@ -127,11 +130,11 @@ class LessonContent extends APIEndpointResultHTML {
       ];
 
   /// Creates the share action menu.
-  ActionMenu createShareActionMenu() => ActionMenu(
+  ActionMenu createShareActionMenu(GlobalKey shareButtonKey) => ActionMenu(
       icon: Icons.share,
       label: 'Partager le cours…',
       callback: (context, content) async {
-        RenderBox renderBox = _shareButtonKey.currentContext.findRenderObject();
+        RenderBox renderBox = shareButtonKey.currentContext.findRenderObject();
         Offset position = renderBox.localToGlobal(Offset.zero);
 
         await Share.share(
