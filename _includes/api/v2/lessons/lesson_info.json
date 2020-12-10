@@ -12,5 +12,6 @@
     "specialty": {{ lesson.specialty | jsonify }},
     "content": {{ lessonApiRoot | jsonify }},
     "comments": {{ lessonApiRoot | append: 'comments/' | jsonify }},
-    "summary": {{ lessonApiRoot | append: 'summary/' | jsonify }}
+    "summary": {{ lessonApiRoot | append: 'summary/' | jsonify }},
+    "imagesDirectory": {{ '/assets/img/lessons/' | append: include.lesson.level | append: '/' | append: include.lesson.id | append: '/' | jsonify }}
 }
