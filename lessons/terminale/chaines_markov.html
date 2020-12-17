@@ -16,7 +16,7 @@ permalink: "/cours/terminale/chaines-markov/"
         <div class="tip" data-api-v2-title="Exemple">
             <p>On considère le graphe orienté et pondéré suivant :</p>
             <div class="text-center">
-                <img src="/assets/img/lessons/terminale/chaines_markov/graphe_1.svg" alt="Graphe 1" width="200">
+                <img src="/assets/img/lessons/terminale/chaines_markov/graphe_1.svg" data-api-v2-src="graphe_1.svg" alt="Graphe 1" width="200">
             </div>
             <p>On a :</p>
             <ul>
@@ -40,7 +40,7 @@ permalink: "/cours/terminale/chaines-markov/"
             </ul>
             <p>Le graphe probabiliste modélisant cette situation est le graphe $G$ suivant :</p>
             <div class="text-center">
-                <img src="/assets/img/lessons/terminale/chaines_markov/graphe_2.svg" alt="Graphe 2" width="220">
+                <img src="/assets/img/lessons/terminale/chaines_markov/graphe_2.svg" data-api-v2-src="graphe_2.svg" alt="Graphe 2" width="220">
             </div>
             <p>On remarque que la somme des poids des arêtes issues du sommet $S$ vaut $0,9+0,1 = 1$ (idem pour $M$ qui vaut $0,6+0,4 = 1$).</p>
         </div>
@@ -108,7 +108,7 @@ permalink: "/cours/terminale/chaines-markov/"
             <p>$M = \displaystyle{\begin{pmatrix} \frac{10}{11} & \frac{1}{11} & 0 & \text{...} & 0 & 0 \\ 0 & \frac{10}{11} & \frac{1}{11} & \text{...} & 0 & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\ 0 & 0 & 0 & \text{...} & \frac{10}{11} & \frac{1}{11} \\ 0 & 0 & 0 & \text{...} & 0 & 1 \\ \end{pmatrix}}$
             <p>Et le graphe associé à $(X_n)$ est le graphe probabiliste d'ordre $12$ :</p>
             <div class="text-center">
-                <img src="/assets/img/lessons/terminale/chaines_markov/graphe_3.svg" alt="Graphe 3" width="500">
+                <img src="/assets/img/lessons/terminale/chaines_markov/graphe_3.svg" data-api-v2-src="graphe_3.svg" alt="Graphe 3" width="500">
             </div>
         </div>
     </section>
@@ -153,7 +153,7 @@ permalink: "/cours/terminale/chaines-markov/"
             <p>Intéressons nous à l'alimentation d'un chat durant la journée. Il dispose de trois gamelles différentes $L$, $C$ et $P$ dans lesquelles se trouvent respectivement du lait, des croquettes et de la pâté.</p>
             <p>On suppose que le chat a commencé sa journée par du lait et que toutes les heures, il se dirige vers une des gamelles suivant le graphe probabiliste ci-dessous :</p>
             <div class="text-center">
-                <img src="/assets/img/lessons/terminale/chaines_markov/graphe_4.svg" alt="Graphe 4" width="300">
+                <img src="/assets/img/lessons/terminale/chaines_markov/graphe_4.svg" data-api-v2-src="graphe_4.svg" alt="Graphe 4" width="300">
             </div>
             <p>On note par $X_n$ la variable aléatoire qui donne la gamelle qu'a choisi le chat à la $n$-ième heure. On a donc que $(X_n)$ est une chaîne de Markov homogène dont l'espace des états est $E = \{L; C; P\}$. Si on note $(\pi_n)$ la suite des distributions de $(X_n)$, on a alors que $\pi_0 = \begin{pmatrix} 1 & 0 & 0 \end{pmatrix}$.</p>
             <p>Soit $M$ la matrice de transition $M$ de $(X_n)$. Calculons quelques puissances de $M$ :</p>
