@@ -1,0 +1,25 @@
+---
+layout: default
+title: "Liste des cours"
+permalink: "/cours/"
+excerpt: "Retrouvez ici la liste des cours disponibles sur Bacomathiques ainsi qu'une brève description et une petite illustration."
+carousel: true
+sitemap: true
+---
+
+<div class="container-fluid pt-5">
+    <div class="row pt-5 d-flex justify-content-center align-items-lg-stretch align-items-center">
+        {% assign levelCount = site.data.levels | size %}
+        {% for levelHash in site.data.levels %}
+            {% assign level = levelHash[1] %}
+
+            {% capture info %}
+                <h2>{{ level.name }}</h2>
+                <p class="mb-0">{{ level.description }}</p>
+            {% endcapture %}
+
+            {% assign href = '/cours/' | append: level.id | append: '/' %}
+            {% include _includes/components/cards/small_card.html image=level.image content=info href=href size=6 blue=true %}
+        {% endfor %}
+    </div>
+</div>

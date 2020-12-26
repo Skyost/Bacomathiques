@@ -1,0 +1,4 @@
+{
+    "name": {{ include.name | jsonify }},
+    "type": {{ include.type | jsonify }}
+}

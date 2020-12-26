@@ -1,0 +1,5 @@
+---
+layout: api_file
+permalink: "/api/v2/terminale/primitives-equations-differentielles/comments/"
+---
+{% include _includes/api/v2/lessons/comments/comments.json lesson='primitives_equations_differentielles' level='terminale' %}

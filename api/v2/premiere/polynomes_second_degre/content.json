@@ -1,0 +1,5 @@
+---
+layout: api_file
+permalink: "/api/v2/premiere/polynomes-second-degre/"
+---
+{% include _includes/api/v2/lessons/content/content.json lesson='polynomes_second_degre' level='premiere' %}

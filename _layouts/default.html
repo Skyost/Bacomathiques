@@ -1,0 +1,59 @@
+---
+layout: "compress"
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	{% if page.lesson %}
+		{% assign lesson = site.data.lessons[page.level][page.lesson] %}
+		{% assign title = site.data.levels[lesson.level].name | append: ' > ' | append: lesson.title %}
+		{% if page.summary %}
+			{% assign title = title | append: ' > Fiche résumée' %}
+		{% endif %}
+		{% assign description = lesson.excerpt | strip_html %}
+		{% include _includes/head/include.html title=title description=description %}
+	{% else %}
+		{% assign description = site.tagline %}
+		{% if page.excerpt %}{% assign description = page.excerpt %}{% endif %}
+		{% include _includes/head/include.html title=page.title description=description carousel=true %}
+	{% endif %}
+</head>
+<body>
+	{% include _includes/components/navbar/include.html %}
+
+	{% if page.header %}
+		{% capture header %}
+			{% include {{ page.header }} %}
+		{% endcapture %}
+	{% elsif page.carousel %}
+		{% capture header %}
+			{% include _includes/components/carousel/component.html %}
+		{% endcapture %}
+	{% elsif page.lesson %}
+		{% capture header %}
+			{% include pages/lesson/header.html %}
+		{% endcapture %}
+	{% endif %}
+
+	{% if header %}
+		{% include _includes/components/header.html content=header %}
+	{% endif %}
+
+	{% if page.lesson %}
+		{% include pages/lesson/page.html %}
+	{% else %}
+		<article id="page-content" class="pb-5">
+			{{ content }}
+		</article>
+	{% endif %}
+
+	{% include _includes/components/footer.html %}
+
+	{% if page.lesson %}
+		{% include _includes/foot/include.html %}
+	{% else %}
+		{% include _includes/foot/include.html carousel=true %}
+	{% endif %}
+</body>
+</html>

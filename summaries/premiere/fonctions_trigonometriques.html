@@ -1,0 +1,145 @@
+---
+layout: default
+lesson: "fonctions_trigonometriques"
+level: "premiere"
+summary: true
+permalink: "/cours/premiere/fonctions-trigonometriques/resume/"
+---
+
+<section>
+    <h2>Le cercle trigonométrique</h2>
+    <section>
+        <h3>Définition</h3>
+        <p>Dans tout le cours, le plan sera muni d'un repère orthonormé $(O; \overrightarrow{i}; \overrightarrow{j})$. Il sera également muni d'un cercle $\mathcal{C}$ appelé <strong>cercle trigonométrique</strong> de centre $O$ et de rayon $1$ orienté dans le sens inverse des aiguilles d'une montre (c'est le <strong>sens direct</strong>) :</p>
+        <div id="representation-1" class="plot" data-api-v2-geogebra-id="t52gsb2h"></div>
+        <div class="formula" data-api-v2-title="Cosinus et sinus">
+            <p>Soit $M$ un point quelconque situé sur le cercle $\mathcal{C}$ faisant un angle $x$ avec l'axe des abscisses. Les coordonnées de $M$ sont :</p>
+            <ul>
+                <li>L'abscisse de $M$ appelée <strong>cosinus</strong> est notée $\cos(x)$.</li>
+                <li>L'ordonnée de $M$ appelée <strong>sinus</strong> est notée $\sin(x)$.</li>
+                <li>Pour tout $x \in \mathbb{R}$, on a $-1 \leq \cos(x) \leq 1$ et $-1 \leq \sin(x) \leq 1$.</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Enroulement de la droite des réels autour du cercle trigonométrique</h3>
+        <p>Il est possible <q>d'enrouler</q> la droite des réels autour du cercle $\mathcal{C}$ dans le sens inverse des aiguilles d'une montre :</p>
+        <div id="representation-2" class="plot" data-api-v2-geogebra-id="b4vazqb5"></div>
+        <p>Ainsi, puisque l'on peut enrouler infiniment cette droite autour du cercle, les fonctions sinus et cosinus sont périodiques de période $2\pi$.</p>
+        <div class="formula" data-api-v2-title="Périodicité">
+            <p>Ainsi, pour tout $x$ réel et $k$ entier relatif :</p>
+            <ul>
+                <li>$\cos(x) = \cos(x + 2k\pi)$</li>
+                <li>$\sin(x) = \sin(x + 2k\pi)$</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Le radian</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Le <strong>radian</strong> est une unité de mesure permettant de mesurer des <strong>angles orientés</strong>. La <strong>mesure</strong> en radians d'un angle vaut la longueur de l'arc de $\mathcal{C}$ que cet angle intercepte.</p>
+        </div>
+        <div id="representation-3" class="plot" data-api-v2-geogebra-id="yh9n8feb"></div>
+    </section>
+</section>
+<section>
+    <h2>Étude des fonctions trigonométriques</h2>
+    <section>
+        <h3>Formules de trigonométrie</h3>
+        <div class="formula" data-api-v2-title="Formules">
+            <p>On a les relations suivantes pour tout $x \in \mathbb{R}$ :</p>
+            <ul>
+                <li>$\cos(-x) = \cos(x)$ (la fonction cosinus est <strong>paire</strong>)</li>
+                <li>$\sin(-x) = -\sin(x)$ (la fonction sinus est <strong>impaire</strong>)</li>
+                <li>$\cos(x + \pi) = -\cos(x)$</li>
+                <li>$\sin(x + \pi) = -\sin(x)$</li>
+                <li>$\cos(x - \pi) = -\cos(x)$</li>
+                <li>$\sin(x - \pi) = \sin(x)$</li>
+                <li>$\cos(\frac{\pi}{2} - x) = \sin(x)$</li>
+                <li>$\sin(\frac{\pi}{2} - x) = \cos(x)$</li>
+                <li>$\cos(x + \frac{\pi}{2}) = -\sin(x)$</li>
+                <li>$\sin(x + \frac{\pi}{2}) = \cos(x)$</li>
+                <li>$\cos(x + y) = \cos(x) \times \cos(y) - \sin(x) \times \sin(y)$</li>
+                <li>$\sin(x + y) = \sin(x) \times \cos(y) + \cos(x) \times \sin(y)$</li>
+                <li>$\cos(x)^2 + \sin(x)^2 = 1$</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Dérivée</h3>
+        <div class="formula" data-api-v2-title="Dérivée d'une composée">
+            <p>Soit une fonction $u$ dérivable sur un intervalle $I$, on a pour tout $x$ appartenant à cet intervalle :</p>
+            <ul>
+                <li>$\cos'(u(x)) = -u'(x)\sin(u(x))$</li>
+                <li>$\sin'(u(x)) = u'(x)\cos(u(x))$</li>
+            </ul>
+        </div>
+        <div class="formula" data-api-v2-title="Dérivée">
+            <p>Ainsi, si pour tout $x \in I$ on a $u(x) = x$, on trouve :</p>
+            <ul>
+                <li>$\cos'(x) = -\sin(x)$</li>
+                <li>$\sin'(x) = \cos(x)$</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Signe et variations</h3>
+        <p>L'étude du signe des dérivées des fonctions trigonométriques permet d'obtenir les variations de celles-ci. Nous allons donc voir le signe et les variations de ces fonctions.</p>
+        <div class="formula" data-api-v2-title="Signe et variation de la fonction cosinus">
+            <img src="/assets/img/lessons/premiere/fonctions_trigonometriques/variations_cos.svg" data-api-v2-src="variations_cos.svg" alt="Tableau de variations de la fonction cosinus">
+            <p>Veuillez noter que ce tableau est périodique de période $2\pi$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Signe et variation de la fonction sinus">
+            <img src="/assets/img/lessons/premiere/fonctions_trigonometriques/variations_sin.svg" data-api-v2-src="variations_sin.svg" alt="Tableau de variations de la fonction sinus">
+            <p>Ce tableau est également périodique de période $2\pi$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Valeurs remarquables</h3>
+        <div class="formula" data-api-v2-title="Valeurs remarquables">
+            <p>Voici un tableau regroupant quelques valeurs remarquables de sinus et de cosinus :</p>
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Valeur de $x$ (à $2k\pi$ près, $k \in \mathbb{Z}$)</th><th>Valeur de $\cos(x)$</th><th>Valeur de $\sin(x)$ </th>
+                </tr>
+                </thead>
+                <tr>
+                    <td>$0$</td><td>$1$</td><td>$0$ </td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{\pi}{6}}$</td><td>$\displaystyle{\frac{\sqrt{3}}{2}}$</td><td>$\displaystyle{\frac{1}{2}}$ </td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{\pi}{4}}$</td><td>$\displaystyle{\frac{\sqrt{2}}{2}}$</td><td>$\displaystyle{\frac{\sqrt{2}}{2}}$ </td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{\pi}{3}}$</td><td>$\displaystyle{\frac{1}{2}}$</td><td>$\displaystyle{\frac{\sqrt{3}}{2}}$ </td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{\pi}{2}}$</td><td>$0$</td><td>$1$ </td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{2\pi}{3}}$</td><td>$\displaystyle{-\frac{1}{2}}$</td><td>$\displaystyle{\frac{\sqrt{3}}{2}}$ </td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{3\pi}{4}}$</td><td>$\displaystyle{-\frac{\sqrt{2}}{2}}$</td><td>$\displaystyle{\frac{\sqrt{2}}{2}}$ </td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{5\pi}{6}}$</td><td>$\displaystyle{-\frac{\sqrt{3}}{2}}$</td><td>$\displaystyle{\frac{1}{2}}$ </td>
+                </tr>
+                <tr>
+                    <td>$\pi$</td><td>$-1$</td><td>$0$ </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <section>
+        <h3>Représentation graphique</h3>
+        <p>À l'aide de toutes les informations et valeurs données précédemment, il est possible d'établir une représentation graphique de la fonction cosinus :</p>
+        <div id="representation-5" class="plot" data-api-v2-geogebra-id="gkpmaugu"></div>
+        <p>De même pour la fonction sinus :</p>
+        <div id="representation-6" class="plot" data-api-v2-geogebra-id="zhwqmkjd"></div>
+        <p>On remarque sur ces graphiques plusieurs propriétés données : parité, signe, périodicité, etc...</p>
+    </section>
+</section>

@@ -1,0 +1,61 @@
+{% assign titleUrl = lesson.title | replace: '–', '-' | replace: 'É', 'E' | replace: 'é', 'e' | replace: 'ô', 'o' | replace: 'î', 'i' | url_param_escape %}
+{% assign pdf = '/assets/pdf/cours/' | append: lesson.level | append: '/' | append: titleUrl | append: '.pdf' %}
+{% assign image = '/assets/img/lessons/' | append: lesson.level | append: '/' | append: lesson.id | append: '/preview.jpg' %}
+
+{% capture header %}
+    <h3>{{ lesson.title }}</h3>
+
+    {% if page.summary %}
+        <h4 class="lesson-subtitle">Fiche résumée</h4>
+    {% endif %}
+
+    <span class="lesson-info level" title="Niveau du cours">
+        <img src="{{ level.image }}" alt="{{ level.name }}"> {{ level.name }}
+    </span>
+    <span class="lesson-info difficulty" title="Difficulté du cours">
+        {% for i in (1..5) %}
+            <i class="fa fa-graduation-cap{% if i <= lesson.difficulty %} difficulty-{{ lesson.difficulty }}{% endif %}" aria-hidden="true"></i>
+        {% endfor %}
+        {% if lesson.difficulty == 1 %}
+            Facile
+        {% elsif lesson.difficulty == 2 %}
+            Modéré
+        {% elsif lesson.difficulty == 3 %}
+            Moyen
+        {% elsif lesson.difficulty == 4 %}
+            Difficile
+        {% elsif lesson.difficulty == 5 %}
+            Complexe
+        {% endif %}
+    </span>
+
+    <p>{{ lesson.excerpt }}</p>
+
+    {% if page.summary %}
+        <a class="d-block btn btn-white" href="../" role="button"> Retour au cours</a>
+    {% else %}
+        <div class="row">
+            <div class="col-lg-6 col-12 mb-lg-0 mb-2">
+                <a class="btn btn-white w-100 h-100 d-flex justify-content-center align-items-center" href="resume/" role="button">
+                    Lire le résumé
+                </a>
+            </div>
+            <div class="col-lg-6 col-12">
+                <button id="options-button" type="button" class="btn btn-white w-100">
+                    Plus d'options
+                    <span class="hint">Télécharger le PDF, partager, ...</span>
+                </button>
+            </div>
+            <div class="col-lg-12 options">
+                <img id="option-pdf" class="option" src="/assets/img/lessons/pdf.svg" alt="PDF" title="Télécharger le PDF" data-link="{{ pdf }}">
+                <img id="option-share" class="option" src="/assets/img/lessons/share.svg" alt="Partager" title="Partager le cours" data-toggle="modal" data-target="#modal-share">
+                <img id="option-caveat" class="option" src="/assets/img/lessons/alert.svg" alt="Erreur" title="Signaler une erreur" data-toggle="modal" data-target="#modal-caveat">
+                {% if lesson.e3c.first %}
+                    <img id="option-e3c" class="option" src="/assets/img/lessons/graduation.svg" alt="E3C" title="Voir les E3C en rapport avec le cours" data-toggle="modal" data-target="#modal-e3c">
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+{% endcapture %}
+
+{% include _includes/components/image_header.html image=image background_image=true content=header %}

@@ -1,0 +1,5 @@
+---
+layout: api_file
+permalink: "/api/v2/terminale/variables-aleatoires-concentration-grands-nombres/summary/"
+---
+{% include _includes/api/v2/lessons/summary/summary.json lesson='variables_aleatoires_concentration_grands_nombres' level='terminale' %}

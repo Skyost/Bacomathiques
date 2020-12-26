@@ -1,0 +1,117 @@
+---
+layout: default
+lesson: "suites"
+level: "premiere"
+summary: true
+permalink: "/cours/premiere/suites/resume/"
+---
+
+<section>
+    <h2>Qu'est-ce qu'une suite ?</h2>
+    <section>
+        <h3>Définition</h3>
+        <p>On appelle <strong>suite</strong> une fonction de $\mathbb{N}$ dans $\mathbb{R}$ : cette fonction va prendre des éléments de l'ensemble de départ $\mathbb{N}$ et va les amener dans l'ensemble d'arrivée $\mathbb{R}$.</p>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Il y a plusieurs manières de définir une suite :</p>
+            <ul>
+                <li><strong>Par récurrence :</strong> On donne le premier terme de la suite ainsi que le terme au rang $n+1$.</li>
+                <li><strong>Par son terme général :</strong> On donne le $n$-ième terme de la suite en fonction de $n$.</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Suites arithmétiques</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Une suite $(u_n)$ est dite <strong>arithmétique</strong> si elle est de la forme $u_{n+1} = u_n + r$ avec $r \in \mathbb{R}$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Raison">
+            <p>Le réel $r$ est la <strong>raison</strong> de la suite (si $r \gt 0$, $(u_n)$ est strictement croissante, si $r \lt 0$, $(u_n)$ est strictement décroissante et si $r = 0$, $(u_n)$ est constante).</p>
+        </div>
+        <p>Il est possible de trouver le terme général d'une suite arithmétique :</p>
+        <div class="formula" data-api-v2-title="Terme général">
+            <p>On note $p$ le rang initial de la suite (celui à partir duquel la suite est définie) :</p>
+            <p>$u_n = u_p + (n-p) \times r$</p>
+            <p>Et si $(u_n)$ est définie à partir du rang $0$ (on a $p = 0$) :</p>
+            <p>$u_n = u_0 + (n-0) \times r = u_0 + n \times r$</p>
+        </div>
+        <div class="formula" data-api-v2-title="Somme des termes">
+            <p>$\displaystyle{1 + 2 + \text{...} + n = \frac{n(n + 1)}{2}}$ pour tout $n \in \mathbb{N}$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Suites géométriques</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Une suite $(v_n)$ est dite <strong>géométrique</strong> si elle est de la forme $v_{n+1} = v_n \times q$ avec $q \in \mathbb{R}$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Raison">
+            <p>Le réel $q$ est la <strong>raison</strong> de la suite (si $q \gt 1$, $(v_n)$ est strictement croissante, si $0 \lt q \lt 1$, $(v_n)$ est strictement décroissante et si $q = 1$ ou $0$, $(v_n)$ est constante).</p>
+        </div>
+        <p>Il est possible de trouver le terme général d'une suite géométrique :</p>
+        <div class="formula" data-api-v2-title="Terme général">
+            <p>On note $p$ le rang initial de la suite (celui à partir duquel la suite est définie) :</p>
+            <p>$v_n = v_p \times q^{n-p}$</p>
+            <p>Et si $(v_n)$ est définie à partir du rang $0$ (on a $p = 0$) :</p>
+            <p>$v_n = v_0 \times q^{n-0} = v_0 \times q^n$</p>
+        </div>
+        <div class="formula" data-api-v2-title="Somme des termes">
+            <p>Soit $n \neq 0$ un entier et $q$ un réel, alors :</p>
+            <ul>
+                <li>Si $q \neq 1$, alors $\displaystyle{1 + q^1 + q^2 + \text{...} + q^n = \frac{1 - q^{n + 1}}{1 - q}}$.</li>
+                <li>Si $q = 1$, alors $\displaystyle{1 + q^1 + q^2 + \text{...} + q^n = \underbrace{1 + 1 + 1 + \text{...} + 1}_{n \text{ fois}} = n}$.</li>
+            </ul>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>Étude des suites</h2>
+    <section>
+        <h3>Sens de variation</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soit $(u_n)$ une suite.</p>
+            <ul>
+                <li>$(u_n)$ est <strong>croissante</strong> si on a $u_{n+1} \geq u_n$ (ou $u_{n+1} - u_n \geq 0$) pour tout $n \in \mathbb{N}$.</li>
+                <li>$(u_n)$ est <strong>décroissante</strong> si on a $u_{n+1} \leq u_n$ (ou $u_{n+1} - u_n \leq 0$) pour tout $n \in \mathbb{N}$.</li>
+                <li>$(u_n)$ est dite <strong>constante</strong> s'il existe $c \in \mathbb{R}$ tel que $u_n = c$ pour tout $n \in \mathbb{N}$.</li>
+            </ul>
+        </div>
+        <p>Si une suite est croissante ou décroissante et ne change pas de variation, alors elle est dite <strong>monotone</strong>.</p>
+    </section>
+    <section>
+        <h3>Introduction aux limites</h3>
+        <p>Quand on souhaite s'intéresser à la limite d'une suite $(u_n)$, on étudie le comportement de ses termes quand <q>$n$ devient très grand</q>. On préfère dire alors que <strong>$n$ tend vers $+\infty$</strong>.</p>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soit $(u_n)$ une suite.</p>
+            <ul>
+                <li>Si $(u_n)$ tend vers un réel quand $n$ tend vers $+\infty$, on dit qu'elle <strong>converge</strong>.</li>
+                <li>Si $(u_n)$ tend vers une limite infinie quand $n$ tend vers $+\infty$, on dit qu'elle <strong>diverge</strong>.</li>
+            </ul>
+        </div>
+        <p>À savoir que si une suite a une limite, alors cette limite est <strong>unique</strong>. Mais il est également possible pour une suite de ne pas admettre de limite.</p>
+    </section>
+    <section>
+        <h3>Représentation graphique</h3>
+        <p>Il est possible de représenter graphiquement une suite. Cela peut aider, par exemple dans le but de chercher sa limite.</p>
+        <div class="formula" data-api-v2-title="Méthode pour une suite définie par récurrence">
+            <p>Soit $(u_n)$ une suite définie par récurrence. Pour représenter $(u_n)$ dans un graphique :</p>
+            <ol>
+                <li>On trace la droite d'équation $y = x$.</li>
+                <li> Comme cette suite est définie par récurrence, pour tout entier $n$ on a une relation du type $u_{n+1} = f(u_n)$. Il s'agit de tracer la courbe représentative $\mathcal{C}_f$ de la fonction $f$.</li>
+                <li>On place le point $A$ de coordonnées $(u_0; 0)$</li>
+                <li>On trace une droite verticale passant par $A$, son intersection avec $\mathcal{C}_f$ donne un point $B = (u_0; u_1)$.</li>
+                <li>À l'aide du point $B$, on place le point $C = (0; u_1)$.</li>
+                <li>On trace une droite horizontale passant par $C$, son intersection avec la droite $y = x$ donne un point $D = (u_1; u_1)$.</li>
+                <li>Une fois le point $D$ obtenu, on place le point $(u_1; 0)$.</li>
+                <li>On recommence l'opération en remplaçant $u_0$ par $u_1$ et $u_1$ par $u_2$, puis on recommence, etc...</li>
+            </ol>
+        </div>
+        <p>Il est cependant plus facile de représenter graphiquement une suite dont on connaît le terme général.</p>
+        <div class="formula" data-api-v2-title="Méthode pour une suite définie par son terme général">
+            <p>Soit $(v_n)$ une suite définie par son terme général. Pour représenter $(v_n)$ dans un graphique :</p>
+            <ol>
+                <li>On place le point de coordonnées $(0; v_0)$.</li>
+                <li>On place le point de coordonnées $(1; v_1)$.</li>
+                <li>On place le point de coordonnées $(2; v_2)$. Etc...</li>
+            </ol>
+        </div>
+    </section>
+</section>

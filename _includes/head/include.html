@@ -1,0 +1,31 @@
+<meta charset="utf-8"/>
+
+<!-- Infos et SEO -->
+{% assign title = include.title | append: ' | ' | append: site.title %}
+
+{% include _includes/head/seo.html title=title description=include.description %}
+{% include _includes/head/social_networks.html title=title description=include.description %}
+
+<!-- Styles -->
+{% include _includes/head/styles.html %}
+
+<!-- Polyfill -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+<!-- Cours -->
+{% if page.lesson %}
+    {% include pages/lesson/head.html %}
+{% endif %}
+
+<!-- Maths -->
+{% if page.maths %}
+    {% include _includes/head/maths.html %}
+{% endif %}
+
+<!-- Animate on scroll -->
+{% if page.animate_on_scroll %}
+    {% include _includes/head/animate_on_scroll.html %}
+{% endif %}
+
+<!-- Autres -->
+{% include _includes/head/others.html %}

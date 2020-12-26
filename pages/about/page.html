@@ -1,0 +1,34 @@
+---
+layout: default
+title: "À propos"
+permalink: "/a-propos/"
+animate_on_scroll: true
+carousel: true
+css:
+  - "/assets/css/forms/contact.css"
+js:
+  - "https://www.google.com/recaptcha/api.js?render=6LeleK0ZAAAAAE1AyIgnyM60UZ1I9d2YPB5_zuyw"
+  - "/assets/js/forms/contact.js"
+sitemap: true
+---
+
+<section class="pb-5">
+    {% capture technologiesCards %}
+        {% include pages/about/technologies_cards.html %}
+    {% endcapture %}
+	{% include _includes/components/cards/cards_row.html content=technologiesCards sal="slide-up" %}
+</section>
+
+<section class="pt-5 pb-5">
+    {% capture licenseContributions %}
+        {% include pages/about/license_contributions.html %}
+    {% endcapture %}
+	{% include _includes/components/cards/big_card.html content=licenseContributions sal="zoom-out" %}
+</section>
+
+<section class="pt-5 pb-5">
+    {% capture contactForm %}
+        {% include pages/about/contact_form.html %}
+    {% endcapture %}
+	{% include _includes/components/cards/big_card.html content=contactForm blue=true sal="slide-down" %}
+</section>

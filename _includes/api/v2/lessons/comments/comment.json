@@ -1,0 +1,16 @@
+{% if site.comments.moderators contains comment.author %}
+    {% assign avatar = site.comments.moderators[comment.author] %}
+{% else %}
+    {% assign avatar = 'https://avatars.dicebear.com/api/bottts/' | append: include.comment.author | append: '.svg' %}
+{% endif %}
+
+{
+    "id": {{ include.comment._id | jsonify }},
+    "author": {
+        "name": {{ include.comment.author | jsonify }},
+        "avatar": {{ avatar | jsonify }},
+        "isModerator": {% if site.comments.moderators contains include.comment.author %}{{ true | jsonify }}{% else %}{{ false | jsonify }}{% endif %}
+    },
+    "date": {{ include.comment.date | jsonify }},
+    "message": {{ include.comment.message | jsonify }}
+}

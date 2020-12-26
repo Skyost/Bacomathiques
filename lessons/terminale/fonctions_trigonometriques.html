@@ -1,0 +1,177 @@
+---
+layout: default
+lesson: "fonctions_trigonometriques"
+level: "terminale"
+permalink: "/cours/terminale/fonctions-trigonometriques/"
+redirect_from: "/cours/fonctions-trigonometriques/"
+---
+
+<section>
+    <h2>Sinus et cosinus</h2>
+    <section>
+        <h3>Définition</h3>
+        <p>Dans tout le cours, le plan sera muni d'un repère orthonormé $(O; \overrightarrow{i}; \overrightarrow{j})$. Il sera également muni d'un cercle $\mathcal{C}$ appelé <strong>cercle trigonométrique</strong> de centre $O$ et de rayon $1$ orienté dans le sens inverse des aiguilles d'une montre (c'est le <strong>sens direct</strong>) :</p>
+        <div id="representation-1" class="plot" data-api-v2-geogebra-id="t52gsb2h"></div>
+        <div class="formula" data-api-v2-title="Cosinus et sinus">
+            <p>Soit $M$ un point quelconque situé sur le cercle $\mathcal{C}$ faisant un angle $x$ avec l'axe des abscisses. Les coordonnées de $M$ sont :</p>
+            <ul>
+                <li>L'abscisse de $M$ appelée <strong>cosinus</strong> est notée $\cos(x)$.</li>
+                <li>L'ordonnée de $M$ appelée <strong>sinus</strong> est notée $\sin(x)$.</li>
+                <li>Pour tout $x \in \mathbb{R}$, on a $-1 \leq \cos(x) \leq 1$ et $-1 \leq \sin(x) \leq 1$.</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Périodicité</h3>
+        <p>Les fonctions sinus et cosinus sont périodiques de période $2\pi$.</p>
+        <div class="formula" data-api-v2-title="Périodicité">
+            <p>Ainsi pour tout $x$ réel et $k$ entier relatif :</p>
+            <ul>
+                <li>$\cos(x) = \cos(x + 2k\pi)$</li>
+                <li>$\sin(x) = \sin(x + 2k\pi)$</li>
+            </ul>
+        </div>
+        <div class="tip">
+            <p>Concrètement, cela signifie que $\cos(x) = \cos(x + 2\pi) = \cos(x + 4\pi) = \text{ ... } = \cos(x + 2k\pi)$ et idem pour $\sin(x)$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Formules de trigonométrie</h3>
+        <div class="formula" data-api-v2-title="Formules">
+            <p>On a les relations suivantes pour tout $x \in \mathbb{R}$ :</p>
+            <ul>
+                <li>$\cos(-x) = \cos(x)$ (la fonction cosinus est <strong>paire</strong>)</li>
+                <li>$\sin(-x) = -\sin(x)$ (la fonction sinus est <strong>impaire</strong>)</li>
+                <li>$\cos(x + \pi) = -\cos(x)$</li>
+                <li>$\sin(x + \pi) = -\sin(x)$</li>
+                <li>$\cos(x - \pi) = -\cos(x)$</li>
+                <li>$\sin(x - \pi) = \sin(x)$</li>
+                <li>$\cos(\frac{\pi}{2} - x) = \sin(x)$</li>
+                <li>$\sin(\frac{\pi}{2} - x) = \cos(x)$</li>
+                <li>$\cos(x + \frac{\pi}{2}) = -\sin(x)$</li>
+                <li>$\sin(x + \frac{\pi}{2}) = \cos(x)$</li>
+                <li>$\cos(x + y) = \cos(x) \times \cos(y) - \sin(x) \times \sin(y)$</li>
+                <li>$\sin(x + y) = \sin(x) \times \cos(y) + \cos(x) \times \sin(y)$</li>
+                <li>$\cos(x)^2 + \sin(x)^2 = 1$</li>
+            </ul>
+        </div>
+        <div class="tip" data-api-v2-title="Retrouver les formules">
+            <p>Il n'est aucunement demandé de mémoriser ces formules (sauf les trois dernières). Cependant, il doit être possible de les retrouver à l'aide du cercle trigonométrique. Ainsi, prenons l'exemple de $\cos(x + \pi)$ :</p>
+            <div id="representation-2" class="plot" data-api-v2-geogebra-id="xghkwjkf"></div>
+            <p>On remarque que l'ordonnée reste la même (le sinus est le même). Cependant, on a bien une abscisse opposée. On a retrouvé la formule $\cos(x + \pi) = -\cos(x)$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Résolution d'équations</h3>
+        <p>Il est possible de résoudre des équations incluant des sinus et des cosinus.</p>
+        <div class="formula" data-api-v2-title="Résolution d'équations">
+            <p>Soient $x$ et $y$ deux réels. On a les relations suivantes :</p>
+            <ul>
+                <li>$\cos(x) = \cos(y) \iff \text{ il existe } k \in \mathbb{Z} \text{ tel que } \begin{cases} y = x + 2k\pi \\ \text{ou} \\ y = -x + 2k\pi\end{cases}$</li>
+                <li>$\sin(x) = \sin(y) \iff \text{ il existe } k \in \mathbb{Z} \text{ tel que } \begin{cases} y = x + 2k\pi \\ \text{ou} \\ y = \pi - x + 2k\pi\end{cases}$</li>
+            </ul>
+        </div>
+        <p>Comme précédemment, ces formules peuvent se retrouver à l'aide du cercle trigonométrique.</p>
+    </section>
+    <section>
+        <h3>Fonctions réciproques</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soient $x$ et $y$ $\in \mathbb{R}$, on admettra qu'il existe une <strong>fonction réciproque</strong> à $\cos$ (notée $\arccos$) et une <strong>fonction réciproque</strong> à $\sin$ (notée $\arcsin$). On a les relations suivantes pour tout $x \in [0; 2\pi]$ et $y \in [-1; 1]$ :</p>
+            <ul>
+                <li>$\cos(x) = y \iff x = \arccos(y)$</li>
+                <li>$\sin(x) = y \iff x = \sin(y)$</li>
+            </ul>
+        </div>
+        <p>Cela signifie qu'à tout $x \in [0; 2\pi]$, la fonction $\arccos$ y associe son <strong>antécédent</strong> $y$ par rapport à $\cos$ (pareil pour $\arcsin$ avec $\sin$).</p>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>$\cos(0) = 1$, $\arccos(1) = 0$ et $\sin(\frac{\pi}{2}) = 1$, $\arcsin(1) = \frac{\pi}{2}$.</p>
+        </div>
+        <p>Ces fonctions (accessibles depuis la calculatrice) peuvent également être utilisées pour résoudre certains types d'équations.</p>
+    </section>
+</section>
+<section>
+    <h2>Étude des fonctions trigonométriques</h2>
+    <section>
+        <h3>Dérivée</h3>
+        <div class="formula" data-api-v2-title="Dérivée d'une composée">
+            <p>Soit une fonction $u$ dérivable sur un intervalle $I$, on a pour tout $x$ appartenant à cet intervalle :</p>
+            <ul>
+                <li>$\cos'(u(x)) = -u'(x)\sin(u(x))$</li>
+                <li>$\sin'(u(x)) = u'(x)\cos(u(x))$</li>
+            </ul>
+        </div>
+        <div class="formula" data-api-v2-title="Dérivée">
+            <p>Ainsi, si pour tout $x \in I$ on a $u(x) = x$, on trouve :</p>
+            <ul>
+                <li>$\cos'(x) = -\sin(x)$</li>
+                <li>$\sin'(x) = \cos(x)$</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Signe et variations</h3>
+        <p>L'étude du signe des dérivées des fonctions trigonométriques permet d'obtenir les variations de celles-ci. Nous allons donc voir le signe et les variations de ces fonctions.</p>
+        <div class="formula" data-api-v2-title="Signe et variation de la fonction cosinus">
+            <img src="/assets/img/lessons/terminale/fonctions_trigonometriques/variations_cos.svg" data-api-v2-src="variations_cos.svg" alt="Tableau de variations de la fonction cosinus">
+            <p>Veuillez noter que ce tableau est périodique de période $2\pi$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Signe et variation de la fonction sinus">
+            <img src="/assets/img/lessons/terminale/fonctions_trigonometriques/variations_sin.svg" data-api-v2-src="variations_sin.svg" alt="Tableau de variations de la fonction sinus">
+            <p>Ce tableau est également périodique de période $2\pi$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Limite</h3>
+        <p>Les fonctions trigonométriques ont pour particularité de <strong>ne pas admettre de limite</strong> en $\pm\infty$. Ceci provenant du fait que ces fonctions sont périodiques et que leur valeur oscille entre $-1$ et $1$.</p>
+    </section>
+    <section>
+        <h3>Valeurs remarquables</h3>
+        <div class="formula" data-api-v2-title="Valeurs remarquables">
+            <p>Voici un tableau regroupant quelques valeurs remarquables de sinus et de cosinus :</p>
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Valeur de $x$ (à $2k\pi$ près, $k \in \mathbb{Z}$)</th><th>Valeur de $\cos(x)$</th><th>Valeur de $\sin(x)$</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>$0$</td><td>$1$</td><td>$0$ </td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{\pi}{6}}$</td><td>$\displaystyle{\frac{\sqrt{3}}{2}}$</td><td>$\displaystyle{\frac{1}{2}}$ </td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{\pi}{4}}$</td><td>$\displaystyle{\frac{\sqrt{2}}{2}}$</td><td>$\displaystyle{\frac{\sqrt{2}}{2}}$ </td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{\pi}{3}}$</td><td>$\displaystyle{\frac{1}{2}}$</td><td>$\displaystyle{\frac{\sqrt{3}}{2}}$ </td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{\pi}{2}}$</td><td>$0$</td><td>$1$ </td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{2\pi}{3}}$</td><td>$\displaystyle{-\frac{1}{2}}$</td><td>$\displaystyle{\frac{\sqrt{3}}{2}}$ </td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{3\pi}{4}}$</td><td>$\displaystyle{-\frac{\sqrt{2}}{2}}$</td><td>$\displaystyle{\frac{\sqrt{2}}{2}}$ </td>
+                </tr>
+                <tr>
+                    <td>$\displaystyle{\frac{5\pi}{6}}$</td><td>$\displaystyle{-\frac{\sqrt{3}}{2}}$</td><td>$\displaystyle{\frac{1}{2}}$ </td>
+                </tr>
+                <tr>
+                    <td>$\pi$</td><td>$-1$</td><td>$0$ </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section>
+        <h3>Représentation graphique</h3>
+        <p>À l'aide de toutes les informations et valeurs données précédemment, il est possible d'établir une représentation graphique de la fonction cosinus :</p>
+        <div id="representation-3" class="plot" data-api-v2-geogebra-id="zhwqmkjd"></div>
+        <p>De même pour la fonction sinus :</p>
+        <div id="representation-4" class="plot" data-api-v2-geogebra-id="gkpmaugu"></div>
+        <p>On remarque sur ces graphiques plusieurs propriétés données : parité, signe, périodicité, etc...</p>
+    </section>
+</section>

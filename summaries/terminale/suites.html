@@ -1,0 +1,273 @@
+---
+layout: default
+lesson: "suites"
+level: "terminale"
+summary: true
+permalink: "/cours/terminale/suites/resume/"
+---
+
+<section>
+    <h2>Définitions</h2>
+    <section>
+        <h3>Suites numériques</h3>
+        <p>Pour rappel, on appelle <strong>suite</strong> une fonction (et plus précisément application) de $\mathbb{N}$ dans $\mathbb{R}$ : cette fonction va prendre des éléments de l'ensemble de départ $\mathbb{N}$ et va les amener dans l'ensemble d'arrivée $\mathbb{R}$.</p>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Il y a plusieurs manières de définir une suite :</p>
+            <ul>
+                <li><strong>Par récurrence :</strong> On donne le premier terme de la suite ainsi que le terme au rang $n+1$.</li>
+                <li><strong>Par son terme général :</strong> On donne le $n$-ième terme de la suite en fonction de $n$.</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Sens de variation</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soit $(u_n)$ une suite.</p>
+            <ul>
+                <li>$(u_n)$ est <strong>croissante</strong> si on a $u_{n+1} \geq u_n$ (ou $u_{n+1} - u_n \geq 0$) pour tout $n \in \mathbb{N}$.</li>
+                <li>$(u_n)$ est <strong>décroissante</strong> si on a $u_{n+1} \leq u_n$ (ou $u_{n+1} - u_n \leq 0$) pour tout $n \in \mathbb{N}$.</li>
+                <li>$(u_n)$ est dite <strong>constante</strong> s'il existe $c \in \mathbb{R}$ tel que $u_n = c$ pour tout $n \in \mathbb{N}$.</li>
+            </ul>
+        </div>
+        <p>Si une suite est croissante ou décroissante et ne change pas de variation, alors elle est dite <strong>monotone</strong>.</p>
+    </section>
+    <section>
+        <h3>Convergence et divergence</h3>
+        <div class="formula" data-api-v2-title="Convergence">
+            <p>On dit qu'une suite $(u_n)$ <strong>converge</strong> vers un réel $\ell$ quand $n$ tend vers $+\infty$ si :</p>
+            <p>Pour tout $\epsilon > 0$, l'intervalle ouvert $]\ell-\epsilon, \ell+\epsilon[$, contient tous les termes de la suite $(u_n)$ à partir d'un certain rang. On note alors : $\lim_{n \rightarrow +\infty} u_n = \ell$.</p>
+        </div>
+        <p><strong>Attention !</strong> Il est tout-à-fait possible que la suite $(u_n)$ converge vers un réel $\ell$ mais ne soit jamais égal à $\ell$.</p>
+        <div class="formula" data-api-v2-title="Divergence vers $+\infty$">
+            <p>On dit qu'une suite $(v_n)$ <strong>diverge</strong> vers $+\infty$ quand $n$ tend vers $+\infty$ si :</p>
+            <p>Pour tout $A \gt 0$, il existe un rang $N$ tel que pour tout $n \geq N$, $v_n \gt A$. On note alors : $\lim_{n \rightarrow +\infty} u_n = +\infty$.</p>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>Calcul de limites</h2>
+    <section>
+        <h3>Limites de suites de référence</h3>
+        <p>Nous allons donner quelques suites <q>classiques</q> avec leur limite en $+\infty$ :</p>
+        <div class="formula" data-api-v2-title="Limites de suites usuelles">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>Suite</th>
+                    <th>Limite quand $n$ tend vers $+\infty$</th>
+                </tr>
+                <tr>
+                    <td>$(\sqrt{n})$</td>
+                    <td>$+\infty$</td>
+                </tr>
+                <tr>
+                    <td>$(n)$</td>
+                    <td>$+\infty$</td>
+                </tr>
+                <tr>
+                    <td>$(n^k)$, pour $k \in \mathbb{N}^*$</td>
+                    <td>$+\infty$</td>
+                </tr>
+                <tr>
+                    <td>$\left(\frac{1}{\sqrt{n}}\right)$</td>
+                    <td>$0$</td>
+                </tr>
+                <tr>
+                    <td>$(\frac{1}{n})$</td>
+                    <td>$0$</td>
+                </tr>
+                <tr>
+                    <td>$\left(\frac{1}{n^k}\right)$, pour $k \in \mathbb{N}^*$</td>
+                    <td>$0$</td>
+                </tr>
+            </table>
+        </div>
+        <p>Nous allons désormais donner la limite d'une catégorie de suite très importante en mathématiques : celle des <strong>suites géométriques</strong>. Ainsi :</p>
+        <div class="formula" data-api-v2-title="Limite de suites géométriques">
+            <p>Soit $(v_n)$ une suite définie pour tout $n \in \mathbb{N}$ par $v_n = q^n$ (où $q$ est un nombre réel). Alors, on peut donner la limite de la suite $(v_n)$ en fonction de $q$ :</p>
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th colspan="5">Limite d'une suite géométrique</th>
+                </tr>
+                <tr>
+                    <td>Si on a...</td>
+                    <td>$-1 \lt q \lt 1$</td>
+                    <td>$1 \lt q$</td>
+                    <td>$q \leq -1$</td>
+                    <td>$q = 1$</td>
+                </tr>
+                <tr>
+                    <td>Alors la suite $(v_n)$ a pour limite...</td>
+                    <td>$0$</td>
+                    <td>$+\infty$</td>
+                    <td>Pas de limite</td>
+                    <td>$1$</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <section>
+        <h3>Opérations sur les limites</h3>
+        <p>Dans tout ce qui suit, $(u_n)$ et $(v_n)$ sont deux suites. Ces tableaux sont à connaître et sont requis pour pouvoir travailler sur les limites.</p>
+        <div class="formula" data-api-v2-title="Limite d'une somme">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th colspan="7">Limite d'une somme</th>
+                </tr>
+                <tr>
+                    <td>Si la limite de $(u_n)$ quand $n$ tend vers $+\infty$ est...</td>
+                    <td>$\ell$</td>
+                    <td>$\ell$</td>
+                    <td>$\ell$</td>
+                    <td>$+\infty$</td>
+                    <td>$-\infty$</td>
+                    <td>$+\infty$</td>
+                </tr>
+                <tr>
+                    <td>Et la limite de $(v_n)$ quand $n$ tend vers $+\infty$ est...</td>
+                    <td>$\ell'$</td>
+                    <td>$+\infty$</td>
+                    <td>$-\infty$</td>
+                    <td>$+\infty$</td>
+                    <td>$-\infty$</td>
+                    <td>$-\infty$</td>
+                </tr>
+                <tr>
+                    <td>Alors la limite de $(u_n + v_n)$ quand $n$ tend vers $+\infty$ est...</td>
+                    <td>$\ell + \ell'$</td>
+                    <td>$+\infty$</td>
+                    <td>$-\infty$</td>
+                    <td>$+\infty$</td>
+                    <td>$-\infty$</td>
+                    <td><strong>?</strong></td>
+                </tr>
+            </table>
+        </div>
+        <div class="formula" data-api-v2-title="Limite d'un produit">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th colspan="10">Limite d'un produit</th>
+                </tr>
+                <tr>
+                    <td>Si la limite de $(u_n)$ quand $n$ tend vers $+\infty$ est...</td>
+                    <td>$\ell$</td>
+                    <td>$\ell \gt 0$</td>
+                    <td>$\ell \gt 0$</td>
+                    <td>$\ell \lt 0$</td>
+                    <td>$\ell \lt 0$</td>
+                    <td>$+\infty$</td>
+                    <td>$+\infty$</td>
+                    <td>$-\infty$</td>
+                    <td>$0$</td>
+                </tr>
+                <tr>
+                    <td>Et la limite de $(v_n)$ quand $n$ tend vers $+\infty$ est...</td>
+                    <td>$\ell'$</td>
+                    <td>$+\infty$</td>
+                    <td>$-\infty$</td>
+                    <td>$+\infty$</td>
+                    <td>$-\infty$</td>
+                    <td>$+\infty$</td>
+                    <td>$-\infty$</td>
+                    <td>$-\infty$</td>
+                    <td>$\pm \infty$</td>
+                </tr>
+                <tr>
+                    <td>Alors la limite de $(u_n \times v_n)$ quand $n$ tend vers $+\infty$ est...</td>
+                    <td>$\ell \times \ell'$</td>
+                    <td>$+\infty$</td>
+                    <td>$-\infty$</td>
+                    <td>$-\infty$</td>
+                    <td>$+\infty$</td>
+                    <td>$+\infty$</td>
+                    <td>$-\infty$</td>
+                    <td>$+\infty$</td>
+                    <td><strong>?</strong></td>
+                </tr>
+            </table>
+        </div>
+        <div class="formula" data-api-v2-title="Limite d'un quotient">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th colspan="10">Limite d'un quotient</th>
+                </tr>
+                <tr>
+                    <td>Si la limite de $(u_n)$ quand $n$ tend vers $+\infty$ est...</td>
+                    <td>$\ell$</td>
+                    <td>$\ell$</td>
+                    <td>$+\infty$</td>
+                    <td>$+\infty$</td>
+                    <td>$-\infty$</td>
+                    <td>$-\infty$</td>
+                    <td>$\pm \infty$</td>
+                    <td>$\ell$</td>
+                    <td>$0$</td>
+                </tr>
+                <tr>
+                    <td>Et la limite de $(v_n)$ quand $n$ tend vers $+\infty$ est...</td>
+                    <td>$\ell' \neq 0$</td>
+                    <td>$\pm \infty$</td>
+                    <td>$\ell' \gt 0$</td>
+                    <td>$\ell' \lt 0$</td>
+                    <td>$\ell' \gt 0$</td>
+                    <td>$\ell' \lt 0$</td>
+                    <td>$\pm \infty$</td>
+                    <td>$0^+_-$</td>
+                    <td>$0$</td>
+                </tr>
+                <tr>
+                    <td>Alors la limite de $(\frac{u_n}{v_n})$ quand $n$ tend vers $+\infty$ est...</td>
+                    <td>$\displaystyle{\frac{\ell}{\ell'}}$</td>
+                    <td>$0$</td>
+                    <td>$+\infty$</td>
+                    <td>$-\infty$</td>
+                    <td>$-\infty$</td>
+                    <td>$+\infty$</td>
+                    <td><strong>?</strong></td>
+                    <td>$\pm \infty$</td>
+                    <td><strong>?</strong></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <section>
+        <h3>Majoration, minoration et bornes</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soient une suite $(u_n)$ et deux réels $m$ et $M$ :</p>
+            <ul>
+                <li>On dit que que $m$ est un <strong>minorant</strong> de $(u_n)$ si pour tout $n$ : $u_n \gt m$.</li>
+                <li>On dit que que $M$ est un <strong>majorant</strong> de $(u_n)$ si pour tout $n$ : $u_n \lt M$.</li>
+                <li>On dit que que $(u_n)$ est <strong>bornée</strong> si elle est à la fois majorée et minorée.</li>
+            </ul>
+        </div>
+        <div class="formula" data-api-v2-title="Théorème">
+            <ul>
+                <li>Si $(u_n)$ est croissante et est majorée, alors elle est convergente. Si elle n'est pas majorée, $(u_n)$ diverge vers $+\infty$.</li>
+                <li>Si $(u_n)$ est décroissante et est minorée, alors elle est convergente. Si elle n'est pas minorée, $(u_n)$ diverge vers $-\infty$.</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Comparaisons et encadrements</h3>
+        <div class="formula" data-api-v2-title="Théorèmes de comparaison">
+            <p>Soient deux suites $(u_n)$ et $(v_n)$ telles que $u_n \lt v_n$ à partir d'un certain rang $N$. On a :</p>
+            <ul>
+                <li>Si $\lim\limits_{n \rightarrow +\infty} u_n = +\infty$, alors $\lim\limits_{n \rightarrow +\infty} v_n = +\infty$.</li>
+                <li>Si $\lim\limits_{n \rightarrow +\infty} v_n = -\infty$, alors $\lim\limits_{n \rightarrow +\infty} u_n = -\infty$.</li>
+                <li>Si $\lim\limits_{n \rightarrow +\infty} u_n = \ell$ et $\lim\limits_{n \rightarrow +\infty} v_n = \ell'$ alors $\ell \lt \ell'$.</li>
+            </ul>
+        </div>
+        <div class="formula" data-api-v2-title="Théorème des gendarmes">
+            <p>Soient trois suites $(u_n)$, $(v_n)$ et $(w_n)$. On suppose que que $u_n \lt v_n \lt w_n$ à partir d'un certain rang et que $(u_n)$ et $(w_n)$ convergent vers le réel $\ell$.</p>
+            <p>Alors $\lim\limits_{n \rightarrow +\infty} v_n = \ell$.</p>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>Raisonnement par récurrence</h2>
+    <p>Si on souhaite montrer qu'une propriété est vraie pour tout $n \in \mathbb{N}$ à partir d'un certain rang $p$, il est possible d'utiliser un type de raisonnement appelé <strong>raisonnement par récurrence</strong>.</p>
+    <div class="formula" data-api-v2-title="Raisonnement par récurrence">
+        <p><strong>Initialisation :</strong> On teste la propriété au rang $p$. Si elle est vérifiée, on passe à l'étape suivante.</p>
+        <p><strong>Hérédité :</strong> On suppose la propriété vraie à un rang $n \geq p$. Puis on montre qu'elle reste vraie au rang $n+1$.</p>
+        <p><strong>Conclusion :</strong> On explique que l'on vient de démontrer la propriété au rang $n+1$ et que comme celle-ci est initialisée et héréditaire, alors elle est vraie à partir du rang $p$.</p>
+    </div>
+</section>

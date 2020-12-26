@@ -1,0 +1,20 @@
+<h2>Convaincu ?</h2>
+
+<p class="mb-5">Alors sélectionnez votre classe et découvrez sans plus attendre les cours qui y sont rattachés !</p>
+
+{% assign levelCount = site.data.levels | size %}
+<div class="row card-levels mb-5">
+    {% for levelHash in site.data.levels %}
+        {% assign level = levelHash[1] %}
+        <div class="col-lg-{{ 12 | divided_by: levelCount }} mb-lg-0 col-12 {% if forloop.index != levelCount %}mb-3{% endif %}">
+            <a class="btn btn-white card-level-button" href="/cours/{{ level.url }}/{{ lesson.url }}" role="button" data-level="{{ level.id }}">
+                <img src="{{ level.image }}" alt="{{ level.name }}">
+                {{ level.name }}
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
+<p class="mb-0">
+    <em>Les cours pour Terminale option maths complémentaires arrivent bientôt !</em>
+</p>

@@ -1,0 +1,5 @@
+---
+layout: api_file
+permalink: "/api/v2/premiere/probabilites/comments/"
+---
+{% include _includes/api/v2/lessons/comments/comments.json lesson='probabilites' level='premiere' %}

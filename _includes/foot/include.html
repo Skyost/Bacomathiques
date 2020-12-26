@@ -1,0 +1,17 @@
+<!-- Scripts globaux -->
+{% include _includes/foot/scripts.html %}
+
+<!-- Maths -->
+{% if page.maths %}
+    {% include _includes/foot/maths.html %}
+{% endif %}
+
+<!-- Animate on scroll -->
+{% if page.animate_on_scroll %}
+    {% include _includes/foot/animate_on_scroll.html %}
+{% endif %}
+
+<!-- Cours -->
+{% if lesson %}
+    {% include pages/lesson/foot.html %}
+{% endif %}

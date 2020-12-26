@@ -1,0 +1,60 @@
+# Site settings
+title: "Bacomathiques"
+tagline: "Bacomathiques est un petit site web qui contient tout ce dont vous avez besoin pour réviser vos maths en toute tranquillité de la Première à la Terminale ! Que vous cherchiez à passer votre BAC ou que vous souhaitiez simplement réviser votre cours ; tout est possible et tout est gratuit. Au programme : cours de mathématiques gratuits, téléchargeables et imprimables, annales et corrigés des sujets précédents, etc..."
+url: "https://bacomathiqu.es"
+repository: "Skyost/Bacomathiques"
+timezone: "Europe/Paris"
+includes_dir: ""
+safe: true
+
+# Comments settings
+comments:
+  moderators:
+    Skyost: 'https://www.skyost.eu/assets/img/skyost.png'
+
+# Social
+social:
+  preview: "/assets/img/social.png"
+  twitter: "Skyost_"
+  googleplus: "Skyost"
+
+# HTML Compresser
+compress_html:
+  clippings: all
+  comments: all
+  blanklines: true
+
+# SASS options
+sass:
+  sass_dir: "_sass"
+  style: "compressed"
+
+# Production
+exclude:
+  - ".scss"
+  - "README.md"
+  - "LICENSE.md"
+  - "CNAME"
+  - "staticman.yml"
+  - "serve.bat"
+  - "Gemfile"
+  - "Gemfile.lock"
+
+# Gems
+plugins:
+  - "jekyll-redirect-from"
+  - "jekyll-sitemap"
+
+defaults:
+  - scope:
+      path: "pages/*"
+    values:
+      sitemap: false
+  - scope:
+      path: "api/*"
+    values:
+      sitemap: false
+  - scope:
+      path: "assets/*"
+    values:
+      sitemap: false

@@ -1,0 +1,144 @@
+---
+layout: default
+lesson: "algorithmique"
+level: "terminale"
+permalink: "/cours/terminale/algorithmique/"
+css:
+- "/assets/css/highlight.css"
+---
+
+<section>
+    <h2>Définition</h2>
+    <p><strong>Un algorithme</strong> est une suite finie et ordonnée d’opérations ou d'instructions permettant de résoudre un problème ou d'obtenir un résultat. Ainsi, faire une recette de cuisine ou encore effectuer une division euclidienne à la main sont des exemples d'algorithmes.</p>
+    <p>Dans ce cours, nous travaillerons à la fois avec des algorithmes <a href="https://python.org">Python</a> et des algorithmes en pseudo-code.</p>
+</section>
+<section>
+    <h2>Instructions</h2>
+    <section>
+        <h3>Création de variables</h3>
+        <p><strong>Créer une variable</strong> permet de réserver un espace pour y stocker des données quelconques.</p>
+        <p>On donne un nom à chaque espace pour le repérer : ce sont les noms de variables.</p>
+        <p>Dans certains langages, on leur donne également un type (entier, réel, ...) pour travailler avec (ce qui n'est pas le cas dans Python).</p>
+        <div class="formula" data-api-v2-title="En python">
+{% highlight python %}
+nombre = 0 # On crée la variable "nombre" et on lui assigne la valeur 0.
+chaine = 'Bonjour' # On crée la variable "chaine" et on lui assigne la valeur 'Bonjour'.
+{% endhighlight %}
+        </div>
+        <div class="tip" data-api-v2-title="Exemple (tiré du sujet de Pondichéry 2017)">
+            <img src="/assets/img/lessons/terminale/algorithmique/algorithme_1.png" data-api-v2-src="algorithme_1.png" alt="Algorithme 1">
+            <p>Ici nous avons quatre variables : $R$ et $S$ qui sont des réels et $n$ et $k$ qui sont des entiers.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Affections de valeurs</h3>
+        <p>Comme dit précédemment, les variables sont des <q>espaces</q> dans lequel il est possible de stocker des informations.</p>
+        <p>Cependant, après avoir créé cet espace, celui-ci est encore vide. C'est pourquoi on doit le <q>remplir</q> : c'est <strong>l'affectation d'une valeur à une variable</strong>.</p>
+        <p>Il existe plusieurs manières d'affecter une valeur à une variable : soit on lui donne directement sa valeur dans l'algorithme, soit on demande à l'utilisateur d'entrer une valeur (il faut garder à l'esprit que nos algorithmes sont faits pour être utilisés par des utilisateurs).</p>
+        <div class="formula" data-api-v2-title="En python">
+{% highlight python %}
+x = int(input('Veuillez entrer une valeur : ')) # L'utilisateur va entrer une valeur, on la convertir en entier et on va affecter celui-ci à notre variable "x".
+y = 2*x + 10 # Une fois fait, "y" va prendre la valeur 2 * x + 10. Par exemple, si l'utilisateur entre "10", "y" vaudra 30.
+{% endhighlight %}
+        </div>
+        <div class="tip" data-api-v2-title="Exemple (tiré du sujet de Pondichéry 2017)">
+            <img src="/assets/img/lessons/terminale/algorithmique/algorithme_1.png" data-api-v2-src="algorithme_1.png" alt="Algorithme 1">
+            <p>Ici on donne à $S$ la valeur $0$, mais on demande à l'utilisateur d'entrer la valeur de la variable $n$ (l'utilisateur entrera un entier, car la variable $n$ ne peut contenir que des entiers).</p>
+        </div>
+        <p>Une fois que l'on a affecté une valeur à une variable, il est encore possible de la changer !</p>
+        <p>Les <strong>listes</strong> sont des types de variables particuliers. Ce sont en effet, <q>des variables qui contiennent des variables</q>.</p>
+        <div class="formula" data-api-v2-title="En python">
+{% highlight python %}
+fruits = ['pomme', 'banane', 'poire']
+fruits.append('cerise') # On peut ajouter un objet à notre liste.
+del fruits[0] # On peut également supprimer un objet de la liste en fonction de son index (ici, on supprime le premier).
+fruits.remove('pomme') # Mais on peut aussi en supprimer un avec sa valeur.
+# Beaucoup d'autres opérations sur les listes sont disponibles (longueur, renversement, ...). N'hésitez pas à vous renseigner !
+{% endhighlight %}
+        </div>
+    </section>
+    <section>
+        <h3>Affichage de variables</h3>
+        <p>Nos algorithmes étant faits pour être utilisés, il faut donc <strong>retourner un résultat</strong> sinon ceux-ci seraient inutiles. C'est pourquoi, on peut <q>afficher</q> les valeurs des variables (les montrer à l'utilisateur).</p>
+        <div class="formula" data-api-v2-title="En python">
+{% highlight python %}
+print('Voici la valeur de "maVariable" :', maVariable) # Permet d'afficher la valeur de "maVariable".
+{% endhighlight %}
+        </div>
+        <div class="tip" data-api-v2-title="Exemple (tiré du sujet de Métropole 2017)">
+            <img src="/assets/img/lessons/terminale/algorithmique/algorithme_2.png" data-api-v2-src="algorithme_2.png" alt="Algorithme 2">
+            <p>Une fois l'algorithme terminé, on affiche la valeur de la variable $N$ (on remarque que $N$ a pris plusieurs valeurs différentes au cours de l'algorithme mais qu'on affiche uniquement la valeur finale de la variable).</p>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>Blocs d'instructions</h2>
+    <section>
+        <h3>Définition</h3>
+        <p>Les blocs d'instructions sont des parties de l'algorithme (ce sont des <q>algorithmes dans l'algorithme</q>) qui s'exécutent suivant certaines conditions propres aux différents blocs d'instructions.</p>
+    </section>
+    <section>
+        <h3>Les blocs SI et SINON</h3>
+        <p>Les blocs <strong>SI</strong> et <strong>SINON</strong> sont des blocs d'instructions très utilisés qui permettent de tester une condition : si elle est réalisée, on va exécuter les instructions se situant sous le bloc SI et sinon, on va exécuter celles se situant sous le bloc SINON.</p>
+        <div class="formula" data-api-v2-title="En python">
+{% highlight python %}
+x = 2 # On attribue à "x" la valeur 2.
+if x == 3: # Si "x" est égal à 3...
+    print('"x" est égal à 3.') # ... Alors on affiche ce message. Mais ici, "x" vaut 2 donc ce message ne sera jamais affiché.
+else: # Sinon...
+    print('"x" n\'est pas égal à 3.') # ... On affiche ce message.
+{% endhighlight %}
+        </div>
+        <div class="tip" data-api-v2-title="Exemple (test de parité)">
+            <img src="/assets/img/lessons/terminale/algorithmique/algorithme_3.png" data-api-v2-src="algorithme_3.png" alt="Algorithme 3">
+            <p>Si la partie entière de $\frac{N}{2}$ est égale à $\frac{N}{2}$ (ce n'est vrai que pour les entiers pairs), alors on donne à $R$ la valeur 0. Sinon on lui donne la valeur 1.</p>
+            <p>En fin d'algorithme, on affiche la valeur de $R$ : soit 0 si $N$ est pair, soit 1 si $N$ est impair.</p>
+        </div>
+    </section>
+    <section>
+        <h3>La boucle POUR</h3>
+        <p>La <strong>boucle POUR</strong> est un bloc d'instruction qui s'exécute et qui va faire prendre à une variable toutes les valeurs comprises dans un ensemble d'entiers.</p>
+        <div class="formula" data-api-v2-title="En python">
+{% highlight python %}
+for i in range(-5, 6): # Pour chaque entier entre -5 (inclus) et 6 (exclu)...
+print(i) # ... On affiche cet entier.
+{% endhighlight %}
+        </div>
+        <div class="tip" data-api-v2-title="Exemple (calcul des termes d'une suite)">
+            <img src="/assets/img/lessons/terminale/algorithmique/algorithme_4.png" data-api-v2-src="algorithme_4.png" alt="Algorithme 4">
+            <p>Cet algorithme permet de calculer les termes d'une suite $(u_n)_{n \in \mathbb{N}}$ définie par récurrence :</p>
+            <p>$\begin{cases} u_0 = 1\\ u_{n+1} = u_n + \frac{1}{n}\end{cases}$ pour $n$ entier.</p>
+            <p>On demande à l'utilisateur d'entrer une variable $N$, et pour $n$ variant de 1 jusqu'à $N$ ($n$ prendra tour à tour les valeurs 1, 2, 3, ..., $N-1$, $N$), on va calculer les termes de la suite.</p>
+        </div>
+    </section>
+    <section>
+        <h3>La boucle TANT QUE</h3>
+        <p>Cette boucle, différente de la boucle POUR, permet d'exécuter son bloc d'instructions tant qu'une certaine condition est valable.</p>
+        <div class="formula" data-api-v2-title="En python">
+{% highlight python %}
+x = 100 # On affecte à "x" la valeur 100.
+while x > 10: # Tant que x est supérieur à 10...
+    x = x / 2 # On divise x par 2 (i.e. on affecte à "x" la valeur x/2).
+    print(x) # On affiche la valeur de "x".
+{% endhighlight %}
+        </div>
+        <div class="tip" data-api-v2-title="Exemple (tiré du sujet de Métropole 2017)">
+            <img src="/assets/img/lessons/terminale/algorithmique/algorithme_2.png" data-api-v2-src="algorithme_2.png" alt="Algorithme 2">
+            <p>Ici, tant que $N - \ln(N^2 + 1)$ est inférieur à $A$, on affecte une nouvelle valeur à la variable $N$.</p>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>Algorithmes sur l'ordinateur</h2>
+    <p>Il est possible de tester et de vous entraîner aux algorithmes sur votre ordinateur, voire directement sur votre smartphone !</p>
+    <div class="tip" data-api-v2-title="Quelques logiciels d'algorithmique">
+        <p>Divers logiciels à télécharger, dont certains ne nécessitant pas d'installation sont disponibles :</p>
+        <ul>
+            <li><a href="https://www.algogo.xyz">Algogo</a></li>
+            <li><a href="http://www.xm1math.net/algobox/">AlgoBox</a></li>
+            <li><a href="https://python.org">Python</a></li>
+            <li><a href="https://scratch.mit.edu/">Scratch</a></li>
+            <li><a href="http://proglab.fr/">Proglab</a></li>
+        </ul>
+    </div>
+</section>

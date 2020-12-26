@@ -1,0 +1,176 @@
+---
+layout: default
+lesson: "arithmetique"
+level: "terminale"
+summary: true
+permalink: "/cours/terminale/arithmetique/resume/"
+---
+
+<section>
+    <h2>Divisibilité et congruence</h2>
+    <section>
+        <h3>Divisibilité</h3>
+        <p>Dans toute la suite de cette section, on notera par $\mathbb{Z}$ l'ensemble des nombres entiers relatifs (i.e. $\mathbb{Z} = \{\text{...}, -2, -1, 0, 1, 2, \text{...}\}$) et par $\mathbb{N}$ l'ensemble des nombres entiers naturels (i.e. $\mathbb{N} = \{0, 1, 2, \text{...}\}$).</p>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soient $a$ et $b$ deux entiers relatifs. On dit que $b$ <strong>divise</strong> $a$ (ou que $a$ est <strong>un multiple</strong> de $b$) s'il existe $k \in \mathbb{Z}$ tel que $a = kb$. On note ceci par $b \, | \, a$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Propriétés">
+            <ul>
+                <li>Tout entier relatif $b$ divise $0$ (car $0 = 0 \times b$).</li>
+                <li>$1$ divise tout entier relatif $a$ (car $a = a \times 1$).</li>
+                <li>Si $c \, | \, a$ et $c \, | \, b$ alors $c \, | \, (au + bv)$ pour tout $u$, $v \in \mathbb{Z}$.</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Division euclidienne</h3>
+        <p>La <strong>division euclidienne</strong> est une notion mathématique que l'on aborde très tôt au cours de notre scolarité (dès la classe de CM1). Nous allons tenter de formaliser ceci :</p>
+        <div class="formula" data-api-v2-title="Théorème de la division euclidienne">
+            <p>Soient $a$, $b \in \mathbb{Z}$. On suppose $b \neq 0$. On appelle <strong>division euclidienne</strong> de $a$ par $b$, l'opération qui à $(a, b)$, associe le couple d'entiers relatifs $(q, r)$ tel que $a = bq + r$ où $0 \leq r \lt |b|$. Un tel couple <strong>existe</strong> forcément et est <strong>unique</strong>.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Vocabulaire">
+            <p>En reprenant les notations du théorème, $a$ s'appelle le <strong>dividende</strong>, $b$ le <strong>diviseur</strong>, $q$ le <strong>quotient</strong> et $r$ le <strong>reste</strong> de la division euclidienne.</p>
+        </div>
+        <p>Donnons enfin une propriété qui nous sera utile dans la section suivante.</p>
+        <div class="formula" data-api-v2-title="Propriété">
+            <p>Soit $n \in \mathbb{N}$ tel que $n \neq 0$. Deux entiers relatifs $a$ et $b$ ont le même reste dans la division euclidienne par $n$ si et seulement si $a-b$ est un multiple de $n$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Congruences dans $\mathbb{Z}$</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>On dit que deux entiers relatifs $a$ et $b$ sont <strong>congrus modulo $n$</strong> (où $n$ est un entier naturel supérieur ou égal à $2$) si $a$ et $b$ ont le même reste dans la division euclidienne par $n$. On note alors $a \equiv b \mod n$.</p>
+        </div>
+        <p>On signale que la congruence est une <strong>relation d'équivalence</strong>.</p>
+        <div class="formula" data-api-v2-title="Propriétés">
+            <p>Soit $n \geq 2$. Pour tout $a$, $b$, $c \in \mathbb{Z}$ :</p>
+            <ul>
+                <li>$a \equiv a \mod n$ (<strong>réflexivité</strong>)</li>
+                <li>Si $a \equiv b \mod n$, alors $b \equiv a \mod n$ (<strong>symétrie</strong>)</li>
+                <li>Si $a \equiv b \mod n$, et si $b \equiv c \mod n$, alors $a \equiv c \mod n$ (<strong>transitivité</strong>)</li>
+            </ul>
+        </div>
+        <p>De plus, le congruence est compatible avec les opérations usuelles sur les entiers relatifs.</p>
+        <div class="formula" data-api-v2-title="Propriétés">
+            <p>Soit $n \geq 2$. Soient $a$, $b$, $c$ et $d \in \mathbb{Z}$ tels que $a \equiv b \mod n$ et $c \equiv d \mod n$. Alors on a la compatibilité avec :</p>
+            <ul>
+                <li>L'<strong>addition</strong> : $a + c \equiv b + d \mod n$.</li>
+                <li>La <strong>multiplication</strong> : $ac \equiv bd \mod n$.</li>
+                <li>Les <strong>puissances</strong> : pour tout $k \in \mathbb{N}$, $a^k \equiv b^k \mod n$.</li>
+            </ul>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>PGCD et théorème de Bézout</h2>
+    <section>
+        <h3>Plus Grand Commun Diviseur</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soient $a$, $b \in \mathbb{Z}$ non tous nuls. Le <strong>Plus Grand Commun Diviseur</strong> de $a$ et $b$ (noté $\operatorname{PGCD}(a; b)$) est le plus grand entier positif qui les divise simultanément.</p>
+        </div>
+        <p>Avec cette définition, on peut dégager quelques propriétés.</p>
+        <div class="formula" data-api-v2-title="Propriétés">
+            <p>Soient $a$, $b \in \mathbb{Z}$ non tous nuls.</p>
+            <ul>
+                <li>$\operatorname{PGCD}(a; b) = \operatorname{PGCD}(b; a)$</li>
+                <li>$\operatorname{PGCD}(a; 1) = 1$</li>
+                <li>$\operatorname{PGCD}(a; 0) = a$</li>
+                <li>Pour tout $k \in \mathbb{N}$, $\operatorname{PGCD}(ka; kb) = k \operatorname{PGCD}(a; b)$</li>
+                <li>Si $b \, | \, a$, alors $\operatorname{PGCD}(a; b) = |b|$</li>
+            </ul>
+        </div>
+        <p>Il existe une manière de déterminer le $\operatorname{PGCD}$ de deux entiers naturels non nuls $a$ et $b$ avec $b \lt a$ appelée <strong>Algorithme d'Euclide</strong>.</p>
+        <div class="formula" data-api-v2-title="Algorithme d'Euclide">
+            <p>Soient $a$, $b \in \mathbb{Z}$ non tous nuls. Pour obtenir $\operatorname{PGCD}(a; b)$, on procède comme suit :</p>
+            <ol>
+                <li>On fait la division euclidienne de $a$ par $b$ et on appelle $r$ le reste.</li>
+                <li>Si $r = 0$, alors $\operatorname{PGCD}(a; b) = b$.</li>
+                <li>Sinon on recommence l'étape 1 en remplaçant $a$ par $b$ et $b$ par $r$.</li>
+            </ol>
+        </div>
+        <p>Terminons cette section par une définition.</p>
+        <div class="formula" data-api-v2-title="Nombres premiers entre-eux">
+            <p>On dit que deux nombres sont <strong>premiers entre-eux</strong> si leur $\operatorname{PGCD}$ est égal à 1.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Théorème de Bézout</h3>
+        <p>Un résultat fondamental de l'arithmétique est le <strong>théorème de Bachet-Bézout</strong> (que l'on rencontre parfois sous le nom d'<strong>identité de Bézout</strong>).</p>
+        <div class="formula" data-api-v2-title="Théorème de Bachet-Bézout">
+            <p>Soient $a$ et $b$ deux entiers relatifs non nuls. On note $d$ leur PGCD. Alors il existe deux entiers relatifs $u$ et $v$ tels que $ua + vb = d$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Théorème de Bézout">
+            <p>Une conséquence de ce théorème est que $a$ et $b$ sont premiers entre eux si et seulement s'il existe deux entiers relatifs $u$ et $v$ tels que $ua + vb = 1$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Résolution d'une congruence simple">
+            <p>Supposons que l'on souhaite résoudre une congruence du type $ax \equiv b \mod n$ d'inconnue $x$. On pose $d = \operatorname{PGCD(a; n)}$. Alors :</p>
+            <ol>
+                <li>Si $d$ ne divise pas $b$, on cherche deux entiers $u$ et $v$ tels que $au + nv = 1$ (avec l'algorithme d'Euclide étendu par exemple). Les solutions de la congruence sont alors les entiers $x$ vérifiant $x \equiv ub \mod n$.</li>
+                <li>Si $d \, | \, b$, cela revient à résoudre la congruence $\displaystyle{\frac{a}{d}x \equiv \frac{b}{d} \mod \frac{n}{d}}$, et on se ramène au cas 1 (avec la nouvelle congruence à résoudre).</li>
+            </ol>
+        </div>
+    </section>
+    <section>
+        <h3>Lemme de Gauss</h3>
+        <div class="formula" data-api-v2-title="Lemme de Gauss">
+            <p>Soient $a$, $b$ et $c$ trois entiers non nuls. Si $c \, | \, ab$ et $c$ est premier avec $a$, alors $c \, | \, b$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Corollaire">
+            <p>Soient $a$, $b$ et $c$ trois entiers non nuls. Si $b \, | \, a$, $c \, | \, a$ et que $b$ et $c$ sont premiers entre-eux, alors $bc \, | \, a$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Équations diophantiennes</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Une <strong>équation diophantienne linéaire en deux variables</strong> $x$ et $y$ est une équation de la forme $(E) : ax + by = c$ où les coefficients $a$, $b$ et $c$ sont des entiers relatifs et où les solutions sont également des entiers relatifs.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Solutions de $(E)$">
+            <p>En reprenant les notations précédentes, on pose $d = \operatorname{PGCD}(a; b)$. Alors :</p>
+            <ul>
+                <li>Si $d \, | \, c$, on chercher une solution particulière à $(E)$ que l'on note $(x_0; y_0)$. Alors les solutions de $(E)$ sont les couples $(x_k; y_k)$ où $\displaystyle{x_k = x_0 + k\frac{b}{d}}$ et $\displaystyle{y_k = y_0 - k\frac{a}{d}}$.</li>
+                <li>Sinon, $(E)$ n'a pas de solution.</li>
+            </ul>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>Nombres premiers</h2>
+    <section>
+        <h3>Définition</h3>
+        <p>Commençons cette section par définir ce qu'est un <strong>nombre premier</strong>. Il s'agit là d'une notion dont entend parler très tôt au cours de notre scolarité, sans pour autant vraiment rentrer dans le sujet. Détaillons donc un peu tout ceci.</p>
+        <div class="formula" data-api-v2-title="Nombre premier">
+            <p>Un nombre entier $p \geq 2$ est dit <strong>premier</strong> si ses seuls diviseurs positifs sont $1$ et lui-même.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Propriétés</h3>
+        <p>Voici quelques propriétés basiques que possèdent les nombres premiers.</p>
+        <div class="formula" data-api-v2-title="Propriétés">
+            <p>Soit $n \in \mathbb{N}$ supérieur ou égal à 2, alors on a les propriétés suivantes :</p>
+            <ul>
+                <li>Si $n$ n'admet aucun diviseur premier inférieur ou égal à $\sqrt{n}$, alors $n$ est premier.</li>
+                <li>Si $n$ n'est pas premier alors $n$ admet au moins un diviseur premier inférieur ou égal à $\sqrt{n}$.</li>
+                <li>Si $n$ est premier et $n$ ne divise pas un entier $m$, alors $n$ et $m$ sont premiers entre eux.</li>
+            </ul>
+        </div>
+        <div class="formula" data-api-v2-title="Lemme d'Euclide">
+            <p>Soit $p$ un nombre premier et $a$ et $b$ deux entiers. Si $p \, | \, ab$ alors $p \, | \, a$ ou $p \, | \, b$.</p>
+        </div>
+        <p>On donne enfin un résultat fondamental (mais qui reste très simple) sur l'ensemble des nombres premiers.</p>
+        <div class="formula" data-api-v2-title="Infinité de nombres premiers">
+            <p>Il existe une infinité de nombres premiers.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Petit théorème de Fermat">
+            <p>Soit $p$ un nombre premier et $a$ un entier non divisible par $p$. Alors $a^{p-1} \equiv 1 \mod p$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Décomposition de nombres</h3>
+        <p>Passons maintenant à un résultat fondamental de l'arithmétique : le principe de <strong>décomposition en produit de facteurs premiers</strong> (il s'agit même là d'un théorème qui est sobrement intitulé <strong>théorème fondamental de l'arithmétique</strong>).</p>
+        <div class="formula" data-api-v2-title="Théorème fondamental de l'arithmétique">
+            <p>Soit $n \in \mathbb{N}$ supérieur ou égal à 2, alors $n$ peut s'écrire de la façon suivante :</p>
+            <p>$n = p_{1}^{\alpha_1} \times p_{2}^{\alpha_2} \times \text{ ... } \times p_{n}^{\alpha_n}$</p>
+            <p>où $p_1$, $p_2$, ... , $p_n$ des nombres premiers tels que $p_1 \lt p_2 \lt \text{ ... } \lt p_n$ et $\alpha_1$, $\alpha_2$, ... , $\alpha_n$ des entiers naturels non nuls.</p>
+        </div>
+    </section>
+</section>

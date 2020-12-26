@@ -1,0 +1,9 @@
+{% capture info %}
+    <span class="lesson-caption">{{ include.lesson.caption }}</span>
+    <h3 class="lesson-title">{{ include.lesson.title }}</h3>
+    <p class="lesson-description">{{ include.lesson.excerpt }}</p>
+    <a href="/cours/{{ include.lesson.level }}/{{ include.lesson.url }}/" class="lesson-link btn {% if lesson.specialty %}btn-green{% else %}btn-blue{% endif %} btn-block" role="button" aria-pressed="true">Lire ce cours</a>
+{% endcapture %}
+{% assign image = '/assets/img/lessons/' | append: include.lesson.level | append: '/' | append: include.lesson.id | append: '/preview.jpg' %}
+
+{% include _includes/components/cards/small_card.html class='lesson-card' image=image content=info size=4 mb=5 %}

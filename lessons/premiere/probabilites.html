@@ -1,0 +1,153 @@
+---
+layout: default
+lesson: "probabilites"
+level: "premiere"
+permalink: "/cours/premiere/probabilites/"
+---
+
+<section>
+    <h2>Probabilités conditionnelles</h2>
+    <section>
+        <h3>Définition</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soient $A$ et $B$ deux événements avec $A$ de probabilité non nulle. Alors <strong>la probabilité conditionnelle de $B$ sachant que $A$ est réalisé</strong> (notée $p_{A}(B)$) est $\displaystyle{p_{A}(B) = \frac{p(A \cap B)}{p(A)}}$.</p>
+        </div>
+        <div class="tip" data-api-v2-title="Rappel">
+            <p>On rappelle que $p(A \cap B) = p(A) + p(B) - p(A \cup B)$.</p>
+        </div>
+        <div class="tip" data-api-v2-title="Différence entre conditionnelle et intersection">
+            <p><strong>Il faut faire attention</strong>, à bien faire la distinction entre une probabilité conditionnelle (<q><strong>Sachant qu'on a $A$</strong>, quelle est la probabilité d'avoir $B$ ?</q>) et une intersection (<q>Quelle est la probabilité d'avoir <strong>$A$ et $B$ à la fois</strong> ?</q>).</p>
+        </div>
+        <div class="formula" data-api-v2-title="Indépendance">
+            <p>Deux événements $A$ et $B$ sont dits <strong>indépendants</strong> si la réalisation de l'un n'a aucune incidence sur la réalisation de l'autre et réciproquement. C'est-à-dire si $p(A \cap B) = p(A) \times p(B)$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Propriétés">
+            <p>Pour deux événements indépendants $A$ et $B$, on a les relations suivantes :</p>
+            <ul>
+                <li>$p_{A}(B) = p(B)$</li>
+                <li>$p_{B}(A) = p(A)$</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Arbre de probabilité</h3>
+        <p>Au lycée, pour représenter visuellement des probabilités on utilise très souvent un <strong>arbre de probabilité</strong>. Nous nous limiterons ici au cas de deux événements, mais il est possible d'en rajouter encore d'autres.</p>
+        <p>Ainsi :</p>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soient $A$ et $B$ deux événements. L'arbre de probabilité décrivant la situation est le suivant :</p>
+            <img src="/assets/img/lessons/premiere/probabilites/arbre.svg" data-api-v2-src="arbre.svg" alt="Arbre de probabilité">
+        </div>
+        <p>La somme (dans le sens vertical) des probabilités de chacune des branches ayant une <q>racine</q> commune doit toujours faire $1$.</p>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>Soit $A$ et $B$ deux événements non-indépendants tels que $p(A) = \frac{4}{7}$, $p_{A}(B) = \frac{1}{4}$ et $p_{\bar{A}}(B) = \frac{5}{9}$.</p>
+            <p>Alors l'arbre permettant de modéliser la situation est le suivant :</p>
+            <img src="/assets/img/lessons/premiere/probabilites/arbre_exemple.svg" data-api-v2-src="arbre_exemple.svg" alt="Arbre de probabilité (exemple)">
+        </div>
+    </section>
+    <section>
+        <h3>Formule des probabilités totales</h3>
+        <p>Voici maintenant l'énoncé de la <strong>formule des probabilités totales</strong>, qui peut être très utile pour calculer des probabilités que l'on ne connaît pas (ou qui ne sont pas données dans un énoncé d'exercice) :</p>
+        <div class="formula" data-api-v2-title="Formule des probabilités totales">
+            <p>Soient $A_1, A_2, ..., A_n$ des événements qui partitionnent (qui recouvrent) l'univers $\Omega$, alors pour tout événement $B$ :</p>
+            <p>$p(B) = p(B \cap A_1) + p(B \cap A_2) + \text{ ... } + p(B \cap A_n)$</p>
+        </div>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>En reprenant l'arbre précédent, comme $A$ et $\bar{A}$ recouvrent notre univers (en effet, soit on tombe sur $A$, soit on tombe sur $\bar{A}$ : pas d'autre issue possible), calculons $p(B)$ :</p>
+            <img src="/assets/img/lessons/premiere/probabilites/arbre_exemple.svg" data-api-v2-src="arbre_exemple.svg" alt="Arbre de probabilité (exemple)">
+            <p>D'après la formule des probabilités totales, $p(B) = p(B \cap A) + p(B \cap \bar{A}) = \frac{107}{252}$.</p>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>Variables aléatoires</h2>
+    <section>
+        <h3>Définition</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Une <strong>variable aléatoire</strong> $X$ est une fonction qui, à chaque événement élémentaire de l'univers $\Omega$ y associe un nombre réel. C'est-à-dire : $X : \Omega \rightarrow \mathbb{R}$.</p>
+        </div>
+        <p>L'ensemble des valeurs prises par $X$ est noté $X(\Omega)$.</p>
+        <div class="tip">
+            <p>Les variables aléatoires sont très utiles notamment pour modéliser des situations de gains ou de pertes (à un jeu d'argent par exemple).</p>
+        </div>
+    </section>
+    <section>
+        <h3>Loi de probabilité</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soit $X$ une variable aléatoire. La <strong>loi de probabilité</strong> de $X$ attribue à chaque valeur $x_i$ la probabilité $p_i = p(X = x_i)$ de l'événement $X = x_i$ constitué de tous les événements élémentaires dont l'image par $X$ est $x_i$.</p>
+        </div>
+        <p>On représente généralement les lois de probabilité par un tableau.</p>
+        <div class="formula" data-api-v2-title="Représentation d'une loi de probabilité par un tableau">
+            <p>Soit $X$ une variable aléatoire.</p>
+            <table class="table table-bordered table-hover">
+                <tbody>
+                <tr>
+                    <td>$x_i$</td>
+                    <td>$x_1$</td>
+                    <td>$x_2$</td>
+                    <td>...</td>
+                    <td>$x_n$</td>
+                </tr>
+                <tr>
+                    <td>$p_i$ <br> $= p(X = x_i)$</td>
+                    <td>$p_1$ <br> $= p(X = x_1)$</td>
+                    <td>$p_2$ <br> $= p(X = x_2)$</td>
+                    <td>...</td>
+                    <td>$p_n$ <br> $= p(X = x_n)$</td>
+                </tr>
+                </tbody>
+            </table>
+            <p>On a $p_1 + p_2 + \text{ ... } + p_n = 1$.</p>
+        </div>
+        <div class="tip">
+            <p>Cette définition peut sembler un peu compliquée mais elle signifie juste qu'une loi de probabilité assigne une probabilité à chaque valeur prise par notre variable aléatoire.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Espérance, variance et écart-type</h3>
+        <div class="formula" data-api-v2-title="Espérance">
+            <p>L'<strong>espérance</strong> $E(X)$ d'une variable aléatoire $X$ est le réel :</p>
+            <p>$E(X) = x_1 \times p_1 + x_2 \times p_2 + \text{ ... } + x_n \times p_n$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Variance et écart-type">
+            <p>La <strong>variance</strong> $V(X)$ et l'<strong>écart-type</strong> $\sigma(X)$ d'une variable aléatoire $X$ sont les réels positifs suivants :</p>
+            <ul>
+                <li>$V(X) = E(X^2) - E(X)^2$</li>
+                <li>$\sigma(X) = \sqrt{V(X)}$</li>
+            </ul>
+        </div>
+        <div class="tip" data-api-v2-title="Exemple">
+            <p>Calcul de l'espérance, de la variance et de l'écart-type. Soit $X$ une variable aléatoire suivant la loi de probabilité donnée par le tableau ci-dessous :</p>
+            <table class="table table-bordered table-hover">
+                <tbody>
+                <tr>
+                    <td>$x_i$</td>
+                    <td>$-1$</td>
+                    <td>$0$</td>
+                    <td>$2$</td>
+                    <td>$6$</td>
+                </tr>
+                <tr>
+                    <td>$p_i$</td>
+                    <td>$\frac{1}{4}$</td>
+                    <td>$\frac{1}{2}$</td>
+                    <td>$\frac{1}{8}$</td>
+                    <td>$\frac{1}{8}$</td>
+                </tr>
+                </tbody>
+            </table>
+            <p>On a :</p>
+            <ul>
+                <li>$E(X) = -1 \times \frac{1}{4} + 0 \times \frac{1}{2} + 2 \times \frac{1}{8} + 6 \times \frac{1}{8} = \frac{3}{4}$</li>
+                <li>$V(X) = ((-1)^2 \times \frac{1}{4} + 0^2 \times \frac{1}{2} + 2^2 \times \frac{1}{8} + 6^2 \times \frac{1}{8}) - (\frac{3}{4})^2 = \frac{75}{16}$</li>
+                <li>$\sigma(X) = \sqrt{\frac{75}{16}} \approx 2.165$</li>
+            </ul>
+        </div>
+        <p>Chacun de ces paramètres a une utilité bien précise. En effet :</p>
+        <div class="formula" data-api-v2-title="Signification des paramètres">
+            <ul>
+                <li>L'espérance est la <strong>valeur moyenne</strong> prise par $X$.</li>
+                <li>La variance et l'écart-type mesurent la <strong>dispersion</strong> des valeurs prises par $X$. Plus ces valeurs sont grandes, plus les valeurs sont dispersées autour de l'espérance.</li>
+            </ul>
+        </div>
+    </section>
+</section>

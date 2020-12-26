@@ -1,0 +1,28 @@
+<div id="mobile-apps" class="container-fluid">
+    <div class="row">
+        <div class="text col-xl-8 col-12 text-center">
+            <h2>Besoin de mobilité ?</h2>
+
+            <p class="pl-md-0 pl-3 pr-md-0 pr-3">
+                Un petit doute sur un énoncé ?
+                <br>Besoin de réviser mais pas envie d'ouvrir les livres de cours ?
+                <br>Ou alors vous avez simplement besoin de consulter vos cours sans être connecté à internet ?
+            </p>
+
+            <p class="pl-md-0 pl-3 pr-md-0 pr-3">
+                L'application <strong>{{ site.title }}</strong> est là pour vous !
+                Elle est disponible pour Android et iOS via les boutons ci-dessous.
+            </p>
+
+            {% capture mobileCards %}
+                {% include_relative mobile_cards.html %}
+            {% endcapture %}
+            {% include _includes/components/cards/cards_row.html content=mobileCards sal="slide-up" %}
+        </div>
+        <div class="col-xl-4 d-xl-block d-none position-relative">
+            <div class="device" data-sal="slide-left">
+                <img src="/assets/img/index/app-screenshot.png" alt="Application Bacomathiques" class="w-100">
+            </div>
+        </div>
+    </div>
+</div>

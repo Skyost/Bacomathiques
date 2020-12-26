@@ -1,0 +1,25 @@
+---
+---
+
+@import "breakpoints";
+
+#page-header {
+  padding-bottom: 70px;
+
+  .header-image {
+    max-width: 200px;
+    width: 100%;
+
+    @media(max-width: $mobile-width) {
+      max-width: 150px;
+    }
+  }
+
+  @media(max-width: $mobile-width) {
+    padding-bottom: 40px;
+  }
+}
+
+#page-content {
+  padding-bottom: 0 !important;
+}

@@ -1,0 +1,5 @@
+---
+layout: api_file
+permalink: "/api/v2/terminale/fonction-logarithme/comments/"
+---
+{% include _includes/api/v2/lessons/comments/comments.json lesson='fonction_logarithme' level='terminale' %}

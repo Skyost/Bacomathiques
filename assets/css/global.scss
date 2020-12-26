@@ -1,0 +1,241 @@
+---
+---
+
+@import "breakpoints";
+@import "colors";
+
+#page-content, .modal-content {
+  color: $page-text;
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Futura Md BT', serif;
+  }
+
+  h2 {
+    font-size: 3.25rem;
+  }
+
+  a {
+    color: darken($main-color, 10%);
+    text-decoration: underline;
+    text-decoration-color: lighten($main-color, 25%);
+
+    &:hover, &:active {
+      color: darken($main-color, 20%);
+      text-decoration-color: darken($main-color, 20%);
+    }
+
+    &.btn, &.flat-card-content {
+      text-decoration: none;
+    }
+  }
+}
+
+.modal {
+  .modal-content {
+    border-radius: 0;
+
+    .fa-prefix {
+      width: 1em;
+    }
+  }
+  .modal-footer .btn {
+    font-weight: normal !important;
+  }
+}
+
+.container-fluid {
+  padding: 0 100px;
+}
+
+.logo {
+  font-family: 'Handlee', cursive;
+  color: white !important;
+  font-weight: 500;
+  text-decoration: none !important;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    vertical-align: -0.12em;
+    height: 0.9em;
+    width: 0.9em;
+    background-size: 0.9em 0.9em;
+    background-image: url('../img/logo.svg');
+    margin-right: 0.2em;
+  }
+}
+
+.blue {
+  background-color: $main-color !important;
+  color: rgba(white, 0.8) !important;
+
+  h1, h2, h3, h4 {
+    color: white !important;
+  }
+
+  a {
+    color: white;
+    font-weight: normal;
+  }
+
+  hr {
+    border-color: white;
+  }
+}
+
+.flat-cards {
+  background: linear-gradient(180deg, $main-color 90px, transparent 90px);
+
+  .flat-card-content {
+    height: 100%;
+  }
+}
+
+.flat-card {
+  .flat-card-content {
+    display: block;
+    font-weight: normal;
+    text-align: center;
+    margin: 0 8px;
+    color: $page-text;
+    background-color: white;
+    box-shadow: 0 0 30px rgba(black, 0.2);
+    transition: background-color 200ms;
+    padding: 30px 20px;
+
+    .flat-card-image {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      height: 90px;
+      margin-bottom: 20px;
+    }
+
+    &.big-flat-card-content {
+      padding: 80px 140px;
+
+      @media(max-width: $tablet-width) {
+        padding: 50px 40px;
+      }
+
+      @media(max-width: $mobile-width) {
+        padding: 30px 20px;
+      }
+    }
+
+    &:hover {
+      background-color: $card-hover;
+    }
+
+    &.blue:hover {
+      background-color: darken($main-color, 3%) !important;
+    }
+
+    form {
+      text-align: left;
+    }
+  }
+
+  a.flat-card-content:not(.blue) {
+    color: $page-text !important;
+  }
+}
+
+.btn {
+  font-weight: bold;
+  border-radius: 0;
+  padding: 14px;
+}
+
+form {
+  label {
+    display: none;
+  }
+
+  .form-control {
+    border-radius: 0 !important;
+  }
+}
+
+.btn {
+  font-weight: bold !important;
+  border: 0;
+
+  &.btn-white {
+    background-color: white;
+    color: $main-color !important;
+
+    &:hover, &:active {
+      background-color: $card-hover;
+    }
+  }
+
+  &.btn-blue {
+    background-color: $main-color;
+    color: white !important;
+
+    &:hover, &:active {
+      background-color: darken($main-color, 5%);
+    }
+  }
+
+  &.btn-green {
+    background-color: $green-button;
+    color: white !important;
+
+    &:hover, &:active {
+      background-color: darken($green-button, 5%);
+    }
+  }
+}
+
+
+.container-fluid {
+  @media(max-width: $tablet-width) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  @media(max-width: $mobile-width) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $scrollbar-thumb-background;
+  border: 0 none $scrollbar-thumb-border;
+  border-radius: 0;
+
+  &:hover {
+    background-color: $scrollbar-thumb-background-hover;
+  }
+
+  &:active {
+    background-color: $scrollbar-thumb-background-active;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background-color: $scrollbar-track-background;
+  border: 0 none $scrollbar-track-border;
+  border-radius: 0;
+
+  &:active {
+    background-color: $scrollbar-track-background-active;
+  }
+}
+
+::-webkit-scrollbar-corner {
+  background-color: $scrollbar-corner-background;
+}

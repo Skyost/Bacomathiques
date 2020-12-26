@@ -1,0 +1,119 @@
+---
+layout: default
+lesson: "calcul_integral"
+level: "terminale"
+summary: true
+permalink: "/cours/terminale/calcul-integral/resume/"
+---
+
+<section>
+    <h2>Calcul d'aire</h2>
+    <section>
+        <h3>Qu'est-ce qu'une intégrale ?</h3>
+        <p>Dans un repère orthogonal $(O; \overrightarrow{i}; \overrightarrow{j})$, on prend un point $A = (1; 1)$ et on appelle <strong>Unité d'Aire</strong> (U.A.) l'aire du rectangle formé par les points $O$, $I$, $A$ et $J$.</p>
+        <div id="representation-1" class="plot" data-api-v2-geogebra-id="mxqfqsm5"></div>
+        <p>Soient $a$ et $b$ deux réels avec $a \leq b$ et $f$ une fonction continue sur $[a;b]$. L'<strong>intégrale</strong> de la fonction $f$ sur $[a;b]$ notée $\displaystyle{\int_{a}^{b} f(x) \, \mathrm{d}x}$ représente l'aire entre la courbe de $f$ et l'axe des abscisses délimitée par les droites d'équation $x = a$ et $x = b$ et est exprimée en <strong>U.A.</strong>.</p>
+        <div id="representation-2" class="plot" data-api-v2-geogebra-id="txmfnhst"></div>
+        <p>On dit que les réels $a$ et $b$ sont les <strong>bornes</strong> de l'intégrale.</p>
+    </section>
+    <section>
+        <h3>Théorème fondamental de l'analyse</h3>
+        <p>Pour calculer l'intégrale d'une fonction, il faut d'abord trouver la primitive de celle-ci (voir le cours sur les <a href="/cours/terminale/primitives/" data-api-v2-level="terminale" data-api-v2-lesson="primitives">primitives</a>).</p>
+        <div class="formula" data-api-v2-title="Théorème fondamental de l'analyse">
+            <p>Soient une fonction $f$ continue sur un intervalle $I$ et deux réels $a$ et $b$ appartenant à $I$.</p>
+            <p>Alors $\displaystyle{\int_{a}^{b} f(x) \, \mathrm{d}x = \left[ F(x) \right]_a^b = F(b) - F(a)}$ où $F$ est une primitive de $f$ sur $I$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Signe de l'intégrale</h3>
+        <p>De manière générale, le signe de l'intégrale d'une fonction sur un intervalle dépend du signe de cette fonction sur cet intervalle.</p>
+        <div class="formula" data-api-v2-title="Relation signe de l'intégrale - signe de la fonction">
+            <p>Soient une fonction $f$ continue sur un intervalle $I = [a; b]$.</p>
+            <ul>
+                <li>Si $f \gt 0$ sur $I$, alors $\displaystyle{\int_{a}^{b} f(x) \, \mathrm{d}x \gt 0}$.</li>
+                <li>Si $f \lt 0$ sur $I$, alors $\displaystyle{\int_{a}^{b} f(x) \, \mathrm{d}x \lt 0}$.</li>
+                <li>Si $f$ change de signe sur $I$, on ne connaît pas directement le signe de l'intégrale. Le signe dépend de la partie de l'aire qui est la plus <q>grande</q>.</li>
+                <li>Soit $g$ une fonction définie sur $I$ avec $f \gt g$ sur $I$, alors $\displaystyle{\int_{a}^{b} f(x) \, \mathrm{d}x \gt \int_{a}^{b} g(x) \, \mathrm{d}x}$.</li>
+            </ul>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>Propriétés de l'intégrale</h2>
+    <section>
+        <h3>Propriétés algébriques</h3>
+        <div class="formula" data-api-v2-title="Propriétés">
+            <p>Soient une fonction $f$ continue sur un intervalle $I$ et deux réels $a$ et $b$ appartenant à $I$.</p>
+            <ul>
+                <li>$\displaystyle{\int_{a}^{b} f(x) \, \mathrm{d}x = - \int_{b}^{a} f(x) \, \mathrm{d}x}$</li>
+                <li>$\displaystyle{\int_{a}^{a} f(x) \, \mathrm{d}x = 0}$</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Linéarité</h3>
+        <div class="formula" data-api-v2-title="Linéarité de l'intégrale">
+            <p>Soient une fonction $f$ continue sur un intervalle $I$ et deux réels $a$ et $b$ appartenant à $I$. Soit $\lambda$ un réel quelconque.</p>
+            <ul>
+                <li>$\displaystyle{\int_{a}^{b} f(x) + g(x) \, \mathrm{d}x = \int_{b}^{a} f(x) \, \mathrm{d}x + \int_{b}^{a} g(x) \, \mathrm{d}x}$</li>
+                <li>$\displaystyle{\int_{a}^{b} \lambda f(x) \, \mathrm{d}x = \lambda \int_{b}^{a} f(x) \, \mathrm{d}x}$</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Relation de Chasles</h3>
+        <div class="formula" data-api-v2-title="Relation de Chasles">
+            <p>Soient une fonction $f$ continue sur un intervalle $I$ et deux réels $a$ et $b$ appartenant à $I$.</p>
+            <p>Pour tout $c \in I$, on a $\displaystyle{\int_{a}^{b} f(x) \, \mathrm{d}x = \int_{a}^{c} f(x) \, \mathrm{d}x + \int_{c}^{b} f(x) \, \mathrm{d}x}$.</p>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>Calculs d'intégrale</h2>
+    <section>
+        <h3>Intégration par parties</h3>
+        <p>Il peut arriver que vous ayez à intégrer un produit de fonctions. En classe de Terminale, il est possible de faire appel à une technique appelée <strong>intégration par parties</strong> pour en venir à bout.</p>
+        <div class="formula" data-api-v2-title="Intégration par parties">
+            <p>Soient $u$ et $v$ deux fonctions dérivables sur un intervalle $I$ et soient $a$ et $b$ appartenant à $I$.</p>
+            <p>Alors $\displaystyle{\int_a^b u'(x) v(x) \, \mathrm{d}x = \left[u(x) v(x)\right]_a^b - \int_a^b u(x) v'(x) \, \mathrm{d}x}$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Intégrales de fonctions paires et impaires</h3>
+        <div class="formula" data-api-v2-title="Intégrale d'une fonction paire">
+            <p>Soit $f$ une <strong>fonction paire</strong> continue sur un intervalle $I$ (comme $x \mapsto x^2$).</p>
+            <p>On a la relation suivante pour tout $a \in I$ ($-a$ doit aussi être dans $I$) :</p>
+            <p>$\displaystyle{\int_{-a}^{a} f(x) \, \mathrm{d}x = 2 \times \int_{0}^{a} f(x) \, \mathrm{d}x = 2 \times \int_{-a}^{0} f(x) \, \mathrm{d}x}$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Intégrale d'une fonction impaire">
+            <p>Soit $f$ une <strong>fonction impaire</strong> continue sur un intervalle $I$ (comme $x \mapsto x^3$).</p>
+            <p>On a la relation suivante pour tout $a \in I$ ($-a$ doit aussi être dans $I$) :</p>
+            <p>$\displaystyle{\int_{-a}^{a} f(x) \, \mathrm{d}x = 0}$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Intégrales de fonctions périodiques</h3>
+        <div class="formula" data-api-v2-title="Intégrale d'une fonction périodique">
+            <p>Soit $f$ une <strong>fonction périodique</strong> de période $T$ (comme $\cos$ avec $T = 2\pi$) continue sur chacune de ses périodes, on a la relation suivante pour tout $a \in \mathbb{R}$ :</p>
+            <p>$\displaystyle{\int_{0}^{T} f(x) \, \mathrm{d}x = \int_{a}^{a + T} f(x) \, \mathrm{d}x}$</p>
+        </div>
+    </section>
+    <section>
+        <h3>Valeur moyenne d'une fonction</h3>
+        <div class="formula" data-api-v2-title="Valeur moyenne">
+            <p>Soient $f$ une fonction continue sur un intervalle $[a;b]$. La valeur moyenne $M$ de $f$ sur $[a;b]$ est donnée par $\displaystyle{M = \frac{1}{b-a}\int_{a}^{b} f(x) \, \mathrm{d}x}$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Aire entre deux courbes</h3>
+        <div class="formula" data-api-v2-title="Différence d'aires">
+            <p>Soient $f$ et $g$ deux fonctions continues sur un intervalle $[a;b]$. Si on a $f \geq g$ sur cet intervalle, alors l'aire entre les deux courbes est donnée par $\displaystyle{\int_{a}^{b} f(x) - g(x) \, \mathrm{d}x}$.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Primitive s'annulant en $a$</h3>
+        <div class="formula" data-api-v2-title="Existence d'une primitive s'annulant en un point">
+            <p>Soient une fonction $f$ continue sur un intervalle $I$ et un réel $a \in I$. La primitive de $f$ sur $I$ qui vaut $0$ en $a$ (notée $F_a$) est donnée par $\displaystyle{F_a : x \mapsto \int_{a}^{x} f(t) \, \mathrm{d}t}$.</p>
+        </div>
+    </section>
+</section>

@@ -1,0 +1,5 @@
+---
+layout: api_file
+permalink: "/api/v2/terminale/"
+---
+{% include _includes/api/v2/lessons/list.json level='terminale' %}

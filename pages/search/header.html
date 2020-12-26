@@ -1,0 +1,8 @@
+{% capture headerContent %}
+    <h3>Résultat de la recherche</h3>
+    <p class="mb-0">
+        Votre recherche <q class="result-keywords"></q> a retourné <strong class="result-count">0</strong> résultat(s).
+    </p>
+{% endcapture %}
+
+{% include _includes/components/image_header.html image='/assets/img/search.svg' content=headerContent %}

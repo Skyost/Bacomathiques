@@ -1,0 +1,20 @@
+{% assign hasComment = false %}
+{% if site.data.comments != null %}
+    {% assign comments_hashes = site.data.comments | sort %}
+    {% for comment_hash in comments_hashes reversed %}
+        {% assign comment = comment_hash[1] %}
+        {% if comment.lesson == lesson.id and comment.level == lesson.level %}
+            <div class="mb-5">
+                {% capture commentContent %}
+                    {% include pages/lesson/comment/content.html %}
+                {% endcapture %}
+                {% include _includes/components/cards/big_card.html content=commentContent %}
+            </div>
+            {% assign hasComment = true %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+{% if hasComment == false %}
+    <em class="text-muted text-center d-block mb-5" data-sal="fade">Il n'y a pas de commentaire sur ce cours pour le moment.</em>
+{% endif %}

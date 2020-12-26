@@ -1,0 +1,13 @@
+"premiere":
+  id: "premiere"
+  url: "premiere"
+  name: "Première"
+  image: "/assets/img/levels/premiere.svg"
+  description: "Dans cette section vous aurez accès à tous les cours de Première (spécialité mathématiques). Celui-ci se divise en cinq grandes parties : analyse, algèbre, géométrie, probabilités et algorithmique."
+
+"terminale":
+  id: "terminale"
+  url: "terminale"
+  name: "Terminale"
+  image: "/assets/img/levels/terminale.svg"
+  description: "Dans cette section vous aurez accès à tous les cours de Terminale (spécialité mathématiques). Comme le cours de Première, on y retrouve cinq grandes parties : analyse, algèbre, géométrie, probabilités et algorithmique. Cependant, l'abstraction et le niveau de détail y sont plus élevés."

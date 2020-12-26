@@ -1,0 +1,206 @@
+---
+layout: default
+lesson: "nombres_complexes"
+level: "terminale"
+summary: true
+permalink: "/cours/terminale/nombres-complexes/resume/"
+---
+
+<section>
+    <h2>L'ensemble des nombres complexes $\mathbb{C}$</h2>
+    <section>
+        <h3>Qu'est-ce que l'ensemble $\mathbb{C}$ ?</h3>
+        <div class="formula" data-api-v2-title="L'ensemble $\mathbb{C}$">
+            <p>Il existe un ensemble de nombres noté $\mathbb{C}$ qui contient l'ensemble $\mathbb{R}$ ainsi qu'un nombre $i \in \mathbb{C}$ vérifiant $i^2 = -1$.</p>
+        </div>
+        <p>Cet ensemble est appelé <strong>ensemble des nombres complexes</strong> et obéit aux <q>mêmes</q> règles de calcul que l'ensemble $\mathbb{R}$.</p>
+    </section>
+    <section>
+        <h3>Forme algébrique d'un nombre complexe</h3>
+        <div class="formula" data-api-v2-title="Forme algébrique">
+            <p>Tout <strong>nombre complexe</strong> $z$ peut s'écrire $z = x+iy$ où $x$ et $y$ sont deux réels. Cette écriture est appelée <strong>forme algébrique</strong> de $z$. On dit que :</p>
+            <ul>
+                <li>$x$ est la <strong>partie réelle</strong> de $z$ (notée $\operatorname{Re}(z)$).</li>
+                <li>$y$ est la <strong>partie imaginaire</strong> de $z$ (notée $\operatorname{Im}(z)$).</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Égalité entre nombres complexes</h3>
+        <div class="formula" data-api-v2-title="Lien entre égalité et parties réelle et imaginaire">
+            <p>Deux nombres complexes $z$ et $z'$ sont <strong>égaux</strong> si et seulement si $\operatorname{Re}(z) = \operatorname{Re}(z')$ et $\operatorname{Im}(z) = \operatorname{Im}(z')$.</p>
+        </div>
+        <p>Ainsi, pour que deux nombres complexes soient égaux, leur partie réelle et leur partie imaginaire doivent toutes deux être égales.</p>
+    </section>
+    <section>
+        <h3>Conjugué</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Tout nombre complexe $z = x+iy$ admet un nombre complexe <strong>conjugué</strong> noté $\bar{z}$. Ce conjugué est le nombre complexe $\bar{z} = x-iy$.</p>
+        </div>
+        <p>On donne également quelques formules permettant de calculer plus facilement des conjugués de nombres complexes.</p>
+        <div class="formula" data-api-v2-title="Relations">
+            <p>Soient $z$ et $z'$ deux nombres complexes.</p>
+            <ul>
+                <li>$\overline{z + z'} = \bar{z} + \bar{z'}$</li>
+                <li>$\displaystyle{\overline{\left(\frac{z}{z'}\right)} = \frac{\bar{z}}{\bar{z'}}}$ où $z' \neq 0$</li>
+                <li>$\overline{z^n} = (\bar{z})^n$ où $n \in \mathbb{N}$</li>
+                <li>$\overline{z \times z'} = \bar{z} \times \bar{z'}$</li>
+            </ul>
+        </div>
+        <p>Enfin, on a plusieurs propriétés intéressantes que l'on peut dégager.</p>
+        <div class="formula" data-api-v2-title="Propriétés">
+            <p>Soit $z$ un nombre complexe.</p>
+            <ul>
+                <li>$\bar{\bar{z}} = z$</li>
+                <li>$z + \bar{z} = 2 \operatorname{Re}(z)$</li>
+                <li>$z - \bar{z} = 2i \operatorname{Im}(z)$</li>
+                <li>$z$ est un réel si et seulement si $z = \bar{z}$</li>
+                <li>$z$ est un imaginaire pur si et seulement si $z = -\bar{z}$</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Module</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>On appelle <strong>module</strong> d'un nombre complexe $z = x + iy$ (noté $|z|$) le réel $|z| = \sqrt{x^2 + y^2}$.</p>
+        </div>
+        <p>Le module possède des propriétés intéressantes (à la manière de la valeur absolue pour les réels).</p>
+        <div class="formula" data-api-v2-title="Formules">
+            <p>Soient $z$ et $z'$ deux nombres complexes.</p>
+            <ul>
+                <li>$|z| \geq 0$</li>
+                <li>$|z| = 0 \iff z = 0$</li>
+                <li>$|\alpha z| = \sqrt{\alpha^2} |z|$ pour tout $\alpha \in \mathbb{R}$ (en particulier, $|-z| = |z|$)</li>
+                <li>$z\bar{z} = |z|^2$</li>
+                <li>$|z| = |\bar{z}|$</li>
+                <li>$|zz'| = |z| \times |z'|$</li>
+                <li>$\displaystyle{\left|\frac{z}{z'}\right| = \frac{|z|}{|z'|}}$ où $z' \neq 0$</li>
+                <li>$|z^n| = |z|^n$ où $n \in \mathbb{N}$</li>
+            </ul>
+        </div>
+    </section>
+</section>
+<section>
+    <h2>Polynômes dans $\mathbb{C}$</h2>
+    <section>
+        <h3>Qu'est-ce qu'un polynôme ?</h3>
+        <div class="formula" data-api-v2-title="Définition">
+            <p>Soit $n$ un entier. On dit que $P$ est un <strong>polynôme de degré $n$</strong> si $P$ est une expression formelle de la forme : $P(z) = a_0 + a_1 z + a_2 z^2 + \text{ ... } + a_n z^n$.</p>
+        </div>
+        <p>En classe de Terminale, on peut remplacer <q>expression formelle</q> par <q>fonction</q> (un polynôme de degré $n$ sera donc la même chose qu'une <strong>fonction polynômiale de degré $n$</strong>). Dans ce chapitre, ce seront des fonctions à valeurs complexes.</p>
+        <div class="formula" data-api-v2-title="Racine d'un polynôme">
+            <p>On dit qu'un nombre complexe $a$ est une racine d'un polynôme $P$ si on a $P(a) = 0$.</p>
+        </div>
+        <p>On donne enfin la <strong>formule du binôme de Newton</strong>, qui peut s'avérer utile pour développer certaines expressions.</p>
+        <div class="formula" data-api-v2-title="Formule du binôme de Newton">
+            <p>Soient $a$ et $b$ deux nombres complexes.</p>
+            <p>Alors pour tout $n \in \mathbb{N}$, $\displaystyle{(a + b)^n = \sum_{k = 0}^n \binom{k}{n} a^k b^{n-k}}$.</p>
+        </div>
+        <p>On admet de plus une propriété fondamentale de $\mathbb{C}$.</p>
+        <div class="formula" data-api-v2-title="Théorème fondamental de l'algèbre">
+            <p>Tout polynôme non-nul de degré $n$ admet au plus $n$ racines complexes.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Résolution d'une équation du second degré</h3>
+        <p>Il est possible d'étendre la résolution d'une équation du second degré du type $ax^2 + bx + c = 0$ dans le cas ou le polynôme admet un discriminant est négatif. Nous allons voir ici une méthode de résolution.</p>
+        <div class="formula" data-api-v2-title="Résolution d'une équation du second degré">
+            <p>On considère l'équation $(E) : az^2 + bz + c = 0$ (où $a$, $b$ et $c$ sont trois réels et $a \neq 0$). On pose $\Delta = b^2 - 4ac$, et on a que les solutions de $(E)$ dépendent du signe de $\Delta$ :</p>
+            <ul>
+                <li>Si $\Delta \gt 0$, $(E)$ admet deux solutions réelles $\displaystyle{z_1 = \frac{-b - \sqrt{\Delta}}{2a}}$ et $\displaystyle{z_2 = \frac{-b + \sqrt{\Delta}}{2a}}$.</li>
+                <li>Si $\Delta = 0$, $(E)$ admet une solution réelle $\displaystyle{z_0 = \frac{-b}{2a}}$.</li>
+                <li>Si $\Delta \lt 0$, $(E)$ admet deux solutions complexes conjuguées $\displaystyle{z_1 = \frac{-b - i\sqrt{\Delta}}{2a}}$ et $\displaystyle{z_2 = \frac{-b + i\sqrt{\Delta}}{2a} = \bar{z_1}}$.</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Factorisation par $z-a$</h3>
+        <div class="formula" data-api-v2-title="Factorisation par une racine">
+            <p>Soit $P$ un polynôme de degré $n$ et soit $a$ une racine de ce polynôme. Alors il existe un polynôme $Q$ de degré $n-1$ tel que pour tout $z \in \mathbb{C}$, $P(z) = (z-a)Q(z)$.</p>
+        </div>
+        <p>Une application possible de cette propriété est que tout polynôme $P$ de la forme $P(z) = z^n - a^n$ se factorise en $P(z) = (z-a)Q(z)$ (où $Q$ est un polynôme de degré $n-1$) car $a$ est une racine de $P$ et que $P$ est un polynôme de degré $n$.</p>
+    </section>
+</section>
+<section>
+    <h2>Géométrie avec les nombres complexes</h2>
+    <section>
+        <h3>Formes trigonométrique et exponentielle</h3>
+        <p>Tout nombre complexe peut s'écrire sous trois formes la <strong>forme algébrique</strong>, la <strong>forme trigonométrique</strong> et la <strong>forme exponentielle</strong>.</p>
+        <div class="formula" data-api-v2-title="Forme trigonométrie">
+            <p>Pour obtenir la forme trigonométrique d'un nombre complexe $z = x + iy$, il faut tout d'abord obtenir son <a href="#5-module">module</a>. La <strong>forme trigonométrique</strong> de $z$ est ensuite donnée par : $z = |z| (\cos(\theta) + i\sin(\theta))$.</p>
+            <p>Avec $\theta$ <strong>l'argument</strong> de $z$ (noté $\operatorname{arg}(z)$) qui doit vérifier :</p>
+            <ul>
+                <li>$\displaystyle{\cos(\theta) = \frac{x}{|z|}}$</li>
+                <li>$\displaystyle{\sin(\theta) = \frac{y}{|z|}}$</li>
+            </ul>
+        </div>
+        <p>Une fois la forme trigonométrique obtenue, on peut passer à la forme exponentielle.</p>
+        <div class="formula" data-api-v2-title="Forme exponentielle / Formule d'Euler">
+            <p>Soit $z$ un nombre complexe écrit sous forme trigonométrique $z = |z| (\cos(\theta) + i\sin(\theta))$. Alors $z = |z| e^{i\theta}$.</p>
+        </div>
+        <p>On peut étendre l'égalité entre nombres complexes donnée <a href="#3-égalité-entre-nombres-complexes">au début</a> : deux nombres complexes sont égaux s'ils ont le <strong>même module</strong> et le <strong>même argument (modulo $2\pi$, nous détaillerons ce point-ci plus tard)</strong>.</p>
+    </section>
+    <section>
+        <h3>Propriétés de l'argument</h3>
+        <div class="formula" data-api-v2-title="Propriétés">
+            <p>Soit $z$ un nombre complexe.</p>
+            <ul>
+                <li>$z$ est un réel si et seulement si $\operatorname{arg}(z) = k \times \pi$ où $k \in \mathbb{Z}$</li>
+                <li>$z$ est un imaginaire pur si et seulement si $\operatorname{arg}(z) = k \times \frac{\pi}{2}$ où $k \in \mathbb{Z}$</li>
+            </ul>
+        </div>
+        <p>Pour conclure cette partie, nous allons donner quelques formules permettant de calculer des arguments.</p>
+        <div class="formula" data-api-v2-title="Formules">
+            <p>Soient $z$ et $z'$ deux nombres complexes.</p>
+            <ul>
+                <li>$\operatorname{arg}(\bar{z}) = - \operatorname{arg}(z) \mod 2\pi$</li>
+                <li>$\operatorname{arg}(- z) = - \operatorname{arg}(z) + \pi \mod 2\pi$</li>
+                <li>$\operatorname{arg}(z \times z') = \operatorname{arg}(z) + \operatorname{arg}(z') \mod 2\pi$</li>
+                <li>$\displaystyle{\operatorname{arg}\left(\frac{1}{z}\right) = - \operatorname{arg}(z) \mod 2\pi}$</li>
+                <li>$\displaystyle{\operatorname{arg}\left(\frac{z}{z'}\right) = \operatorname{arg}(z) - \operatorname{arg}(z') \mod 2\pi}$</li>
+                <li>$\operatorname{arg}(z^n) = n \times \operatorname{arg}(z) \mod 2\pi$ pour tout $n \in \mathbb{N}$</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>Affixe et représentation</h3>
+        <p>Dans tout ce qui suit, le plan sera muni d'un repère $(O; \overrightarrow{i}; \overrightarrow{j})$.</p>
+        <div class="formula" data-api-v2-title="Affixe d'un point">
+            <p>Un nombre complexe $z = x+iy$ peut être représenté dans le plan par un point $M$ de coordonnées $(x; y)$. $z$ est alors appelé <strong>affixe</strong> du point $M$ (et réciproquement le point $M$ est <strong>l'image</strong> de $z$).</p>
+            <p>Un nombre complexe $z' = |z'| e^{\theta}$ peut être représenté dans le plan par un point $M'$ situé sur le cercle d'origine $O$ et de rayon</p>
+            <p>$|z'|$. Le point $M'$ est alors situé à l'angle de $\theta$ radians sur ce cercle. Le module est donc une <strong>distance</strong> et l'argument est un <strong>angle</strong>.</p>
+        </div>
+    </section>
+    <section>
+        <h3>Lien Géométrie - Nombres complexes</h3>
+        <p>Une propriété remarquable des nombres complexes est qu'il est possible de les utiliser pour faire de la géométrie ! Cela peut sembler surprenant, mais cela repose sur le fait que tout nombre complexe $z$ s'écrit $x + iy$ (avec $x$ la partie réelle de $z$ et $y$ sa partie imaginaire), et que, comme dit dans la partie précédente, on peut y associer le point de coordonnées $(x; y)$.</p>
+        <p>Voici, de manière plus formelle, quelques propriétés de géométrie reposant sur l'utilisation des nombres complexes. On rappelle que l'on se place dans un repère $(O; \overrightarrow{i}; \overrightarrow{j})$.</p>
+        <div class="formula" data-api-v2-title="Affixe d'un vecteur">
+            <p>Soient $A$ et $B$ deux points d'affixes respectives $z_A$ et $z_B$. Alors on associe au vecteur $\overrightarrow{AB}$ son <strong>affixe</strong> qui est le complexe $z_B - z_A$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Propriétés">
+            <p>Soient $A$, $B$, $C$ et $D$ des points d'affixes respectives $z_A$, $z_B$, $z_C$ et $z_D$.</p>
+            <ul>
+                <li><strong>La longueur $AB$ est :</strong> le module du complexe $z_B - z_A$ (i.e. $|z_B - z_A|$). Il s'agit également de la norme du vecteur $\overrightarrow{AB}$.</li>
+                <li><strong>Le milieu du segment $[AB]$ est :</strong> le point $M$ d'affixe $\displaystyle{z_{M} = \frac{z_A + z_B}{2}}$.</li>
+                <li><strong>L'angle $(\overrightarrow{i}; \overrightarrow{AB})$ est :</strong> l'argument du complexe $z_B - z_A$ (i.e. $\operatorname{arg}(z_B - z_A)$, modulo $2\pi$).</li>
+                <li><strong>L'angle $(\overrightarrow{AB}; \overrightarrow{CD})$ est :</strong> l'argument du complexe $\displaystyle{\left(\frac{z_C - z_D}{z_B - z_A}\right)}$ (i.e. $\displaystyle{\operatorname{arg}\left(\frac{z_C - z_D}{z_B - z_A}\right)}$, modulo $2\pi$).</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h3>L'ensemble $\mathbb{U}$ et les racines $n$-ièmes de l'unité</h3>
+        <div class="formula" data-api-v2-title="L'ensemble $\mathbb{U}$">
+            <p>On note par $\mathbb{U}$ l'ensemble des nombres complexes de module $1$.</p>
+        </div>
+        <div class="formula" data-api-v2-title="Stabilité de $\mathbb{U}$">
+            <p>Soient $z$, $z' \in \mathbb{U}$. Alors $z \times z' \in \mathbb{U}$ et $\frac{1}{z} \in \mathbb{U}$.</p>
+        </div>
+        <p>En fait, l'ensemble $\mathbb{U}$ permet de décrire tous les points du cercle trigonométrique.</p>
+        <p>Passons maintenant à l'étude de certains sous-ensembles de $\mathbb{U}$.</p>
+        <div class="formula" data-api-v2-title="Racines $n$-ièmes de l'unité">
+            <p>Soit $z$ un nombre complexe. On dit que $z$ est une <strong>racine $n$-ième de l'unité</strong> si $z^n = 1$.</p>
+            <p>De plus, en notant par $\mathbb{U}_n$ l'ensemble des racines $n$-ièmes de l'unité, on a $\displaystyle{\mathbb{U}_n = \left\{ e^{\frac{2i \times 0}{n}}, e^{\frac{2i \times 1}{n}}, e^{\frac{2i \times 2}{n}}, \text{ ... }, e^{\frac{2i \times (n-1)}{n}} \right\}}$.</p>
+        </div>
+    </section>
+</section>
