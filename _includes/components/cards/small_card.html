@@ -1,7 +1,0 @@
-{% if include.href %}{% assign tag = 'a' %}{% else %}{% assign tag = 'div' %}{% endif %}
-<div class="{% if include.class %}{{ include.class }} {% endif %}flat-card col-xl-{{ include.size }} col-lg-{{ include.size | plus: 1 }} col-12 mb-xl-{% if include.mb %}{{ include.mb }}{% else %}0{% endif %} mb-5">
-    <{{ tag }} class="flat-card-content h-100{% if include.blue %} blue{% endif %}"{% if include.href %} href="{{ include.href }}"{% endif %}>
-        <img class="flat-card-image" src="{{ include.image }}" alt="{{ include.content | strip_html }}">
-        {{ include.content }}
-    </{{ tag }}>
-</div>

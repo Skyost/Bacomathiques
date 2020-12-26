@@ -1,0 +1,16 @@
+id: continuite-derivabilite-convexite
+level: terminale
+title: Chapitre III – Continuité, dérivabilité et convexité
+chapter: 3
+caption: Ce chapitre a beaucoup d'applications, notamment dans l'étude de fonctions
+  et dans la physique.
+excerpt: Il est possible de définir la continuité d'une fonction comme le fait de
+  pouvoir tracer sa courbe représentative <q>sans lever le crayon</q>. La notion de
+  dérivabilité, elle est plus complexe et sera élaborée dans ce chapitre (on parlera
+  notamment de la fonction partie entière, du théorème des valeurs intermédiaires,
+  etc...).<br>Ce cours contient également les différentes tables de dérivation ainsi
+  que des propriétés sur les fonctions convexes.
+difficulty: 4
+specialty: false
+pdf: /pdf/lessons/terminale/continuite-derivabilite-convexite.pdf
+preview: /img/lessons/terminale/continuite-derivabilite-convexite/preview.jpg

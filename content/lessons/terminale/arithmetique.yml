@@ -1,0 +1,15 @@
+id: arithmetique
+level: terminale
+title: Chapitre XIV – Arithmétique (Maths expertes)
+chapter: 14
+caption: L'arithmétique sert beaucoup en cryptographie (avec les cartes bancaires,
+  le web mais également dans le domaine militaire).
+excerpt: L'arithmétique (des entiers) est une branche des mathématiques qui étudie
+  la science des nombres. Ici, nous aborderons les notions de divisibilité et de congruence.
+  Nous verrons comment résoudre des problèmes contenant des congruences et nous étudierons
+  certains théorèmes fondamentaux de l'arithmétique (théorème de Bézout et de Gauss
+  notamment).
+difficulty: 5
+specialty: true
+pdf: /pdf/lessons/terminale/arithmetique.pdf
+preview: /img/lessons/terminale/arithmetique/preview.jpg

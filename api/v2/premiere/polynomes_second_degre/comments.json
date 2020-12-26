@@ -1,5 +1,0 @@
----
-layout: api_file
-permalink: "/api/v2/premiere/polynomes-second-degre/comments/"
----
-{% include _includes/api/v2/lessons/comments/comments.json lesson='polynomes_second_degre' level='premiere' %}

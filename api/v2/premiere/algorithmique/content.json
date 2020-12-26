@@ -1,6 +1,0 @@
----
-layout: api_file
-permalink: "/api/v2/premiere/algorithmique/"
-compressed: false
----
-{% include _includes/api/v2/lessons/content/content.json lesson='algorithmique' level='premiere' %}

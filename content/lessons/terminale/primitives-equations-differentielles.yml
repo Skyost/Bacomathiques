@@ -1,0 +1,16 @@
+id: primitives-equations-differentielles
+level: terminale
+title: Chapitre VI – Primitives et équations différentielles
+chapter: 6
+caption: Les primitives sont notamment utilisées dans dans le cadre de la dynamique
+  Newtonienne.
+excerpt: Une primitive d'une fonction d'une variable réelle définie sur un intervalle
+  est une autre fonction, définie et dérivable sur cet intervalle, et dont la dérivée
+  et notre fonction de départ.<br>Ce cours contient essentiellement (en plus de la
+  définition d'une primitive) que les tableaux à connaître pour pouvoir trouver les
+  primitives des fonctions usuelles, mais également des méthodes de résolution pour
+  certaines équations différentielles !
+difficulty: 3
+specialty: false
+pdf: /pdf/lessons/terminale/primitives-equations-differentielles.pdf
+preview: /img/lessons/terminale/primitives-equations-differentielles/preview.jpg

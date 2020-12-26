@@ -1,3 +1,0 @@
-User-agent: *
-Disallow: /api/
-Sitemap: https://bacomathiqu.es/sitemap.xml

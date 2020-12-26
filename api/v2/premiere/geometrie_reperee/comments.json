@@ -1,5 +1,0 @@
----
-layout: api_file
-permalink: "/api/v2/premiere/geometrie-reperee/comments/"
----
-{% include _includes/api/v2/lessons/comments/comments.json lesson='geometrie_reperee' level='premiere' %}

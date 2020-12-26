@@ -1,5 +1,0 @@
----
-layout: api_file
-permalink: "/api/v2/terminale/lois-bernoulli-binomiale/summary/"
----
-{% include _includes/api/v2/lessons/summary/summary.json lesson='lois_bernoulli_binomiale' level='terminale' %}
