@@ -1,0 +1,28 @@
+@import "colors";
+
+.blue {
+  background-color: $main-color !important;
+  color: rgba(white, 0.8) !important;
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: white !important;
+  }
+
+  a:not(.btn-white) {
+    color: white !important;
+    font-weight: normal;
+    text-decoration: none !important;
+
+    &:hover {
+      text-decoration: underline !important;
+      text-decoration-color: white !important;
+    }
+  }
+
+  hr {
+    border-color: white;
+  }
+}

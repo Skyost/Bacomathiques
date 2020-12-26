@@ -1,0 +1,14 @@
+id: suites
+level: premiere
+title: Chapitre I – Les suites
+chapter: 1
+pdf: /pdf/lessons/premiere/suites.pdf
+caption: On peut utiliser les suites pour étudier les motifs sur certaines variétés
+  de légumes.
+excerpt: En mathématiques, une suite est une famille d'éléments — appelés ses <q>termes</q>
+  — indexée par les entiers naturels. Ce cours va donc vous apprendre comment définir
+  une suite et l'étudier. On y verra notamment l'étude du sens de variation, la représentation
+  de suites dans le plan, et plus encore !
+difficulty: 4
+specialty: false
+preview: /img/lessons/premiere/suites/preview.jpg

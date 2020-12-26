@@ -11,6 +11,6 @@ comments:
         format: "timestamp-seconds"
   moderation: true
   name: "Bacomathiques"
-  path: "_data/comments/"
+  path: "content/comments/"
   requiredFields: ["lesson", "level", "client", "author", "message"]
  

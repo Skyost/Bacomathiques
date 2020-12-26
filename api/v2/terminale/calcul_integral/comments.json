@@ -1,5 +1,0 @@
----
-layout: api_file
-permalink: "/api/v2/terminale/calcul-integral/comments/"
----
-{% include _includes/api/v2/lessons/comments/comments.json lesson='calcul_integral' level='terminale' %}

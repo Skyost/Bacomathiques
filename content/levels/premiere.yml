@@ -1,0 +1,5 @@
+id: premiere
+order: 1
+name: Première
+image: /img/levels/premiere.svg
+description: "Dans cette section vous aurez accès à tous les cours de Première (spécialité mathématiques). Celui-ci se divise en cinq grandes parties : analyse, algèbre, géométrie, probabilités et algorithmique."

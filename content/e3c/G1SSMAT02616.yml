@@ -1,0 +1,14 @@
+id: G1SSMAT02616
+subject: /assets/pdf/e3c/G1SSMAT02616.pdf
+corrections:
+- https://www.apmep.fr/IMG/pdf/Corrige_Premiere_spe_20_2020_DV.pdf
+- https://www.annales2maths.com/tag/sujet-02616-20/
+lessons:
+- level: premiere
+  lesson: suites
+- level: premiere
+  lesson: derivation
+- level: premiere
+  lesson: fonction-exponentielle
+- level: premiere
+  lesson: probabilites

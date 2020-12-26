@@ -1,5 +1,0 @@
----
-layout: api_file
-permalink: "/api/v2/premiere/"
----
-{% include _includes/api/v2/lessons/list.json level='premiere' %}

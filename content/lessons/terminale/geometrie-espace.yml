@@ -1,0 +1,14 @@
+id: geometrie-espace
+level: terminale
+title: Chapitre VIII – Géométrie dans l'espace
+chapter: 8
+caption: 'La géométrie dans l''espace s''applique dans beaucoup de domaines : la modélisation
+  3D par exemple.'
+excerpt: La géométrie dans l'espace est une forme de géométrie dans laquelle les objets
+  peuvent notamment être des solides. Ce chapitre va vous servir à mieux comprendre
+  différentes notions comme la coplanarité, le produit scalaire dans l'espace mais
+  aussi les représentations paramétriques ou encore les intersections et orthogonalités.
+difficulty: 2
+specialty: false
+pdf: /pdf/lessons/terminale/geometrie-espace.pdf
+preview: /img/lessons/terminale/geometrie-espace/preview.jpg
