@@ -1,0 +1,20 @@
+id: G1SSMAT02601
+subject: /assets/pdf/e3c/G1SSMAT02601.pdf
+corrections:
+- https://www.apmep.fr/IMG/pdf/Corrige_Premiere_spe_5_2020_DV.pdf
+- https://www.annales2maths.com/tag/sujet-5-02601/
+lessons:
+- level: premiere
+  lesson: suites
+- level: premiere
+  lesson: polynomes-second-degre
+- level: premiere
+  lesson: derivation
+- level: premiere
+  lesson: fonctions-trigonometriques
+- level: premiere
+  lesson: geometrie-reperee
+- level: premiere
+  lesson: probabilites
+- level: premiere
+  lesson: algorithmique

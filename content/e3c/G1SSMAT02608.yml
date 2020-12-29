@@ -1,0 +1,14 @@
+id: G1SSMAT02608
+subject: /assets/pdf/e3c/G1SSMAT02608.pdf
+corrections:
+- https://www.apmep.fr/IMG/pdf/Corrige_Premiere_spe_12_2020_DV.pdf
+- https://www.annales2maths.com/tag/sujet-02608-12/
+lessons:
+- level: premiere
+  lesson: suites
+- level: premiere
+  lesson: polynomes-second-degre
+- level: premiere
+  lesson: derivation
+- level: premiere
+  lesson: probabilites

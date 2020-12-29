@@ -1,0 +1,15 @@
+id: calcul-integral
+level: terminale
+title: Chapitre VII – Calcul intégral
+chapter: 7
+caption: Les intégrales sont utilisées dans beaucoup de domaines, particulièrement
+  dans le calcul d'aires et même de volumes.
+excerpt: L'intégration est une opération très utilisée en mathématiques et permet
+  notamment de calculer l'aire sous la courbe d'une fonction sur un intervalle donné.
+  Ici nous étudierons principalement les méthodes de calcul mais également les propriétés
+  remarquables des intégrales.<br>Attention cependant; il est fortement recommandé
+  d'avoir une bonne connaissance du Chapitre VI sur les primitives de fonctions continues.
+difficulty: 4
+specialty: false
+pdf: /pdf/lessons/terminale/calcul-integral.pdf
+preview: /img/lessons/terminale/calcul-integral/preview.jpg
