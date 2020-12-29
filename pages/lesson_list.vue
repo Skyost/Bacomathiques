@@ -1,6 +1,6 @@
 <template>
   <div v-if="level">
-    <social-head />
+    <social-head :title="title" />
 
     <page-header>
       <image-header :image="level.image">
@@ -26,15 +26,18 @@ export default {
   components: { SocialHead, PageHeader, LessonList, PageContent, ImageHeader },
   data () {
     return {
+      title: null,
       level: null
     }
   },
   async fetch () {
-    this.level = await this.$content('levels', this.$route.params.level).fetch()
+    const level = await this.$content('levels', this.$route.params.level).fetch()
+    this.title = `Liste des cours de ${this.level.name}`
+    this.level = level
   },
   head () {
     return {
-      title: this.level ? this.buildBrowserTitle(`Liste des cours de ${this.level.name}`) : null
+      title: this.buildBrowserTitle(this.title ?? 'Liste des cours')
     }
   }
   /*

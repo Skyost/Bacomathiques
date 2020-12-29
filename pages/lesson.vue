@@ -1,6 +1,6 @@
 <template>
   <div v-if="lesson">
-    <social-head :description="lesson.excerpt" />
+    <social-head :title="pageTitle" :description="lesson.excerpt" />
 
     <smart-banner />
 

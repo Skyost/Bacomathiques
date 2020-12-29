@@ -1,6 +1,6 @@
 <template>
   <div>
-    <social-head />
+    <social-head :title="title" />
 
     <page-header>
       <carousel />
@@ -23,9 +23,14 @@ import SocialHead from '../components/SocialHead'
 export default {
   name: 'Levels',
   components: { SocialHead, LevelList, PageContent, Carousel, PageHeader },
+  data () {
+    return {
+      title: 'Liste des cours'
+    }
+  },
   head () {
     return {
-      title: this.buildBrowserTitle('Liste des cours')
+      title: this.buildBrowserTitle(this.title)
     }
   }
 }

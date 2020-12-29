@@ -1,6 +1,6 @@
 <template>
   <div>
-    <social-head />
+    <social-head :title="title" />
 
     <page-header>
       <image-header image="/img/search.svg">
@@ -51,13 +51,14 @@ export default {
   components: { SocialHead, LessonCard, CardsRow, PageContent, ImageHeader, PageHeader },
   data () {
     return {
+      title: 'Résultat de la recherche',
       keywords: '😉',
       result: []
     }
   },
   head () {
     return {
-      title: this.buildBrowserTitle('Résultat de la recherche')
+      title: this.buildBrowserTitle(this.title)
     }
   },
   async mounted () {

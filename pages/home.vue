@@ -1,6 +1,6 @@
 <template>
   <div>
-    <social-head />
+    <social-head :title="title" />
 
     <page-header>
       <carousel />
@@ -44,9 +44,14 @@ import SocialHead from '../components/SocialHead'
 
 export default {
   components: { SocialHead, FeatureCards, Levels, PageContent, PageHeader, Carousel, Reviews, BigCard, MobileBanner },
+  data () {
+    return {
+      title: 'Accueil'
+    }
+  },
   head () {
     return {
-      title: this.buildBrowserTitle('Accueil')
+      title: this.buildBrowserTitle(this.title)
     }
   },
   mounted () {
