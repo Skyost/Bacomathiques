@@ -113,5 +113,9 @@ export default {
       compact: true,
       minified: true
     }
+  },
+
+  generate: {
+    fallback: true
   }
 }

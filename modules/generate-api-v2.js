@@ -197,10 +197,10 @@ function getHTML (srcDir, lesson, isSummary) {
     .use(remarkGfm)
     .use(remarkHtml)
     .processSync(fs.readFileSync(lessonContent))
-  return formatHTML(file.toString())
+  return formatHTML(lesson, file.toString())
 }
 
-function formatHTML (html) {
+function formatHTML (lesson, html) {
   let result = html
     .replace(/<bubble variant="formula">/g, '<div class="formula">')
     .replace(/<bubble variant="tip">/g, '<div class="tip">')
@@ -210,7 +210,7 @@ function formatHTML (html) {
   const representationPattern = /<representation geogebra-id="([A-Za-z0-9_-]*)"><\/representation>/
   const n = ((result || '').match(representationPattern) || []).length
   for (let i = 0; i < n; i++) {
-    result = result.replace(representationPattern, `<div id="representation-${i + 1}" class="plot" data-api-v2-geogebra-id="$1"></div>`)
+    result = result.replace(representationPattern, `<div id="representation-${i + 1}" class="plot" data-api-v2-geogebra-id="$1" data-api-v2-geogebra-image="https://bacomathiqu.es/img/lessons/${lesson.level}/${lesson.id}/$1.png"></div>`)
   }
   return result
 }
