@@ -16,10 +16,20 @@
         </p>
 
         <cards-row sal="slide-up">
-          <small-card image="/img/index/stores/app-store.svg" :size="5" :href="$store.state.appStore">
+          <small-card
+            image="/img/index/stores/app-store.svg"
+            class="mb-5"
+            :size="5"
+            :href="$store.state.appStore"
+          >
             Disponible sur <strong>App Store</strong>.
           </small-card>
-          <small-card image="/img/index/stores/play-store.svg" :size="5" :href="$store.state.googlePlay">
+          <small-card
+            image="/img/index/stores/play-store.svg"
+            class="mb-5"
+            :size="5"
+            :href="$store.state.googlePlay"
+          >
             Disponible sur <strong>Google Play</strong>.
           </small-card>
         </cards-row>

@@ -3,6 +3,7 @@
     <small-card
       v-for="level in levels"
       :key="level.id"
+      class="mb-5"
       :href="`/cours/${level.id}/`"
       :image="level.image"
       :size="6"

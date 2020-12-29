@@ -182,6 +182,10 @@ export default {
       max-height: 300px;
       overflow-x: hidden;
     }
+
+    @media (max-width: $mobile-width) {
+      max-width: 60%;
+    }
   }
 
   &.shrinked {
@@ -194,6 +198,10 @@ export default {
     .logo {
       font-size: 40px;
     }
+  }
+
+  @media (max-width: $large-width) {
+    height: auto !important;
   }
 }
 

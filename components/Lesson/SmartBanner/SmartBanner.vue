@@ -33,7 +33,7 @@ export default {
         this.bannerClass = 'smartbanner-android'
         break
       case 'iOS':
-        this.storeName = 'Sur l`\'App Store'
+        this.storeName = 'Sur l\'App Store'
         this.storeLink = this.$store.state.appStore
         this.bannerClass = 'smartbanner-ios'
         break
@@ -57,7 +57,9 @@ export default {
       return 'unknown'
     },
     onClose () {
-      this.$cookies.set('smartbanner_closed', true)
+      let expirationDate = new Date()
+      expirationDate = new Date(expirationDate.setMonth(expirationDate.getMonth() + 6))
+      this.$cookies.set('smartbanner_closed', true, { expires: expirationDate })
     }
   }
 }

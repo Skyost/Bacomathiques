@@ -1,6 +1,12 @@
 <template>
   <cards-row sal="slide-up">
-    <small-card v-for="card in featureCards" :key="card.id" :image="`/img/index/features/${card.id}.svg`" :size="3">
+    <small-card
+      v-for="card in featureCards"
+      :key="card.id"
+      class="mb-5"
+      :image="`/img/index/features/${card.id}.svg`"
+      :size="3"
+    >
       <span v-html="card.content" />
     </small-card>
   </cards-row>

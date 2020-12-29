@@ -1,5 +1,5 @@
 <template>
-  <b-nav-item-dropdown class="ml-auto" right>
+  <b-nav-item-dropdown class="ml-lg-auto" right>
     <template #button-content>
       <b-icon-tag-fill /> Accès direct à un cours
     </template>

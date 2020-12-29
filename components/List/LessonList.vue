@@ -1,6 +1,11 @@
 <template>
   <cards-row>
-    <lesson-card v-for="lesson in lessons" :key="lesson.id" :lesson="lesson" />
+    <lesson-card
+      v-for="lesson in lessons"
+      :key="lesson.id"
+      class="mb-5"
+      :lesson="lesson"
+    />
   </cards-row>
 </template>
 

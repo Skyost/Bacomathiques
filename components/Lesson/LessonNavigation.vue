@@ -64,6 +64,8 @@ export default {
     }
   },
   async mounted () {
+    await this.$nextTick()
+
     this.refreshEntries()
     this.activeEntry = this.entries[0]
     await this.$nextTick()
@@ -86,11 +88,16 @@ export default {
       const result = []
       let currentDepth2
       for (const entry of this.toc) {
+        const element = document.getElementById(entry.id)
+        if (!element) {
+          continue
+        }
+
         const common = {
           id: entry.id,
           html: entry.html,
           children: [],
-          topOffset: this.getAbsoluteTopOffset(document.getElementById(entry.id))
+          topOffset: this.getAbsoluteTopOffset(element)
         }
         if (entry.depth === 2) {
           currentDepth2 = {

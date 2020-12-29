@@ -16,18 +16,14 @@ export default {
       script: [
         {
           hid: 'geogebra',
-          src: 'https://www.geogebra.org/apps/deployggb.js',
-          async: true
+          src: 'https://www.geogebra.org/apps/deployggb.js'
         }
       ]
     }
   },
-  mounted () {
-    if (document.readyState === 'complete') {
-      this.createGeoGebraInstance(this.geogebraId)
-    } else {
-      window.onload = this.makeDoubleDelegate(window.onload, () => this.createGeoGebraInstance(this.geogebraId))
-    }
+  async mounted () {
+    await this.$nextTick()
+    this.createGeoGebraInstanceWhenPossible()
   },
   destroyed () {
     if (window[this.geogebraId]) {
@@ -36,7 +32,16 @@ export default {
     }
   },
   methods: {
-    createGeoGebraInstance (materialId) {
+    createGeoGebraInstanceWhenPossible () {
+      // eslint-disable-next-line no-undef
+      if (window.GGBApplet) {
+        this.createGeoGebraInstance()
+        return
+      }
+
+      setTimeout(this.createGeoGebraInstanceWhenPossible, 500)
+    },
+    createGeoGebraInstance () {
       const parent = this.$el.parentElement
       const availableWidth = parent.getBoundingClientRect().width - parent.style.paddingLeft - parent.style.paddingRight
       const width = Math.min(availableWidth, 800)
@@ -52,8 +57,8 @@ export default {
 
       // eslint-disable-next-line no-undef
       new window.GGBApplet({
-        id: materialId,
-        material_id: materialId,
+        id: this.geogebraId,
+        material_id: this.geogebraId,
         height: 0.75 * width,
         width,
         showResetIcon: true,
@@ -66,16 +71,6 @@ export default {
         enableShiftDragZoom: true,
         borderColor: 'rgba(0, 0, 0, 0.5)'
       }, true).inject(this.geogebraId)
-    },
-    makeDoubleDelegate (function1, function2) {
-      return function () {
-        if (function1) {
-          function1()
-        }
-        if (function2) {
-          function2()
-        }
-      }
     }
   }
 }
