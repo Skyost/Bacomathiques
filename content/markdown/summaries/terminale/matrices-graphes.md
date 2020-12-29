@@ -134,8 +134,8 @@ Soient $A$, $B$ et $C$ trois matrices carrées d'ordre $n$. Alors :
 
 * Le produit matriciel est **associatif** : $A(BC) = (AB)C$.
 * Le produit matriciel est **distributif** : $A(B + C) = AB + AC$.
-* $I_n$ est l'**unité** de $\mathbb{M}_{n}(\mathbb{R})$ : $AI_n = I_nA = A$.
-* $0_n$ est le **zéro** de $\mathbb{M}_{n}(\mathbb{R})$ : $A0_n = 0_nA = 0_n$ et $A + 0_n = A$.
+* $I_n$ est l'**unité** de $\mathcal{M}_{n}(\mathbb{R})$ : $AI_n = I_nA = A$.
+* $0_n$ est le **zéro** de $\mathcal{M}_{n}(\mathbb{R})$ : $A0_n = 0_nA = 0_n$ et $A + 0_n = A$.
 * Pour tout $\lambda \in \mathbb{R}$, $\lambda (AB) = (\lambda A)B = A(\lambda B)$.
 
 </bubble>
@@ -289,8 +289,8 @@ deux points du plan.
 Un **graphe $G$ non-orienté** est un couple $(S; A)$ où :
 
 * $S$ est l'ensemble des **sommets** de $G$.
-* $A$ est un ensemble contenant les éléments de la forme $\{s_i; s_j\}$ où $s_i$, $s_j \in S$, et correspond aux **
-  arêtes** de $G$.
+* $A$ est un ensemble contenant les éléments de la forme $\{s_i; s_j\}$ où $s_i$, $s_j \in S$, et correspond aux
+  **arêtes** de $G$.
 
 </bubble>
 

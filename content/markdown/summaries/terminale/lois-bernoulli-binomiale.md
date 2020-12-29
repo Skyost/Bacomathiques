@@ -131,7 +131,7 @@ Soit une succession d'épreuves de Bernoulli indépendantes. On appelle cette su
 
 #### Définition
 
-Soient $X$ une variable aléatoire et $p \in \]0; 1\[$. On dit que $X$ suit une \text{loi de Bernoulli} de paramètre
+Soient $X$ une variable aléatoire et $p \in ]0; 1[$. On dit que $X$ suit une \text{loi de Bernoulli} de paramètre
 $p$ (qui se note $\mathcal{B}(p)$) si la loi de $X$ est la suivante :
 
 <table class="table table-bordered table-hover"><tbody><tr><td>$x_i$</td><td>$0$</td><td>$1$</td></tr><tr><td>$p_i$</td><td>$1 - p$</td><td>$p$</td></tr></tbody></table>
@@ -168,7 +168,7 @@ indépendamment plusieurs fois une épreuve de Bernoulli).
 
 #### Définition
 
-Soient $n \in \mathbb{N}^\*$ et $p \in \]0; 1\[$. On se place dans le cadre d'un schéma de Bernoulli à $n$ répétitions
+Soient $n \in \mathbb{N}^*$ et $p \in ]0; 1[$. On se place dans le cadre d'un schéma de Bernoulli à $n$ répétitions
 et où la probabilité de succès des épreuves est $p$.
 
 La loi de probabilité donnant le nombre de succès sur ces $n$ répétitions est la **loi binomiale** de paramètres $n$ et

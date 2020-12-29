@@ -203,7 +203,7 @@ Alors pour tout $n \in \mathbb{N}$, $\displaystyle{(a + b)^n = \sum_{k = 0}^n \b
 Nous allons prouver cette propriété en utilisant le dénombrement, mais il est tout à fait possible de le faire par
 récurrence (c'est d'ailleurs un très bon exercice !)
 
-Ainsi, on a $(a+b)^n = \underbrace{(a + b) \times (a + b) \dots (a + b)}_{n \text{ fois}}$.
+Ainsi, on a $(a+b)^n = \underbrace{(a + b) \times (a + b) \times \dots \times (a + b)}_{n \text{ fois}}$.
 
 En développant cette expression on peut obtenir une somme de termes de la forme $a^k b^j$ où :
 
@@ -214,14 +214,10 @@ Ainsi, forcément, $i = n-k$ (car si on ne choisit pas $a$, alors on choisit $b$
 choisir $n-k$ fois $b$).
 
 De plus, il y a $\displaystyle{\binom{n}{k}}$ manières de choisir $k$ fois $a$ parmi les $n$ expressions $(a+b)$, alors
-l'expression $a^k b^{n-k}$ apparait $\displaystyle{\binom{n}{k}}$ lors du développement. Notre somme de termes devient
+l'expression $a^k b^{n-k}$ apparaît $\displaystyle{\binom{n}{k}}$ lors du développement. Notre somme de termes devient
 donc :
 
-$(a+b)^n = \displaystyle{\underbrace{(a^0b^{n-0} + \dots + a^0b^{n-0})}_{\binom{n}{0} \text{ termes}}}$
-
-$\displaystyle{+ \dots + \underbrace{(a^kb^{n-k} + \dots + a^kb^{n-k})}_{\binom{n}{k} \text{ termes}}}$
-
-$\displaystyle{+ \dots + \underbrace{(a^nb^{n-n} + \dots + a^nb^{n-n})}_{\binom{n}{n} \text{ termes}}}$.
+$(a+b)^n = \displaystyle{\underbrace{(a^0b^{n-0} + \dots + a^0b^{n-0})}_{\binom{n}{0} \text{ termes}} + \dots + \underbrace{(a^kb^{n-k} + \dots + a^kb^{n-k})}_{\binom{n}{k} \text{ termes}} + \dots + \underbrace{(a^nb^{n-n} + \dots + a^nb^{n-n})}_{\binom{n}{n} \text{ termes}}}$.
 
 C'est ce qu'il fallait démontrer.
 
@@ -609,7 +605,7 @@ trouvé toutes les solutions.
 L'ensemble $\mathbb{U}_n$ décrit exactement le polynôme régulier à $n$ côtés inscrit dans le cercle trigonométrique
 ayant pour sommet $1$.
 
-Par exemple, $\mathbb{U}_3$ est l'ensemble des sommets du triangle équilatéral inscrit dans le cercle trigonométrique (
-dont un sommet est $1$).
+Par exemple, $\mathbb{U}_3$ est l'ensemble des sommets du triangle équilatéral inscrit dans le cercle trigonométrique
+(dont un sommet est $1$).
 
 </bubble>

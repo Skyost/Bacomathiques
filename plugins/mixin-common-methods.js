@@ -30,7 +30,7 @@ Vue.mixin({
       document.head.appendChild(mathjax)
     },
     getCurrentAddress () {
-      return `https://bacomathiqu.es${this.$route.fullPath}`
+      return `https://bacomathiqu.es${this.$route.path}`
     },
     getAvatarURL (author) {
       const username = author == null || author.length === 0 ? 'Anonyme' : author

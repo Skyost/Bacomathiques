@@ -5,14 +5,14 @@
     <smart-banner />
 
     <page-header v-if="level">
-      <lesson-header :level="level" :lesson="lesson" :is-summary="isSummary()" />
+      <lesson-header :level="level" :lesson="lesson" :is-summary="isSummary" />
     </page-header>
 
     <b-container v-if="lessonContent" id="page-lesson" class="mb-5" fluid="">
       <lesson-content :content="lessonContent" :lesson="lesson" />
     </b-container>
 
-    <comment-section v-if="!isSummary()" :lesson="lesson" />
+    <comment-section v-if="!isSummary" :lesson="lesson" />
   </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
     }
   },
   async fetch () {
-    this.lessonContent = await this.$content('markdown', this.isSummary() ? 'summaries' : 'lessons', this.$route.params.level, this.$route.params.lesson).fetch()
+    this.lessonContent = await this.$content('markdown', this.isSummary ? 'summaries' : 'lessons', this.$route.params.level, this.$route.params.lesson).fetch()
     this.level = await this.$content('levels', this.$route.params.level).fetch()
     this.lesson = await this.$content('lessons', this.$route.params.level, this.$route.params.lesson).fetch()
   },
@@ -43,7 +43,6 @@ export default {
     return {
       title: this.pageTitle,
       script: [
-        { hid: 'geogebra', src: 'https://www.geogebra.org/apps/deployggb.js' },
         { hid: 'funding-choices', src: '/js/funding_choices.js' }
       ],
       meta: [
@@ -58,15 +57,13 @@ export default {
       }
 
       let result = `${this.level.name} > ${this.lesson.title}`
-      if (this.isSummary()) {
+      if (this.isSummary) {
         result += ' > Fiche résumée'
       }
       return this.buildBrowserTitle(result)
-    }
-  },
-  methods: {
+    },
     isSummary () {
-      return this.$route.path.endsWith('/resume/')
+      return this.$route.path.endsWith('/resume/') || this.$route.path.endsWith('/resume')
     }
   }
   // TODO: Same here https://youtrack.jetbrains.com/issue/WEB-46175.

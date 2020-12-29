@@ -125,12 +125,12 @@ Nous allons donner quelques fonctions classiques avec leur limite en quelques po
 
 #### Limites de fonctions usuelles
 
-|  | $a = -\infty$ | $a = 0$ | $a = +\infty$ |
-| --- | --- | --- | --- |
-| $\lim_{x \rightarrow a} \frac{1}{x}$ | $0$ | $-\infty$ si $a = 0^-$, $+\infty$ si $a = 0^+$ | $0$ |
-| $\lim_{x \rightarrow a} \sqrt{x}$ | **Non définie** | $0$ si $a = 0^+$ | $+\infty$ |
-| $\lim_{x \rightarrow a} x^k$ | $-\infty$ si $k$ est impair, $+\infty$ si $k$ est pair | $0$ | $+\infty$ |
-| $\lim_{x \rightarrow a} e^x$ | $0$ | $e^0 = 1$ | $+\infty$ |
+|                                      | $a = -\infty$                                          | $a = 0$                                        | $a = +\infty$ |
+| ------------------------------------ | ------------------------------------------------------ | ---------------------------------------------- | ------------- |
+| $\lim_{x \rightarrow a} \frac{1}{x}$ | $0$                                                    | $-\infty$ si $a = 0^-$, $+\infty$ si $a = 0^+$ | $0$           |
+| $\lim_{x \rightarrow a} \sqrt{x}$    | **Non définie**                                        | $0$ si $a = 0^+$                               | $+\infty$     |
+| $\lim_{x \rightarrow a} x^k$         | $-\infty$ si $k$ est impair, $+\infty$ si $k$ est pair | $0$                                            | $+\infty$     |
+| $\lim_{x \rightarrow a} e^x$         | $0$                                                    | $e^0 = 1$                                      | $+\infty$     |
 
 </bubble>
 
@@ -146,8 +146,8 @@ là de retrouver l'autre.
 
 #### Limite d'une somme
 
-| Limite d'une somme                                                                                                                     |
-| -------------------------------------------------------------------------------------------------------------------------------------- |
+| Limite d'une somme                                        |                |           |           |           |           |           |
+| ----------------------------------------------------------|----------------|-----------|-----------|-----------|-----------|---------- |
 | Si la limite de $f(x)$ quand $x$ tend vers $a$ est...     | $\ell$         | $\ell$    | $\ell$    | $+\infty$ | $-\infty$ | $+\infty$ |
 | Et la limite de $g$ quand $x$ tend vers $a$ est...        | $\ell'$        | $+\infty$ | $-\infty$ | $+\infty$ | $-\infty$ | $-\infty$ |
 | Alors la limite de $f + g$ quand $x$ tend vers $a$ est... | $\ell + \ell'$ | $+\infty$ | $-\infty$ | $+\infty$ | $-\infty$ | **?**     |
@@ -158,8 +158,8 @@ là de retrouver l'autre.
 
 #### Limite d'un produit
 
-| Limite d'un produit                                                                                                                                                                                 |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Limite d'un produit                                            |                     |              |              |              |              |           |           |           |              |
+| ---------------------------------------------------------------|---------------------|--------------|--------------|--------------|--------------|-----------|-----------|-----------|------------- |
 | Si la limite de $f(x)$ quand $x$ tend vers $a$ est...          | $\ell$              | $\ell \gt 0$ | $\ell \gt 0$ | $\ell \lt 0$ | $\ell \lt 0$ | $+\infty$ | $+\infty$ | $-\infty$ | $0$          |
 | Et la limite de $g$ quand $x$ tend vers $a$ est...             | $\ell'$             | $+\infty$    | $-\infty$    | $+\infty$    | $-\infty$    | $+\infty$ | $-\infty$ | $-\infty$ | $\pm \infty$ |
 | Alors la limite de $f \times g$ quand $x$ tend vers $a$ est... | $\ell \times \ell'$ | $+\infty$    | $-\infty$    | $-\infty$    | $+\infty$    | $+\infty$ | $-\infty$ | $+\infty$ | **?**        |
@@ -170,8 +170,8 @@ là de retrouver l'autre.
 
 #### Limite d'un quotient
 
-| Limite d'un quotient                                                                                                                                                                                                        |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Limite d'un quotient                                            |                                     |               |               |               |               |               |              |              |       |
+| ----------------------------------------------------------------|-------------------------------------|---------------|---------------|---------------|---------------|---------------|--------------|--------------|------ |
 | Si la limite de $f(x)$ quand $x$ tend vers $a$ est...           | $\ell$                              | $\ell$        | $+\infty$     | $+\infty$     | $-\infty$     | $-\infty$     | $\pm \infty$ | $\ell$       | $0$   |
 | Et la limite de $g$ quand $x$ tend vers $a$ est...              | $\ell' \neq 0$                      | $\pm \infty$  | $\ell' \gt 0$ | $\ell' \lt 0$ | $\ell' \gt 0$ | $\ell' \lt 0$ | $\pm \infty$ | $0$          | $0$   |
 | Alors la limite de $\frac{f}{g}$ quand $x$ tend vers $a$ est... | $\displaystyle{\frac{\ell}{\ell'}}$ | $0$           | $+\infty$     | $-\infty$     | $-\infty$     | $+\infty$     | **?**        | $\pm \infty$ | **?** |

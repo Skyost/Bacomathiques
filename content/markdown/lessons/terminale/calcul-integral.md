@@ -2,8 +2,8 @@
 
 ### Qu'est-ce qu'une intégrale ?
 
-Dans un repère orthogonal $(O; \overrightarrow{i}; \overrightarrow{j})$, on prend un point $A = (1; 1)$ et on appelle **
-Unité d'Aire** (U.A.) l'aire du rectangle formé par les points $O$, $I$, $A$ et $J$.
+Dans un repère orthogonal $(O; \overrightarrow{i}; \overrightarrow{j})$, on prend un point $A = (1; 1)$ et on appelle
+**Unité d'Aire** (U.A.) l'aire du rectangle formé par les points $O$, $I$, $A$ et $J$.
 
 <representation geogebra-id="mxqfqsm5"></representation>
 

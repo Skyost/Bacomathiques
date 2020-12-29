@@ -1,5 +1,5 @@
 <template>
-  <span>
+  <li>
     <span v-if="lessonsToShow.length > 0" class="dropdown-header">
       <b-icon-pen-fill /> Cours de {{ level.name }}
     </span>
@@ -7,11 +7,11 @@
       v-for="lesson in lessonsToShow"
       :key="lesson.id"
       class="dropdown-item"
-      :class="{'current': getLessonURL(level, lesson) === $route.path}"
+      :class="{'current': (getLessonURL(level, lesson) === $route.path || getLessonURL(level, lesson) === ($route.path + '/'))}"
       :to="getLessonURL(level, lesson)"
       v-text="lesson.title"
     />
-  </span>
+  </li>
 </template>
 
 <script>
@@ -32,27 +32,27 @@ export default {
   },
   data () {
     return {
-      lessons: [],
-      lessonsToShow: []
+      lessons: []
     }
   },
   async fetch () {
     const lessons = await this.$content('lessons', this.level.id).sortBy('chapter').fetch()
     for (const lesson of lessons) {
-      lesson.searchTerms = `${lesson.title} (${this.level.name})`.toLowerCase().replace('é', 'e').replace('ô', 'o').replace('î', 'i')
+      lesson.searchTerms = this.normalize(`${lesson.title} (${this.level.name})`)
     }
     this.lessons = lessons
-    this.lessonsToShow = lessons
   },
-  watch: {
-    searchTerms (value) {
-      const searchTerms = value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036F]/g, '')
-      this.lessonsToShow = this.lessons.filter(lesson => lesson.searchTerms.includes(searchTerms))
+  computed: {
+    lessonsToShow () {
+      return this.lessons.filter(lesson => lesson.searchTerms.includes(this.searchTerms ?? ''))
     }
   },
   methods: {
     getLessonURL (level, lesson) {
       return `/cours/${level.id}/${lesson.id}/`
+    },
+    normalize (string) {
+      return string.normalize('NFD').replace(/[\u0300-\u036F]/g, '').toLowerCase()
     }
   }
 }

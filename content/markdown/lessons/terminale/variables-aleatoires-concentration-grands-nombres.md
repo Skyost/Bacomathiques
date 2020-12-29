@@ -174,8 +174,8 @@ $\mathcal{B}(p)$, et telles que $X = X_1 + X_2 + \dots + X_n$.
 #### Exemple
 
 Soit $X$ suivant une loi binomiale $\mathcal{B}\left(3; \frac{1}{6}\right)$. Alors par la propriété précédente, il
-existe $X_1$, $X_2$ et $X_3$, indépendantes et suivant une loi $\mathcal{B}\left(\frac{1}{6}\right)$ telles que $X = X_1
-+ X_2 + X_3$.
+existe $X_1$, $X_2$ et $X_3$, indépendantes et suivant une loi $\mathcal{B}\left(\frac{1}{6}\right)$ telles que
+$X = X_1 + X_2 + X_3$.
 
 </bubble>
 

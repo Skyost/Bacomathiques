@@ -7,15 +7,11 @@
         <p>Ce site web a été fait avec amour par <a href="https://www.skyost.eu">Hugo Delaunay</a> à l'aide de certaines technologies.</p>
         <p>
           Vous pouvez consulter tout ça et également me contacter sur la page
-          <nuxt-link to="/a-propos/">
-            À propos
-          </nuxt-link>.
+          <nuxt-link to="/a-propos/">À propos</nuxt-link>.
         </p>
         <p class="mb-0">
           Si vous aimez vraiment ce site web, n'hésitez pas à
-          <nuxt-link to="/a-propos/#licence-contributions">
-            y contribuer
-          </nuxt-link>.
+          <nuxt-link to="/a-propos/#licence-contributions">y contribuer</nuxt-link>.
         </p>
       </b-col>
       <b-col lg="4" md="6" class="mb-md-0 mb-5">
@@ -73,15 +69,25 @@
     <hr class="mt-5">
     <p class="mb-0 text-break">
       Copyright &copy; 2020 - {{ $store.state.siteName }}.
+      <br>Généré le {{ buildDate }} à {{ buildTime }}.
     </p>
   </footer>
 </template>
 
 <script>
 export default {
-  name: 'PageFooter'
+  name: 'PageFooter',
+  computed: {
+    buildDate () {
+      const date = new Date()
+      return [date.getDate(), date.getMonth() + 1, date.getFullYear()].map(n => n < 10 ? `0${n}` : `${n}`).join('/')
+    },
+    buildTime () {
+      const date = new Date()
+      return [date.getHours(), date.getMinutes(), date.getSeconds()].map(n => n < 10 ? `0${n}` : `${n}`).join(':')
+    }
+  }
 }
-// TODO: "Généré le {{ site.time | date: "%d/%m/%Y" }} à {{ site.time | date: "%H:%M:%S" }}"
 </script>
 
 <style lang="scss">

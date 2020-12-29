@@ -6,8 +6,8 @@
 
 #### Graphe pondéré
 
-Un graphe est dit **pondéré** si chacune de ses arêtes est affecté d'un nombre positif (ou nul) que l'on appelle **
-poids**.
+Un graphe est dit **pondéré** si chacune de ses arêtes est affecté d'un nombre positif (ou nul) que l'on appelle
+**poids**.
 
 Le poids d'une chaîne (ou d'un chemin) est la somme des poids de ses arêtes.
 
@@ -279,8 +279,8 @@ Enfin, donnons la définition centrale de cette section.
 
 #### Définition
 
-Soit $(X_n)$ une chaîne de Markov homogène dont on note $E = \{x_1, x_2, \dots, x_m\}$ l'espace des états. On appelle **
-suite des distributions** de $(X_n)$ la suite de matrices $(\pi_n)$, définie pour tout $n \in \mathbb{N}$ par
+Soit $(X_n)$ une chaîne de Markov homogène dont on note $E = \{x_1, x_2, \dots, x_m\}$ l'espace des états. On appelle
+**suite des distributions** de $(X_n)$ la suite de matrices $(\pi_n)$, définie pour tout $n \in \mathbb{N}$ par
 $\displaystyle{\pi_n = \begin{pmatrix} p(X_n = x_1) & p(X_n = x_2) & \dots & p(X_n = e_m) \end{pmatrix}}$.
 
 $\pi_n$ est donc une matrice ligne d'ordre $m$ et est appelée **distribution au temps $n$**.

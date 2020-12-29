@@ -6,7 +6,8 @@
       <image-header image="/img/search.svg">
         <h3>Résultat de la recherche</h3>
         <p class="mb-0">
-          Votre recherche <q v-text="keywords" /> a retourné <strong v-text="result.length" /> résultat(s).
+          Votre recherche <q v-text="keywords" />
+          a retourné <strong v-text="result.length" /> résultat(s).
         </p>
       </image-header>
     </page-header>
@@ -31,7 +32,8 @@
         </span>
 
         <p class="mb-0">
-          Ce résultat est connu sous le nom de <a href="https://fr.wikipedia.org/wiki/D%C3%A9veloppement_d%C3%A9cimal_de_l%27unit%C3%A9">Développement décimal de l'unité</a>.
+          Ce résultat est connu sous le nom de
+          <a href="https://fr.wikipedia.org/wiki/D%C3%A9veloppement_d%C3%A9cimal_de_l%27unit%C3%A9">Développement décimal de l'unité</a>.
         </p>
       </div>
     </page-content>
@@ -49,8 +51,8 @@ export default {
   components: { SocialHead, LessonCard, CardsRow, PageContent, ImageHeader, PageHeader },
   data () {
     return {
-      result: [],
-      keywords: null
+      keywords: '😉',
+      result: []
     }
   },
   head () {
@@ -59,19 +61,22 @@ export default {
     }
   },
   async mounted () {
-    this.keywords = this.$route.query.requete
-    let result = []
-    const levels = await this.$content('levels').fetch()
-    for (const level of levels) {
-      const lessons = await this.$content('lessons', level.id).search(this.$route.query.requete).fetch()
-      for (const lesson of lessons) {
-        lesson.name = `${lesson.name} (${level.name})`
+    if (Object.prototype.hasOwnProperty.call(this.$route.query, 'requete')) {
+      const keywords = this.$route.query.requete
+      let result = []
+      const levels = await this.$content('levels').fetch()
+      for (const level of levels) {
+        const lessons = await this.$content('lessons', level.id).search(keywords).fetch()
+        for (const lesson of lessons) {
+          lesson.name = `${lesson.name} (${level.name})`
+        }
+        result = [...result, ...lessons]
       }
-      result = [...result, ...lessons]
+      this.keywords = keywords
+      this.result = result
     }
-    this.result = result
 
-    if (result.length === 0) {
+    if (this.result.length === 0) {
       this.renderMathJax()
     }
   }
@@ -82,8 +87,8 @@ export default {
   path: /recherche/
 </router>
 
-<style lang="scss">
-  #page-content {
-    padding-bottom: 0 !important;
-  }
+<style lang="scss" scoped>
+#page-content {
+  padding-bottom: 0 !important;
+}
 </style>

@@ -19,10 +19,7 @@
     <p>
       Ce site utilise des services tiers tels que Google Analytics et Google AdSense.
       L'application utilise Google AdMob, il vous est donc possible de consulter
-      la
-      <nuxt-link to="/pdf/politique-de-confidentialite.pdf">
-        Politique de confidentialité
-      </nuxt-link>.
+      la <nuxt-link to="/pdf/politique-de-confidentialite.pdf">Politique de confidentialité</nuxt-link>.
     </p>
 
     <hr>

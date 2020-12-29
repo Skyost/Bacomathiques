@@ -18,10 +18,11 @@ export default {
     }
   },
   head () {
+    const description = this.description ?? this.metaDescription
     return {
       meta: [
-        { property: 'og:title', content: this.metaTitle },
-        { property: 'og:description', content: this.description ?? this.metaDescription },
+        ...(this.metaTitle ? [{ property: 'og:title', content: this.metaTitle }] : []),
+        ...(description ? [{ property: 'og:description', content: description }] : []),
         { property: 'og:type', content: 'website' },
         { property: 'og:site_name', content: this.$store.state.siteName },
         { property: 'og:url', content: this.getCurrentAddress() },
@@ -29,10 +30,10 @@ export default {
         { property: 'og:locale', content: 'fr_FR' },
 
         { name: 'twitter:card', content: 'summary' },
-        { name: 'twitter:title', content: this.metaTitle },
+        ...(this.metaTitle ? [{ name: 'twitter:title', content: this.metaTitle }] : []),
+        ...(description ? [{ name: 'twitter:description', content: description }] : []),
         { name: 'twitter:site', content: 'Skyost' },
         { name: 'twitter:creator', content: 'Skyost' },
-        { name: 'twitter:description', content: this.description ?? this.metaDescription },
         { name: 'twitter:url', content: this.getCurrentAddress() },
         { name: 'twitter:image', content: '/img/social.png' }
       ],

@@ -11,30 +11,36 @@
         v-html="entry.html"
       />
 
-      <transition v-if="entry.children.length > 0" name="slide">
-        <ul v-if="activeEntry.section === entry.section" class="children">
-          <li
-            v-for="child in entry.children"
-            :key="child.id"
-          >
-            <a
-              :href="`#${child.id}`"
-              class="entry child"
-              :class="{'active': child.id === activeEntry.id}"
-              v-html="child.html"
-            />
-          </li>
-        </ul>
-      </transition>
+      <slide-up-down
+        v-if="entry.children.length > 0"
+        :duration="300"
+        :active="activeEntry.section === entry.section"
+        tag="ul"
+        class="children"
+      >
+        <li
+          v-for="child in entry.children"
+          :key="child.id"
+        >
+          <a
+            :href="`#${child.id}`"
+            class="entry child"
+            :class="{'active': child.id === activeEntry.id}"
+            v-html="child.html"
+          />
+        </li>
+      </slide-up-down>
     </div>
   </nav>
 </template>
 
 <script>
+import SlideUpDown from 'vue-slide-up-down'
 import { ResizeObserver } from '@juggle/resize-observer'
 
 export default {
   name: 'LessonNavigation',
+  components: { SlideUpDown },
   props: {
     toc: {
       type: Array,
@@ -130,7 +136,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../assets/colors";
+@import "assets/colors";
 
 #page-lesson-navigation {
   background-color: white;
@@ -179,27 +185,5 @@ export default {
     margin-bottom: 0;
     list-style-type: none;
   }
-}
-
-.slide-enter-active {
-  transition-duration: 300ms;
-  transition-timing-function: ease-in-out;
-}
-
-.slide-leave-active {
-  transition-duration: 300ms;
-  transition-timing-function: ease-in-out;
-}
-
-.slide-enter-to,
-.slide-leave {
-  max-height: 100px;
-  overflow: hidden;
-}
-
-.slide-enter,
-.slide-leave-to {
-  overflow: hidden;
-  max-height: 0;
 }
 </style>

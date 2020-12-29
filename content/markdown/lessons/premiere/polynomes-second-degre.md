@@ -6,8 +6,8 @@
 
 #### Définition
 
-Soit $f$ une fonction. $f$ est une **fonction polynômiale du second degré** si elle est de la forme $f : x \mapsto ax^2
-+ bx + c$ avec $a \neq 0$, $b$ et $c$ réels qui sont les **coefficients** de $f$.
+Soit $f$ une fonction. $f$ est une **fonction polynômiale du second degré** si elle est de la forme
+$f : x \mapsto ax^2 + bx + c$ avec $a \neq 0$, $b$ et $c$ réels qui sont les **coefficients** de $f$.
 
 </bubble>
 

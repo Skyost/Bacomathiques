@@ -96,8 +96,8 @@ géométriques**. Ainsi :
 Soit $(v_n)$ une suite définie pour tout $n \in \mathbb{N}$ par $v_n = q^n$ (où $q$ est un nombre réel). Alors, on peut
 donner la limite de la suite $(v_n)$ en fonction de $q$ :
 
-| Limite d'une suite géométrique                                                                   |
-| ------------------------------------------------------------------------------------------------ |
+| Limite d'une suite géométrique          |                  |           |                         |
+| ----------------------------------------|------------------|-----------|------------------------ |
 | Si on a...                              | $-1 \lt q \lt 1$ | $1 \lt q$ | $q \leq -1$   | $q = 1$ |
 | Alors la suite $(v_n)$ a pour limite... | $0$              | $+\infty$ | Pas de limite | $1$     |
 
@@ -112,8 +112,8 @@ travailler sur les limites.
 
 #### Limite d'une somme
 
-| Limite d'une somme                                                                                                                                 |
-| -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Limite d'une somme                                                    |                |           |           |           |           |           |
+| ----------------------------------------------------------------------|----------------|-----------|-----------|-----------|-----------|---------- |
 | Si la limite de $(u_n)$ quand $n$ tend vers $+\infty$ est...          | $\ell$         | $\ell$    | $\ell$    | $+\infty$ | $-\infty$ | $+\infty$ |
 | Et la limite de $(v_n)$ quand $n$ tend vers $+\infty$ est...          | $\ell'$        | $+\infty$ | $-\infty$ | $+\infty$ | $-\infty$ | $-\infty$ |
 | Alors la limite de $(u_n + v_n)$ quand $n$ tend vers $+\infty$ est... | $\ell + \ell'$ | $+\infty$ | $-\infty$ | $+\infty$ | $-\infty$ | **?**     |
@@ -124,8 +124,8 @@ travailler sur les limites.
 
 #### Limite d'un produit
 
-| Limite d'un produit                                                                                                                                                                                             |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Limite d'un produit                                                        |                     |              |              |              |              |           |           |           |              |
+| ---------------------------------------------------------------------------|---------------------|--------------|--------------|--------------|--------------|-----------|-----------|-----------|------------- |
 | Si la limite de $(u_n)$ quand $n$ tend vers $+\infty$ est...               | $\ell$              | $\ell \gt 0$ | $\ell \gt 0$ | $\ell \lt 0$ | $\ell \lt 0$ | $+\infty$ | $+\infty$ | $-\infty$ | $0$          |
 | Et la limite de $(v_n)$ quand $n$ tend vers $+\infty$ est...               | $\ell'$             | $+\infty$    | $-\infty$    | $+\infty$    | $-\infty$    | $+\infty$ | $-\infty$ | $-\infty$ | $\pm \infty$ |
 | Alors la limite de $(u_n \times v_n)$ quand $n$ tend vers $+\infty$ est... | $\ell \times \ell'$ | $+\infty$    | $-\infty$    | $-\infty$    | $+\infty$    | $+\infty$ | $-\infty$ | $+\infty$ | **?**        |
@@ -136,8 +136,8 @@ travailler sur les limites.
 
 #### Limite d'un quotient
 
-| Limite d'un quotient                                                                                                                                                                                                                   |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Limite d'un quotient                                                        |                                     |              |               |               |               |               |              |              |       |
+| ----------------------------------------------------------------------------|-------------------------------------|--------------|---------------|---------------|---------------|---------------|--------------|--------------|------ |
 | Si la limite de $(u_n)$ quand $n$ tend vers $+\infty$ est...                | $\ell$                              | $\ell$       | $+\infty$     | $+\infty$     | $-\infty$     | $-\infty$     | $\pm \infty$ | $\ell$       | $0$   |
 | Et la limite de $(v_n)$ quand $n$ tend vers $+\infty$ est...                | $\ell' \neq 0$                      | $\pm \infty$ | $\ell' \gt 0$ | $\ell' \lt 0$ | $\ell' \gt 0$ | $\ell' \lt 0$ | $\pm \infty$ | $0^+_-$      | $0$   |
 | Alors la limite de $(\frac{u_n}{v_n})$ quand $n$ tend vers $+\infty$ est... | $\displaystyle{\frac{\ell}{\ell'}}$ | $0$          | $+\infty$     | $-\infty$     | $-\infty$     | $+\infty$     | **?**        | $\pm \infty$ | **?** |

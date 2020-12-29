@@ -283,8 +283,8 @@ Soient $\mathcal{P}_1$ et $\mathcal{P}_2$ deux plans de l'espace :
 
 #### Définition
 
-Soient $\mathcal{P}$ un plan de l'espace et $\mathcal{D}$ une droite de l'espace. On dit que $\mathcal{D}$ est **
-orthogonale** à $\mathcal{P}$ si $\mathcal{D}$ est orthogonale à toutes les droites de ce plan.
+Soient $\mathcal{P}$ un plan de l'espace et $\mathcal{D}$ une droite de l'espace. On dit que $\mathcal{D}$ est
+**orthogonale** à $\mathcal{P}$ si $\mathcal{D}$ est orthogonale à toutes les droites de ce plan.
 
 </bubble>
 

@@ -47,8 +47,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import "../assets/breakpoints";
+<style lang="scss" scoped>
+@import "assets/breakpoints";
 
 #page-header {
   padding-bottom: 70px;

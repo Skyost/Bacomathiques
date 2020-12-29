@@ -253,8 +253,8 @@ $150 = 1 \times 100 + 50 \iff 50 = 150 - 1 \times 100$
 
 Donc $50 = 1 \times 250 - 1 \times 100 - 1 \times 100 = 1 \times 250 - 2 \times 100$.
 
-On a par conséquent $u = 1$ et $v = -2$. L'algorithme que l'on vient d'utiliser pour trouver $u$ et $v$ s'appelle l'**
-algorithme d'Euclide étendu**.
+On a par conséquent $u = 1$ et $v = -2$. L'algorithme que l'on vient d'utiliser pour trouver $u$ et $v$ s'appelle
+l'**algorithme d'Euclide étendu**.
 
 </bubble>
 

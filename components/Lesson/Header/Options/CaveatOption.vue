@@ -9,10 +9,7 @@
       <p>Pour apporter une correction à un cours, vous avez deux solutions :</p>
       <ul>
         <li>
-          Vous pouvez
-          <nuxt-link to="/a-propos/#contact">
-            me contacter
-          </nuxt-link> en m'indiquant où se trouve la
+          Vous pouvez <nuxt-link to="/a-propos/#contact">me contacter</nuxt-link> en m'indiquant où se trouve la
           faute ou l'amélioration que vous souhaitez apporter.
         </li>
         <li>

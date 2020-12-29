@@ -40,8 +40,7 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
     '~/modules/generate-api-v2',
-    '~/modules/sitemap-dynamic-routes',
-    'nuxt-purgecss'
+    '~/modules/sitemap-dynamic-routes'
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -107,7 +106,9 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    extractCSS: true,
+    extractCSS: {
+      ignoreOrder: true
+    },
     babel: {
       compact: true,
       minified: true

@@ -360,8 +360,8 @@ L'intersection de trois plans de l'espace peut soit être **vide**, soit être *
 
 #### Définition
 
-Soient $\mathcal{P}$ un plan de l'espace et $\mathcal{D}$ une droite de l'espace. On dit que $\mathcal{D}$ est **
-orthogonale** à $\mathcal{P}$ si $\mathcal{D}$ est orthogonale à toutes les droites de ce plan.
+Soient $\mathcal{P}$ un plan de l'espace et $\mathcal{D}$ une droite de l'espace. On dit que $\mathcal{D}$ est
+**orthogonale** à $\mathcal{P}$ si $\mathcal{D}$ est orthogonale à toutes les droites de ce plan.
 
 </bubble>
 

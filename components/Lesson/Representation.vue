@@ -1,5 +1,5 @@
 <template>
-  <div :id="geogebraId" class="ml-auto mr-auto mb-3" />
+  <div :id="geogebraId" class="ml-auto mr-auto mb-3 mw-100" />
 </template>
 
 <script>
@@ -11,9 +11,29 @@ export default {
       required: true
     }
   },
-  async mounted () {
-    await this.$nextTick()
-    this.createGeoGebraInstance(this.geogebraId)
+  head () {
+    return {
+      script: [
+        {
+          hid: 'geogebra',
+          src: 'https://www.geogebra.org/apps/deployggb.js',
+          async: true
+        }
+      ]
+    }
+  },
+  mounted () {
+    if (document.readyState === 'complete') {
+      this.createGeoGebraInstance(this.geogebraId)
+    } else {
+      window.onload = this.makeDoubleDelegate(window.onload, () => this.createGeoGebraInstance(this.geogebraId))
+    }
+  },
+  destroyed () {
+    if (window[this.geogebraId]) {
+      window[this.geogebraId].remove()
+      window.onresize = null
+    }
   },
   methods: {
     createGeoGebraInstance (materialId) {
@@ -31,7 +51,7 @@ export default {
       }
 
       // eslint-disable-next-line no-undef
-      new GGBApplet({
+      new window.GGBApplet({
         id: materialId,
         material_id: materialId,
         height: 0.75 * width,
@@ -46,6 +66,16 @@ export default {
         enableShiftDragZoom: true,
         borderColor: 'rgba(0, 0, 0, 0.5)'
       }, true).inject(this.geogebraId)
+    },
+    makeDoubleDelegate (function1, function2) {
+      return function () {
+        if (function1) {
+          function1()
+        }
+        if (function2) {
+          function2()
+        }
+      }
     }
   }
 }

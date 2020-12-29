@@ -37,8 +37,7 @@ Soient $\overrightarrow{u}$, $\overrightarrow{v}$ et $\overrightarrow{w}$ des ve
 #### Calcul de la norme
 
 Soit $\overrightarrow{u} = \begin{pmatrix} {x} \\ {y} \end{pmatrix}$ un vecteur du plan : sa norme (notée
-$||\overrightarrow{u}||$) vaut $||\overrightarrow{u}|| = \sqrt{\overrightarrow{u} \cdot \overrightarrow{u}} = \sqrt{x^2
-+ y^2}$.
+$||\overrightarrow{u}||$) vaut $||\overrightarrow{u}|| = \sqrt{\overrightarrow{u} \cdot \overrightarrow{u}} = \sqrt{x^2 + y^2}$.
 
 </bubble>
 
@@ -119,8 +118,8 @@ où $x$ et $y$ sont des coordonnées de points.
 
 #### Définition
 
-Soient $\mathcal{D}$ une droite et $\overrightarrow{u}$ un vecteur du plan non nul. Alors $\overrightarrow{u}$ est un **
-vecteur directeur** de $\mathcal{D}$ s'il existe deux points $A$ et $B$ appartenant à $\mathcal{D}$ et tels que
+Soient $\mathcal{D}$ une droite et $\overrightarrow{u}$ un vecteur du plan non nul. Alors $\overrightarrow{u}$ est un
+**vecteur directeur** de $\mathcal{D}$ s'il existe deux points $A$ et $B$ appartenant à $\mathcal{D}$ et tels que
 $\overrightarrow{u} = \overrightarrow{AB}$.
 
 </bubble>
@@ -169,8 +168,8 @@ $\overrightarrow{v}$. Alors :
 
 #### Orthogonalité
 
-Si $\overrightarrow{u} \cdot \overrightarrow{v} = 0$ alors $\overrightarrow{u}$ et $\overrightarrow{v}$ sont dits **
-orthogonaux**.
+Si $\overrightarrow{u} \cdot \overrightarrow{v} = 0$ alors $\overrightarrow{u}$ et $\overrightarrow{v}$ sont dits
+**orthogonaux**.
 
 </bubble>
 

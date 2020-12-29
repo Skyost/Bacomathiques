@@ -32,8 +32,8 @@ nombre = 0 # On crée la variable "nombre" et on lui assigne la valeur 0. chaine
 
 Comme dit précédemment, les variables sont des espaces dans lequel il est possible de stocker des informations.
 
-Cependant, après avoir créé cet espace, celui-ci est encore vide. C'est pourquoi on doit le remplir : c'est **
-l'affectation d'une valeur à une variable**.
+Cependant, après avoir créé cet espace, celui-ci est encore vide. C'est pourquoi on doit le remplir : c'est
+**l'affectation d'une valeur à une variable**.
 
 Il existe plusieurs manières d'affecter une valeur à une variable : soit on lui donne directement sa valeur dans
 l'algorithme, soit on demande à l'utilisateur d'entrer une valeur (il faut garder à l'esprit que nos algorithmes sont

@@ -26,7 +26,7 @@ import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
-import CarouselItem from './Slide'
+import CarouselItem from './CarouselItem'
 
 export default {
   name: 'Carousel',

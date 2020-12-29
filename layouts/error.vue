@@ -10,22 +10,12 @@
 
       <p>
         Vous pouvez continuer votre navigation en allant sur <a href="javascript:history.back()">la page précédente</a>,
-        en allant sur
-        <nuxt-link to="/">
-          la page d'accueil
-        </nuxt-link>
-        ou accédant à
-        <nuxt-link to="/cours">
-          l'index des cours
-        </nuxt-link>.
+        en allant sur <nuxt-link to="/">la page d'accueil</nuxt-link> ou accédant à <nuxt-link to="/cours">l'index des cours</nuxt-link>.
       </p>
 
       <p v-if="error.statusCode === 404">
         Si quelque chose devait se trouver ici, n'hésitez pas à
-        <nuxt-link to="/a-propos/#contact">
-          me contacter
-        </nuxt-link>
-        pour me le signaler.
+        <nuxt-link to="/a-propos/#contact">me contacter</nuxt-link> pour me le signaler.
       </p>
 
       <span v-if="error.statusCode === 404" class="d-block mt-4">
