@@ -10,14 +10,14 @@ export default {
     title: 'Bacomathiques',
     meta: [
       { charset: 'utf-8' },
-      { hid: 'description', name: 'description', content: 'Bacomathiques est un petit site web qui contient tout ce dont vous avez besoin pour réviser vos maths en toute tranquillité de la Première à la Terminale ! Que vous cherchiez à passer votre BAC ou que vous souhaitiez simplement réviser votre cours ; tout est possible et tout est gratuit. Au programme : cours de mathématiques gratuits, téléchargeables et imprimables, annales et corrigés des sujets précédents, etc.' },
+      { hid: 'description', name: 'description', content: 'Bacomathiques est un petit site web qui contient tout ce dont vous avez besoin pour réviser vos maths en toute tranquillité de la Première à la Terminale ! Que vous cherchiez à passer votre Baccalauréat ou que vous souhaitiez simplement réviser votre cours ; tout est possible et tout est gratuit. Au programme : cours de mathématiques gratuits, téléchargeables et imprimables, annales et corrigés des sujets précédents, etc.' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'theme-color', content: '#2489cc' }
     ],
     link: [
       { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/futura-font@1.0.0/styles.min.css' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Handlee&display=swap' },
-      { rel: 'icon', type: 'image/png', href: '/img/favicon.png' }
+      { rel: 'icon', type: 'image/png', href: '/img/favicon.ico' }
     ]
   },
 
