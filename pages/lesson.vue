@@ -14,6 +14,11 @@
 
     <comment-section v-if="!isSummary" :lesson="lesson" />
   </div>
+  <div v-else>
+    <page-content class="pt-5">
+      <error-card :error-code="404" />
+    </page-content>
+  </div>
 </template>
 
 <script>
@@ -23,10 +28,12 @@ import CommentSection from '../components/Lesson/Comments/CommentSection'
 import SmartBanner from '../components/Lesson/SmartBanner/SmartBanner'
 import SocialHead from '../components/SocialHead'
 import LessonContent from '../components/Lesson/LessonContent'
+import ErrorCard from '../components/Cards/ErrorCard'
+import PageContent from '../components/PageContent'
 
 export default {
   name: 'Lesson',
-  components: { LessonContent, SocialHead, SmartBanner, CommentSection, LessonHeader, PageHeader },
+  components: { PageContent, ErrorCard, LessonContent, SocialHead, SmartBanner, CommentSection, LessonHeader, PageHeader },
   data () {
     return {
       lessonContent: null,
@@ -66,7 +73,6 @@ export default {
       return this.$route.path.endsWith('/resume/') || this.$route.path.endsWith('/resume')
     }
   }
-  // TODO: Same here https://youtrack.jetbrains.com/issue/WEB-46175.
 }
 </script>
 

@@ -9,8 +9,13 @@
       </image-header>
     </page-header>
 
-    <page-content>
+    <page-content class="pt-0">
       <lesson-list :level="level" />
+    </page-content>
+  </div>
+  <div v-else>
+    <page-content class="pt-5">
+      <error-card :error-code="404" />
     </page-content>
   </div>
 </template>
@@ -21,9 +26,10 @@ import PageContent from '../components/PageContent'
 import LessonList from '../components/List/LessonList'
 import PageHeader from '../components/PageHeader'
 import SocialHead from '../components/SocialHead'
+import ErrorCard from '../components/Cards/ErrorCard'
 export default {
   name: 'Lesson',
-  components: { SocialHead, PageHeader, LessonList, PageContent, ImageHeader },
+  components: { ErrorCard, SocialHead, PageHeader, LessonList, PageContent, ImageHeader },
   data () {
     return {
       title: null,
@@ -32,7 +38,7 @@ export default {
   },
   async fetch () {
     const level = await this.$content('levels', this.$route.params.level).fetch()
-    this.title = `Liste des cours de ${this.level.name}`
+    this.title = `Liste des cours de ${level.name}`
     this.level = level
   },
   head () {
@@ -40,13 +46,6 @@ export default {
       title: this.buildBrowserTitle(this.title ?? 'Liste des cours')
     }
   }
-  /*
-  TODO: Update this as soon as https://youtrack.jetbrains.com/issue/WEB-46175 gets fixed.
-  async asyncData ({ $content, params }) {
-    const level = await $content('levels', params.level).fetch()
-    return { level }
-  }
-  */
 }
 </script>
 
@@ -59,10 +58,6 @@ export default {
   @media (max-width: $mobile-width) {
     padding-bottom: 40px;
   }
-}
-
-#page-content {
-  padding-bottom: 0 !important;
 }
 </style>
 
