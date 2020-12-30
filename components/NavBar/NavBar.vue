@@ -15,25 +15,34 @@
       <b-col xl="4" class="d-xl-block d-none">
         <logo to="/" />
       </b-col>
-      <b-col lg="6" xl="4" class="d-lg-block d-none">
+      <b-col lg="6" xl="4" class="d-md-block d-none">
         <b-navbar-nav>
           <lesson-list-dropdown />
         </b-navbar-nav>
+      </b-col>
+      <b-col cols="12" class="d-md-none d-block">
+        <b-navbar-nav>
+          <nav-bar-item v-b-modal.modal-lesson-list>
+            <b-icon-tag-fill /> Accès direct à un cours
+          </nav-bar-item>
+        </b-navbar-nav>
+        <lesson-list-modal />
       </b-col>
     </b-collapse>
   </b-navbar>
 </template>
 
 <script>
-import { BIcon, BIconHouseDoorFill, BIconBookmarkFill, BIconPencilFill } from 'bootstrap-vue'
+import { BIcon, BIconHouseDoorFill, BIconBookmarkFill, BIconPencilFill, BIconTagFill } from 'bootstrap-vue'
 import Logo from '../Logo'
 import NavBarItem from './NavBarItem'
 import LessonListDropdown from './LessonListDropdown/LessonListDropdown'
+import LessonListModal from './LessonListModal'
 
 export default {
   name: 'NavBar',
   // eslint-disable-next-line vue/no-unused-components
-  components: { BIcon, BIconHouseDoorFill, BIconBookmarkFill, BIconPencilFill, LessonListDropdown, Logo, NavBarItem },
+  components: { LessonListModal, BIcon, BIconHouseDoorFill, BIconBookmarkFill, BIconPencilFill, BIconTagFill, LessonListDropdown, Logo, NavBarItem },
   data () {
     return {
       items: [

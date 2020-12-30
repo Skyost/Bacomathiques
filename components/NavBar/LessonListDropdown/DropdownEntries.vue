@@ -9,6 +9,7 @@
       class="dropdown-item"
       :class="{'current': (getLessonURL(level, lesson) === $route.path || getLessonURL(level, lesson) === ($route.path + '/'))}"
       :to="getLessonURL(level, lesson)"
+      @click.native="clickCallback(level, lesson)"
       v-text="lesson.title"
     />
   </li>
@@ -28,6 +29,10 @@ export default {
     searchTerms: {
       type: String,
       default: null
+    },
+    clickCallback: {
+      type: Function,
+      default: () => {}
     }
   },
   data () {
