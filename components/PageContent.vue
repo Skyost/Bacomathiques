@@ -21,7 +21,7 @@ export default {
   h3,
   h4,
   h5 {
-    font-family: 'Futura Md BT', serif;
+    font-family: 'FuturaBT-Medium', sans-serif;
   }
 
   h2 {

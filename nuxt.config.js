@@ -117,5 +117,9 @@ export default {
 
   generate: {
     fallback: true
+  },
+
+  loading: {
+    color: 'white'
   }
 }
