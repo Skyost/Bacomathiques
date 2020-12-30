@@ -40,7 +40,7 @@ export default {
         },
         {
           property: 'og:image',
-          content: '/img/social.png'
+          content: '/img/social/open-graph.png'
         },
         {
           property: 'og:locale',
@@ -61,11 +61,11 @@ export default {
         },
         {
           name: 'twitter:site',
-          content: 'Skyost'
+          content: '@Skyost'
         },
         {
           name: 'twitter:creator',
-          content: 'Skyost'
+          content: '@Skyost'
         },
         {
           name: 'twitter:url',
@@ -73,7 +73,7 @@ export default {
         },
         {
           name: 'twitter:image',
-          content: '/img/social.png'
+          content: '/img/social/twitter.png'
         }
       ],
       link: [

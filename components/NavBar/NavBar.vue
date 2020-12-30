@@ -15,7 +15,7 @@
       <b-col xl="4" class="d-xl-block d-none">
         <logo to="/" />
       </b-col>
-      <b-col cols="12" lg="6" xl="4">
+      <b-col lg="6" xl="4" class="d-lg-block d-none">
         <b-navbar-nav>
           <lesson-list-dropdown />
         </b-navbar-nav>
@@ -202,6 +202,11 @@ export default {
 
   @media (max-width: $large-width) {
     height: auto !important;
+  }
+
+  @media (max-width: $tablet-width) {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 

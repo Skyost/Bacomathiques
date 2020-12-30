@@ -1,7 +1,7 @@
 <template>
   <span :class="`lesson-info difficulties level-${difficulty}`" title="Difficulté du cours">
     <b-icon-pencil-fill v-for="i in 5" :key="i" :class="{'colored': i <= difficulty}" />
-    <span v-text="difficultyText" />
+    {{ difficultyText }}
   </span>
 </template>
 

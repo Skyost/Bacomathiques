@@ -21,7 +21,6 @@ import PageContent from '../components/PageContent'
 import LevelList from '../components/List/LevelList'
 import SocialHead from '../components/SocialHead'
 export default {
-  name: 'Levels',
   components: { SocialHead, LevelList, PageContent, Carousel, PageHeader },
   data () {
     return {

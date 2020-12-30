@@ -12,6 +12,13 @@ const remarkSlug = require('remark-slug')
 const remarkAutolinkHeadings = require('remark-autolink-headings')
 const remarkHtml = require('remark-html')
 
+const remarkProcessor = remark()
+  .use(remarkSqueezeParagraphs)
+  .use(remarkSlug)
+  .use(remarkAutolinkHeadings)
+  .use(remarkGfm)
+  .use(remarkHtml)
+
 const api = {
   version: 2,
   latestVersion: 2
@@ -190,13 +197,7 @@ function getLevelLessons (level) {
 
 function getHTML (srcDir, lesson, isSummary) {
   const lessonContent = resolve(srcDir, 'content', 'markdown', isSummary ? 'summaries' : 'lessons', lesson.level, `${lesson.id}.md`)
-  const file = remark()
-    .use(remarkSqueezeParagraphs)
-    .use(remarkSlug)
-    .use(remarkAutolinkHeadings)
-    .use(remarkGfm)
-    .use(remarkHtml)
-    .processSync(fs.readFileSync(lessonContent))
+  const file = remarkProcessor.processSync(fs.readFileSync(lessonContent))
   return formatHTML(lesson, file.toString())
 }
 

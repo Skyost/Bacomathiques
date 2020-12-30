@@ -4,7 +4,7 @@
       Page non trouvée !
     </h2>
     <h2 v-else>
-      Erreur <span v-text="errorCode" />
+      Erreur {{ errorCode }}
     </h2>
 
     <p>

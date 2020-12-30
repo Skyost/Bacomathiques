@@ -52,7 +52,7 @@
         class="col-store"
       >
         <a :href="$store.state.appStore">
-          <img src="/img/app_store.svg" alt="Disponible sur App Store">
+          <img src="/img/stores/app-store.svg" alt="Disponible sur App Store">
         </a>
       </b-col>
       <b-col
@@ -62,7 +62,7 @@
         class="col-store"
       >
         <a :href="$store.state.googlePlay">
-          <img src="/img/play_store.svg" alt="Disponible sur Google Play">
+          <img src="/img/stores/play-store.svg" alt="Disponible sur Google Play">
         </a>
       </b-col>
     </b-row>

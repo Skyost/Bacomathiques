@@ -1,5 +1,10 @@
 <template>
-  <div v-if="lesson">
+  <div v-if="$fetchState.pending">
+    <page-content class="pt-5">
+      <spring-spinner color="#43baa8" class="ml-auto mr-auto mt-5 mb-5" />
+    </page-content>
+  </div>
+  <div v-else-if="lesson">
     <social-head :title="pageTitle" :description="lesson.excerpt" />
 
     <smart-banner />
@@ -22,6 +27,7 @@
 </template>
 
 <script>
+import SpringSpinner from '../components/SpringSpinner'
 import PageHeader from '../components/PageHeader'
 import LessonHeader from '../components/Lesson/Header/LessonHeader'
 import CommentSection from '../components/Lesson/Comments/CommentSection'
@@ -32,8 +38,7 @@ import ErrorCard from '../components/Cards/ErrorCard'
 import PageContent from '../components/PageContent'
 
 export default {
-  name: 'Lesson',
-  components: { PageContent, ErrorCard, LessonContent, SocialHead, SmartBanner, CommentSection, LessonHeader, PageHeader },
+  components: { SpringSpinner, PageContent, ErrorCard, LessonContent, SocialHead, SmartBanner, CommentSection, LessonHeader, PageHeader },
   data () {
     return {
       lessonContent: null,

@@ -1,5 +1,10 @@
 <template>
-  <div v-if="level">
+  <div v-if="$fetchState.pending">
+    <page-content class="pt-5">
+      <spring-spinner color="#43baa8" class="ml-auto mr-auto mt-5 mb-5" />
+    </page-content>
+  </div>
+  <div v-else-if="level">
     <social-head :title="title" />
 
     <page-header>
@@ -21,15 +26,16 @@
 </template>
 
 <script>
+import SpringSpinner from '../components/SpringSpinner'
 import ImageHeader from '../components/ImageHeader'
 import PageContent from '../components/PageContent'
 import LessonList from '../components/List/LessonList'
 import PageHeader from '../components/PageHeader'
 import SocialHead from '../components/SocialHead'
 import ErrorCard from '../components/Cards/ErrorCard'
+
 export default {
-  name: 'Lesson',
-  components: { ErrorCard, SocialHead, PageHeader, LessonList, PageContent, ImageHeader },
+  components: { SpringSpinner, ErrorCard, SocialHead, PageHeader, LessonList, PageContent, ImageHeader },
   data () {
     return {
       title: null,

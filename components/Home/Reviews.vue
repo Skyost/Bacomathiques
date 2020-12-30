@@ -6,8 +6,7 @@
       </span>
       <q class="content" v-html="currentReview.message" />
       <span class="author">
-        <span v-text="currentReview.author" />,
-        le <span v-text="currentReview.date" /> sur
+        {{ currentReview.author }}, {{ currentReview.date }} sur
         <span v-if="currentReview.source === 0">
           <a :href="$store.state.googlePlay">Google Play</a>.
         </span>

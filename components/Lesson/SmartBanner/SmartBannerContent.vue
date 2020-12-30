@@ -10,7 +10,7 @@
       <div>
         <span class="info info-title" v-text="$store.state.siteName" />
         <span class="info info-author">Skyost</span>
-        <span class="info info-price">GRATUIT - <span v-text="storeName" /></span>
+        <span class="info info-price">GRATUIT - {{ storeName }}</span>
       </div>
     </b-col>
     <b-col cols="3" class="d-flex align-items-center">
