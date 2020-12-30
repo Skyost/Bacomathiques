@@ -208,6 +208,7 @@ function formatHTML (lesson, html) {
     .replace(/<bubble variant="proof">/g, '<div class="proof">')
     .replace(/<\/bubble>/g, '</div>')
     .replace(/<img src="\//g, '<img src="https://bacomathiqu.es/')
+    .replace(/<table>/g, '<table class="table table-bordered table-hover">')
   const representationPattern = /<representation geogebra-id="([A-Za-z0-9_-]*)"><\/representation>/
   const n = ((result || '').match(representationPattern) || []).length
   for (let i = 0; i < n; i++) {
