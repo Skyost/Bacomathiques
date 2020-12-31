@@ -197,17 +197,15 @@ function getLevelLessons (level) {
 
 function getHTML (srcDir, lesson, isSummary) {
   const lessonContent = resolve(srcDir, 'content', 'markdown', isSummary ? 'summaries' : 'lessons', lesson.level, `${lesson.id}.md`)
-  const markdown = fs
+  let markdown = fs
     .readFileSync(lessonContent)
     .toString()
-    .replace(/\\\\/g, '\\\\\\')
-    .replace(/\\{/g, '\\\\{')
-    .replace(/\\}/g, '\\\\}')
+  markdown = encodeLatex(markdown)
   return formatHTML(lesson, remarkProcessor.processSync(markdown).toString())
 }
 
 function formatHTML (lesson, html) {
-  let result = html
+  let result = decodeLatex(html)
     .replace(/<bubble variant="formula">/g, '<div class="formula">')
     .replace(/<bubble variant="tip">/g, '<div class="tip">')
     .replace(/<bubble variant="proof">/g, '<div class="proof">')
@@ -237,4 +235,25 @@ function getAvatarURL (author) {
     return 'https://www.skyost.eu/assets/img/skyost.png'
   }
   return `https://avatars.dicebear.com/api/bottts/${username}.svg`
+}
+
+function encodeLatex (input) {
+  return operationOnLatex(input, math => Buffer.from(math, 'binary').toString('base64'))
+}
+
+function decodeLatex (input) {
+  return operationOnLatex(input, math => Buffer.from(math, 'base64').toString('binary'))
+}
+
+function operationOnLatex (input, operation) {
+  let result = input
+  let dollarIndex = result.indexOf('$')
+  while (dollarIndex !== -1) {
+    const nextDollarIndex = result.indexOf('$', dollarIndex + 1)
+    const math = result.substring(dollarIndex + 1, nextDollarIndex)
+    const firstPart = result.substring(0, dollarIndex) + '$' + operation(math)
+    result = firstPart + result.substring(nextDollarIndex)
+    dollarIndex = result.indexOf('$', firstPart.length + 1)
+  }
+  return result
 }
