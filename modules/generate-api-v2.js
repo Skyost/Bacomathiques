@@ -197,8 +197,13 @@ function getLevelLessons (level) {
 
 function getHTML (srcDir, lesson, isSummary) {
   const lessonContent = resolve(srcDir, 'content', 'markdown', isSummary ? 'summaries' : 'lessons', lesson.level, `${lesson.id}.md`)
-  const file = remarkProcessor.processSync(fs.readFileSync(lessonContent))
-  return formatHTML(lesson, file.toString())
+  const markdown = fs
+    .readFileSync(lessonContent)
+    .toString()
+    .replace(/\\\\/g, '\\\\\\')
+    .replace(/\\{/g, '\\\\{')
+    .replace(/\\}/g, '\\\\}')
+  return formatHTML(lesson, remarkProcessor.processSync(markdown).toString())
 }
 
 function formatHTML (lesson, html) {
