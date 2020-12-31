@@ -41,7 +41,7 @@ void main() async {
       customParameters: {'platform': Platform.isAndroid ? 'Android' : 'iOS'},
     );
 
-    Catcher(main, releaseConfig: releaseConfig);
+    Catcher(rootWidget: main, releaseConfig: releaseConfig);
   }
 }
 

@@ -179,12 +179,6 @@ extension IntUtils on int {
   }
 }
 
-/// Contains some useful methods for strings.
-extension StringUtils on String {
-  /// Urlify this string.
-  String urlify() => trim().replaceAll(RegExp(r"'", caseSensitive: false), '').replaceAll(RegExp(r'[& +$,:;=?@"' r"#{}|^~[`%!'<>\]./()*\\\n\t\b\v\u00A0]"), '-').replaceAll(RegExp(r'-{2,}'), '-').replaceAll(RegExp(r'^-+|-+$', multiLine: true), '').toLowerCase();
-}
-
 /// Contains some useful methods for build context.
 extension BuildContextUtils on BuildContext {
   /// Resolves the theme from the specified context.

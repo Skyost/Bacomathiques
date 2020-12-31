@@ -47,7 +47,7 @@ class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
       context: context,
       appMessage: 'Nous souhaitons votre accord pour vous afficher des publicités personnalisées. Sachez que cette application et son contenu sont mis à disposition gratuitement pour les utilisateurs et que les publicités constituent les seuls revenus de cette application.',
       question: 'Pouvons-nous utiliser vos données pour vous afficher des publicités personnalisées ?',
-      privacyPolicyMessage: 'Vous pourrez changer votre choix dans le menu déroulant de l\'application. Sachez que des cookies seront stockés sur votre appareil. Consultez notre <a href="https://bacomathiqu.es/assets/pdf/politique-de-confidentialite.pdf">politique de confidentialité</a> pour plus d\'informations.',
+      privacyPolicyMessage: 'Vous pourrez changer votre choix dans le menu déroulant de l\'application. Sachez que des cookies seront stockés sur votre appareil. Consultez notre <a href="https://bacomathiqu.es/pdf/politique-de-confidentialite.pdf">politique de confidentialité</a> pour plus d\'informations.',
       personalizedAdsButton: 'Oui, je souhaite voir des annonces pertinentes'.toUpperCase(),
       nonPersonalizedAdsButton: 'Non, je souhaite voir des annonces moins pertinentes'.toUpperCase(),
     );
@@ -128,7 +128,6 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
   Widget createBody(BuildContext context) => AppHtmlWidget(
         data: parsedHtml,
         textStyle: Theme.of(context).textTheme.bodyText2.copyWith(fontSize: 16),
-        imagesDirectoryURL: result.lesson.imagesDirectoryURL,
       );
 
   @override
@@ -162,7 +161,6 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
     for (int i = 0; i < titles.length; i++) {
       dom.Element title = titles[i];
       title.innerHtml = formatter(i + 1, title.innerHtml);
-      title.id = title.text.urlify();
     }
   }
 

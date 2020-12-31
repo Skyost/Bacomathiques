@@ -17,15 +17,11 @@ class AppHtmlWidget extends StatelessWidget {
   /// Whether to build it async.
   final bool buildAsync;
 
-  /// The image path (allows to display remote pictures).
-  final String imagesDirectoryURL;
-
   /// Creates a new app HTML widget instance.
   const AppHtmlWidget({
     @required this.data,
     @required this.textStyle,
     this.buildAsync = true,
-    this.imagesDirectoryURL,
   });
 
   @override
@@ -46,10 +42,9 @@ class AppHtmlWidget extends StatelessWidget {
       return TitleWidget.fromElement(element: element);
     }
 
-    if (element.attributes.containsKey('data-api-v2-geogebra-id') && imagesDirectoryURL != null) {
+    if (element.attributes.containsKey('data-api-v2-geogebra-image') && element.attributes.containsKey('data-api-v2-geogebra-id')) {
       return RepresentationPreviewWidget(
-        imagesDirectoryURL: imagesDirectoryURL,
-        representationId: element.id,
+        imageURL: element.attributes['data-api-v2-geogebra-image'],
         geogebraId: element.attributes['data-api-v2-geogebra-id'],
       );
     }

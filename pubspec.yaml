@@ -22,8 +22,8 @@ dependencies:
   flutter_layout_grid: ^0.10.2
   google_fonts: ^1.1.1
   admob_flutter: ^1.0.1
-  catcher: ^0.3.23
-  flutter_math: ^0.2.0
+  catcher: ^0.4.0
+  flutter_math: ^0.2.1
   flutter_widget_from_html_core: ^0.5.1
   flutter:
     sdk: flutter

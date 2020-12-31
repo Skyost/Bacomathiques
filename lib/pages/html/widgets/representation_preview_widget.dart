@@ -5,19 +5,15 @@ import 'package:url_launcher/url_launcher.dart';
 
 /// Allows to preview representations.
 class RepresentationPreviewWidget extends StatelessWidget {
-  /// The image path.
-  final String imagesDirectoryURL;
-
-  /// The representation id.
-  final String representationId;
+  /// The image URL.
+  final String imageURL;
 
   /// The GeoGebra id.
   final String geogebraId;
 
   /// Creates a new representation preview instance.
   const RepresentationPreviewWidget({
-    @required this.imagesDirectoryURL,
-    @required this.representationId,
+    @required this.imageURL,
     @required this.geogebraId,
   });
 
@@ -47,7 +43,7 @@ class RepresentationPreviewWidget extends StatelessWidget {
             width: double.infinity,
             color: Colors.black.withAlpha(30),
             child: FadeInImage.memoryNetwork(
-              image: '$imagesDirectoryURL/$representationId.png',
+              image: imageURL,
               placeholder: kTransparentImage,
               fit: BoxFit.cover,
             ),
