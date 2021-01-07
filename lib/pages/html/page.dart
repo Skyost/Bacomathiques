@@ -189,9 +189,7 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
   void _formatLinks(dom.Document document) {
     List<dom.Element> links = document.getElementsByTagName('a');
     for (dom.Element link in links) {
-      if (link.attributes['data-api-v2-hash'] != null && (link.attributes['data-api-v2-level'] == null || link.attributes['data-api-v2-lesson'] == null)) {
-        link.attributes['data-target-lesson-endpoint'] = endpoint.path;
-      }
+      link.attributes['data-current-endpoint'] = endpoint.path;
     }
   }
 

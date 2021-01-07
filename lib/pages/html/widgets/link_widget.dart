@@ -1,3 +1,4 @@
+import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/content.dart';
 import 'package:bacomathiques/app/theme/bubble.dart';
 import 'package:bacomathiques/utils/utils.dart';
@@ -7,23 +8,17 @@ import 'package:url_launcher/url_launcher.dart';
 
 /// Allows to display a link.
 class LinkWidget extends StatelessWidget {
+  /// Allows to match URL parts.
+  static final RegExp urlParts = RegExp(API.BASE_URL + r'/cours/([A-Za-zÀ-ÖØ-öø-ÿ0-9\-\_]+)/([A-Za-zÀ-ÖØ-öø-ÿ0-9\-\_]+)/#([A-Za-zÀ-ÖØ-öø-ÿ0-9\-\_]+)');
+
   /// The text to display.
   final String text;
 
   /// The href.
   final String href;
 
-  /// The lesson level (if any).
-  final String level;
-
-  /// The lesson (if any).
-  final String lesson;
-
-  /// The hash (if any).
-  final String hash;
-
-  /// The target endpoint (if any).
-  final LessonContentEndpoint targetLessonEndpoint;
+  /// The current endpoint.
+  final String currentEndpoint;
 
   /// The parent bubble (if any).
   final Bubble bubble;
@@ -35,10 +30,7 @@ class LinkWidget extends StatelessWidget {
   const LinkWidget({
     @required this.text,
     @required this.href,
-    this.level,
-    this.lesson,
-    this.hash,
-    this.targetLessonEndpoint,
+    this.currentEndpoint,
     this.bubble,
     this.fontSize = 16,
   });
@@ -49,10 +41,7 @@ class LinkWidget extends StatelessWidget {
   }) : this(
           text: element.text,
           href: element.attributes['href'],
-          level: element.attributes['data-api-v2-level'],
-          lesson: element.attributes['data-api-v2-lesson'],
-          hash: element.attributes['data-api-v2-hash'],
-          targetLessonEndpoint: element.attributes.containsKey('data-target-lesson-endpoint') ? LessonContentEndpoint(path: element.attributes['data-target-lesson-endpoint']) : null,
+          currentEndpoint: element.attributes['data-current-endpoint'],
           bubble: BubbleUtils.getByClassName(element.attributes['data-parent-bubble']),
           fontSize: fontSize,
         );
@@ -63,16 +52,9 @@ class LinkWidget extends StatelessWidget {
 
     return GestureDetector(
       onTap: () async {
-        LessonContentEndpoint endpoint = targetLessonEndpoint;
-        if (endpoint == null && (level != null && lesson != null)) {
-          endpoint = LessonContentEndpoint.fromLevelAndLesson(
-            level: level,
-            lesson: lesson,
-          );
-        }
-
+        LessonContentEndpoint endpoint = _targetLessonEndpoint;
         if (endpoint != null) {
-          await Navigator.pushReplacementNamed(context, '/html', arguments: {'endpoint': endpoint, 'anchor': hash});
+          await Navigator.pushReplacementNamed(context, '/html', arguments: {'endpoint': endpoint, 'anchor': _targetLessonEndpointHash});
         } else if (await canLaunch(href)) {
           await launch(href);
         }
@@ -87,5 +69,36 @@ class LinkWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  /// Returns the target lesson endpoint.
+  LessonContentEndpoint get _targetLessonEndpoint {
+    if (href.startsWith('#')) {
+      return LessonContentEndpoint(path: currentEndpoint);
+    }
+
+    RegExpMatch firstMatch = urlParts.firstMatch(href);
+    if (firstMatch == null || firstMatch.groupCount < 2) {
+      return null;
+    }
+
+    return LessonContentEndpoint.fromLevelAndLesson(
+      level: firstMatch.group(0),
+      lesson: firstMatch.group(1),
+    );
+  }
+
+  /// Returns the target lesson endpoint hash.
+  String get _targetLessonEndpointHash {
+    if (href.startsWith('#')) {
+      return href.substring(1);
+    }
+
+    RegExpMatch firstMatch = urlParts.firstMatch(href);
+    if (firstMatch != null) {
+      return firstMatch.groupCount >= 3 ? firstMatch.group(2) : null;
+    }
+
+    return null;
   }
 }

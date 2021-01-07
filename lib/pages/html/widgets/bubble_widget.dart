@@ -1,5 +1,4 @@
 import 'package:bacomathiques/app/theme/bubble.dart';
-import 'package:bacomathiques/pages/html/widgets/title_widget.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:html/dom.dart' as dom;
@@ -8,9 +7,6 @@ import 'package:html/dom.dart' as dom;
 class BubbleWidget extends StatelessWidget {
   /// The bubble.
   final Bubble bubble;
-
-  /// The bubble title.
-  final String title;
 
   /// The bubble children.
   final List<Widget> children;
@@ -21,7 +17,6 @@ class BubbleWidget extends StatelessWidget {
   /// Creates a new bubble widget instance.
   const BubbleWidget({
     @required this.bubble,
-    @required this.title,
     @required this.children,
     @required this.inScrollableView,
   });
@@ -32,7 +27,6 @@ class BubbleWidget extends StatelessWidget {
     @required List<Widget> children,
   }) : this(
           bubble: BubbleUtils.of(element),
-          title: element.attributes['data-api-v2-title'],
           children: children,
           inScrollableView: element.getElementsByTagName('table').isNotEmpty,
         );
@@ -75,17 +69,7 @@ class BubbleWidget extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (title != null)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: TitleWidget.h4(
-                  html: title,
-                  colorGetter: (_) => theme.leftBorderColor,
-                ),
-              ),
-            ...children,
-          ],
+          children: children,
         ),
       );
 }
