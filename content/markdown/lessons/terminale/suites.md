@@ -65,7 +65,7 @@ u_n)$ à partir d'un certain rang. On note alors : $\lim_{n \rightarrow +\infty}
 
 <bubble variant="tip">
 
-Cette définition est un peu abstraite mais elle signifie simplement que $u_n$ se rapproche autant que l'on veut de $l$
+Cette définition est un peu abstraite mais elle signifie simplement que $u_n$ se rapproche autant que l'on veut de $\ell$
 pourvu que $n$ soit assez grand.
 
 </bubble>
