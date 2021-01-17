@@ -212,7 +212,7 @@ function formatHTML (lesson, html) {
     .replace(/<\/bubble>/g, '</div>')
     .replace(/<img src="\//g, '<img src="https://bacomathiqu.es/')
     .replace(/<table>/g, '<table class="table table-bordered table-hover">')
-  const representationPattern = /<representation geogebra-id="([A-Za-z0-9_-]*)"><\/representation>/
+  const representationPattern = /<representation geogebra-id="([A-Za-z0-9_-]*)"><\/representation>/g
   const n = ((result || '').match(representationPattern) || []).length
   for (let i = 0; i < n; i++) {
     result = result.replace(representationPattern, `<div id="representation-${i + 1}" class="plot" data-api-v2-geogebra-id="$1" data-api-v2-geogebra-image="https://bacomathiqu.es/img/lessons/${lesson.level}/${lesson.id}/$1.png"></div>`)
