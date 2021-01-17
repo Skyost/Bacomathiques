@@ -1,10 +1,12 @@
 import 'package:bacomathiques/app/theme/bubble.dart';
+import 'package:bacomathiques/app/theme/theme.dart';
+import 'package:bacomathiques/utils/expandable_widget.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:html/dom.dart' as dom;
 
 /// Allows to display a bubble (formula, tip, proof, ...).
-class BubbleWidget extends StatelessWidget {
+class BubbleWidget extends StatefulWidget {
   /// The bubble.
   final Bubble bubble;
 
@@ -32,34 +34,67 @@ class BubbleWidget extends StatelessWidget {
         );
 
   @override
+  State<StatefulWidget> createState() => _BubbleWidgetState();
+}
+
+/// The bubble widget state.
+class _BubbleWidgetState extends State<BubbleWidget> {
+  /// Whether to show the label.
+  bool showLabel = false;
+
+  @override
   Widget build(BuildContext context) {
-    BubbleTheme theme = context.resolveTheme().bubbleThemes[bubble];
-    Widget column = _createColumn(theme);
-    Widget bubbleWidget = Container(
-      decoration: BoxDecoration(
-        color: theme.backgroundColor,
-        border: Border(
-          left: BorderSide(
-            color: theme.leftBorderColor,
-            width: 8,
+    AppTheme theme = context.resolveTheme();
+    BubbleTheme bubbleTheme = theme.bubbleThemes[widget.bubble];
+    Widget column = _createColumn(bubbleTheme);
+    Widget bubbleWidget = GestureDetector(
+      onTap: () {
+        setState(() => showLabel = !showLabel);
+      },
+      child: Stack(
+        children: [
+          Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: bubbleTheme.backgroundColor,
+              border: Border(
+                left: BorderSide(
+                  color: bubbleTheme.leftBorderColor,
+                  width: 8,
+                ),
+              ),
+            ),
+            margin: const EdgeInsets.only(bottom: 16),
+            child: widget.inScrollableView
+                ? SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: column,
+                  )
+                : column,
           ),
-        ),
+          AnimatedOpacity(
+            opacity: showLabel ? 1 : 0,
+            duration: const Duration(milliseconds: 200),
+            child: Container(
+              child: Text(
+                widget.bubble.bubbleLabel.toUpperCase(),
+                style: const TextStyle(color: Colors.white, fontSize: 10),
+              ),
+              color: bubbleTheme.leftBorderColor,
+              padding: const EdgeInsets.only(left: 10, top: 2, right: 6, bottom: 2),
+            ),
+          ),
+        ],
       ),
-      margin: const EdgeInsets.only(bottom: 16),
-      child: inScrollableView
-          ? SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: column,
-            )
-          : column,
     );
 
-    if (!bubble.isExpandable) {
+    if (!widget.bubble.isExpandable) {
       return bubbleWidget;
     }
 
-    return _Expandable(
-      expandText: bubble.expandButton,
+    return Expandable(
+      expandText: widget.bubble.expandButton,
+      expandTextStyle: TextStyle(color: theme.accentColor),
       content: bubbleWidget,
     );
   }
@@ -69,60 +104,7 @@ class BubbleWidget extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: children,
+          children: widget.children,
         ),
       );
-}
-
-/// Allows to show an expandable widget.
-class _Expandable extends StatefulWidget {
-  /// The expand text.
-  final String expandText;
-
-  /// The expanded content.
-  final Widget content;
-
-  /// Creates a new expandable widget instance.
-  const _Expandable({
-    @required this.expandText,
-    @required this.content,
-  });
-
-  @override
-  State<StatefulWidget> createState() => _ExpandableState();
-}
-
-/// The expandable state.
-class _ExpandableState extends State<_Expandable> {
-  /// Whether this widget is expanded.
-  bool expanded = false;
-
-  @override
-  Widget build(BuildContext context) {
-    Widget expandButton = Container(
-      width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.only(bottom: 16),
-      child: InkWell(
-        onTap: () {
-          setState(() => expanded = !expanded);
-        },
-        child: Text(
-          (expanded ? '▼ ' : '▶ ') + widget.expandText,
-          textAlign: TextAlign.right,
-          style: TextStyle(color: context.resolveTheme().accentColor),
-        ),
-      ),
-    );
-
-    return expanded
-        ? Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              expandButton,
-              widget.content,
-            ],
-          )
-        : expandButton;
-  }
 }

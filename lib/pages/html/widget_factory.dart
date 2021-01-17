@@ -1,6 +1,9 @@
 import 'package:bacomathiques/app/theme/bubble.dart';
 import 'package:bacomathiques/pages/html/widgets/bubble_widget.dart';
+import 'package:bacomathiques/pages/html/widgets/link_widget.dart';
 import 'package:bacomathiques/pages/html/widgets/list_view_widget.dart';
+import 'package:bacomathiques/pages/html/widgets/math_widget.dart';
+import 'package:bacomathiques/pages/html/widgets/title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -13,6 +16,12 @@ class AppWidgetFactory extends WidgetFactory {
   /// The "scroll to this" global key.
   GlobalKey scrollToThisKey;
 
+  /// The a tag build op.
+  BuildOp a;
+
+  /// The math tag build op.
+  BuildOp math;
+
   /// The formula tag build op.
   BuildOp formula;
 
@@ -21,6 +30,9 @@ class AppWidgetFactory extends WidgetFactory {
 
   /// The proof tag build op.
   BuildOp proof;
+
+  /// The H4 tag build op.
+  BuildOp h4;
 
   /// The text style.
   final TextStyle textStyle;
@@ -39,18 +51,18 @@ class AppWidgetFactory extends WidgetFactory {
         onChild: scrollTarget == null || scrollToThisKey != null
             ? null
             : (meta) {
-                if (meta.element.id == scrollTarget) {
-                  scrollToThisKey = GlobalKey();
-                  meta.register(
-                    BuildOp(
-                      onWidgets: (meta, children) => [
-                        SizedBox.shrink(key: scrollToThisKey),
-                        ...children,
-                      ],
-                    ),
-                  );
-                }
-              },
+          if (meta.element.id == scrollTarget) {
+            scrollToThisKey = GlobalKey();
+            meta.register(
+              BuildOp(
+                onWidgets: (meta, children) => [
+                  SizedBox.shrink(key: scrollToThisKey),
+                  ...children,
+                ],
+              ),
+            );
+          }
+        },
         onWidgets: (meta, children) => [
           ListViewWidget(
             scrollToThisKey: scrollToThisKey,
@@ -59,6 +71,32 @@ class AppWidgetFactory extends WidgetFactory {
         ],
       );
       meta.register(lv);
+    } else if (meta.element.localName == 'a') {
+      a ??= BuildOp(
+        onTree: (meta, tree) => tree.replaceWith(
+          WidgetBit.inline(
+            tree,
+            LinkWidget.fromElement(
+              element: meta.element,
+              fontSize: textStyle.fontSize,
+            ),
+          ),
+        ),
+      );
+      meta.register(a);
+    } else if (meta.element.localName == 'math') {
+      math ??= BuildOp(
+        onTree: (meta, tree) => tree.replaceWith(
+          WidgetBit.inline(
+            tree,
+            MathWidget(
+              content: meta.element.text,
+              textStyle: textStyle,
+            ),
+          ),
+        ),
+      );
+      meta.register(math);
     } else if (meta.element.classes.contains(Bubble.FORMULA.className)) {
       formula ??= _createBubbleBuildOp(Bubble.FORMULA, meta);
       meta.register(formula);
@@ -68,6 +106,16 @@ class AppWidgetFactory extends WidgetFactory {
     } else if (meta.element.classes.contains(Bubble.PROOF.className)) {
       proof ??= _createBubbleBuildOp(Bubble.PROOF, meta);
       meta.register(proof);
+    } else if (meta.element.localName == 'h4') {
+      h4 ??= BuildOp(
+        onTree: (meta, tree) => tree.replaceWith(
+          WidgetBit.block(
+            tree,
+            TitleWidget.fromElement(element: meta.element)
+          ),
+        ),
+      );
+      meta.register(h4);
     }
   }
 
@@ -111,18 +159,18 @@ class AppWidgetFactory extends WidgetFactory {
 
   /// Creates a bubble build op.
   BuildOp _createBubbleBuildOp(Bubble bubble, BuildMetadata meta) => BuildOp(
-        onChild: (meta) {
-          if (meta.element.localName == 'h4' || meta.element.localName == 'a') {
-            meta.element.attributes['data-parent-bubble'] = bubble.className;
-          }
-        },
-        onWidgets: (meta, children) => [
-          BubbleWidget.fromElement(
-            element: meta.element,
-            children: children.toList(),
-          ),
-        ],
-      );
+    onChild: (meta) {
+      if (meta.element.localName == 'h4' || meta.element.localName == 'a') {
+        meta.element.attributes['data-parent-bubble'] = bubble.className;
+      }
+    },
+    onWidgets: (meta, children) => [
+      BubbleWidget.fromElement(
+        element: meta.element,
+        children: children.toList(),
+      ),
+    ],
+  );
 
   /// Builds a picture provider from the specified url.
   PictureProvider _imageSvgPictureProvider(String url) {

@@ -60,22 +60,15 @@ class TitleWidget extends StatelessWidget {
 
   /// Creates a new title widget from the specified element.
   factory TitleWidget.fromElement({
-    ColorGetter colorGetter,
     @required dom.Element element,
   }) {
     switch (element.localName) {
       case 'h3':
-        return TitleWidget.h3(
-          element: element,
-        );
+        return TitleWidget.h3(element: element);
       case 'h4':
-        return TitleWidget.h4(
-          element: element,
-        );
+        return TitleWidget.h4(element: element);
       default:
-        return TitleWidget.h2(
-          element: element,
-        );
+        return TitleWidget.h2(element: element);
     }
   }
 

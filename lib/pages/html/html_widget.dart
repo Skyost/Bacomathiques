@@ -1,6 +1,4 @@
 import 'package:bacomathiques/pages/html/widget_factory.dart';
-import 'package:bacomathiques/pages/html/widgets/link_widget.dart';
-import 'package:bacomathiques/pages/html/widgets/math_widget.dart';
 import 'package:bacomathiques/pages/html/widgets/representation_preview_widget.dart';
 import 'package:bacomathiques/pages/html/widgets/title_widget.dart';
 import 'package:bacomathiques/utils/utils.dart';
@@ -40,22 +38,8 @@ class AppHtmlWidget extends StatelessWidget {
 
   /// Builds the widget of an element.
   Widget buildCustomWidget(dom.Element element) {
-    if (element.localName == 'h2' || element.localName == 'h3' || element.localName == 'h4') {
+    if (element.localName == 'h2' || element.localName == 'h3') {
       return TitleWidget.fromElement(element: element);
-    }
-
-    if (element.localName == 'a') {
-      return LinkWidget.fromElement(
-        element: element,
-        fontSize: textStyle.fontSize,
-      );
-    }
-
-    if (element.localName == 'math') {
-      return MathWidget(
-        content: element.text,
-        textStyle: textStyle,
-      );
     }
 
     if (element.attributes.containsKey('data-api-v2-geogebra-image') && element.attributes.containsKey('data-api-v2-geogebra-id')) {
@@ -75,6 +59,12 @@ class AppHtmlWidget extends StatelessWidget {
     };
 
     switch (element.localName) {
+      case 'h4':
+        return {
+          'margin-top': '0',
+          'margin-bottom': '0',
+          ...style,
+        };
       case 'p':
         return {
           'margin-top': '0',
@@ -105,7 +95,7 @@ class AppHtmlWidget extends StatelessWidget {
         };
       case 'table':
         return {
-          'background-color': '#2E455C',
+          'background-color': 'white',
           ...style,
         };
       case 'img':

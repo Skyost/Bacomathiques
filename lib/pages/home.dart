@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context) => const Scaffold(
         body: CenteredCircularProgressIndicator(),
       );
 }

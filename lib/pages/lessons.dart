@@ -78,7 +78,10 @@ class _LessonsPageState extends RequestScaffold<LessonsPage, LessonList> {
               ),
             ),
             RaisedButton(
-              child: Text('Liste des classes'.toUpperCase()),
+              child: Text(
+                'Liste des classes'.toUpperCase(),
+                style: const TextStyle(color: Colors.white),
+              ),
               onPressed: () => Navigator.pushNamed(context, '/levels'),
             ),
             RaisedButton(

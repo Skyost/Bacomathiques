@@ -61,7 +61,6 @@ class Level {
   final String image;
 
   /// The "description" field.
-
   final String description;
 
   /// The "lessons" field.
@@ -168,6 +167,11 @@ abstract class APIEndpoint<T extends APIEndpointResult> {
 
   /// Gets the content from the specified url and saves it to the local storage.
   Future<String> _getContent({bool cache = true}) async {
+    String path = this.path;
+    if (!path.startsWith('/')) {
+      path = '/' + path;
+    }
+
     File file;
     String content;
 
@@ -291,32 +295,32 @@ abstract class APIEndpointResultHTML extends APIEndpointResult {
 
   /// Creates the action menus.
   List<ActionMenu> createActionMenus(BuildContext context) => [
-    ActionMenu(
-      icon: Icons.nightlight_round,
-      label: 'Thème de l\'application…',
-      callback: (context, endpointResult) => ThemeModeDialog.show(context),
-    ),
-    ActionMenu(
-      icon: Icons.subtitles,
-      label: 'Publicités…',
-      callback: (context, endpointResult) => AdsDialog.show(context),
-    ),
-    ActionMenu(
-      icon: Icons.thumb_up,
-      label: 'Noter l\'application',
-      callback: (context, endpointResult) => openURL(storePage),
-    ),
-    ActionMenu(
-      icon: Icons.sms_failed,
-      label: 'Signaler un bug',
-      callback: (context, endpointResult) => openURL('https://github.com/Skyost/Bacomathiques/issues/new?title=[Application]%20Rapport%20de%20bug'),
-    ),
-    ActionMenu(
-      icon: Icons.help,
-      label: 'À propos…',
-      callback: (context, endpointResult) => AboutDialog.show(context),
-    )
-  ];
+        ActionMenu(
+          icon: Icons.nightlight_round,
+          label: 'Thème de l\'application…',
+          callback: (context, endpointResult) => ThemeModeDialog.show(context),
+        ),
+        ActionMenu(
+          icon: Icons.subtitles,
+          label: 'Publicités…',
+          callback: (context, endpointResult) => AdsDialog.show(context),
+        ),
+        ActionMenu(
+          icon: Icons.thumb_up,
+          label: 'Noter l\'application',
+          callback: (context, endpointResult) => openURL(storePage),
+        ),
+        ActionMenu(
+          icon: Icons.sms_failed,
+          label: 'Signaler un bug',
+          callback: (context, endpointResult) => openURL('https://github.com/Skyost/Bacomathiques/issues/new?title=[Application]%20Rapport%20de%20bug'),
+        ),
+        ActionMenu(
+          icon: Icons.help,
+          label: 'À propos…',
+          callback: (context, endpointResult) => AboutDialog.show(context),
+        )
+      ];
 }
 
 /// An action menu with text, icon and callback.

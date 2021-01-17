@@ -2,6 +2,7 @@ name: bacomathiques
 description: Cours gratuits pour réviser les maths au lycée !
 version: 2.0.0+38
 homepage: https://bacomathiqu.es
+publish_to: none
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
@@ -11,20 +12,27 @@ dependencies:
   http: ^0.12.2
   mime: ^0.9.7
   url_launcher: ^5.4.11
-  flutter_svg: ^0.19.1
+  flutter_svg: ^0.20.0-nullsafety.3
   share: ^0.6.5
   rate_my_app: ^0.7.2
-  path_provider: ^1.6.24
+  path_provider: ^1.6.27
   shared_preferences: ^0.5.12
   pedantic: ^1.9.2
-  provider: ^4.3.2
+  provider: ^5.0.0-nullsafety.2
   day_night_switcher: ^0.1.1
-  flutter_layout_grid: ^0.10.2
+  flutter_layout_grid: ^0.11.0-nullsafety.1
   google_fonts: ^1.1.1
   admob_flutter: ^1.0.1
   catcher: ^0.4.0
-  flutter_math: ^0.2.1
-  flutter_widget_from_html_core: ^0.5.1
+  flutter_widget_from_html_core:
+    git:
+      url: https://github.com/daohoangson/flutter_widget_from_html
+      ref: tag/table/rewrite
+      path: packages/core
+  flutter_math:
+    git:
+      url: https://github.com/znjameswu/flutter_math
+      ref: master
   flutter:
     sdk: flutter
 

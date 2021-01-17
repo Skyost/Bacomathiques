@@ -133,18 +133,10 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
   @override
   set result(APIEndpointResultHTML result) {
     String html = result.html;
-    html = html.replaceAllMapped(RegExp(r'\$(.+?)\$'), (match) => '<math>${match.group(1)}</math>');
+    html = html.replaceAllMapped(RegExp(r'(\$+)(?:(?!\1)[\s\S])*\1'), (match) => '<math>${_removeTrailingAndLeadingDollars(match.group(0))}</math>');
 
     dom.Document document = parser.parse(html);
-    _formatTitles(document, 'h2');
-
-    List<dom.Element> sections = document.querySelectorAll('section');
-    for (dom.Element section in sections) {
-      if (section.parent.localName == 'body') {
-        _formatTitles(section, 'h3');
-      }
-    }
-
+    _formatTitles(document);
     _removeBottomMarginOfLastElements(document);
     _formatBubbles(document);
     _formatLinks(document);
@@ -155,12 +147,22 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
   }
 
   /// Formats the titles specified by the tag name.
-  void _formatTitles(dynamic parent, String tagName) {
-    String Function(int, String) formatter = tagName == 'h2' ? (index, input) => '${index.romanize()} – $input' : (index, input) => '$index. $input';
-    List<dom.Element> titles = parent.getElementsByTagName('$tagName');
-    for (int i = 0; i < titles.length; i++) {
-      dom.Element title = titles[i];
-      title.innerHtml = formatter(i + 1, title.innerHtml);
+  void _formatTitles(dom.Document document) {
+    List<dom.Element> titles = document.getElementsByTagName('h2, h3');
+    int h2Index = 0;
+    int h3Index = 0;
+    for (dom.Element title in titles) {
+      switch (title.localName) {
+        case 'h2':
+          h3Index = 0;
+          title.innerHtml = '${(++h2Index).romanize()} – ${title.innerHtml}';
+          break;
+        case 'h3':
+          title.innerHtml = '${++h3Index}. ${title.innerHtml}';
+          break;
+        default:
+          continue;
+      }
     }
   }
 
@@ -203,6 +205,18 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
     if (!lastChild.classes.contains('mb-0')) {
       lastChild.classes.add('mb-0');
     }
+  }
+
+  /// Removes trailing and leading dollars of a string.
+  String _removeTrailingAndLeadingDollars(String input) {
+    if (input.startsWith('\$')) {
+      return _removeTrailingAndLeadingDollars(input.substring(1));
+    }
+    if (input.endsWith('\$')) {
+      return _removeTrailingAndLeadingDollars(input.substring(0, input.length - 1));
+    }
+
+    return input;
   }
 }
 
