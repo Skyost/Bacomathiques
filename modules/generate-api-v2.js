@@ -45,7 +45,7 @@ module.exports = function () {
       for (const file of files) {
         const lesson = yaml.parse(fs.readFileSync(resolve(lessonsDirectory, file)).toString())
         lesson.html = getHTML(srcDir, lesson)
-        lesson.summary = getHTML(srcDir, lesson)
+        lesson.summary = getHTML(srcDir, lesson, true)
         lesson.comments = []
         lesson.e3c = []
         lessons.push(lesson)
