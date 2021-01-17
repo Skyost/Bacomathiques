@@ -34,7 +34,7 @@ module.exports = function () {
     let files = fs.readdirSync(levelsDirectory)
     for (const file of files) {
       const level = yaml.parse(fs.readFileSync(resolve(levelsDirectory, file)).toString())
-      level.lessons = `api/v2/${level.id}/`
+      level.lessons = `/api/v2/${level.id}/`
       levels.push(level)
     }
     levels.sort((a, b) => a.order - b.order)
