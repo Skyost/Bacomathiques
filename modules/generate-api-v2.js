@@ -143,7 +143,7 @@ function lessonContentEndpoint (lesson) {
     api,
     lesson: getLessonInfo(lesson),
     difficulty: lesson.difficulty,
-    pdf: `pdf/cours/${lesson.level}/${lesson.id}/${lesson.pdf}.pdf`,
+    pdf: lesson.pdf,
     html: lesson.html,
     annals: [],
     e3c: lesson.e3c
