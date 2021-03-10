@@ -95,7 +95,7 @@ bool isTablet(Size screenSize) {
 /// A centered circular progress indicator.
 class CenteredCircularProgressIndicator extends StatelessWidget {
   /// The message to show.
-  final String message;
+  final String? message;
 
   /// Creates a new centered circular progress indicator instance.
   const CenteredCircularProgressIndicator({
@@ -119,7 +119,7 @@ class CenteredCircularProgressIndicator extends StatelessWidget {
                   child: progressIndicator,
                 ),
                 Text(
-                  message,
+                  message!,
                   style: const TextStyle(fontStyle: FontStyle.italic),
                   textAlign: TextAlign.center,
                 )
@@ -132,7 +132,7 @@ class CenteredCircularProgressIndicator extends StatelessWidget {
 /// Contains some useful methods for doubles.
 extension DoubleUtils on double {
   /// Does a linear interpolation of two doubles, this one and another.
-  double lerp(double other, double t) {
+  double lerp(double? other, double t) {
     other ??= 0.0;
     return this + (other - this) * t;
   }

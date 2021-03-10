@@ -6,11 +6,11 @@ class MessageDialog extends StatelessWidget {
   final String message;
 
   /// Action to run when the ok button has been pressed.
-  final VoidCallback okButtonPressed;
+  final VoidCallback? okButtonPressed;
 
   /// Creates a new message dialog instance.
-  MessageDialog({
-    @required this.message,
+  const MessageDialog({
+    required this.message,
     this.okButtonPressed,
   });
 
@@ -18,16 +18,15 @@ class MessageDialog extends StatelessWidget {
   Widget build(BuildContext context) => AlertDialog(
     content: Text(message),
     actions: [
-      FlatButton(
-        child: Text('Ok'.toUpperCase()),
+      TextButton(
         onPressed: okButtonPressed ?? () => Navigator.pop(context),
-        textTheme: ButtonTextTheme.accent,
+        child: Text('Ok'.toUpperCase()),
       ),
     ],
   );
 
   /// Shows the dialog.
-  static Future<void> show(BuildContext context, {@required String message, VoidCallback okButtonPressed, VoidCallback onCancelled}) async {
+  static Future<void> show(BuildContext context, {required String message, VoidCallback? okButtonPressed, VoidCallback? onCancelled}) async {
     await showDialog(
       context: context,
       builder: (context) => MessageDialog(message: message, okButtonPressed: okButtonPressed),

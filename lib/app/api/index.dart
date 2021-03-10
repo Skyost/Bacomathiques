@@ -23,8 +23,8 @@ class APIIndex extends APIEndpointResult {
 
   /// Creates a new API index instance.
   const APIIndex({
-    @required this.api,
-    @required this.levels,
+    required this.api,
+    required this.levels,
   });
 
   /// Creates a new API index instance from a parsed JSON string.

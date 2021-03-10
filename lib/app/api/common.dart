@@ -34,8 +34,8 @@ class APIStatus {
 
   /// Creates a new API status instance.
   const APIStatus({
-    @required this.version,
-    @required this.latestVersion,
+    required this.version,
+    required this.latestVersion,
   });
 
   /// Creates a new API status instance from a parsed JSON string.
@@ -68,11 +68,11 @@ class Level {
 
   /// Creates a new level instance.
   const Level({
-    @required this.id,
-    @required this.name,
-    @required this.image,
-    @required this.description,
-    @required this.lessons,
+    required this.id,
+    required this.name,
+    required this.image,
+    required this.description,
+    required this.lessons,
   });
 
   /// Creates a new level instance from a parsed JSON string.
@@ -116,14 +116,14 @@ class Lesson {
 
   /// Creates a new lesson instance.
   const Lesson({
-    @required this.id,
-    @required this.level,
-    @required this.title,
-    @required this.chapter,
-    @required this.specialty,
-    @required this.content,
-    @required this.comments,
-    @required this.summary,
+    required this.id,
+    required this.level,
+    required this.title,
+    required this.chapter,
+    required this.specialty,
+    required this.content,
+    required this.comments,
+    required this.summary,
   });
 
   /// Creates a new lesson instance from a parsed JSON string.
@@ -153,27 +153,27 @@ abstract class APIEndpoint<T extends APIEndpointResult> {
 
   /// Creates a new API endpoint instance.
   const APIEndpoint({
-    @required this.path,
+    required this.path,
   });
 
   /// Creates the result object from a parsed JSON string.
   T createObjectFromJSON(Map<String, dynamic> parsedJSON);
 
   /// Requests the endpoint.
-  Future<T> request({bool cache = true}) async {
-    String content = await _getContent(cache: cache);
+  Future<T?> request({bool cache = true}) async {
+    String? content = await _getContent(cache: cache);
     return content == null ? null : createObjectFromJSON(json.decode(content));
   }
 
   /// Gets the content from the specified url and saves it to the local storage.
-  Future<String> _getContent({bool cache = true}) async {
+  Future<String?> _getContent({bool cache = true}) async {
     String path = this.path;
     if (!path.startsWith('/')) {
       path = '/' + path;
     }
 
-    File file;
-    String content;
+    File? file;
+    String? content;
 
     if (cache) {
       Directory libDirectory = await getApplicationDocumentsDirectory();
@@ -185,7 +185,7 @@ abstract class APIEndpoint<T extends APIEndpointResult> {
     }
 
     try {
-      content = await http.read(API.BASE_URL + path);
+      content = await http.read(Uri.parse(API.BASE_URL + path));
       if (file != null) {
         if (!file.existsSync()) {
           file.createSync(recursive: true);
@@ -241,7 +241,7 @@ abstract class APIEndpointResult {
       );
 
   @protected
-  List<Widget> createActions(BuildContext context) => null;
+  List<Widget>? createActions(BuildContext context) => null;
 }
 
 /// An API endpoint result with a HTML body.
@@ -332,13 +332,13 @@ class ActionMenu {
   final String label;
 
   /// The callback.
-  final Function(BuildContext, APIEndpointResultHTML) callback;
+  final Function(BuildContext, APIEndpointResultHTML?) callback;
 
   /// Creates a new action menu.
   const ActionMenu({
-    this.icon,
-    this.label,
-    this.callback,
+    required this.icon,
+    required this.label,
+    required this.callback,
   });
 
   /// Creates and returns the widget corresponding to this action menu.

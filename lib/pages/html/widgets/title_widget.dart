@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:html/dom.dart' as dom;
 
 /// Allows to get the color according to the specified app theme.
-typedef ColorGetter = Color Function(AppTheme theme, dom.Element element);
+typedef ColorGetter = Color? Function(AppTheme theme, dom.Element element);
 
 /// Allows to display a title.
 class TitleWidget extends StatelessWidget {
@@ -17,23 +17,23 @@ class TitleWidget extends StatelessWidget {
   final double fontSize;
 
   /// Returns the color of this title according to the provided theme.
-  final ColorGetter getColor;
+  final ColorGetter? getColor;
 
   /// Returns the border bottom color of this title according to the provided theme.
-  final ColorGetter getBorderBottomColor;
+  final ColorGetter? getBorderBottomColor;
 
   /// The DOM element.
   final dom.Element element;
 
   /// The container padding.
-  final EdgeInsets padding;
+  final EdgeInsets? padding;
 
   /// The container margin.
   final EdgeInsets margin;
 
   /// Creates a new headline 2 formatted title.
   TitleWidget.h2({
-    @required this.element,
+    required this.element,
   })  : fontSize = 2.4 * _BASE_SIZE,
         getColor = _getH2Color,
         getBorderBottomColor = _getH2BorderBottomColor,
@@ -42,7 +42,7 @@ class TitleWidget extends StatelessWidget {
 
   /// Creates a new headline 3 formatted title.
   TitleWidget.h3({
-    @required this.element,
+    required this.element,
   })  : fontSize = 1.75 * _BASE_SIZE,
         getColor = _getH3Color,
         getBorderBottomColor = null,
@@ -51,7 +51,7 @@ class TitleWidget extends StatelessWidget {
 
   /// Creates a new headline 4 formatted title.
   TitleWidget.h4({
-    @required this.element,
+    required this.element,
   })  : fontSize = 1.25 * _BASE_SIZE,
         getColor = _getH4Color,
         getBorderBottomColor = null,
@@ -60,7 +60,7 @@ class TitleWidget extends StatelessWidget {
 
   /// Creates a new title widget from the specified element.
   factory TitleWidget.fromElement({
-    @required dom.Element element,
+    required dom.Element element,
   }) {
     switch (element.localName) {
       case 'h3':
@@ -78,7 +78,7 @@ class TitleWidget extends StatelessWidget {
     TextStyle textStyle = TextStyle(
       fontFamily: 'FuturaBT',
       fontSize: fontSize,
-      color: (getColor == null ? theme.textColor : getColor(theme, element)) ?? theme.textColor,
+      color: (getColor == null ? theme.textColor : getColor!(theme, element)) ?? theme.textColor,
     );
 
     Widget child = RegExp(r'<\/?[a-z][\s\S]*>', caseSensitive: false).hasMatch(element.innerHtml)
@@ -92,8 +92,7 @@ class TitleWidget extends StatelessWidget {
             style: textStyle,
           );
 
-    Color borderBottomColor = getBorderBottomColor == null ? null : getBorderBottomColor(theme, element);
-
+    Color? borderBottomColor = getBorderBottomColor == null ? null : getBorderBottomColor!(theme, element);
     return Container(
       decoration: borderBottomColor == null
           ? null
@@ -111,17 +110,17 @@ class TitleWidget extends StatelessWidget {
   }
 
   /// Returns the color of the headline 2 according to the specified theme.
-  static Color _getH2Color(AppTheme theme, dom.Element element) => theme.h2Color;
+  static Color? _getH2Color(AppTheme theme, dom.Element element) => theme.h2Color;
 
   /// Returns the border bottom color of the headline 2 according to the specified theme.
-  static Color _getH2BorderBottomColor(AppTheme theme, dom.Element element) => theme.hrColor;
+  static Color? _getH2BorderBottomColor(AppTheme theme, dom.Element element) => theme.hrColor;
 
   /// Returns the color of the headline 3 according to the specified theme.
-  static Color _getH3Color(AppTheme theme, dom.Element element) => theme.h3Color;
+  static Color? _getH3Color(AppTheme theme, dom.Element element) => theme.h3Color;
 
   /// Returns the color of the headline 4 according to the specified theme.
-  static Color _getH4Color(AppTheme theme, dom.Element element) {
+  static Color? _getH4Color(AppTheme theme, dom.Element element) {
     Bubble bubble = BubbleUtils.getByClassName(element.attributes['data-parent-bubble']);
-    return theme.bubbleThemes[bubble].leftBorderColor;
+    return theme.bubbleThemes[bubble]?.leftBorderColor;
   }
 }

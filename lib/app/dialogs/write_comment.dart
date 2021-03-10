@@ -15,7 +15,7 @@ class WriteCommentDialog extends StatelessWidget {
 
   /// Creates a new write comment dialog instance.
   WriteCommentDialog({
-    @required this.comments,
+    required this.comments,
   }) : _controller = TextEditingController();
 
   @override
@@ -26,8 +26,8 @@ class WriteCommentDialog extends StatelessWidget {
       Wrap(
         alignment: WrapAlignment.end,
         crossAxisAlignment: WrapCrossAlignment.end,
-        children: createActionsWidgets(context),
         direction: Axis.vertical,
+        children: createActionsWidgets(context),
       ),
     ],
   );
@@ -47,7 +47,7 @@ class WriteCommentDialog extends StatelessWidget {
 
   /// Creates a new dialog actions widgets.
   List<Widget> createActionsWidgets(BuildContext context) => [
-    FlatButton(
+    TextButton(
       onPressed: () async {
         if (_controller.text.isEmpty) {
           await MessageDialog.show(context, message: 'Veuillez entrer un commentaire.');
@@ -115,17 +115,15 @@ class WriteCommentDialog extends StatelessWidget {
         );
       },
       child: Text('Envoyer'.toUpperCase()),
-      textTheme: ButtonTextTheme.accent,
     ),
-    FlatButton(
+    TextButton(
       onPressed: () => Navigator.pop(context),
       child: Text('Fermer'.toUpperCase()),
-      textTheme: ButtonTextTheme.accent,
     ),
   ];
 
   /// Shows the dialog.
-  static void show(BuildContext context, {@required LessonComments comments}) => showDialog(
+  static void show(BuildContext context, {required LessonComments comments}) => showDialog(
     context: context,
     builder: (context) => WriteCommentDialog(comments: comments),
   );

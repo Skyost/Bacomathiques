@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 /// Allows to put the content in a list view.
 class ListViewWidget extends StatefulWidget {
   /// The list view will automatically scroll to the element with this key.
-  final GlobalKey scrollToThisKey;
+  final GlobalKey? scrollToThisKey;
 
   /// The children.
   final List<Widget> children;
@@ -11,7 +11,7 @@ class ListViewWidget extends StatefulWidget {
   /// Creates a new list view widget.
   const ListViewWidget({
     this.scrollToThisKey,
-    @required this.children,
+    required this.children,
   });
 
   @override
@@ -21,7 +21,7 @@ class ListViewWidget extends StatefulWidget {
 /// The list view widget state.
 class _ListViewWidgetState extends State<ListViewWidget> {
   /// The scroll controller.
-  ScrollController scrollController;
+  late ScrollController scrollController;
 
   @override
   void initState() {
@@ -29,8 +29,11 @@ class _ListViewWidgetState extends State<ListViewWidget> {
 
     scrollController = ScrollController();
     if (widget.scrollToThisKey != null) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        scrollController.position.ensureVisible(widget.scrollToThisKey.currentContext.findRenderObject());
+      WidgetsBinding.instance?.addPostFrameCallback((_) {
+        RenderObject? renderObject = widget.scrollToThisKey?.currentContext?.findRenderObject();
+        if (renderObject != null) {
+          scrollController.position.ensureVisible(renderObject);
+        }
       });
     }
   }

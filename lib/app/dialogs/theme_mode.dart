@@ -15,8 +15,8 @@ class ThemeModeDialog extends StatelessWidget {
         Wrap(
           alignment: WrapAlignment.end,
           crossAxisAlignment: WrapCrossAlignment.end,
-          children: createActionsWidgets(context, Provider.of<SettingsModel>(context)),
           direction: Axis.vertical,
+          children: createActionsWidgets(context, Provider.of<SettingsModel>(context)),
         ),
       ],
     );
@@ -37,7 +37,7 @@ class ThemeModeDialog extends StatelessWidget {
               children: [
                 Checkbox(
                   value: settings.themeMode == ThemeMode.system,
-                  onChanged: (value) => toggleSystemChoice(context, settings, value),
+                  onChanged: (value) => toggleSystemChoice(context, settings, value!),
                 ),
                 const Text('Laisser le système décider'),
               ],
@@ -53,15 +53,14 @@ class ThemeModeDialog extends StatelessWidget {
 
   /// Creates a new dialog actions widgets.
   List<Widget> createActionsWidgets(BuildContext context, SettingsModel settingsModel) => [
-        FlatButton(
+        TextButton(
           onPressed: () => Navigator.pop(context),
           child: Text('Fermer'.toUpperCase()),
-          textTheme: ButtonTextTheme.accent,
         ),
       ];
 
   /// Toggles the system theme choice.
-  void toggleSystemChoice(BuildContext context, SettingsModel settings, [bool value]) {
+  void toggleSystemChoice(BuildContext context, SettingsModel settings, [bool? value]) {
     if (settings.themeMode == ThemeMode.system) {
       settings.themeMode = MediaQuery.platformBrightnessOf(context) == Brightness.light ? ThemeMode.light : ThemeMode.dark;
     } else {

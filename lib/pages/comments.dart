@@ -13,7 +13,7 @@ class CommentsPage extends StatefulWidget {
 
   /// Creates a new comments screen instance.
   const CommentsPage({
-    @required this.endpoint,
+    required this.endpoint,
   });
 
   @override
@@ -24,7 +24,7 @@ class CommentsPage extends StatefulWidget {
 class _CommentsPageState extends RequestScaffold<CommentsPage, LessonComments> {
   /// Creates a new home screen state instance.
   _CommentsPageState({
-    @required APIEndpoint<LessonComments> endpoint,
+    required APIEndpoint<LessonComments> endpoint,
   }) : super(
           endpoint: endpoint,
           failMessage: 'Impossible de charger les commentaires de ce cours.',
@@ -32,7 +32,7 @@ class _CommentsPageState extends RequestScaffold<CommentsPage, LessonComments> {
         );
 
   @override
-  Widget createBody(BuildContext context) {
+  Widget createBody(BuildContext context, LessonComments result) {
     if (result.list.isEmpty) {
       return const Padding(
         padding: EdgeInsets.symmetric(horizontal: 15),
@@ -62,7 +62,7 @@ class _CommentWidget extends StatelessWidget {
 
   /// Creates a new comment widget instance.
   const _CommentWidget({
-    @required this.comment,
+    required this.comment,
   });
 
   @override
@@ -156,8 +156,8 @@ class _AvatarWidget extends StatelessWidget {
 
   /// Creates a new avatar widget instance.
   const _AvatarWidget({
-    @required this.url,
-    @required this.primaryColor,
+    required this.url,
+    required this.primaryColor,
   });
 
   @override

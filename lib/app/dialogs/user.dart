@@ -12,7 +12,7 @@ class UserDialog extends StatelessWidget {
 
   /// Creates a new user dialog instance.
   UserDialog({
-    @required this.comments,
+    required this.comments,
   }) : _controller = TextEditingController(text: comments.username);
 
   @override
@@ -23,8 +23,8 @@ class UserDialog extends StatelessWidget {
       Wrap(
         alignment: WrapAlignment.end,
         crossAxisAlignment: WrapCrossAlignment.end,
-        children: createActionsWidgets(context),
         direction: Axis.vertical,
+        children: createActionsWidgets(context),
       )
     ],
   );
@@ -43,23 +43,21 @@ class UserDialog extends StatelessWidget {
 
   /// Creates a new dialog actions widgets.
   List<Widget> createActionsWidgets(BuildContext context) => [
-    FlatButton(
+    TextButton(
       onPressed: () {
         comments.username = _controller.text;
         Navigator.pop(context);
       },
       child: Text('Valider'.toUpperCase()),
-      textTheme: ButtonTextTheme.accent,
     ),
-    FlatButton(
+    TextButton(
       onPressed: () => Navigator.pop(context),
       child: Text('Annuler'.toUpperCase()),
-      textTheme: ButtonTextTheme.accent,
     ),
   ];
 
   /// Shows the dialog.
-  static void show(BuildContext context, {@required LessonComments comments}) => showDialog(
+  static void show(BuildContext context, {required LessonComments comments}) => showDialog(
     context: context,
     builder: (context) => UserDialog(comments: comments),
   );

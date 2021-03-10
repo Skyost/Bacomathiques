@@ -18,7 +18,7 @@ class LevelsPage extends StatefulWidget {
 class _LevelsPageState extends RequestScaffold<LevelsPage, APIIndex> {
   /// Creates a new levels page state instance.
   _LevelsPageState({
-    @required APIIndexEndpoint endpoint,
+    required APIIndexEndpoint endpoint,
   }) : super(
           endpoint: endpoint,
           failMessage: 'Impossible de récupérer la liste des classes.',
@@ -26,7 +26,7 @@ class _LevelsPageState extends RequestScaffold<LevelsPage, APIIndex> {
         );
 
   @override
-  Widget createBody(BuildContext context) {
+  Widget createBody(BuildContext context, APIIndex result) {
     AppTheme theme = context.resolveTheme();
     return ListView.builder(
       padding: const EdgeInsets.all(20),
@@ -53,15 +53,15 @@ class _LevelsPageState extends RequestScaffold<LevelsPage, APIIndex> {
                 textAlign: TextAlign.center,
               ),
             ),
-            RaisedButton(
-              child: Text(
-                'Réessayer'.toUpperCase(),
-                style: const TextStyle(color: Colors.white),
-              ),
+            ElevatedButton(
               onPressed: () {
                 loading = true;
                 triggerRequest();
               },
+              child: Text(
+                'Réessayer'.toUpperCase(),
+                style: const TextStyle(color: Colors.white),
+              ),
             ),
           ],
         ),
@@ -78,8 +78,8 @@ class _LevelWidget extends StatelessWidget {
 
   /// Creates a new level widget instance.
   const _LevelWidget({
-    @required this.color,
-    @required this.level,
+    required this.color,
+    required this.level,
   });
 
   @override

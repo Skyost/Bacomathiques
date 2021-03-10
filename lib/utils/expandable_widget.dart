@@ -13,9 +13,9 @@ class Expandable extends StatefulWidget {
 
   /// Creates a new expandable widget instance.
   const Expandable({
-    @required this.expandText,
-    this.expandTextStyle,
-    @required this.content,
+    required this.expandText,
+    required this.expandTextStyle,
+    required this.content,
   });
 
   @override
@@ -44,7 +44,7 @@ class _ExpandableState extends State<Expandable> {
               child: CustomPaint(
                 size: Size.square((widget.expandTextStyle.fontSize ?? 14) - 4),
                 painter: _CaretPainter(
-                  color: widget.expandTextStyle.color,
+                  color: widget.expandTextStyle.color!,
                   expanded: expanded,
                 ),
               ),
@@ -82,8 +82,8 @@ class _CaretPainter extends CustomPainter {
 
   /// Creates a new caret painter instance.
   const _CaretPainter({
-    this.color,
-    this.expanded,
+    required this.color,
+    required this.expanded,
   });
 
   @override

@@ -12,7 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LessonCommentsEndpoint extends APIEndpoint<LessonComments> {
   /// Creates a new lesson comments endpoint instance.
   const LessonCommentsEndpoint({
-    @required String path,
+    required String path,
   }) : super(
           path: path,
         );
@@ -40,13 +40,13 @@ class LessonComments extends APIEndpointResult {
 
   /// Creates a new lesson comments instance.
   LessonComments({
-    @required this.api,
-    @required this.lesson,
-    @required this.post,
-    @required this.list,
+    required this.api,
+    required this.lesson,
+    required this.post,
+    required this.list,
   }) {
     SharedPreferences.getInstance().then((preferences) {
-      String username = preferences.getString('comments.username');
+      String? username = preferences.getString('comments.username');
       if (username != null && username.isNotEmpty) {
         _username = username;
       }
@@ -90,7 +90,7 @@ class LessonComments extends APIEndpointResult {
         body[field.postKey] = field.value;
       }
 
-      http.Response response = await http.post(post.url, body: body);
+      http.Response response = await http.post(Uri.parse(post.url), body: body);
       Map<String, dynamic> data = json.decode(response.body);
       return data['success'] ?? false;
     } catch (ignored) {
@@ -120,8 +120,8 @@ class LessonCommentsPostData {
 
   /// Creates a new lesson comments post data instance.
   const LessonCommentsPostData({
-    @required this.url,
-    @required this.fields,
+    required this.url,
+    required this.fields,
   });
 
   /// Creates a new lesson comments post data instance from a parsed JSON string.
@@ -142,8 +142,8 @@ class LessonCommentsPostDataField {
 
   /// Creates a new lesson comments post data field instance.
   const LessonCommentsPostDataField({
-    @required this.name,
-    @required this.type,
+    required this.name,
+    required this.type,
   });
 
   /// Creates a new lesson comments post data field instance from a JSON string.
@@ -164,8 +164,8 @@ class LessonCommentsPostDataFieldValue extends LessonCommentsPostDataField {
 
   /// Creates a new lesson comments post data field value instance.
   LessonCommentsPostDataFieldValue({
-    @required LessonCommentsPostDataField field,
-    @required this.value,
+    required LessonCommentsPostDataField field,
+    required this.value,
   }) : super(
           name: field.name,
           type: field.type,
@@ -188,10 +188,10 @@ class LessonComment {
 
   /// Creates a new lesson comment instance.
   const LessonComment({
-    @required this.id,
-    @required this.author,
-    @required this.date,
-    @required this.message,
+    required this.id,
+    required this.author,
+    required this.date,
+    required this.message,
   });
 
   /// Creates a new lesson comment instance from a parsed JSON string.
@@ -217,9 +217,9 @@ class LessonCommentAuthor {
 
   /// Creates a new lesson comment author instance.
   const LessonCommentAuthor({
-    @required this.name,
-    @required this.avatar,
-    @required this.isModerator,
+    required this.name,
+    required this.avatar,
+    required this.isModerator,
   });
 
   /// Creates a new lesson comment author instance from a parsed JSON string.

@@ -58,5 +58,12 @@
 	<false/>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>Nous utiliserons votre IDFA pour vous délivrer du contenu personnalisé. Cela vous permettra de soutenir le développement de cette application.</string>
+    <key>SKAdNetworkItems</key>
+    <array>
+        <dict>
+            <key>SKAdNetworkIdentifier</key>
+            <string>cstr6suwn9.skadnetwork</string>
+        </dict>
+    </array>
 </dict>
 </plist>

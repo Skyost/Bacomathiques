@@ -18,7 +18,7 @@ class LessonsPage extends StatefulWidget {
 
   /// Creates a new lessons page instance.
   LessonsPage({
-    @required this.endpoint,
+    required this.endpoint,
   });
 
   @override
@@ -29,14 +29,12 @@ class LessonsPage extends StatefulWidget {
 class _LessonsPageState extends RequestScaffold<LessonsPage, LessonList> {
   /// Creates a new home screen state instance.
   _LessonsPageState({
-    @required APIEndpoint<LessonList> endpoint,
+    required APIEndpoint<LessonList> endpoint,
   }) : super(
           endpoint: endpoint,
           failMessage: 'Impossible de charger la liste des cours et aucune sauvegarde n\'est disponible.',
           failDialogOptions: const FailDialogOptions(show: false),
-        ) {
-    successCallback = showMessageIfOutdated;
-  }
+        );
 
   @override
   void initState() {
@@ -45,8 +43,8 @@ class _LessonsPageState extends RequestScaffold<LessonsPage, LessonList> {
     RateMyApp rateMyApp = RateMyApp(appStoreIdentifier: '1458503418');
     rateMyApp.init().then((_) {
       if (rateMyApp.shouldOpenDialog) {
-        WidgetsBinding.instance.addPostFrameCallback(
-          (duration) => rateMyApp.showRateDialog(
+        WidgetsBinding.instance?.addPostFrameCallback(
+          (_) => rateMyApp.showRateDialog(
             context,
             title: 'Noter l\'application',
             message: 'Si vous aimez cette application, n\'hésitez pas à prendre un peu de votre temps pour la noter !\nCe serait d\'une grande aide et cela ne devrait pas vous prendre plus d\'une minute.',
@@ -61,7 +59,7 @@ class _LessonsPageState extends RequestScaffold<LessonsPage, LessonList> {
   }
 
   @override
-  Widget createBody(BuildContext context) => _PreviewsList(items: result.list);
+  Widget createBody(BuildContext context, LessonList result) => _PreviewsList(items: result.list);
 
   @override
   Widget createNoObjectBody(BuildContext context) => Padding(
@@ -77,29 +75,30 @@ class _LessonsPageState extends RequestScaffold<LessonsPage, LessonList> {
                 textAlign: TextAlign.center,
               ),
             ),
-            RaisedButton(
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, '/levels'),
               child: Text(
                 'Liste des classes'.toUpperCase(),
                 style: const TextStyle(color: Colors.white),
               ),
-              onPressed: () => Navigator.pushNamed(context, '/levels'),
             ),
-            RaisedButton(
-              child: Text(
-                'Réessayer'.toUpperCase(),
-                style: const TextStyle(color: Colors.white),
-              ),
+            ElevatedButton(
               onPressed: () {
                 loading = true;
                 triggerRequest();
               },
+              child: Text(
+                'Réessayer'.toUpperCase(),
+                style: const TextStyle(color: Colors.white),
+              ),
             ),
           ],
         ),
       );
 
   /// Shows a message if the API is outdated.
-  void showMessageIfOutdated() {
+  @override
+  void onSuccess(LessonList result) {
     if (result.api.isUpToDate) {
       return;
     }
@@ -111,7 +110,7 @@ class _LessonsPageState extends RequestScaffold<LessonsPage, LessonList> {
       }
 
       preferences.setBool('preferences.api-warn-v' + result.api.version.toString(), true);
-      WidgetsBinding.instance.scheduleFrameCallback((duration) {
+      WidgetsBinding.instance?.scheduleFrameCallback((duration) {
         MessageDialog.show(context, message: 'Une mise à jour de l\'application est disponible. Vous pouvez dès maintenant aller la télécharger.');
       });
     });
@@ -125,7 +124,7 @@ class _PreviewsList extends StatelessWidget {
 
   /// Creates a new previews list widget instance.
   const _PreviewsList({
-    @required this.items,
+    required this.items,
   });
 
   @override
@@ -137,11 +136,11 @@ class _PreviewsList extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: LayoutGrid(
           gridFit: GridFit.passthrough,
-          templateColumnSizes: [
+          columnSizes: [
             for (int i = 0; i < columnCount; i++) //
               const FlexibleTrackSize(1),
           ],
-          templateRowSizes: [
+          rowSizes: [
             for (int i = 0; i < rowCount; i++) //
               const IntrinsicContentTrackSize(),
           ],
@@ -188,7 +187,7 @@ class _PreviewWidget extends StatelessWidget {
 
   /// Creates a new preview widget instance.
   _PreviewWidget({
-    @required this.item,
+    required this.item,
     this.tablet = false,
   });
 
@@ -267,11 +266,12 @@ class _PreviewWidget extends StatelessWidget {
   /// Creates the lesson button.
   Widget _createLessonButton(BuildContext context, AppTheme theme) => Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-        child: FlatButton(
-          color: theme.blueButtonColor,
-          child: Text(
-            'Lire le cours'.toUpperCase(),
-            style: const TextStyle(fontSize: 14, color: Colors.white),
+        child: TextButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(theme.blueButtonColor),
+            overlayColor: MaterialStateProperty.all(Colors.white12),
+            shape: MaterialStateProperty.all(const RoundedRectangleBorder()),
+            padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 5)),
           ),
           onPressed: () => Navigator.pushNamed(
             context,
@@ -280,18 +280,22 @@ class _PreviewWidget extends StatelessWidget {
               'endpoint': item.lesson.content,
             },
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: Text(
+            'Lire le cours'.toUpperCase(),
+            style: const TextStyle(fontSize: 14, color: Colors.white),
+          ),
         ),
       );
 
   /// Creates the summary button.
   Widget _createSummaryButton(BuildContext context, AppTheme theme) => Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-        child: FlatButton(
-          color: theme.greenButtonColor,
-          child: Text(
-            'Lire le résumé'.toUpperCase(),
-            style: const TextStyle(fontSize: 14, color: Colors.white),
+        child: TextButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(theme.greenButtonColor),
+            overlayColor: MaterialStateProperty.all(Colors.white12),
+            shape: MaterialStateProperty.all(const RoundedRectangleBorder()),
+            padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 5)),
           ),
           onPressed: () => Navigator.pushNamed(
             context,
@@ -300,7 +304,10 @@ class _PreviewWidget extends StatelessWidget {
               'endpoint': item.lesson.summary,
             },
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: Text(
+            'Lire le résumé'.toUpperCase(),
+            style: const TextStyle(fontSize: 14, color: Colors.white),
+          ),
         ),
       );
 }

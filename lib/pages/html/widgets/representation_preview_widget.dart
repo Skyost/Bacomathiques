@@ -13,8 +13,8 @@ class RepresentationPreviewWidget extends StatelessWidget {
 
   /// Creates a new representation preview instance.
   const RepresentationPreviewWidget({
-    @required this.imageURL,
-    @required this.geogebraId,
+    required this.imageURL,
+    required this.geogebraId,
   });
 
   @override
@@ -25,18 +25,19 @@ class RepresentationPreviewWidget extends StatelessWidget {
             alignment: Alignment.center,
             decoration: BoxDecoration(color: Colors.black.withAlpha(175)),
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: OutlineButton(
-              child: const Text('Voir sur GeoGebra.org'),
-              textColor: Colors.white,
-              borderSide: const BorderSide(color: Colors.white),
-              splashColor: Colors.white24,
-              highlightedBorderColor: Colors.white,
+            child: OutlinedButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(Colors.white),
+                overlayColor: MaterialStateProperty.all(Colors.white24),
+                side: MaterialStateProperty.all(const BorderSide(color: Colors.white)),
+              ),
               onPressed: () async {
                 String url = 'https://www.geogebra.org/m/$geogebraId';
                 if (await canLaunch(url)) {
                   await launch(url);
                 }
               },
+              child: const Text('Voir sur GeoGebra.org'),
             ),
           ),
           under: Container(

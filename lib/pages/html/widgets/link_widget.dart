@@ -21,38 +21,37 @@ class LinkWidget extends StatelessWidget {
   final String currentEndpoint;
 
   /// The parent bubble (if any).
-  final Bubble bubble;
+  final Bubble? bubble;
 
   /// The text size.
   final double fontSize;
 
   /// Creates a new link widget.
   const LinkWidget({
-    @required this.text,
-    @required this.href,
-    this.currentEndpoint,
+    required this.text,
+    required this.href,
+    required this.currentEndpoint,
     this.bubble,
     this.fontSize = 16,
   });
 
   LinkWidget.fromElement({
-    @required dom.Element element,
+    required dom.Element element,
     double fontSize = 16,
   }) : this(
           text: element.text,
-          href: element.attributes['href'],
-          currentEndpoint: element.attributes['data-current-endpoint'],
+          href: element.attributes['href']!,
+          currentEndpoint: element.attributes['data-current-endpoint']!,
           bubble: BubbleUtils.getByClassName(element.attributes['data-parent-bubble']),
           fontSize: fontSize,
         );
 
   @override
   Widget build(BuildContext context) {
-    BubbleTheme bubbleTheme = context.resolveTheme().bubbleThemes[bubble ?? Bubble.FORMULA];
-
+    BubbleTheme bubbleTheme = context.resolveTheme().bubbleThemes[bubble ?? Bubble.FORMULA]!;
     return GestureDetector(
       onTap: () async {
-        LessonContentEndpoint endpoint = _targetLessonEndpoint;
+        LessonContentEndpoint? endpoint = _targetLessonEndpoint;
         if (endpoint != null) {
           await Navigator.pushReplacementNamed(context, '/html', arguments: {'endpoint': endpoint, 'anchor': _targetLessonEndpointHash});
         } else if (await canLaunch(href)) {
@@ -72,29 +71,29 @@ class LinkWidget extends StatelessWidget {
   }
 
   /// Returns the target lesson endpoint.
-  LessonContentEndpoint get _targetLessonEndpoint {
+  LessonContentEndpoint? get _targetLessonEndpoint {
     if (href.startsWith('#')) {
       return LessonContentEndpoint(path: currentEndpoint);
     }
 
-    RegExpMatch firstMatch = urlParts.firstMatch(href);
+    RegExpMatch? firstMatch = urlParts.firstMatch(href);
     if (firstMatch == null || firstMatch.groupCount < 2) {
       return null;
     }
 
     return LessonContentEndpoint.fromLevelAndLesson(
-      level: firstMatch.group(0),
-      lesson: firstMatch.group(1),
+      level: firstMatch.group(0)!,
+      lesson: firstMatch.group(1)!,
     );
   }
 
   /// Returns the target lesson endpoint hash.
-  String get _targetLessonEndpointHash {
+  String? get _targetLessonEndpointHash {
     if (href.startsWith('#')) {
       return href.substring(1);
     }
 
-    RegExpMatch firstMatch = urlParts.firstMatch(href);
+    RegExpMatch? firstMatch = urlParts.firstMatch(href);
     if (firstMatch != null) {
       return firstMatch.groupCount >= 3 ? firstMatch.group(2) : null;
     }

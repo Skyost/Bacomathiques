@@ -12,13 +12,10 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
   APIEndpoint<R> endpoint;
 
   /// The object.
-  R _result;
+  R? _result;
 
   /// When the request fails.
   String failMessage;
-
-  /// The success callback.
-  VoidCallback successCallback;
 
   /// Fail dialog options.
   FailDialogOptions failDialogOptions;
@@ -28,9 +25,8 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
 
   /// Creates a new loading scaffold instance.
   RequestScaffold({
-    @required this.endpoint,
-    @required this.failMessage,
-    this.successCallback,
+    required this.endpoint,
+    required this.failMessage,
     this.failDialogOptions = const FailDialogOptions(),
     this.cacheRequest = true,
   });
@@ -49,7 +45,7 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
       );
     }
 
-    return _result.createAppBar(context);
+    return _result!.createAppBar(context);
   }
 
   @override
@@ -60,7 +56,7 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
     } else if (_result == null) {
       body = createNoObjectBody(context);
     } else {
-      body = createBody(context);
+      body = createBody(context, _result!);
     }
 
     return Scaffold(
@@ -79,12 +75,10 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
 
   /// Triggers a request.
   Future<void> triggerRequest() async {
-    R result = await endpoint.request(cache: cacheRequest);
+    R? result = await endpoint.request(cache: cacheRequest);
     if (result != null) {
       this.result = result;
-      if (successCallback != null) {
-        successCallback();
-      }
+      onSuccess(result);
       return;
     }
 
@@ -103,16 +97,16 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
   }
 
   /// Creates the body with a non-null object.
-  Widget createBody(BuildContext context);
+  Widget createBody(BuildContext context, R result);
 
   /// Creates the body with a null object.
-  Widget createNoObjectBody(BuildContext context) => null;
+  Widget createNoObjectBody(BuildContext context) => const SizedBox.shrink();
 
   /// Returns the current result.
-  R get result => _result;
+  R? get result => _result;
 
   /// Updates the current result.
-  set result(R result) {
+  set result(R? result) {
     if (mounted) {
       setState(() {
         _loading = false;
@@ -123,6 +117,9 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
       _result = result;
     }
   }
+
+  /// Triggered when the request has succeeded.
+  void onSuccess(R result) {}
 }
 
 /// Options for the fail dialog.
@@ -131,7 +128,7 @@ class FailDialogOptions {
   final bool show;
 
   /// The dialog callback.
-  final VoidCallback callback;
+  final VoidCallback? callback;
 
   /// Creates a new fail dialog options instance.
   const FailDialogOptions({

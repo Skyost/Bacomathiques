@@ -8,15 +8,15 @@ import 'package:share/share.dart';
 class LessonContentEndpoint extends APIEndpoint<LessonContent> {
   /// Creates a new lesson content endpoint instance.
   const LessonContentEndpoint({
-    @required String path,
+    required String path,
   }) : super(
           path: path,
         );
 
   /// Creates a new lesson content endpoint instance from a level and a lesson.
   const LessonContentEndpoint.fromLevelAndLesson({
-    @required String level,
-    @required String lesson,
+    required String level,
+    required String lesson,
   }) : super(
           path: '/api/v2/$level/$lesson/',
         );
@@ -49,12 +49,12 @@ class LessonContent extends APIEndpointResultHTML {
 
   /// Creates a new lesson content instance.
   LessonContent({
-    @required this.api,
-    @required this.lesson,
-    @required this.difficulty,
-    @required this.pdf,
-    @required this.html,
-    @required this.e3c,
+    required this.api,
+    required this.lesson,
+    required this.difficulty,
+    required this.pdf,
+    required this.html,
+    required this.e3c,
   });
 
   /// Creates a new lesson content instance from a parsed JSON string.
@@ -69,14 +69,14 @@ class LessonContent extends APIEndpointResultHTML {
         );
 
   @override
-  AppBar createAppBar(BuildContext context, {GlobalKey shareButtonKey}) => AppBar(
+  AppBar createAppBar(BuildContext context, {GlobalKey? shareButtonKey}) => AppBar(
     title: createTitle(context),
     actions: createActions(context, shareButtonKey: shareButtonKey),
   );
 
   @override
-  List<Widget> createActions(BuildContext context, {GlobalKey shareButtonKey}) {
-    ActionMenu shareActionMenu = e3c.isEmpty ? createShareActionMenu(shareButtonKey) : null;
+  List<Widget> createActions(BuildContext context, {GlobalKey? shareButtonKey}) {
+    ActionMenu? shareActionMenu = e3c.isEmpty ? createShareActionMenu(shareButtonKey) : null;
     return [
       if (shareActionMenu != null)
         IconButton(
@@ -111,7 +111,7 @@ class LessonContent extends APIEndpointResultHTML {
   }
 
   @override
-  Widget createPopupMenuButton(BuildContext context, {GlobalKey shareButtonKey}) => e3c.isEmpty
+  Widget createPopupMenuButton(BuildContext context, {GlobalKey? shareButtonKey}) => e3c.isEmpty
       ? super.createPopupMenuButton(context)
       : Container(
           key: shareButtonKey,
@@ -119,7 +119,7 @@ class LessonContent extends APIEndpointResultHTML {
         );
 
   @override
-  List<ActionMenu> createActionMenus(BuildContext context, {GlobalKey shareButtonKey}) => [
+  List<ActionMenu> createActionMenus(BuildContext context, {GlobalKey? shareButtonKey}) => [
         if (e3c.isNotEmpty) createShareActionMenu(shareButtonKey),
         ActionMenu(
           icon: Icons.save,
@@ -130,16 +130,22 @@ class LessonContent extends APIEndpointResultHTML {
       ];
 
   /// Creates the share action menu.
-  ActionMenu createShareActionMenu(GlobalKey shareButtonKey) => ActionMenu(
+  ActionMenu createShareActionMenu(GlobalKey? shareButtonKey) => ActionMenu(
       icon: Icons.share,
       label: 'Partager le cours…',
       callback: (context, content) async {
-        RenderBox renderBox = shareButtonKey.currentContext.findRenderObject();
-        Offset position = renderBox.localToGlobal(Offset.zero);
+        Rect? sharePositionOrigin;
+        if (shareButtonKey != null) {
+          RenderBox? renderBox = shareButtonKey.currentContext?.findRenderObject() as RenderBox?;
+          if (renderBox != null) {
+            Offset position = renderBox.localToGlobal(Offset.zero);
+            sharePositionOrigin = Rect.fromLTWH(position.dx, position.dy, 24, 12);
+          }
+        }
 
         await Share.share(
           'Lisez le cours intitulé « ' + lesson.title + ' » en téléchargeant l\'application Bacomathiques !\n' + storePage,
-          sharePositionOrigin: Rect.fromLTWH(position.dx, position.dy, 24, 12),
+          sharePositionOrigin: sharePositionOrigin,
         );
       });
 }
@@ -157,9 +163,9 @@ class LessonE3C {
 
   /// Creates a new lesson E3C instance.
   const LessonE3C({
-    @required this.id,
-    @required this.subject,
-    @required this.corrections,
+    required this.id,
+    required this.subject,
+    required this.corrections,
   });
 
   /// Creates a new lesson E3C instance from a parsed JSON string.

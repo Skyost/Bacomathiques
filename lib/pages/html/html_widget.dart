@@ -19,8 +19,8 @@ class AppHtmlWidget extends StatelessWidget {
 
   /// Creates a new app HTML widget instance.
   const AppHtmlWidget({
-    @required this.data,
-    @required this.textStyle,
+    required this.data,
+    required this.textStyle,
     this.buildAsync = true,
   });
 
@@ -37,15 +37,15 @@ class AppHtmlWidget extends StatelessWidget {
       );
 
   /// Builds the widget of an element.
-  Widget buildCustomWidget(dom.Element element) {
+  Widget? buildCustomWidget(dom.Element element) {
     if (element.localName == 'h2' || element.localName == 'h3') {
       return TitleWidget.fromElement(element: element);
     }
 
     if (element.attributes.containsKey('data-api-v2-geogebra-image') && element.attributes.containsKey('data-api-v2-geogebra-id')) {
       return RepresentationPreviewWidget(
-        imageURL: element.attributes['data-api-v2-geogebra-image'],
-        geogebraId: element.attributes['data-api-v2-geogebra-id'],
+        imageURL: element.attributes['data-api-v2-geogebra-image']!,
+        geogebraId: element.attributes['data-api-v2-geogebra-id']!,
       );
     }
 
@@ -53,7 +53,7 @@ class AppHtmlWidget extends StatelessWidget {
   }
 
   /// Builds the style of an element.
-  Map<String, String> buildCustomStyle(dom.Element element) {
+  Map<String, String>? buildCustomStyle(dom.Element element) {
     Map<String, String> style = {
       if (element.classes.contains('mb-0')) 'margin-bottom': '0',
     };
@@ -96,6 +96,22 @@ class AppHtmlWidget extends StatelessWidget {
       case 'table':
         return {
           'background-color': 'white',
+          'border': '0.5px solid #cfcfcf',
+          ...style,
+        };
+      case 'th':
+        return {
+          'padding': '10px',
+          'border-top': '0.5px solid #cfcfcf',
+          'border-right': '0.5px solid #cfcfcf',
+          'border-left': '0.5px solid #cfcfcf',
+          'border-bottom': '1px solid #cfcfcf',
+          ...style,
+        };
+      case 'td':
+        return {
+          'padding': '10px',
+          'border': '0.5px solid #cfcfcf',
           ...style,
         };
       case 'img':

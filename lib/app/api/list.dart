@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LessonListEndpoint extends APIEndpoint<LessonList> {
   /// Creates a new lesson list endpoint instance.
   const LessonListEndpoint({
-    @required String path,
+    required String path,
   }) : super(path: path);
 
   @override
@@ -24,8 +24,8 @@ class LessonList extends APIEndpointResult {
 
   /// Creates a new lesson list instance.
   const LessonList({
-    @required this.api,
-    @required this.list,
+    required this.api,
+    required this.list,
   });
 
   /// Creates a new lesson list instance from a parsed JSON instance.
@@ -55,10 +55,10 @@ class LessonListItem {
 
   /// Creates a new lesson list item instance.
   const LessonListItem({
-    @required this.lesson,
-    @required this.preview,
-    @required this.caption,
-    @required this.excerpt,
+    required this.lesson,
+    required this.preview,
+    required this.caption,
+    required this.excerpt,
   });
 
   /// Creates a new lesson list item instance from a parsed JSON string.
@@ -80,16 +80,16 @@ class _LevelIconButton extends StatefulWidget {
 /// The level button state.
 class _LevelIconButtonState extends State<_LevelIconButton> {
   /// The level image URL.
-  String imageUrl;
+  String? imageUrl;
 
   @override
   void initState() {
     super.initState();
 
     SharedPreferences.getInstance().then((preferences) async {
-      String imageUrl = preferences.getString('preferences.level-image');
+      String? imageUrl = preferences.getString('preferences.level-image');
       if (imageUrl != null) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
+        WidgetsBinding.instance?.addPostFrameCallback((_) {
           setState(() => this.imageUrl = imageUrl);
         });
       }
@@ -103,7 +103,7 @@ class _LevelIconButtonState extends State<_LevelIconButton> {
     }
 
     return createButton(SvgPicture.network(
-      API.BASE_URL + imageUrl,
+      API.BASE_URL + imageUrl!,
       height: 60,
       placeholderBuilder: (_) => createIcon(),
     ));

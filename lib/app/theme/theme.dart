@@ -37,13 +37,13 @@ abstract class AppTheme {
   final Color commentDateColor;
 
   /// The scaffold background color.
-  final Color scaffoldBackgroundColor;
+  final Color? scaffoldBackgroundColor;
 
   /// The lesson background color.
-  final Color lessonBackgroundColor;
+  final Color? lessonBackgroundColor;
 
   /// The text color.
-  final Color textColor;
+  final Color? textColor;
 
   /// The progress indicator color.
   final Color progressIndicatorColor;
@@ -52,37 +52,37 @@ abstract class AppTheme {
   final Color highlightColor;
 
   /// The headline 2 color.
-  final Color h2Color;
+  final Color? h2Color;
 
   /// The headline 3 color.
-  final Color h3Color;
+  final Color? h3Color;
 
   /// The horizontal rule color.
-  final Color hrColor;
+  final Color? hrColor;
 
   /// Contains all bubble themes.
   final Map<Bubble, BubbleTheme> bubbleThemes;
 
   /// Creates a new app theme data instance.
   const AppTheme({
-    @required this.primaryColor,
-    @required this.primaryColorDark,
-    @required this.accentColor,
-    @required this.actionBarColor,
+    required this.primaryColor,
+    required this.primaryColorDark,
+    required this.accentColor,
+    required this.actionBarColor,
     this.blueButtonColor = const Color(0xFF217DBB),
     this.greenButtonColor = const Color(0xFF3CA797),
     this.commentBorderRadius = 15,
-    @required this.commentBackgroundColor,
-    @required this.commentDateColor,
+    required this.commentBackgroundColor,
+    required this.commentDateColor,
     this.scaffoldBackgroundColor,
     this.lessonBackgroundColor,
     this.textColor,
-    @required this.progressIndicatorColor,
+    required this.progressIndicatorColor,
     this.highlightColor = Colors.black12,
     this.h2Color,
     this.h3Color,
     this.hrColor,
-    @required this.bubbleThemes,
+    required this.bubbleThemes,
   });
 
   /// Returns the flutter theme data.

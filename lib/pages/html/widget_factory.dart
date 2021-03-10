@@ -11,58 +11,58 @@ import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart
 /// Allows to display custom widgets to the HTML content.
 class AppWidgetFactory extends WidgetFactory {
   /// The list view tag build op.
-  BuildOp lv;
+  BuildOp? lv;
 
   /// The "scroll to this" global key.
-  GlobalKey scrollToThisKey;
+  GlobalKey? scrollToThisKey;
 
   /// The a tag build op.
-  BuildOp a;
+  BuildOp? a;
 
   /// The math tag build op.
-  BuildOp math;
+  BuildOp? math;
 
   /// The formula tag build op.
-  BuildOp formula;
+  BuildOp? formula;
 
   /// The tip tag build op.
-  BuildOp tip;
+  BuildOp? tip;
 
   /// The proof tag build op.
-  BuildOp proof;
+  BuildOp? proof;
 
   /// The H4 tag build op.
-  BuildOp h4;
+  BuildOp? h4;
 
   /// The text style.
   final TextStyle textStyle;
 
   /// Creates a new app widget factory instance.
   AppWidgetFactory({
-    @required this.textStyle,
+    required this.textStyle,
   });
 
   @override
   void parse(BuildMetadata meta) {
     super.parse(meta);
     if (meta.element.localName == 'lv') {
-      String scrollTarget = meta.element.attributes['data-scroll-target']?.substring(1);
+      String? scrollTarget = meta.element.attributes['data-scroll-target']?.substring(1);
       lv ??= BuildOp(
         onChild: scrollTarget == null || scrollToThisKey != null
             ? null
             : (meta) {
-          if (meta.element.id == scrollTarget) {
-            scrollToThisKey = GlobalKey();
-            meta.register(
-              BuildOp(
-                onWidgets: (meta, children) => [
-                  SizedBox.shrink(key: scrollToThisKey),
-                  ...children,
-                ],
-              ),
-            );
-          }
-        },
+                if (meta.element.id == scrollTarget) {
+                  scrollToThisKey = GlobalKey();
+                  meta.register(
+                    BuildOp(
+                      onWidgets: (meta, children) => [
+                        SizedBox.shrink(key: scrollToThisKey),
+                        ...children,
+                      ],
+                    ),
+                  );
+                }
+              },
         onWidgets: (meta, children) => [
           ListViewWidget(
             scrollToThisKey: scrollToThisKey,
@@ -78,7 +78,7 @@ class AppWidgetFactory extends WidgetFactory {
             tree,
             LinkWidget.fromElement(
               element: meta.element,
-              fontSize: textStyle.fontSize,
+              fontSize: textStyle.fontSize!,
             ),
           ),
         ),
@@ -89,8 +89,8 @@ class AppWidgetFactory extends WidgetFactory {
         onTree: (meta, tree) => tree.replaceWith(
           WidgetBit.inline(
             tree,
-            MathWidget(
-              content: meta.element.text,
+            MathWidget.fromElement(
+              element: meta.element,
               textStyle: textStyle,
             ),
           ),
@@ -109,10 +109,7 @@ class AppWidgetFactory extends WidgetFactory {
     } else if (meta.element.localName == 'h4') {
       h4 ??= BuildOp(
         onTree: (meta, tree) => tree.replaceWith(
-          WidgetBit.block(
-            tree,
-            TitleWidget.fromElement(element: meta.element)
-          ),
+          WidgetBit.block(tree, TitleWidget.fromElement(element: meta.element)),
         ),
       );
       meta.register(h4);
@@ -120,8 +117,8 @@ class AppWidgetFactory extends WidgetFactory {
   }
 
   @override
-  Widget buildImage(BuildMetadata meta, Object provider, ImageMetadata data) {
-    Widget built = super.buildImage(meta, provider, data);
+  Widget? buildImage(BuildMetadata meta, Object provider, ImageMetadata? data) {
+    Widget? built = super.buildImage(meta, provider, data) as Widget?;
 
     if (built == null && provider is PictureProvider) {
       built = SvgPicture(
@@ -132,8 +129,11 @@ class AppWidgetFactory extends WidgetFactory {
       );
     }
 
-    if (data.title != null && built != null) {
-      built = Tooltip(child: built, message: data.title);
+    if (data?.title != null && built != null) {
+      built = Tooltip(
+        message: data!.title,
+        child: built,
+      );
     }
 
     return built;
@@ -148,9 +148,9 @@ class AppWidgetFactory extends WidgetFactory {
   }
 
   @override
-  Object imageProvider(ImageSource imgSrc) {
-    String url = imgSrc?.url;
-    if (url != null && (Uri.tryParse(url)?.path?.toLowerCase()?.endsWith('.svg') == true)) {
+  Object? imageProvider(ImageSource? imgSrc) {
+    String? url = imgSrc?.url;
+    if (url != null && (Uri.tryParse(url)?.path.toLowerCase().endsWith('.svg') == true)) {
       return _imageSvgPictureProvider(url);
     }
 
@@ -159,36 +159,36 @@ class AppWidgetFactory extends WidgetFactory {
 
   /// Creates a bubble build op.
   BuildOp _createBubbleBuildOp(Bubble bubble, BuildMetadata meta) => BuildOp(
-    onChild: (meta) {
-      if (meta.element.localName == 'h4' || meta.element.localName == 'a') {
-        meta.element.attributes['data-parent-bubble'] = bubble.className;
-      }
-    },
-    onWidgets: (meta, children) => [
-      BubbleWidget.fromElement(
-        element: meta.element,
-        children: children.toList(),
-      ),
-    ],
-  );
+        onChild: (meta) {
+          if (meta.element.localName == 'h4' || meta.element.localName == 'a') {
+            meta.element.attributes['data-parent-bubble'] = bubble.className;
+          }
+        },
+        onWidgets: (meta, children) => [
+          BubbleWidget.fromElement(
+            element: meta.element,
+            children: children.toList(),
+          ),
+        ],
+      );
 
   /// Builds a picture provider from the specified url.
-  PictureProvider _imageSvgPictureProvider(String url) {
+  PictureProvider? _imageSvgPictureProvider(String? url) {
     if (url?.startsWith('asset:') == true) {
-      Uri uri = url?.isNotEmpty == true ? Uri.tryParse(url) : null;
+      Uri? uri = url?.isNotEmpty == true ? Uri.tryParse(url ?? '') : null;
       if (uri?.scheme != 'asset') {
         return null;
       }
 
-      String assetName = uri.path;
-      if (assetName?.isNotEmpty != true) {
+      String assetName = uri!.path;
+      if (assetName.isNotEmpty != true) {
         return null;
       }
 
       return ExactAssetPicture(
         SvgPicture.svgStringDecoder,
         assetName,
-        package: uri.queryParameters?.containsKey('package') == true ? uri.queryParameters['package'] : null,
+        package: uri.queryParameters.containsKey('package') == true ? uri.queryParameters['package'] : null,
       );
     }
 

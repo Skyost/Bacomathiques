@@ -1,4 +1,3 @@
-
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/content.dart';
 import 'package:bacomathiques/app/theme/theme.dart';
@@ -12,7 +11,7 @@ class E3CDialog extends StatelessWidget {
 
   /// Creates a new annals dialog.
   const E3CDialog({
-    @required this.e3c,
+    required this.e3c,
   });
 
   @override
@@ -40,7 +39,7 @@ class E3CDialog extends StatelessWidget {
         ),
       ),
       actions: [
-        FlatButton(
+        TextButton(
           onPressed: () => Navigator.pop(context),
           child: Text('Fermer'.toUpperCase()),
         ),
@@ -53,57 +52,69 @@ class E3CDialog extends StatelessWidget {
 
   /// Creates a new E3C widget.
   Widget _createE3CWidget(BuildContext context, AppTheme theme, LessonE3C e3c) => Container(
-    padding: const EdgeInsets.all(15),
-    margin: const EdgeInsets.only(bottom: 25),
-    color: Colors.blue[50],
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: Text(
-            e3c.id,
-            style: TextStyle(
-              fontFamily: 'FuturaBT',
-              color: Colors.blue[700],
-              fontSize: 20,
+        padding: const EdgeInsets.all(15),
+        margin: const EdgeInsets.only(bottom: 25),
+        color: Colors.blue[50],
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Text(
+                e3c.id,
+                style: TextStyle(
+                  fontFamily: 'FuturaBT',
+                  color: Colors.blue[700],
+                  fontSize: 20,
+                ),
+              ),
             ),
-          ),
+            SizedBox(
+              width: double.infinity,
+              child: TextButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(theme.greenButtonColor),
+                  overlayColor: MaterialStateProperty.all(Colors.white12),
+                  shape: MaterialStateProperty.all(const RoundedRectangleBorder()),
+                  padding: MaterialStateProperty.all(const EdgeInsets.all(5)),
+                ),
+                onPressed: () => openURL(API.BASE_URL + e3c.subject),
+                child: const Text(
+                  'Voir le sujet',
+                  style: TextStyle(fontSize: 14, color: Colors.white),
+                ),
+              ),
+            ),
+            for (String correction in e3c.corrections) _createCorrectionButton(correction, theme)
+          ],
         ),
-        FlatButton(
-          color: theme.greenButtonColor,
-          child: const Text(
-            'Voir le sujet',
-            style: TextStyle(fontSize: 14, color: Colors.white),
-          ),
-          onPressed: () => openURL(API.BASE_URL + e3c.subject),
-          padding: const EdgeInsets.symmetric(horizontal: 5),
-          minWidth: double.infinity,
-        ),
-        for (String correction in e3c.corrections) _createCorrectionButton(correction, theme)
-      ],
-    ),
-  );
+      );
 
   /// Creates the correction button.
   Widget _createCorrectionButton(String correction, AppTheme theme) {
     List<String> parts = correction.split('://')[1].split('/')[0].split('www.');
-    return FlatButton(
-      color: theme.blueButtonColor,
-      child: Text(
-        'Voir la correction sur\n' + (parts.length >= 2 ? parts[1] : parts[0]),
-        style: const TextStyle(fontSize: 14, color: Colors.white),
-        textAlign: TextAlign.center,
+    return SizedBox(
+      width: double.infinity,
+      child: TextButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(theme.blueButtonColor),
+          overlayColor: MaterialStateProperty.all(Colors.white12),
+          shape: MaterialStateProperty.all(const RoundedRectangleBorder()),
+          padding: MaterialStateProperty.all(const EdgeInsets.all(5)),
+        ),
+        onPressed: () => openURL(correction),
+        child: Text(
+          'Voir la correction sur\n' + (parts.length >= 2 ? parts[1] : parts[0]),
+          style: const TextStyle(fontSize: 14, color: Colors.white),
+          textAlign: TextAlign.center,
+        ),
       ),
-      onPressed: () => openURL(correction),
-      padding: const EdgeInsets.all(5),
-      minWidth: double.infinity,
     );
   }
 
   /// Shows the dialog.
-  static void show(BuildContext context, {@required List<LessonE3C> e3c}) => showDialog(
-    context: context,
-    builder: (context) => E3CDialog(e3c: e3c),
-  );
+  static void show(BuildContext context, {required List<LessonE3C> e3c}) => showDialog(
+        context: context,
+        builder: (context) => E3CDialog(e3c: e3c),
+      );
 }

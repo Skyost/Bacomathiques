@@ -9,7 +9,7 @@ class WaitingDialog extends StatelessWidget {
 
   /// Creates a new waiting dialog instance.
   const WaitingDialog({
-    @required this.message,
+    required this.message,
   });
 
   @override
@@ -19,7 +19,7 @@ class WaitingDialog extends StatelessWidget {
   );
 
   /// Shows the dialog.
-  static void show(BuildContext context, {@required String message}) => showDialog(
+  static void show(BuildContext context, {required String message}) => showDialog(
     context: context,
     builder: (context) => WaitingDialog(message: message),
     barrierDismissible: false,

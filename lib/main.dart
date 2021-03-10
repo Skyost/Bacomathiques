@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bacomathiques/app/app.dart';
 import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/app/theme/theme.dart';
@@ -14,12 +13,13 @@ import 'package:catcher/catcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
 /// Hello world !
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Admob.initialize();
+  await MobileAds.instance.initialize();
 
   Widget main = BacomathiquesApp();
   if(kDebugMode) {
@@ -64,20 +64,20 @@ class BacomathiquesApp extends StatelessWidget {
               navigatorKey: Catcher.navigatorKey,
               theme: AppTheme.LIGHT.flutterThemeData,
               darkTheme: AppTheme.DARK.flutterThemeData,
-              themeMode: settings?.themeMode ?? ThemeMode.system,
+              themeMode: settings.themeMode,
               routes: {
                 '/': (context) => HomePage(),
                 '/levels': (context) => LevelsPage(),
                 '/lessons': (context) {
-                  Map<String, dynamic> arguments = ModalRoute.of(context).settings.arguments;
+                  Map<String, dynamic> arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
                   return LessonsPage(endpoint: arguments['endpoint']);
                 },
                 '/html': (context) {
-                  Map<String, dynamic> arguments = ModalRoute.of(context).settings.arguments;
+                  Map<String, dynamic> arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
                   return AdMobHTMLPage(endpoint: arguments['endpoint'], anchor: arguments['anchor']);
                 },
                 '/comments': (context) {
-                  Map<String, dynamic> arguments = ModalRoute.of(context).settings.arguments;
+                  Map<String, dynamic> arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
                   return CommentsPage(endpoint: arguments['endpoint']);
                 },
               },

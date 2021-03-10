@@ -18,15 +18,15 @@ class BubbleWidget extends StatefulWidget {
 
   /// Creates a new bubble widget instance.
   const BubbleWidget({
-    @required this.bubble,
-    @required this.children,
-    @required this.inScrollableView,
+    required this.bubble,
+    required this.children,
+    required this.inScrollableView,
   });
 
   /// Creates a new bubble widget from a dom element.
   BubbleWidget.fromElement({
-    @required dom.Element element,
-    @required List<Widget> children,
+    required dom.Element element,
+    required List<Widget> children,
   }) : this(
           bubble: BubbleUtils.of(element),
           children: children,
@@ -45,7 +45,7 @@ class _BubbleWidgetState extends State<BubbleWidget> {
   @override
   Widget build(BuildContext context) {
     AppTheme theme = context.resolveTheme();
-    BubbleTheme bubbleTheme = theme.bubbleThemes[widget.bubble];
+    BubbleTheme bubbleTheme = theme.bubbleThemes[widget.bubble]!;
     Widget column = _createColumn(bubbleTheme);
     Widget bubbleWidget = GestureDetector(
       onTap: () {
@@ -76,12 +76,12 @@ class _BubbleWidgetState extends State<BubbleWidget> {
             opacity: showLabel ? 1 : 0,
             duration: const Duration(milliseconds: 200),
             child: Container(
+              color: bubbleTheme.leftBorderColor,
+              padding: const EdgeInsets.only(left: 10, top: 2, right: 6, bottom: 2),
               child: Text(
                 widget.bubble.bubbleLabel.toUpperCase(),
                 style: const TextStyle(color: Colors.white, fontSize: 10),
               ),
-              color: bubbleTheme.leftBorderColor,
-              padding: const EdgeInsets.only(left: 10, top: 2, right: 6, bottom: 2),
             ),
           ),
         ],
@@ -93,7 +93,7 @@ class _BubbleWidgetState extends State<BubbleWidget> {
     }
 
     return Expandable(
-      expandText: widget.bubble.expandButton,
+      expandText: widget.bubble.expandButton!,
       expandTextStyle: TextStyle(color: theme.accentColor),
       content: bubbleWidget,
     );

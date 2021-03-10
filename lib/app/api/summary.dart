@@ -1,11 +1,10 @@
 import 'package:bacomathiques/app/api/common.dart';
-import 'package:flutter/material.dart';
 
 /// /api/v2/:level/summary/ endpoint.
 class LessonSummaryEndpoint extends APIEndpoint<LessonSummary> {
   /// Creates a new lesson summary endpoint.
   const LessonSummaryEndpoint({
-    @required String path,
+    required String path,
   }) : super(
           path: path,
         );
@@ -29,9 +28,9 @@ class LessonSummary extends APIEndpointResultHTML {
 
   /// Creates a new lesson summary instance.
   const LessonSummary({
-    @required this.api,
-    @required this.lesson,
-    @required this.html,
+    required this.api,
+    required this.lesson,
+    required this.html,
   });
 
   /// Creates a new lesson summary instance from a parsed JSON string.

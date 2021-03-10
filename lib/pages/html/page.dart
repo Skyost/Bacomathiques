@@ -1,4 +1,4 @@
-import 'package:admob_flutter/admob_flutter.dart';
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/content.dart';
 import 'package:bacomathiques/app/dialogs/consent.dart';
@@ -7,7 +7,9 @@ import 'package:bacomathiques/app/theme/bubble.dart';
 import 'package:bacomathiques/pages/html/html_widget.dart';
 import 'package:bacomathiques/utils/request_scaffold.dart';
 import 'package:bacomathiques/utils/utils.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
 import 'package:provider/provider.dart';
@@ -18,11 +20,11 @@ class AdMobHTMLPage extends StatefulWidget {
   final APIEndpoint<APIEndpointResultHTML> endpoint;
 
   /// The current anchor.
-  final String anchor;
+  final String? anchor;
 
   /// Creates a new AdMob HTML screen instance.
   const AdMobHTMLPage({
-    @required this.endpoint,
+    required this.endpoint,
     this.anchor,
   });
 
@@ -32,13 +34,13 @@ class AdMobHTMLPage extends StatefulWidget {
 
 /// The AdMob HTML page state.
 class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
-  /// The consent information.
-  ConsentInformation consentInformation;
+  /// The banner ad.
+  BannerAd? bannerAd;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => askConsent());
+    WidgetsBinding.instance?.addPostFrameCallback((_) => askConsent());
   }
 
   /// Asks for the user consent.
@@ -51,45 +53,45 @@ class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
       personalizedAdsButton: 'Oui, je souhaite voir des annonces pertinentes'.toUpperCase(),
       nonPersonalizedAdsButton: 'Non, je souhaite voir des annonces moins pertinentes'.toUpperCase(),
     );
-    await Admob.requestTrackingAuthorization();
-    setState(() => this.consentInformation = consentInformation);
+    await AppTrackingTransparency.requestTrackingAuthorization();
+    BannerAd? bannerAd = context.read<SettingsModel>().createAdMobBanner(context, consentInformation.wantsNonPersonalizedAds);
+    if (bannerAd != null) {
+      await bannerAd.load();
+      setState(() => this.bannerAd = bannerAd);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    SettingsModel settingsModel = Provider.of<SettingsModel>(context);
     Widget htmlPage = _HTMLPage(
       endpoint: widget.endpoint,
       anchor: widget.anchor,
     );
 
-    if (consentInformation == null) {
+    if (bannerAd == null) {
       return htmlPage;
     }
 
-    AdmobBanner banner = settingsModel.createAdMobBanner(context, consentInformation.wantsNonPersonalizedAds);
-    if (banner == null) {
-      return htmlPage;
-    }
-
-    return FutureBuilder<Size>(
-      initialData: Size.zero,
-      future: settingsModel.calculateAdMobBannerSize(context),
-      builder: (context, sizeSnapshot) => Stack(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(bottom: sizeSnapshot.data.height),
-            child: htmlPage,
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: banner,
-          ),
-        ],
-      ),
+    return Stack(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(bottom: bannerAd?.size.height.toDouble() ?? 0),
+          child: htmlPage,
+        ),
+        Positioned(
+          left: 0,
+          right: 0,
+          bottom: 0,
+          child: AdWidget(ad: bannerAd),
+        ),
+      ],
     );
+  }
+
+  @override
+  void dispose() {
+    bannerAd?.dispose();
+    super.dispose();
   }
 }
 
@@ -99,51 +101,51 @@ class _HTMLPage extends StatefulWidget {
   final APIEndpoint<APIEndpointResultHTML> endpoint;
 
   /// The current anchor.
-  final String anchor;
+  final String? anchor;
 
   /// Creates a new HTML screen instance.
   const _HTMLPage({
-    @required this.endpoint,
+    required this.endpoint,
     this.anchor,
   });
 
   @override
-  State<StatefulWidget> createState() => endpoint is LessonContentEndpoint ? _LessonContentHTMLPageState(endpoint: endpoint) : _HTMLPageState(endpoint: endpoint);
+  State<StatefulWidget> createState() => endpoint is LessonContentEndpoint ? _LessonContentHTMLPageState(endpoint: endpoint as LessonContentEndpoint) : _HTMLPageState(endpoint: endpoint);
 }
 
 /// State of HTML screens.
 class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
   /// Contains the parsed HTML.
-  String parsedHtml;
+  late String parsedHtml;
 
   /// Creates a new HTML screen state instance.
   _HTMLPageState({
-    @required APIEndpoint<APIEndpointResultHTML> endpoint,
+    required APIEndpoint<APIEndpointResultHTML> endpoint,
   }) : super(
           endpoint: endpoint,
           failMessage: 'Impossible de charger ce contenu et aucune sauvegarde n\'est disponible.',
         );
 
   @override
-  Widget createBody(BuildContext context) => AppHtmlWidget(
+  Widget createBody(BuildContext context, APIEndpointResultHTML result) => AppHtmlWidget(
         data: parsedHtml,
-        textStyle: Theme.of(context).textTheme.bodyText2.copyWith(fontSize: 16),
+        textStyle: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16),
       );
 
   @override
-  set result(APIEndpointResultHTML result) {
+  void onSuccess(APIEndpointResultHTML result) {
     String html = result.html;
-    html = html.replaceAllMapped(RegExp(r'(\$+)(?:(?!\1)[\s\S])*\1'), (match) => '<math>${_removeTrailingAndLeadingDollars(match.group(0))}</math>');
+    html = html.replaceAllMapped(RegExp(r'(\$+)(?:(?!\1)[\s\S])*\1'), (match) => '<math>${_removeTrailingAndLeadingDollars(match.group(0)!)}</math>');
 
     dom.Document document = parser.parse(html);
     _formatTitles(document);
     _removeBottomMarginOfLastElements(document);
     _formatBubbles(document);
     _formatLinks(document);
+    _formatTables(document);
 
     String dataAnchor = widget.anchor == null ? '' : 'data-scroll-target="${widget.anchor}"';
     parsedHtml = '<lv $dataAnchor>${document.outerHtml}</lv>';
-    super.result = result;
   }
 
   /// Formats the titles specified by the tag name.
@@ -179,7 +181,7 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
         _removeBottomMarginOfLastElements(element);
 
         List<dom.Element> lists = element.querySelectorAll('ol, ul');
-        dom.Element lastDirectList = lists.lastWhere((element) => element.parent.classes.contains(bubble.className), orElse: () => null);
+        dom.Element? lastDirectList = lists.lastWhereOrNull((element) => element.parent.classes.contains(bubble.className));
         if (lastDirectList != null && children.last == lastDirectList) {
           _removeBottomMarginOfLastElements(lastDirectList);
         }
@@ -192,6 +194,19 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
     List<dom.Element> links = document.getElementsByTagName('a');
     for (dom.Element link in links) {
       link.attributes['data-current-endpoint'] = endpoint.path;
+    }
+  }
+
+  /// Formats the tables.
+  void _formatTables(dom.Document document) {
+    List<dom.Element> tables = document.getElementsByTagName('table');
+    for (dom.Element table in tables) {
+      //table.attributes['border'] = '1';
+      table.attributes['cellspacing'] = '0';
+      List<dom.Element> maths = table.getElementsByTagName('math');
+      for (dom.Element math in maths) {
+        math.attributes['data-force-flutter-math-rendering'] = 'true';
+      }
     }
   }
 
@@ -227,7 +242,7 @@ class _LessonContentHTMLPageState extends _HTMLPageState {
 
   /// Creates a new lesson content HTML page state instance.
   _LessonContentHTMLPageState({
-    @required LessonContentEndpoint endpoint,
+    required LessonContentEndpoint endpoint,
   }) : super(
           endpoint: endpoint,
         );

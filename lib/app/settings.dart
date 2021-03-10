@@ -1,14 +1,14 @@
-import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/credentials.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Allows to load and set required AdMob information.
 class SettingsModel extends ChangeNotifier {
   /// The banner ad identifier.
-  String _adMobBannerId;
+  String _adMobBannerId = BannerAd.testAdUnitId;
 
   /// The app theme mode.
   ThemeMode _themeMode = ThemeMode.system;
@@ -18,8 +18,12 @@ class SettingsModel extends ChangeNotifier {
 
   /// Creates a new AdMob instance.
   SettingsModel({
-    String adMobBannerId = 'ca-app-pub-3940256099942544/6300978111',
-  }) : _adMobBannerId = adMobBannerId;
+    String? adMobBannerId,
+  }) {
+    if (adMobBannerId != null) {
+      _adMobBannerId = adMobBannerId;
+    }
+  }
 
   /// Loads the class data.
   Future<void> load(BuildContext context) async {
@@ -37,19 +41,17 @@ class SettingsModel extends ChangeNotifier {
   }
 
   /// Creates the banner ad.
-  AdmobBanner createAdMobBanner(BuildContext context, bool nonPersonalizedAds) => !_adMobEnabled || _adMobBannerId == null
-      ? null
-      : AdmobBanner(
+  BannerAd? createAdMobBanner(BuildContext context, bool nonPersonalizedAds) => _adMobEnabled
+      ? BannerAd(
           adUnitId: _adMobBannerId,
-          adSize: _getAdMobBannerSize(context),
-          nonPersonalizedAds: nonPersonalizedAds,
-        );
-
-  /// Calculates the banner size.
-  Future<Size> calculateAdMobBannerSize(BuildContext context) => !adMobEnabled || _adMobBannerId == null ? Future<Size>.value(Size.zero) : Admob.bannerSize(_getAdMobBannerSize(context));
-
-  /// Returns the AdMob banner size.
-  AdmobBannerSize _getAdMobBannerSize(BuildContext context) => AdmobBannerSize.ADAPTIVE_BANNER(width: MediaQuery.of(context).size.width.ceil());
+          size: AdSize.getSmartBanner(MediaQuery.of(context).orientation),
+          request: AdRequest(nonPersonalizedAds: nonPersonalizedAds),
+          listener: AdListener(
+            onAdFailedToLoad: (Ad ad, LoadAdError error) => ad.dispose(),
+            onAdClosed: (Ad ad) => ad.dispose(),
+          ),
+        )
+      : null;
 
   /// Returns the theme mode.
   ThemeMode get themeMode => _themeMode;
