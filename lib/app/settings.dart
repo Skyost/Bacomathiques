@@ -41,12 +41,13 @@ class SettingsModel extends ChangeNotifier {
   }
 
   /// Creates the banner ad.
-  BannerAd? createAdMobBanner(BuildContext context, bool nonPersonalizedAds) => _adMobEnabled
+  BannerAd? createAdMobBanner(BuildContext context, bool nonPersonalizedAds, { Function(Ad ad)? onAdLoaded }) => _adMobEnabled
       ? BannerAd(
           adUnitId: _adMobBannerId,
           size: AdSize.getSmartBanner(MediaQuery.of(context).orientation),
           request: AdRequest(nonPersonalizedAds: nonPersonalizedAds),
           listener: AdListener(
+            onAdLoaded: onAdLoaded,
             onAdFailedToLoad: (Ad ad, LoadAdError error) => ad.dispose(),
             onAdClosed: (Ad ad) => ad.dispose(),
           ),

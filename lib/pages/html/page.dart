@@ -37,6 +37,9 @@ class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
   /// The banner ad.
   BannerAd? bannerAd;
 
+  /// Whether the ad has been loaded.
+  bool adLoaded = false;
+
   @override
   void initState() {
     super.initState();
@@ -54,7 +57,11 @@ class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
       nonPersonalizedAdsButton: 'Non, je souhaite voir des annonces moins pertinentes'.toUpperCase(),
     );
     await AppTrackingTransparency.requestTrackingAuthorization();
-    BannerAd? bannerAd = context.read<SettingsModel>().createAdMobBanner(context, consentInformation.wantsNonPersonalizedAds);
+    BannerAd? bannerAd = context.read<SettingsModel>().createAdMobBanner(context, consentInformation.wantsNonPersonalizedAds, onAdLoaded: (ad) {
+      if (mounted) {
+        setState(() => adLoaded = true);
+      }
+    });
     if (bannerAd != null) {
       await bannerAd.load();
       setState(() => this.bannerAd = bannerAd);
@@ -68,20 +75,22 @@ class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
       anchor: widget.anchor,
     );
 
-    if (bannerAd == null) {
+    if (bannerAd == null || !adLoaded) {
       return htmlPage;
     }
 
+    double bannerHeight = _calculateBannerHeight(context);
     return Stack(
       children: [
         Padding(
-          padding: EdgeInsets.only(bottom: bannerAd?.size.height.toDouble() ?? 0),
+          padding: EdgeInsets.only(bottom: bannerHeight),
           child: htmlPage,
         ),
         Positioned(
           left: 0,
           right: 0,
           bottom: 0,
+          height: bannerHeight,
           child: AdWidget(ad: bannerAd),
         ),
       ],
@@ -92,6 +101,18 @@ class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
   void dispose() {
     bannerAd?.dispose();
     super.dispose();
+  }
+
+  /// Calculates the ad banner height.
+  double _calculateBannerHeight(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    if (screenHeight <= 400) {
+      return 32;
+    }
+    if(screenHeight <= 720) {
+      return 50;
+    }
+    return 90;
   }
 }
 

@@ -13,7 +13,7 @@ dependencies:
   url_launcher: ^5.4.11
   catcher: ^0.5.0
   flutter_svg: ^0.19.3
-  share: ^2.0.0
+  share: ^2.0.1
   rate_my_app: ^1.0.0
   path_provider: ^2.0.1
   shared_preferences: ^2.0.3
@@ -26,10 +26,7 @@ dependencies:
   app_tracking_transparency: ^1.1.0
   google_mobile_ads: ^0.11.0
   flutter_widget_from_html_core: ^0.5.2
-  flutter_tex_js:
-    git:
-      url: https://github.com/Skyost/flutter_tex_js
-      ref: master
+  flutter_tex_js: ^1.2.0
   flutter_math:
     git:
       url: https://github.com/Skyost/flutter_math

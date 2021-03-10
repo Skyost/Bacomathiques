@@ -151,12 +151,10 @@ packages:
   flutter_tex_js:
     dependency: "direct main"
     description:
-      path: "."
-      ref: master
-      resolved-ref: "7b7f1e672c4d1d9d3b9335194c64bd3a955505e9"
-      url: "https://github.com/Skyost/flutter_tex_js"
-    source: git
-    version: "1.1.0"
+      name: flutter_tex_js
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.0"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -399,7 +397,7 @@ packages:
       name: share
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   shared_preferences:
     dependency: "direct main"
     description:

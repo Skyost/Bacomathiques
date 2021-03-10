@@ -38,6 +38,7 @@ class MathWidget extends StatelessWidget {
           displayMode: false,
           color: textStyle.color,
           fontSize: textStyle.fontSize,
+          alignment: Alignment.centerLeft,
           error: (context, error) => buildFlutterMathWidget(context),
         ),
       );
