@@ -192,6 +192,8 @@ class AppWidgetFactory extends WidgetFactory {
       );
     }
 
-    return NetworkPicture(SvgPicture.svgByteDecoder, url);
+    if (url != null) {
+      return NetworkPicture(SvgPicture.svgByteDecoder, url);
+    }
   }
 }

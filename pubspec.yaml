@@ -1,6 +1,6 @@
 name: bacomathiques
 description: Cours gratuits pour réviser les maths au lycée !
-version: 2.0.0+38
+version: 2.0.0-beta.1+38
 homepage: https://bacomathiqu.es
 publish_to: none
 
@@ -12,7 +12,7 @@ dependencies:
   http: ^0.13.0
   url_launcher: ^5.4.11
   catcher: ^0.5.0
-  flutter_svg: ^0.19.3
+  flutter_svg: ^0.21.0-nullsafety.0
   share: ^2.0.1
   rate_my_app: ^1.0.0
   path_provider: ^2.0.1
