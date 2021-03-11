@@ -202,7 +202,7 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
         _removeBottomMarginOfLastElements(element);
 
         List<dom.Element> lists = element.querySelectorAll('ol, ul');
-        dom.Element? lastDirectList = lists.lastWhereOrNull((element) => element.parent.classes.contains(bubble.className));
+        dom.Element? lastDirectList = lists.lastWhereOrNull((element) => element.parent?.classes.contains(bubble.className) ?? false);
         if (lastDirectList != null && children.last == lastDirectList) {
           _removeBottomMarginOfLastElements(lastDirectList);
         }

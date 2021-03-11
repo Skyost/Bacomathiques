@@ -5,11 +5,11 @@ import 'package:bacomathiques/pages/html/widgets/list_view_widget.dart';
 import 'package:bacomathiques/pages/html/widgets/math_widget.dart';
 import 'package:bacomathiques/pages/html/widgets/title_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'package:fwfh_svg/fwfh_svg.dart';
 
 /// Allows to display custom widgets to the HTML content.
-class AppWidgetFactory extends WidgetFactory {
+class AppWidgetFactory extends WidgetFactory with SvgFactory {
   /// The list view tag build op.
   BuildOp? lv;
 
@@ -70,7 +70,7 @@ class AppWidgetFactory extends WidgetFactory {
           ),
         ],
       );
-      meta.register(lv);
+      meta.register(lv!);
     } else if (meta.element.localName == 'a') {
       a ??= BuildOp(
         onTree: (meta, tree) => tree.replaceWith(
@@ -83,7 +83,7 @@ class AppWidgetFactory extends WidgetFactory {
           ),
         ),
       );
-      meta.register(a);
+      meta.register(a!);
     } else if (meta.element.localName == 'math') {
       math ??= BuildOp(
         onTree: (meta, tree) => tree.replaceWith(
@@ -96,47 +96,24 @@ class AppWidgetFactory extends WidgetFactory {
           ),
         ),
       );
-      meta.register(math);
+      meta.register(math!);
     } else if (meta.element.classes.contains(Bubble.FORMULA.className)) {
       formula ??= _createBubbleBuildOp(Bubble.FORMULA, meta);
-      meta.register(formula);
+      meta.register(formula!);
     } else if (meta.element.classes.contains(Bubble.TIP.className)) {
       tip ??= _createBubbleBuildOp(Bubble.TIP, meta);
-      meta.register(tip);
+      meta.register(tip!);
     } else if (meta.element.classes.contains(Bubble.PROOF.className)) {
       proof ??= _createBubbleBuildOp(Bubble.PROOF, meta);
-      meta.register(proof);
+      meta.register(proof!);
     } else if (meta.element.localName == 'h4') {
       h4 ??= BuildOp(
         onTree: (meta, tree) => tree.replaceWith(
           WidgetBit.block(tree, TitleWidget.fromElement(element: meta.element)),
         ),
       );
-      meta.register(h4);
+      meta.register(h4!);
     }
-  }
-
-  @override
-  Widget? buildImage(BuildMetadata meta, Object provider, ImageMetadata? data) {
-    Widget? built = super.buildImage(meta, provider, data) as Widget?;
-
-    if (built == null && provider is PictureProvider) {
-      built = SvgPicture(
-        provider,
-        semanticsLabel: data?.alt ?? data?.title,
-        height: double.tryParse(meta.element.attributes['height'] ?? 'null'),
-        width: double.tryParse(meta.element.attributes['width'] ?? 'null'),
-      );
-    }
-
-    if (data?.title != null && built != null) {
-      built = Tooltip(
-        message: data!.title,
-        child: built,
-      );
-    }
-
-    return built;
   }
 
   @override
@@ -145,16 +122,6 @@ class AppWidgetFactory extends WidgetFactory {
       return '— ';
     }
     return super.getListStyleMarker(type, i);
-  }
-
-  @override
-  Object? imageProvider(ImageSource? imgSrc) {
-    String? url = imgSrc?.url;
-    if (url != null && (Uri.tryParse(url)?.path.toLowerCase().endsWith('.svg') == true)) {
-      return _imageSvgPictureProvider(url);
-    }
-
-    return super.imageProvider(imgSrc);
   }
 
   /// Creates a bubble build op.
@@ -171,29 +138,4 @@ class AppWidgetFactory extends WidgetFactory {
           ),
         ],
       );
-
-  /// Builds a picture provider from the specified url.
-  PictureProvider? _imageSvgPictureProvider(String? url) {
-    if (url?.startsWith('asset:') == true) {
-      Uri? uri = url?.isNotEmpty == true ? Uri.tryParse(url ?? '') : null;
-      if (uri?.scheme != 'asset') {
-        return null;
-      }
-
-      String assetName = uri!.path;
-      if (assetName.isNotEmpty != true) {
-        return null;
-      }
-
-      return ExactAssetPicture(
-        SvgPicture.svgStringDecoder,
-        assetName,
-        package: uri.queryParameters.containsKey('package') == true ? uri.queryParameters['package'] : null,
-      );
-    }
-
-    if (url != null) {
-      return NetworkPicture(SvgPicture.svgByteDecoder, url);
-    }
-  }
 }

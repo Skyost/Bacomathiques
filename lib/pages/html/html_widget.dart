@@ -30,7 +30,7 @@ class AppHtmlWidget extends StatelessWidget {
         buildAsync: buildAsync,
         customWidgetBuilder: buildCustomWidget,
         customStylesBuilder: buildCustomStyle,
-        buildAsyncBuilder: (context, snapshot) => snapshot.hasData ? snapshot.data : const CenteredCircularProgressIndicator(message: 'Rendu…'),
+        buildAsyncBuilder: (context, snapshot) => snapshot.hasData ? snapshot.data! : const CenteredCircularProgressIndicator(message: 'Rendu…'),
         //rebuildTriggers: RebuildTriggers([data, buildCustomWidget, buildCustomStyle]),
         textStyle: textStyle,
         factoryBuilder: () => AppWidgetFactory(textStyle: textStyle),

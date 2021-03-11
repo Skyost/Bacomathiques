@@ -12,8 +12,8 @@ class AboutDialog extends StatelessWidget {
       Wrap(
         alignment: WrapAlignment.end,
         crossAxisAlignment: WrapCrossAlignment.end,
-        children: createActionsWidgets(context),
         direction: Axis.vertical,
+        children: createActionsWidgets(context),
       )
     ],
   );
@@ -30,20 +30,17 @@ class AboutDialog extends StatelessWidget {
 
   /// Creates a new dialog actions widgets.
   List<Widget> createActionsWidgets(BuildContext context) => [
-    FlatButton(
+    TextButton(
       onPressed: () => openURL('https://bacomathiqu.es/a-propos/'),
       child: Text('Plus d\'informations'.toUpperCase()),
-      textTheme: ButtonTextTheme.accent,
     ),
-    FlatButton(
+    TextButton(
       onPressed: () => openURL(storePage),
       child: Text('Fiche de l\'application'.toUpperCase()),
-      textTheme: ButtonTextTheme.accent,
     ),
-    FlatButton(
+    TextButton(
       onPressed: () => Navigator.pop(context),
       child: Text('Fermer'.toUpperCase()),
-      textTheme: ButtonTextTheme.accent,
     ),
   ];
 

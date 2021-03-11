@@ -16,8 +16,8 @@ class AdsDialog extends StatelessWidget {
       Wrap(
         alignment: WrapAlignment.end,
         crossAxisAlignment: WrapCrossAlignment.end,
-        children: createActionsWidgets(context, Provider.of<SettingsModel>(context)),
         direction: Axis.vertical,
+        children: createActionsWidgets(context, Provider.of<SettingsModel>(context)),
       ),
     ],
   );
@@ -39,7 +39,7 @@ class AdsDialog extends StatelessWidget {
 
   /// Creates a new dialog actions widgets.
   List<Widget> createActionsWidgets(BuildContext context, SettingsModel settingsModel) => [
-    FlatButton(
+    TextButton(
       onPressed: () async {
         settingsModel.adMobEnabled = true;
         await settingsModel.flush();
@@ -48,9 +48,8 @@ class AdsDialog extends StatelessWidget {
         Navigator.pop(context);
       },
       child: Text('Voir des annonces sur mesure'.toUpperCase()),
-      textTheme: ButtonTextTheme.accent,
     ),
-    FlatButton(
+    TextButton(
       onPressed: () async {
         settingsModel.adMobEnabled = true;
         await settingsModel.flush();
@@ -59,21 +58,18 @@ class AdsDialog extends StatelessWidget {
         Navigator.pop(context);
       },
       child: Text('Voir des annonces moins pertinentes'.toUpperCase()),
-      textTheme: ButtonTextTheme.accent,
     ),
-    FlatButton(
+    TextButton(
       onPressed: () async {
         settingsModel.adMobEnabled = false;
         await settingsModel.flush();
         Navigator.pop(context);
       },
       child: Text('Désactiver les publicités'.toUpperCase()),
-      textTheme: ButtonTextTheme.accent,
     ),
-    FlatButton(
+    TextButton(
       onPressed: () => Navigator.pop(context),
       child: Text('Fermer'.toUpperCase()),
-      textTheme: ButtonTextTheme.accent,
     ),
   ];
 
@@ -87,10 +83,9 @@ class AdsDialog extends StatelessWidget {
         ),
       ),
       actions: [
-        FlatButton(
+        TextButton(
           onPressed: () => Navigator.pop(context),
           child: Text('Ok'.toUpperCase()),
-          textTheme: ButtonTextTheme.accent,
         ),
       ],
     ),
