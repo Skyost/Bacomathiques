@@ -1,4 +1,4 @@
-import 'package:app_tracking_transparency/app_tracking_transparency.dart';
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/content.dart';
 import 'package:bacomathiques/app/dialogs/consent.dart';
@@ -9,7 +9,6 @@ import 'package:bacomathiques/utils/request_scaffold.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
 import 'package:provider/provider.dart';
@@ -34,11 +33,8 @@ class AdMobHTMLPage extends StatefulWidget {
 
 /// The AdMob HTML page state.
 class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
-  /// The banner ad.
-  BannerAd? bannerAd;
-
-  /// Whether the ad has been loaded.
-  bool adLoaded = false;
+  /// The consent information.
+  ConsentInformation? consentInformation;
 
   @override
   void initState() {
@@ -56,16 +52,8 @@ class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
       personalizedAdsButton: 'Oui, je souhaite voir des annonces pertinentes'.toUpperCase(),
       nonPersonalizedAdsButton: 'Non, je souhaite voir des annonces moins pertinentes'.toUpperCase(),
     );
-    await AppTrackingTransparency.requestTrackingAuthorization();
-    BannerAd? bannerAd = context.read<SettingsModel>().createAdMobBanner(context, consentInformation.wantsNonPersonalizedAds, onAdLoaded: (ad) {
-      if (mounted) {
-        setState(() => adLoaded = true);
-      }
-    });
-    if (bannerAd != null) {
-      await bannerAd.load();
-      setState(() => this.bannerAd = bannerAd);
-    }
+    await Admob.requestTrackingAuthorization();
+    setState(() => this.consentInformation = consentInformation);
   }
 
   @override
@@ -75,44 +63,34 @@ class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
       anchor: widget.anchor,
     );
 
-    if (bannerAd == null || !adLoaded) {
+    if (consentInformation == null) {
       return htmlPage;
     }
 
-    double bannerHeight = _calculateBannerHeight(context);
-    return Stack(
-      children: [
-        Padding(
-          padding: EdgeInsets.only(bottom: bannerHeight),
-          child: htmlPage,
-        ),
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: 0,
-          height: bannerHeight,
-          child: AdWidget(ad: bannerAd),
-        ),
-      ],
+    SettingsModel settingsModel = Provider.of<SettingsModel>(context);
+    AdmobBanner? banner = settingsModel.createAdMobBanner(context, consentInformation!.wantsNonPersonalizedAds);
+    if (banner == null) {
+      return htmlPage;
+    }
+
+    return FutureBuilder<Size>(
+      initialData: Size.zero,
+      future: settingsModel.calculateAdMobBannerSize(context),
+      builder: (context, sizeSnapshot) => Stack(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(bottom: sizeSnapshot.hasData ? sizeSnapshot.data!.height : 0),
+            child: htmlPage,
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: banner,
+          ),
+        ],
+      ),
     );
-  }
-
-  @override
-  void dispose() {
-    bannerAd?.dispose();
-    super.dispose();
-  }
-
-  /// Calculates the ad banner height.
-  double _calculateBannerHeight(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    if (screenHeight <= 400) {
-      return 32;
-    }
-    if(screenHeight <= 720) {
-      return 50;
-    }
-    return 90;
   }
 }
 

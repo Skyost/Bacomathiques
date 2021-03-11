@@ -1,14 +1,14 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/credentials.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Allows to load and set required AdMob information.
 class SettingsModel extends ChangeNotifier {
   /// The banner ad identifier.
-  String _adMobBannerId = BannerAd.testAdUnitId;
+  String _adMobBannerId = 'ca-app-pub-3940256099942544/6300978111';
 
   /// The app theme mode.
   ThemeMode _themeMode = ThemeMode.system;
@@ -41,18 +41,19 @@ class SettingsModel extends ChangeNotifier {
   }
 
   /// Creates the banner ad.
-  BannerAd? createAdMobBanner(BuildContext context, bool nonPersonalizedAds, { Function(Ad ad)? onAdLoaded }) => _adMobEnabled
-      ? BannerAd(
+  AdmobBanner? createAdMobBanner(BuildContext context, bool nonPersonalizedAds) => _adMobEnabled
+      ? AdmobBanner(
           adUnitId: _adMobBannerId,
-          size: AdSize.getSmartBanner(MediaQuery.of(context).orientation),
-          request: AdRequest(nonPersonalizedAds: nonPersonalizedAds),
-          listener: AdListener(
-            onAdLoaded: onAdLoaded,
-            onAdFailedToLoad: (Ad ad, LoadAdError error) => ad.dispose(),
-            onAdClosed: (Ad ad) => ad.dispose(),
-          ),
+          adSize: _getAdMobBannerSize(context),
+          nonPersonalizedAds: nonPersonalizedAds,
         )
       : null;
+
+  /// Calculates the banner size.
+  Future<Size> calculateAdMobBannerSize(BuildContext context) => !adMobEnabled ? Future<Size>.value(Size.zero) : Admob.bannerSize(_getAdMobBannerSize(context));
+
+  /// Returns the AdMob banner size.
+  AdmobBannerSize _getAdMobBannerSize(BuildContext context) => AdmobBannerSize.ADAPTIVE_BANNER(width: MediaQuery.of(context).size.width.ceil());
 
   /// Returns the theme mode.
   ThemeMode get themeMode => _themeMode;

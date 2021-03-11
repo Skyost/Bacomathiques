@@ -87,6 +87,7 @@ abstract class AppTheme {
 
   /// Returns the flutter theme data.
   ThemeData get flutterThemeData => ThemeData(
+        brightness: Brightness.dark,
         primaryColor: primaryColor,
         primaryColorDark: primaryColorDark,
         accentColor: accentColor,
