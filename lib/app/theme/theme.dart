@@ -60,6 +60,9 @@ abstract class AppTheme {
   /// The horizontal rule color.
   final Color? hrColor;
 
+  /// The input decoration color.
+  final Color inputDecorationColor;
+
   /// Contains all bubble themes.
   final Map<Bubble, BubbleTheme> bubbleThemes;
 
@@ -82,12 +85,12 @@ abstract class AppTheme {
     this.h2Color,
     this.h3Color,
     this.hrColor,
+    required this.inputDecorationColor,
     required this.bubbleThemes,
   });
 
   /// Returns the flutter theme data.
   ThemeData get flutterThemeData => ThemeData(
-        brightness: Brightness.dark,
         primaryColor: primaryColor,
         primaryColorDark: primaryColorDark,
         accentColor: accentColor,
@@ -116,6 +119,18 @@ abstract class AppTheme {
           highlightColor: highlightColor,
           splashColor: highlightColor,
         ),
+        inputDecorationTheme: InputDecorationTheme(
+          hintStyle: TextStyle(color: accentColor),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: inputDecorationColor),
+          ),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: inputDecorationColor),
+          ),
+          border: UnderlineInputBorder(
+            borderSide: BorderSide(color: inputDecorationColor),
+          ),
+        ),
       );
 }
 
@@ -134,6 +149,7 @@ class _LightAppTheme extends AppTheme {
           h2Color: const Color(0xff23618a),
           h3Color: const Color(0xff3498db),
           hrColor: Colors.black12,
+          inputDecorationColor: const Color(0xFF3498DB),
           bubbleThemes: const {
             Bubble.FORMULA: BubbleTheme(
               backgroundColor: Color(0xffebf3fb),
@@ -171,6 +187,7 @@ class _DarkAppTheme extends AppTheme {
           textColor: Colors.white,
           progressIndicatorColor: Colors.white,
           hrColor: Colors.white12,
+          inputDecorationColor: Colors.white,
           bubbleThemes: const {
             Bubble.FORMULA: BubbleTheme(
               backgroundColor: Color(0xff192734),

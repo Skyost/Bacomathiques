@@ -19,7 +19,7 @@ import 'package:provider/provider.dart';
 /// Hello world !
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Admob.initialize();
+  Admob.initialize();
 
   Widget main = BacomathiquesApp();
   if(kDebugMode) {
@@ -57,7 +57,7 @@ class BacomathiquesApp extends StatelessWidget {
         ],
         child: Consumer<SettingsModel>(
           builder: (context, settings, _) => AnnotatedRegion<SystemUiOverlayStyle>(
-            value: SystemUiOverlayStyle.light.copyWith(systemNavigationBarColor: settings.resolveTheme(context).actionBarColor),
+            value: SystemUiOverlayStyle.dark.copyWith(systemNavigationBarColor: settings.resolveTheme(context).actionBarColor),
             child: MaterialApp(
               title: App.APP_NAME,
               initialRoute: '/',

@@ -20,9 +20,8 @@ class E3CDialog extends StatelessWidget {
     return AlertDialog(
       title: _createTitleWidget(),
       contentPadding: EdgeInsets.zero,
-      content: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
+      content: SizedBox.fromSize(
+        size: MediaQuery.of(context).size,
         child: ListView(
           padding: const EdgeInsets.all(24).copyWith(top: 20),
           children: [

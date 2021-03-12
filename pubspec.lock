@@ -167,13 +167,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.21.0-nullsafety.0"
-  flutter_tex_js:
-    dependency: "direct main"
-    description:
-      name: flutter_tex_js
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.0"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -185,7 +178,7 @@ packages:
       name: flutter_widget_from_html_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.0-rc.2021030401"
+    version: "0.6.0-rc.2021031201"
   fluttertoast:
     dependency: transitive
     description:
@@ -199,7 +192,7 @@ packages:
       name: fwfh_svg
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.0-rc.2021022601"
+    version: "0.6.0-rc.2021031201"
   google_fonts:
     dependency: "direct main"
     description:
@@ -498,7 +491,7 @@ packages:
       name: tuple
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0-nullsafety.0"
+    version: "2.0.0"
   typed_data:
     dependency: transitive
     description:
@@ -568,7 +561,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.2"
   xdg_directories:
     dependency: transitive
     description:

@@ -204,7 +204,7 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
       table.attributes['cellspacing'] = '0';
       List<dom.Element> maths = table.getElementsByTagName('math');
       for (dom.Element math in maths) {
-        math.attributes['data-force-flutter-math-rendering'] = 'true';
+        math.attributes['data-force-break'] = 'true';
       }
     }
   }

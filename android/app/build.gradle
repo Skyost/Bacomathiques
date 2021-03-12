@@ -41,7 +41,7 @@ android {
 
     defaultConfig {
         applicationId "fr.bacomathiques"
-        minSdkVersion 19
+        minSdkVersion 16
         targetSdkVersion 30
         multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
