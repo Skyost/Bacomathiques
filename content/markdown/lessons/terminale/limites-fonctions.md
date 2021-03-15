@@ -391,7 +391,7 @@ Comme, $\lim_{x \rightarrow +\infty} \frac{-1}{x} = 0$ et $\lim_{x \rightarrow +
 </bubble>
 
 Le dernier théorème est la <q>version fonctions</q> du théorèmes des gendarmes (que l'on a vu lors du cours
-sur [les suites](/cours/terminale/suites/). Ils permettent notamment de démontrer une partie du **théorème des
+sur [les suites](/cours/terminale/suites/)). Ils permettent notamment de démontrer une partie du **théorème des
 croissances comparées**.
 
 <bubble variant="formula">

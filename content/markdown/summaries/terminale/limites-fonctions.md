@@ -213,7 +213,7 @@ tel que $\lim_{x \rightarrow +\infty} f(x) = \ell$ et $\lim_{x \rightarrow +\inf
 </bubble>
 
 Le dernier théorème est la <q>version fonctions</q> du théorèmes des gendarmes (que l'on a vu lors du cours
-sur [les suites](/cours/terminale/suites/). Ils permettent notamment de démontrer une partie du **théorème des
+sur [les suites](/cours/terminale/suites/)). Ils permettent notamment de démontrer une partie du **théorème des
 croissances comparées**.
 
 <bubble variant="formula">

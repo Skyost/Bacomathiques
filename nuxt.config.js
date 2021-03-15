@@ -57,7 +57,12 @@ export default {
   content: {
     liveEdit: false,
     markdown: {
-      remarkPlugins: [
+      remarkPlugins: () => [
+        'remark-squeeze-paragraphs',
+        '~/plugins/remark-slug',
+        'remark-autolink-headings',
+        'remark-external-links',
+        'remark-footnotes',
         '~/plugins/remark-numberize.js',
         'remark-math',
         'remark-gfm'
