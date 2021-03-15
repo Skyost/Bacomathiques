@@ -136,11 +136,11 @@ travailler sur les limites.
 
 #### Limite d'un quotient
 
-| Limite d'un quotient                                                        |                                     |              |               |               |               |               |              |              |       |
-| ----------------------------------------------------------------------------|-------------------------------------|--------------|---------------|---------------|---------------|---------------|--------------|--------------|------ |
-| Si la limite de $(u_n)$ quand $n$ tend vers $+\infty$ est...                | $\ell$                              | $\ell$       | $+\infty$     | $+\infty$     | $-\infty$     | $-\infty$     | $\pm \infty$ | $\ell$       | $0$   |
-| Et la limite de $(v_n)$ quand $n$ tend vers $+\infty$ est...                | $\ell' \neq 0$                      | $\pm \infty$ | $\ell' \gt 0$ | $\ell' \lt 0$ | $\ell' \gt 0$ | $\ell' \lt 0$ | $\pm \infty$ | $0^+_-$      | $0$   |
-| Alors la limite de $(\frac{u_n}{v_n})$ quand $n$ tend vers $+\infty$ est... | $\displaystyle{\frac{\ell}{\ell'}}$ | $0$          | $+\infty$     | $-\infty$     | $-\infty$     | $+\infty$     | **?**        | $\pm \infty$ | **?** |
+| Limite d'un quotient                                                                   |                                     |              |               |               |               |               |              |              |       |
+| ---------------------------------------------------------------------------------------|-------------------------------------|--------------|---------------|---------------|---------------|---------------|--------------|--------------|------ |
+| Si la limite de $(u_n)$ quand $n$ tend vers $+\infty$ est...                           | $\ell$                              | $\ell$       | $+\infty$     | $+\infty$     | $-\infty$     | $-\infty$     | $\pm \infty$ | $\ell$       | $0$   |
+| Et la limite de $(v_n)$ quand $n$ tend vers $+\infty$ est...                           | $\ell' \neq 0$                      | $\pm \infty$ | $\ell' \gt 0$ | $\ell' \lt 0$ | $\ell' \gt 0$ | $\ell' \lt 0$ | $\pm \infty$ | $0^+_-$      | $0$   |
+| Alors la limite de $\left(\frac{u_n}{v_n}\right)$ quand $n$ tend vers $+\infty$ est... | $\displaystyle{\frac{\ell}{\ell'}}$ | $0$          | $+\infty$     | $-\infty$     | $-\infty$     | $+\infty$     | **?**        | $\pm \infty$ | **?** |
 
 </bubble>
 
