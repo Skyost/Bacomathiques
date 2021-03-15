@@ -29,7 +29,7 @@ class TitleWidget extends StatelessWidget {
   final EdgeInsets? padding;
 
   /// The container margin.
-  final EdgeInsets margin;
+  final EdgeInsets? margin;
 
   /// Creates a new headline 2 formatted title.
   TitleWidget.h2({
@@ -38,7 +38,7 @@ class TitleWidget extends StatelessWidget {
         getColor = _getH2Color,
         getBorderBottomColor = _getH2BorderBottomColor,
         padding = const EdgeInsets.only(bottom: 0.5 * _BASE_SIZE),
-        margin = const EdgeInsets.only(bottom: 1.4 * _BASE_SIZE);
+        margin = const EdgeInsets.only(bottom: 0.3 * _BASE_SIZE);
 
   /// Creates a new headline 3 formatted title.
   TitleWidget.h3({
@@ -46,8 +46,8 @@ class TitleWidget extends StatelessWidget {
   })  : fontSize = 1.75 * _BASE_SIZE,
         getColor = _getH3Color,
         getBorderBottomColor = null,
-        padding = null,
-        margin = const EdgeInsets.only(bottom: 1.0 * _BASE_SIZE);
+        padding = const EdgeInsets.only(bottom: 0.8 * _BASE_SIZE),
+        margin = null;
 
   /// Creates a new headline 4 formatted title.
   TitleWidget.h4({
@@ -55,8 +55,8 @@ class TitleWidget extends StatelessWidget {
   })  : fontSize = 1.25 * _BASE_SIZE,
         getColor = _getH4Color,
         getBorderBottomColor = null,
-        padding = null,
-        margin = const EdgeInsets.only(bottom: 0.75 * _BASE_SIZE);
+        padding = const EdgeInsets.only(bottom: 0.75 * _BASE_SIZE),
+        margin = null;
 
   /// Creates a new title widget from the specified element.
   factory TitleWidget.fromElement({
@@ -103,8 +103,9 @@ class TitleWidget extends StatelessWidget {
                 ),
               ),
             ),
-      width: borderBottomColor == null ? null : MediaQuery.of(context).size.width,
+      width: MediaQuery.of(context).size.width,
       margin: margin,
+      padding: padding,
       child: child,
     );
   }

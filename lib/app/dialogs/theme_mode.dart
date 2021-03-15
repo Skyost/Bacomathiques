@@ -46,7 +46,7 @@ class ThemeModeDialog extends StatelessWidget {
           if (settings.themeMode != ThemeMode.system)
             DayNightSwitcher(
               isDarkModeEnabled: settings.themeMode == ThemeMode.dark,
-              onStateChanged: (isDarkModeEnabled) => settings.themeMode = isDarkModeEnabled ? ThemeMode.dark : ThemeMode.light,
+              onStateChanged: (isDarkModeEnabled) => setThemeMode(settings, isDarkModeEnabled ? ThemeMode.dark : ThemeMode.light),
             ),
         ],
       );
@@ -62,10 +62,16 @@ class ThemeModeDialog extends StatelessWidget {
   /// Toggles the system theme choice.
   void toggleSystemChoice(BuildContext context, SettingsModel settings, [bool? value]) {
     if (settings.themeMode == ThemeMode.system) {
-      settings.themeMode = MediaQuery.platformBrightnessOf(context) == Brightness.light ? ThemeMode.light : ThemeMode.dark;
+      setThemeMode(settings, MediaQuery.platformBrightnessOf(context) == Brightness.light ? ThemeMode.light : ThemeMode.dark);
     } else {
-      settings.themeMode = ThemeMode.system;
+      setThemeMode(settings, ThemeMode.system);
     }
+  }
+
+  /// Changes the theme mode.
+  void setThemeMode(SettingsModel settings, ThemeMode themeMode) {
+    settings.themeMode = themeMode;
+    settings.flush();
   }
 
   /// Shows the dialog.

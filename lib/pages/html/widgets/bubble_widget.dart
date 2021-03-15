@@ -30,7 +30,7 @@ class BubbleWidget extends StatefulWidget {
   }) : this(
           bubble: BubbleUtils.of(element),
           children: children,
-          inScrollableView: element.getElementsByTagName('table').isNotEmpty || element.getElementsByTagName('math').isNotEmpty,
+          inScrollableView: element.getElementsByTagName('table').isNotEmpty,
         );
 
   @override

@@ -74,3 +74,4 @@ list_assets.py
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 /.flutter-plugins-dependencies
+/local.properties

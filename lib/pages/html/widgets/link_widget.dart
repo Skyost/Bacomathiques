@@ -1,4 +1,3 @@
-import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/content.dart';
 import 'package:bacomathiques/app/theme/bubble.dart';
 import 'package:bacomathiques/utils/utils.dart';
@@ -9,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 /// Allows to display a link.
 class LinkWidget extends StatelessWidget {
   /// Allows to match URL parts.
-  static final RegExp urlParts = RegExp(API.BASE_URL + r'/cours/([A-Za-zÀ-ÖØ-öø-ÿ0-9\-\_]+)/([A-Za-zÀ-ÖØ-öø-ÿ0-9\-\_]+)/#([A-Za-zÀ-ÖØ-öø-ÿ0-9\-\_]+)');
+  static final RegExp urlParts = RegExp(r'/cours/([A-Za-zÀ-ÖØ-öø-ÿ0-9\-\_]+)/([A-Za-zÀ-ÖØ-öø-ÿ0-9\-\_]+)/?(#[A-Za-zÀ-ÖØ-öø-ÿ0-9\-\_]+)?');
 
   /// The text to display.
   final String text;
@@ -77,25 +76,25 @@ class LinkWidget extends StatelessWidget {
     }
 
     RegExpMatch? firstMatch = urlParts.firstMatch(href);
-    if (firstMatch == null || firstMatch.groupCount < 2) {
+    if (firstMatch == null || firstMatch.groupCount < 3) {
       return null;
     }
 
     return LessonContentEndpoint.fromLevelAndLesson(
-      level: firstMatch.group(0)!,
-      lesson: firstMatch.group(1)!,
+      level: firstMatch.group(1)!,
+      lesson: firstMatch.group(2)!,
     );
   }
 
   /// Returns the target lesson endpoint hash.
   String? get _targetLessonEndpointHash {
     if (href.startsWith('#')) {
-      return href.substring(1);
+      return Uri.decodeFull(href.substring(1));
     }
 
     RegExpMatch? firstMatch = urlParts.firstMatch(href);
-    if (firstMatch != null) {
-      return firstMatch.groupCount >= 3 ? firstMatch.group(2) : null;
+    if (firstMatch != null && firstMatch.groupCount >= 4) {
+      return Uri.decodeFull(firstMatch.group(3)!);
     }
 
     return null;

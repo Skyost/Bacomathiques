@@ -4,6 +4,7 @@ import 'package:bacomathiques/pages/html/widgets/link_widget.dart';
 import 'package:bacomathiques/pages/html/widgets/list_view_widget.dart';
 import 'package:bacomathiques/pages/html/widgets/math_widget.dart';
 import 'package:bacomathiques/pages/html/widgets/title_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:fwfh_svg/fwfh_svg.dart';
@@ -31,6 +32,12 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
   /// The proof tag build op.
   BuildOp? proof;
 
+  /// The H2 tag build op.
+  BuildOp? h2;
+
+  /// The H3 tag build op.
+  BuildOp? h3;
+
   /// The H4 tag build op.
   BuildOp? h4;
 
@@ -46,23 +53,23 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
   void parse(BuildMetadata meta) {
     super.parse(meta);
     if (meta.element.localName == 'lv') {
-      String? scrollTarget = meta.element.attributes['data-scroll-target']?.substring(1);
+      String? scrollTarget = meta.element.attributes['data-scroll-target'];
       lv ??= BuildOp(
         onChild: scrollTarget == null || scrollToThisKey != null
             ? null
             : (meta) {
-                if (meta.element.id == scrollTarget) {
-                  scrollToThisKey = GlobalKey();
-                  meta.register(
-                    BuildOp(
-                      onWidgets: (meta, children) => [
-                        SizedBox.shrink(key: scrollToThisKey),
-                        ...children,
-                      ],
-                    ),
-                  );
-                }
-              },
+          if (meta.element.id == scrollTarget) {
+            scrollToThisKey = GlobalKey();
+            meta.register(
+              BuildOp(
+                onWidgets: (meta, children) => [
+                  ScrollToThis(scrollToThisKey!),
+                  ...children,
+                ],
+              ),
+            );
+          }
+        },
         onWidgets: (meta, children) => [
           ListViewWidget(
             scrollToThisKey: scrollToThisKey,
@@ -106,12 +113,14 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
     } else if (meta.element.classes.contains(Bubble.PROOF.className)) {
       proof ??= _createBubbleBuildOp(Bubble.PROOF, meta);
       meta.register(proof!);
+    } else if (meta.element.localName == 'h2') {
+      h2 ??= _createTitleBuildOp(meta);
+      meta.register(h2!);
+    } else if (meta.element.localName == 'h3') {
+      h3 ??= _createTitleBuildOp(meta);
+      meta.register(h3!);
     } else if (meta.element.localName == 'h4') {
-      h4 ??= BuildOp(
-        onTree: (meta, tree) => tree.replaceWith(
-          WidgetBit.block(tree, TitleWidget.fromElement(element: meta.element)),
-        ),
-      );
+      h4 ??= _createTitleBuildOp(meta);
       meta.register(h4!);
     }
   }
@@ -123,6 +132,13 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
     }
     return super.getListStyleMarker(type, i);
   }
+
+  /// Creates a title build op.
+  BuildOp _createTitleBuildOp(BuildMetadata meta) => BuildOp(
+        onTree: (meta, tree) => tree.replaceWith(
+          WidgetBit.block(tree, TitleWidget.fromElement(element: meta.element)),
+        ),
+      );
 
   /// Creates a bubble build op.
   BuildOp _createBubbleBuildOp(Bubble bubble, BuildMetadata meta) => BuildOp(

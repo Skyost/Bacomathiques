@@ -29,11 +29,17 @@ class _ListViewWidgetState extends State<ListViewWidget> {
 
     scrollController = ScrollController();
     if (widget.scrollToThisKey != null) {
-      WidgetsBinding.instance?.addPostFrameCallback((_) {
-        RenderObject? renderObject = widget.scrollToThisKey?.currentContext?.findRenderObject();
-        if (renderObject != null) {
-          scrollController.position.ensureVisible(renderObject);
+      WidgetsBinding.instance?.addPostFrameCallback((_) async {
+        double screenHeight = scrollController.position.viewportDimension;
+        while (scrollController.offset < scrollController.position.maxScrollExtent) {
+          await scrollController.position.moveTo(scrollController.offset + screenHeight, duration: const Duration(milliseconds: 100));
+          RenderObject? renderObject = widget.scrollToThisKey?.currentContext?.findRenderObject();
+          if (renderObject != null) {
+            await scrollController.position.ensureVisible(renderObject);
+            return;
+          }
         }
+        await scrollController.position.moveTo(0);
       });
     }
   }
@@ -51,4 +57,16 @@ class _ListViewWidgetState extends State<ListViewWidget> {
     scrollController.dispose();
     super.dispose();
   }
+}
+
+/// Marks a "scroll" point.
+class ScrollToThis extends StatelessWidget {
+  /// Creates a new "scroll to this" widget instance.
+  const ScrollToThis(GlobalKey key)
+      : super(
+          key: key,
+        );
+
+  @override
+  Widget build(BuildContext context) => const Offstage();
 }

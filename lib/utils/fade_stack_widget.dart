@@ -26,17 +26,22 @@ class _AboveWidgetFadeState extends State<AboveWidgetFade> {
   @override
   Widget build(BuildContext context) => GestureDetector(
         onTap: _toggleAbove,
-        child: Stack(
-          children: [
-            widget.under,
-            Positioned.fill(
-              child: AnimatedOpacity(
-                opacity: isAboveDisplaying ? 1 : 0,
-                duration: const Duration(milliseconds: 200),
-                child: widget.above,
+        child: LayoutBuilder(
+          builder: (context, constraints) => Stack(
+            children: [
+              ConstrainedBox(
+                constraints: constraints,
+                child: widget.under,
               ),
-            ),
-          ],
+              Positioned.fill(
+                child: AnimatedOpacity(
+                  opacity: isAboveDisplaying ? 1 : 0,
+                  duration: const Duration(milliseconds: 200),
+                  child: widget.above,
+                ),
+              ),
+            ],
+          ),
         ),
       );
 

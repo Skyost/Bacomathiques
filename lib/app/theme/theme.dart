@@ -9,6 +9,9 @@ abstract class AppTheme {
   /// The dark theme instance.
   static final _DarkAppTheme DARK = const _DarkAppTheme();
 
+  /// The app theme brightness.
+  final Brightness brightness;
+
   /// The primary color.
   final Color primaryColor;
 
@@ -68,6 +71,7 @@ abstract class AppTheme {
 
   /// Creates a new app theme data instance.
   const AppTheme({
+    required this.brightness,
     required this.primaryColor,
     required this.primaryColorDark,
     required this.accentColor,
@@ -94,7 +98,10 @@ abstract class AppTheme {
         primaryColor: primaryColor,
         primaryColorDark: primaryColorDark,
         accentColor: accentColor,
-        appBarTheme: AppBarTheme(color: actionBarColor),
+        appBarTheme: AppBarTheme(
+          color: actionBarColor,
+          brightness: Brightness.dark,
+        ),
         textTheme: TextTheme(
           headline1: TextStyle(color: textColor),
           headline2: TextStyle(color: textColor),
@@ -110,6 +117,7 @@ abstract class AppTheme {
           button: TextStyle(color: accentColor),
           overline: TextStyle(color: textColor),
         ),
+        unselectedWidgetColor: accentColor,
         scaffoldBackgroundColor: scaffoldBackgroundColor,
         dialogBackgroundColor: scaffoldBackgroundColor,
         highlightColor: highlightColor,
@@ -139,6 +147,7 @@ class _LightAppTheme extends AppTheme {
   /// Creates a new light app theme data instance.
   const _LightAppTheme()
       : super(
+          brightness: Brightness.light,
           primaryColor: const Color(0xFF3498DB),
           primaryColorDark: const Color(0xFF3498DB),
           accentColor: const Color(0xFF757575),
@@ -176,6 +185,7 @@ class _DarkAppTheme extends AppTheme {
   /// Creates a new dark app theme data instance.
   const _DarkAppTheme()
       : super(
+          brightness: Brightness.dark,
           primaryColor: const Color(0xFF253341),
           primaryColorDark: const Color(0xFF192734),
           accentColor: const Color(0xFF91A4B3),

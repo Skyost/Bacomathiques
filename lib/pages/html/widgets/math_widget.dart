@@ -1,4 +1,3 @@
-
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
@@ -12,14 +11,10 @@ class MathWidget extends StatelessWidget {
   /// The text style.
   final TextStyle textStyle;
 
-  /// Whether to force breaks.
-  final bool forceBreak;
-
   /// Creates a new math widget instance.
-  MathWidget({
+  const MathWidget({
     required this.content,
     this.textStyle = const TextStyle(),
-    this.forceBreak = false,
   });
 
   /// Creates a new math widget instance from the specified element.
@@ -29,29 +24,40 @@ class MathWidget extends StatelessWidget {
   }) : this(
           content: element.text,
           textStyle: textStyle,
-          forceBreak: element.attributes['data-force-break'] == 'true'
         );
 
   @override
   Widget build(BuildContext context) {
     Math math = Math.tex(
-      content,
+      content.replaceAll(r'\displaystyle', ''),
       textStyle: textStyle.copyWith(color: textStyle.color ?? context.resolveTheme().textColor),
     );
-
-    if (!forceBreak || content.contains('\\lim')) {
-      return math;
-    }
 
     List<Math> parts = math.texBreak().parts;
     if (parts.length == 1) {
       return parts.first;
     }
 
-    return Wrap(
-      spacing: 5,
-      crossAxisAlignment: WrapCrossAlignment.center,
-      children: parts,
+    return RichText(
+      text: TextSpan(
+        children: _handleParts(parts),
+      ),
     );
+  }
+
+  /// Handle the math parts.
+  List<InlineSpan> _handleParts(List<Math> parts) {
+    List<InlineSpan> result = [];
+    for (Math part in parts) {
+      result.add(WidgetSpan(
+        baseline: TextBaseline.alphabetic,
+        alignment: PlaceholderAlignment.baseline,
+        child: part,
+      ));
+      result.add(const TextSpan(
+        text: ' ',
+      ));
+    }
+    return result;
   }
 }

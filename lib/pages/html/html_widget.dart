@@ -1,6 +1,6 @@
+import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/pages/html/widget_factory.dart';
 import 'package:bacomathiques/pages/html/widgets/representation_preview_widget.dart';
-import 'package:bacomathiques/pages/html/widgets/title_widget.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -29,7 +29,7 @@ class AppHtmlWidget extends StatelessWidget {
         data,
         buildAsync: buildAsync,
         customWidgetBuilder: buildCustomWidget,
-        customStylesBuilder: buildCustomStyle,
+        customStylesBuilder: (element) => buildCustomStyle(context, element),
         buildAsyncBuilder: (context, snapshot) => snapshot.hasData ? snapshot.data! : const CenteredCircularProgressIndicator(message: 'Rendu…'),
         //rebuildTriggers: RebuildTriggers([data, buildCustomWidget, buildCustomStyle]),
         textStyle: textStyle,
@@ -38,10 +38,6 @@ class AppHtmlWidget extends StatelessWidget {
 
   /// Builds the widget of an element.
   Widget? buildCustomWidget(dom.Element element) {
-    if (element.localName == 'h2' || element.localName == 'h3') {
-      return TitleWidget.fromElement(element: element);
-    }
-
     if (element.attributes.containsKey('data-api-v2-geogebra-image') && element.attributes.containsKey('data-api-v2-geogebra-id')) {
       return RepresentationPreviewWidget(
         imageURL: element.attributes['data-api-v2-geogebra-image']!,
@@ -53,22 +49,27 @@ class AppHtmlWidget extends StatelessWidget {
   }
 
   /// Builds the style of an element.
-  Map<String, String>? buildCustomStyle(dom.Element element) {
+  Map<String, String>? buildCustomStyle(BuildContext context, dom.Element element) {
     Map<String, String> style = {
       if (element.classes.contains('mb-0')) 'margin-bottom': '0',
+      if (element.classes.contains('center')) 'text-align': 'center',
     };
 
     switch (element.localName) {
+      case 'h2':
+      case 'h3':
       case 'h4':
         return {
           'margin-top': '0',
+          'padding-top': '0',
           'margin-bottom': '0',
+          'padding-bottom': '0',
           ...style,
         };
       case 'p':
         return {
           'margin-top': '0',
-          'margin-bottom': '1em',
+          'padding-top': '0',
           ...style,
         };
       case 'ol':
@@ -94,8 +95,9 @@ class AppHtmlWidget extends StatelessWidget {
           ...style,
         };
       case 'table':
+        AppTheme theme = context.resolveTheme(listen: false);
         return {
-          'background-color': 'white',
+          'background-color': theme.brightness == Brightness.light ? 'white' : 'transparent',
           'border': '0.5px solid #cfcfcf',
           ...style,
         };
@@ -116,8 +118,8 @@ class AppHtmlWidget extends StatelessWidget {
         };
       case 'img':
         return {
-          'margin-bottom': '1em', // TODO: Doesn't work
-          // TODO: Center images
+          'margin-bottom': '1em',
+          'max-height': '150px',
           ...style,
         };
     }

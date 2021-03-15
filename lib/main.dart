@@ -22,10 +22,9 @@ void main() async {
   Admob.initialize();
 
   Widget main = BacomathiquesApp();
-  if(kDebugMode) {
+  if (kDebugMode) {
     runApp(main);
-  }
-  else {
+  } else {
     CatcherOptions releaseConfig = CatcherOptions(
       SilentReportMode(),
       [
@@ -57,7 +56,7 @@ class BacomathiquesApp extends StatelessWidget {
         ],
         child: Consumer<SettingsModel>(
           builder: (context, settings, _) => AnnotatedRegion<SystemUiOverlayStyle>(
-            value: SystemUiOverlayStyle.dark.copyWith(systemNavigationBarColor: settings.resolveTheme(context).actionBarColor),
+            value: SystemUiOverlayStyle(systemNavigationBarColor: settings.resolveTheme(context).actionBarColor),
             child: MaterialApp(
               title: App.APP_NAME,
               initialRoute: '/',

@@ -138,6 +138,7 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
 
     dom.Document document = parser.parse(html);
     _formatTitles(document);
+    _centerImages(document);
     _removeBottomMarginOfLastElements(document);
     _formatBubbles(document);
     _formatLinks(document);
@@ -164,6 +165,21 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
         default:
           continue;
       }
+    }
+
+    List<dom.Element> linksInside = document.querySelectorAll('h2 > a, h3 > a, h4 > a');
+    for (dom.Element linkInside in linksInside) {
+      linkInside.remove();
+    }
+  }
+
+  /// Center the images.
+  void _centerImages(dom.Document document) {
+    List<dom.Element> images = document.getElementsByTagName('img');
+    for (dom.Element image in images) {
+      dom.Element div = document.createElement('center');
+      div.innerHtml = image.outerHtml;
+      image.replaceWith(div);
     }
   }
 
@@ -202,10 +218,6 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
     for (dom.Element table in tables) {
       //table.attributes['border'] = '1';
       table.attributes['cellspacing'] = '0';
-      List<dom.Element> maths = table.getElementsByTagName('math');
-      for (dom.Element math in maths) {
-        math.attributes['data-force-break'] = 'true';
-      }
     }
   }
 
