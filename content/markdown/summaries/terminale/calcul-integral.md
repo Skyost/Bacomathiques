@@ -18,7 +18,7 @@ On dit que les réels $a$ et $b$ sont les **bornes** de l'intégrale.
 ### Théorème fondamental de l'analyse
 
 Pour calculer l'intégrale d'une fonction, il faut d'abord trouver la primitive de celle-ci (voir le cours sur
-les [primitives](/cours/terminale/primitives/)).
+les [primitives](/cours/terminale/primitives-equations-differentielles/)).
 
 <bubble variant="formula">
 
