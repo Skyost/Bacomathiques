@@ -118,7 +118,6 @@ class AppHtmlWidget extends StatelessWidget {
         };
       case 'img':
         return {
-          'margin-bottom': '1em',
           'max-height': '150px',
           ...style,
         };

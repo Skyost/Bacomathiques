@@ -178,6 +178,7 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
     List<dom.Element> images = document.getElementsByTagName('img');
     for (dom.Element image in images) {
       dom.Element div = document.createElement('center');
+      div.attributes['style'] = 'margin-bottom: 0.75em';
       div.innerHtml = image.outerHtml;
       image.replaceWith(div);
     }
