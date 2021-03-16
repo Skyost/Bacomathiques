@@ -82,16 +82,15 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
       return;
     }
 
-    if (failDialogOptions.show) {
-      await MessageDialog.show(
-        context,
-        message: failMessage + '\nVeuillez vérifier votre connexion internet et réessayer plus tard.',
-        okButtonPressed: () => Navigator.pop(context),
-        onCancelled: failDialogOptions.callback ?? () => Navigator.pop(context),
-      );
-    }
-
     if (mounted) {
+      if (failDialogOptions.show) {
+        await MessageDialog.show(
+          context,
+          message: failMessage + '\nVeuillez vérifier votre connexion internet et réessayer plus tard.',
+          okButtonPressed: () => Navigator.pop(context),
+          onCancelled: failDialogOptions.callback ?? () => Navigator.pop(context),
+        );
+      }
       setState(() => _loading = false);
     }
   }

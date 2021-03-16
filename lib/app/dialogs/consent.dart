@@ -247,6 +247,7 @@ class _PersonalizedAdsConsentDialog extends StatelessWidget {
           child: Text(
             personalizedAdsButton,
             textAlign: TextAlign.center,
+            style: const TextStyle(color: Colors.white),
           ),
         ),
       );
@@ -265,6 +266,7 @@ class _PersonalizedAdsConsentDialog extends StatelessWidget {
           child: Text(
             nonPersonalizedAdsButton,
             textAlign: TextAlign.center,
+            style: const TextStyle(color: Colors.white),
           ),
         ),
       );

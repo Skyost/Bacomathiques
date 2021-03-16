@@ -41,7 +41,7 @@ class RepresentationPreviewWidget extends StatelessWidget {
             ),
           ),
           under: Container(
-            width: double.infinity,
+            width: MediaQuery.of(context).size.width,
             color: Colors.black.withAlpha(30),
             child: FadeInImage.memoryNetwork(
               image: imageURL,

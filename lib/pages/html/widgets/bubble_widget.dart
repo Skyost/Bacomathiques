@@ -30,11 +30,25 @@ class BubbleWidget extends StatefulWidget {
   }) : this(
           bubble: BubbleUtils.of(element),
           children: children,
-          inScrollableView: element.getElementsByTagName('table').isNotEmpty,
+          inScrollableView: BubbleWidget._inScrollableView(element),
         );
 
   @override
   State<StatefulWidget> createState() => _BubbleWidgetState();
+
+  /// Whether the widget should in a scrollable view.
+  static bool _inScrollableView(dom.Element element) {
+    if (element.getElementsByTagName('table').isNotEmpty || element.getElementsByTagName('img').isNotEmpty) {
+      return true;
+    }
+
+    if (element.getElementsByTagName('math').isNotEmpty) {
+      return element.innerHtml.contains(r'\begin{pmatrix}');
+    }
+    // TODO: Some \cases and \binom are too long.
+
+    return false;
+  }
 }
 
 /// The bubble widget state.
