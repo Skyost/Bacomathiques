@@ -42,12 +42,7 @@ class BubbleWidget extends StatefulWidget {
       return true;
     }
 
-    if (element.getElementsByTagName('math').isNotEmpty) {
-      return element.innerHtml.contains(r'\begin{pmatrix}');
-    }
-    // TODO: Some \cases and \binom are too long.
-
-    return false;
+    return element.attributes['data-content-width'] == 'big';
   }
 }
 
