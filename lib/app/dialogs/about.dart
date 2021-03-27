@@ -19,12 +19,12 @@ class AboutDialog extends StatelessWidget {
   );
 
   /// Creates a new title widget.
-  Widget _createTitleWidget() => const Text('À propos');
+  Widget _createTitleWidget() => const Text('À propos de Bacomathiques');
 
   /// Creates a new content widget.
   Widget _createContentWidget() => const SingleChildScrollView(
     child: Text(
-      'Révisez vos maths en toute tranquillité de la Première à la Terminale avec Bacomathiques !\nVous pouvez consulter les licences des contenus, technologies utilisées et autres en cliquant sur le bouton « Plus d\'informations ».\nSinon, n\'hésitez pas à laisser une (bonne) note sur la fiche de l\'application !',
+      'Révisez vos maths en toute tranquillité de la Première à la Terminale avec Bacomathiques ! Vous pouvez consulter les licences des contenus, technologies utilisées et autres en cliquant sur le bouton « Plus d\'informations ».\nSi vous aimez cette appli, n\'hésitez pas à laisser une (bonne) note sur la fiche de l\'application !',
     ),
   );
 

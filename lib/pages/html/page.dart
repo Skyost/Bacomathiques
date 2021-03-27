@@ -138,7 +138,7 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
 
     dom.Document document = parser.parse(html);
     _formatTitles(document);
-    _centerImages(document);
+    _formatImages(document);
     _removeBottomMarginOfLastElements(document);
     _formatBubbles(document);
     _formatLinks(document);
@@ -174,9 +174,14 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
   }
 
   /// Center the images.
-  void _centerImages(dom.Document document) {
+  void _formatImages(dom.Document document) {
+    Brightness brightness = context.resolveTheme(listen: false).brightness;
     List<dom.Element> images = document.getElementsByTagName('img');
     for (dom.Element image in images) {
+      if (brightness == Brightness.dark && image.attributes['data-src-dark'] != null) {
+        image.attributes['src'] = image.attributes['data-src-dark']!;
+      }
+
       dom.Element div = document.createElement('center');
       div.attributes['style'] = 'margin-bottom: 0.75em';
       div.innerHtml = image.outerHtml;

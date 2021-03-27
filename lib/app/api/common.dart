@@ -214,15 +214,18 @@ abstract class APIEndpointResult {
       );
 
   /// Creates the title widget.
-  Widget createTitle(BuildContext context) => Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _createLogoWidget(context),
-          _createTitleTextWidget(context),
-        ],
-      );
+  Widget createTitle(BuildContext context) => GestureDetector(
+    onTap: () => AboutDialog.show(context),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _createLogoWidget(context),
+        _createTitleTextWidget(context),
+      ],
+    ),
+  );
 
   /// Creates the logo widget.
   Widget _createLogoWidget(BuildContext context) => SvgPicture.asset(
@@ -261,6 +264,7 @@ abstract class APIEndpointResultHTML extends APIEndpointResult {
     return titleParts.length < 2
         ? Text(lesson.title)
         : RichText(
+            overflow: TextOverflow.ellipsis,
             text: TextSpan(
               children: [
                 TextSpan(
@@ -271,7 +275,7 @@ abstract class APIEndpointResultHTML extends APIEndpointResult {
                   ),
                 ),
                 TextSpan(
-                  text: '\n' + titleParts[1],
+                  text: '\n' + titleParts.sublist(1).join(' – '),
                 ),
               ],
             ),

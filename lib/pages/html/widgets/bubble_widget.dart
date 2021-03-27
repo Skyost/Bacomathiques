@@ -38,7 +38,7 @@ class BubbleWidget extends StatefulWidget {
 
   /// Whether the widget should in a scrollable view.
   static bool _inScrollableView(dom.Element element) {
-    if (element.getElementsByTagName('table').isNotEmpty || element.getElementsByTagName('img').isNotEmpty) {
+    if (element.getElementsByTagName('table').isNotEmpty || element.getElementsByTagName('pre').isNotEmpty) {
       return true;
     }
 
