@@ -110,9 +110,9 @@ class _LessonsPageState extends RequestScaffold<LessonsPage, LessonList> {
       }
 
       preferences.setBool('preferences.api-warn-v' + result.api.version.toString(), true);
-      WidgetsBinding.instance?.scheduleFrameCallback((duration) {
+      if (mounted) {
         MessageDialog.show(context, message: 'Une mise à jour de l\'application est disponible. Vous pouvez dès maintenant aller la télécharger.');
-      });
+      }
     });
   }
 }

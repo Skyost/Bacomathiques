@@ -42,7 +42,7 @@ class BubbleWidget extends StatefulWidget {
       return true;
     }
 
-    return element.attributes['data-content-width'] == 'big';
+    return element.attributes['data-api-v2-content-width'] == 'big';
   }
 }
 

@@ -17,7 +17,7 @@ class AdsDialog extends StatelessWidget {
         alignment: WrapAlignment.end,
         crossAxisAlignment: WrapCrossAlignment.end,
         direction: Axis.vertical,
-        children: createActionsWidgets(context, Provider.of<SettingsModel>(context)),
+        children: createActionsWidgets(context, context.watch<SettingsModel>()),
       ),
     ],
   );

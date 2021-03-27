@@ -88,7 +88,7 @@ class ConsentInformation {
   }
 
   /// Reads or asks for the consent information if required.
-  static Future<ConsentInformation> askIfNeeded({
+  static Future<ConsentInformation?> askIfNeeded({
     required BuildContext context,
     required String appMessage,
     required String question,

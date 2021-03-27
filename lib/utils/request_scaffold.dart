@@ -34,7 +34,11 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
   @override
   void initState() {
     super.initState();
-    triggerRequest();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      if (mounted) {
+        triggerRequest();
+      }
+    });
   }
 
   /// Creates the app bar.

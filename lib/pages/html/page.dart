@@ -44,7 +44,7 @@ class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
 
   /// Asks for the user consent.
   Future<void> askConsent() async {
-    ConsentInformation consentInformation = await ConsentInformation.askIfNeeded(
+    ConsentInformation? consentInformation = await ConsentInformation.askIfNeeded(
       context: context,
       appMessage: 'Nous souhaitons votre accord pour vous afficher des publicités personnalisées. Sachez que cette application et son contenu sont mis à disposition gratuitement pour les utilisateurs et que les publicités constituent les seuls revenus de cette application.',
       question: 'Pouvons-nous utiliser vos données pour vous afficher des publicités personnalisées ?',
@@ -67,7 +67,7 @@ class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
       return htmlPage;
     }
 
-    SettingsModel settingsModel = Provider.of<SettingsModel>(context);
+    SettingsModel settingsModel = context.watch<SettingsModel>();
     AdmobBanner? banner = settingsModel.createAdMobBanner(context, consentInformation!.wantsNonPersonalizedAds);
     if (banner == null) {
       return htmlPage;
@@ -115,7 +115,7 @@ class _HTMLPage extends StatefulWidget {
 /// State of HTML screens.
 class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
   /// Contains the parsed HTML.
-  late String parsedHtml;
+  String? parsedHtml;
 
   /// Creates a new HTML screen state instance.
   _HTMLPageState({
@@ -126,10 +126,16 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
         );
 
   @override
-  Widget createBody(BuildContext context, APIEndpointResultHTML result) => AppHtmlWidget(
-        data: parsedHtml,
-        textStyle: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16),
-      );
+  Widget createBody(BuildContext context, APIEndpointResultHTML result) {
+    if (parsedHtml == null) {
+      return const CenteredCircularProgressIndicator(message: 'Analyse…');
+    }
+
+    return AppHtmlWidget(
+      data: parsedHtml!,
+      textStyle: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16),
+    );
+  }
 
   @override
   void onSuccess(APIEndpointResultHTML result) {
@@ -138,14 +144,16 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
 
     dom.Document document = parser.parse(html);
     _formatTitles(document);
-    _formatImages(document);
+    _formatImages(document, mounted ? context : null);
     _removeBottomMarginOfLastElements(document);
     _formatBubbles(document);
     _formatLinks(document);
     _formatTables(document);
 
     String dataAnchor = widget.anchor == null ? '' : 'data-scroll-target="${widget.anchor}"';
-    parsedHtml = '<lv $dataAnchor>${document.outerHtml}</lv>';
+    if (mounted) {
+      setState(() => parsedHtml = '<lv $dataAnchor>${document.outerHtml}</lv>');
+    }
   }
 
   /// Formats the titles specified by the tag name.
@@ -174,8 +182,8 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
   }
 
   /// Center the images.
-  void _formatImages(dom.Document document) {
-    Brightness brightness = context.resolveTheme(listen: false).brightness;
+  void _formatImages(dom.Document document, BuildContext? context) {
+    Brightness? brightness = context?.resolveTheme(listen: false).brightness;
     List<dom.Element> images = document.getElementsByTagName('img');
     for (dom.Element image in images) {
       if (brightness == Brightness.dark && image.attributes['data-src-dark'] != null) {
