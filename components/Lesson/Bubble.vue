@@ -4,7 +4,7 @@
       <b-icon-chevron-right v-if="hidden" /><b-icon-chevron-down v-else /> {{ hideMessage }}
     </span>
     <slide-up-down :active="!hidden" class="bubble-content" role="main">
-      <div :class="variant" :data-content-width="contentWidth">
+      <div :class="variant">
         <slot />
       </div>
     </slide-up-down>

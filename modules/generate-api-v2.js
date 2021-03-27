@@ -206,9 +206,9 @@ function getHTML (srcDir, lesson, isSummary) {
 
 function formatHTML (lesson, html) {
   let result = decodeLatex(html)
-    .replace(/<bubble variant="formula">/g, '<div class="formula">')
-    .replace(/<bubble variant="tip">/g, '<div class="tip">')
-    .replace(/<bubble variant="proof">/g, '<div class="proof">')
+    .replace(/<bubble variant="([A-Za-z0-9_-]*)">/g, '<div class="$1">')
+    .replace(/<bubble content-width="([A-Za-z0-9_-]*)" variant="([A-Za-z0-9_-]*)">/g, '<div data-api-v2-content-width="$1" class="$2">')
+    .replace(/<bubble variant="([A-Za-z0-9_-]*)" content-width="([A-Za-z0-9_-]*)">/g, '<div data-api-v2-content-width="$2" class="$1">')
     .replace(/<\/bubble>/g, '</div>')
     .replace(/<img src="\//g, '<img src="https://bacomathiqu.es/')
     .replace(/<table>/g, '<table class="table table-bordered table-hover">')
