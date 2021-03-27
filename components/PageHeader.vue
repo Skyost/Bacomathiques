@@ -11,8 +11,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/common";
-@import "assets/breakpoints";
+@import 'assets/common';
+@import 'assets/breakpoints';
 
 #page-header {
   padding: 50px 0;

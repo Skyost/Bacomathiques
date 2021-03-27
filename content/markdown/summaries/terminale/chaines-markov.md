@@ -142,7 +142,7 @@ est le coefficient à la ligne $i$ et à la colonne $j$ de la matrice $M^k$.
 
 Enfin, donnons la définition centrale de cette section.
 
-<bubble variant="formula">
+<bubble variant="formula" content-width="big">
 
 #### Définition
 

@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/colors";
+@import 'assets/colors';
 
 #page-content {
   color: $page-text;

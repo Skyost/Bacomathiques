@@ -1,7 +1,7 @@
 <template>
   <b-btn
-    id="e3c-button"
     v-if="show"
+    id="e3c-button"
     v-b-modal.modal-e3c
     class="btn-blue"
   >
@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/breakpoints";
+@import 'assets/breakpoints';
 
 #e3c-button {
   display: block;

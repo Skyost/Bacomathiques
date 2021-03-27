@@ -105,6 +105,41 @@ export default {
           message: "<strong>J'adore</strong> cette appli. Je suis en terminale, j'ai 17 ans et je suis fan ; elle est parfaite sur le cours, les leçons, etc...",
           rating: 5,
           source: 0
+        },
+        {
+          author: 'M. Toure',
+          date: '9 août 2020',
+          message: 'Très cool l\'application ✌',
+          rating: 5,
+          source: 0
+        },
+        {
+          author: 'J. Bleza',
+          date: '1 sept. 2020',
+          message: 'J\'aime <strong>beaucoup</strong> cette application !',
+          rating: 5,
+          source: 0
+        },
+        {
+          author: 'I. Martins',
+          date: '17 nov. 2020',
+          message: 'Cette application m\'est <strong>très utile</strong> lors des révisions et pour faire mes fiches !',
+          rating: 5,
+          source: 0
+        },
+        {
+          author: 'R. Akoma',
+          date: '4 dec. 2020',
+          message: 'Tout simplement <strong>très utile</strong>. Merci beaucoup.',
+          rating: 5,
+          source: 0
+        },
+        {
+          author: 'TheLéna',
+          date: '4 janv. 2021',
+          message: 'Bonne application qui permet d’avoir un cours d’un point de vue différent. <strong>Je recommande</strong>.',
+          rating: 5,
+          source: 0
         }
       ]
     }

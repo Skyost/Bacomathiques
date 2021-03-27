@@ -189,7 +189,7 @@ $\displaystyle{\ln'(x) = \frac{1}{x}}$.
 Avec la dérivée donnée précédemment ainsi que les limites données, il est désormais possible d'obtenir les variations de
 la fonction logarithme népérien.
 
-<bubble variant="formula">
+<bubble variant="formula" content-width="big">
 
 #### Signe et variations
 

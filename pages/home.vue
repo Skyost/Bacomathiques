@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "sal.js/dist/sal.css";
+@import 'sal.js/dist/sal.css';
 </style>
 
 <router>

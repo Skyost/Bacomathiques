@@ -7,7 +7,7 @@
         </a>
       </b-col>
       <b-col cols="12" lg="9" class="content">
-        <h3 :id="`#commentaire-${comment._id}`">
+        <h3 :id="`commentaire-${comment._id}`">
           {{ comment.author }}
           <b-badge v-if="comment.author === 'Skyost'" variant="info">
             Modérateur

@@ -24,7 +24,7 @@ export default {
     },
     color: {
       type: String,
-      default: '#fff'
+      default: '#43baa8'
     }
   },
   data () {

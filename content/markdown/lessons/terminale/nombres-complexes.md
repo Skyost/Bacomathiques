@@ -196,7 +196,7 @@ Alors pour tout $n \in \mathbb{N}$, $\displaystyle{(a + b)^n = \sum_{k = 0}^n \b
 
 </bubble>
 
-<bubble variant="proof">
+<bubble variant="proof" content-width="big">
 
 #### Formule du binôme de Newton
 
@@ -223,7 +223,7 @@ C'est ce qu'il fallait démontrer.
 
 </bubble>
 
-<bubble variant="tip">
+<bubble variant="tip" content-width="big">
 
 Si $n = 2$, on retrouve $\displaystyle{(a+b)^2 = \binom{0}{2} a^2 b^0 + \binom{1}{2}a^1 b^1 + \binom{2}{2} a^0 b^2} =
 a^2 + 2ab + b^2$.
@@ -391,7 +391,7 @@ On peut étendre l'égalité entre nombres complexes donnée [au début](#3-éga
 complexes sont égaux s'ils ont le **même module** et le **même argument (modulo $2\pi$, nous détaillerons ce point-ci
 plus tard)**.
 
-<bubble variant="tip">
+<bubble variant="tip" content-width="big">
 
 #### Formules de Première
 

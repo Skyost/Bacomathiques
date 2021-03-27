@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/colors";
+@import 'assets/colors';
 
 .flat-cards {
   background: linear-gradient(180deg, $main-color 90px, transparent 90px);

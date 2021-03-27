@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/flat_card";
+@import 'assets/flat_card';
 
 .card-levels {
   .card-level-button {

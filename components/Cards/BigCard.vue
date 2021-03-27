@@ -27,6 +27,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/common";
-@import "assets/flat_card";
+@import 'assets/common';
+@import 'assets/flat_card';
 </style>

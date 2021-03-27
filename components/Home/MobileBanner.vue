@@ -53,9 +53,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/breakpoints";
-@import "assets/common";
-@import "assets/flat_card";
+@import 'assets/breakpoints';
+@import 'assets/common';
+@import 'assets/flat_card';
 
 .mobile-apps {
   background: linear-gradient(0deg, transparent 50px, $main-color 50px);

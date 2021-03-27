@@ -63,9 +63,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "assets/breakpoints";
-@import "assets/colors";
-@import "assets/math";
+@import 'assets/breakpoints';
+@import 'assets/colors';
+@import 'assets/math';
 
 #page-content {
   background-color: white;

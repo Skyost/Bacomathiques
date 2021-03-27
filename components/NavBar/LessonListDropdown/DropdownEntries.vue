@@ -64,7 +64,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/colors";
+@import 'assets/colors';
 
 .dropdown-item.current {
   color: darken($main-color, 10%);

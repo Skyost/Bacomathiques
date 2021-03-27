@@ -61,7 +61,7 @@ export default {
     },
     isSummary: {
       type: Boolean,
-      defaultValue: false
+      default: false
     }
   },
   data () {

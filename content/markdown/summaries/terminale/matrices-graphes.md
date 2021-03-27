@@ -63,7 +63,7 @@ Il existe différentes matrices carrées remarquables :
 
 ### Somme
 
-<bubble variant="formula">
+<bubble variant="formula" content-width="big">
 
 #### Somme de deux matrices
 

@@ -143,7 +143,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/colors";
+@import 'assets/colors';
 
 #page-lesson-navigation {
   background-color: white;

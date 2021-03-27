@@ -16,8 +16,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/breakpoints";
-@import "assets/colors";
+@import 'assets/breakpoints';
+@import 'assets/colors';
 
 .btn {
   font-weight: bold !important;

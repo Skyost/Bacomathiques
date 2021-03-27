@@ -102,10 +102,10 @@ On a les relations suivantes pour tout $x \in \mathbb{R}$ :
 * $\sin(x + \pi) = -\sin(x)$
 * $\cos(x - \pi) = -\cos(x)$
 * $\sin(x - \pi) = \sin(x)$
-* $\cos(\frac{\pi}{2} - x) = \sin(x)$
-* $\sin(\frac{\pi}{2} - x) = \cos(x)$
-* $\cos(x + \frac{\pi}{2}) = -\sin(x)$
-* $\sin(x + \frac{\pi}{2}) = \cos(x)$
+* $\cos \left(\frac{\pi}{2} - x \right) = \sin(x)$
+* $\sin \left(\frac{\pi}{2} - x \right) = \cos(x)$
+* $\cos \left(x + \frac{\pi}{2} \right) = -\sin(x)$
+* $\sin \left(x + \frac{\pi}{2} \right) = \cos(x)$
 * $\cos(x + y) = \cos(x) \times \cos(y) - \sin(x) \times \sin(y)$
 * $\sin(x + y) = \sin(x) \times \cos(y) + \cos(x) \times \sin(y)$
 * $\cos(x)^2 + \sin(x)^2 = 1$
@@ -155,7 +155,7 @@ Ainsi, si pour tout $x \in I$ on a $u(x) = x$, on trouve :
 L'étude du signe des dérivées des fonctions trigonométriques permet d'obtenir les variations de celles-ci. Nous allons
 donc voir le signe et les variations de ces fonctions.
 
-<bubble variant="formula">
+<bubble variant="formula" content-width="big">
 
 #### Signe et variation de la fonction cosinus
 
@@ -165,7 +165,7 @@ Veuillez noter que ce tableau est périodique de période $2\pi$.
 
 </bubble>
 
-<bubble variant="formula">
+<bubble variant="formula" content-width="big">
 
 #### Signe et variation de la fonction sinus
 

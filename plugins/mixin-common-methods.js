@@ -5,6 +5,13 @@ Vue.mixin({
     buildBrowserTitle (content) {
       return `${content} | ${this.$store.state.siteName}`
     },
+    buildBrowserLessonTitle (level, lesson, isSummary) {
+      let result = `${this.level.name} > ${this.lesson.title}`
+      if (isSummary) {
+        result += '> Fiche résumée'
+      }
+      return this.buildBrowserTitle(result)
+    },
     sleeper (ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
     },

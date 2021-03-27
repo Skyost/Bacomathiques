@@ -280,7 +280,7 @@ $n$, on a $\displaystyle{p(X = k) = \binom{n}{k} p^k (1-p)^{n-k}}$.
 
 </bubble>
 
-<bubble variant="proof">
+<bubble variant="proof" content-width="big">
 
 #### Probabilité d'un nombre de succès
 

@@ -137,7 +137,7 @@ En termes mathématiques, cela signifie que pour tout $n \in \mathbb{N}$ et pour
 
 </bubble>
 
-<bubble variant="tip">
+<bubble variant="tip" content-width="big">
 
 #### Exemple
 
@@ -275,7 +275,7 @@ est le coefficient à la ligne $i$ et à la colonne $j$ de la matrice $M^k$.
 
 Enfin, donnons la définition centrale de cette section.
 
-<bubble variant="formula">
+<bubble variant="formula" content-width="big">
 
 #### Définition
 
@@ -394,7 +394,7 @@ Soit $(X_n)$ une chaîne de Markov homogène dont on note $(\pi_n)$ la suite des
 
 </bubble>
 
-<bubble variant="tip">
+<bubble variant="tip" content-width="big">
 
 #### Exemple
 

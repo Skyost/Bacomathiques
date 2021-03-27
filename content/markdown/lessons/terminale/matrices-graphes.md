@@ -72,7 +72,7 @@ $n$.
 
 ### Somme
 
-<bubble variant="formula">
+<bubble variant="formula" content-width="big">
 
 #### Somme de deux matrices
 
@@ -451,7 +451,7 @@ Un **graphe $G$ non-orienté** est un couple $(S; A)$ où :
 
 </bubble>
 
-<bubble variant="tip">
+<bubble variant="tip" content-width="big">
 
 #### Exemple
 
@@ -475,7 +475,7 @@ Un **graphe $G$ orienté** est un couple $(S; A)$ où :
 
 </bubble>
 
-<bubble variant="tip">
+<bubble variant="tip" content-width="big">
 
 #### Exemple
 

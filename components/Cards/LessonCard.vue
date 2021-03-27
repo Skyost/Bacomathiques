@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/colors";
+@import 'assets/colors';
 
 .lesson-card.flat-card {
   margin-bottom: 5rem;

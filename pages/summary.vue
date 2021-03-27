@@ -1,7 +1,7 @@
 <template>
   <page-loading v-if="$fetchState.pending" />
   <div v-else-if="level && lesson">
-    <lesson :level="level" :lesson="lesson" />
+    <lesson :level="level" :lesson="lesson" :is-summary="true" />
   </div>
   <page-error v-else :error-code="404" />
 </template>
@@ -40,12 +40,12 @@ export default {
         return null
       }
 
-      return this.buildBrowserLessonTitle(this.level, this.lesson)
+      return this.buildBrowserLessonTitle(this.level, this.lesson, true)
     }
   }
 }
 </script>
 
 <router>
-  path: /cours/:level/:lesson/
+  path: /cours/:level/:lesson/resume/
 </router>

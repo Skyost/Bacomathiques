@@ -109,8 +109,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/breakpoints";
-@import "assets/colors";
+@import 'assets/breakpoints';
+@import 'assets/colors';
 
 #page-navbar {
   position: fixed;

@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/breakpoints";
+@import 'assets/breakpoints';
 
 .header-image {
   max-width: 200px;

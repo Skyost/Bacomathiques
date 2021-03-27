@@ -22,7 +22,7 @@ export default {
     },
     isSummary: {
       type: Boolean,
-      defaultValue: false
+      default: false
     }
   },
   beforeMount () {
@@ -46,8 +46,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "assets/colors";
-@import "assets/breakpoints";
+@import 'assets/colors';
+@import 'assets/breakpoints';
 
 ::v-deep .header-image {
   position: relative;
