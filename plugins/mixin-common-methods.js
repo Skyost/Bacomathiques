@@ -8,7 +8,7 @@ Vue.mixin({
     buildBrowserLessonTitle (level, lesson, isSummary) {
       let result = `${this.level.name} > ${this.lesson.title}`
       if (isSummary) {
-        result += '> Fiche résumée'
+        result += ' > Fiche résumée'
       }
       return this.buildBrowserTitle(result)
     },

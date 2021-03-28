@@ -56,8 +56,8 @@ Soit $f$ de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels).
 
 Rien que le signe de $a$ peut changer toute l'allure de la courbe :
 
-* Si $a \lt 0$, la fonction est décroissante puis croissante.
-* Si $a \gt 0$, la fonction est croissante puis décroissante.
+* Si $a \lt 0$, la fonction est croissante puis décroissante.
+* Si $a \gt 0$, la fonction est décroissante puis croissante.
 
 </bubble>
 
