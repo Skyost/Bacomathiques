@@ -98,14 +98,14 @@ On a les relations suivantes pour tout $x \in \mathbb{R}$ :
 
 * $\cos(-x) = \cos(x)$ (la fonction cosinus est **paire**)
 * $\sin(-x) = -\sin(x)$ (la fonction sinus est **impaire**)
-* $\cos(x + \pi) = -\cos(x)$
-* $\sin(x + \pi) = -\sin(x)$
-* $\cos(x - \pi) = -\cos(x)$
-* $\sin(x - \pi) = \sin(x)$
+* $\cos(\pi + x) = -\cos(x)$
+* $\sin(\pi + x) = -\sin(x)$
+* $\cos(\pi - x) = -\cos(x)$
+* $\sin(\pi - x) = \sin(x)$
+* $\cos \left(\frac{\pi}{2} + x \right) = -\sin(x)$
+* $\sin \left(\frac{\pi}{2} + x \right) = \cos(x)$
 * $\cos \left(\frac{\pi}{2} - x \right) = \sin(x)$
 * $\sin \left(\frac{\pi}{2} - x \right) = \cos(x)$
-* $\cos \left(x + \frac{\pi}{2} \right) = -\sin(x)$
-* $\sin \left(x + \frac{\pi}{2} \right) = \cos(x)$
 * $\cos(x + y) = \cos(x) \times \cos(y) - \sin(x) \times \sin(y)$
 * $\sin(x + y) = \sin(x) \times \cos(y) + \cos(x) \times \sin(y)$
 * $\cos(x)^2 + \sin(x)^2 = 1$
