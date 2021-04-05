@@ -1,10 +1,10 @@
 <template>
   <b-navbar id="page-navbar" toggleable="lg" type="dark">
     <b-navbar-toggle target="nav-collapse" />
+    <b-navbar-brand class="d-lg-none d-block">
+      <logo to="/" />
+    </b-navbar-brand>
     <b-collapse id="nav-collapse" is-nav class="row">
-      <b-col cols="12" class="d-lg-none d-block">
-        <logo to="/" />
-      </b-col>
       <b-col cols="12" lg="6" xl="4">
         <b-navbar-nav>
           <nav-bar-item v-for="item in items" :key="item.id" :to="item.href">
