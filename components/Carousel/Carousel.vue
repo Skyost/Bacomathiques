@@ -25,8 +25,8 @@
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
-
 import CarouselItem from './CarouselItem'
+import { SITE_NAME } from '~/utils/site'
 
 export default {
   name: 'Carousel',
@@ -36,13 +36,13 @@ export default {
       slides: [
         {
           id: 'slide-1',
-          title: `C'est quoi ${this.$store.state.siteName} ?`,
+          title: `C'est quoi ${SITE_NAME} ?`,
           image: '/img/carousel/summary.svg',
           button: 'Accéder à la liste des cours',
           href: '/cours/',
           content: `
             <p>
-                <q>Bac-o-math-iques</q> (ou plus simplement <strong>${this.$store.state.siteName}</strong>) est un petit site web
+                <q>Bac-o-math-iques</q> (ou plus simplement <strong>${SITE_NAME}</strong>) est un petit site web
                 qui contient tout ce dont vous avez besoin pour réviser vos maths de la Première à la Terminale !
             </p>
             <p>
@@ -78,10 +78,10 @@ export default {
           content: `
             <p>
                 En plus de vous proposer des cours totalement <strong>gratuits</strong> et <strong>libres d'accès</strong>,
-                ${this.$store.state.siteName} vous permet de les télécharger au format PDF, de les imprimer, de les partager, ...
+                ${SITE_NAME} vous permet de les télécharger au format PDF, de les imprimer, de les partager, ...
             </p>
             <p>
-                De plus, <em>très bientôt</em>, ${this.$store.state.siteName} vous proposera des exercices complets pour vous
+                De plus, <em>très bientôt</em>, ${SITE_NAME} vous proposera des exercices complets pour vous
                 permettre de vous exercer au mieux sur les différents chapitres !
             </p>
           `

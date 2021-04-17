@@ -23,6 +23,7 @@ import CommentSection from './Comments/CommentSection'
 import LessonContent from './LessonContent'
 import SmartBanner from './SmartBanner/SmartBanner'
 import LessonHeader from './Header/LessonHeader'
+import { buildBrowserLessonTitle } from '~/utils/lesson'
 
 export default {
   name: 'Lesson',
@@ -51,7 +52,7 @@ export default {
   },
   computed: {
     pageTitle () {
-      return this.buildBrowserLessonTitle(this.level, this.lesson, this.isSummary)
+      return buildBrowserLessonTitle(this.level, this.lesson, this.isSummary)
     }
   }
 }

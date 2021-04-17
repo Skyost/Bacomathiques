@@ -10,6 +10,7 @@
 import PageLoading from '../components/PageLoading'
 import PageError from '../components/PageError'
 import Lesson from '../components/Lesson/Lesson'
+import { buildBrowserLessonTitle } from '~/utils/lesson'
 
 export default {
   components: { PageError, PageLoading, Lesson },
@@ -40,7 +41,7 @@ export default {
         return null
       }
 
-      return this.buildBrowserLessonTitle(this.level, this.lesson)
+      return buildBrowserLessonTitle(this.level, this.lesson)
     }
   }
 }

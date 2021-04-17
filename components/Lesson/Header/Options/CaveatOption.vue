@@ -14,7 +14,7 @@
         </li>
         <li>
           Vous pouvez modifier directement le
-          <a :href="`${$store.state.github}/edit/master/content/markdown/lessons/${lesson.level}/${lesson.id}.md`">code source</a> de la page.
+          <a :href="`${github}/edit/master/content/markdown/lessons/${lesson.level}/${lesson.id}.md`">code source</a> de la page.
         </li>
       </ul>
     </b-modal>
@@ -23,6 +23,7 @@
 
 <script>
 import LessonHeaderOption from './LessonHeaderOption'
+import { GITHUB } from '~/utils/site'
 
 export default {
   name: 'CaveatOption',
@@ -31,6 +32,11 @@ export default {
     lesson: {
       type: Object,
       required: true
+    }
+  },
+  data () {
+    return {
+      github: GITHUB
     }
   }
 }

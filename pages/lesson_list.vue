@@ -30,7 +30,7 @@ export default {
   components: { PageError, PageLoading, SocialHead, PageHeader, LessonList, PageContent, ImageHeader },
   data () {
     return {
-      title: null,
+      title: 'Liste des cours',
       level: null
     }
   },
@@ -41,7 +41,7 @@ export default {
   },
   head () {
     return {
-      title: this.buildBrowserTitle(this.title ?? 'Liste des cours')
+      title: this.title
     }
   }
 }

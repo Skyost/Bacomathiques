@@ -1,5 +1,7 @@
 // This is just a temporary module that will allow users to upgrade to the new API (which is not ready at all to be honest).
 
+import { getAvatarURL } from '../utils/lesson'
+
 const { resolve } = require('path')
 const fs = require('fs')
 const yaml = require('yaml')
@@ -227,14 +229,6 @@ function getLessonById (levelId, lessonId) {
     }
   }
   return null
-}
-
-function getAvatarURL (author) {
-  const username = author == null || author.length === 0 ? 'Anonyme' : author
-  if (username === 'Skyost') {
-    return 'https://www.skyost.eu/assets/img/skyost.png'
-  }
-  return `https://avatars.dicebear.com/api/bottts/${username}.svg`
 }
 
 function encodeLatex (input) {

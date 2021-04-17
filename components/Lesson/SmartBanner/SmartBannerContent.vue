@@ -8,7 +8,7 @@
     </b-col>
     <b-col cols="5" class="d-flex align-items-center">
       <div>
-        <span class="info info-title" v-text="$store.state.siteName" />
+        <span class="info info-title" v-text="siteName" />
         <span class="info info-author">Skyost</span>
         <span class="info info-price">GRATUIT - {{ storeName }}</span>
       </div>
@@ -17,8 +17,7 @@
       <b-btn
         :href="storeLink"
         target="_blank"
-        variant="success"
-        class="btn-green"
+        variant="green"
         block
       >
         VOIR
@@ -28,6 +27,8 @@
 </template>
 
 <script>
+import { SITE_NAME } from '~/utils/site'
+
 export default {
   name: 'SmartBannerContent',
   props: {
@@ -42,6 +43,7 @@ export default {
   },
   data () {
     return {
+      siteName: SITE_NAME,
       show: true
     }
   },

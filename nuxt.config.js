@@ -1,3 +1,5 @@
+import { HOST_NAME, SITE_DESCRIPTION, SITE_NAME } from './utils/site'
+
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
@@ -7,16 +9,15 @@ export default {
     htmlAttrs: {
       lang: 'fr'
     },
-    title: 'Bacomathiques',
+    titleTemplate: `%s | ${SITE_NAME}`,
     meta: [
       { charset: 'utf-8' },
-      { hid: 'description', name: 'description', content: 'Bacomathiques est un petit site web qui contient tout ce dont vous avez besoin pour réviser vos maths en toute tranquillité de la Première à la Terminale ! Que vous cherchiez à passer votre Baccalauréat ou que vous souhaitiez simplement réviser votre cours ; tout est possible et tout est gratuit. Au programme : cours de mathématiques gratuits, téléchargeables et imprimables, annales et corrigés des sujets précédents, etc.' },
+      { hid: 'description', name: 'description', content: SITE_DESCRIPTION },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'theme-color', content: '#2489cc' }
     ],
     link: [
       { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/futura-font@1.0.0/styles.min.css' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Handlee&display=swap' },
       { rel: 'icon', type: 'image/png', href: '/img/favicon.ico' }
     ]
   },
@@ -88,14 +89,21 @@ export default {
     ]
   },
 
+  googleFonts: {
+    display: 'swap',
+    families: {
+      Handlee: true
+    }
+  },
+
   robots: {
     UserAgent: '*',
     Disallow: ['/api/', '/_nuxt/'],
-    Sitemap: 'https://bacomathiqu.es/sitemap.xml'
+    Sitemap: `${HOST_NAME}/sitemap.xml`
   },
 
   sitemap: {
-    hostname: 'https://bacomathiqu.es',
+    hostname: HOST_NAME,
     defaults: {
       priority: 1,
       lastmod: new Date()
@@ -117,6 +125,12 @@ export default {
     babel: {
       compact: true,
       minified: true
+    }
+  },
+
+  vue: {
+    config: {
+      ignoredElements: [/^mjx-/]
     }
   },
 

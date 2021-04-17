@@ -3,6 +3,8 @@
 </template>
 
 <script>
+import { getCurrentAddress, HOST_NAME, SITE_DESCRIPTION, SITE_NAME } from '~/utils/site'
+
 export default {
   name: 'SocialHead',
   props: {
@@ -12,7 +14,7 @@ export default {
     },
     description: {
       type: String,
-      default: 'Bacomathiques est un petit site web qui contient tout ce dont vous avez besoin pour réviser vos maths en toute tranquillité de la Première à la Terminale ! Que vous cherchiez à passer votre Baccalauréat ou que vous souhaitiez simplement réviser votre cours ; tout est possible et tout est gratuit. Au programme : cours de mathématiques gratuits, téléchargeables et imprimables, annales et corrigés des sujets précédents, etc.'
+      default: SITE_DESCRIPTION
     }
   },
   head () {
@@ -20,7 +22,7 @@ export default {
       meta: [
         {
           property: 'og:title',
-          content: this.buildBrowserTitle(this.title)
+          content: `${this.title} | ${SITE_NAME}`
         },
         {
           property: 'og:description',
@@ -32,15 +34,15 @@ export default {
         },
         {
           property: 'og:site_name',
-          content: this.$store.state.siteName
+          content: SITE_NAME
         },
         {
           property: 'og:url',
-          content: this.getCurrentAddress()
+          content: getCurrentAddress(this.$route)
         },
         {
           property: 'og:image',
-          content: '/img/social/open-graph.png'
+          content: `${HOST_NAME}/img/social/open-graph.png`
         },
         {
           property: 'og:locale',
@@ -53,7 +55,7 @@ export default {
         },
         {
           name: 'twitter:title',
-          content: this.buildBrowserTitle(this.title)
+          content: `${this.title} | ${SITE_NAME}`
         },
         {
           name: 'twitter:description',
@@ -69,11 +71,11 @@ export default {
         },
         {
           name: 'twitter:url',
-          content: this.getCurrentAddress()
+          content: getCurrentAddress(this.$route)
         },
         {
           name: 'twitter:image',
-          content: '/img/social/twitter.png'
+          content: `${HOST_NAME}/img/social/twitter.png`
         }
       ],
       link: [

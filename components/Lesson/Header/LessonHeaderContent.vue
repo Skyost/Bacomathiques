@@ -12,20 +12,21 @@
 
     <p v-html="lesson.excerpt" />
 
-    <b-btn v-if="isSummary" class="btn-white" :to="`/cours/${level.id}/${lesson.id}/`" block>
+    <b-btn v-if="isSummary" variant="white" :to="`/cours/${level.id}/${lesson.id}/`" block>
       Retour au cours
     </b-btn>
     <b-row v-else>
       <b-col cols="12" lg="6" class="mb-lg-0 mb-2">
         <b-btn
-          class="btn-white w-100 h-100 d-flex justify-content-center align-items-center"
+          variant="white"
+          class="w-100 h-100 d-flex justify-content-center align-items-center"
           :to="`/cours/${level.id}/${lesson.id}/resume/`"
         >
           Lire le résumé
         </b-btn>
       </b-col>
       <b-col cols="12" lg="6">
-        <b-btn class="btn-white w-100" @click="showOptions = !showOptions">
+        <b-btn variant="white" class="w-100" @click="showOptions = !showOptions">
           Plus d'options
           <span class="hint">Télécharger le PDF, partager, ...</span>
         </b-btn>

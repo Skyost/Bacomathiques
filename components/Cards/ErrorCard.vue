@@ -32,6 +32,8 @@
 
 <script>
 import BigCard from './BigCard'
+import { renderMathJax } from '~/utils/math'
+
 export default {
   name: 'ErrorCard',
   components: { BigCard },
@@ -43,7 +45,7 @@ export default {
   },
   mounted () {
     if (this.errorCode === 404) {
-      this.renderMathJax()
+      renderMathJax()
     }
   }
 }

@@ -8,20 +8,19 @@
     <span class="lesson-caption" v-html="lesson.caption" />
     <h3 class="lesson-title" v-html="lesson.title" />
     <p class="lesson-description" v-html="lesson.excerpt" />
-    <nuxt-link
+    <b-btn
       :to="`/cours/${lesson.level}/${lesson.id}/`"
-      class="lesson-link btn btn-block"
-      :class="buttonClass"
-      role="button"
-      aria-pressed="true"
+      :variant="variant"
+      block
     >
       Lire ce cours
-    </nuxt-link>
+    </b-btn>
   </small-card>
 </template>
 
 <script>
 import SmallCard from './SmallCard'
+
 export default {
   name: 'LessonCard',
   components: { SmallCard },
@@ -32,8 +31,8 @@ export default {
     }
   },
   computed: {
-    buttonClass () {
-      return 'specialty' in this.lesson && this.lesson.specialty ? 'btn-green' : 'btn-blue'
+    variant () {
+      return 'specialty' in this.lesson && this.lesson.specialty ? 'green' : 'blue'
     }
   }
 }

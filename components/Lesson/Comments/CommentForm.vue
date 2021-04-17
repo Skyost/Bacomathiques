@@ -3,7 +3,7 @@
     <h2>Vous avez aimé ce cours ?</h2>
     <p>Faîtes-le nous savoir dans les commentaires !</p>
     <b-form action="https://postman.bacomathiqu.es/v3/entry/github/Skyost/Bacomathiques/master/comments" method="post" @submit.prevent="onSubmit">
-      <input name="options[redirect]" type="hidden" :value="`${getCurrentAddress()}#commentaires`">
+      <input name="options[redirect]" type="hidden" :value="`${currentAddress}#commentaires`">
       <input name="options[slug]" type="hidden" :value="`${lesson.level}_${lesson.id}`">
       <input name="fields[lesson]" type="hidden" :value="lesson.id">
       <input name="fields[level]" type="hidden" :value="lesson.level">
@@ -37,7 +37,7 @@
       </b-form-group>
       <b-form-row>
         <b-col cols="6" md="3" offset="6" offset-md="9">
-          <b-button class="btn-white float-right w-100" type="submit" :disabled="!form.enabled">
+          <b-button variant="white" class="float-right w-100" type="submit" :disabled="!form.enabled">
             <b-icon-check-all /> Envoyer
           </b-button>
         </b-col>
@@ -54,7 +54,9 @@
 
 <script>
 import debounceFn from 'debounce-fn'
-import { BIconCheckAll, BIconCheck, BIconExclamationCircleFill } from 'bootstrap-vue'
+import { BIconCheck, BIconCheckAll, BIconExclamationCircleFill } from 'bootstrap-vue'
+import { getAvatarURL } from '~/utils/lesson'
+import { getCurrentAddress } from '~/utils/site'
 
 export default {
   name: 'CommentForm',
@@ -78,6 +80,11 @@ export default {
       }
     }
   },
+  computed: {
+    currentAddress () {
+      return getCurrentAddress(this.$route)
+    }
+  },
   watch: {
     'form.author' (author) {
       if (this.debounced !== null) {
@@ -85,14 +92,14 @@ export default {
       }
 
       this.debounced = debounceFn(() => {
-        this.avatar = this.getAvatarURL(author)
+        this.avatar = getAvatarURL(author)
         this.debounced = null
       }, { wait: 300 })
       this.debounced()
     }
   },
   async mounted () {
-    this.avatar = this.getAvatarURL(this.form.author)
+    this.avatar = getAvatarURL(this.form.author)
     await this.$nextTick()
     const authorInput = this.$el.querySelector('.comment-author')
     this.$el.querySelector('.comment-avatar').style.height = `${authorInput.offsetHeight}px`

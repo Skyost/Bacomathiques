@@ -5,8 +5,8 @@
     </h2>
 
     <p>
-      Les cours ont été écrits intégralement par <a href="https://www.skyost.eu">Hugo Delaunay</a>,
-      Toute reproduction totale ou partielle est interdite excepté pour un usage pédagogique et non-commercial (en citant explicitement la propriété de {{ $store.state.siteName }}).
+      Les cours ont été écrits intégralement par <a href="https://skyost.eu">Hugo Delaunay</a>,
+      Toute reproduction totale ou partielle est interdite excepté pour un usage pédagogique et non-commercial (en citant explicitement la propriété de {{ siteName }}).
       Certaines démonstrations sont tirées de <a href="https://www.sesamath.net/">Sésamath</a>,
       et certaines introductions ont été reprises de <a href="https://fr.wikipedia.org">Wikipédia</a>.
     </p>
@@ -25,9 +25,9 @@
     <hr>
 
     <p>
-      Il existe énormément de moyens de <strong>contribuer</strong> au projet {{ $store.state.siteName }} !
+      Il existe énormément de moyens de <strong>contribuer</strong> au projet {{ siteName }} !
       Vous pouvez y faire des modifications ou même tout simplement lui donner une étoile sur
-      <a :href="$store.state.github">Github</a>.
+      <a :href="github">Github</a>.
       Il vous est également possible d'effectuer des dons, que ce soit directement
       via <a href="https://paypal.me/Skyost">PayPal</a> ou en regardant des publicités sur
       <a href="https://utip.io/skyost">uTip</a>.
@@ -35,14 +35,22 @@
 
     <p>
       Par ailleurs, les contributions sont facultatives et vous pouvez pleinement profiter
-      de {{ $store.state.siteName }} sans aucune action de votre part. Sachez cependant que les contributions sont
+      de {{ siteName }} sans aucune action de votre part. Sachez cependant que les contributions sont
       très appréciées. 😉
     </p>
   </div>
 </template>
 
 <script>
+import { GITHUB, SITE_NAME } from '~/utils/site'
+
 export default {
-  name: 'LicenseContributions'
+  name: 'LicenseContributions',
+  data () {
+    return {
+      siteName: SITE_NAME,
+      github: GITHUB
+    }
+  }
 }
 </script>

@@ -8,10 +8,10 @@
       <span class="author">
         {{ currentReview.author }}, {{ currentReview.date }} sur
         <span v-if="currentReview.source === 0">
-          <a :href="$store.state.googlePlay">Google Play</a>.
+          <a :href="googlePlay">Google Play</a>.
         </span>
         <span v-else>
-          l'<a :href="$store.state.appStore">App Store</a>.
+          l'<a :href="appStore">App Store</a>.
         </span>
       </span>
     </div>
@@ -19,7 +19,9 @@
 </template>
 
 <script>
-import { BIconStarFill, BIconStar } from 'bootstrap-vue'
+import { BIconStar, BIconStarFill } from 'bootstrap-vue'
+import { APP_STORE, GOOGLE_PLAY } from '~/utils/site'
+import { sleeper } from '~/utils/utils'
 
 export default {
   name: 'Reviews',
@@ -28,6 +30,8 @@ export default {
     return {
       currentReviewIndex: false,
       currentReview: null,
+      googlePlay: GOOGLE_PLAY,
+      appStore: APP_STORE,
       reviews: [
         {
           author: 'Linasa',
@@ -150,7 +154,7 @@ export default {
   methods: {
     async pickRandom () {
       this.currentReview = null
-      await this.sleeper(300)
+      await sleeper(300)
       let index
       do {
         index = Math.floor(Math.random() * this.reviews.length)

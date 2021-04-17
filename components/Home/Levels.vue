@@ -15,7 +15,7 @@
         class="mb-lg-0"
         :class="{'mb-3': index !== levels.length}"
       >
-        <b-btn class="btn-white card-level-button" :to="`/cours/${ level.id }/`">
+        <b-btn variant="white" class="card-level-button" :to="`/cours/${ level.id }/`">
           <img :src="level.image" :alt="level.name"> {{ level.name }}
         </b-btn>
       </b-col>

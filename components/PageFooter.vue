@@ -4,7 +4,7 @@
       <b-col lg="4" md="12" class="mb-lg-0 mb-5">
         <h3>Créé avec ❤️</h3>
 
-        <p>Ce site web a été fait avec amour par <a href="https://www.skyost.eu">Hugo Delaunay</a> à l'aide de certaines technologies.</p>
+        <p>Ce site web a été fait avec amour par <a href="https://skyost.eu">Hugo Delaunay</a> à l'aide de certaines technologies.</p>
         <p>
           Vous pouvez consulter tout ça et également me contacter sur la page
           <nuxt-link to="/a-propos/">À propos</nuxt-link>.
@@ -17,7 +17,7 @@
       <b-col lg="4" md="6" class="mb-md-0 mb-5">
         <h3>Licence</h3>
 
-        <p>Copyright &copy; 2020 {{ $store.state.siteName }}. Toute reproduction totale ou partielle est interdite excepté pour un usage pédagogique et non-commercial (en citant explicitement la propriété de {{ $store.state.siteName }}).</p>
+        <p>Copyright &copy; 2021 {{ siteName }}. Toute reproduction totale ou partielle est interdite excepté pour un usage pédagogique et non-commercial (en citant explicitement la propriété de {{ siteName }}).</p>
         <p class="mb-0">
           <em><strong>Google Play</strong> et le logo Google Play sont des marques de Google LLC. <strong>App Store</strong> et le logo App Store sont des marques de Apple Inc.</em>
         </p>
@@ -51,7 +51,7 @@
         offset-lg="2"
         class="col-store"
       >
-        <a :href="$store.state.appStore">
+        <a :href="appStore">
           <img src="/img/stores/app-store.svg" alt="Disponible sur App Store">
         </a>
       </b-col>
@@ -61,22 +61,31 @@
         lg="4"
         class="col-store"
       >
-        <a :href="$store.state.googlePlay">
+        <a :href="googlePlay">
           <img src="/img/stores/play-store.svg" alt="Disponible sur Google Play">
         </a>
       </b-col>
     </b-row>
     <hr class="mt-5">
     <p class="mb-0 text-break">
-      Copyright &copy; 2020 - {{ $store.state.siteName }}.
+      Copyright &copy; 2021 - {{ siteName }}.
       <br>Généré le {{ buildDate }} à {{ buildTime }}.
     </p>
   </footer>
 </template>
 
 <script>
+import { APP_STORE, GOOGLE_PLAY, SITE_NAME } from '~/utils/site'
+
 export default {
   name: 'PageFooter',
+  data () {
+    return {
+      siteName: SITE_NAME,
+      googlePlay: GOOGLE_PLAY,
+      appStore: APP_STORE
+    }
+  },
   computed: {
     buildDate () {
       const date = new Date()

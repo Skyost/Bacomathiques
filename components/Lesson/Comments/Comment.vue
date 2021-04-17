@@ -3,7 +3,7 @@
     <b-row>
       <b-col cols="12" lg="3" class="mb-lg-0 mb-4">
         <a :href="`#commentaire-${comment._id}`">
-          <b-avatar variant="info" :src="getAvatarURL(comment.author)" />
+          <b-avatar variant="info" :src="avatarURL" />
         </a>
       </b-col>
       <b-col cols="12" lg="9" class="content">
@@ -22,6 +22,8 @@
 
 <script>
 import BigCard from '../../Cards/BigCard'
+import { getAvatarURL } from '~/utils/lesson'
+
 export default {
   name: 'Comment',
   components: { BigCard },
@@ -37,6 +39,9 @@ export default {
     },
     time () {
       return new Date(this.comment.date * 1000).toLocaleTimeString('fr-FR')
+    },
+    avatarURL () {
+      return getAvatarURL(this.comment.author)
     }
   }
 }

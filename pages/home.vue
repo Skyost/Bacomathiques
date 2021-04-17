@@ -51,7 +51,7 @@ export default {
   },
   head () {
     return {
-      title: this.buildBrowserTitle(this.title)
+      title: this.title
     }
   },
   mounted () {

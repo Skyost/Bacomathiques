@@ -1,15 +1,22 @@
 <template>
-  <nuxt-link v-if="to" class="logo" :to="to" v-text="$store.state.siteName" />
-  <span v-else class="logo" v-text="$store.state.siteName" />
+  <nuxt-link v-if="to" class="logo" :to="to" v-text="siteName" />
+  <span v-else class="logo" v-text="siteName" />
 </template>
 
 <script>
+import { SITE_NAME } from '~/utils/site'
+
 export default {
   name: 'Logo',
   props: {
     to: {
       type: String,
       default: null
+    }
+  },
+  data () {
+    return {
+      siteName: SITE_NAME
     }
   }
 }

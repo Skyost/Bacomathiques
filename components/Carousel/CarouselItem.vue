@@ -23,7 +23,7 @@
         <div class="w-100">
           <h3 v-text="title" />
           <slot />
-          <b-btn class="btn-white" :to="to" v-text="button" />
+          <b-btn variant="white" :to="to" v-text="button" />
         </div>
       </b-col>
     </b-row>

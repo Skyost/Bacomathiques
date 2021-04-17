@@ -67,7 +67,7 @@
       </small>
       <b-form-row>
         <b-col cols="6" md="3" offset="6" offset-md="9">
-          <b-button class="btn-white float-right w-100" type="submit" :disabled="!form.enabled">
+          <b-button variant="white" class="float-right w-100" type="submit" :disabled="!form.enabled">
             <b-icon-check-all /> Envoyer
           </b-button>
         </b-col>
@@ -83,7 +83,7 @@
 </template>
 
 <script>
-import { BIconEyeFill, BIconCheckAll, BIconCheck, BIconExclamationCircleFill } from 'bootstrap-vue'
+import { BIconCheck, BIconCheckAll, BIconExclamationCircleFill, BIconEyeFill } from 'bootstrap-vue'
 
 export default {
   name: 'ContactForm',

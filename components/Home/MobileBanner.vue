@@ -11,7 +11,7 @@
         </p>
 
         <p class="pl-md-0 pl-3 pr-md-0 pr-3">
-          L'application <strong>{{ $store.state.siteName }}</strong> est là pour vous !
+          L'application <strong>{{ siteName }}</strong> est là pour vous !
           Elle est disponible pour Android et iOS via les boutons ci-dessous.
         </p>
 
@@ -20,7 +20,7 @@
             image="/img/index/stores/app-store.svg"
             class="mb-5"
             :size="5"
-            :href="$store.state.appStore"
+            :href="appStore"
           >
             Disponible sur <strong>App Store</strong>.
           </small-card>
@@ -28,7 +28,7 @@
             image="/img/index/stores/play-store.svg"
             class="mb-5"
             :size="5"
-            :href="$store.state.googlePlay"
+            :href="googlePlay"
           >
             Disponible sur <strong>Google Play</strong>.
           </small-card>
@@ -46,9 +46,18 @@
 <script>
 import CardsRow from '../Cards/CardsRow'
 import SmallCard from '../Cards/SmallCard'
+import { APP_STORE, GOOGLE_PLAY, SITE_NAME } from '~/utils/site'
+
 export default {
   name: 'MobileBanner',
-  components: { SmallCard, CardsRow }
+  components: { SmallCard, CardsRow },
+  data () {
+    return {
+      siteName: SITE_NAME,
+      googlePlay: GOOGLE_PLAY,
+      appStore: APP_STORE
+    }
+  }
 }
 </script>
 

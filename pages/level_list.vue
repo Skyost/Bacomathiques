@@ -20,6 +20,7 @@ import Carousel from '../components/Carousel/Carousel'
 import PageContent from '../components/PageContent'
 import LevelList from '../components/List/LevelList'
 import SocialHead from '../components/SocialHead'
+
 export default {
   components: { SocialHead, LevelList, PageContent, Carousel, PageHeader },
   data () {
@@ -29,7 +30,7 @@ export default {
   },
   head () {
     return {
-      title: this.buildBrowserTitle(this.title)
+      title: this.title
     }
   }
 }

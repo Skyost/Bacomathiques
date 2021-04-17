@@ -47,6 +47,8 @@ import PageContent from '../components/PageContent'
 import CardsRow from '../components/Cards/CardsRow'
 import LessonCard from '../components/Cards/LessonCard'
 import SocialHead from '../components/SocialHead'
+import { renderMathJax } from '~/utils/math'
+
 export default {
   components: { SocialHead, LessonCard, CardsRow, PageContent, ImageHeader, PageHeader },
   data () {
@@ -58,7 +60,7 @@ export default {
   },
   head () {
     return {
-      title: this.buildBrowserTitle(this.title)
+      title: this.title
     }
   },
   async mounted () {
@@ -78,7 +80,7 @@ export default {
     }
 
     if (this.result.length === 0) {
-      this.renderMathJax()
+      renderMathJax()
     }
   }
 }

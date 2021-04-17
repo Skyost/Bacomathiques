@@ -3,7 +3,7 @@
     v-if="show"
     id="e3c-button"
     v-b-modal.modal-e3c
-    class="btn-blue"
+    variant="blue"
   >
     Vous pensez avoir tout compris ?
     <br>Testez-vous sur les <strong>E3C</strong> !

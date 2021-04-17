@@ -2,7 +2,7 @@
 
 ## Contenus
 
-Les cours ont été écrits intégralement par [Hugo Delaunay](https://www.skyost.eu),
+Les cours ont été écrits intégralement par [Hugo Delaunay](https://skyost.eu),
 Toute reproduction totale ou partielle est interdite excepté pour un usage pédagogique et non-commercial (en citant explicitement la propriété de Bacomathiques).
 Les annales ainsi que les corrigés sont la propriété de [Math France](https://www.maths-france.fr/).
 Enfin, certaines introductions ont été reprises de [Wikipédia](https://fr.wikipedia.org).

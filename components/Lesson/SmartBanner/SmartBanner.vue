@@ -10,6 +10,8 @@
 
 <script>
 import SmartBannerContent from './SmartBannerContent'
+import { APP_STORE, GOOGLE_PLAY } from '~/utils/site'
+
 export default {
   name: 'SmartBanner',
   components: { SmartBannerContent },
@@ -29,12 +31,12 @@ export default {
     switch (mobileOS) {
       case 'Android':
         this.storeName = 'Sur Google Play'
-        this.storeLink = this.$store.state.googlePlay
+        this.storeLink = GOOGLE_PLAY
         this.bannerClass = 'smartbanner-android'
         break
       case 'iOS':
         this.storeName = 'Sur l\'App Store'
-        this.storeLink = this.$store.state.appStore
+        this.storeLink = APP_STORE
         this.bannerClass = 'smartbanner-ios'
         break
     }
