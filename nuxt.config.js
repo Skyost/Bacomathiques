@@ -1,3 +1,4 @@
+import { MATHJAX_VERSION } from './utils/math'
 import { HOST_NAME, SITE_DESCRIPTION, SITE_NAME } from './utils/site'
 
 export default {
@@ -80,7 +81,7 @@ export default {
         }
       },
       rehypeMathjaxChtml: {
-        fontURL: 'https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2'
+        fontURL: `https://cdn.jsdelivr.net/npm/mathjax@${MATHJAX_VERSION}/es5/output/chtml/fonts/woff-v2`
       }
     },
     nestedProperties: [

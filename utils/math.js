@@ -1,3 +1,5 @@
+const MATHJAX_VERSION = '3.1.4'
+
 function renderMathJax () {
   window.MathJax = {
     tex: {
@@ -15,9 +17,9 @@ function renderMathJax () {
   document.head.appendChild(polyfill)
 
   const mathjax = document.createElement('script')
-  mathjax.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-chtml.js'
+  mathjax.src = `https://cdn.jsdelivr.net/npm/mathjax@${MATHJAX_VERSION}/es5/tex-chtml.js`
   mathjax.async = true
   document.head.appendChild(mathjax)
 }
 
-module.exports = { renderMathJax }
+module.exports = { renderMathJax, MATHJAX_VERSION }
