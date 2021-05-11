@@ -16,4 +16,4 @@ N'hésitez pas à aller faire un tour sur leurs pages respectives !
 
 Ce site utilise des services tiers tels que Google Analytics et Google AdSense.
 L'application utilise Google AdMob, il vous est donc possible de consulter
-la [Politique de confidentialité](https://bacomathiqu.es/assets/pdf/politique-de-confidentialite.pdf).
+la [Politique de confidentialité](https://bacomathiqu.es/pdf/politique-de-confidentialite.pdf).
