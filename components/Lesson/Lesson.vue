@@ -9,7 +9,7 @@
     </page-header>
 
     <b-container v-if="content" id="page-lesson" class="mb-5" fluid="">
-      <lesson-content :content="content" :lesson="lesson" />
+      <lesson-content :content="content" :lesson="lesson" :is-summary="isSummary" />
     </b-container>
 
     <comment-section v-if="!isSummary" :lesson="lesson" />

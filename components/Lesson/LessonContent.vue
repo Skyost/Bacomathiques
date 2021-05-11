@@ -3,7 +3,7 @@
     <b-col cols="12" lg="9" class="pl-0 pr-0">
       <page-content v-if="content">
         <nuxt-content :document="content" />
-        <e3-c-button :lesson="lesson" />
+        <e3-c-button v-if="!isSummary" :lesson="lesson" />
       </page-content>
     </b-col>
 
@@ -31,6 +31,10 @@ export default {
     lesson: {
       type: Object,
       required: true
+    },
+    isSummary: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
