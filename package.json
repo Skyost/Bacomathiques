@@ -52,6 +52,7 @@
     "stylelint-config-standard": "^20.0.0",
     "stylelint-scss": "^3.19.0",
     "unist-util-visit": "^2.0.3",
+    "webpack": "^4.46.0",
     "yaml": "^1.10.2"
   },
   "description": "## Build Setup",
