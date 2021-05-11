@@ -13,4 +13,8 @@ comments:
   name: "Bacomathiques"
   path: "content/comments/"
   requiredFields: ["lesson", "level", "client", "author", "message"]
+  akismet:
+    enabled: true
+    author: "author"
+    content: "message"
  
