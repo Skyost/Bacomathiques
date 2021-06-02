@@ -280,8 +280,8 @@ On souhaite résoudre la congruence $6x \equiv 6 \mod 9$. Alors, comme $d = \ope
 \, 6$. On se ramène donc à résoudre $2x \equiv 2 \mod 3$ (où $2$ et $3$ sont premiers entre eux).
 
 On écrit l'identité de Bézout appliquée à $2$ et $3$ : $2 \times 2 + 3 \times -1 = 1$. Donc les solutions à la
-congruence du début sont les entiers $x$ vérifiant $x \equiv 4 \mod 3 \equiv 1 \mod 3$ (i.e. les $x$ de la forme $x = 3k
-+ 1$ où $k \in \mathbb{Z}$).
+congruence du début sont les entiers $x$ vérifiant $x \equiv 4 \mod 3 \equiv 1 \mod 3$
+(i.e. les $x$ de la forme $x = 3k + 1$ où $k \in \mathbb{Z}$).
 
 </bubble>
 
