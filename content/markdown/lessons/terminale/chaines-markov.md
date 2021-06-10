@@ -102,7 +102,7 @@ découragez pas car elle reste parfaitement accessible !
 Soit $(X_n)$ une suite de variables aléatoires discrètes définies sur un même univers $\Omega$ et à valeurs dans un
 ensemble $E$. On dit que $(X_n)$ définit une **chaîne de Markov** sur $E$ si pour tout $n \in \mathbb{N}$ et tout $x_0,
 x_1, x_2, \dots, x_n \in E$, l'événement $(X_n = x_n)$ ne dépend que de l'événement antérieur $(X_{n-1} = x_{n-1})$ (et
-pas des précédents) ; autrement dit, si $p_{(X_{n-1} = x_{n-1}) \, \cap \dots \cap \, (X_0 = x_0)}(X_n = x_n) = p_{(X_
+pas des précédents) ; autrement dit, si $P_{(X_{n-1} = x_{n-1}) \, \cap \dots \cap \, (X_0 = x_0)}(X_n = x_n) = P_{(X_
 {n-1} = x_{n-1})}(X_n = x_n)$.
 
 De plus, l'ensemble $E$ est appelé **espace des états** de la chaîne de Markov.
@@ -130,10 +130,10 @@ dénombrable.
 #### Chaîne de Markov homogène
 
 Soit $(X_n)$ une chaîne de Markov dont on note $E$ l'espace des états. Alors $(X_n)$ est dite **homogène** si pour tout
-$n \in \mathbb{N}$ et pour tout $x$, $y \in E$, la probabilité $p_{(X_n = x)}(X_{n+1} = y)$ est indépendante de $n$.
+$n \in \mathbb{N}$ et pour tout $x$, $y \in E$, la probabilité $P_{(X_n = x)}(X_{n+1} = y)$ est indépendante de $n$.
 
-En termes mathématiques, cela signifie que pour tout $n \in \mathbb{N}$ et pour tout $x$, $y \in E$, $p_{(X_n = x)}(X_
-{n+1} = y) = p_{(X_0 = x)}(X_1 = y)$.
+En termes mathématiques, cela signifie que pour tout $n \in \mathbb{N}$ et pour tout $x$, $y \in E$,
+$P_{(X_n = x)}(X_{n+1} = y) = P_{(X_0 = x)}(X_1 = y)$.
 
 </bubble>
 
@@ -149,21 +149,23 @@ Si on note par $X_n$ le nombre de vignettes différentes dans la collection d'El
 de céréales, on a que $(X_n)$ est une chaîne de Markov homogène (commençant par $X_0 = 0$). En effet, pour tout $k \in
 \{0, 1, \dots, 11\}$, on a que l'événement $(X_{n+1} = k)$ ne dépend que de $X_n$ :
 
-$\displaystyle{p_{A}(X_{n+1} = k) = \begin{cases} 1 \text{ si } k = 11 \text{ et si } A \text{ est l'événement } (X_n =
-11) \\ \frac{10}{11} \text{ si } k \neq 11 \text{ et si } A \text{ est l'événement } (X_n = k) \\ \frac{1}{11} \text{ si
-} A \text{ est l'événement } (X_n = k-1) \\ 0 \text{ sinon} \end{cases}}$
+$\displaystyle{P_A(X_{n+1} = k) = \begin{cases}
+\frac{k}{11} \text{ si } A \text{ est l'événement } (X_n = k) \\
+1 - \frac{k-1}{11} \text{ si } A \text{ est l'événement } (X_n = k-1) \text{ et que } k \geq 1 \\
+0 \text{ sinon}
+\end{cases}}$
 
 Pour détailler un peu plus :
 
-* Si on a $(X_n = 11)$, alors Eliott a déjà sa collection complète. Donc la probabilité que sa collection reste complète
-  est égale à $1$.
-* Si on a $(X_n = k)$, alors la probabilité d'avoir $(X_{n+1} = k)$ est égale à la probabilité de ne pas tirer de
-  nouveau joueur (qui est $1 - \frac{1}{11} = \frac{10}{11}$).
-* Si on a $(X_n = k-1)$, alors la probabilité d'avoir $(X_{n+1} = k)$ est égale à la probabilité de tirer un nouveau
-  joueur (qui est $\frac{1}{11}$).
-* Sinon, comme on ne peut pas tirer deux nouveaux joueurs d'un coup ou en enlever un de la collection, la probabilité
+* Si on a $(X_n = k)$ (i.e. on a déjà tiré $k$ joueurs différents), alors la probabilité d'avoir $(X_{n+1} = k)$
+  est égale à la probabilité de ne pas tirer de nouveau joueur (qui est $\frac{k}{11}$).
+  Cela inclut également le cas où $k = 11$.
+* Si on a $(X_n = k-1)$ (i.e. on a déjà tiré $k-1$ joueurs différents),
+  alors la probabilité d'avoir $(X_{n+1} = k)$ est égale à la probabilité de tirer un nouveau joueur
+  (qui est $1 - \frac{k-1}{11}$).
+* Sinon, comme on ne peut pas tirer plus d'un nouveau joueur d'un coup ou en enlever de la collection, la probabilité
   d'avoir $(X_{n+1} = k)$ est égale à $0$.
-* Notons de plus que $(X_n)$ est homogène car le calcul de $p(X_{n+1} = k)$ est indépendant de $n$ (mais reste dépendant
+* Notons de plus que $(X_n)$ est homogène car le calcul de $P(X_{n+1} = k)$ est indépendant de $n$ (mais reste dépendant
   de $X_n$, attention).
 
 De plus, on a que l'espace des états $E$ est $\{0, 1, \dots, 11\}$.
@@ -182,14 +184,14 @@ $n$ vignettes.
 
 Soit $(X_n)$ une chaîne de Markov homogène dont on note $E = \{x_1, x_2, \dots, x_m\}$ l'espace des états. La **matrice
 de transition** de $(X_n)$ est la matrice carrée d'ordre $m$ dont le coefficient situé à la $i$-ième ligne et à la
-$j$-ième colonne est égal à $p_{i,j} = p_{(X_n = x_i)}(X_{n+1} = x_j)$.
+$j$-ième colonne est égal à $p_{i,j} = P_{(X_n = x_i)}(X_{n+1} = x_j)$.
 
 </bubble>
 
 <bubble variant="tip">
 
-Comme cette probabilité est indépendante de $n$, on peut tout à fait prendre $n = 0$ dans la définition. On a alors $p_
-{i,j} = p_{(X_0 = x_i)}(X_1 = x_j)$.
+Comme cette probabilité est indépendante de $n$, on peut tout à fait prendre $n = 0$ dans la définition. On a alors $P_
+{i,j} = P_{(X_0 = x_i)}(X_1 = x_j)$.
 
 </bubble>
 
@@ -199,7 +201,7 @@ Comme cette probabilité est indépendante de $n$, on peut tout à fait prendre 
 
 Soit $(X_n)$ une chaîne de Markov homogène dont on note $E = \{x_1, x_2, \dots, x_m\}$ l'espace des états. On associe à
 cette chaîne de Markov un graphe probabiliste $G$ d'ordre $m$ dont les sommets sont les états $x_i$ et dont les arêtes
-$x_i - x_j$ sont pondérées par les poids $p_{i,j} = p_{(X_n = x_i)}(X_{n+1} = x_j)$.
+$x_i - x_j$ sont pondérées par les poids $p_{i,j} = P_{(X_n = x_i)}(X_{n+1} = x_j)$.
 
 La matrice de transition de $(X_n)$ est égale à la matrice de transition du graphe probabiliste $G$ : il s'agit donc
 aussi d'une matrice stochastique.
@@ -213,9 +215,9 @@ aussi d'une matrice stochastique.
 Reprenons l'exemple précédent. Alors la matrice de transition associée à $(X_n)$ est la matrice $M \in \mathcal{M}_{12}(
 \mathbb{R})$ :
 
-$M = \displaystyle{\begin{pmatrix} \frac{10}{11} & \frac{1}{11} & 0 & \dots & 0 & 0 \\ 0 & \frac{10}{11} & \frac{1}{11}
-& \dots & 0 & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\ 0 & 0 & 0 & \dots & \frac{10}{11} &
-\frac{1}{11} \\ 0 & 0 & 0 & \dots & 0 & 1 \\ \end{pmatrix}}$
+$M = \displaystyle{\begin{pmatrix} 0 & 1 & \dots & 0 & 0 \\ 0 & \frac{1}{11} & \ddots & 0 & 0 \\
+\vdots & \ddots & \ddots & \ddots & \vdots \\ 0 & 0 & \ddots & \frac{10}{11} & \frac{1}{11} \\
+0 & 0 & \dots & 0 & 1 \\ \end{pmatrix}}$
 
 Et le graphe associé à $(X_n)$ est le graphe probabiliste d'ordre $12$ :
 
@@ -229,12 +231,12 @@ Et le graphe associé à $(X_n)$ est le graphe probabiliste d'ordre $12$ :
 
 #### Proposition
 
-Soit $(X_n)$ une chaîne de Markov homogène dont on note $E = \{x_1, x_2, \dots, x_m\}$ l'espace des états. On pose $p_
-{i,j}^{(k)} = p_{(X_0 = x_i)}(X_k = x_j)$ pour tout $k \in \mathbb{N}^\*$ (qui représente la probabilité que la chaîne
+Soit $(X_n)$ une chaîne de Markov homogène dont on note $E = \{x_1, x_2, \dots, x_m\}$ l'espace des états. On pose
+$p_{i,j}^{(k)} = P_{(X_0 = x_i)}(X_k = x_j)$ pour tout $k \in \mathbb{N}^*$ (qui représente la probabilité que la chaîne
 de Markov $(X_n)$ passe de l'état $x_i$ à l'état $x_j$ en $k$ étapes). On a :
 
-$\displaystyle{p_{i,j}^{(k)} = \sum_{q=1}^m p_{i,q}^{(k-1)} \times p_{q,j}^{(1)} = p_{i,1}^{(k-1)} \times p_{1,j}^{(1)}
-+ p_{i,2}^{(k-1)} \times p_{2,j}^{(1)} + \dots + p_{i,m}^{(k-1)} \times p_{m,j}^{(1)}}$.
+$\displaystyle{p_{i,j}^{(k)} = \sum_{q=1}^m p_{i,q}^{(k-1)} \times p_{q,j}^{(1)} = p_{i,1}^{(k-1)} \times
+p_{1,j}^{(1)} + p_{i,2}^{(k-1)} \times p_{2,j}^{(1)} + \dots + p_{i,m}^{(k-1)} \times p_{m,j}^{(1)}}$.
 
 De plus, comme $(X_n)$ est homogène, $p_{i,j}^{(k)} = p_{i,j}^{(n+k)}$ pour tout $n \in \mathbb{N}$.
 
@@ -244,16 +246,16 @@ De plus, comme $(X_n)$ est homogène, $p_{i,j}^{(k)} = p_{i,j}^{(n+k)}$ pour tou
 
 #### Proposition
 
-$\displaystyle{p_{i,j}^{(k)} = p_{(X_0 = x_i)}(X_k = x_j)}$
+$\displaystyle{p_{i,j}^{(k)} = P_{(X_0 = x_i)}(X_k = x_j)}$
 
-$\displaystyle{= \sum_{q=1}^m p_{(X_0 = x_i)}((X_k = x_j) \, \cap \, (X_{k-1} = x_q))}$
+$\displaystyle{= \sum_{q=1}^m P_{(X_0 = x_i)}((X_k = x_j) \, \cap \, (X_{k-1} = x_q))}$
 
-$\displaystyle{= \sum_{q=1}^m p_{(X_{k-1} = x_q) \, \cap \, (x_0 = x_i)}(X_k = x_j) p_{(X_0 = x_i)}(X_{k-1} = x_q)}$ (
+$\displaystyle{= \sum_{q=1}^m P_{(X_{k-1} = x_q) \, \cap \, (x_0 = x_i)}(X_k = x_j) P_{(X_0 = x_i)}(X_{k-1} = x_q)}$ (
 par la formule des probabilités totales)
 
-$\displaystyle{= \sum_{q=1}^m p_{(X_{k-1} = x_q)}(X_k = x_j) p_{(X_0 = x_i)}(X_{k-1} = x_q)}$
+$\displaystyle{= \sum_{q=1}^m P_{(X_{k-1} = x_q)}(X_k = x_j) P_{(X_0 = x_i)}(X_{k-1} = x_q)}$
 
-$\displaystyle{= \sum_{q=1}^m p_{(X_0 = x_q)}(X_1 = x_j) p_{(X_0 = x_i)}(X_{k-1} = x_q)}$ (par homogénéité)
+$\displaystyle{= \sum_{q=1}^m P_{(X_0 = x_q)}(X_1 = x_j) P_{(X_0 = x_i)}(X_{k-1} = x_q)}$ (par homogénéité)
 
 $\displaystyle{= \sum_{q=1}^m p_{j,q}^{(1)} \times p_{i,q}^{(k-1)}}$.
 
@@ -281,7 +283,7 @@ Enfin, donnons la définition centrale de cette section.
 
 Soit $(X_n)$ une chaîne de Markov homogène dont on note $E = \{x_1, x_2, \dots, x_m\}$ l'espace des états. On appelle
 **suite des distributions** de $(X_n)$ la suite de matrices $(\pi_n)$, définie pour tout $n \in \mathbb{N}$ par
-$\displaystyle{\pi_n = \begin{pmatrix} p(X_n = x_1) & p(X_n = x_2) & \dots & p(X_n = e_m) \end{pmatrix}}$.
+$\displaystyle{\pi_n = \begin{pmatrix} P(X_n = x_1) & P(X_n = x_2) & \dots & P(X_n = e_m) \end{pmatrix}}$.
 
 $\pi_n$ est donc une matrice ligne d'ordre $m$ et est appelée **distribution au temps $n$**.
 
@@ -311,9 +313,9 @@ Soit $n \in \mathbb{N}$. Les événements $(X_n = x_1), (X_n = x_2), \dots, (X_n
 univers, donc par la formule des probabilités totales appliquée à notre système complet d'événements et à $(X_{n+1} =
 x_j)$ :
 
-$p(X_{n+1} = x_j) = p((X_{n+1} = x_j) \, \cap \, (X_n = x_1)) + \dots + p((X_{n+1} = x_j) \, \cap \, (X_n = x_m))$
+$P(X_{n+1} = x_j) = P((X_{n+1} = x_j) \, \cap \, (X_n = x_1)) + \dots + P((X_{n+1} = x_j) \, \cap \, (X_n = x_m))$
 
-$= p_{(X_n = x_1)}(X_{n+1} = x_j) \times p(X_n = x_1) + \dots + p_{(X_n = x_m)}(X_{n+1} = x_j) \times (X_n = x_m)$
+$= P_{(X_n = x_1)}(X_{n+1} = x_j) \times P(X_n = x_1) + \dots + P_{(X_n = x_m)}(X_{n+1} = x_j) \times (X_n = x_m)$
 
 $= \pi_n M$
 
@@ -351,7 +353,7 @@ Ainsi :
 * $\pi_2 = \pi_0 M^2 = \begin{pmatrix} 0,37 & 0,42 & 0,21 \end{pmatrix}$
 * $\pi_3 = \pi_0 M^3 = \begin{pmatrix} 0,332 & 0,468 & 0,2 \end{pmatrix}$
 
-Et par exemple $p_{1,2}^{(3)} = 0,468$ : la probabilité que le chat passe à sa gamelle de croquettes 3 heures après le
+Et par exemple $P_{1,2}^{(3)} = 0,468$ : la probabilité que le chat passe à sa gamelle de croquettes 3 heures après le
 lait est d'environ 47 %.
 
 </bubble>

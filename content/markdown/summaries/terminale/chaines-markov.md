@@ -59,7 +59,7 @@ découragez pas car elle reste parfaitement accessible !
 Soit $(X_n)$ une suite de variables aléatoires discrètes définies sur un même univers $\Omega$ et à valeurs dans un
 ensemble $E$. On dit que $(X_n)$ définit une **chaîne de Markov** sur $E$ si pour tout $n \in \mathbb{N}$ et tout $x_0,
 x_1, x_2, \dots, x_n \in E$, l'événement $(X_n = x_n)$ ne dépend que de l'événement antérieur $(X_{n-1} = x_{n-1})$ (et
-pas des précédents) ; autrement dit, si $p_{(X_{n-1} = x_{n-1}) \, \cap \dots \cap \, (X_0 = x_0)}(X_n = x_n) = p_{(X_
+pas des précédents) ; autrement dit, si $P_{(X_{n-1} = x_{n-1}) \, \cap \dots \cap \, (X_0 = x_0)}(X_n = x_n) = P_{(X_
 {n-1} = x_{n-1})}(X_n = x_n)$.
 
 De plus, l'ensemble $E$ est appelé **espace des états** de la chaîne de Markov.
@@ -77,10 +77,10 @@ De plus, notez bien que nous n'avons pas fait d'hypothèse sur le cardinal de $E
 #### Chaîne de Markov homogène
 
 Soit $(X_n)$ une chaîne de Markov dont on note $E$ l'espace des états. Alors $(X_n)$ est dite **homogène** si pour tout
-$n \in \mathbb{N}$ et pour tout $x$, $y \in E$, la probabilité $p_{(X_n = x)}(X_{n+1} = y)$ est indépendante de $n$.
+$n \in \mathbb{N}$ et pour tout $x$, $y \in E$, la probabilité $P_{(X_n = x)}(X_{n+1} = y)$ est indépendante de $n$.
 
-En termes mathématiques, cela signifie que pour tout $n \in \mathbb{N}$ et pour tout $x$, $y \in E$, $p_{(X_n = x)}(X_
-{n+1} = y) = p_{(X_0 = x)}(X_1 = y)$.
+En termes mathématiques, cela signifie que pour tout $n \in \mathbb{N}$ et pour tout $x$, $y \in E$, $P_{(X_n = x)}(X_
+{n+1} = y) = P_{(X_0 = x)}(X_1 = y)$.
 
 </bubble>
 
@@ -92,7 +92,7 @@ En termes mathématiques, cela signifie que pour tout $n \in \mathbb{N}$ et pour
 
 Soit $(X_n)$ une chaîne de Markov homogène dont on note $E = \{x_1, x_2, \dots, x_m\}$ l'espace des états. La **matrice
 de transition** de $(X_n)$ est la matrice carrée d'ordre $m$ dont le coefficient situé à la $i$-ième ligne et à la
-$j$-ième colonne est égal à $p_{i,j} = p_{(X_n = x_i)}(X_{n+1} = x_j)$.
+$j$-ième colonne est égal à $p_{i,j} = P_{(X_n = x_i)}(X_{n+1} = x_j)$.
 
 </bubble>
 
@@ -102,7 +102,7 @@ $j$-ième colonne est égal à $p_{i,j} = p_{(X_n = x_i)}(X_{n+1} = x_j)$.
 
 Soit $(X_n)$ une chaîne de Markov homogène dont on note $E = \{x_1, x_2, \dots, x_m\}$ l'espace des états. On associe à
 cette chaîne de Markov un graphe probabiliste $G$ d'ordre $m$ dont les sommets sont les états $x_i$ et dont les arêtes
-$x_i - x_j$ sont pondérées par les poids $p_{i,j} = p_{(X_n = x_i)}(X_{n+1} = x_j)$.
+$x_i - x_j$ sont pondérées par les poids $p_{i,j} = P_{(X_n = x_i)}(X_{n+1} = x_j)$.
 
 La matrice de transition de $(X_n)$ est égale à la matrice de transition du graphe probabiliste $G$ : il s'agit donc
 aussi d'une matrice stochastique.
@@ -115,12 +115,12 @@ aussi d'une matrice stochastique.
 
 #### Proposition
 
-Soit $(X_n)$ une chaîne de Markov homogène dont on note $E = \{x_1, x_2, \dots, x_m\}$ l'espace des états. On pose $p_
-{i,j}^{(k)} = p_{(X_0 = x_i)}(X_k = x_j)$ pour tout $k \in \mathbb{N}^\*$ (qui représente la probabilité que la chaîne
+Soit $(X_n)$ une chaîne de Markov homogène dont on note $E = \{x_1, x_2, \dots, x_m\}$ l'espace des états. On pose
+$p_{i,j}^{(k)} = P_{(X_0 = x_i)}(X_k = x_j)$ pour tout $k \in \mathbb{N}^*$ (qui représente la probabilité que la chaîne
 de Markov $(X_n)$ passe de l'état $x_i$ à l'état $x_j$ en $k$ étapes). On a :
 
-$\displaystyle{p_{i,j}^{(k)} = \sum_{q=1}^m p_{i,q}^{(k-1)} \times p_{q,j}^{(1)} = p_{i,1}^{(k-1)} \times p_{1,j}^{(1)}
-+ p_{i,2}^{(k-1)} \times p_{2,j}^{(1)} + \dots + p_{i,m}^{(k-1)} \times p_{m,j}^{(1)}}$.
+$\displaystyle{p_{i,j}^{(k)} = \sum_{q=1}^m p_{i,q}^{(k-1)} \times p_{q,j}^{(1)} = p_{i,1}^{(k-1)} \times
+p_{1,j}^{(1)} + p_{i,2}^{(k-1)} \times p_{2,j}^{(1)} + \dots + p_{i,m}^{(k-1)} \times p_{m,j}^{(1)}}$.
 
 De plus, comme $(X_n)$ est homogène, $p_{i,j}^{(k)} = p_{i,j}^{(n+k)}$ pour tout $n \in \mathbb{N}$.
 
@@ -148,7 +148,7 @@ Enfin, donnons la définition centrale de cette section.
 
 Soit $(X_n)$ une chaîne de Markov homogène dont on note $E = \{x_1, x_2, \dots, x_m\}$ l'espace des états. On appelle
 **suite des distributions** de $(X_n)$ la suite de matrices $(\pi_n)$, définie pour tout $n \in \mathbb{N}$ par
-$\displaystyle{\pi_n = \begin{pmatrix} p(X_n = x_1) & p(X_n = x_2) & \dots & p(X_n = e_m) \end{pmatrix}}$.
+$\displaystyle{\pi_n = \begin{pmatrix} P(X_n = x_1) & P(X_n = x_2) & \dots & P(X_n = e_m) \end{pmatrix}}$.
 
 $\pi_n$ est donc une matrice ligne d'ordre $m$ et est appelée **distribution au temps $n$**.
 

@@ -346,9 +346,9 @@ Par exemple, transformons le système $\displaystyle{(S) : \begin{cases}x + 2y =
 $\displaystyle{(S) \iff \begin{pmatrix}1 & 2 \\ 2 & 5\end{pmatrix} \begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}1
 \\ 4 \end{pmatrix}}$
 
-Or l'inverse de $\displaystyle{\begin{pmatrix}1 & 2 \\ 2 & 5\end{pmatrix}}$ est $\displaystyle{\begin{pmatrix}5 & -2 \\
--2 & 1\end{pmatrix}}$. D'où $\displaystyle{\begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}5 & -2 \\ -2 &
-1\end{pmatrix} \begin{pmatrix}1 \\ 4\end{pmatrix} = \begin{pmatrix}-3 \\ 2\end{pmatrix}}$.
+Or l'inverse de $\displaystyle{\begin{pmatrix}1 & 2 \\ 2 & 5\end{pmatrix}}$ est
+$\displaystyle{\begin{pmatrix}5 & -2 \\ -2 & 1\end{pmatrix}}$. D'où $\displaystyle{\begin{pmatrix}x \\ y\end{pmatrix}
+= \begin{pmatrix}5 & -2 \\ -2 & 1\end{pmatrix} \begin{pmatrix}1 \\ 4\end{pmatrix} = \begin{pmatrix}-3 \\ 2\end{pmatrix}}$.
 
 Or deux matrices sont égales si et seulement si leurs coefficients sont tous égaux. Donc on a $x = -3$ et $y = 2$.
 
@@ -426,8 +426,8 @@ rotation de centre $O$ et d'angle $\displaystyle{\frac{\pi}{4}}$.
 On a :
 
 $\displaystyle{\begin{pmatrix} x_B \\ y_B \end{pmatrix} = \begin{pmatrix} -1 \\ -2 \end{pmatrix} + \begin{pmatrix} 1 \\
-1 \end{pmatrix}}$ et $\displaystyle{\begin{pmatrix} x_C \\ y_C \end{pmatrix} = \begin{pmatrix} \frac{\sqrt{2}}{2} &
--\frac{\sqrt{2}}{2} \\ \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix}}$.
+1 \end{pmatrix}}$ et $\displaystyle{\begin{pmatrix} x_C \\ y_C \end{pmatrix} = \begin{pmatrix} \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2} \\
+\frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix}}$.
 
 Donc $B = (-1; 1)$ et $C = (0; \sqrt{2})$.
 
@@ -648,8 +648,8 @@ sommet $s_i$ au sommet $s_j$.
 
 **Hérédité :** Supposons la propriété vraie jusqu'à un rang $k \geq 1$ et vérifions qu'elle est vraie au rang $k+1$.
 
-On a $M^{n+1} = M^{n} \times M$. Donc $m_{i,j}^{(k+1)} = m_{i,1}^{(k)}m_{1,j}^{(1)} + m_{i,2}^{(k)}m_{2,j}^{(1)} + \dots
-+ m_{i,n}^{(k)}m_{n,j}^{(1)}$.
+On a $M^{n+1} = M^{n} \times M$. Donc $m_{i,j}^{(k+1)} = m_{i,1}^{(k)}m_{1,j}^{(1)} + m_{i,2}^{(k)}m_{2,j}^{(1)} +
+\dots + m_{i,n}^{(k)}m_{n,j}^{(1)}$.
 
 Or, par hypothèse, pour tout $l \in \{1; \dots; n\}$, $m_{i,l}^{(n)}$ est le nombre de chemins de longueur $n$ reliant
 $s_i$ à $s_l$ et $m_{l,j}$ est le nombre d'arêtes reliant le sommet $s_l$ au sommet $s_j$.

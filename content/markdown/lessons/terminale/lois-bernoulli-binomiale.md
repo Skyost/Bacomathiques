@@ -20,7 +20,7 @@ nombre réel. C'est-à-dire : $X : \Omega \rightarrow \mathbb{R}$.
 #### Définition
 
 Soit $X$ une variable aléatoire. La **loi de probabilité** de $X$ attribue à chaque valeur $x_i$ la probabilité $p_i =
-p(X = x_i)$ de l'événement $X = x_i$ constitué de tous les événements élémentaires dont l'image par $X$ est $x_i$.
+P(X = x_i)$ de l'événement $X = x_i$ constitué de tous les événements élémentaires dont l'image par $X$ est $x_i$.
 
 </bubble>
 
@@ -34,7 +34,7 @@ Soit $X$ une variable aléatoire. On peut représenter sa loi de probabilité pa
 
 | $x_i$                 | $x_1$                 | $x_2$                 | ... | $x_n$                 |
 | --------------------- | --------------------- | --------------------- | --- | --------------------- |
-| $p_i$ $= p(X = x_i)$ | $p_1$ $= p(X = x_1)$ | $p_2$ $= p(X = x_2)$ | ... | $p_n$ $= p(X = x_n)$ |
+| $p_i$ $= P(X = x_i)$  | $p_1$ $= P(X = x_1)$  | $p_2$ $= P(X = x_2)$  | ... | $p_n$ $= P(X = x_n)$  |
 
 On a $p_1 + p_2 + \dots + p_n = 1$.
 
@@ -77,7 +77,9 @@ La **variance** $V(X)$ et l'**écart-type** $\sigma(X)$ d'une variable aléatoir
 Calcul de l'espérance, de la variance et de l'écart-type. Soit $X$ une variable aléatoire suivant la loi de probabilité
 donnée par le tableau ci-dessous :
 
-<table class="table table-bordered table-hover"><tbody><tr><td>$x_i$</td><td>$-1$</td><td>$0$</td><td>$2$</td><td>$6$</td></tr><tr><td>$p_i$</td><td>$\frac{1}{4}$</td><td>$\frac{1}{2}$</td><td>$\frac{1}{8}$</td><td>$\frac{1}{8}$</td></tr></tbody></table>
+| $x_i$ | $-1$          | $0$           | $2$           | $6$           |
+| ----- | ------------- | ------------- | ------------- | ------------- |
+| $p_i$ | $\frac{1}{4}$ | $\frac{1}{2}$ | $\frac{1}{8}$ | $\frac{1}{8}$ |
 
 On a :
 
@@ -147,8 +149,8 @@ Un arbre de probabilité permet également de représenter une succession d'épr
 
 #### Calcul de probabilité
 
-Soit une succession de $n$ épreuves indépendantes et soit $(x_1, \dots, x_n)$ une issue de cette succession d'épreuves.
-Alors $p((x_1, \dots, x_n)) = p(x_1) \times \dots \times p(x_n)$.
+Soit une succession de $n$ épreuves indépendantes et soit $(\omega_1, \dots, \omega_n)$ une issue de cette succession
+d'épreuves. Alors $P((\omega_1, \dots, \omega_n)) = P(\omega_1) \times \dots \times P(\omega_n)$.
 
 </bubble>
 
@@ -156,7 +158,7 @@ Alors $p((x_1, \dots, x_n)) = p(x_1) \times \dots \times p(x_n)$.
 
 #### Exemple
 
-En reprenant les notations de l'exemple précédent, on a $p((1; 6)) = p(1) \times p(6) = \frac{1}{36}$.
+En reprenant les notations de l'exemple précédent, on a $P((1; 6)) = P(1) \times P(6) = \frac{1}{36}$.
 
 D'ailleurs, on se trouve dans une situation **d'équiprobabilité** car toutes les issues ont une probabilité de
 $\frac{1}{36}$ de se produire.
@@ -204,7 +206,9 @@ Soit une succession d'épreuves de Bernoulli indépendantes. On appelle cette su
 Soient $X$ une variable aléatoire et $p \in ]0; 1[$. On dit que $X$ suit une \text{loi de Bernoulli} de paramètre
 $p$ (qui se note $\mathcal{B}(p)$) si la loi de $X$ est la suivante :
 
-<table class="table table-bordered table-hover"><tbody><tr><td>$x_i$</td><td>$0$</td><td>$1$</td></tr><tr><td>$p_i$</td><td>$1 - p$</td><td>$p$</td></tr></tbody></table>
+| $x_i$  | $1$  | $0$    |
+| ------ | ---- | ------ |
+| $p_i$  | $p$  | $1-p$  |
 
 C'est-à-dire, qu'on a une probabilité $p$ d'obtenir un succès (représenté par $1$) et une probabilité de $1-p$ d'obtenir
 un échec (représenté par $0$).
@@ -236,8 +240,8 @@ nous souhaitons tomber sur Face (on a donc une chance sur trois de réussir).
 Soit $X$ la variable aléatoire modélisant cette situation. On a que $X$ suit une loi de Bernoulli $\mathcal{B}\left(
 \frac{1}{3}\right)$. Donc :
 
-* $p(X = 0) = 1 - \frac{1}{3} = \frac{2}{3}$ (on a deux chances sur trois de tomber sur Pile).
-* $p(X = 1) = \frac{2}{3}$ (on a deux chances sur trois de tomber sur Face).
+* $P(X = 0) = 1 - \frac{1}{3} = \frac{2}{3}$ (on a deux chances sur trois de tomber sur Pile).
+* $P(X = 1) = \frac{2}{3}$ (on a deux chances sur trois de tomber sur Face).
 
 Et enfin on a $E(X) = \frac{2}{3}$, $V(X) = \frac{2}{9}$ et $\sigma(X) = \frac{\sqrt{2}}{3}$.
 
@@ -276,7 +280,7 @@ Il s'agit en fait d'une généralisation de la loi de Bernoulli dans le cas où 
 #### Probabilité d'un nombre de succès
 
 Soit $X$ une variable aléatoire suivant une loi $\mathcal{B}(n; p)$. Alors pour tout entier $k$ compris entre $0$ et
-$n$, on a $\displaystyle{p(X = k) = \binom{n}{k} p^k (1-p)^{n-k}}$.
+$n$, on a $\displaystyle{P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}}$.
 
 </bubble>
 
@@ -295,7 +299,7 @@ $\underbrace{p \times \dots \times p}_{k \text{ succès}} \times \underbrace{(1-
 De plus, il y a $\displaystyle{\binom{n}{k}}$ chemins de ce type (cela correspond au nombre de façons de placer la
 pondération $p$ $k$ fois sur les $n$ branches).
 
-D'où $\displaystyle{p(X = k) = \underbrace{p^k(1-p)^{n-k} + \dots + p^k(1-p)^{n-k}}_{\binom{n}{k} \text{ branches}} =
+D'où $\displaystyle{P(X = k) = \underbrace{p^k(1-p)^{n-k} + \dots + p^k(1-p)^{n-k}}_{\binom{n}{k} \text{ branches}} =
 \binom{n}{k} p^k(1-p)^{n-k}}$.
 
 </bubble>
@@ -310,22 +314,22 @@ un nombre pair.
 Soit $X$ la variable aléatoire modélisant cette situation. Comme la probabilité d'obtenir un nombre pair est de
 $\frac{1}{2}$, on a que $X$ suit une loi binomiale $\mathcal{B}(5; 0,5)$.
 
-On cherche donc à calculer $p(X \leq 2)$. Il suffit pour cela de décomposer l'événement :
+On cherche donc à calculer $P(X \leq 2)$. Il suffit pour cela de décomposer l'événement :
 
 La probabilité d'obtenir au plus $2$ fois un nombre pair est égale à la probabilité d'obtenir $0$, $1$ ou $2$ fois un
 nombre pair. D'où :
 
-$p(X \leq 2) = p(X = 0) + p(X = 1) + p(X = 2)$.
+$P(X \leq 2) = P(X = 0) + P(X = 1) + P(X = 2)$.
 
 Il ne reste qu'à appliquer la formule :
 
-* $\displaystyle{p(X = 0) = \binom{5}{0}(0,5)^0(1-0,5)^5 = 0,03125}$
-* $\displaystyle{p(X = 1) = \binom{5}{1}(0,5)^1(1-0,5)^4 = 0,15625}$
-* $\displaystyle{p(X = 2) = \binom{5}{2}(0,5)^2(1-0,5)^3 = 0,3125}$
+* $\displaystyle{P(X = 0) = \binom{5}{0}(0,5)^0(1-0,5)^5 = 0,03125}$
+* $\displaystyle{P(X = 1) = \binom{5}{1}(0,5)^1(1-0,5)^4 = 0,15625}$
+* $\displaystyle{P(X = 2) = \binom{5}{2}(0,5)^2(1-0,5)^3 = 0,3125}$
 
-Finalement, on trouve $p(X \leq 2) = 0,5$.
+Finalement, on trouve $P(X \leq 2) = 0,5$.
 
-Petite remarque supplémentaire : comme $p(X \geq 3) = p(X \gt 2) = 1 - p(X \leq 2) = 1 - 0,5 = 0,5$, on a qu'il y a
+Petite remarque supplémentaire : comme $P(X \geq 3) = P(X \gt 2) = 1 - P(X \leq 2) = 1 - 0,5 = 0,5$, on a qu'il y a
 autant de chance d'obtenir $2$ fois ou moins un nombre pair, qu'il y en a d'en obtenir un nombre pair $3$ fois ou plus.
 
 </bubble>

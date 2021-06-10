@@ -122,7 +122,7 @@ $\mathcal{B}(p)$, et telles que $X = X_1 + X_2 + \dots + X_n$.
 #### Inégalité de Bienaymé-Tchebychev
 
 Soit $X$ une variable aléatoire d'espérance $E(X) = \mu$ et de variance $V(X) = V$. Alors pour tout réel strictement
-positif $\delta$, $p(|X-\mu| \geq \delta) \leq \frac{V}{\delta^2}$.
+positif $\delta$, $P(|X-\mu| \geq \delta) \leq \frac{V}{\delta^2}$.
 
 </bubble>
 
@@ -135,7 +135,7 @@ positif $\delta$, $p(|X-\mu| \geq \delta) \leq \frac{V}{\delta^2}$.
 Soit $(X_1, X_2, \dots, X_n)$ un échantillon aléatoire de taille $n$ associé à une loi d'espérance $\mu$ et de variance
 $V$. On pose $M_n = \frac{X_1 + X_2 + \dots + X_n}{n}$, la moyenne empirique de cet échantillon.
 
-Alors pour tout réel strictement positif $\delta$, $p(|M_n - \mu| \geq \delta) \leq \frac{V}{n \delta^2}$.
+Alors pour tout réel strictement positif $\delta$, $P(|M_n - \mu| \geq \delta) \leq \frac{V}{n \delta^2}$.
 
 </bubble>
 
@@ -148,6 +148,6 @@ Alors pour tout réel strictement positif $\delta$, $p(|M_n - \mu| \geq \delta) 
 Soit $(X_1, X_2, \dots, X_n)$ un échantillon aléatoire de taille $n$ associé à une loi d'espérance $\mu$ et de variance
 $V$. On pose $M_n = \frac{X_1 + X_2 + \dots + X_n}{n}$, la moyenne empirique de cet échantillon.
 
-Alors pour tout réel strictement positif $\delta$, $\lim_{n \rightarrow +\infty} p(|M_n - \mu| \geq \delta) = 0$.
+Alors pour tout réel strictement positif $\delta$, $\lim_{n \rightarrow +\infty} P(|M_n - \mu| \geq \delta) = 0$.
 
 </bubble>

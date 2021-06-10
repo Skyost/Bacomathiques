@@ -7,7 +7,7 @@
 #### Définition
 
 Soient $A$ et $B$ deux événements avec $A$ de probabilité non nulle. Alors **la probabilité conditionnelle de $B$
-sachant que $A$ est réalisé** (notée $p_{A}(B)$) est $\displaystyle{p_{A}(B) = \frac{p(A \cap B)}{p(A)}}$.
+sachant que $A$ est réalisé** (notée $P_{A}(B)$) est $\displaystyle{P_{A}(B) = \frac{P(A \cap B)}{P(A)}}$.
 
 </bubble>
 
@@ -15,7 +15,7 @@ sachant que $A$ est réalisé** (notée $p_{A}(B)$) est $\displaystyle{p_{A}(B) 
 
 #### Rappel
 
-On rappelle que $p(A \cap B) = p(A) + p(B) - p(A \cup B)$.
+On rappelle que $P(A \cap B) = P(A) + P(B) - P(A \cup B)$.
 
 </bubble>
 
@@ -34,7 +34,7 @@ quelle est la probabilité d'avoir $B$ ?) et une intersection (Quelle est la pro
 #### Indépendance
 
 Deux événements $A$ et $B$ sont dits **indépendants** si la réalisation de l'un n'a aucune incidence sur la réalisation
-de l'autre et réciproquement. C'est-à-dire si $p(A \cap B) = p(A) \times p(B)$.
+de l'autre et réciproquement. C'est-à-dire si $P(A \cap B) = P(A) \times P(B)$.
 
 </bubble>
 
@@ -44,8 +44,8 @@ de l'autre et réciproquement. C'est-à-dire si $p(A \cap B) = p(A) \times p(B)$
 
 Pour deux événements indépendants $A$ et $B$, on a les relations suivantes :
 
-* $p_{A}(B) = p(B)$
-* $p_{B}(A) = p(A)$
+* $P_{A}(B) = P(B)$
+* $P_{B}(A) = P(A)$
 
 </bubble>
 
@@ -73,8 +73,8 @@ $1$.
 
 #### Exemple
 
-Soit $A$ et $B$ deux événements non-indépendants tels que $p(A) = \frac{4}{7}$, $p_{A}(B) = \frac{1}{4}$ et $p_
-{\bar{A}}(B) = \frac{5}{9}$.
+Soit $A$ et $B$ deux événements non-indépendants tels que $P(A) = \frac{4}{7}$, $P_{A}(B) = \frac{1}{4}$ et
+$P_{\bar{A}}(B) = \frac{5}{9}$.
 
 Alors l'arbre permettant de modéliser la situation est le suivant :
 
@@ -94,7 +94,7 @@ probabilités que l'on ne connaît pas (ou qui ne sont pas données dans un éno
 Soient $A_1, A_2, ..., A_n$ des événements qui partitionnent (qui recouvrent) l'univers $\Omega$, alors pour tout
 événement $B$ :
 
-$p(B) = p(B \cap A_1) + p(B \cap A_2) + \dots + p(B \cap A_n)$
+$P(B) = P(B \cap A_1) + P(B \cap A_2) + \dots + P(B \cap A_n)$
 
 </bubble>
 
@@ -103,11 +103,11 @@ $p(B) = p(B \cap A_1) + p(B \cap A_2) + \dots + p(B \cap A_n)$
 #### Exemple
 
 En reprenant l'arbre précédent, comme $A$ et $\bar{A}$ recouvrent notre univers (en effet, soit on tombe sur $A$, soit
-on tombe sur $\bar{A}$ : pas d'autre issue possible), calculons $p(B)$ :
+on tombe sur $\bar{A}$ : pas d'autre issue possible), calculons $P(B)$ :
 
 ![Arbre de probabilité (exemple)](/img/lessons/premiere/probabilites/arbre-exemple.svg)
 
-D'après la formule des probabilités totales, $p(B) = p(B \cap A) + p(B \cap \bar{A}) = \frac{107}{252}$.
+D'après la formule des probabilités totales, $P(B) = P(B \cap A) + P(B \cap \bar{A}) = \frac{107}{252}$.
 
 </bubble>
 
@@ -140,7 +140,7 @@ d'argent par exemple).
 #### Définition
 
 Soit $X$ une variable aléatoire. La **loi de probabilité** de $X$ attribue à chaque valeur $x_i$ la probabilité $p_i =
-p(X = x_i)$ de l'événement $X = x_i$ constitué de tous les événements élémentaires dont l'image par $X$ est $x_i$.
+P(X = x_i)$ de l'événement $X = x_i$ constitué de tous les événements élémentaires dont l'image par $X$ est $x_i$.
 
 </bubble>
 
@@ -154,7 +154,7 @@ Soit $X$ une variable aléatoire. On peut représenter sa loi de probabilité pa
 
 | $x_i$                 | $x_1$                 | $x_2$                 | ... | $x_n$                 |
 | --------------------- | --------------------- | --------------------- | --- | --------------------- |
-| $p_i$ $= p(X = x_i)$ | $p_1$ $= p(X = x_1)$ | $p_2$ $= p(X = x_2)$ | ... | $p_n$ $= p(X = x_n)$ |
+| $p_i$ $= P(X = x_i)$  | $p_1$ $= P(X = x_1)$  | $p_2$ $= P(X = x_2)$  | ... | $p_n$ $= P(X = x_n)$ |
 
 On a $p_1 + p_2 + \dots + p_n = 1$.
 

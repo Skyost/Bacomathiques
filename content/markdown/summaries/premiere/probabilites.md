@@ -7,7 +7,7 @@
 #### Définition
 
 Soient $A$ et $B$ deux événements avec $A$ de probabilité non nulle. Alors **la probabilité conditionnelle de $B$
-sachant que $A$ est réalisé** (notée $p_{A}(B)$) est $\displaystyle{p_{A}(B) = \frac{p(A \cap B)}{p(A)}}$.
+sachant que $A$ est réalisé** (notée $P_{A}(B)$) est $\displaystyle{P_{A}(B) = \frac{P(A \cap B)}{P(A)}}$.
 
 </bubble>
 
@@ -16,7 +16,7 @@ sachant que $A$ est réalisé** (notée $p_{A}(B)$) est $\displaystyle{p_{A}(B) 
 #### Indépendance
 
 Deux événements $A$ et $B$ sont dits **indépendants** si la réalisation de l'un n'a aucune incidence sur la réalisation
-de l'autre et réciproquement. C'est-à-dire si $p(A \cap B) = p(A) \times p(B)$.
+de l'autre et réciproquement. C'est-à-dire si $P(A \cap B) = P(A) \times p(B)$.
 
 </bubble>
 
@@ -26,8 +26,8 @@ de l'autre et réciproquement. C'est-à-dire si $p(A \cap B) = p(A) \times p(B)$
 
 Pour deux événements indépendants $A$ et $B$, on a les relations suivantes :
 
-* $p_{A}(B) = p(B)$
-* $p_{B}(A) = p(A)$
+* $P_{A}(B) = P(B)$
+* $P_{B}(A) = P(A)$
 
 </bubble>
 
@@ -63,7 +63,7 @@ probabilités que l'on ne connaît pas (ou qui ne sont pas données dans un éno
 Soient $A_1, A_2, ..., A_n$ des événements qui partitionnent (qui recouvrent) l'univers $\Omega$, alors pour tout
 événement $B$ :
 
-$p(B) = p(B \cap A_1) + p(B \cap A_2) + \dots + p(B \cap A_n)$
+$P(B) = P(B \cap A_1) + P(B \cap A_2) + \dots + P(B \cap A_n)$
 
 </bubble>
 
@@ -89,7 +89,7 @@ L'ensemble des valeurs prises par $X$ est noté $X(\Omega)$.
 #### Définition
 
 Soit $X$ une variable aléatoire. La **loi de probabilité** de $X$ attribue à chaque valeur $x_i$ la probabilité $p_i =
-p(X = x_i)$ de l'événement $X = x_i$ constitué de tous les événements élémentaires dont l'image par $X$ est $x_i$.
+P(X = x_i)$ de l'événement $X = x_i$ constitué de tous les événements élémentaires dont l'image par $X$ est $x_i$.
 
 </bubble>
 

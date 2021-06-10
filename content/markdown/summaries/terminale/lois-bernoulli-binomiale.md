@@ -20,7 +20,7 @@ nombre réel. C'est-à-dire : $X : \Omega \rightarrow \mathbb{R}$.
 #### Définition
 
 Soit $X$ une variable aléatoire. La **loi de probabilité** de $X$ attribue à chaque valeur $x_i$ la probabilité $p_i =
-p(X = x_i)$ de l'événement $X = x_i$ constitué de tous les événements élémentaires dont l'image par $X$ est $x_i$.
+P(X = x_i)$ de l'événement $X = x_i$ constitué de tous les événements élémentaires dont l'image par $X$ est $x_i$.
 
 </bubble>
 
@@ -34,7 +34,7 @@ Soit $X$ une variable aléatoire. On peut représenter sa loi de probabilité pa
 
 | $x_i$                 | $x_1$                 | $x_2$                 | ... | $x_n$                 |
 | --------------------- | --------------------- | --------------------- | --- | --------------------- |
-| $p_i$ $= p(X = x_i)$ | $p_1$ $= p(X = x_1)$ | $p_2$ $= p(X = x_2)$ | ... | $p_n$ $= p(X = x_n)$ |
+| $p_i$ $= p(X = x_i)$  | $p_1$ $= p(X = x_1)$  | $p_2$ $= p(X = x_2)$  | ... | $p_n$ $= p(X = x_n)$  |
 
 On a $p_1 + p_2 + \dots + p_n = 1$.
 
@@ -96,8 +96,8 @@ Alors l'univers associé à cette succession d'épreuves indépendantes est le p
 
 #### Calcul de probabilité
 
-Soit une succession de $n$ épreuves indépendantes et soit $(x_1, \dots, x_n)$ une issue de cette succession d'épreuves.
-Alors $p((x_1, \dots, x_n)) = p(x_1) \times \dots \times p(x_n)$.
+Soit une succession de $n$ épreuves indépendantes et soit $(\omega_1, \dots, \omega_n)$ une issue de cette succession
+d'épreuves. Alors $P((\omega_1, \dots, \omega_n)) = P(\omega_1) \times \dots \times P(\omega_n)$.
 
 </bubble>
 
@@ -134,7 +134,9 @@ Soit une succession d'épreuves de Bernoulli indépendantes. On appelle cette su
 Soient $X$ une variable aléatoire et $p \in ]0; 1[$. On dit que $X$ suit une \text{loi de Bernoulli} de paramètre
 $p$ (qui se note $\mathcal{B}(p)$) si la loi de $X$ est la suivante :
 
-<table class="table table-bordered table-hover"><tbody><tr><td>$x_i$</td><td>$0$</td><td>$1$</td></tr><tr><td>$p_i$</td><td>$1 - p$</td><td>$p$</td></tr></tbody></table>
+| $x_i$  | $1$  | $0$    |
+| ------ | ---- | ------ |
+| $p_i$  | $p$  | $1-p$  |
 
 C'est-à-dire, qu'on a une probabilité $p$ d'obtenir un succès (représenté par $1$) et une probabilité de $1-p$ d'obtenir
 un échec (représenté par $0$).
@@ -183,7 +185,7 @@ $p$ (notée $\mathcal{B}(n; p)$).
 #### Probabilité d'un nombre de succès
 
 Soit $X$ une variable aléatoire suivant une loi $\mathcal{B}(n; p)$. Alors pour tout entier $k$ compris entre $0$ et
-$n$, on a $\displaystyle{p(X = k) = \binom{n}{k} p^k (1-p)^{n-k}}$.
+$n$, on a $\displaystyle{P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}}$.
 
 </bubble>
 
