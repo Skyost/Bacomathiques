@@ -228,7 +228,7 @@ function formatHTML (srcDir, lesson, html) {
     let src = image.getAttribute('src')
     if (src.startsWith('/')) {
       src = HOST_NAME + src
-      image.setAttribute('src', HOST_NAME + src)
+      image.setAttribute('src', src)
     }
     const extension = src.substring(src.lastIndexOf('.'))
     const darkPath = src.substring(0, src.length - extension.length) + '-dark' + extension
@@ -247,6 +247,10 @@ function formatHTML (srcDir, lesson, html) {
     const representation = representations[i]
     const id = representation.getAttribute('geogebra-id')
     representation.replaceWith(`<div id="representation-${i + 1}" class="plot" data-api-v2-geogebra-id="${id}" data-api-v2-geogebra-image="${HOST_NAME}/img/lessons/${lesson.level}/${lesson.id}/${id}.png"></div>`)
+  }
+  const anchors = root.querySelectorAll('h2 a, h3 a')
+  for (const anchor of anchors) {
+    anchor.remove()
   }
   return root.toString()
 }
