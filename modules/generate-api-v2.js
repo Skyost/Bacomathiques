@@ -1,9 +1,11 @@
 // This is just a temporary module that will allow users to upgrade to the new API (which is not ready at all to be honest).
 
 import { getAvatarURL } from '../utils/lesson'
+import { HOST_NAME } from '../utils/site'
 
 const { resolve } = require('path')
 const fs = require('fs')
+const { parse } = require('node-html-parser')
 const yaml = require('yaml')
 const mkdirp = require('mkdirp')
 
@@ -203,23 +205,50 @@ function getHTML (srcDir, lesson, isSummary) {
     .readFileSync(lessonContent)
     .toString()
   markdown = encodeLatex(markdown)
-  return formatHTML(lesson, remarkProcessor.processSync(markdown).toString())
+  return formatHTML(srcDir, lesson, remarkProcessor.processSync(markdown).toString())
 }
 
-function formatHTML (lesson, html) {
-  let result = decodeLatex(html)
-    .replace(/<bubble variant="([A-Za-z0-9_-]*)">/g, '<div class="$1">')
-    .replace(/<bubble content-width="([A-Za-z0-9_-]*)" variant="([A-Za-z0-9_-]*)">/g, '<div data-api-v2-content-width="$1" class="$2">')
-    .replace(/<bubble variant="([A-Za-z0-9_-]*)" content-width="([A-Za-z0-9_-]*)">/g, '<div data-api-v2-content-width="$2" class="$1">')
-    .replace(/<\/bubble>/g, '</div>')
-    .replace(/<img src="\//g, '<img src="https://bacomathiqu.es/')
-    .replace(/<table>/g, '<table class="table table-bordered table-hover">')
-  const representationPattern = /<representation geogebra-id="([A-Za-z0-9_-]*)"><\/representation>/g
-  const n = ((result || '').match(representationPattern) || []).length
-  for (let i = 0; i < n; i++) {
-    result = result.replace(representationPattern, `<div id="representation-${i + 1}" class="plot" data-api-v2-geogebra-id="$1" data-api-v2-geogebra-image="https://bacomathiqu.es/img/lessons/${lesson.level}/${lesson.id}/$1.png"></div>`)
+function formatHTML (srcDir, lesson, html) {
+  const root = parse(decodeLatex(html))
+  const bubbles = root.querySelectorAll('bubble')
+  for (const bubble of bubbles) {
+    let attributes = ''
+    const contentWidth = bubble.getAttribute('content-width')
+    if (contentWidth) {
+      attributes += `data-api-v2-content-width="${contentWidth}" `
+    }
+    const variant = bubble.getAttribute('variant')
+    if (variant) {
+      attributes += `class="${variant}" `
+    }
+    bubble.replaceWith(`<div ${attributes}>${bubble.innerHTML}</div>`)
   }
-  return result
+  const images = root.querySelectorAll('img')
+  for (const image of images) {
+    let src = image.getAttribute('src')
+    if (src.startsWith('/')) {
+      src = HOST_NAME + src
+      image.setAttribute('src', HOST_NAME + src)
+    }
+    const extension = src.substring(src.lastIndexOf('.'))
+    const darkPath = src.substring(0, src.length - extension.length) + '-dark' + extension
+    if (fs.existsSync(resolve(srcDir, darkPath))) {
+      image.setAttribute('data-src-dark', darkPath)
+    }
+  }
+  const tables = root.querySelectorAll('table')
+  for (const table of tables) {
+    table.classList.add('table')
+    table.classList.add('table-bordered')
+    table.classList.add('table-hover')
+  }
+  const representations = root.querySelectorAll('representation')
+  for (let i = 0; i < representations.length; i++) {
+    const representation = representations[i]
+    const id = representation.getAttribute('geogebra-id')
+    representation.replaceWith(`<div id="representation-${i + 1}" class="plot" data-api-v2-geogebra-id="${id}" data-api-v2-geogebra-image="${HOST_NAME}/img/lessons/${lesson.level}/${lesson.id}/${id}.png"></div>`)
+  }
+  return root.toString()
 }
 
 function getLessonById (levelId, lessonId) {
