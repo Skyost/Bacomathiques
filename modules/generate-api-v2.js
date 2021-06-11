@@ -215,13 +215,13 @@ function formatHTML (srcDir, lesson, html) {
     let attributes = ''
     const contentWidth = bubble.getAttribute('content-width')
     if (contentWidth) {
-      attributes += `data-api-v2-content-width="${contentWidth}" `
+      attributes += ` data-api-v2-content-width="${contentWidth}"`
     }
     const variant = bubble.getAttribute('variant')
     if (variant) {
-      attributes += `class="${variant}" `
+      attributes += ` class="${variant}"`
     }
-    bubble.replaceWith(`<div ${attributes}>${bubble.innerHTML}</div>`)
+    bubble.replaceWith(`<div${attributes}>${bubble.innerHTML}</div>`)
   }
   const images = root.querySelectorAll('img')
   for (const image of images) {
