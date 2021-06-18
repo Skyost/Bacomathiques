@@ -1,4 +1,4 @@
-const MATHJAX_VERSION = '3.1.4'
+const MATHJAX_VERSION = '3.2.0'
 
 function renderMathJax () {
   window.MathJax = {
