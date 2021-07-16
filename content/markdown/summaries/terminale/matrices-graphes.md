@@ -165,7 +165,7 @@ cas des matrices carrées d'ordre $2$, mais il est possible de le généraliser 
 
 Soit $\displaystyle{A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}}$ une matrice carrée d'ordre $2$.
 
-Alors le déterminant de $A$ (noté $\det(A)$) est le réel $\det(A) = ac - bd$. De plus, $A$ est inversible si et
+Alors le déterminant de $A$ (noté $\det(A)$) est le réel $\det(A) = ad - bc$. De plus, $A$ est inversible si et
 seulement si $\det(A) \neq 0$.
 
 </bubble>
