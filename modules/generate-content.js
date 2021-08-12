@@ -57,7 +57,7 @@ async function processFiles (ignored, pandocRedefinitions, directory, mdDir, pdf
         removeUnnecessaryElements(root)
         fs.writeFileSync(path.resolve(summaryDir, fileName + '.md'), root.innerHTML)
       }
-      execSync(`latexmk -quiet -pdf "${file}"`, { cwd: directory })
+      execSync(`latexmk -pdf "${file}"`, { cwd: directory })
       fs.mkdirSync(pdfDir, { recursive: true })
       fs.copyFileSync(path.resolve(directory, `${fileName}.pdf`), path.resolve(pdfDir, `${fileName}.pdf`)) // Or with -output-directory="${pdfDir}".
       // execSync(`latexmk -quiet -c -output-directory="${pdfDir}" "${file}"`, { cwd: directory })
