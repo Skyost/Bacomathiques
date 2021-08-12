@@ -32,7 +32,7 @@ jobs:
     - name: Install pandoc 📄
       run: wget https://github.com/jgm/pandoc/releases/download/2.14.1/pandoc-2.14.1-1-amd64.deb && sudo dpkg -i pandoc-2.14.1-1-amd64.deb
     - name: Install LaTeX 🖋
-      run: sudo apt-get install -y texlive-latex-base texlive-lang-french texlive-latex-extra latexmk
+      run: sudo apt-get install -y texlive-latex-base texlive-lang-french texlive-latex-extra perl latexmk
     - name: Install Poppler
       run: sudo apt-get install -y poppler-utils
     - name: Generate ⚙️
