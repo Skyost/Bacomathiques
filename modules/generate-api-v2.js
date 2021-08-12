@@ -86,14 +86,14 @@ module.exports = function () {
     fs.writeFileSync(resolve(apiDirectory, 'index.json'), JSON.stringify(mainEndpoint()))
 
     for (const level of levels) {
-      logger.info(`Generating API info for ${level.id}...`)
+      logger.info(`Generating API files for ${level.id}...`)
       const levelDirectory = resolve(apiDirectory, level.id)
       mkdirp.sync(levelDirectory)
       fs.writeFileSync(resolve(levelDirectory, 'index.json'), JSON.stringify(lessonListEndpoint(level)))
 
       const levelLessons = getLevelLessons(level)
       for (const lesson of levelLessons) {
-        logger.info(`Generating API info for ${level.id}/${lesson.id}...`)
+        logger.info(`Generating API files for ${level.id}/${lesson.id}...`)
         const lessonDirectory = resolve(levelDirectory, lesson.id)
         mkdirp.sync(lessonDirectory)
         fs.writeFileSync(resolve(lessonDirectory, 'index.json'), JSON.stringify(lessonContentEndpoint(lesson)))
