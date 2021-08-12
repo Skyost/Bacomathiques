@@ -8,20 +8,7 @@ const fs = require('fs')
 const { parse } = require('node-html-parser')
 const yaml = require('yaml')
 const mkdirp = require('mkdirp')
-
-const remark = require('remark')
-const remarkGfm = require('remark-gfm')
-const remarkSqueezeParagraphs = require('remark-squeeze-paragraphs')
-const remarkAutolinkHeadings = require('remark-autolink-headings')
-const remarkHtml = require('remark-html')
-const remarkSlug = require('../plugins/remark-slug')
-
-const remarkProcessor = remark()
-  .use(remarkSqueezeParagraphs)
-  .use(remarkSlug)
-  .use(remarkAutolinkHeadings)
-  .use(remarkGfm)
-  .use(remarkHtml)
+const logger = require('./logger')
 
 const api = {
   version: 2,
@@ -33,7 +20,10 @@ const lessons = []
 module.exports = function () {
   const { srcDir, rootDir, generate: { dir: generateDir } } = this.options
 
-  this.nuxt.hook('build:before', () => {
+  this.nuxt.hook('build:compile', function ({ name }) {
+    if (name !== 'server') {
+      return
+    }
     const levelsDirectory = resolve(srcDir, 'content', 'levels')
     let files = fs.readdirSync(levelsDirectory)
     for (const file of files) {
@@ -96,12 +86,14 @@ module.exports = function () {
     fs.writeFileSync(resolve(apiDirectory, 'index.json'), JSON.stringify(mainEndpoint()))
 
     for (const level of levels) {
+      logger.info(`Generating API info for ${level.id}...`)
       const levelDirectory = resolve(apiDirectory, level.id)
       mkdirp.sync(levelDirectory)
       fs.writeFileSync(resolve(levelDirectory, 'index.json'), JSON.stringify(lessonListEndpoint(level)))
 
       const levelLessons = getLevelLessons(level)
       for (const lesson of levelLessons) {
+        logger.info(`Generating API info for ${level.id}/${lesson.id}...`)
         const lessonDirectory = resolve(levelDirectory, lesson.id)
         mkdirp.sync(lessonDirectory)
         fs.writeFileSync(resolve(lessonDirectory, 'index.json'), JSON.stringify(lessonContentEndpoint(lesson)))
@@ -201,15 +193,21 @@ function getLevelLessons (level) {
 
 function getHTML (srcDir, lesson, isSummary) {
   const lessonContent = resolve(srcDir, 'content', 'markdown', isSummary ? 'summaries' : 'lessons', lesson.level, `${lesson.id}.md`)
-  let markdown = fs
+  const html = fs
     .readFileSync(lessonContent)
     .toString()
-  markdown = encodeLatex(markdown)
-  return formatHTML(srcDir, lesson, remarkProcessor.processSync(markdown).toString())
+  return formatHTML(srcDir, lesson, html.toString())
 }
 
 function formatHTML (srcDir, lesson, html) {
-  const root = parse(decodeLatex(html))
+  const root = parse(html)
+  const maths = root.querySelectorAll('.katex')
+  for (const math of maths) {
+    const annotation = math.querySelector('annotation[encoding="application/x-tex"]')
+    if (annotation) {
+      math.replaceWith(`$${annotation.text.trim()}$`)
+    }
+  }
   const bubbles = root.querySelectorAll('bubble')
   for (const bubble of bubbles) {
     let attributes = ''
@@ -262,25 +260,4 @@ function getLessonById (levelId, lessonId) {
     }
   }
   return null
-}
-
-function encodeLatex (input) {
-  return operationOnLatex(input, math => Buffer.from(math, 'binary').toString('base64'))
-}
-
-function decodeLatex (input) {
-  return operationOnLatex(input, math => Buffer.from(math, 'base64').toString('binary'))
-}
-
-function operationOnLatex (input, operation) {
-  let result = input
-  let dollarIndex = result.indexOf('$')
-  while (dollarIndex !== -1) {
-    const nextDollarIndex = result.indexOf('$', dollarIndex + 1)
-    const math = result.substring(dollarIndex + 1, nextDollarIndex)
-    const firstPart = result.substring(0, dollarIndex) + '$' + operation(math)
-    result = firstPart + result.substring(nextDollarIndex)
-    dollarIndex = result.indexOf('$', firstPart.length + 1)
-  }
-  return result
 }

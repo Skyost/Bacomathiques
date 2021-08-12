@@ -88,3 +88,19 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# "Generate content" module
+*.aux
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex
+*.synctex.gz
+*.toc
+latex/lessons/*/*.pdf
+latex/images/lessons/**/*.pdf
+latex/images/lessons/**/*.svg
+static/img/lessons/**/*.png
+static/img/lessons/**/*.svg
+content/markdown/
+static/pdf/lessons/

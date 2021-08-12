@@ -29,6 +29,12 @@ jobs:
           ${{ runner.os }}-node-
     - name: Install dependencies 👨🏻‍💻
       run: npm ci
+    - name: Install pandoc 📄
+      run: sudo apt-get install -y pandoc
+    - name: Install LaTeX 🖋
+      run: sudo apt-get install -y texlive-latex-base texlive-lang-french texlive-latex-extra latexmk
+    - name: Install Poppler
+      run: sudo apt-get install -y poppler-utils
     - name: Generate ⚙️
       run: npm run generate
     - name: Deploy 🚀

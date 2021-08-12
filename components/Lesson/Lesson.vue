@@ -48,7 +48,8 @@ export default {
     }
   },
   async fetch () {
-    this.content = await this.$content('markdown', this.isSummary ? 'summaries' : 'lessons', this.$route.params.level, this.$route.params.lesson).fetch()
+    this.content = await this.$content('markdown', this.isSummary ? 'summaries' : 'lessons', this.$route.params.level, this.$route.params.lesson)
+      .fetch()
   },
   computed: {
     pageTitle () {

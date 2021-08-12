@@ -1,3 +1,5 @@
+const logger = require('./logger')
+
 module.exports = function () {
   this.nuxt.hook('generate:done', async (context) => {
     const routesToExclude =
@@ -6,6 +8,7 @@ module.exports = function () {
         : []
     const allRoutes = await Array.from(context.generatedRoutes)
     const routes = await allRoutes.filter(route => !routesToExclude.includes(route))
-    this.nuxt.options.sitemap.routes = await [...routes]
+    this.nuxt.options.sitemap.routes = [...routes]
+    logger.success('Added dynamic routes to sitemap.')
   })
 }

@@ -35,7 +35,8 @@ export default {
     }
   },
   async fetch () {
-    const level = await this.$content('levels', this.$route.params.level).fetch()
+    const level = await this.$content('levels', this.$route.params.level)
+      .fetch()
     this.title = `Liste des cours de ${level.name}`
     this.level = level
   },

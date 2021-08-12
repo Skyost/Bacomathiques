@@ -21,8 +21,10 @@ export default {
     }
   },
   async fetch () {
-    this.level = await this.$content('levels', this.$route.params.level).fetch()
-    this.lesson = await this.$content('lessons', this.$route.params.level, this.$route.params.lesson).fetch()
+    this.level = await this.$content('levels', this.$route.params.level)
+      .fetch()
+    this.lesson = await this.$content('lessons', this.$route.params.level, this.$route.params.lesson)
+      .fetch()
   },
   head () {
     return {

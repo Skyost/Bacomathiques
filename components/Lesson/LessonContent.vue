@@ -50,17 +50,28 @@ export default {
       table.classList.add('table-bordered')
       table.classList.add('table-hover')
     }
+
     for (const entry of this.content.toc) {
       entry.html = this.$el.querySelector('#' + entry.id).innerHTML
     }
     this.tocReady = true
 
-    const titles = this.$el.querySelectorAll('h2')
-    for (let i = 1; i < Math.min(4, titles.length); i++) {
-      const title = titles[i]
-      const element = document.createElement('div')
-      title.parentElement.insertBefore(element, title)
-      new Vue(AdByGoogle).$mount(element)
+    const titles = this.$el.querySelectorAll('h2, h3')
+    let adCount = 0
+    for (const title of titles) {
+      if (title.tagName === 'H2' && adCount < 4) {
+        const element = document.createElement('div')
+        title.parentElement.insertBefore(element, title)
+        new Vue(AdByGoogle).$mount(element)
+        adCount++
+      }
+      let attributes = ''
+      for (const attribute of title.attributes) {
+        if (attribute.name.startsWith('data-v')) {
+          attributes += attribute.name
+        }
+      }
+      title.insertAdjacentHTML('beforeend', `<a aria-hidden="true" href="#${title.id}" tabindex="-1" ${attributes}><span class="anchor" ${attributes}></span></a>`)
     }
   }
 }
@@ -69,6 +80,7 @@ export default {
 <style lang="scss" scoped>
 @import 'assets/breakpoints';
 @import 'assets/colors';
+@import 'assets/highlighting';
 @import 'assets/math';
 
 #page-content {
@@ -121,6 +133,10 @@ export default {
 
   h4 {
     text-align: left;
+  }
+
+  .table th {
+    font-weight: normal;
   }
 
   #lesson-e3c .btn {

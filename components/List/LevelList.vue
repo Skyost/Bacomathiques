@@ -17,6 +17,7 @@
 
 <script>
 import SmallCard from '../Cards/SmallCard'
+
 export default {
   name: 'LevelList',
   components: { SmallCard },
@@ -26,7 +27,9 @@ export default {
     }
   },
   async fetch () {
-    this.levels = await this.$content('levels').sortBy('order').fetch()
+    this.levels = await this.$content('levels')
+      .sortBy('order')
+      .fetch()
   }
 }
 </script>

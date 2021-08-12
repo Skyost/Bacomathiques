@@ -41,7 +41,9 @@ export default {
     }
   },
   async fetch () {
-    const lessons = await this.$content('lessons', this.level.id).sortBy('chapter').fetch()
+    const lessons = await this.$content('lessons', this.level.id)
+      .sortBy('chapter')
+      .fetch()
     for (const lesson of lessons) {
       lesson.searchTerms = this.normalize(`${lesson.title} (${this.level.name})`)
     }

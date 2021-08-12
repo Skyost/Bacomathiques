@@ -1,0 +1,24 @@
+% Commandes :
+
+\renewcommand{\lesson}[3]{%
+	\newcommand{\level}{#1}%
+	\newcommand{\id}{#2}%
+}
+\renewcommand{\imagespath}{/img}
+\renewcommand{\includelatexpicture}[2][90\%]{\includegraphics[width=#1]{\lessonimagespath#2.svg}}
+\renewcommand{\includeimage}[1]{\includegraphics{\lessonimagespath#1.png}}
+\renewcommand{\includerepresentation}[1]{\begin{geogebra-representation}#1\end{geogebra-representation}}
+\renewcommand{\newpar}{
+
+
+}
+\renewcommand{\contentwidth}[1][medium]{\begin{content-width}#1\end{content-width}}
+\renewcommand{\iere}{ère}
+\renewcommand{\ieme}{ème}
+
+% Environnements :
+
+\renewenvironment{nosummary}{\begin{no-summary}}{\end{no-summary}}
+\renewenvironment{formula}[1][]{\begin{bubble-formula}\subsubsection{#1}}{\end{bubble-formula}}
+\renewenvironment{tip}[1][]{\begin{bubble-tip}\subsubsection{#1}}{\end{bubble-tip}}
+\renewenvironment{demonstration}[1][]{\begin{bubble-proof}\subsubsection{#1}}{\end{bubble-proof}}

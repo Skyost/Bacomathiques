@@ -13,7 +13,7 @@
             Modérateur
           </b-badge>
         </h3>
-        <div class="mb-4" v-html="comment.markdownMessage" />
+        <p class="mb-4" v-text="comment.message" />
         <small class="d-block text-right text-muted">{{ date }} {{ time }}</small>
       </b-col>
     </b-row>
@@ -63,8 +63,8 @@ export default {
   }
 
   .content {
-    text-align: justify;
     word-break: break-word;
+    text-align: left;
   }
 }
 </style>

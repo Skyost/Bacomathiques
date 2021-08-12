@@ -1,4 +1,3 @@
-import { MATHJAX_VERSION } from './utils/math'
 import { HOST_NAME, SITE_DESCRIPTION, SITE_NAME } from './utils/site'
 
 export default {
@@ -18,6 +17,12 @@ export default {
       { name: 'theme-color', content: '#2489cc' }
     ],
     link: [
+      {
+        rel: 'stylesheet',
+        href: 'https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css',
+        integrity: 'sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc',
+        crossorigin: 'anonymous'
+      },
       { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/futura-font@1.0.0/styles.min.css' },
       { rel: 'icon', type: 'image/png', href: '/img/favicon.ico' }
     ]
@@ -41,6 +46,7 @@ export default {
     // '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
+    '~/modules/generate-content',
     '~/modules/generate-api-v2',
     '~/modules/sitemap-dynamic-routes'
   ],
@@ -58,32 +64,6 @@ export default {
 
   content: {
     liveEdit: false,
-    markdown: {
-      remarkPlugins: () => [
-        'remark-squeeze-paragraphs',
-        '~/plugins/remark-slug',
-        'remark-autolink-headings',
-        'remark-external-links',
-        'remark-footnotes',
-        '~/plugins/remark-numberize.js',
-        'remark-math',
-        'remark-gfm'
-      ],
-      rehypePlugins: [
-        'rehype-mathjax/chtml'
-      ],
-      remarkAutolinkHeadings: {
-        behavior: 'append',
-        content: {
-          type: 'element',
-          tagName: 'span',
-          properties: { className: ['anchor'] }
-        }
-      },
-      rehypeMathjaxChtml: {
-        fontURL: `https://cdn.jsdelivr.net/npm/mathjax@${MATHJAX_VERSION}/es5/output/chtml/fonts/woff-v2`
-      }
-    },
     nestedProperties: [
       'lessons.lesson',
       'lessons.level'
@@ -125,13 +105,12 @@ export default {
     },
     babel: {
       compact: true,
-      minified: true
-    }
-  },
-
-  vue: {
-    config: {
-      ignoredElements: [/^mjx-/]
+      minified: true,
+      // TODO: Can be removed once https://github.com/nuxt/nuxt.js/pull/9631 is merged.
+      plugins: [
+        '@babel/plugin-proposal-class-properties',
+        '@babel/plugin-proposal-private-methods'
+      ]
     }
   },
 
@@ -141,5 +120,15 @@ export default {
 
   loading: {
     color: 'white'
+  },
+
+  generateContent: {
+    srcDir: 'latex/',
+    destDir: 'content/markdown/',
+    pdfDir: 'static/pdf/',
+    pandocRedefinitions: 'latex/pandoc.tex',
+    ignored: ['latex/common.tex'],
+    imagesDir: 'latex/images',
+    imagesDestDir: 'static/img/'
   }
 }

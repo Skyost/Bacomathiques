@@ -12,6 +12,7 @@
 <script>
 import CardsRow from '../Cards/CardsRow'
 import LessonCard from '../Cards/LessonCard'
+
 export default {
   name: 'LessonList',
   components: { CardsRow, LessonCard },
@@ -27,7 +28,9 @@ export default {
     }
   },
   async fetch () {
-    this.lessons = await this.$content('lessons', this.level.id).sortBy('chapter').fetch()
+    this.lessons = await this.$content('lessons', this.level.id)
+      .sortBy('chapter')
+      .fetch()
   }
 }
 </script>

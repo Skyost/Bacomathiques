@@ -26,7 +26,7 @@ export default {
     this.createGeoGebraInstanceWhenPossible()
   },
   destroyed () {
-    if (window[this.geogebraId]) {
+    if (window[this.geogebraId] && window[this.geogebraId].remove) {
       window[this.geogebraId].remove()
       window.onresize = null
     }

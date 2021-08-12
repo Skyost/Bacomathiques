@@ -36,7 +36,9 @@ export default {
     }
   },
   async fetch () {
-    this.levels = await this.$content('levels').sortBy('order').fetch()
+    this.levels = await this.$content('levels')
+      .sortBy('order')
+      .fetch()
   }
 }
 </script>

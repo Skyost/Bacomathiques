@@ -20,15 +20,11 @@
       <div v-if="result.length === 0" class="text-center mt-5 mb-5 pt-5 pr-2 pb-5 pl-2">
         <p>
           Nous n'avons aucun résultat de recherche à vous afficher.
-          À la place, voici un petit résultat qui peut sembler surprenant :
+          À la place, voici un petit résultat mathématique qui peut sembler surprenant :
         </p>
 
         <span class="d-block mt-4 mb-4">
-          \[
-          \frac{1}{3} = 0.3333 \dots \\
-          \iff 3 \times \frac{1}{3} = 3 \times 0.3333 \dots \\
-          \iff 1 = 0.9999 \dots
-          \]
+          <span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 6.11488em; vertical-align: -2.80744em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 3.30744em;"><span class="" style="top: -5.30744em;"><span class="pstrut" style="height: 3.32144em;"></span><span class="mord"></span></span><span class="" style="top: -3em;"><span class="pstrut" style="height: 3.32144em;"></span><span class="mord"><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">⟺</span><span class="mspace" style="margin-right: 0.277778em;"></span></span></span><span class="" style="top: -1.174em;"><span class="pstrut" style="height: 3.32144em;"></span><span class="mord"><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">⟺</span><span class="mspace" style="margin-right: 0.277778em;"></span></span></span></span><span class="vlist-s">&ZeroWidthSpace;</span></span><span class="vlist-r"><span class="vlist" style="height: 2.80744em;"><span class=""></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 3.30744em;"><span class="" style="top: -5.30744em;"><span class="pstrut" style="height: 3.32144em;"></span><span class="mord"><span class="mord"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.32144em;"><span class="" style="top: -2.314em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord">3</span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.677em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">&ZeroWidthSpace;</span></span><span class="vlist-r"><span class="vlist" style="height: 0.686em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">3333</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="minner">…</span></span></span><span class="" style="top: -3em;"><span class="pstrut" style="height: 3.32144em;"></span><span class="mord"><span class="mord"></span><span class="mord">3</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.32144em;"><span class="" style="top: -2.314em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord">3</span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.677em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">&ZeroWidthSpace;</span></span><span class="vlist-r"><span class="vlist" style="height: 0.686em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mord">3</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">3333</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="minner">…</span></span></span><span class="" style="top: -1.174em;"><span class="pstrut" style="height: 3.32144em;"></span><span class="mord"><span class="mord"></span><span class="mord">1</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">9999</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="minner">…</span></span></span></span><span class="vlist-s">&ZeroWidthSpace;</span></span><span class="vlist-r"><span class="vlist" style="height: 2.80744em;"><span class=""></span></span></span></span></span></span></span></span></span></span></span>
         </span>
 
         <p class="mb-0">
@@ -47,7 +43,6 @@ import PageContent from '../components/PageContent'
 import CardsRow from '../components/Cards/CardsRow'
 import LessonCard from '../components/Cards/LessonCard'
 import SocialHead from '../components/SocialHead'
-import { renderMathJax } from '~/utils/math'
 
 export default {
   components: { SocialHead, LessonCard, CardsRow, PageContent, ImageHeader, PageHeader },
@@ -77,10 +72,6 @@ export default {
       }
       this.keywords = keywords
       this.result = result
-    }
-
-    if (this.result.length === 0) {
-      renderMathJax()
     }
   }
 }

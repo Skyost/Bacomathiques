@@ -116,7 +116,7 @@ export default {
       background-color: #ececec;
       height: $size;
       width: $size;
-      border-radius: $size / 2;
+      border-radius: $size * 0.5;
       transition: all 200ms;
 
       &::before {

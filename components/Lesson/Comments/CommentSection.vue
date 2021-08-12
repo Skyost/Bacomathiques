@@ -17,9 +17,6 @@
 </template>
 
 <script>
-import remark from 'remark'
-import remarkSqueezeParagraphs from 'remark-squeeze-paragraphs'
-import remarkHtml from 'remark-html'
 import BigCard from '../../Cards/BigCard'
 import CommentForm from './CommentForm'
 import Comment from './Comment'
@@ -38,17 +35,11 @@ export default {
       comments: []
     }
   },
-  async mounted () {
-    const comments = await this.$content('comments')
+  async fetch () {
+    this.comments = await this.$content('comments')
       .where({ level: { $eq: this.lesson.level }, lesson: { $eq: this.lesson.id } })
       .sortBy('date', 'desc')
       .fetch()
-
-    for (const comment of comments) {
-      comment.markdownMessage = remark().use(remarkSqueezeParagraphs).use(remarkHtml).processSync(comment.message)
-    }
-
-    this.comments = comments
   }
 }
 </script>
