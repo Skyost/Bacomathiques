@@ -57,7 +57,7 @@ async function processFiles (ignored, pandocRedefinitions, directory, mdDir, pdf
         removeUnnecessaryElements(root)
         fs.writeFileSync(path.resolve(summaryDir, fileName + '.md'), root.innerHTML)
       }
-      execSync(`latexmk -quiet -pdf "${file}"`, { cwd: directory })
+      latexmk(directory, file)
       fs.mkdirSync(pdfDir, { recursive: true })
       fs.copyFileSync(path.resolve(directory, `${fileName}.pdf`), path.resolve(pdfDir, `${fileName}.pdf`)) // Or with -output-directory="${pdfDir}".
       // execSync(`latexmk -quiet -c -output-directory="${pdfDir}" "${file}"`, { cwd: directory })
@@ -141,13 +141,23 @@ async function handleImages (imagesDir, imagesDestDir) {
     } else if (file.endsWith('.tex')) {
       logger.info(`Handling image "${filePath}"...`)
       const fileName = getFileName(file)
-      execSync(`latexmk -quiet -pdf "${file}"`, { cwd: imagesDir })
+      latexmk(imagesDir, file)
       execSync(`pdftocairo -svg "${fileName}.pdf" "${fileName}.svg"`, { cwd: imagesDir })
       fs.mkdirSync(imagesDestDir, { recursive: true })
       fs.copyFileSync(path.resolve(imagesDir, `${fileName}.svg`), path.resolve(imagesDestDir, `${fileName}.svg`))
     } else if (file.endsWith('.png')) {
       fs.copyFileSync(path.resolve(imagesDir, file), path.resolve(imagesDestDir, file))
     }
+  }
+}
+
+function latexmk (directory, file) {
+  try {
+    execSync(`latexmk -quiet -pdf "${file}"`, { cwd: directory })
+  } catch (exception) {
+    logger.error(exception.stack)
+    logger.info("Here's the log :")
+    logger.info(fs.readFileSync(path.resolve(directory, getFileName(file) + '.log')))
   }
 }
 
