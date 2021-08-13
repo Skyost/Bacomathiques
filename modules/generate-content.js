@@ -57,7 +57,7 @@ async function processFiles (ignored, pandocRedefinitions, directory, mdDir, pdf
         removeUnnecessaryElements(root)
         fs.writeFileSync(path.resolve(summaryDir, fileName + '.md'), root.innerHTML)
       }
-      execSync(`latexmk -pdf "${file}"`, { cwd: directory })
+      execSync(`latexmk -quiet -pdf "${file}"`, { cwd: directory })
       fs.mkdirSync(pdfDir, { recursive: true })
       fs.copyFileSync(path.resolve(directory, `${fileName}.pdf`), path.resolve(pdfDir, `${fileName}.pdf`)) // Or with -output-directory="${pdfDir}".
       // execSync(`latexmk -quiet -c -output-directory="${pdfDir}" "${file}"`, { cwd: directory })
@@ -141,7 +141,7 @@ async function handleImages (imagesDir, imagesDestDir) {
     } else if (file.endsWith('.tex')) {
       logger.info(`Handling image "${filePath}"...`)
       const fileName = getFileName(file)
-      execSync(`latexmk -pdf "${file}"`, { cwd: imagesDir })
+      execSync(`latexmk -quiet -pdf "${file}"`, { cwd: imagesDir })
       execSync(`pdftocairo -svg "${fileName}.pdf" "${fileName}.svg"`, { cwd: imagesDir })
       fs.mkdirSync(imagesDestDir, { recursive: true })
       fs.copyFileSync(path.resolve(imagesDir, `${fileName}.svg`), path.resolve(imagesDestDir, `${fileName}.svg`))
