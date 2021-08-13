@@ -55,8 +55,8 @@
 	\begin{formula}[Définition]
 		Soit $f$ une fonction d'ensemble de définition $\mathcal{D}_f$. Soit $a$ un réel appartenant à $\mathcal{D}_f$ ou étant une borne de $\mathcal{D}_f$.
 		\begin{itemize}
-			\item On dit que $f(x)$ admet une \textbf{limite à gauche} quand $x$ tend vers $a$ si $f(x)$ admet une limite quand $x$ tend vers $a$ avec $x \lt a$. On la note $\lim_{x \rightarrow a^-} f(x)$.
-			\item On dit que $f(x)$ admet une \textbf{limite à droite} quand $x$ tend vers $a$ si $f(x)$ admet une limite quand $x$ tend vers $a$ avec $x \gt a$. On la note $\lim_{x \rightarrow a^+} f(x)$.
+			\item On dit que $f(x)$ admet une \textbf{limite à gauche} quand $x$ tend vers $a$ si $f(x)$ admet une limite quand $x$ tend vers $a$ avec $x < a$. On la note $\lim_{x \rightarrow a^-} f(x)$.
+			\item On dit que $f(x)$ admet une \textbf{limite à droite} quand $x$ tend vers $a$ si $f(x)$ admet une limite quand $x$ tend vers $a$ avec $x > a$. On la note $\lim_{x \rightarrow a^+} f(x)$.
 		\end{itemize}
 	\end{formula}
 
@@ -201,7 +201,7 @@
 				\hline
 				\multicolumn{10}{|l|}{\textbf{Limite d'un produit}} \\
 				\hline
-				Si la limite de $f(x)$ quand $x$ tend vers $a$ est... & $\ell$ & $\ell \gt 0$ & $\ell \gt 0$ & $\ell \lt 0$ & $\ell \lt 0$ & $+\infty$ & $+\infty$ & $-\infty$ & $0$ \\
+				Si la limite de $f(x)$ quand $x$ tend vers $a$ est... & $\ell$ & $\ell > 0$ & $\ell > 0$ & $\ell < 0$ & $\ell < 0$ & $+\infty$ & $+\infty$ & $-\infty$ & $0$ \\
 				\hline
 				Et la limite de $g$ quand $x$ tend vers $a$ est... & $\ell'$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & $-\infty$ & $\pm \infty$ \\
 				\hline
@@ -217,7 +217,7 @@
 				\hline
 				Si la limite de $f(x)$ quand $x$ tend vers $a$ est... & $\ell$ & $\ell$ & $+\infty$ & $+\infty$ & $-\infty$ & $-\infty$ & $\pm \infty$ & $\ell$ & $0$ \\
 				\hline
-				Et la limite de $g$ quand $x$ tend vers $a$ est... & $\ell' \neq 0$ & $\pm \infty$ & $\ell' \gt 0$ & $\ell' \lt 0$ & $\ell' \gt 0$ & $\ell' \lt 0$ & $\pm \infty$ & $0$ & $0$ \\
+				Et la limite de $g$ quand $x$ tend vers $a$ est... & $\ell' \neq 0$ & $\pm \infty$ & $\ell' > 0$ & $\ell' < 0$ & $\ell' > 0$ & $\ell' < 0$ & $\pm \infty$ & $0$ & $0$ \\
 				\hline
 				Alors la limite de $\frac{f}{g}$ quand $x$ tend vers $a$ est... & $\displaystyle{\frac{\ell}{\ell'}}$ & $0$ & $+\infty$ & $-\infty$ & $-\infty$ & $+\infty$ & \textbf{?} & $\pm \infty$ & \textbf{?} \\
 				\hline
@@ -255,7 +255,7 @@
 		\newpar
 		Tout d'abord, pour tout $x \in \mathbb{R}$, $-1 \leq \sin(x) \leq 1$.
 		\newpar
-		Donc, pour tout $x \gt 0$, $\frac{-1}{x} \leq \underbrace{\frac{\sin(x)}{x}}_{= f(x)} \leq \frac{1}{x}$.
+		Donc, pour tout $x > 0$, $\frac{-1}{x} \leq \underbrace{\frac{\sin(x)}{x}}_{= f(x)} \leq \frac{1}{x}$.
 		\newpar
 		Comme, $\lim_{x \rightarrow +\infty} \frac{-1}{x} = 0$ et $\lim_{x \rightarrow +\infty} \frac{1}{x} = 0$, alors $\lim_{x \rightarrow +\infty} f(x) = 0$.
 	\end{tip}
@@ -275,12 +275,12 @@
 		\newpar
 		Pour conclure, on utilise une petite astuce. Soit $n \in \mathbb{N}$ :
 		\newpar
-		D'après ce que l'on vient de faire, pour tout $x \gt 0$, $e^{\frac{x}{n+1}} \geq 1 + \frac{x}{n+1} \gt \frac{x}{n+1}$. Ainsi, en mettant à la puissance $n + 1$ (qui ne change pas le sens de l'inégalité car les deux membres sont positifs), on a :
+		D'après ce que l'on vient de faire, pour tout $x > 0$, $e^{\frac{x}{n+1}} \geq 1 + \frac{x}{n+1} > \frac{x}{n+1}$. Ainsi, en mettant à la puissance $n + 1$ (qui ne change pas le sens de l'inégalité car les deux membres sont positifs), on a :
 		\newpar
-		$e^x \gt (\frac{x}{n+1})^{n+1} = \frac{x^{n+1}}{(n+1)^{n+1}}$
+		$e^x > (\frac{x}{n+1})^{n+1} = \frac{x^{n+1}}{(n+1)^{n+1}}$
 		Maintenant, on divise les deux côtés par $x^n$ (qui est un nombre strictement positif) et on obtient :
 		\newpar
-		$\frac{e^x}{x^n} \gt \frac{x}{(n+1)^{n+1}}$
+		$\frac{e^x}{x^n} > \frac{x}{(n+1)^{n+1}}$
 		\newpar
 		Or, le membre de droite tend vers $+\infty$ quand $x$ tend vers $+\infty$ donc le membre de gauche aussi d'après les théorèmes de comparaison.
 	\end{demonstration}

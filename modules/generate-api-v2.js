@@ -205,7 +205,7 @@ function formatHTML (srcDir, lesson, html) {
   for (const math of maths) {
     const annotation = math.querySelector('annotation[encoding="application/x-tex"]')
     if (annotation) {
-      math.replaceWith(`$${annotation.text.trim()}$`)
+      math.replaceWith(`$${annotation.rawText.trim()}$`)
     }
   }
   const bubbles = root.querySelectorAll('bubble')

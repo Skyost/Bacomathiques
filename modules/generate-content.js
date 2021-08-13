@@ -98,7 +98,7 @@ function addVueComponents (root) {
   }
   const representations = root.querySelectorAll('.geogebra-representation')
   for (const representation of representations) {
-    const id = representation.text.trim()
+    const id = representation.rawText.trim()
     representation.replaceWith(`<representation geogebra-id="${id}"></representation>`)
   }
 }

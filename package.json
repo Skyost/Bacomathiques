@@ -21,6 +21,7 @@
     "cookie-universal-nuxt": "^2.1.4",
     "core-js": "^3.10.0",
     "debounce-fn": "^4.0.0",
+    "html-escaper": "^3.0.3",
     "katex": "^0.12.0",
     "nuxt": "^2.15.4",
     "nuxt-seo": "^1.5.0",

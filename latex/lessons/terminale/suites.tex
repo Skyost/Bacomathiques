@@ -59,7 +59,7 @@
     \begin{formula}[Divergence vers $+\infty$]
       On dit qu'une suite $(v_n)$ \textbf{diverge} vers $+\infty$ quand $n$ tend vers $+\infty$ si :
       \newpar
-      Pour tout $A \gt 0$, il existe un rang $N$ tel que pour tout $n \geq N$, $v_n \gt A$. On note alors : $\lim_{n \rightarrow +\infty} u_n = +\infty$.
+      Pour tout $A > 0$, il existe un rang $N$ tel que pour tout $n \geq N$, $v_n > A$. On note alors : $\lim_{n \rightarrow +\infty} u_n = +\infty$.
     \end{formula}
 
     Il existe une définition similaire pour la divergence vers $-\infty$.
@@ -67,7 +67,7 @@
     \begin{tip}[Divergence vers $-\infty$]
       Dire que $(v_n)$ \textbf{diverge} vers $-\infty$ signifie que :
       \newpar
-      Pour tout $A \gt 0$, il existe un rang $N$ tel que pour tout $n \geq N$, $v_n \lt -A$. On note alors : $\lim_{n \rightarrow +\infty} u_n = -\infty$.
+      Pour tout $A > 0$, il existe un rang $N$ tel que pour tout $n \geq N$, $v_n < -A$. On note alors : $\lim_{n \rightarrow +\infty} u_n = -\infty$.
     \end{tip}
 
     \begin{tip}
@@ -109,7 +109,7 @@
           \hline
           \multicolumn{5}{|l|}{\textbf{Limite d'une suite géométrique}} \\
           \hline
-          Si on a... & $-1 \lt q \lt 1$ & $1 \lt q$ & $q \leq -1$ & $q = 1$ \\
+          Si on a... & $-1 < q < 1$ & $1 < q$ & $q \leq -1$ & $q = 1$ \\
           \hline
           Alors la suite $(v_n)$ a pour limite... & $0$ & $+\infty$ & Pas de limite & $1$ \\
           \hline
@@ -117,7 +117,7 @@
     \end{formula}
 
     \begin{tip}
-      Le réel $q$ est la \textbf{raison} de la suite : si $q \gt 1$, $(v_n)$ est strictement croissante, si $0 \lt q \lt 1$, $(v_n)$ est strictement décroissante et si $q = 1$ ou $0$, $(v_n)$ est constante.
+      Le réel $q$ est la \textbf{raison} de la suite : si $q > 1$, $(v_n)$ est strictement croissante, si $0 < q < 1$, $(v_n)$ est strictement décroissante et si $q = 1$ ou $0$, $(v_n)$ est constante.
     \end{tip}
 
     \subsection{Opérations sur les limites}
@@ -143,7 +143,7 @@
           \hline
           \multicolumn{10}{|l|}{\textbf{Limite d'un produit}} \\
           \hline
-          Si la limite de $(u_n)$ quand $n$ tend vers $+\infty$ est... & $\ell$ & $\ell \gt 0$ & $\ell \gt 0$ & $\ell \lt 0$ & $\ell \lt 0$ & $+\infty$ & $+\infty$ & $-\infty$ & $0$ \\
+          Si la limite de $(u_n)$ quand $n$ tend vers $+\infty$ est... & $\ell$ & $\ell > 0$ & $\ell > 0$ & $\ell < 0$ & $\ell < 0$ & $+\infty$ & $+\infty$ & $-\infty$ & $0$ \\
           \hline
           Et la limite de $(v_n)$ quand $n$ tend vers $+\infty$ est... & $\ell'$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & $-\infty$ & $\pm \infty$ \\
           \hline
@@ -159,7 +159,7 @@
           \hline
           Si la limite de $(u_n)$ quand $n$ tend vers $+\infty$ est... & $\ell$ & $\ell$ & $+\infty$ & $+\infty$ & $-\infty$ & $-\infty$ & $\pm \infty$ & $\ell$ & $0$ \\
           \hline
-          Et la limite de $(v_n)$ quand $n$ tend vers $+\infty$ est... & $\ell' \neq 0$ & $\pm \infty$ & $\ell' \gt 0$ & $\ell' \lt 0$ & $\ell' \gt 0$ & $\ell' \lt 0$ & $\pm \infty$ & $0^+_-$ & $0$ \\
+          Et la limite de $(v_n)$ quand $n$ tend vers $+\infty$ est... & $\ell' \neq 0$ & $\pm \infty$ & $\ell' > 0$ & $\ell' < 0$ & $\ell' > 0$ & $\ell' < 0$ & $\pm \infty$ & $0^+_-$ & $0$ \\
           \hline
           Alors la limite de $\left(\frac{u_n}{v_n}\right)$ quand $n$ tend vers $+\infty$ est... & $\displaystyle{\frac{\ell}{\ell'}}$ & $0$ & $+\infty$ & $-\infty$ & $-\infty$ & $+\infty$ & \textbf{?} & $\pm \infty$ & \textbf{?} \\
           \hline
@@ -175,8 +175,8 @@
     \begin{formula}[Définition]
       Soient une suite $(u_n)$ et deux réels $m$ et $M$ :
       \begin{itemize}
-        \item On dit que $m$ est un \textbf{minorant} de $(u_n)$ si pour tout $n$ : $u_n \gt m$.
-        \item On dit que $M$ est un \textbf{majorant} de $(u_n)$ si pour tout $n$ : $u_n \lt M$.
+        \item On dit que $m$ est un \textbf{minorant} de $(u_n)$ si pour tout $n$ : $u_n > m$.
+        \item On dit que $M$ est un \textbf{majorant} de $(u_n)$ si pour tout $n$ : $u_n < M$.
         \item On dit que $(u_n)$ est \textbf{bornée} si elle est à la fois majorée et minorée.
       \end{itemize}
     \end{formula}
@@ -189,9 +189,9 @@
     \end{formula}
 
     \begin{demonstration}
-      Il faut savoir montrer que toute suite croissante et non majorée diverge vers $+\infty$. C'est ce que nous allons faire ici. Soit donc $(u_n)$ une telle suite. Soit $A > 0$, on cherche un rang $N$ tel que pour tout $n \geq N$, $u_n \gt A$.
+      Il faut savoir montrer que toute suite croissante et non majorée diverge vers $+\infty$. C'est ce que nous allons faire ici. Soit donc $(u_n)$ une telle suite. Soit $A > 0$, on cherche un rang $N$ tel que pour tout $n \geq N$, $u_n > A$.
       \newpar
-      Or, comme $(u_n)$ est non majorée, il existe $N$ tel que $u_N > A$. De plus, comme $(u_n)$ est croissante, alors $A \lt u_N \leq u_{N+1} \leq u_{N+2} \leq \dots$
+      Or, comme $(u_n)$ est non majorée, il existe $N$ tel que $u_N > A$. De plus, comme $(u_n)$ est croissante, alors $A < u_N \leq u_{N+1} \leq u_{N+2} \leq \dots$
       \newpar
       Donc on a bien trouvé notre rang $N$ vérifiant la définition de la divergence vers $+\infty$.
     \end{demonstration}
@@ -203,24 +203,24 @@
     \subsection{Comparaisons et encadrements}
 
     \begin{formula}[Théorèmes de comparaison]
-      Soient deux suites $(u_n)$ et $(v_n)$ telles que $u_n \lt v_n$ à partir d'un certain rang $N$. On a :
+      Soient deux suites $(u_n)$ et $(v_n)$ telles que $u_n < v_n$ à partir d'un certain rang $N$. On a :
       \begin{itemize}
         \item Si $\lim\limits_{n \rightarrow +\infty} u_n = +\infty$, alors $\lim\limits_{n \rightarrow +\infty} v_n = +\infty$.
         \item Si $\lim\limits_{n \rightarrow +\infty} v_n = -\infty$, alors $\lim\limits_{n \rightarrow +\infty} u_n = -\infty$.
-        \item Si $\lim\limits_{n \rightarrow +\infty} u_n = \ell$ et $\lim\limits_{n \rightarrow +\infty} v_n = \ell'$ alors $\ell \lt \ell'$.
+        \item Si $\lim\limits_{n \rightarrow +\infty} u_n = \ell$ et $\lim\limits_{n \rightarrow +\infty} v_n = \ell'$ alors $\ell < \ell'$.
       \end{itemize}
     \end{formula}
 
     \begin{demonstration}
-      Il peut être utile de savoir démontrer le premier point dans le cas $N = 0$ (les autres points se démontrent de manière semblable). Supposons $\lim\limits_{n \rightarrow +\infty} u_n = +\infty$. Soit $A > 0$, on cherche un rang $p$ tel que pour tout $n \geq p$, $v_n \gt A$.
+      Il peut être utile de savoir démontrer le premier point dans le cas $N = 0$ (les autres points se démontrent de manière semblable). Supposons $\lim\limits_{n \rightarrow +\infty} u_n = +\infty$. Soit $A > 0$, on cherche un rang $p$ tel que pour tout $n \geq p$, $v_n > A$.
       \newpar
-      Comme $u_n$ diverge vers $+\infty$, il existe un rang $q$ tel que pour tout $n \geq q$, $u_n \gt A$. Donc on a : $A \lt u_q \lt v_q$, mais aussi $A \lt u_{q+1} \lt v_{q+1}$, etc.
+      Comme $u_n$ diverge vers $+\infty$, il existe un rang $q$ tel que pour tout $n \geq q$, $u_n > A$. Donc on a : $A < u_q < v_q$, mais aussi $A < u_{q+1} < v_{q+1}$, etc.
       \newpar
       Donc il suffit de poser $p = q$ et on a bien notre rang vérifiant la définition de la divergence vers $+\infty$.
     \end{demonstration}
 
     \begin{formula}[Théorème des gendarmes]
-      Soient trois suites $(u_n)$, $(v_n)$ et $(w_n)$. On suppose que $u_n \lt v_n \lt w_n$ à partir d'un certain rang et que $(u_n)$ et $(w_n)$ convergent vers le réel $\ell$.
+      Soient trois suites $(u_n)$, $(v_n)$ et $(w_n)$. On suppose que $u_n < v_n < w_n$ à partir d'un certain rang et que $(u_n)$ et $(w_n)$ convergent vers le réel $\ell$.
       \newpar
       Alors $\lim\limits_{n \rightarrow +\infty} v_n = \ell$.
     \end{formula}
@@ -260,7 +260,7 @@
       \newpar
       $\iff 4 + \frac{1}{9} \leq 4 + \frac{1}{u_n + 4} \leq 4 + \frac{1}{8}$
       \newpar
-      Or $4 + \frac{1}{9} \approx 4.111 \gt 4$ et $4 + \frac{1}{8} = 4.125 \lt 5$. On a donc bien :
+      Or $4 + \frac{1}{9} \approx 4.111 > 4$ et $4 + \frac{1}{8} = 4.125 < 5$. On a donc bien :
       \newpar
       $4 \leq u_{n+1} \leq 5$
       \newpar
@@ -271,15 +271,15 @@
       Le raisonnement par récurrence est très utilisé en mathématiques et ne se limite pas qu'à l'étude des suites. On peut par exemple l'utiliser pour montrer l'\textbf{inégalité de Bernoulli}.
 
       \begin{formula}[Inégalité de Bernoulli]
-        $(1 + x)^n \gt 1 + nx$ pour tout $n \geq 2$ et tout $x \in [-1, 0[ \, \cup \, ]0, +\infty[$.
+        $(1 + x)^n > 1 + nx$ pour tout $n \geq 2$ et tout $x \in [-1, 0[ \, \cup \, ]0, +\infty[$.
       \end{formula}
 
       \begin{demonstration}[Inégalité de Bernoulli]
-        Soit $x \in [-1, 0[ \, \cup \, ]0, +\infty[$. On note $\mathcal{P}_n$ la propriété définie pour tout $n \geq 2$ par $\mathcal{P}_n$ : $(1+x)^n \gt 1+nx$. Montrons $\mathcal{P}_n$ par récurrence.
+        Soit $x \in [-1, 0[ \, \cup \, ]0, +\infty[$. On note $\mathcal{P}_n$ la propriété définie pour tout $n \geq 2$ par $\mathcal{P}_n$ : $(1+x)^n > 1+nx$. Montrons $\mathcal{P}_n$ par récurrence.
         \newpar
         \textbf{Initialisation :} On teste la propriété au rang $2$ :
         \newpar
-        $\mathcal{P}_2$: $(1+x)^2 = 1 + 2x + x^2 \gt 1 + 2x$ (car $x^2 \gt 0$).
+        $\mathcal{P}_2$: $(1+x)^2 = 1 + 2x + x^2 > 1 + 2x$ (car $x^2 > 0$).
         \newpar
         La propriété est vraie au rang $2$.
         \newpar
@@ -288,7 +288,7 @@
         En multipliant les deux membres de l'inégalité de l'hypothèse de récurrence par $1+x \geq 0$ (qui ne change donc pas le sens de l'inégalité), on obtient :
         \newpar
         $(1+x)^n (1+x) \geq (1+nx)(1+x)$
-        \newline $\iff (1+x)^{n+1} \geq 1 + (n+1)x + nx^2 \gt 1 + (n+1)x$
+        \newline $\iff (1+x)^{n+1} \geq 1 + (n+1)x + nx^2 > 1 + (n+1)x$
         \newpar
         \textbf{Conclusion :}
         \newpar

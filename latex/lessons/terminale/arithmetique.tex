@@ -31,7 +31,7 @@
 	La \textbf{division euclidienne} est une notion mathématique que l'on aborde très tôt au cours de notre scolarité (dès la classe de CM1). Nous allons tenter de formaliser ceci :
 
 	\begin{formula}[Théorème de la division euclidienne]
-		Soient $a$, $b \in \mathbb{Z}$. On suppose $b \neq 0$. On appelle \textbf{division euclidienne} de $a$ par $b$, l'opération qui à $(a, b)$, associe le couple d'entiers relatifs $(q, r)$ tel que $a = bq + r$ où $0 \leq r \lt |b|$. Un tel couple \textbf{existe} forcément et est \textbf{unique}.
+		Soient $a$, $b \in \mathbb{Z}$. On suppose $b \neq 0$. On appelle \textbf{division euclidienne} de $a$ par $b$, l'opération qui à $(a, b)$, associe le couple d'entiers relatifs $(q, r)$ tel que $a = bq + r$ où $0 \leq r < |b|$. Un tel couple \textbf{existe} forcément et est \textbf{unique}.
 	\end{formula}
 
 	\begin{formula}[Vocabulaire]
@@ -44,7 +44,7 @@
 		\begin{itemize}
 			\item On cherche combien de fois $7$ est contenu dans $31$ (cela ne sert à rien de commencer par $3$ car $3 < 7$). On a $4 \times 7 = 28$ et $5 \times 7 = 35$ donc on écrit $4$ sous le diviseur et le reste $31 - 28 = 3$. Puis, on abaisse le chiffre des unités qui est $4$.
 			\item On recommence : combien de fois $7$ est-il contenu dans $34$ ? Comme $4 \times 7 = 28$ et $5 \times 7 = 35$, $7$ est contenu $4$ fois dans $34$ et il reste $34 - 28 = 6$.
-			\item Comme $6 \lt 7$, la division euclidienne est terminée : on a $314 = 7 \times 44 + 6$.
+			\item Comme $6 < 7$, la division euclidienne est terminée : on a $314 = 7 \times 44 + 6$.
 		\end{itemize}
 	\end{tip}
 
@@ -116,7 +116,7 @@
 		\end{itemize}
 	\end{formula}
 
-	Il existe une manière de déterminer le $\operatorname{PGCD}$ de deux entiers naturels non nuls $a$ et $b$ avec $b \lt a$ appelée \textbf{Algorithme d'Euclide}.
+	Il existe une manière de déterminer le $\operatorname{PGCD}$ de deux entiers naturels non nuls $a$ et $b$ avec $b < a$ appelée \textbf{Algorithme d'Euclide}.
 
 	\begin{formula}[Algorithme d'Euclide]
 		Soient $a$, $b \in \mathbb{Z}$ non tous nuls. Pour obtenir $\operatorname{PGCD}(a; b)$, on procède comme suit :
@@ -294,7 +294,7 @@
 		\newpar
 		$n = p_{1}^{\alpha_1} \times p_{2}^{\alpha_2} \times \dots \times p_{n}^{\alpha_n}$
 		\newpar
-		où $p_1$, $p_2$, ... , $p_n$ des nombres premiers tels que $p_1 \lt p_2 \lt \dots \lt p_n$ et $\alpha_1$, $\alpha_2$, ... , $\alpha_n$ des entiers naturels non nuls.
+		où $p_1$, $p_2$, ... , $p_n$ des nombres premiers tels que $p_1 < p_2 < \dots < p_n$ et $\alpha_1$, $\alpha_2$, ... , $\alpha_n$ des entiers naturels non nuls.
 	\end{formula}
 
 	\begin{tip}[Exemple]

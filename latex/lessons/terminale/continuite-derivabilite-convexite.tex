@@ -30,14 +30,14 @@
 	\subsection{Théorème des valeurs intermédiaires}
 
 	\begin{formula}[Théorème des valeurs intermédiaires]
-		Si une fonction $f$ est continue sur un intervalle $[a;b]$, alors pour tout réel $y_0$ tel que $f(a) \lt y_0 \lt f(b)$ (ou $f(a) \gt y_0 \gt f(b)$), il existe \textbf{au moins} un réel $x_0 \in [a;b]$ tel que $f(x_0) = y_0$.
+		Si une fonction $f$ est continue sur un intervalle $[a;b]$, alors pour tout réel $y_0$ tel que $f(a) < y_0 < f(b)$ (ou $f(a) > y_0 > f(b)$), il existe \textbf{au moins} un réel $x_0 \in [a;b]$ tel que $f(x_0) = y_0$.
 	\end{formula}
 
 	\begin{tip}[Exemple]
-		Ce théorème est \textbf{très important} ! Voici un exemple : soit $f$ définie pour tout $x \in \mathbb{R}$ par $f(x) = x^3+x^2-x$. Prouvons qu'il existe au moins un réel $x_0 \in [0;3]$ tel que $f(x_0) = 5$. On a $f(0) = 0$ et $f(3) = 33$. D'après le théorème des valeurs intermédiaires, comme $f$ est continue sur $[0;3]$ et que $0 \lt 5 \lt 33$,
+		Ce théorème est \textbf{très important} ! Voici un exemple : soit $f$ définie pour tout $x \in \mathbb{R}$ par $f(x) = x^3+x^2-x$. Prouvons qu'il existe au moins un réel $x_0 \in [0;3]$ tel que $f(x_0) = 5$. On a $f(0) = 0$ et $f(3) = 33$. D'après le théorème des valeurs intermédiaires, comme $f$ est continue sur $[0;3]$ et que $0 < 5 < 33$,
 		il existe un réel $x_0 \in [0,3]$ tel que $f(x_0) = 5$.
 		\newpar
-		On peut encore tenter d'affiner la précision : $f(1) = 1$ et $f(2) = 10$. On a bien $1 \lt 5 \lt 10$ donc $x_0 \in [1;2]$, etc.
+		On peut encore tenter d'affiner la précision : $f(1) = 1$ et $f(2) = 10$. On a bien $1 < 5 < 10$ donc $x_0 \in [1;2]$, etc.
 	\end{tip}
 
 	\begin{tip}
@@ -47,13 +47,13 @@
 	Enfin, il existe un corollaire qui donne en plus \textbf{l'unicité} du point $x_0$.
 
 	\begin{formula}[Corollaire]
-		Si $f$ est continue sur $[a;b]$ et que $f$ est \textbf{strictement monotone} sur cet intervalle, alors pour tout réel $y_0$ tel que $f(a) \lt y_0 \lt f(b)$ (ou $f(a) \gt y_0 \gt f(b)$), il existe \textbf{un unique} réel $x_0 \in [a;b]$ tel que $f(x_0) = y_0$.
+		Si $f$ est continue sur $[a;b]$ et que $f$ est \textbf{strictement monotone} sur cet intervalle, alors pour tout réel $y_0$ tel que $f(a) < y_0 < f(b)$ (ou $f(a) > y_0 > f(b)$), il existe \textbf{un unique} réel $x_0 \in [a;b]$ tel que $f(x_0) = y_0$.
 	\end{formula}
 
 	\subsection{La partie entière $[x]$}
 
 	\begin{formula}[Définition]
-		Soit $x \in \mathbb{R}$. La \textbf{partie entière} de $x$ notée $[x]$ (ou $E(x)$) est l'unique réel tel que : $[x] \leq x \lt [x] + 1$.
+		Soit $x \in \mathbb{R}$. La \textbf{partie entière} de $x$ notée $[x]$ (ou $E(x)$) est l'unique réel tel que : $[x] \leq x < [x] + 1$.
 	\end{formula}
 
 	\begin{tip}[Exemple]
@@ -124,8 +124,8 @@
 	\begin{formula}[Variations d'une fonction]
 		Soit une fonction $f$ dérivable sur un intervalle $I$.
 		\begin{itemize}
-			\item Si $f' \gt 0$ sur $I$, alors $f$ est strictement croissante sur $I$.
-			\item Si $f' \lt 0$ sur $I$, alors $f$ est strictement décroissante sur $I$.
+			\item Si $f' > 0$ sur $I$, alors $f$ est strictement croissante sur $I$.
+			\item Si $f' < 0$ sur $I$, alors $f$ est strictement décroissante sur $I$.
 			\item Si $f' = 0$ sur $I$, alors $f$ est constante sur $I$.
 		\end{itemize}
 	\end{formula}
