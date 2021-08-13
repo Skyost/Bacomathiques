@@ -155,9 +155,9 @@ function latexmk (directory, file) {
   try {
     execSync(`latexmk -pdf "${file}"`, { cwd: directory })
   } catch (exception) {
-    logger.error(exception.stack)
-    logger.info("Here's the log :")
-    logger.info(fs.readFileSync(path.resolve(directory, getFileName(file) + '.log')))
+    console.error(exception.stack)
+    console.log("Here's the log :")
+    console.log(fs.readFileSync(path.resolve(directory, getFileName(file) + '.log')))
   }
 }
 
