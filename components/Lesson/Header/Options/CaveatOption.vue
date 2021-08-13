@@ -14,7 +14,7 @@
         </li>
         <li>
           Vous pouvez modifier directement le
-          <a :href="`${github}/edit/master/content/latex/lessons/${lesson.level}/${lesson.id}.tex`">code source</a> de la page.
+          <a :href="`${github}/edit/master/latex/lessons/${lesson.level}/${lesson.id}.tex`">code source</a> de la page.
         </li>
       </ul>
     </b-modal>
