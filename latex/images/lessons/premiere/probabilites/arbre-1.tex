@@ -3,6 +3,9 @@
 \usepackage{tikz}
 
 \begin{document}
+	% Default drawing color
+	\providecommand{\tikzcolor}{black}
+	
 	% Set the overall layout of the tree
 	\tikzstyle{level 1}=[level distance=3.5cm, sibling distance=3.5cm]
 	\tikzstyle{level 2}=[level distance=3.5cm, sibling distance=2cm]
@@ -14,7 +17,7 @@
 	% The sloped option gives rotated edge labels. Personally
 	% I find sloped labels a bit difficult to read. Remove the sloped options
 	% to get horizontal labels.
-	\begin{tikzpicture}[grow=right, sloped]
+	\begin{tikzpicture}[grow=right, sloped, draw=\tikzcolor, text=\tikzcolor, fill=\tikzcolor]
 		\node[bag] {$\Omega$}
 		child {
 			node[bag] {$\bar{A}$}

@@ -3,7 +3,8 @@
 \usepackage{tikz}
 
 \begin{document}
-	\begin{tikzpicture}
+	\providecommand{\tikzcolor}{black}
+	\begin{tikzpicture}[draw=\tikzcolor, text=\tikzcolor, fill=\tikzcolor]
 		\node[draw,circle,fill=blue!40!white,minimum size=0.9cm](0) at (0,0) {\textbf{0}};
 		\node[draw,circle,fill=blue!40!white,minimum size=0.9cm](1) at (2,0) {\textbf{1}};
 		\node[draw,circle,fill=blue!40!white,minimum size=0.9cm](2) at (4,0) {\textbf{2}};

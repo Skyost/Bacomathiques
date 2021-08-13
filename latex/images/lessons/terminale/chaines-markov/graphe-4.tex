@@ -3,7 +3,8 @@
 \usepackage{tikz}
 
 \begin{document}
-	\begin{tikzpicture}
+	\providecommand{\tikzcolor}{black}
+	\begin{tikzpicture}[draw=\tikzcolor, text=\tikzcolor, fill=\tikzcolor]
 		\node[draw,circle,fill=blue!40!white](L) at (0,2) {\textbf{L}};
 		\node[draw,circle,fill=blue!40!white](C) at (-2,0) {\textbf{C}};
 		\node[draw,circle,fill=blue!40!white](P) at (2,0) {\textbf{P}};

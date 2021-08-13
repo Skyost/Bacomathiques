@@ -30,6 +30,7 @@
 \usepackage{standalone}
 \usepackage{xlop}
 \usepackage{etoolbox}
+\usepackage{environ}
 
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{trees}
@@ -267,4 +268,12 @@
 	title=\tcolorboxtitle{demonstration}{Démonstration},
 	colbacktitle={demonstration-left},
 	before upper={\tcolorboxsubtitle{demonstration}{#1}}
+}
+
+\NewEnviron{whitetabularx}[1]{%
+	\colorbox{white}{%
+		\begin{tabularx}{\textwidth}{#1}%
+			\BODY%
+		\end{tabularx}%
+	}%
 }

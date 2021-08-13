@@ -5,25 +5,25 @@
 	\lesson{premiere}{probabilites}{Chapitre VII – Probabilités}
 
 	\section{Probabilités conditionnelles}
-	
+
 	\subsection{Définition}
-	
+
 	\begin{formula}[Définition]
 		Soient $A$ et $B$ deux événements avec $A$ de probabilité non nulle. Alors \textbf{la probabilité conditionnelle de $B$ sachant que $A$ est réalisé} (notée $P_{A}(B)$) est $\displaystyle{P_{A}(B) = \frac{P(A \cap B)}{P(A)}}$.
 	\end{formula}
-	
+
 	\begin{tip}[Rappel]
 		On rappelle que $P(A \cap B) = P(A) + P(B) - P(A \cup B)$.
 	\end{tip}
-	
+
 	\begin{tip}[Différence entre conditionnelle et intersection]
 		\textbf{Il faut faire attention}, à bien faire la distinction entre une probabilité conditionnelle (``\textbf{Sachant qu'on a $A$}, quelle est la probabilité d'avoir $B$ ?'') et une intersection (``Quelle est la probabilité d'avoir \textbf{$A$ et $B$ à la fois} ?'').
 	\end{tip}
-	
+
 	\begin{formula}[Indépendance]
 		Deux événements $A$ et $B$ sont dits \textbf{indépendants} si la réalisation de l'un n'a aucune incidence sur la réalisation de l'autre et réciproquement. C'est-à-dire si $P(A \cap B) = P(A) \times P(B)$.
 	\end{formula}
-	
+
 	\begin{formula}[Propriétés]
 		Pour deux événements indépendants $A$ et $B$, on a les relations suivantes :
 		\begin{itemize}
@@ -31,93 +31,91 @@
 			\item $P_{B}(A) = P(A)$
 		\end{itemize}
 	\end{formula}
-	
+
 	\subsection{Arbre de probabilité}
-	
+
 	Au lycée, pour représenter visuellement des probabilités on utilise très souvent un \textbf{arbre de probabilité}. Nous nous limiterons ici au cas de deux événements, mais il est possible d'en rajouter encore d'autres.
-	
+
 	Ainsi :
-	
+
 	\begin{formula}[Définition]
 		Soient $A$ et $B$ deux événements. L'arbre de probabilité décrivant la situation est le suivant :
 		\includelatexpicture{arbre-1}
 	\end{formula}
-	
+
 	La somme (dans le sens vertical) des probabilités de chacune des branches ayant une ``racine'' commune doit toujours faire $1$.
-	
+
 	\begin{tip}[Exemple]
 		Soit $A$ et $B$ deux événements non-indépendants tels que $P(A) = \frac{4}{7}$, $P_{A}(B) = \frac{1}{4}$ et $P_{\bar{A}}(B) = \frac{5}{9}$.
 		\newline
 		Alors l'arbre permettant de modéliser la situation est le suivant :
 		\includelatexpicture{arbre-2}
 	\end{tip}
-	
+
 	\subsection{Formule des probabilités totales}
-	
+
 	Voici maintenant l'énoncé de la \textbf{formule des probabilités totales}, qui peut être très utile pour calculer des probabilités que l'on ne connaît pas (ou qui ne sont pas données dans un énoncé d'exercice) :
-	
+
 	\begin{formula}[Formule des probabilités totales]
 		Soient $A_1, A_2, ..., A_n$ des événements qui partitionnent (qui recouvrent) l'univers $\Omega$, alors pour tout événement $B$ :
 		\newpar
 		$P(B) = P(B \cap A_1) + P(B \cap A_2) + \dots + P(B \cap A_n)$
 	\end{formula}
-	
+
 	\begin{tip}[Exemple]
 		En reprenant l'arbre précédent, comme $A$ et $\bar{A}$ recouvrent notre univers (en effet, soit on tombe sur $A$, soit on tombe sur $\bar{A}$ : pas d'autre issue possible), calculons $P(B)$ :
 		\newpar
 		\includelatexpicture{arbre-2}
 		D'après la formule des probabilités totales, $P(B) = P(B \cap A) + P(B \cap \bar{A}) = \frac{107}{252}$.
 	\end{tip}
-	
+
 	\section{Variables aléatoires}
-	
+
 	\subsection{Définition}
-	
+
 	\begin{formula}[Définition]
 		Une \textbf{variable aléatoire} $X$ est une fonction qui, à chaque événement élémentaire de l'univers $\Omega$ y associe un nombre réel. C'est-à-dire : $X : \Omega \rightarrow \mathbb{R}$.
 	\end{formula}
-	
+
 	L'ensemble des valeurs prises par $X$ est noté $X(\Omega)$.
-	
+
 	\begin{tip}
 		Les variables aléatoires sont très utiles notamment pour modéliser des situations de gains ou de pertes (à un jeu d'argent par exemple).
 	\end{tip}
-	
+
 	\subsection{Loi de probabilité}
-	
+
 	\begin{formula}[Définition]
-		Soit $X$ une variable aléatoire. La \textbf{loi de probabilité} de $X$ attribue à chaque valeur $x_i$ la probabilité $p_i = P(X = x_i)$ de l'événement $X = x_i$ constitué de tous les événements élémentaires dont l'image par $X$ est $x_i$. 
+		Soit $X$ une variable aléatoire. La \textbf{loi de probabilité} de $X$ attribue à chaque valeur $x_i$ la probabilité $p_i = P(X = x_i)$ de l'événement $X = x_i$ constitué de tous les événements élémentaires dont l'image par $X$ est $x_i$.
 	\end{formula}
-	
+
 	On représente généralement les lois de probabilité par un tableau.
-	
+
 	\begin{formula}[Représentation d'une loi de probabilité par un tableau]
 		Soit $X$ une variable aléatoire. On peut représenter sa loi de probabilité par le tableau ci-contre :
 		\newpar
-		\colorbox{white}{%
-			\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \begin{whitetabularx}{|X|X|X|X|X|}
 				\hline
 				$x_i$ & $x_1$ & $x_2$ & ... & $x_n$ \\
 				\hline
 				$p_i$ \newline $= P(X = x_i)$ & $p_1$ \newline $= P(X = x_1)$ & $p_2$ \newline $= P(X = x_2)$ & ... & $p_n$ \newline $= P(X = x_n)$ \\
 				\hline
-			\end{tabularx}%
-		}
+    \end{whitetabularx}
 		\newpar
 		On a $p_1 + p_2 + \dots + p_n = 1$.
 	\end{formula}
-	
+
 	\begin{tip}
 		Cette définition peut sembler un peu compliquée mais elle signifie juste qu'une loi de probabilité assigne une probabilité à chaque valeur prise par notre variable aléatoire.
 	\end{tip}
-	
+
 	\subsection{Espérance, variance et écart-type}
-	
+
 	\begin{formula}[Espérance]
 		L'\textbf{espérance} $E(X)$ d'une variable aléatoire $X$ est le réel :
 		$E(X) = x_1 \times p_1 + x_2 \times p_2 + \dots + x_n \times p_n$.
 	\end{formula}
-	
+
 	\begin{formula}[Variance et écart-type]
 		La \textbf{variance} $V(X)$ et l'\textbf{écart-type} $\sigma(X)$ d'une variable aléatoire $X$ sont les réels positifs suivants :
 		\begin{itemize}
@@ -125,19 +123,17 @@
 			\item $\sigma(X) = \sqrt{V(X)}$
 		\end{itemize}
 	\end{formula}
-	
+
 	\begin{tip}[Exemple]
 		Calcul de l'espérance, de la variance et de l'écart-type. Soit $X$ une variable aléatoire suivant la loi de probabilité donnée par le tableau ci-dessous :
 		\newpar
-		\colorbox{white}{%
-			\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \begin{whitetabularx}{|X|X|X|X|X|}
 				\hline
 				$x_i$ & $-1$ & $0$ & $2$ & $6$ \\
 				\hline
 				$p_i$ & $\frac{1}{4}$ & $\frac{1}{2}$ & $\frac{1}{8}$ & $\frac{1}{8}$ \\
 				\hline
-			\end{tabularx}%
-		}
+    \end{whitetabularx}
 		\newpar
 		On a :
 		\begin{itemize}
@@ -146,9 +142,9 @@
 			\item $\sigma(X) = \sqrt{\frac{75}{16}} \approx 2.165$
 		\end{itemize}
 	\end{tip}
-	
+
 	Chacun de ces paramètres a une utilité bien précise. En effet :
-	
+
 	\begin{formula}[Signification des paramètres]
 		\begin{itemize}
 			\item L'espérance est la \textbf{valeur moyenne} prise par $X$.

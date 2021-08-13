@@ -3,7 +3,8 @@
 \usepackage{tikz}
 
 \begin{document}
-	\begin{tikzpicture}
+	\providecommand{\tikzcolor}{black}
+	\begin{tikzpicture}[draw=\tikzcolor, text=\tikzcolor, fill=\tikzcolor]
 		\node[draw,circle,fill=blue!40!white](m) at (1,0) {\textbf{M}};
 		\node[draw,circle,fill=blue!40!white](s) at (-1,0) {\textbf{S}};
 		\node[draw=none] at (0,1.3) {$0,4$};

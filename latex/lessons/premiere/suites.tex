@@ -179,9 +179,7 @@
 		\newline
 		Pour cela, regardons les valeurs que prend cette suite pour des valeurs de $n$ très grandes :
 		\newpar
-		\begingroup\setlength{\fboxsep}{0pt}
-		\colorbox{white}{%
-			\begin{tabularx}{\textwidth}{|X|X|}
+    \begin{whitetabularx}{|X|X|}
 				\hline
 				$100$ & $0,01$ \\
 				\hline
@@ -191,9 +189,7 @@
 				\hline
 				$1 000 000 000$ & $0,000 000 001$ \\
 				\hline
-			\end{tabularx}%
-		}
-		\endgroup
+    \end{whitetabularx}
 		\newpar
 		\textbf{Il semble que} cette suite converge vers 0.
 	\end{tip}
@@ -203,9 +199,7 @@
 	\begin{tip}[Exemple]
 		On définit la suite $(u_n)$ pour tout $n \in \mathbb{N}$ par $u_n = (-1)^n$. On souhaite trouver la limite possible de cette suite en $+ \infty$.
 		\newpar
-		\begingroup\setlength{\fboxsep}{0pt}
-		\colorbox{white}{%
-			\begin{tabularx}{\textwidth}{|X|X|}
+    \begin{whitetabularx}{|X|X|}
 				\hline
 				$100$ & $1$ \\
 				\hline
@@ -215,9 +209,7 @@
 				\hline
 				$1 000 001$ & $-1$ \\
 				\hline
-			\end{tabularx}%
-		}
-		\endgroup
+    \end{whitetabularx}
 		\newpar
 		En fait, si $n$ est pair cette suite vaut $1$ et si $n$ est impair elle vaut $-1$. Cette suite n'admet donc pas de limite : elle diverge.
 	\end{tip}
