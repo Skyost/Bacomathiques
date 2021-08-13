@@ -46,7 +46,6 @@ async function processFiles (ignored, pandocRedefinitions, directory, mdDir, pdf
       })
       let root = parse(htmlContent)
       renderMath(root)
-      numberizeTitles(root)
       addVueComponents(root)
       const html = root.innerHTML
       fs.writeFileSync(path.resolve(mdDir, fileName + '.md'), html)
@@ -74,20 +73,6 @@ function renderMath (root) {
       // output: 'html'
     })
     mathElement.replaceWith(renderedMath)
-  }
-}
-
-function numberizeTitles (root) {
-  const titles = root.querySelectorAll('h2, h3')
-  const counter = { H2: 1, H3: 1 }
-  for (const title of titles) {
-    if (title.tagName === 'H2') {
-      counter.H3 = 1
-      title.innerHTML = `${romanize(counter.H2)} – ${title.innerHTML}`
-    } else if (title.tagName === 'H3') {
-      title.innerHTML = `${counter.H3}. ${title.innerHTML}`
-    }
-    counter[title.tagName] += 1
   }
 }
 
@@ -154,20 +139,4 @@ async function handleImages (imagesDir, imagesDestDir) {
 function getFileName (file) {
   const extension = file.substring(file.lastIndexOf('.'))
   return path.basename(file).substring(0, file.length - extension.length)
-}
-
-function romanize (num) {
-  if (!+num) {
-    return false
-  }
-  const digits = String(+num).split('')
-  const key = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM',
-    '', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC',
-    '', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX']
-  let roman = ''
-  let i = 3
-  while (i--) {
-    roman = (key[+digits.pop() + (i * 10)] || '') + roman
-  }
-  return Array(+digits.join('') + 1).join('M') + roman
 }

@@ -44,34 +44,72 @@ export default {
   },
   async mounted () {
     await this.$nextTick()
-    const tables = this.$el.querySelectorAll('#page-content table')
-    for (const table of tables) {
-      table.classList.add('table')
-      table.classList.add('table-bordered')
-      table.classList.add('table-hover')
-    }
-
-    for (const entry of this.content.toc) {
-      entry.html = this.$el.querySelector('#' + entry.id).innerHTML
-    }
-    this.tocReady = true
-
-    const titles = this.$el.querySelectorAll('h2, h3')
-    let adCount = 0
-    for (const title of titles) {
-      if (title.tagName === 'H2' && adCount < 4) {
-        const element = document.createElement('div')
-        title.parentElement.insertBefore(element, title)
-        new Vue(AdByGoogle).$mount(element)
-        adCount++
+    this.addTableClasses()
+    this.numberizeTitles()
+    this.setupToc()
+    this.handleTitles()
+  },
+  methods: {
+    addTableClasses () {
+      const tables = this.$el.querySelectorAll('#page-content table')
+      for (const table of tables) {
+        table.classList.add('table')
+        table.classList.add('table-bordered')
+        table.classList.add('table-hover')
       }
-      let attributes = ''
-      for (const attribute of title.attributes) {
-        if (attribute.name.startsWith('data-v')) {
-          attributes += attribute.name
+    },
+    numberizeTitles () {
+      const titles = this.$el.querySelectorAll('h2, h3')
+      const counter = { H2: 1, H3: 1 }
+      for (const title of titles) {
+        if (title.tagName === 'H2') {
+          counter.H3 = 1
+          title.innerHTML = `${this.romanize(counter.H2)} – ${title.innerHTML}`
+        } else if (title.tagName === 'H3') {
+          title.innerHTML = `${counter.H3}. ${title.innerHTML}`
         }
+        counter[title.tagName] += 1
       }
-      title.insertAdjacentHTML('beforeend', `<a aria-hidden="true" href="#${title.id}" tabindex="-1" ${attributes}><span class="anchor" ${attributes}></span></a>`)
+    },
+    setupToc () {
+      for (const entry of this.content.toc) {
+        entry.html = this.$el.querySelector('#' + entry.id).innerHTML
+      }
+      this.tocReady = true
+    },
+    handleTitles () {
+      const titles = this.$el.querySelectorAll('h2, h3')
+      let adCount = 0
+      for (const title of titles) {
+        if (title.tagName === 'H2' && adCount < 4) {
+          const element = document.createElement('div')
+          title.parentElement.insertBefore(element, title)
+          new Vue(AdByGoogle).$mount(element)
+          adCount++
+        }
+        let attributes = ''
+        for (const attribute of title.attributes) {
+          if (attribute.name.startsWith('data-v')) {
+            attributes += attribute.name
+          }
+        }
+        title.insertAdjacentHTML('beforeend', `<a aria-hidden="true" href="#${title.id}" tabindex="-1" ${attributes}><span class="anchor" ${attributes}></span></a>`)
+      }
+    },
+    romanize (num) {
+      if (!+num) {
+        return false
+      }
+      const digits = String(+num).split('')
+      const key = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM',
+        '', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC',
+        '', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX']
+      let roman = ''
+      let i = 3
+      while (i--) {
+        roman = (key[+digits.pop() + (i * 10)] || '') + roman
+      }
+      return Array(+digits.join('') + 1).join('M') + roman
     }
   }
 }
