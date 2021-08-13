@@ -26,7 +26,7 @@ class AdsDialog extends StatelessWidget {
   Widget _createTitleWidget() => const Text('Publicités');
 
   /// Creates a new content widget.
-  Widget _createContentWidget() => SingleChildScrollView(
+  Widget _createContentWidget() => const SingleChildScrollView(
     child: HtmlWidget(
       '''
           Bacomathiques vous laisse le choix d'activer ou de désactiver les publicités (personnalisées ou non).

@@ -1,3 +1,4 @@
+import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/pages/html/widget_factory.dart';
 import 'package:bacomathiques/pages/html/widgets/representation_preview_widget.dart';
@@ -27,10 +28,25 @@ class AppHtmlWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => HtmlWidget(
         data,
+        baseUrl: Uri.parse(API.BASE_URL),
         buildAsync: buildAsync,
         customWidgetBuilder: buildCustomWidget,
         customStylesBuilder: (element) => buildCustomStyle(context, element),
-        buildAsyncBuilder: (context, snapshot) => snapshot.hasData ? snapshot.data! : const CenteredCircularProgressIndicator(message: 'Rendu…'),
+        buildAsyncBuilder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Center(
+                child: Text(
+                  'Erreur "${snapshot.error.toString()}". Veuillez réessayer plus tard.',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontStyle: FontStyle.italic),
+                ),
+              ),
+            );
+          }
+          return snapshot.hasData ? snapshot.data! : const CenteredCircularProgressIndicator(message: 'Rendu…');
+        },
         //rebuildTriggers: RebuildTriggers([data, buildCustomWidget, buildCustomStyle]),
         textStyle: textStyle,
         factoryBuilder: () => AppWidgetFactory(textStyle: textStyle),

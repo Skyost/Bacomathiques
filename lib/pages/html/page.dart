@@ -1,4 +1,4 @@
-import 'package:admob_flutter/admob_flutter.dart';
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/content.dart';
 import 'package:bacomathiques/app/dialogs/consent.dart';
@@ -9,6 +9,7 @@ import 'package:bacomathiques/utils/request_scaffold.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
 import 'package:provider/provider.dart';
@@ -36,10 +37,22 @@ class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
   /// The consent information.
   ConsentInformation? consentInformation;
 
+  /// The banner ad.
+  BannerAd? banner;
+
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) => askConsent());
+    WidgetsBinding.instance?.addPostFrameCallback((_) async {
+      await askConsent();
+      if (mounted) {
+        SettingsModel settingsModel = context.read<SettingsModel>();
+        AdSize? size = await AdSize.getAnchoredAdaptiveBannerAdSize(MediaQuery.of(context).orientation, MediaQuery.of(context).size.width.truncate());
+        BannerAd? banner = settingsModel.createAdMobBanner(context, size ?? AdSize.banner, consentInformation!.wantsNonPersonalizedAds);
+        await banner?.load();
+        setState(() => this.banner = banner);
+      }
+    });
   }
 
   /// Asks for the user consent.
@@ -52,7 +65,7 @@ class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
       personalizedAdsButton: 'Oui, je souhaite voir des annonces pertinentes'.toUpperCase(),
       nonPersonalizedAdsButton: 'Non, je souhaite voir des annonces moins pertinentes'.toUpperCase(),
     );
-    await Admob.requestTrackingAuthorization();
+    await AppTrackingTransparency.requestTrackingAuthorization();
     setState(() => this.consentInformation = consentInformation);
   }
 
@@ -63,34 +76,32 @@ class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
       anchor: widget.anchor,
     );
 
-    if (consentInformation == null) {
+    if (consentInformation == null || banner == null) {
       return htmlPage;
     }
 
-    SettingsModel settingsModel = context.watch<SettingsModel>();
-    AdmobBanner? banner = settingsModel.createAdMobBanner(context, consentInformation!.wantsNonPersonalizedAds);
-    if (banner == null) {
-      return htmlPage;
-    }
-
-    return FutureBuilder<Size>(
-      initialData: Size.zero,
-      future: settingsModel.calculateAdMobBannerSize(context),
-      builder: (context, sizeSnapshot) => Stack(
+    double bannerHeight = banner?.size.height.toDouble() ?? 0;
+    return Stack(
         children: [
           Padding(
-            padding: EdgeInsets.only(bottom: sizeSnapshot.hasData ? sizeSnapshot.data!.height : 0),
+            padding: EdgeInsets.only(bottom: bannerHeight),
             child: htmlPage,
           ),
           Positioned(
             left: 0,
             right: 0,
             bottom: 0,
-            child: banner,
+            height: bannerHeight,
+            child: AdWidget(ad: banner!),
           ),
         ],
-      ),
     );
+  }
+
+  @override
+  void dispose() {
+    banner?.dispose();
+    super.dispose();
   }
 }
 
@@ -165,10 +176,16 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
       switch (title.localName) {
         case 'h2':
           h3Index = 0;
-          title.innerHtml = '${(++h2Index).romanize()} – ${title.innerHtml}';
+          String prefix = '${(++h2Index).romanize()} – ';
+          if (!title.innerHtml.startsWith(prefix)) {
+            title.innerHtml = '$prefix${title.innerHtml}';
+          }
           break;
         case 'h3':
-          title.innerHtml = '${++h3Index}. ${title.innerHtml}';
+          String prefix = '${++h3Index}. ';
+          if (!title.innerHtml.startsWith(prefix)) {
+            title.innerHtml = '$prefix${title.innerHtml}';
+          }
           break;
         default:
           continue;

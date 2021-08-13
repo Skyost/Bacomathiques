@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bacomathiques/app/app.dart';
 import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/app/theme/theme.dart';
@@ -14,12 +13,13 @@ import 'package:catcher/catcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
 /// Hello world !
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Admob.initialize();
+  await MobileAds.instance.initialize();
 
   Widget main = BacomathiquesApp();
   if (kDebugMode) {

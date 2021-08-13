@@ -1,8 +1,8 @@
-import 'package:admob_flutter/admob_flutter.dart';
 import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/credentials.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Allows to load and set required AdMob information.
@@ -41,19 +41,14 @@ class SettingsModel extends ChangeNotifier {
   }
 
   /// Creates the banner ad.
-  AdmobBanner? createAdMobBanner(BuildContext context, bool nonPersonalizedAds) => _adMobEnabled
-      ? AdmobBanner(
+  BannerAd? createAdMobBanner(BuildContext context, AdSize size, bool nonPersonalizedAds) => _adMobEnabled
+      ? BannerAd(
           adUnitId: _adMobBannerId,
-          adSize: _getAdMobBannerSize(context),
-          nonPersonalizedAds: nonPersonalizedAds,
+          size: size,
+          request: AdRequest(nonPersonalizedAds: nonPersonalizedAds),
+          listener: BannerAdListener(onAdFailedToLoad: (ad, error) => ad.dispose()),
         )
       : null;
-
-  /// Calculates the banner size.
-  Future<Size> calculateAdMobBannerSize(BuildContext context) => !adMobEnabled ? Future<Size>.value(Size.zero) : Admob.bannerSize(_getAdMobBannerSize(context));
-
-  /// Returns the AdMob banner size.
-  AdmobBannerSize _getAdMobBannerSize(BuildContext context) => AdmobBannerSize.ADAPTIVE_BANNER(width: MediaQuery.of(context).size.width.ceil());
 
   /// Returns the theme mode.
   ThemeMode get themeMode => _themeMode;
