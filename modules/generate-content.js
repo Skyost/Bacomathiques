@@ -153,7 +153,7 @@ async function handleImages (imagesDir, imagesDestDir) {
 
 function latexmk (directory, file) {
   try {
-    execSync(`latexmk -quiet -pdf "${file}"`, { cwd: directory })
+    execSync(`latexmk -pdf "${file}"`, { cwd: directory })
   } catch (exception) {
     logger.error(exception.stack)
     logger.info("Here's the log :")
