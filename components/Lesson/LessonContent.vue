@@ -73,7 +73,9 @@ export default {
     },
     setupToc () {
       for (const entry of this.content.toc) {
-        entry.html = this.$el.querySelector('#' + entry.id).innerHTML
+        if (entry.id) {
+          entry.html = this.$el.querySelector('#' + entry.id).innerHTML
+        }
       }
       this.tocReady = true
     },

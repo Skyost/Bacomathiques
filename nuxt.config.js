@@ -105,12 +105,7 @@ export default {
     },
     babel: {
       compact: true,
-      minified: true,
-      // TODO: Can be removed once https://github.com/nuxt/nuxt.js/pull/9631 is merged.
-      plugins: [
-        '@babel/plugin-proposal-class-properties',
-        '@babel/plugin-proposal-private-methods'
-      ]
+      minified: true
     }
   },
 

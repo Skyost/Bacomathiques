@@ -29,7 +29,6 @@ export default {
     }
   },
   async fetch () {
-    // TODO: Doesn't work on search page...
     this.levels = await this.$content('levels')
       .sortBy('order')
       .fetch()
