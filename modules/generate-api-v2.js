@@ -225,13 +225,15 @@ function formatHTML (srcDir, lesson, html) {
   for (const image of images) {
     let src = image.getAttribute('src')
     if (src.startsWith('/')) {
-      src = HOST_NAME + src
-      image.setAttribute('src', src)
+      image.setAttribute('src', HOST_NAME + src)
+      src = src.substring(1)
+    } else if (src.startsWith(HOST_NAME)) {
+      src = src.substring(HOST_NAME.length)
     }
     const extension = src.substring(src.lastIndexOf('.'))
     const darkPath = src.substring(0, src.length - extension.length) + '-dark' + extension
-    if (fs.existsSync(resolve(srcDir, darkPath))) {
-      image.setAttribute('data-src-dark', darkPath)
+    if (fs.existsSync(resolve(srcDir, 'static', darkPath))) {
+      image.setAttribute('data-src-dark', HOST_NAME + '/' + darkPath)
     }
   }
   const tables = root.querySelectorAll('table')
