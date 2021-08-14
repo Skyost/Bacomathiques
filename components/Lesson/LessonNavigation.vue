@@ -97,7 +97,7 @@ export default {
           id: entry.id,
           html: entry.html,
           children: [],
-          topOffset: this.getAbsoluteTopOffset(element)
+          topOffset: this.getAbsoluteTopOffset(element) - element.offsetHeight
         }
         if (entry.depth === 2) {
           currentDepth2 = {
@@ -112,6 +112,7 @@ export default {
           })
         }
       }
+      console.log(result)
       this.entries = result
     },
     getMaxAcceptableEntry (topOffset, entries) {
