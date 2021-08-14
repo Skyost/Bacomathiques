@@ -4,6 +4,7 @@ const path = require('path')
 const fs = require('fs')
 const execSync = require('child_process').execSync
 const katex = require('katex')
+const GithubSlugger = require('github-slugger')
 const logger = require('./logger')
 
 // TODO: Cache system.
@@ -40,11 +41,12 @@ async function processFiles (ignored, pandocRedefinitions, directory, mdDir, pdf
       logger.info(`Processing "${filePath}"...`)
       const fileName = getFileName(file)
       fs.mkdirSync(mdDir, { recursive: true })
-      const htmlContent = execSync(`pandoc "${path.relative(directory, pandocRedefinitions)}" "${filePath}" -t html --gladtex --shift-heading-level-by=1 --html-q-tags`, {
+      const htmlContent = execSync(`pandoc "${path.relative(directory, pandocRedefinitions)}" "${filePath}" -f latex-auto_identifiers -t html --gladtex --shift-heading-level-by=1 --html-q-tags`, {
         cwd: directory,
         encoding: 'utf-8'
       })
       let root = parse(htmlContent)
+      addIdentifiersToTitles(root)
       renderMath(root)
       addVueComponents(root)
       const html = root.innerHTML
@@ -58,9 +60,17 @@ async function processFiles (ignored, pandocRedefinitions, directory, mdDir, pdf
       }
       execSync(`latexmk -quiet -pdf "${file}"`, { cwd: directory })
       fs.mkdirSync(pdfDir, { recursive: true })
-      fs.copyFileSync(path.resolve(directory, `${fileName}.pdf`), path.resolve(pdfDir, `${fileName}.pdf`)) // Or with -output-directory="${pdfDir}".
+      fs.copyFileSync(path.resolve(directory, `${fileName}.pdf`), path.resolve(pdfDir, `${fileName}.pdf`))
       // execSync(`latexmk -quiet -c -output-directory="${pdfDir}" "${file}"`, { cwd: directory })
     }
+  }
+}
+
+function addIdentifiersToTitles (root) {
+  const slugger = new GithubSlugger()
+  const titles = root.querySelectorAll('h2, h3')
+  for (const title of titles) {
+    title.setAttribute('id', slugger.slug(title.text, false))
   }
 }
 
