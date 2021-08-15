@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import debounceFn from 'debounce-fn'
+import debounce from 'just-debounce-it'
 import { BIconCheck, BIconCheckAll, BIconExclamationCircleFill } from 'bootstrap-vue'
 import { getAvatarURL } from '~/utils/lesson'
 import { getCurrentAddress } from '~/utils/site'
@@ -91,10 +91,10 @@ export default {
         this.debounced.cancel()
       }
 
-      this.debounced = debounceFn(() => {
+      this.debounced = debounce(() => {
         this.avatar = getAvatarURL(author)
         this.debounced = null
-      }, { wait: 300 })
+      }, 300)
       this.debounced()
     }
   },

@@ -19,8 +19,8 @@ export default {
     link: [
       {
         rel: 'stylesheet',
-        href: 'https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css',
-        integrity: 'sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc',
+        href: 'https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css',
+        integrity: 'sha256-55Ddc47WvWTK5vYVejnAuSK7USJaL7FQXrzQ4HiQ1WY=',
         crossorigin: 'anonymous'
       },
       { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/futura-font@1.0.0/styles.min.css' },
