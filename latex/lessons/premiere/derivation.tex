@@ -69,27 +69,25 @@
 	\begin{formula}
 		Soit $\lambda$ une constante réelle.
 		\newpar
-    \begin{whitetabularx}{|X|X|l|}
-				\hline
-				\textbf{Fonction} & \textbf{Dérivée} & \textbf{Domaine de dérivabilité} \\
-				\hline
-				$\lambda$ & $0$ & $\mathbb{R}$ \\
-				\hline
-				$x^n$ avec $n \in \mathbb{N}^*$ & $nx^{n-1}$ & $\mathbb{R}$ \\
-				\hline
-				\rule[-2.5ex]{0pt}{7ex}
-				$\displaystyle{\frac{1}{x}}$ & $\displaystyle{-\frac{1}{x^2}}$ & $\mathbb{R}^*$ \\
-				\hline
-				\rule[-2.5ex]{0pt}{7ex}
-				$\sqrt{x}$ & $\displaystyle{\frac{1}{2\sqrt{x}}}$ & $\mathbb{R}^+_*$ \\
-				\hline
-				$e^x$ & $e^x$ & $\mathbb{R}$ \\
-				\hline
-				$\sin(x)$ & $\cos(x)$ & $\mathbb{R}$ \\
-				\hline
-				$\cos(x)$ & $-\sin(x)$ & $\mathbb{R}$ \\
-				\hline
-    \end{whitetabularx}
+		\begin{whitetabularx}{|X|X|l|}
+			\hline
+			\textbf{Fonction} & \textbf{Dérivée} & \textbf{Domaine de dérivabilité} \\
+			\hline
+			$\lambda$ & $0$ & $\mathbb{R}$ \\
+			\hline
+			$x^n$ avec $n \in \mathbb{N}^*$ & $nx^{n-1}$ & $\mathbb{R}$ \\
+			\hline
+			$\displaystyle{\frac{1}{x}}$ & $\displaystyle{-\frac{1}{x^2}}$ & $\mathbb{R}^*$ \\
+			\hline
+			$\sqrt{x}$ & $\displaystyle{\frac{1}{2\sqrt{x}}}$ & $\mathbb{R}^+_*$ \\
+			\hline
+			$e^x$ & $e^x$ & $\mathbb{R}$ \\
+			\hline
+			$\sin(x)$ & $\cos(x)$ & $\mathbb{R}$ \\
+			\hline
+			$\cos(x)$ & $-\sin(x)$ & $\mathbb{R}$ \\
+			\hline
+		\end{whitetabularx}
 	\end{formula}
 
 	\subsection{Opérations sur les dérivées}
@@ -99,23 +97,21 @@
 	\begin{formula}
 		Soient deux fonctions $u$ et $v$ et soit $\lambda$ une constante réelle.
 		\newpar
-    \begin{whitetabularx}{|X|X|l|}
-				\hline
-				\textbf{Fonction} & \textbf{Dérivée} & \textbf{Domaine de dérivabilité} \\
-				\hline
-				$\lambda \times u$ & $\lambda \times u'$ & En tout point où $u$ est dérivable. \\
-				\hline
-				$u + v$ & $u' + v'$ & En tout point où $u$ et $v$ sont dérivables. \\
-				\hline
-				$u \times v$ & $u' \times v + u \times v'$ & En tout point où $u$ et $v$ sont dérivables. \\
-				\hline
-				\rule[-2.5ex]{0pt}{7ex}
-				$\displaystyle{\frac{1}{v}}$ & $\displaystyle{-\frac{v'}{v^2}}$ & En tout point où $v$ est dérivable et non nulle. \\
-				\hline
-				\rule[-2.5ex]{0pt}{7ex}
-				$\displaystyle{\frac{u}{v}}$ & $\frac{u' \times v - u \times v'}{v^2}$ & En tout point où $u$ et $v$ sont dérivables et non nulles. \\
-				\hline
-			\end{whitetabularx}
+		\begin{whitetabularx}{|X|X|l|}
+			\hline
+			\textbf{Fonction} & \textbf{Dérivée} & \textbf{Domaine de dérivabilité} \\
+			\hline
+			$\lambda \times u$ & $\lambda \times u'$ & En tout point où $u$ est dérivable. \\
+			\hline
+			$u + v$ & $u' + v'$ & En tout point où $u$ et $v$ sont dérivables. \\
+			\hline
+			$u \times v$ & $u' \times v + u \times v'$ & En tout point où $u$ et $v$ sont dérivables. \\
+			\hline
+			$\displaystyle{\frac{1}{v}}$ & $\displaystyle{-\frac{v'}{v^2}}$ & En tout point où $v$ est dérivable et non nulle. \\
+			\hline
+			$\displaystyle{\frac{u}{v}}$ & $\frac{u' \times v - u \times v'}{v^2}$ & En tout point où $u$ et $v$ sont dérivables et non nulles. \\
+			\hline
+		\end{whitetabularx}
 	\end{formula}
 
 	\subsection{Dérivées de composées}
@@ -125,25 +121,23 @@
 	\begin{formula}
 		Soit $u$ une fonction.
 		\newpar
-    \begin{whitetabularx}{|X|X|l|}
-				\hline
-				\textbf{Fonction} & \textbf{Dérivée} & \textbf{Domaine de dérivabilité} \\
-				\hline
-				$u^n$ avec $n \in \mathbb{N}^*$ & $nu'u^{n-1}$ & En tout point où $u$ est dérivable. \\
-				\hline
-				\rule[-2.5ex]{0pt}{7ex}
-				$\displaystyle{\frac{1}{u}}$ & $\displaystyle{-\frac{u'}{u^2}}$ & En tout point où $u$ est dérivable et non nulle. \\
-				\hline
-				\rule[-2.5ex]{0pt}{7ex}
-				$\sqrt{u}$ & $\displaystyle{\frac{u'}{2\sqrt{u}}}$ & En tout point où $u$ est dérivable et strictement positive. \\
-				\hline
-				$e^u$ & $u'e^u$ & En tout point où $u$ est dérivable. \\
-				\hline
-				$\sin(u)$ & $u'\cos(u)$ & En tout point où $u$ est dérivable. \\
-				\hline
-				$\cos(u)$ & $-u'\sin(u)$ & En tout point où $u$ est dérivable. \\
-				\hline
-    \end{whitetabularx}
+		\begin{whitetabularx}{|X|X|l|}
+			\hline
+			\textbf{Fonction} & \textbf{Dérivée} & \textbf{Domaine de dérivabilité} \\
+			\hline
+			$u^n$ avec $n \in \mathbb{N}^*$ & $nu'u^{n-1}$ & En tout point où $u$ est dérivable. \\
+			\hline
+			$\displaystyle{\frac{1}{u}}$ & $\displaystyle{-\frac{u'}{u^2}}$ & En tout point où $u$ est dérivable et non nulle. \\
+			\hline
+			$\sqrt{u}$ & $\displaystyle{\frac{u'}{2\sqrt{u}}}$ & En tout point où $u$ est dérivable et strictement positive. \\
+			\hline
+			$e^u$ & $u'e^u$ & En tout point où $u$ est dérivable. \\
+			\hline
+			$\sin(u)$ & $u'\cos(u)$ & En tout point où $u$ est dérivable. \\
+			\hline
+			$\cos(u)$ & $-u'\sin(u)$ & En tout point où $u$ est dérivable. \\
+			\hline
+		\end{whitetabularx}
 	\end{formula}
 
 	Il est cependant possible de donner une formule plus générale.
@@ -188,5 +182,5 @@
 	\begin{tip}
 		Avec ceci, il est possible de retrouver la plupart des formules que nous avons vues sur les \href{https://bacomathiqu.es/cours/premiere/polynomes-second-degre/}{fonctions du second degré} (sens de variation, sommet de la parabole, ...).
 	\end{tip}
-  %</content>
+	%</content>
 \end{document}

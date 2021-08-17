@@ -1,5 +1,7 @@
 import { HOST_NAME, SITE_DESCRIPTION, SITE_NAME } from './utils/site'
 
+require('dotenv').config()
+
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',

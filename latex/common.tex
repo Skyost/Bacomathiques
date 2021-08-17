@@ -149,13 +149,13 @@
 	\hypersetup{pdftitle={#3}}
 	\begin{center}%
 		\includegraphics[width=150px]{\imagespath/bacomathiques}%
-
+		
 		\vspace{30pt}%
 		{\Huge\color{title} #3}%
-
+		
 		\vspace{10pt}%
 		{Bacomathiques — \href{https://bacomathiqu.es/cours/#1/#2}{\color{section} https://bacomathiqu.es}}%
-
+		
 		\vspace{20pt}%
 	\end{center}%
 	\begin{toc}
@@ -223,8 +223,8 @@
 \newenvironment{nosummary}{}{}
 \newcommand{\tcolorboxtitle}[2]{\MakeUppercase{#2} \hspace{2pt} \includegraphics[height=5pt, width=5pt]{\imagespath/bubbles/#1}}
 \newcommand{\tcolorboxsubtitle}[2]{\ifstrempty{#2}{}{\textcolor{#1-left}{\large#2}
-
-\medskip}}
+		
+		\medskip}}
 \tcbset{
 	frame hidden,
 	boxrule=0pt,
@@ -269,6 +269,7 @@
 }
 
 \NewEnviron{whitetabularx}[1]{%
+	\renewcommand{\arraystretch}{2.5}
 	\colorbox{white}{%
 		\begin{tabularx}{\textwidth}{#1}%
 			\BODY%

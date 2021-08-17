@@ -1,299 +1,299 @@
 \input{../../common}
 
 \begin{document}
-	  %<*content>
-    \lesson{terminale}{suites}{Chapitre I – Les suites}
-
-    \section{Définitions}
-
-    \subsection{Suites numériques}
-
-    Pour rappel, on appelle \textbf{suite} une fonction (et plus précisément application) de $\mathbb{N}$ dans $\mathbb{R}$ : cette fonction va prendre des éléments de l'ensemble de départ $\mathbb{N}$ et va les amener dans l'ensemble d'arrivée $\mathbb{R}$.
-
-    \begin{formula}[Définition]
-      Il y a plusieurs manières de définir une suite :
-      \begin{itemize}
-        \item \textbf{Par récurrence :} On donne le premier terme de la suite ainsi que le terme au rang $n+1$.
-        \item \textbf{Par son terme général :} On donne le $n$-ième terme de la suite en fonction de $n$.
-      \end{itemize}
-    \end{formula}
-
-    \textbf{Attention !} Bien que ces deux modes de génération soient les principaux, il en existe d'autres : algorithme, motifs géométriques, ...
-
-    \begin{tip}[Exemple]
-      On définit les suites $(u_n)$ et $(v_n)$ ainsi :
-      \begin{itemize}
-        \item $u_n = n$ pour tout $n \in \mathbb{N}$ ($(u_n)$ est définie par son terme général).
-        \item $(v_n) = \begin{cases} v_0 = 0 \\ v_{n+1} = v_n + 1 \text{ pour tout } n \geq 1 \end{cases}$ ($(v_n)$ est définie par récurrence).
-      \end{itemize}
-      On remarque que bien que définies différemment, $(u_n)$ et $(v_n)$ sont égales.
-    \end{tip}
-
-    \subsection{Sens de variation}
-
-    \begin{formula}[Définition]
-      Soit $(u_n)$ une suite.
-      \begin{itemize}
-        \item $(u_n)$ est \textbf{croissante} si on a $u_{n+1} \geq u_n$ (ou $u_{n+1} - u_n \geq 0$) pour tout $n \in \mathbb{N}$.
-        \item $(u_n)$ est \textbf{décroissante} si on a $u_{n+1} \leq u_n$ (ou $u_{n+1} - u_n \leq 0$) pour tout $n \in \mathbb{N}$.
-        \item $(u_n)$ est dite \textbf{constante} s'il existe $c \in \mathbb{R}$ tel que $u_n = c$ pour tout $n \in \mathbb{N}$.
-      \end{itemize}
-    \end{formula}
-
-    Si une suite est croissante ou décroissante et ne change pas de variation, alors elle est dite \textbf{monotone}.
-
-    \subsection{Convergence et divergence}
-
-    \begin{formula}[Convergence]
-      On dit qu'une suite $(u_n)$ \textbf{converge} vers un réel $\ell$ quand $n$ tend vers $+\infty$ si :
-      \newpar
-      Pour tout $\epsilon > 0$, l'intervalle ouvert $]\ell-\epsilon, \ell+\epsilon[$, contient tous les termes de la suite $(u_n)$ à partir d'un certain rang. On note alors : $\lim_{n \rightarrow +\infty} u_n = \ell$.
-    \end{formula}
-
-    \begin{tip}
-      Cette définition est un peu abstraite mais elle signifie simplement que $u_n$ se rapproche autant que l'on veut de $\ell$ pourvu que $n$ soit assez grand.
-    \end{tip}
-
-    \textbf{Attention !} Il est tout à fait possible que la suite $(u_n)$ converge vers un réel $\ell$ mais ne soit jamais égal à $\ell$.
-
-    \begin{formula}[Divergence vers $+\infty$]
-      On dit qu'une suite $(v_n)$ \textbf{diverge} vers $+\infty$ quand $n$ tend vers $+\infty$ si :
-      \newpar
-      Pour tout $A > 0$, il existe un rang $N$ tel que pour tout $n \geq N$, $v_n > A$. On note alors : $\lim_{n \rightarrow +\infty} u_n = +\infty$.
-    \end{formula}
-
-    Il existe une définition similaire pour la divergence vers $-\infty$.
-
-    \begin{tip}[Divergence vers $-\infty$]
-      Dire que $(v_n)$ \textbf{diverge} vers $-\infty$ signifie que :
-      \newpar
-      Pour tout $A > 0$, il existe un rang $N$ tel que pour tout $n \geq N$, $v_n < -A$. On note alors : $\lim_{n \rightarrow +\infty} u_n = -\infty$.
-    \end{tip}
-
-    \begin{tip}
-      À noter que l'on n'étudie les limites des \textbf{suites} que quand $n$ tend vers $+\infty$, et qu'il est possible qu'une suite n'admette pas de limite. On dit alors que cette suite \textbf{diverge}. Par contre, si une suite converge vers une limite, alors cette limite est \textbf{unique}.
-    \end{tip}
-
-    \section{Calcul de limites}
-
-    \subsection{Limites de suites de référence}
-
-    Nous allons donner quelques suites ``classiques'' avec leur limite en $+\infty$ :
-
-    \begin{formula}[Limites de suites usuelles]
-	    \begin{whitetabularx}{|X|X|}
-	      \hline
-	      \textbf{Suite} & \textbf{Limite quand $n$ tend vers $+\infty$} \\
-	      \hline
-	      $(\sqrt{n})$ & $+\infty$ \\
-	      \hline
-	      $(n)$ & $+\infty$ \\
-	      \hline
-	      $(n^k)$, pour $k \in \mathbb{N}^*$ & $+\infty$ \\
-	      \hline
-	      $\left(\frac{1}{\sqrt{n}}\right)$ & $0$ \\
-	      \hline
-	      $\left(\frac{1}{n}\right)$ & $0$ \\
-	      \hline
-	      $\left(\frac{1}{n^k}\right)$, pour $k \in \mathbb{N}^*$ & $0$ \\
-	      \hline
-	    \end{whitetabularx}
-    \end{formula}
-
-    Nous allons désormais donner la limite d'une catégorie de suite très importante en mathématiques : celle des \textbf{suites géométriques}. Ainsi :
-
-    \begin{formula}[Limite de suites géométriques]
-      Soit $(v_n)$ une suite définie pour tout $n \in \mathbb{N}$ par $v_n = q^n$ (où $q$ est un nombre réel). Alors, on peut donner la limite de la suite $(v_n)$ en fonction de $q$ :
-      \newpar
-      \begin{whitetabularx}{|X|l|l|l|l|l|}
-          \hline
-          \multicolumn{5}{|l|}{\textbf{Limite d'une suite géométrique}} \\
-          \hline
-          Si on a... & $-1 < q < 1$ & $1 < q$ & $q \leq -1$ & $q = 1$ \\
-          \hline
-          Alors la suite $(v_n)$ a pour limite... & $0$ & $+\infty$ & Pas de limite & $1$ \\
-          \hline
-      \end{whitetabularx}
-    \end{formula}
-
-    \begin{tip}
-      Le réel $q$ est la \textbf{raison} de la suite : si $q > 1$, $(v_n)$ est strictement croissante, si $0 < q < 1$, $(v_n)$ est strictement décroissante et si $q = 1$ ou $0$, $(v_n)$ est constante.
-    \end{tip}
-
-    \subsection{Opérations sur les limites}
-
-    Dans tout ce qui suit, $(u_n)$ et $(v_n)$ sont deux suites. Ces tableaux sont à connaître et sont requis pour pouvoir travailler sur les limites.
-
-    \begin{formula}[Limite d'une somme]
-      \begin{whitetabularx}{|X|l|l|l|l|l|l|}
-          \hline
-          \multicolumn{7}{|l|}{\textbf{Limite d'une somme}} \\
-          \hline
-          Si la limite de $(u_n)$ quand $n$ tend vers $+\infty$ est... & $\ell$ & $\ell$ & $\ell$ & $+\infty$ & $-\infty$ & $+\infty$ \\
-          \hline
-          Et la limite de $(v_n)$ quand $n$ tend vers $+\infty$ est... & $\ell'$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & $-\infty$ \\
-          \hline
-          Alors la limite de $(u_n + v_n)$ quand $n$ tend vers $+\infty$ est... & $\ell + \ell'$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & \textbf{?} \\
-          \hline
-        \end{whitetabularx}
-    \end{formula}
-
-    \begin{formula}[Limite d'un produit]
-      \begin{whitetabularx}{|X|l|l|l|l|l|l|l|l|l|}
-          \hline
-          \multicolumn{10}{|l|}{\textbf{Limite d'un produit}} \\
-          \hline
-          Si la limite de $(u_n)$ quand $n$ tend vers $+\infty$ est... & $\ell$ & $\ell > 0$ & $\ell > 0$ & $\ell < 0$ & $\ell < 0$ & $+\infty$ & $+\infty$ & $-\infty$ & $0$ \\
-          \hline
-          Et la limite de $(v_n)$ quand $n$ tend vers $+\infty$ est... & $\ell'$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & $-\infty$ & $\pm \infty$ \\
-          \hline
-          Alors la limite de $(u_n \times v_n)$ quand $n$ tend vers $+\infty$ est... & $\ell \times \ell'$ & $+\infty$ & $-\infty$ & $-\infty$ & $+\infty$ & $+\infty$ & $-\infty$ & $+\infty$ & \textbf{?} \\
-          \hline
-        \end{whitetabularx}
-    \end{formula}
-
-    \begin{formula}[Limite d'un quotient]
-      \begin{whitetabularx}{|X|l|l|l|l|l|l|l|l|l|}
-          \hline
-          \multicolumn{10}{|l|}{\textbf{Limite d'un quotient}} \\
-          \hline
-          Si la limite de $(u_n)$ quand $n$ tend vers $+\infty$ est... & $\ell$ & $\ell$ & $+\infty$ & $+\infty$ & $-\infty$ & $-\infty$ & $\pm \infty$ & $\ell$ & $0$ \\
-          \hline
-          Et la limite de $(v_n)$ quand $n$ tend vers $+\infty$ est... & $\ell' \neq 0$ & $\pm \infty$ & $\ell' > 0$ & $\ell' < 0$ & $\ell' > 0$ & $\ell' < 0$ & $\pm \infty$ & $0^+_-$ & $0$ \\
-          \hline
-          Alors la limite de $\left(\frac{u_n}{v_n}\right)$ quand $n$ tend vers $+\infty$ est... & $\displaystyle{\frac{\ell}{\ell'}}$ & $0$ & $+\infty$ & $-\infty$ & $-\infty$ & $+\infty$ & \textbf{?} & $\pm \infty$ & \textbf{?} \\
-          \hline
-      \end{whitetabularx}
-    \end{formula}
-
-    \begin{tip}[Formes indéterminées]
-      À noter qu'il n'existe que 4 formes indéterminées : ``$+\infty - \infty$'', ``$0 \times \pm \infty$'', ``$\frac{\pm \infty}{\pm \infty}$'' et ``$\frac{0}{0}$''.
-    \end{tip}
-
-    \subsection{Majoration, minoration et bornes}
-
-    \begin{formula}[Définition]
-      Soient une suite $(u_n)$ et deux réels $m$ et $M$ :
-      \begin{itemize}
-        \item On dit que $m$ est un \textbf{minorant} de $(u_n)$ si pour tout $n$ : $u_n > m$.
-        \item On dit que $M$ est un \textbf{majorant} de $(u_n)$ si pour tout $n$ : $u_n < M$.
-        \item On dit que $(u_n)$ est \textbf{bornée} si elle est à la fois majorée et minorée.
-      \end{itemize}
-    \end{formula}
-
-    \begin{formula}[Théorème]
-      \begin{itemize}
-        \item Si $(u_n)$ est croissante et est majorée, alors elle est convergente. Si elle n'est pas majorée, $(u_n)$ diverge vers $+\infty$.
-        \item Si $(u_n)$ est décroissante et est minorée, alors elle est convergente. Si elle n'est pas minorée, $(u_n)$ diverge vers $-\infty$.
-      \end{itemize}
-    \end{formula}
-
-    \begin{demonstration}
-      Il faut savoir montrer que toute suite croissante et non majorée diverge vers $+\infty$. C'est ce que nous allons faire ici. Soit donc $(u_n)$ une telle suite. Soit $A > 0$, on cherche un rang $N$ tel que pour tout $n \geq N$, $u_n > A$.
-      \newpar
-      Or, comme $(u_n)$ est non majorée, il existe $N$ tel que $u_N > A$. De plus, comme $(u_n)$ est croissante, alors $A < u_N \leq u_{N+1} \leq u_{N+2} \leq \dots$
-      \newpar
-      Donc on a bien trouvé notre rang $N$ vérifiant la définition de la divergence vers $+\infty$.
-    \end{demonstration}
-
-    \begin{tip}
-      Toute suite convergente est également bornée.
-    \end{tip}
-
-    \subsection{Comparaisons et encadrements}
-
-    \begin{formula}[Théorèmes de comparaison]
-      Soient deux suites $(u_n)$ et $(v_n)$ telles que $u_n < v_n$ à partir d'un certain rang $N$. On a :
-      \begin{itemize}
-        \item Si $\lim\limits_{n \rightarrow +\infty} u_n = +\infty$, alors $\lim\limits_{n \rightarrow +\infty} v_n = +\infty$.
-        \item Si $\lim\limits_{n \rightarrow +\infty} v_n = -\infty$, alors $\lim\limits_{n \rightarrow +\infty} u_n = -\infty$.
-        \item Si $\lim\limits_{n \rightarrow +\infty} u_n = \ell$ et $\lim\limits_{n \rightarrow +\infty} v_n = \ell'$ alors $\ell < \ell'$.
-      \end{itemize}
-    \end{formula}
-
-    \begin{demonstration}
-      Il peut être utile de savoir démontrer le premier point dans le cas $N = 0$ (les autres points se démontrent de manière semblable). Supposons $\lim\limits_{n \rightarrow +\infty} u_n = +\infty$. Soit $A > 0$, on cherche un rang $p$ tel que pour tout $n \geq p$, $v_n > A$.
-      \newpar
-      Comme $u_n$ diverge vers $+\infty$, il existe un rang $q$ tel que pour tout $n \geq q$, $u_n > A$. Donc on a : $A < u_q < v_q$, mais aussi $A < u_{q+1} < v_{q+1}$, etc.
-      \newpar
-      Donc il suffit de poser $p = q$ et on a bien notre rang vérifiant la définition de la divergence vers $+\infty$.
-    \end{demonstration}
-
-    \begin{formula}[Théorème des gendarmes]
-      Soient trois suites $(u_n)$, $(v_n)$ et $(w_n)$. On suppose que $u_n < v_n < w_n$ à partir d'un certain rang et que $(u_n)$ et $(w_n)$ convergent vers le réel $\ell$.
-      \newpar
-      Alors $\lim\limits_{n \rightarrow +\infty} v_n = \ell$.
-    \end{formula}
-
-    \section{Raisonnement par récurrence}
-
-    Si on souhaite montrer qu'une propriété est vraie pour tout $n \in \mathbb{N}$ à partir d'un certain rang $p$, il est possible d'utiliser un type de raisonnement appelé \textbf{raisonnement par récurrence}.
-
-    \begin{formula}[Raisonnement par récurrence]
-      \textbf{Initialisation :} On teste la propriété au rang $p$. Si elle est vérifiée, on passe à l'étape suivante.
-      \newpar
-      \textbf{Hérédité :} On suppose la propriété vraie à un rang $n \geq p$. Puis on montre qu'elle reste vraie au rang $n+1$.
-      \newpar
-      \textbf{Conclusion :} On explique que l'on vient de démontrer la propriété au rang $n+1$ et que comme celle-ci est initialisée et héréditaire, alors elle est vraie à partir du rang $p$.
-    \end{formula}
-
-    \begin{tip}[Exemple]
-      Soit une suite $(u_n)$ définie par $(u_n) = \begin{cases} u_0 = 4\\ u_{n+1} = \frac{4u_n + 17}{u_n + 4}\end{cases}$. On souhaite montrer que pour tout $n \in \mathbb{N}$, on a $4 \leq u_n \leq 5$.
-      \newpar
-      On note $\mathcal{P}_n$ la propriété définie pour tout $n \in \mathbb{N}$ par $\mathcal{P}_n$ : $4 \leq u_n \leq 5$.
-      \newpar
-      On constate que $u_{n+1} = \frac{4u_n + 17}{u_n + 4} = \frac{4(u_n + 4) + 1}{u_n + 4} = 4 + \frac{1}{u_n + 4}$.
-      \newpar
-      \textbf{Initialisation :} On teste la propriété au rang $0$ :
-      \newpar
-      $\mathcal{P}_0$ : $4 \leq u_0 \leq 5 \iff 4 \leq 4 \leq 5$. C'est vrai : la propriété est vraie au rang $0$.
-      \newpar
-      \textbf{Hérédité :} Supposons la propriété vraie à un rang $n \in \mathbb{N}$ et vérifions qu'elle est vraie au rang $n+1$.
-      \newpar
-      D'après $\mathcal{P}_n$ : $4 \leq u_n \leq 5$. Donc on a :
-      \newpar
-      $\iff 4 \leq u_n \leq 5$
-      \newpar
-      $\iff 4 + 4 \leq u_n + 4 \leq 5 + 4$
-      \newpar
-      $\iff \frac{1}{9} \leq \frac{1}{u_n + 4} \leq \frac{1}{8}$ (la fonction inverse est décroissante sur $\mathbb{R}^+$ donc on change de sens l'inégalité)
-      \newpar
-      $\iff 4 + \frac{1}{9} \leq 4 + \frac{1}{u_n + 4} \leq 4 + \frac{1}{8}$
-      \newpar
-      Or $4 + \frac{1}{9} \approx 4.111 > 4$ et $4 + \frac{1}{8} = 4.125 < 5$. On a donc bien :
-      \newpar
-      $4 \leq u_{n+1} \leq 5$
-      \newpar
-      \textbf{Conclusion :} La propriété est initialisée au rang $0$ et est héréditaire. Ainsi, $\mathcal{P}_n$ est vraie pour tout $n \in \mathbb{N}$.
-    \end{tip}
-
-	  \begin{nosummary}
-      Le raisonnement par récurrence est très utilisé en mathématiques et ne se limite pas qu'à l'étude des suites. On peut par exemple l'utiliser pour montrer l'\textbf{inégalité de Bernoulli}.
-
-      \begin{formula}[Inégalité de Bernoulli]
-        $(1 + x)^n > 1 + nx$ pour tout $n \geq 2$ et tout $x \in [-1, 0[ \, \cup \, ]0, +\infty[$.
-      \end{formula}
-
-      \begin{demonstration}[Inégalité de Bernoulli]
-        Soit $x \in [-1, 0[ \, \cup \, ]0, +\infty[$. On note $\mathcal{P}_n$ la propriété définie pour tout $n \geq 2$ par $\mathcal{P}_n$ : $(1+x)^n > 1+nx$. Montrons $\mathcal{P}_n$ par récurrence.
-        \newpar
-        \textbf{Initialisation :} On teste la propriété au rang $2$ :
-        \newpar
-        $\mathcal{P}_2$: $(1+x)^2 = 1 + 2x + x^2 > 1 + 2x$ (car $x^2 > 0$).
-        \newpar
-        La propriété est vraie au rang $2$.
-        \newpar
-        \textbf{Hérédité :} Supposons la propriété vraie à un rang $n \geq 2$ et vérifions qu'elle est vraie au rang $n+1$.
-        \newpar
-        En multipliant les deux membres de l'inégalité de l'hypothèse de récurrence par $1+x \geq 0$ (qui ne change donc pas le sens de l'inégalité), on obtient :
-        \newpar
-        $(1+x)^n (1+x) \geq (1+nx)(1+x)$
-        \newline $\iff (1+x)^{n+1} \geq 1 + (n+1)x + nx^2 > 1 + (n+1)x$
-        \newpar
-        \textbf{Conclusion :}
-        \newpar
-        La propriété est initialisée au rang $2$ et est héréditaire. Ainsi, $\mathcal{P}_n$ est vraie pour tout $n \geq 2$.
-      \end{demonstration}
-    \end{nosummary}
-    %</content>
+	%<*content>
+	\lesson{terminale}{suites}{Chapitre I – Les suites}
+	
+	\section{Définitions}
+	
+	\subsection{Suites numériques}
+	
+	Pour rappel, on appelle \textbf{suite} une fonction (et plus précisément application) de $\mathbb{N}$ dans $\mathbb{R}$ : cette fonction va prendre des éléments de l'ensemble de départ $\mathbb{N}$ et va les amener dans l'ensemble d'arrivée $\mathbb{R}$.
+	
+	\begin{formula}[Définition]
+		Il y a plusieurs manières de définir une suite :
+		\begin{itemize}
+			\item \textbf{Par récurrence :} On donne le premier terme de la suite ainsi que le terme au rang $n+1$.
+			\item \textbf{Par son terme général :} On donne le $n$-ième terme de la suite en fonction de $n$.
+		\end{itemize}
+	\end{formula}
+	
+	\textbf{Attention !} Bien que ces deux modes de génération soient les principaux, il en existe d'autres : algorithme, motifs géométriques, ...
+	
+	\begin{tip}[Exemple]
+		On définit les suites $(u_n)$ et $(v_n)$ ainsi :
+		\begin{itemize}
+			\item $u_n = n$ pour tout $n \in \mathbb{N}$ ($(u_n)$ est définie par son terme général).
+			\item $(v_n) = \begin{cases} v_0 = 0 \\ v_{n+1} = v_n + 1 \text{ pour tout } n \geq 1 \end{cases}$ ($(v_n)$ est définie par récurrence).
+		\end{itemize}
+		On remarque que bien que définies différemment, $(u_n)$ et $(v_n)$ sont égales.
+	\end{tip}
+	
+	\subsection{Sens de variation}
+	
+	\begin{formula}[Définition]
+		Soit $(u_n)$ une suite.
+		\begin{itemize}
+			\item $(u_n)$ est \textbf{croissante} si on a $u_{n+1} \geq u_n$ (ou $u_{n+1} - u_n \geq 0$) pour tout $n \in \mathbb{N}$.
+			\item $(u_n)$ est \textbf{décroissante} si on a $u_{n+1} \leq u_n$ (ou $u_{n+1} - u_n \leq 0$) pour tout $n \in \mathbb{N}$.
+			\item $(u_n)$ est dite \textbf{constante} s'il existe $c \in \mathbb{R}$ tel que $u_n = c$ pour tout $n \in \mathbb{N}$.
+		\end{itemize}
+	\end{formula}
+	
+	Si une suite est croissante ou décroissante et ne change pas de variation, alors elle est dite \textbf{monotone}.
+	
+	\subsection{Convergence et divergence}
+	
+	\begin{formula}[Convergence]
+		On dit qu'une suite $(u_n)$ \textbf{converge} vers un réel $\ell$ quand $n$ tend vers $+\infty$ si :
+		\newpar
+		Pour tout $\epsilon > 0$, l'intervalle ouvert $]\ell-\epsilon, \ell+\epsilon[$, contient tous les termes de la suite $(u_n)$ à partir d'un certain rang. On note alors : $\lim_{n \rightarrow +\infty} u_n = \ell$.
+	\end{formula}
+	
+	\begin{tip}
+		Cette définition est un peu abstraite mais elle signifie simplement que $u_n$ se rapproche autant que l'on veut de $\ell$ pourvu que $n$ soit assez grand.
+	\end{tip}
+	
+	\textbf{Attention !} Il est tout à fait possible que la suite $(u_n)$ converge vers un réel $\ell$ mais ne soit jamais égal à $\ell$.
+	
+	\begin{formula}[Divergence vers $+\infty$]
+		On dit qu'une suite $(v_n)$ \textbf{diverge} vers $+\infty$ quand $n$ tend vers $+\infty$ si :
+		\newpar
+		Pour tout $A > 0$, il existe un rang $N$ tel que pour tout $n \geq N$, $v_n > A$. On note alors : $\lim_{n \rightarrow +\infty} u_n = +\infty$.
+	\end{formula}
+	
+	Il existe une définition similaire pour la divergence vers $-\infty$.
+	
+	\begin{tip}[Divergence vers $-\infty$]
+		Dire que $(v_n)$ \textbf{diverge} vers $-\infty$ signifie que :
+		\newpar
+		Pour tout $A > 0$, il existe un rang $N$ tel que pour tout $n \geq N$, $v_n < -A$. On note alors : $\lim_{n \rightarrow +\infty} u_n = -\infty$.
+	\end{tip}
+	
+	\begin{tip}
+		À noter que l'on n'étudie les limites des \textbf{suites} que quand $n$ tend vers $+\infty$, et qu'il est possible qu'une suite n'admette pas de limite. On dit alors que cette suite \textbf{diverge}. Par contre, si une suite converge vers une limite, alors cette limite est \textbf{unique}.
+	\end{tip}
+	
+	\section{Calcul de limites}
+	
+	\subsection{Limites de suites de référence}
+	
+	Nous allons donner quelques suites ``classiques'' avec leur limite en $+\infty$ :
+	
+	\begin{formula}[Limites de suites usuelles]
+		\begin{whitetabularx}{|X|X|}
+			\hline
+			\textbf{Suite} & \textbf{Limite quand $n$ tend vers $+\infty$} \\
+			\hline
+			$(\sqrt{n})$ & $+\infty$ \\
+			\hline
+			$(n)$ & $+\infty$ \\
+			\hline
+			$(n^k)$, pour $k \in \mathbb{N}^*$ & $+\infty$ \\
+			\hline
+			$\left(\frac{1}{\sqrt{n}}\right)$ & $0$ \\
+			\hline
+			$\left(\frac{1}{n}\right)$ & $0$ \\
+			\hline
+			$\left(\frac{1}{n^k}\right)$, pour $k \in \mathbb{N}^*$ & $0$ \\
+			\hline
+		\end{whitetabularx}
+	\end{formula}
+	
+	Nous allons désormais donner la limite d'une catégorie de suite très importante en mathématiques : celle des \textbf{suites géométriques}. Ainsi :
+	
+	\begin{formula}[Limite de suites géométriques]
+		Soit $(v_n)$ une suite définie pour tout $n \in \mathbb{N}$ par $v_n = q^n$ (où $q$ est un nombre réel). Alors, on peut donner la limite de la suite $(v_n)$ en fonction de $q$ :
+		\newpar
+		\begin{whitetabularx}{|X|l|l|l|l|l|}
+			\hline
+			\multicolumn{5}{|l|}{\textbf{Limite d'une suite géométrique}} \\
+			\hline
+			Si on a... & $-1 < q < 1$ & $1 < q$ & $q \leq -1$ & $q = 1$ \\
+			\hline
+			Alors la suite $(v_n)$ a pour limite... & $0$ & $+\infty$ & Pas de limite & $1$ \\
+			\hline
+		\end{whitetabularx}
+	\end{formula}
+	
+	\begin{tip}
+		Le réel $q$ est la \textbf{raison} de la suite : si $q > 1$, $(v_n)$ est strictement croissante, si $0 < q < 1$, $(v_n)$ est strictement décroissante et si $q = 1$ ou $0$, $(v_n)$ est constante.
+	\end{tip}
+	
+	\subsection{Opérations sur les limites}
+	
+	Dans tout ce qui suit, $(u_n)$ et $(v_n)$ sont deux suites. Ces tableaux sont à connaître et sont requis pour pouvoir travailler sur les limites.
+	
+	\begin{formula}[Limite d'une somme]
+		\begin{whitetabularx}{|X|l|l|l|l|l|l|}
+			\hline
+			\multicolumn{7}{|l|}{\textbf{Limite d'une somme}} \\
+			\hline
+			Si la limite de $(u_n)$ quand $n$ tend vers $+\infty$ est... & $\ell$ & $\ell$ & $\ell$ & $+\infty$ & $-\infty$ & $+\infty$ \\
+			\hline
+			Et la limite de $(v_n)$ quand $n$ tend vers $+\infty$ est... & $\ell'$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & $-\infty$ \\
+			\hline
+			Alors la limite de $(u_n + v_n)$ quand $n$ tend vers $+\infty$ est... & $\ell + \ell'$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & \textbf{?} \\
+			\hline
+		\end{whitetabularx}
+	\end{formula}
+	
+	\begin{formula}[Limite d'un produit]
+		\begin{whitetabularx}{|X|l|l|l|l|l|l|l|l|l|}
+			\hline
+			\multicolumn{10}{|l|}{\textbf{Limite d'un produit}} \\
+			\hline
+			Si la limite de $(u_n)$ quand $n$ tend vers $+\infty$ est... & $\ell$ & $\ell > 0$ & $\ell > 0$ & $\ell < 0$ & $\ell < 0$ & $+\infty$ & $+\infty$ & $-\infty$ & $0$ \\
+			\hline
+			Et la limite de $(v_n)$ quand $n$ tend vers $+\infty$ est... & $\ell'$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & $-\infty$ & $\pm \infty$ \\
+			\hline
+			Alors la limite de $(u_n \times v_n)$ quand $n$ tend vers $+\infty$ est... & $\ell \times \ell'$ & $+\infty$ & $-\infty$ & $-\infty$ & $+\infty$ & $+\infty$ & $-\infty$ & $+\infty$ & \textbf{?} \\
+			\hline
+		\end{whitetabularx}
+	\end{formula}
+	
+	\begin{formula}[Limite d'un quotient]
+		\begin{whitetabularx}{|X|l|l|l|l|l|l|l|l|l|}
+			\hline
+			\multicolumn{10}{|l|}{\textbf{Limite d'un quotient}} \\
+			\hline
+			Si la limite de $(u_n)$ quand $n$ tend vers $+\infty$ est... & $\ell$ & $\ell$ & $+\infty$ & $+\infty$ & $-\infty$ & $-\infty$ & $\pm \infty$ & $\ell$ & $0$ \\
+			\hline
+			Et la limite de $(v_n)$ quand $n$ tend vers $+\infty$ est... & $\ell' \neq 0$ & $\pm \infty$ & $\ell' > 0$ & $\ell' < 0$ & $\ell' > 0$ & $\ell' < 0$ & $\pm \infty$ & $0^+_-$ & $0$ \\
+			\hline
+			Alors la limite de $\left(\frac{u_n}{v_n}\right)$ quand $n$ tend vers $+\infty$ est... & $\displaystyle{\frac{\ell}{\ell'}}$ & $0$ & $+\infty$ & $-\infty$ & $-\infty$ & $+\infty$ & \textbf{?} & $\pm \infty$ & \textbf{?} \\
+			\hline
+		\end{whitetabularx}
+	\end{formula}
+	
+	\begin{tip}[Formes indéterminées]
+		À noter qu'il n'existe que 4 formes indéterminées : ``$+\infty - \infty$'', ``$0 \times \pm \infty$'', ``$\frac{\pm \infty}{\pm \infty}$'' et ``$\frac{0}{0}$''.
+	\end{tip}
+	
+	\subsection{Majoration, minoration et bornes}
+	
+	\begin{formula}[Définition]
+		Soient une suite $(u_n)$ et deux réels $m$ et $M$ :
+		\begin{itemize}
+			\item On dit que $m$ est un \textbf{minorant} de $(u_n)$ si pour tout $n$ : $u_n > m$.
+			\item On dit que $M$ est un \textbf{majorant} de $(u_n)$ si pour tout $n$ : $u_n < M$.
+			\item On dit que $(u_n)$ est \textbf{bornée} si elle est à la fois majorée et minorée.
+		\end{itemize}
+	\end{formula}
+	
+	\begin{formula}[Théorème]
+		\begin{itemize}
+			\item Si $(u_n)$ est croissante et est majorée, alors elle est convergente. Si elle n'est pas majorée, $(u_n)$ diverge vers $+\infty$.
+			\item Si $(u_n)$ est décroissante et est minorée, alors elle est convergente. Si elle n'est pas minorée, $(u_n)$ diverge vers $-\infty$.
+		\end{itemize}
+	\end{formula}
+	
+	\begin{demonstration}
+		Il faut savoir montrer que toute suite croissante et non majorée diverge vers $+\infty$. C'est ce que nous allons faire ici. Soit donc $(u_n)$ une telle suite. Soit $A > 0$, on cherche un rang $N$ tel que pour tout $n \geq N$, $u_n > A$.
+		\newpar
+		Or, comme $(u_n)$ est non majorée, il existe $N$ tel que $u_N > A$. De plus, comme $(u_n)$ est croissante, alors $A < u_N \leq u_{N+1} \leq u_{N+2} \leq \dots$
+		\newpar
+		Donc on a bien trouvé notre rang $N$ vérifiant la définition de la divergence vers $+\infty$.
+	\end{demonstration}
+	
+	\begin{tip}
+		Toute suite convergente est également bornée.
+	\end{tip}
+	
+	\subsection{Comparaisons et encadrements}
+	
+	\begin{formula}[Théorèmes de comparaison]
+		Soient deux suites $(u_n)$ et $(v_n)$ telles que $u_n < v_n$ à partir d'un certain rang $N$. On a :
+		\begin{itemize}
+			\item Si $\lim\limits_{n \rightarrow +\infty} u_n = +\infty$, alors $\lim\limits_{n \rightarrow +\infty} v_n = +\infty$.
+			\item Si $\lim\limits_{n \rightarrow +\infty} v_n = -\infty$, alors $\lim\limits_{n \rightarrow +\infty} u_n = -\infty$.
+			\item Si $\lim\limits_{n \rightarrow +\infty} u_n = \ell$ et $\lim\limits_{n \rightarrow +\infty} v_n = \ell'$ alors $\ell < \ell'$.
+		\end{itemize}
+	\end{formula}
+	
+	\begin{demonstration}
+		Il peut être utile de savoir démontrer le premier point dans le cas $N = 0$ (les autres points se démontrent de manière semblable). Supposons $\lim\limits_{n \rightarrow +\infty} u_n = +\infty$. Soit $A > 0$, on cherche un rang $p$ tel que pour tout $n \geq p$, $v_n > A$.
+		\newpar
+		Comme $u_n$ diverge vers $+\infty$, il existe un rang $q$ tel que pour tout $n \geq q$, $u_n > A$. Donc on a : $A < u_q < v_q$, mais aussi $A < u_{q+1} < v_{q+1}$, etc.
+		\newpar
+		Donc il suffit de poser $p = q$ et on a bien notre rang vérifiant la définition de la divergence vers $+\infty$.
+	\end{demonstration}
+	
+	\begin{formula}[Théorème des gendarmes]
+		Soient trois suites $(u_n)$, $(v_n)$ et $(w_n)$. On suppose que $u_n < v_n < w_n$ à partir d'un certain rang et que $(u_n)$ et $(w_n)$ convergent vers le réel $\ell$.
+		\newpar
+		Alors $\lim\limits_{n \rightarrow +\infty} v_n = \ell$.
+	\end{formula}
+	
+	\section{Raisonnement par récurrence}
+	
+	Si on souhaite montrer qu'une propriété est vraie pour tout $n \in \mathbb{N}$ à partir d'un certain rang $p$, il est possible d'utiliser un type de raisonnement appelé \textbf{raisonnement par récurrence}.
+	
+	\begin{formula}[Raisonnement par récurrence]
+		\textbf{Initialisation :} On teste la propriété au rang $p$. Si elle est vérifiée, on passe à l'étape suivante.
+		\newpar
+		\textbf{Hérédité :} On suppose la propriété vraie à un rang $n \geq p$. Puis on montre qu'elle reste vraie au rang $n+1$.
+		\newpar
+		\textbf{Conclusion :} On explique que l'on vient de démontrer la propriété au rang $n+1$ et que comme celle-ci est initialisée et héréditaire, alors elle est vraie à partir du rang $p$.
+	\end{formula}
+	
+	\begin{tip}[Exemple]
+		Soit une suite $(u_n)$ définie par $(u_n) = \begin{cases} u_0 = 4\\ u_{n+1} = \frac{4u_n + 17}{u_n + 4}\end{cases}$. On souhaite montrer que pour tout $n \in \mathbb{N}$, on a $4 \leq u_n \leq 5$.
+		\newpar
+		On note $\mathcal{P}_n$ la propriété définie pour tout $n \in \mathbb{N}$ par $\mathcal{P}_n$ : $4 \leq u_n \leq 5$.
+		\newpar
+		On constate que $u_{n+1} = \frac{4u_n + 17}{u_n + 4} = \frac{4(u_n + 4) + 1}{u_n + 4} = 4 + \frac{1}{u_n + 4}$.
+		\newpar
+		\textbf{Initialisation :} On teste la propriété au rang $0$ :
+		\newpar
+		$\mathcal{P}_0$ : $4 \leq u_0 \leq 5 \iff 4 \leq 4 \leq 5$. C'est vrai : la propriété est vraie au rang $0$.
+		\newpar
+		\textbf{Hérédité :} Supposons la propriété vraie à un rang $n \in \mathbb{N}$ et vérifions qu'elle est vraie au rang $n+1$.
+		\newpar
+		D'après $\mathcal{P}_n$ : $4 \leq u_n \leq 5$. Donc on a :
+		\newpar
+		$\iff 4 \leq u_n \leq 5$
+		\newpar
+		$\iff 4 + 4 \leq u_n + 4 \leq 5 + 4$
+		\newpar
+		$\iff \frac{1}{9} \leq \frac{1}{u_n + 4} \leq \frac{1}{8}$ (la fonction inverse est décroissante sur $\mathbb{R}^+$ donc on change de sens l'inégalité)
+		\newpar
+		$\iff 4 + \frac{1}{9} \leq 4 + \frac{1}{u_n + 4} \leq 4 + \frac{1}{8}$
+		\newpar
+		Or $4 + \frac{1}{9} \approx 4.111 > 4$ et $4 + \frac{1}{8} = 4.125 < 5$. On a donc bien :
+		\newpar
+		$4 \leq u_{n+1} \leq 5$
+		\newpar
+		\textbf{Conclusion :} La propriété est initialisée au rang $0$ et est héréditaire. Ainsi, $\mathcal{P}_n$ est vraie pour tout $n \in \mathbb{N}$.
+	\end{tip}
+	
+	\begin{nosummary}
+		Le raisonnement par récurrence est très utilisé en mathématiques et ne se limite pas qu'à l'étude des suites. On peut par exemple l'utiliser pour montrer l'\textbf{inégalité de Bernoulli}.
+		
+		\begin{formula}[Inégalité de Bernoulli]
+			$(1 + x)^n > 1 + nx$ pour tout $n \geq 2$ et tout $x \in [-1, 0[ \, \cup \, ]0, +\infty[$.
+		\end{formula}
+		
+		\begin{demonstration}[Inégalité de Bernoulli]
+			Soit $x \in [-1, 0[ \, \cup \, ]0, +\infty[$. On note $\mathcal{P}_n$ la propriété définie pour tout $n \geq 2$ par $\mathcal{P}_n$ : $(1+x)^n > 1+nx$. Montrons $\mathcal{P}_n$ par récurrence.
+			\newpar
+			\textbf{Initialisation :} On teste la propriété au rang $2$ :
+			\newpar
+			$\mathcal{P}_2$: $(1+x)^2 = 1 + 2x + x^2 > 1 + 2x$ (car $x^2 > 0$).
+			\newpar
+			La propriété est vraie au rang $2$.
+			\newpar
+			\textbf{Hérédité :} Supposons la propriété vraie à un rang $n \geq 2$ et vérifions qu'elle est vraie au rang $n+1$.
+			\newpar
+			En multipliant les deux membres de l'inégalité de l'hypothèse de récurrence par $1+x \geq 0$ (qui ne change donc pas le sens de l'inégalité), on obtient :
+			\newpar
+			$(1+x)^n (1+x) \geq (1+nx)(1+x)$
+			\newline $\iff (1+x)^{n+1} \geq 1 + (n+1)x + nx^2 > 1 + (n+1)x$
+			\newpar
+			\textbf{Conclusion :}
+			\newpar
+			La propriété est initialisée au rang $2$ et est héréditaire. Ainsi, $\mathcal{P}_n$ est vraie pour tout $n \geq 2$.
+		\end{demonstration}
+	\end{nosummary}
+	%</content>
 \end{document}

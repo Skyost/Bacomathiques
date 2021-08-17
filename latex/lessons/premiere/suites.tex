@@ -3,13 +3,13 @@
 \begin{document}
 	%<*content>
 	\lesson{premiere}{suites}{Chapitre I – Les suites}
-
+	
 	\section{Généralités}
-
+	
 	\subsection{Définition}
-
+	
 	On appelle \textbf{suite} une fonction de $\mathbb{N}$ dans $\mathbb{R}$ : cette fonction va prendre des éléments de l'ensemble de départ $\mathbb{N}$ et va les amener dans l'ensemble d'arrivée $\mathbb{R}$.
-
+	
 	\begin{formula}[Définition]
 		Il y a plusieurs manières de définir une suite :
 		\begin{itemize}
@@ -17,9 +17,9 @@
 			\item \textbf{Par son terme général :} On donne le $n$-ième terme de la suite en fonction de $n$.
 		\end{itemize}
 	\end{formula}
-
+	
 	\textbf{Attention !} Bien que ces deux modes de génération soient les principaux, il en existe d'autres : algorithme, motifs géométriques, ...
-
+	
 	\begin{tip}[Exemple]
 		On définit les suites $(u_n)$ et $(v_n)$ ainsi :
 		\begin{itemize}
@@ -28,7 +28,7 @@
 		\end{itemize}
 		On remarque que bien que définies différemment, $(u_n)$ et $(v_n)$ sont égales.
 	\end{tip}
-
+	
 	\begin{tip}
 		À ne pas confondre :
 		\begin{itemize}
@@ -37,19 +37,19 @@
 		\end{itemize}
 		Ce ne sont pas les mêmes objets : le premier est une suite, le second est un réel.
 	\end{tip}
-
+	
 	\subsection{Suites arithmétiques}
-
+	
 	\begin{formula}[Définition]
 		Une suite $(u_n)$ est dite \textbf{arithmétique} si elle est de la forme $u_{n+1} = u_n + r$ avec $r \in \mathbb{R}$.
 	\end{formula}
-
+	
 	\begin{formula}[Raison]
 		Le réel $r$ est la \textbf{raison} de la suite (si $r > 0$, $(u_n)$ est strictement croissante, si $r < 0$, $(u_n)$ est strictement décroissante et si $r = 0$, $(u_n)$ est constante).
 	\end{formula}
-
+	
 	Il est possible de trouver le terme général d'une suite arithmétique :
-
+	
 	\begin{formula}[Terme général]
 		On note $p$ le rang initial de la suite (celui à partir duquel la suite est définie) :
 		\newpar
@@ -59,7 +59,7 @@
 		\newpar
 		$u_n = u_0 + (n-0) \times r = u_0 + n \times r$
 	\end{formula}
-
+	
 	\begin{demonstration}[Terme général]
 		On a $u_{p+1} = u_p + r$. Puis, $u_{p+2} = u_{p+1} + r = u_p + r + r = u_p + 2 \times r$. De même, $u_{p+3} = u_{p+2} + r = u_p + 3 \times r$  et caetera.
 		\newline
@@ -67,17 +67,17 @@
 		\newline
 		Donc si on pose $n = p+k$, alors $u_n = u_p + (n-p) \times r$.
 	\end{demonstration}
-
+	
 	\begin{formula}[Somme des termes]
 		$\displaystyle{1 + 2 + \dots + n = \frac{n(n + 1)}{2}}$ pour tout $n \in \mathbb{N}$.
 	\end{formula}
-
+	
 	\begin{demonstration}[Somme des termes]
 		On pose pour tout $n \in \mathbb{N}$, $S_n = 1 + 2 + \dots + n$. On a également $S_n = n + (n-1) + \dots + 1$ (en écrivant la somme à l'envers).
 		\newline
 		D'où $S_n + S_n = 2S_n = \underbrace{(n + 1) + (n + 1) + \dots + (n + 1)}_{n \text{ fois}} = n \times (n + 1)$. Et ainsi $\displaystyle{S_n = \frac{n(n + 1)}{2}}$.
 	\end{demonstration}
-
+	
 	\begin{tip}[Exemple]
 		On souhaite calculer $S = 24 + 25 + \dots + 104$.
 		\newpar
@@ -88,19 +88,19 @@
 		\end{itemize}
 		D'où $S = 5460 - 276 = 5184$.
 	\end{tip}
-
+	
 	\subsection{Suites géométriques}
-
+	
 	\begin{formula}[Définition]
 		Une suite $(v_n)$ est dite \textbf{géométrique} si elle est de la forme $v_{n+1} = v_n \times q$ avec $q \in \mathbb{R}$.
 	\end{formula}
-
+	
 	\begin{formula}[Raison]
 		Le réel $q$ est la \textbf{raison} de la suite (si $q > 1$, $(v_n)$ est strictement croissante, si $0 < q < 1$, $(v_n)$ est strictement décroissante et si $q = 1$ ou $0$, $(v_n)$ est constante).
 	\end{formula}
-
+	
 	Il est possible de trouver le terme général d'une suite géométrique :
-
+	
 	\begin{formula}[Terme général]
 		On note $p$ le rang initial de la suite (celui à partir duquel la suite est définie) :
 		\newpar
@@ -110,7 +110,7 @@
 		\newpar
 		$v_n = v_0 \times q^{n-0} = v_0 \times q^n$
 	\end{formula}
-
+	
 	\begin{demonstration}[Terme général]
 		On a $v_{p+1} = v_p \times q$. Puis, $v_{p+2} = v_{p+1} \times q = v_p \times q \times q = v_p \times q^2$. De même, $v_{p+3} = v_{p+2} \times q = v_p \times q^3$  et caetera.
 		\newline
@@ -118,7 +118,7 @@
 		\newline
 		Donc si on pose $n = p+k$, alors $v_n = v_p \times q^{n-p}$.
 	\end{demonstration}
-
+	
 	\begin{formula}[Somme des termes]
 		Soit $n \neq 0$ un entier et $q$ un réel, alors :
 		\begin{itemize}
@@ -126,7 +126,7 @@
 			\item Si $q = 1$, alors $\displaystyle{1 + q^1 + q^2 + \dots + q^n = \underbrace{1 + 1 + 1 + \dots + 1}_{n \text{ fois}} = n}$.
 		\end{itemize}
 	\end{formula}
-
+	
 	\begin{demonstration}[Somme des termes]
 		Le cas $q = 1$ étant donné juste au-dessus, on supposera $q \neq 1$. On pose pour tout $n \in \mathbb{N}$, $S_n = 1 + q^1 + q^2 + \dots + q^n$.
 		\newpar
@@ -135,7 +135,7 @@
 		Donc on a en factorisant par $S_n$ : $(1 - q)S_n = 1 - q^{n+1} \iff S_n = \frac{1 - q^{n+1}}{1 - q}$.
 		\newpar
 	\end{demonstration}
-
+	
 	\begin{tip}[Exemple]
 		On souhaite calculer $S = 3^5 + 3^6 + \dots + 3^{10}$.
 		\newpar
@@ -146,11 +146,11 @@
 		\end{itemize}
 		D'où $S = 88573 - 121 = 88452$.
 	\end{tip}
-
+	
 	\section{Étude des suites}
-
+	
 	\subsection{Sens de variation}
-
+	
 	\begin{formula}[Définition]
 		Soit $(u_n)$ une suite.
 		\begin{itemize}
@@ -159,13 +159,13 @@
 			\item $(u_n)$ est dite \textbf{constante} s'il existe $c \in \mathbb{R}$ tel que $u_n = c$ pour tout $n \in \mathbb{N}$.
 		\end{itemize}
 	\end{formula}
-
+	
 	Si une suite est croissante ou décroissante et ne change pas de variation, alors elle est dite \textbf{monotone}.
-
+	
 	\subsection{Introduction aux limites}
-
+	
 	Quand on souhaite s'intéresser à la limite d'une suite $(u_n)$, on étudie le comportement de ses termes quand``$n$ devient très grand''. On préfère dire alors que \textbf{$n$ tend vers $+\infty$}.
-
+	
 	\begin{formula}[Définition]
 		Soit $(u_n)$ une suite.
 		\begin{itemize}
@@ -173,51 +173,51 @@
 			\item Si $(u_n)$ tend vers une limite infinie quand $n$ tend vers $+\infty$, on dit qu'elle \textbf{diverge}.
 		\end{itemize}
 	\end{formula}
-
+	
 	\begin{tip}[Exemple]
 		On définit la suite $(u_n)$ pour tout $n \in \mathbb{N}$ par $u_n = \frac{1}{n}$. On souhaite trouver la limite possible de cette suite en $+ \infty$.
 		\newline
 		Pour cela, regardons les valeurs que prend cette suite pour des valeurs de $n$ très grandes :
 		\newpar
-    \begin{whitetabularx}{|X|X|}
-				\hline
-				$100$ & $0,01$ \\
-				\hline
-				$1 000$ & $0,001$ \\
-				\hline
-				$100 000$ & $0,000 01$ \\
-				\hline
-				$1 000 000 000$ & $0,000 000 001$ \\
-				\hline
-    \end{whitetabularx}
+		\begin{whitetabularx}{|X|X|}
+			\hline
+			$100$ & $0,01$ \\
+			\hline
+			$1 000$ & $0,001$ \\
+			\hline
+			$100 000$ & $0,000 01$ \\
+			\hline
+			$1 000 000 000$ & $0,000 000 001$ \\
+			\hline
+		\end{whitetabularx}
 		\newpar
 		\textbf{Il semble que} cette suite converge vers 0.
 	\end{tip}
-
+	
 	À savoir que si une suite a une limite, alors cette limite est \textbf{unique}. Mais il est également possible pour une suite de ne pas admettre de limite.
-
+	
 	\begin{tip}[Exemple]
 		On définit la suite $(u_n)$ pour tout $n \in \mathbb{N}$ par $u_n = (-1)^n$. On souhaite trouver la limite possible de cette suite en $+ \infty$.
 		\newpar
-    \begin{whitetabularx}{|X|X|}
-				\hline
-				$100$ & $1$ \\
-				\hline
-				$101$ & $-1$ \\
-				\hline
-				$1 000 000$ & $1$ \\
-				\hline
-				$1 000 001$ & $-1$ \\
-				\hline
-    \end{whitetabularx}
+		\begin{whitetabularx}{|X|X|}
+			\hline
+			$100$ & $1$ \\
+			\hline
+			$101$ & $-1$ \\
+			\hline
+			$1 000 000$ & $1$ \\
+			\hline
+			$1 000 001$ & $-1$ \\
+			\hline
+		\end{whitetabularx}
 		\newpar
 		En fait, si $n$ est pair cette suite vaut $1$ et si $n$ est impair elle vaut $-1$. Cette suite n'admet donc pas de limite : elle diverge.
 	\end{tip}
-
+	
 	\subsection{Représentation graphique}
-
+	
 	Il est possible de représenter graphiquement une suite. Cela peut aider, par exemple dans le but de chercher sa limite.
-
+	
 	\begin{formula}[Méthode pour une suite définie par récurrence]
 		Soit $(u_n)$ une suite définie par récurrence. Pour représenter $(u_n)$ dans un graphique :
 		\begin{enumerate}
@@ -231,14 +231,14 @@
 			\item On recommence l'opération en remplaçant $u_0$ par $u_1$ et $u_1$ par $u_2$, puis on recommence, etc.
 		\end{enumerate}
 	\end{formula}
-
+	
 	\begin{tip}[Exemple]
 		Représentation des trois premiers termes de la suite $(u_n) = \begin{cases} u_0 = 3 \\ u_{n+1} = \frac{u_n}{2} \end{cases}$.
 		\includerepresentation{zkvhccnn}
 	\end{tip}
-
+	
 	Il est cependant plus facile de représenter graphiquement une suite dont on connaît le terme général.
-
+	
 	\begin{formula}[Méthode pour une suite définie par son terme général]
 		Soit $(v_n)$ une suite définie par son terme général. Pour représenter $(v_n)$ dans un graphique :
 		\begin{enumerate}
@@ -247,10 +247,10 @@
 			\item On place le point de coordonnées $(2; v_2)$. Etc.
 		\end{enumerate}
 	\end{formula}
-
+	
 	\begin{tip}[Exemple]
 		Représentation des trois premiers termes de la suite $(v_n)$ définie pour tout $n \in \mathbb{N}$ par $v_n = 2^n$.
 		\includerepresentation{qvc3drk9}
 	\end{tip}
-  %</content>
+	%</content>
 \end{document}

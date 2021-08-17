@@ -3,13 +3,13 @@
 \begin{document}
 	%<*content>
 	\lesson{terminale}{variables-aleatoires-concentration-grands-nombres}{Chapitre XI – Variables aléatoires, concentration et loi des grands nombres}
-
+	
 	\section{Somme de deux variables aléatoires}
-
+	
 	\subsection{Définition}
-
+	
 	Il arrive que, on ne puisse pas modéliser une situation donnée à l'aide d'une seule variable aléatoire ``simple''. C'est pourquoi il est parfois utile d'en additionner plusieurs ou bien d'en multiplier par un réel.
-
+	
 	\begin{formula}[Définition]
 		Soient $X$ et $Y$ deux variables aléatoires définies sur un univers $\Omega$ et soit $\lambda$ un réel. On définit :
 		\begin{itemize}
@@ -17,7 +17,7 @@
 			\item $\lambda X$ la variable aléatoire produit de $\lambda$ et $X$ définie pour tout $\omega \in \Omega$ par $(\lambda X)(\omega) = \lambda X(\omega)$.
 		\end{itemize}
 	\end{formula}
-
+	
 	\begin{tip}[Exemple]
 		Encore une fois, il s'agit d'une définition un peu compliquée. Illustrons ceci par un exemple.
 		\newpar
@@ -25,13 +25,13 @@
 		\newpar
 		Dans cette situation, la variable aléatoire somme $X + Y$ donne la somme obtenue en additionnant le nombre sur lequel le premier dé est tombé avec celui sur lequel le deuxième dé est tombé.
 	\end{tip}
-
+	
 	\subsection{Espérance, variance et écart-type}
-
+	
 	Une somme de variable aléatoire reste une variable aléatoire. Donc il est tout à fait possible de calculer l'espérance, la variance, l'écart-type, ... d'une somme de variables aléatoires.
 	\newpar
 	Voyons dans un premier temps une propriété de l'espérance permettant de calculer plus facilement l'espérance d'une combinaison linéaire de variables aléatoires.
-
+	
 	\begin{formula}[Linéarité de l'espérance]
 		Soient $X$ et $Y$ deux variables aléatoires définies sur un univers $\Omega$ et soit $\lambda$ un réel. Alors :
 		\begin{itemize}
@@ -39,7 +39,7 @@
 			\item $E(\lambda X) = \lambda E(X)$.
 		\end{itemize}
 	\end{formula}
-
+	
 	\begin{tip}[Applications]
 		Appliquons la première formule à l'exemple de la partie précédente.
 		\newpar
@@ -49,9 +49,9 @@
 		\newpar
 		L'interprétation de ces calculs est, qu'en moyenne, sur un grand nombre de lancers, la somme obtenue lorsque l'on additionne le résultat des deux dés vaut $7$.
 	\end{tip}
-
+	
 	Voyons désormais des formules permettant de calculer la variance et l'écart-type d'une combinaison linéaire de variables aléatoires.
-
+	
 	\begin{formula}[Variance et écart-type]
 		Soient $X$ et $Y$ deux variables aléatoires définies sur un univers $\Omega$ et soit $\lambda$ un réel. Alors :
 		\begin{itemize}
@@ -60,19 +60,19 @@
 			\item $\sigma(\lambda X) = \sqrt{\lambda^2} \sigma(X)$.
 		\end{itemize}
 	\end{formula}
-
+	
 	\section{Somme de plusieurs variables aléatoires}
-
+	
 	\subsection{Définition et propriétés}
-
+	
 	Nous allons tenter de généraliser un petit peu le concept vu dans la section précédente. En effet, au lieu d'étudier la somme de deux variables aléatoires, on va étudier la somme de $n$ variables aléatoires.
 	\newpar
 	En classe de Terminale, on se limite au cas où ces variables aléatoires suivent une même loi.
-
+	
 	\begin{formula}[Échantillon aléatoire]
 		Un $n$-uplet de variables aléatoires $(X_1, X_2, \dots, X_n)$ qui sont toutes indépendantes et qui suivent une même loi de probabilité est appelé \textbf{échantillon aléatoire de taille $n$ associé à cette loi}.
 	\end{formula}
-
+	
 	\begin{formula}[Espérance de variables aléatoires de même loi]
 		Soit $(X_1, X_2, \dots, X_n)$ un échantillon aléatoire de taille $n$. On pose $S_n = X_1 + X_2 + \dots + X_n$ et $M_n = \frac{S_n}{n}$. Alors :
 		\begin{itemize}
@@ -80,7 +80,7 @@
 			\item $E(M_n) = E\left(\frac{S_n}{n}\right) = \frac{E(S_n)}{n} = E(X_1)$ et $V(M_n) = \frac{V(S_n)}{n^2} = \frac{V(X_1)}{n}$.
 		\end{itemize}
 	\end{formula}
-
+	
 	\begin{tip}[Note]
 		Petite note sur le nom des variables aléatoires précédentes :
 		\begin{itemize}
@@ -88,17 +88,17 @@
 			\item $M_n$ est la \textbf{moyenne empirique} des $n$ variables aléatoires.
 		\end{itemize}
 	\end{tip}
-
+	
 	\subsection{Somme / décompositions de certaines variables aléatoires}
-
+	
 	Nous allons maintenant énoncer une propriété utile qui permet de trouver la loi suivie par une somme de variables aléatoires indépendantes suivant une loi de Bernoulli.
-
+	
 	\begin{formula}[Somme de variables aléatoires indépendantes suivant une même loi de Bernoulli]
 		Soit $(X_1, X_2, \dots, X_n)$ un échantillon aléatoire de taille $n$ associé à une loi de Bernoulli de paramètre $p$.
 		\newpar
 		Alors $X_1 + X_2 + \dots + X_n$ suit une loi binomiale $\mathcal{B}(n; p)$.
 	\end{formula}
-
+	
 	\begin{tip}[Exemple]
 		On lance en même temps deux pièces équilibrées en l'air. On suppose qu'un succès est représenté par Pile.
 		\newpar
@@ -106,63 +106,63 @@
 		\newpar
 		Alors $X + Y$ (qui modélise le nombre de Pile obtenus au total par les deux pièces) suit une loi binomiale $\mathcal{B}(2; 0,5)$.
 	\end{tip}
-
+	
 	Enfin, signalons qu'il existe une réciproque de la première propriété qui permet de ``transformer'' une variable aléatoire suivant une loi binomiale en somme de variables aléatoires suivant une loi de Bernoulli.
-
+	
 	\begin{formula}[Décomposition d'une variable aléatoire suivant une loi binomiale]
 		Soit $X$ une variable aléatoire suivant une loi binomiale $\mathcal{B}(n; p)$.
 		\newpar
 		Alors il existe $n$ variables aléatoires indépendantes $X_1$, $X_2$, ... , $X_n$ suivant toutes une loi de Bernoulli $\mathcal{B}(p)$, et telles que $X = X_1 + X_2 + \dots + X_n$.
 	\end{formula}
-
+	
 	\begin{tip}[Exemple]
 		Soit $X$ suivant une loi binomiale $\mathcal{B}\left(3; \frac{1}{6}\right)$. Alors par la propriété précédente, il existe $X_1$, $X_2$ et $X_3$, indépendantes et suivant une loi $\mathcal{B}\left(\frac{1}{6}\right)$ telles que $X = X_1 + X_2 + X_3$.
 	\end{tip}
-
+	
 	\section{Concentration et loi des grands nombres}
-
+	
 	\subsection{Inégalité de Bienaymé-Tchebychev}
-
+	
 	\begin{formula}[Inégalité de Bienaymé-Tchebychev]
 		Soit $X$ une variable aléatoire d'espérance $E(X) = \mu$ et de variance $V(X) = V$. Alors pour tout réel strictement positif $\delta$, $P(|X-\mu| \geq \delta) \leq \frac{V}{\delta^2}$.
 	\end{formula}
-
+	
 	\begin{tip}[Autre formulation]
 		Une autre formulation de cette inégalité est la suivante : $P(X \notin ]\mu - \delta; \mu + \delta[) \leq \frac{V(X)}{\delta^2}$.
 	\end{tip}
-
+	
 	\begin{nosummary}
-    Cette inégalité est un peu abstraite, donnons tout de suite un exemple.
-
-    \begin{tip}[Exemple]
-      Le poids moyen d'un bébé en kilogrammes à la naissance peut être modélisé par une variable aléatoire $X$ d'espérance $\mu = 3,3$ et de variance $V = 0,25$.
-      \newpar
-      Un bébé est considéré ``de poids normal'' si son poids est compris entre $2,4$ et $4,2$ kilogrammes. Nous allons calculer une majoration pour la probabilité qu'un bébé ne soit pas de poids normal à la naissance (c'est-à-dire, si $X \notin ]3,3 - 0,9; 3,3 + 0,9[$ ou encore si $|X - 3,3| \geq 0,9$).
-      \newpar
-      On a $P(|X - 3,3| \geq 0,9) \leq \frac{0,25}{0,9^2} = 0,2025$ par l'inégalité de Bienaymé-Tchebychev.
-      \newpar
-      La probabilité qu'un bébé ne soit pas de poids normal à la naissance ne dépasse pas $0,2025$.
-      \newpar
-      C'est majoration n'est pas très satisfaisante, mais elle vient principalement du fait que la variance est trop élevée.
-    \end{tip}
-  \end{nosummary}
-
+		Cette inégalité est un peu abstraite, donnons tout de suite un exemple.
+		
+		\begin{tip}[Exemple]
+			Le poids moyen d'un bébé en kilogrammes à la naissance peut être modélisé par une variable aléatoire $X$ d'espérance $\mu = 3,3$ et de variance $V = 0,25$.
+			\newpar
+			Un bébé est considéré ``de poids normal'' si son poids est compris entre $2,4$ et $4,2$ kilogrammes. Nous allons calculer une majoration pour la probabilité qu'un bébé ne soit pas de poids normal à la naissance (c'est-à-dire, si $X \notin ]3,3 - 0,9; 3,3 + 0,9[$ ou encore si $|X - 3,3| \geq 0,9$).
+			\newpar
+			On a $P(|X - 3,3| \geq 0,9) \leq \frac{0,25}{0,9^2} = 0,2025$ par l'inégalité de Bienaymé-Tchebychev.
+			\newpar
+			La probabilité qu'un bébé ne soit pas de poids normal à la naissance ne dépasse pas $0,2025$.
+			\newpar
+			C'est majoration n'est pas très satisfaisante, mais elle vient principalement du fait que la variance est trop élevée.
+		\end{tip}
+	\end{nosummary}
+	
 	\subsection{Inégalité de concentration}
-
+	
 	\begin{formula}[Inégalité de concentration]
 		Soit $(X_1, X_2, \dots, X_n)$ un échantillon aléatoire de taille $n$ associé à une loi d'espérance $\mu$ et de variance $V$. On pose $M_n = \frac{X_1 + X_2 + \dots + X_n}{n}$, la moyenne empirique de cet échantillon.
 		\newpar
 		Alors pour tout réel strictement positif $\delta$, $P(|M_n - \mu| \geq \delta) \leq \frac{V}{n \delta^2}$.
 	\end{formula}
-
+	
 	\subsection{Loi des grands nombres}
-
+	
 	\begin{formula}[Loi faible des grands nombres]
 		Soit $(X_1, X_2, \dots, X_n)$ un échantillon aléatoire de taille $n$ associé à une loi d'espérance $\mu$ et de variance $V$. On pose $M_n = \frac{X_1 + X_2 + \dots + X_n}{n}$, la moyenne empirique de cet échantillon.
 		\newpar
 		Alors pour tout réel strictement positif $\delta$, $\lim_{n \rightarrow +\infty} P(|M_n - \mu| \geq \delta) = 0$.
 	\end{formula}
-
+	
 	\begin{tip}
 		Ce théorème signifie que la moyenne de l'échantillon se rapproche des moyennes des variables aléatoires quand la taille de l'échantillon augmente.
 		\newpar
@@ -172,5 +172,5 @@
 		\newpar
 		Cependant, si on fait un nouveau point au $31$ décembre, on va se rendre compte, qu'effectivement, il y a eu environ 50 \% de naissances de garçons et 50 \% de naissances de filles. Il s'agit là d'un cas d'application de la loi des grands nombres.
 	\end{tip}
-    %</content>
+	%</content>
 \end{document}

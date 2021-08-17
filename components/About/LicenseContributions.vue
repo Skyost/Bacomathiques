@@ -28,9 +28,7 @@
       Il existe énormément de moyens de <strong>contribuer</strong> au projet {{ siteName }} !
       Vous pouvez y faire des modifications ou même tout simplement lui donner une étoile sur
       <a :href="github">Github</a>.
-      Il vous est également possible d'effectuer des dons, que ce soit directement
-      via <a href="https://paypal.me/Skyost">PayPal</a> ou en regardant des publicités sur
-      <a href="https://utip.io/skyost">uTip</a>.
+      Il vous est également possible d'effectuer des dons via <a href="https://paypal.me/Skyost">PayPal</a>.
     </p>
 
     <p>

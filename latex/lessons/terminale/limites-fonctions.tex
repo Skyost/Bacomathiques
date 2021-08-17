@@ -3,11 +3,11 @@
 \begin{document}
 	%<*content>
 	\lesson{terminale}{limites-fonctions}{Chapitre II – Limites de fonctions}
-
+	
 	\section{Limite d'une fonction en un point}
-
+	
 	\subsection{Limite infinie}
-
+	
 	\begin{formula}[Fonction tendant vers $+\infty$ en un point]
 		Soit $f$ une fonction (en classe de Terminale, on se limite aux fonctions réelles) d'ensemble de définition $\mathcal{D}_f$. Soit $a$ un réel appartenant à $\mathcal{D}_f$ ou étant une borne de $\mathcal{D}_f$.
 		\newpar
@@ -15,27 +15,27 @@
 		\newpar
 		On note ceci $\lim_{x \rightarrow a} f(x) = +\infty$.
 	\end{formula}
-
+	
 	\begin{tip}[Exemple]
 		La fonction $f$ définie sur $\mathbb{R}^*$ par $f(x) = \frac{1}{x^2}$, tend vers $+\infty$ quand $x$ tend vers $0$.
 		\includerepresentation{wkysdds8}
 	\end{tip}
-
+	
 	Il est tout à fait possible d'établir une définition similaire pour une fonction tendant vers $-\infty$ en un point.
-
+	
 	\begin{tip}[Fonction tendant vers $-\infty$ en un point]
 		En reprenant les notations précédentes, on dit que $f(x)$ \textbf{tend vers $-\infty$} quand $x$ tend vers $a$ si $f(x)$ est aussi petit que l'on veut pourvu que $x$ suffisamment proche de $a$.
 		\newpar
 		On note ceci $\lim_{x \rightarrow a} f(x) = -\infty$.
 	\end{tip}
-
+	
 	\begin{tip}[Exemple]
 		La fonction $f$ définie sur $]-\infty, 3[ \, \cup \, ]3, +\infty[$ par $f(x) = -\frac{1}{x^2-6x+9}$, tend vers $-\infty$ quand $x$ tend vers $3$.
 		\includerepresentation{fu58s6je}
 	\end{tip}
-
+	
 	\subsection{Limite finie}
-
+	
 	\begin{formula}[Définition]
 		Soit $f$ une fonction d'ensemble de définition $\mathcal{D}_f$. Soit $a$ un réel appartenant à $\mathcal{D}_f$ ou étant une borne de $\mathcal{D}_f$.
 		\newpar
@@ -43,15 +43,15 @@
 		\newpar
 		On note ceci $\lim_{x \rightarrow a} f(x) = \ell$.
 	\end{formula}
-
+	
 	\begin{tip}[Exemple]
 		La fonction $f$ définie sur $\mathbb{R}^*$ par $f(x) = \frac{\sin(x)}{x}$, tend vers $1$ quand $x$ tend vers $0$.
 		\includerepresentation{fq28tqng}
 		Une petite remarque cependant : cette limite n'est pas triviale à démontrer. On peut cependant en proposer une preuve à l'aide de la dérivée de la fonction $\sin$ (qui est $\cos$) : $\lim_{x \rightarrow 0} \frac{\sin(x)}{x} = \lim_{x \rightarrow 0} \frac{\sin(x) - \sin(0)}{x - 0} = \sin'(0) = \cos(0) = 1$.
 	\end{tip}
-
+	
 	\subsection{Limites à gauche et à droite}
-
+	
 	\begin{formula}[Définition]
 		Soit $f$ une fonction d'ensemble de définition $\mathcal{D}_f$. Soit $a$ un réel appartenant à $\mathcal{D}_f$ ou étant une borne de $\mathcal{D}_f$.
 		\begin{itemize}
@@ -59,7 +59,7 @@
 			\item On dit que $f(x)$ admet une \textbf{limite à droite} quand $x$ tend vers $a$ si $f(x)$ admet une limite quand $x$ tend vers $a$ avec $x > a$. On la note $\lim_{x \rightarrow a^+} f(x)$.
 		\end{itemize}
 	\end{formula}
-
+	
 	\begin{tip}[Exemple]
 		La fonction $f$ définie sur $\mathbb{R}^*$ par $f(x) = \frac{1}{x}$, admet deux limites différentes à gauche et à droite de $0$ :
 		\begin{itemize}
@@ -68,15 +68,15 @@
 		\end{itemize}
 		\includerepresentation{p5pedmuw}
 	\end{tip}
-
+	
 	\subsection{Asymptote verticale}
-
+	
 	\begin{formula}[Définition]
 		Soit $f$ une fonction d'ensemble de définition $\mathcal{D}_f$. Soit $a$ un réel appartenant à $\mathcal{D}_f$ ou étant une borne de $\mathcal{D}_f$.
 		\newpar
 		Alors si $f(x)$ admet une limite infinie quand $x$ tend vers $a$, alors la droite d'équation $x = a$ est une \textbf{asymptote verticale} à la courbe représentative de $f$.
 	\end{formula}
-
+	
 	\begin{tip}[Exemple]
 		En reprenant les exemples précédents :
 		\begin{itemize}
@@ -84,156 +84,156 @@
 			\item La courbe de la fonction $x \mapsto \frac{1}{x^2-6x+9}$ admet une asymptote verticale d'équation $x = 3$.
 		\end{itemize}
 	\end{tip}
-
+	
 	\section{Limite d'une fonction en l'infini}
-
+	
 	\subsection{Limite infinie}
-
+	
 	\begin{formula}[Fonction tendant vers $+\infty$ en $+\infty$]
 		Soit $f$ une fonction d'ensemble de définition $\mathcal{D}_f$. On suppose qu'une des bornes de $\mathcal{D}_f$ est $+\infty$.
 		\newpar
 		On dit que $f(x)$ \textbf{tend vers $+\infty$} si $f(x)$ est aussi grand que l'on veut pourvu que $x$ soit suffisamment grand.
 	\end{formula}
-
+	
 	Comme précédemment, on peut écrire des définitions similaires pour dire que $f$ tend vers $-\infty$ quand $x$ tend vers $+\infty$.
-
+	
 	\begin{tip}[Fonction tendant vers $-\infty$ en $+\infty$]
 		En reprenant les notations précédentes, on dit que $f(x)$ \textbf{tend vers $-\infty$} quand $x$ tend vers $+\infty$ si $f(x)$ est aussi petit que l'on veut pourvu que $x$ soit suffisamment grand.
 	\end{tip}
-
+	
 	\begin{tip}[Fonction tendant vers $\pm \infty$ en $-\infty$]
 		Pour avoir les définitions quand $x$ tend vers $-\infty$, il suffit de remplacer ``$x$ suffisamment grand'' par ``$x$ suffisamment petit'' et il faut qu'une des bornes de $\mathcal{D}_f$ soit $-\infty$.
 	\end{tip}
-
+	
 	\begin{tip}[Exemple]
 		La fonction $f$ définie sur $\mathbb{R}$ par $f(x) = 2x+1$, tend vers $+\infty$ quand $x$ tend vers $+\infty$. Cependant, la fonction $-f : x \mapsto -2x - 1$ tend vers $-\infty$ quand $x$ tend vers $+\infty$.
 		\includerepresentation{afrnasga}
 	\end{tip}
-
+	
 	\subsection{Limite finie}
-
+	
 	\begin{formula}[Limite finie en $+\infty$]
 		Soit $f$ une fonction d'ensemble de définition $\mathcal{D}_f$. On suppose qu'une des bornes de $\mathcal{D}_f$ est $+\infty$.
 		\newpar
 		On dit que $f(x)$ \textbf{tend vers $\ell$} quand $x$ tend vers $+\infty$ si $f(x)$ est aussi proche de $\ell$ que l'on veut pourvu que $x$ soit suffisamment grand.
 	\end{formula}
-
+	
 	De même, on peut écrire une définition semblable quand $x$ tend vers $-\infty$.
-
+	
 	\begin{tip}[Limite finie en $-\infty$]
 		En reprenant les notations précédentes et en supposant qu'une des bornes de $\mathcal{D}_f$ soit $-\infty$, on dit que $f(x)$ \textbf{tend vers $\ell$} quand $x$ tend vers $-\infty$ si $f(x)$ est aussi proche de $\ell$ que l'on veut pourvu que $x$ soit suffisamment petit.
 	\end{tip}
-
+	
 	\begin{tip}[Exemple]
 		La fonction $f$ définie sur $\mathbb{R}^+$ par $f(x) = \frac{9x}{3x+1}$ tend vers $3$ quand $x$ tend vers $+\infty$.
 		\includerepresentation{rs8mkymv}
 	\end{tip}
-
+	
 	\subsection{Asymptote horizontale}
-
+	
 	\begin{formula}[Définition en $+\infty$]
 		Soit $f$ une fonction d'ensemble de définition $\mathcal{D}_f$. On suppose qu'une des bornes de $\mathcal{D}_f$ est $+\infty$.
 		\newpar
 		Alors si $f(x)$ admet une limite finie $\ell$ quand $x$ tend vers $+\infty$, alors la droite d'équation $y = \ell$ est une \textbf{asymptote horizontale} en $+\infty$ à la courbe représentative de $f$.
 	\end{formula}
-
+	
 	Comme tout ce que l'on a vu avant, il existe une définition semblable en $-\infty$.
-
+	
 	\begin{tip}[Définition en $-\infty$]
 		Soit $f$ une fonction d'ensemble de définition $\mathcal{D}_f$. On suppose qu'une des bornes de $\mathcal{D}_f$ est $-\infty$.
 		\newpar
 		Alors si $f(x)$ admet une limite finie $\ell$ quand $x$ tend vers $-\infty$, alors la droite d'équation $y = \ell$ est une \textbf{asymptote horizontale} en $-\infty$ à la courbe représentative de $f$.
 	\end{tip}
-
+	
 	\begin{tip}[Exemple]
 		En reprenant l'exemple précédent, la courbe représentative de la fonction $x \mapsto \frac{9x}{3x+1}$ admet une asymptote horizontale d'équation $y=3$ en $+\infty$.
 		\newpar
 		De plus, elle admet une asymptote verticale d'équation $x=-\frac{1}{3}$.
 	\end{tip}
-
+	
 	\section{Calcul de limites}
-
+	
 	\subsection{Limites de fonctions de référence}
-
+	
 	Nous allons donner quelques fonctions ``classiques'' avec leur limite en quelques points.
-
+	
 	\begin{formula}[Limites de fonctions usuelles]
-    \begin{whitetabularx}{|X|X|X|X|}
-				\hline
-				& $a = -\infty$ & $a = 0$ & $a = +\infty$ \\
-				\hline
-				$\lim_{x \rightarrow a} \frac{1}{x}$ & $0$ & $-\infty$ si $a = 0^-$, $+\infty$ si $a = 0^+$ & $0$ \\
-				\hline
-				$\lim_{x \rightarrow a} \sqrt{x}$ & \textbf{Non définie} & $0$ si $a = 0^+$ & $+\infty$ \\
-				\hline
-				$\lim_{x \rightarrow a} x^k$ & $-\infty$ si $k$ est impair, $+\infty$ si $k$ est pair & $0$ & $+\infty$ \\
-				\hline
-				$\lim_{x \rightarrow a} e^x$ & $0$ & $e^0 = 1$ & $+\infty$ \\
-				\hline
-    \end{whitetabularx}
+		\begin{whitetabularx}{|X|X|X|X|}
+			\hline
+			& $a = -\infty$ & $a = 0$ & $a = +\infty$ \\
+			\hline
+			$\lim_{x \rightarrow a} \frac{1}{x}$ & $0$ & $-\infty$ si $a = 0^-$, $+\infty$ si $a = 0^+$ & $0$ \\
+			\hline
+			$\lim_{x \rightarrow a} \sqrt{x}$ & \textbf{Non définie} & $0$ si $a = 0^+$ & $+\infty$ \\
+			\hline
+			$\lim_{x \rightarrow a} x^k$ & $-\infty$ si $k$ est impair, $+\infty$ si $k$ est pair & $0$ & $+\infty$ \\
+			\hline
+			$\lim_{x \rightarrow a} e^x$ & $0$ & $e^0 = 1$ & $+\infty$ \\
+			\hline
+		\end{whitetabularx}
 	\end{formula}
-
+	
 	\begin{tip}[Rappel]
 		On rappelle que $0^-$ signifie ``tend vers $0$ mais en restant inférieur à $0$'' et $0^+$ signifie ``tend vers $0$ mais en restant supérieur à $0$''.
 	\end{tip}
-
+	
 	\subsection{Opérations sur les limites}
-
+	
 	Dans tout ce qui suit, $f$ et $g$ sont deux fonctions de domaines de définition $\mathcal{D}_f$ et $\mathcal{D}_g$. Soit $a$ un nombre réel appartenant à $\mathcal{D}_f \, \cap \, \mathcal{D}_g$ (ou qui est au moins une borne des deux à la fois). Les tableaux suivants ressemblent beaucoup à ceux qui sont disponibles dans le cours sur \href{https://bacomathiqu.es/cours/terminale/suites/}{les suites} donc vous pouvez bien-sûr n'en retenir qu'un des deux, et tenter à partir de là de retrouver l'autre.
-
+	
 	\medskip
 	\begin{formula}[Limite d'une somme]
-    \begin{whitetabularx}{|X|l|l|l|l|l|l|}
-				\hline
-				\multicolumn{7}{|l|}{\textbf{Limite d'une somme}} \\
-				\hline
-				Si la limite de $f(x)$ quand $x$ tend vers $a$ est... & $\ell$ & $\ell$ & $\ell$ & $+\infty$ & $-\infty$ & $+\infty$ \\
-				\hline
-				Et la limite de $g$ quand $x$ tend vers $a$ est... & $\ell'$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & $-\infty$ \\
-				\hline
-				Alors la limite de $f + g$ quand $x$ tend vers $a$ est... & $\ell + \ell'$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & \textbf{?} \\
-				\hline
-			\end{whitetabularx}
+		\begin{whitetabularx}{|X|l|l|l|l|l|l|}
+			\hline
+			\multicolumn{7}{|l|}{\textbf{Limite d'une somme}} \\
+			\hline
+			Si la limite de $f(x)$ quand $x$ tend vers $a$ est... & $\ell$ & $\ell$ & $\ell$ & $+\infty$ & $-\infty$ & $+\infty$ \\
+			\hline
+			Et la limite de $g$ quand $x$ tend vers $a$ est... & $\ell'$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & $-\infty$ \\
+			\hline
+			Alors la limite de $f + g$ quand $x$ tend vers $a$ est... & $\ell + \ell'$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & \textbf{?} \\
+			\hline
+		\end{whitetabularx}
 	\end{formula}
-
+	
 	\begin{formula}[Limite d'un produit]
-      \begin{whitetabularx}{|X|l|l|l|l|l|l|l|l|l|}
-				\hline
-				\multicolumn{10}{|l|}{\textbf{Limite d'un produit}} \\
-				\hline
-				Si la limite de $f(x)$ quand $x$ tend vers $a$ est... & $\ell$ & $\ell > 0$ & $\ell > 0$ & $\ell < 0$ & $\ell < 0$ & $+\infty$ & $+\infty$ & $-\infty$ & $0$ \\
-				\hline
-				Et la limite de $g$ quand $x$ tend vers $a$ est... & $\ell'$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & $-\infty$ & $\pm \infty$ \\
-				\hline
-				Alors la limite de $f \times g$ quand $x$ tend vers $a$ est... & $\ell \times \ell'$ & $+\infty$ & $-\infty$ & $-\infty$ & $+\infty$ & $+\infty$ & $-\infty$ & $+\infty$ & \textbf{?} \\
-				\hline
-			\end{whitetabularx}
+		\begin{whitetabularx}{|X|l|l|l|l|l|l|l|l|l|}
+			\hline
+			\multicolumn{10}{|l|}{\textbf{Limite d'un produit}} \\
+			\hline
+			Si la limite de $f(x)$ quand $x$ tend vers $a$ est... & $\ell$ & $\ell > 0$ & $\ell > 0$ & $\ell < 0$ & $\ell < 0$ & $+\infty$ & $+\infty$ & $-\infty$ & $0$ \\
+			\hline
+			Et la limite de $g$ quand $x$ tend vers $a$ est... & $\ell'$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & $+\infty$ & $-\infty$ & $-\infty$ & $\pm \infty$ \\
+			\hline
+			Alors la limite de $f \times g$ quand $x$ tend vers $a$ est... & $\ell \times \ell'$ & $+\infty$ & $-\infty$ & $-\infty$ & $+\infty$ & $+\infty$ & $-\infty$ & $+\infty$ & \textbf{?} \\
+			\hline
+		\end{whitetabularx}
 	\end{formula}
-
+	
 	\begin{formula}[Limite d'un quotient]
-    \begin{whitetabularx}{|X|l|l|l|l|l|l|l|l|l|}
-				\hline
-				\multicolumn{10}{|l|}{\textbf{Limite d'un quotient}} \\
-				\hline
-				Si la limite de $f(x)$ quand $x$ tend vers $a$ est... & $\ell$ & $\ell$ & $+\infty$ & $+\infty$ & $-\infty$ & $-\infty$ & $\pm \infty$ & $\ell$ & $0$ \\
-				\hline
-				Et la limite de $g$ quand $x$ tend vers $a$ est... & $\ell' \neq 0$ & $\pm \infty$ & $\ell' > 0$ & $\ell' < 0$ & $\ell' > 0$ & $\ell' < 0$ & $\pm \infty$ & $0$ & $0$ \\
-				\hline
-				Alors la limite de $\frac{f}{g}$ quand $x$ tend vers $a$ est... & $\displaystyle{\frac{\ell}{\ell'}}$ & $0$ & $+\infty$ & $-\infty$ & $-\infty$ & $+\infty$ & \textbf{?} & $\pm \infty$ & \textbf{?} \\
-				\hline
-			\end{whitetabularx}
+		\begin{whitetabularx}{|X|l|l|l|l|l|l|l|l|l|}
+			\hline
+			\multicolumn{10}{|l|}{\textbf{Limite d'un quotient}} \\
+			\hline
+			Si la limite de $f(x)$ quand $x$ tend vers $a$ est... & $\ell$ & $\ell$ & $+\infty$ & $+\infty$ & $-\infty$ & $-\infty$ & $\pm \infty$ & $\ell$ & $0$ \\
+			\hline
+			Et la limite de $g$ quand $x$ tend vers $a$ est... & $\ell' \neq 0$ & $\pm \infty$ & $\ell' > 0$ & $\ell' < 0$ & $\ell' > 0$ & $\ell' < 0$ & $\pm \infty$ & $0$ & $0$ \\
+			\hline
+			Alors la limite de $\frac{f}{g}$ quand $x$ tend vers $a$ est... & $\displaystyle{\frac{\ell}{\ell'}}$ & $0$ & $+\infty$ & $-\infty$ & $-\infty$ & $+\infty$ & \textbf{?} & $\pm \infty$ & \textbf{?} \\
+			\hline
+		\end{whitetabularx}
 	\end{formula}
-
+	
 	\begin{formula}[Limite d'une composée]
 		Si on pose $\lim_{x \rightarrow a} f(x) = b$ et $\lim_{x \rightarrow b} g(x) = c$. Alors $\lim_{x \rightarrow} (g \circ f)(x) = c$.
 	\end{formula}
-
+	
 	\begin{tip}[Formes indéterminées]
 		À noter qu'il n'existe que 4 formes indéterminées : ``$+\infty - \infty$'', ``$0 \times \pm \infty$'', ``$\frac{\pm \infty}{\pm \infty}$'' et ``$\frac{0}{0}$''.
 	\end{tip}
-
+	
 	\subsection{Comparaisons et encadrements}
-
+	
 	\begin{formula}[Théorèmes de comparaison]
 		Soient deux fonctions $f$ et $g$.
 		\begin{itemize}
@@ -245,11 +245,11 @@
 			alors $\lim_{x \rightarrow +\infty} g(x) = -\infty$.
 		\end{itemize}
 	\end{formula}
-
+	
 	\begin{formula}[Théorème des gendarmes]
 		Soient trois fonctions $f$, $g$ et $h$. Si on a $f \leq g \leq h$ à partir d'un certain point, et qu'il existe $\ell$ tel que $\lim_{x \rightarrow +\infty} f(x) = \ell$ et $\lim_{x \rightarrow +\infty} h(x) = \ell$, alors $\lim_{x \rightarrow +\infty} g(x) = \ell$.
 	\end{formula}
-
+	
 	\begin{tip}[Exemple]
 		Utilisons ce théorème pour montrer que la fonction $f : x \mapsto \frac{\sin(x)}{x}$ tend vers $0$ quand $x$ tend vers $+\infty$.
 		\newpar
@@ -259,13 +259,13 @@
 		\newpar
 		Comme, $\lim_{x \rightarrow +\infty} \frac{-1}{x} = 0$ et $\lim_{x \rightarrow +\infty} \frac{1}{x} = 0$, alors $\lim_{x \rightarrow +\infty} f(x) = 0$.
 	\end{tip}
-
+	
 	Le dernier théorème est la ``version fonctions'' du théorèmes des gendarmes (que l'on a vu lors du cours sur \href{https://bacomathiqu.es/cours/terminale/suites/}{les suites}). Ils permettent notamment de démontrer une partie du \textbf{théorème des croissances comparées}.
-
+	
 	\begin{formula}[Croissances comparées]
 		$\lim_{x \rightarrow +\infty} \frac{e^x}{x^n} = +\infty$ pour tout $n \in \mathbb{N}$.
 	\end{formula}
-
+	
 	\begin{demonstration}[Croissances comparées]
 		Commençons tout d'abord par montrer que pour tout $x \geq 0$, $e^x \geq 1 + x$. Pour cela, posons $f : x \mapsto e^x - 1 - x$. On a pour tout $x \in \mathbb{R}$, $f'(x) = e^x - 1$. Donc $f'(x)$ est positif si et seulement si $e^x - 1 \geq 0$, c'est-à-dire $e^x \geq 1$.
 		\newpar
@@ -284,5 +284,5 @@
 		\newpar
 		Or, le membre de droite tend vers $+\infty$ quand $x$ tend vers $+\infty$ donc le membre de gauche aussi d'après les théorèmes de comparaison.
 	\end{demonstration}
-    %</content>
+	%</content>
 \end{document}
