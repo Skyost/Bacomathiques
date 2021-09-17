@@ -221,50 +221,49 @@
 % Environnements :
 
 \newenvironment{nosummary}{}{}
-\newcommand{\tcolorboxtitle}[2]{\MakeUppercase{#2} \hspace{2pt} \includegraphics[height=5pt, width=5pt]{\imagespath/bubbles/#1}}
-\newcommand{\tcolorboxsubtitle}[2]{\ifstrempty{#2}{}{\textcolor{#1-left}{\large#2}
-		
-		\medskip}}
+\newcommand{\tcolorboxtitle}[2]{\setlength{\fboxsep}{2.5pt}\hspace{-10pt}\colorbox{#1-left}{\hspace{8pt}\MakeUppercase{#2} \hspace{2pt} \includegraphics[height=0.8em]{\imagespath/bubbles/#1}\hspace{5pt}}}
+\newcommand{\tcolorboxsubtitle}[2]{\ifstrempty{#2}{}{\textcolor{#1-left}{\large#2}\\[\medskipamount]}}
 \tcbset{
 	frame hidden,
 	boxrule=0pt,
 	boxsep=0pt,
-	enlarge bottom by=0.3cm,
+	enlarge bottom by=8.5pt,
 	enhanced jigsaw,
-	attach boxed title to top left={yshift=-12.7pt},
-	boxed title style={sharp corners,boxrule=0pt,coltitle={white},top=1pt,right=1pt,bottom=1pt,left=4pt},
+	boxed title style={sharp corners,boxrule=0pt,coltitle={white},titlerule=0pt},
 	fonttitle=\fontsize{6pt}{6pt}\bfseries\boldmath,
-	top=22.7pt,
+	top=10pt,
 	right=10pt,
 	bottom=10pt,
-	left=10pt
+	left=10pt,
+	arc=0pt,
+	outer arc=0pt,
 }
 \newtcolorbox{toc}[1][]{
 	colback=toc,
 	borderline west={3pt}{0pt}{toc-left},
 	title=\tcolorboxtitle{toc}{Table des matières},
-	colbacktitle={toc-left},
+	colbacktitle=toc,
 	before upper={\tcolorboxsubtitle{toc}{#1}}
 }
 \newtcolorbox{formula}[1][]{
 	colback=formula,
 	borderline west={3pt}{0pt}{formula-left},
 	title=\tcolorboxtitle{formula}{À retenir},
-	colbacktitle={formula-left},
+	colbacktitle=formula,
 	before upper={\tcolorboxsubtitle{formula}{#1}}
 }
 \newtcolorbox{tip}[1][]{
 	colback=tip,
 	borderline west={3pt}{0pt}{tip-left},
 	title=\tcolorboxtitle{tip}{À lire},
-	colbacktitle={tip-left},
+	colbacktitle=tip,
 	before upper={\tcolorboxsubtitle{tip}{#1}}
 }
 \newtcolorbox{demonstration}[1][]{
 	colback=demonstration,
 	borderline west={3pt}{0pt}{demonstration-left},
 	title=\tcolorboxtitle{demonstration}{Démonstration},
-	colbacktitle={demonstration-left},
+	colbacktitle=demonstration,
 	before upper={\tcolorboxsubtitle{demonstration}{#1}}
 }
 
