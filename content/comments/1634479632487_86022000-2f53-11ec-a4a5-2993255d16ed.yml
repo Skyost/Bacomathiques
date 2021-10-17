@@ -1,0 +1,10 @@
+_id: 86022000-2f53-11ec-a4a5-2993255d16ed
+lesson: polynomes-second-degre
+level: premiere
+client: bacomathiqu.es
+message: >-
+  Pour la fonction g(x) = -2x²+3x+1 ; on commence par calculer α = -b/2a = -3/-4
+  = 3/4. Puis, on en déduit β = g(α) = 17/8. La forme canonique de g est donc
+  g(x) = a(x - α)² + β = -2(x - 3/4)² + 17/8.
+author: Skyost
+date: 1634479632
