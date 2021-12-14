@@ -3,6 +3,7 @@ import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/utils/expandable_widget.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:fwfh_text_style/fwfh_text_style.dart';
 import 'package:html/dom.dart' as dom;
 
 /// Allows to display a bubble (formula, tip, proof, ...).
@@ -89,7 +90,7 @@ class _BubbleWidgetState extends State<BubbleWidget> {
               padding: const EdgeInsets.only(left: 10, top: 2, right: 6, bottom: 2),
               child: Text(
                 widget.bubble.bubbleLabel.toUpperCase(),
-                style: const TextStyle(color: Colors.white, fontSize: 10),
+                style: const FwfhTextStyle.from(TextStyle(color: Colors.white, fontSize: 10)),
               ),
             ),
           ),
@@ -103,7 +104,7 @@ class _BubbleWidgetState extends State<BubbleWidget> {
 
     return Expandable(
       expandText: widget.bubble.expandButton!,
-      expandTextStyle: TextStyle(color: theme.accentColor),
+      expandTextStyle: FwfhTextStyle.from(TextStyle(color: theme.accentColor)),
       content: bubbleWidget,
     );
   }

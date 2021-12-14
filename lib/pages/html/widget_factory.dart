@@ -80,7 +80,7 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
       meta.register(lv!);
     } else if (meta.element.localName == 'a') {
       a ??= BuildOp(
-        onTree: (meta, tree) => tree.replaceWith(
+        onTree: (meta, tree) => tree.add(
           WidgetBit.inline(
             tree,
             LinkWidget.fromElement(
@@ -93,7 +93,7 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
       meta.register(a!);
     } else if (meta.element.localName == 'math') {
       math ??= BuildOp(
-        onTree: (meta, tree) => tree.replaceWith(
+        onTree: (meta, tree) => tree.add(
           WidgetBit.inline(
             tree,
             MathWidget.fromElement(
@@ -126,16 +126,16 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
   }
 
   @override
-  String getListStyleMarker(String type, int i) {
+  String getListMarkerText(String type, int i) {
     if (type == 'dash') {
       return '— ';
     }
-    return super.getListStyleMarker(type, i);
+    return super.getListMarkerText(type, i);
   }
 
   /// Creates a title build op.
   BuildOp _createTitleBuildOp(BuildMetadata meta) => BuildOp(
-        onTree: (meta, tree) => tree.replaceWith(
+        onTree: (meta, tree) => tree.add(
           WidgetBit.block(tree, TitleWidget.fromElement(element: meta.element)),
         ),
       );

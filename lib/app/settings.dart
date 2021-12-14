@@ -1,3 +1,4 @@
+import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/credentials.dart';
 import 'package:flutter/foundation.dart';
@@ -41,14 +42,22 @@ class SettingsModel extends ChangeNotifier {
   }
 
   /// Creates the banner ad.
-  BannerAd? createAdMobBanner(BuildContext context, AdSize size, bool nonPersonalizedAds) => _adMobEnabled
-      ? BannerAd(
-          adUnitId: _adMobBannerId,
-          size: size,
-          request: AdRequest(nonPersonalizedAds: nonPersonalizedAds),
-          listener: BannerAdListener(onAdFailedToLoad: (ad, error) => ad.dispose()),
-        )
-      : null;
+  BannerAd? createAdMobBanner(
+    BuildContext context, {
+    AdSize? size,
+    bool? nonPersonalizedAds,
+  }) =>
+      _adMobEnabled
+          ? BannerAd(
+              adUnitId: _adMobBannerId,
+              size: size ?? AdSize.banner,
+              request: AdRequest(
+                contentUrl: API.BASE_URL,
+                nonPersonalizedAds: nonPersonalizedAds,
+              ),
+              listener: BannerAdListener(onAdFailedToLoad: (ad, error) => ad.dispose()),
+            )
+          : null;
 
   /// Returns the theme mode.
   ThemeMode get themeMode => _themeMode;

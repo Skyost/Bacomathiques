@@ -33,7 +33,7 @@ apply plugin: 'com.google.gms.google-services'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     lintOptions {
         disable 'InvalidPackage'
@@ -42,7 +42,7 @@ android {
     defaultConfig {
         applicationId "fr.bacomathiques"
         minSdkVersion 19
-        targetSdkVersion 30
+        targetSdkVersion 31
         multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

@@ -2,7 +2,7 @@ import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/dialogs/e3c.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart' hide AboutDialog;
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 
 /// /api/v2/:level/:lesson/ endpoint.
 class LessonContentEndpoint extends APIEndpoint<LessonContent> {
@@ -48,7 +48,7 @@ class LessonContent extends APIEndpointResultHTML {
   final List<LessonE3C> e3c;
 
   /// Creates a new lesson content instance.
-  LessonContent({
+  const LessonContent({
     required this.api,
     required this.lesson,
     required this.difficulty,
@@ -144,7 +144,8 @@ class LessonContent extends APIEndpointResultHTML {
         }
 
         await Share.share(
-          'Lisez le cours intitulé « ' + lesson.title + ' » en téléchargeant l\'application Bacomathiques !\n' + storePage,
+          'Lisez le cours intitulé « ${lesson.title} » en téléchargeant l\'application Bacomathiques !\n$storePage',
+          subject: 'Bacomathiques - ${lesson.title}',
           sharePositionOrigin: sharePositionOrigin,
         );
       });

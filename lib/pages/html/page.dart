@@ -9,6 +9,7 @@ import 'package:bacomathiques/utils/request_scaffold.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:fwfh_text_style/fwfh_text_style.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
@@ -48,7 +49,11 @@ class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
       if (mounted) {
         SettingsModel settingsModel = context.read<SettingsModel>();
         AdSize? size = await AdSize.getAnchoredAdaptiveBannerAdSize(MediaQuery.of(context).orientation, MediaQuery.of(context).size.width.truncate());
-        BannerAd? banner = settingsModel.createAdMobBanner(context, size ?? AdSize.banner, consentInformation!.wantsNonPersonalizedAds);
+        BannerAd? banner = settingsModel.createAdMobBanner(
+          context,
+          size: size,
+          nonPersonalizedAds: consentInformation!.wantsNonPersonalizedAds,
+        );
         await banner?.load();
         setState(() => this.banner = banner);
       }
@@ -82,19 +87,19 @@ class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
 
     double bannerHeight = banner?.size.height.toDouble() ?? 0;
     return Stack(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(bottom: bannerHeight),
-            child: htmlPage,
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            height: bannerHeight,
-            child: AdWidget(ad: banner!),
-          ),
-        ],
+      children: [
+        Padding(
+          padding: EdgeInsets.only(bottom: bannerHeight),
+          child: htmlPage,
+        ),
+        Positioned(
+          left: 0,
+          right: 0,
+          bottom: 0,
+          height: bannerHeight,
+          child: AdWidget(ad: banner!),
+        ),
+      ],
     );
   }
 
@@ -144,7 +149,7 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
 
     return AppHtmlWidget(
       data: parsedHtml!,
-      textStyle: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16),
+      textStyle: FwfhTextStyle.from(Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16)),
     );
   }
 
