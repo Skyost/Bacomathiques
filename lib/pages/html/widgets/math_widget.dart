@@ -1,7 +1,6 @@
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
-import 'package:fwfh_text_style/fwfh_text_style.dart';
 import 'package:html/dom.dart' as dom;
 
 /// Allows to display some math.
@@ -31,14 +30,10 @@ class MathWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Math math = Math.tex(
       content.replaceAll(r'\displaystyle', ''),
-      textStyle: FwfhTextStyle.from(textStyle.copyWith(color: textStyle.color ?? context.resolveTheme().textColor)),
+      textStyle: textStyle.copyWith(color: textStyle.color ?? context.resolveTheme().textColor),
     );
 
     List<Math> parts = math.texBreak().parts;
-    if (parts.length == 1) {
-      return parts.first;
-    }
-
     return RichText(
       text: TextSpan(
         children: _handleParts(parts),
@@ -46,7 +41,7 @@ class MathWidget extends StatelessWidget {
     );
   }
 
-  /// Handle the math parts.
+  /// Handles the math parts.
   List<InlineSpan> _handleParts(List<Math> parts) {
     List<InlineSpan> result = [];
     for (Math part in parts) {
@@ -56,9 +51,10 @@ class MathWidget extends StatelessWidget {
         child: part,
       ));
       result.add(const TextSpan(
-        text: ' ',
+        text: ' ',
       ));
     }
+    // result.removeLast();
     return result;
   }
 }

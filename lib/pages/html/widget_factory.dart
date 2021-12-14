@@ -11,35 +11,8 @@ import 'package:fwfh_svg/fwfh_svg.dart';
 
 /// Allows to display custom widgets to the HTML content.
 class AppWidgetFactory extends WidgetFactory with SvgFactory {
-  /// The list view tag build op.
-  BuildOp? lv;
-
   /// The "scroll to this" global key.
   GlobalKey? scrollToThisKey;
-
-  /// The a tag build op.
-  BuildOp? a;
-
-  /// The math tag build op.
-  BuildOp? math;
-
-  /// The formula tag build op.
-  BuildOp? formula;
-
-  /// The tip tag build op.
-  BuildOp? tip;
-
-  /// The proof tag build op.
-  BuildOp? proof;
-
-  /// The H2 tag build op.
-  BuildOp? h2;
-
-  /// The H3 tag build op.
-  BuildOp? h3;
-
-  /// The H4 tag build op.
-  BuildOp? h4;
 
   /// The text style.
   final TextStyle textStyle;
@@ -54,7 +27,7 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
     super.parse(meta);
     if (meta.element.localName == 'lv') {
       String? scrollTarget = meta.element.attributes['data-scroll-target'];
-      lv ??= BuildOp(
+      BuildOp lv = BuildOp(
         onChild: scrollTarget == null || scrollToThisKey != null
             ? null
             : (meta) {
@@ -77,51 +50,55 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
           ),
         ],
       );
-      meta.register(lv!);
+      meta.register(lv);
     } else if (meta.element.localName == 'a') {
-      a ??= BuildOp(
-        onTree: (meta, tree) => tree.add(
-          WidgetBit.inline(
-            tree,
-            LinkWidget.fromElement(
-              element: meta.element,
-              fontSize: textStyle.fontSize!,
+      BuildOp a = BuildOp(
+        onTree: (meta, tree) {
+          while(tree.first != null) {
+            tree.first?.detach();
+          }
+          tree.add(
+            WidgetBit.inline(
+              tree,
+              LinkWidget.fromElement(
+                element: meta.element,
+                fontSize: textStyle.fontSize!,
+              ),
             ),
-          ),
-        ),
+          );
+        }
       );
-      meta.register(a!);
+      meta.register(a);
     } else if (meta.element.localName == 'math') {
-      math ??= BuildOp(
-        onTree: (meta, tree) => tree.add(
-          WidgetBit.inline(
-            tree,
-            MathWidget.fromElement(
-              element: meta.element,
-              textStyle: textStyle,
+      BuildOp math = BuildOp(
+        onTree: (meta, tree) {
+          while(tree.first != null) {
+            tree.first?.detach();
+          }
+          tree.add(
+            WidgetBit.inline(
+              tree,
+              MathWidget.fromElement(
+                element: meta.element,
+                textStyle: textStyle,
+              ),
             ),
-          ),
-        ),
+          );
+        },
       );
-      meta.register(math!);
+      meta.register(math);
     } else if (meta.element.classes.contains(Bubble.FORMULA.className)) {
-      formula ??= _createBubbleBuildOp(Bubble.FORMULA, meta);
-      meta.register(formula!);
+      meta.register(_createBubbleBuildOp(Bubble.FORMULA, meta));
     } else if (meta.element.classes.contains(Bubble.TIP.className)) {
-      tip ??= _createBubbleBuildOp(Bubble.TIP, meta);
-      meta.register(tip!);
+      meta.register(_createBubbleBuildOp(Bubble.TIP, meta));
     } else if (meta.element.classes.contains(Bubble.PROOF.className)) {
-      proof ??= _createBubbleBuildOp(Bubble.PROOF, meta);
-      meta.register(proof!);
+      meta.register(_createBubbleBuildOp(Bubble.PROOF, meta));
     } else if (meta.element.localName == 'h2') {
-      h2 ??= _createTitleBuildOp(meta);
-      meta.register(h2!);
+      meta.register(_createTitleBuildOp(meta));
     } else if (meta.element.localName == 'h3') {
-      h3 ??= _createTitleBuildOp(meta);
-      meta.register(h3!);
+      meta.register(_createTitleBuildOp(meta));
     } else if (meta.element.localName == 'h4') {
-      h4 ??= _createTitleBuildOp(meta);
-      meta.register(h4!);
+      meta.register(_createTitleBuildOp(meta));
     }
   }
 
@@ -135,9 +112,14 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
 
   /// Creates a title build op.
   BuildOp _createTitleBuildOp(BuildMetadata meta) => BuildOp(
-        onTree: (meta, tree) => tree.add(
-          WidgetBit.block(tree, TitleWidget.fromElement(element: meta.element)),
-        ),
+        onTree: (meta, tree) {
+          while(tree.first != null) {
+            tree.first?.detach();
+          }
+          tree.add(
+            WidgetBit.block(tree, TitleWidget.fromElement(element: meta.element)),
+          );
+        },
       );
 
   /// Creates a bubble build op.

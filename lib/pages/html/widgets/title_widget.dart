@@ -3,7 +3,6 @@ import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/pages/html/html_widget.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:fwfh_text_style/fwfh_text_style.dart';
 import 'package:html/dom.dart' as dom;
 
 /// Allows to get the color according to the specified app theme.
@@ -76,13 +75,11 @@ class TitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppTheme theme = context.resolveTheme();
-    TextStyle textStyle = FwfhTextStyle.from(
-      TextStyle(
+    TextStyle textStyle = TextStyle(
         fontFamily: 'FuturaBT',
         fontSize: fontSize,
         color: (getColor == null ? theme.textColor : getColor!(theme, element)) ?? theme.textColor,
-      ),
-    );
+      );
 
     Widget child = RegExp(r'<\/?[a-z][\s\S]*>', caseSensitive: false).hasMatch(element.innerHtml)
         ? AppHtmlWidget(
