@@ -32,20 +32,25 @@ class AppHtmlWidget extends StatelessWidget {
         buildAsync: buildAsync,
         customWidgetBuilder: buildCustomWidget,
         customStylesBuilder: (element) => buildCustomStyle(context, element),
-        buildAsyncBuilder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Center(
-                child: Text(
-                  'Erreur "${snapshot.error.toString()}". Veuillez réessayer plus tard.',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontStyle: FontStyle.italic),
-                ),
-              ),
-            );
+        onLoadingBuilder: (context, element, progress) {
+          String message = 'Rendu…';
+          if (progress != null) {
+            message += '\n' + progress.toString() + '%';
           }
-          return snapshot.hasData ? snapshot.data! : const CenteredCircularProgressIndicator(message: 'Rendu…');
+          return CenteredCircularProgressIndicator(message: message);
+        },
+        onErrorBuilder: (context, element, error) {
+          String title = error == null ? 'Erreur' : 'Erreur "${error.toString()}"';
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Center(
+              child: Text(
+                '$title. Veuillez réessayer plus tard.',
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontStyle: FontStyle.italic),
+              ),
+            ),
+          );
         },
         //rebuildTriggers: RebuildTriggers([data, buildCustomWidget, buildCustomStyle]),
         textStyle: textStyle,

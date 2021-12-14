@@ -1,6 +1,7 @@
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
+import 'package:fwfh_text_style/fwfh_text_style.dart';
 import 'package:html/dom.dart' as dom;
 
 /// Allows to display some math.
@@ -30,7 +31,7 @@ class MathWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Math math = Math.tex(
       content.replaceAll(r'\displaystyle', ''),
-      textStyle: textStyle.copyWith(color: textStyle.color ?? context.resolveTheme().textColor),
+      textStyle: FwfhTextStyle.from(textStyle.copyWith(color: textStyle.color ?? context.resolveTheme().textColor)),
     );
 
     List<Math> parts = math.texBreak().parts;

@@ -2,6 +2,7 @@ import 'package:bacomathiques/app/api/content.dart';
 import 'package:bacomathiques/app/theme/bubble.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:fwfh_text_style/fwfh_text_style.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:url_launcher/url_launcher.dart';
 
@@ -59,11 +60,13 @@ class LinkWidget extends StatelessWidget {
       },
       child: Text(
         text,
-        style: TextStyle(
-          fontSize: fontSize,
-          color: bubbleTheme.linkColor,
-          decoration: TextDecoration.underline,
-          decorationColor: bubbleTheme.linkDecorationColor,
+        style: FwfhTextStyle.from(
+          TextStyle(
+            fontSize: fontSize,
+            color: bubbleTheme.linkColor,
+            decoration: TextDecoration.underline,
+            decorationColor: bubbleTheme.linkDecorationColor,
+          ),
         ),
       ),
     );
