@@ -61,12 +61,12 @@ class LinkWidget extends StatelessWidget {
       child: Text(
         text,
         style: FwfhTextStyle.from(
-          TextStyle(
-            fontSize: fontSize,
-            color: bubbleTheme.linkColor,
-            decoration: TextDecoration.underline,
-            decorationColor: bubbleTheme.linkDecorationColor,
-          ),
+          Theme.of(context).textTheme.bodyText2!.copyWith(
+                fontSize: fontSize,
+                color: bubbleTheme.linkColor,
+                decoration: TextDecoration.underline,
+                decorationColor: bubbleTheme.linkDecorationColor,
+              ),
         ),
       ),
     );
