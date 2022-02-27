@@ -6,8 +6,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[pdftex, pdfauthor={Bacomathiques}]{hyperref}
-\usepackage{xcolor}
 \usepackage{sectsty}
+\usepackage[explicit]{titlesec}
+\usepackage{xcolor}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -42,7 +43,7 @@
 \setcounter{MaxMatrixCols}{12}
 \setlength{\parindent}{0pt}
 \setlength{\fboxsep}{0pt}
-\pdfsuppresswarningpagegroup=1
+%\pdfsuppresswarningpagegroup=1
 
 % Code :
 
@@ -120,10 +121,17 @@
 
 % Titres :
 
-\renewcommand{\thesection}{\Roman{section} –}
-\sectionfont{\LARGE\bfseries\color{section}}
-\renewcommand{\thesubsection}{\arabic{subsection}.}
-\subsectionfont{\Large\bfseries\color{subsection}}
+\renewcommand{\thesection}{\Roman{section} - }
+\renewcommand{\thesubsection}{\arabic{subsection}. }
+
+\newcommand{\sectionstyle}{\normalfont\LARGE\bfseries\color{section}}
+\titleformat{\section}{\sectionstyle}{\thesection #1}{0pt}{}
+\titleformat{name=\section, numberless}{\sectionstyle}{#1}{0pt}{}
+
+\newcommand{\subsectionstyle}{\normalfont\Large\bfseries\color{subsection}}
+\titleformat{\subsection}{\subsectionstyle}{\thesubsection #1}{0pt}{}
+\titleformat{name=\subsection, numberless}{\subsectionstyle}{#1}{0pt}{}
+
 \titlelabel{\thetitle\ }
 
 % Table des matières :
@@ -154,7 +162,7 @@
 		{\Huge\color{title} #3}%
 		
 		\vspace{10pt}%
-		{Bacomathiques — \href{https://bacomathiqu.es/cours/#1/#2}{\color{section} https://bacomathiqu.es}}%
+		{Bacomathiques --- \href{https://bacomathiqu.es/cours/#1/#2}{\color{section} https://bacomathiqu.es}}%
 		
 		\vspace{20pt}%
 	\end{center}%
@@ -187,6 +195,7 @@
 		\href{https://www.geogebra.org/m/#1}{\includegraphics[width=\textwidth-1pt,fbox]{\lessonimagespath#1}}%
 	\end{center}%
 }
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
 
 \makeatletter
 \newcommand\inputcontent{\@ifstar{\inputcontent@star}{\inputcontent@nostar}}
@@ -275,3 +284,9 @@
 		\end{tabularx}%
 	}%
 }
+
+% Longueurs :
+
+\newlength{\espacetitreliste}
+\setlength{\espacetitreliste}{-16pt}
+\newcommand{\entretitreetliste}{\vspace{\espacetitreliste}}

@@ -2,14 +2,14 @@
 
 \begin{document}
 	%<*content>
-	\lesson{premiere}{probabilites}{Chapitre VII – Probabilités}
+	\lesson{premiere}{probabilites}{Chapitre VII -- Probabilités}
 	
 	\section{Probabilités conditionnelles}
 	
 	\subsection{Définition}
 	
 	\begin{formula}[Définition]
-		Soient $A$ et $B$ deux événements avec $A$ de probabilité non nulle. Alors \textbf{la probabilité conditionnelle de $B$ sachant que $A$ est réalisé} (notée $P_{A}(B)$) est $\displaystyle{P_{A}(B) = \frac{P(A \cap B)}{P(A)}}$.
+		Soient $A$ et $B$ deux événements avec $A$ de probabilité non nulle. Alors \textbf{la probabilité conditionnelle de $B$ sachant que $A$ est réalisé} (notée $P_{A}(B)$) est $P_{A}(B) = \frac{P(A \cap B)}{P(A)}$.
 	\end{formula}
 	
 	\begin{tip}[Rappel]
@@ -58,8 +58,7 @@
 	
 	\begin{formula}[Formule des probabilités totales]
 		Soient $A_1, A_2, ..., A_n$ des événements qui partitionnent (qui recouvrent) l'univers $\Omega$, alors pour tout événement $B$ :
-		\newpar
-		$P(B) = P(B \cap A_1) + P(B \cap A_2) + \dots + P(B \cap A_n)$
+		\[ P(B) = P(B \cap A_1) + P(B \cap A_2) + \dots + P(B \cap A_n) \]
 	\end{formula}
 	
 	\begin{tip}[Exemple]
@@ -113,7 +112,7 @@
 	
 	\begin{formula}[Espérance]
 		L'\textbf{espérance} $E(X)$ d'une variable aléatoire $X$ est le réel :
-		$E(X) = x_1 \times p_1 + x_2 \times p_2 + \dots + x_n \times p_n$.
+		\[ E(X) = x_1 \times p_1 + x_2 \times p_2 + \dots + x_n \times p_n \]
 	\end{formula}
 	
 	\begin{formula}[Variance et écart-type]
@@ -146,6 +145,7 @@
 	Chacun de ces paramètres a une utilité bien précise. En effet :
 	
 	\begin{formula}[Signification des paramètres]
+		\entretitreetliste
 		\begin{itemize}
 			\item L'espérance est la \textbf{valeur moyenne} prise par $X$.
 			\item La variance et l'écart-type mesurent la \textbf{dispersion} des valeurs prises par $X$. Plus ces valeurs sont grandes, plus les valeurs sont dispersées autour de l'espérance.

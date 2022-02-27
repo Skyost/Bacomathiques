@@ -10,10 +10,8 @@
 	
 	\begin{formula}[Définition]
 		Soient $m$ et $n$ deux entiers non nuls. Une \textbf{matrice réelle} $A$ de taille $m \times n$ est un tableau de réels tel que :
-		\newpar
-		$\displaystyle{A = \begin{pmatrix}a_{1,1} & a_{1,2} & \dots & a_{1,n} \\ a_{2,1} & a_{2,2} & \dots & a_{2,n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m,1} & a_{m,2} & \dots & a_{m,n}\end{pmatrix}}$
-		\newpar
-		Où $a_{1,1}$, $a_{1,2}$, $a_{2,1}$, ..., $a_{m,n}$ sont les \textbf{coefficients} de la matrice. L'ensemble des matrices à coefficients réels est noté $\mathcal{M}_{m,n}(\mathbb{R})$.
+		\[ A = \begin{pmatrix}a_{1,1} & a_{1,2} & \dots & a_{1,n} \\ a_{2,1} & a_{2,2} & \dots & a_{2,n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m,1} & a_{m,2} & \dots & a_{m,n}\end{pmatrix} \]
+		où $a_{1,1}$, $a_{1,2}$, $a_{2,1}$, ..., $a_{m,n}$ sont les \textbf{coefficients} de la matrice. L'ensemble des matrices à coefficients réels est noté $\mathcal{M}_{m,n}(\mathbb{R})$.
 	\end{formula}
 	
 	Il serait également possible de prendre des matrices à coefficients entiers ou même complexes, mais nous nous limiterons ici au cas des matrices réelles.
@@ -55,9 +53,7 @@
 		\contentwidth[big]
 		Pour additionner deux matrices de même taille, il suffit d'additionner leurs coefficients deux-à-deux. Plus spécifiquement :
 		\newpar
-		$\displaystyle{\begin{pmatrix}a_{1,1} & a_{1,2} & \dots & a_{1,n} \\ a_{2,1} & a_{2,2} & \dots & a_{2,n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m,1} & a_{m,2} & \dots & a_{m,n}\end{pmatrix} + \begin{pmatrix}b_{1,1} & b_{1,2} & \dots & b_{1,n} \\ b_{2,1} & b_{2,2} & \dots & b_{2,n} \\ \vdots & \vdots & \ddots & \vdots \\ b_{m,1} & b_{m,2} & \dots & b_{m,n}\end{pmatrix}}$
-		\newpar
-		$\displaystyle{= \begin{pmatrix}a_{1,1} + b_{1,1} & a_{1,2} + b_{1,2} & \dots & a_{1,n} + b_{1,n} \\ a_{2,1} + b_{2,1} & a_{2,2} + b_{2,2} & \dots & a_{2,n} + b_{2,n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m,1} + b_{m,1} & a_{m,2} + b_{m,2} & \dots & a_{m,n} + b_{m,n}\end{pmatrix}}$
+		$\displaystyle \begin{pmatrix}a_{1,1} & a_{1,2} & \dots & a_{1,n} \\ a_{2,1} & a_{2,2} & \dots & a_{2,n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m,1} & a_{m,2} & \dots & a_{m,n}\end{pmatrix} + \begin{pmatrix}b_{1,1} & b_{1,2} & \dots & b_{1,n} \\ b_{2,1} & b_{2,2} & \dots & b_{2,n} \\ \vdots & \vdots & \ddots & \vdots \\ b_{m,1} & b_{m,2} & \dots & b_{m,n}\end{pmatrix} = \begin{pmatrix}a_{1,1} + b_{1,1} & a_{1,2} + b_{1,2} & \dots & a_{1,n} + b_{1,n} \\ a_{2,1} + b_{2,1} & a_{2,2} + b_{2,2} & \dots & a_{2,n} + b_{2,n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m,1} + b_{m,1} & a_{m,2} + b_{m,2} & \dots & a_{m,n} + b_{m,n}\end{pmatrix}$
 	\end{formula}
 	
 	\begin{tip}[Attention !]
@@ -69,7 +65,7 @@
 	\begin{formula}[Multiplication d'une matrice par un réel]
 		Soit $\lambda$ un réel. Le produit d'une matrice par $\lambda$ est la matrice de même taille dont les coefficients sont tous multipliés par $\lambda$. Plus spécifiquement :
 		\newpar
-		$\displaystyle{\lambda \times \begin{pmatrix}a_{1,1} & a_{1,2} & \dots & a_{1,n} \\ a_{2,1} & a_{2,2} & \dots & a_{2,n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m,1} & a_{m,2} & \dots & a_{m,n}\end{pmatrix} = \begin{pmatrix}\lambda \times a_{1,1} & \lambda \times a_{1,2} & \dots & \lambda \times a_{1,n} \\ \lambda \times a_{2,1} & \lambda \times a_{2,2} & \dots & \lambda \times a_{2,n} \\ \vdots & \vdots & \ddots & \vdots \\ \lambda \times a_{m,1} & \lambda \times a_{m,2} & \dots & \lambda \times a_{m,n}\end{pmatrix}}$
+		\[ \lambda \times \begin{pmatrix}a_{1,1} & a_{1,2} & \dots & a_{1,n} \\ a_{2,1} & a_{2,2} & \dots & a_{2,n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m,1} & a_{m,2} & \dots & a_{m,n}\end{pmatrix} = \begin{pmatrix}\lambda \times a_{1,1} & \lambda \times a_{1,2} & \dots & \lambda \times a_{1,n} \\ \lambda \times a_{2,1} & \lambda \times a_{2,2} & \dots & \lambda \times a_{2,n} \\ \vdots & \vdots & \ddots & \vdots \\ \lambda \times a_{m,1} & \lambda \times a_{m,2} & \dots & \lambda \times a_{m,n}\end{pmatrix} \]
 		\newpar
 		Si $A$ est la matrice de gauche, on note $\lambda A$ la matrice de droite.
 	\end{formula}
@@ -88,8 +84,8 @@
 	
 	\begin{formula}[Produit de deux matrices]
 		Soient $A$ une matrice de taille $m \times n$ et $B$ une matrice de taille $n \times p$ deux matrices. Le produit de ces deux matrices (notée $A \times B$ ou $AB$) est la matrice de taille $m \times p$ dont le coefficient à la position $(i; j)$ est égal au produit de la $i$-ième ligne de $A$ par la $j$-ième colonne de $B$. Plus spécifiquement, en notant $L_i$ la $i$-ème ligne de $A$ et $C_j$ la $j$-ième colonne de $B$ :
-		\newpar
-		$\displaystyle{AB = \begin{pmatrix}c_{1,1} & c_{1,2} & \dots & c_{1,p} \\ c_{2,1} & c_{2,2} & \dots & c_{2,p} \\ \vdots & \vdots & \ddots & \vdots \\ c_{m,1} & c_{m,2} & \dots & c_{m,p}\end{pmatrix}}$ où $c_{i,j} = L_i \times C_j$.
+		\[ AB = \begin{pmatrix}c_{1,1} & c_{1,2} & \dots & c_{1,p} \\ c_{2,1} & c_{2,2} & \dots & c_{2,p} \\ \vdots & \vdots & \ddots & \vdots \\ c_{m,1} & c_{m,2} & \dots & c_{m,p}\end{pmatrix} \]
+		où $c_{i,j} = L_i \times C_j$.
 	\end{formula}
 	
 	\begin{tip}[Attention !]
@@ -101,9 +97,7 @@
 	\begin{tip}
 		Si $A$ et $B$ sont deux matrices diagonales de taille $n$. Leur produit est la matrice diagonale de même taille dont le coefficient à la position $(i; i)$ est le produit du coefficient de $A$ à la position $(i;i)$ par celui du coefficient de $B$ à la position $(i;i)$. Plus spécifiquement, en notant $A = (a_{i,j})$ et $B = (b_{i,j})$ :
 		\newpar
-		$\displaystyle{\begin{pmatrix}a_{1,1} & 0 & \dots & 0 \\ 0 & a_{2,2} & \dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & a_{n,n}\end{pmatrix} \times \begin{pmatrix}b_{1,1} & 0 & \dots & 0 \\ 0 & b_{2,2} & \dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & b_{n,n}\end{pmatrix}}$
-		\newpar
-		$\displaystyle{= \begin{pmatrix}a_{1,1} \times b_{1,1} & 0 & \dots & 0 \\ 0 & a_{2,2} \times b_{2,2} & \dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & a_{n,n} \times b_{n,n}\end{pmatrix}}$
+		$\displaystyle \begin{pmatrix}a_{1,1} & 0 & \dots & 0 \\ 0 & a_{2,2} & \dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & a_{n,n}\end{pmatrix} \times \begin{pmatrix}b_{1,1} & 0 & \dots & 0 \\ 0 & b_{2,2} & \dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & b_{n,n}\end{pmatrix} \\ = \begin{pmatrix}a_{1,1} \times b_{1,1} & 0 & \dots & 0 \\ 0 & a_{2,2} \times b_{2,2} & \dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & a_{n,n} \times b_{n,n}\end{pmatrix}$
 		\newpar
 		De plus, on a $AB = BA$.
 	\end{tip}
@@ -138,24 +132,21 @@
 	Le \textbf{déterminant} permet, entre autres, de calculer l'inverse d'une matrice (s'il existe). Nous nous limiterons ici au cas des matrices carrées d'ordre $2$, mais il est possible de le généraliser encore plus.
 	
 	\begin{formula}[Déterminant d'une matrice $2 \times 2$]
-		Soit $\displaystyle{A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}}$ une matrice carrée d'ordre $2$.
+		Soit $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$ une matrice carrée d'ordre $2$.
 		\newpar
 		Alors le déterminant de $A$ (noté $\det(A)$) est le réel $\det(A) = ad - bc$. De plus, $A$ est inversible si et seulement si $\det(A) \neq 0$.
 	\end{formula}
 	
 	\begin{formula}[Inverse d'une matrice $2 \times 2$]
-		Soit $\displaystyle{A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}}$ une matrice carrée d'ordre $2$ dont le déterminant ne s'annule pas.
-		\newpar
-		Alors $\displaystyle{A^{-1} = \frac{1}{\det(A)} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}}$.
+		Soit $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$ une matrice carrée d'ordre $2$ dont le déterminant ne s'annule pas. Alors :
+		\[ A^{-1} = \frac{1}{\det(A)} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix} \]
 	\end{formula}
 	
 	\begin{tip}[Exemple]
-		Calculons le produit de $\displaystyle{A = \begin{pmatrix}2 & 1 \\ 6 & 4\end{pmatrix}}$ par $\displaystyle{B = \begin{pmatrix}4 & -1 \\ -6 & 2\end{pmatrix}}$, et déduisons-en que $A$ est inversible sans utiliser la formule donnée précédemment.
+		Calculons le produit de $A = \begin{pmatrix}2 & 1 \\ 6 & 4\end{pmatrix}$ par $B = \begin{pmatrix}4 & -1 \\ -6 & 2\end{pmatrix}$, et déduisons-en que $A$ est inversible sans utiliser la formule donnée précédemment.
 		\newpar
 		Le produit nous donnera une matrice carrée d'ordre $2$ car on multiplie deux matrices carrées d'ordre $2$ :
-		\newpar
-		$\displaystyle{\begin{pmatrix} 2 & 1 \\ 6 & 4 \end{pmatrix} \times \begin{pmatrix} 4 & -1 \\ -6 & 2\end{pmatrix} = \begin{pmatrix}8-6 & -2+2 \\ 24-24 & -6+8 \end{pmatrix} = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}}$
-		\newpar
+		\[ \begin{pmatrix} 2 & 1 \\ 6 & 4 \end{pmatrix} \times \begin{pmatrix} 4 & -1 \\ -6 & 2\end{pmatrix} = \begin{pmatrix}8-6 & -2+2 \\ 24-24 & -6+8 \end{pmatrix} = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} \]
 		Donc $A \times B = 2I_2$. Ainsi, $A$ est inversible et $A^{-1} = \frac{1}{2} B$.
 	\end{tip}
 	
@@ -164,9 +155,9 @@
 	\begin{formula}[Puissance d'une matrice carrée]
 		Soient $A$ une matrice carrée d'ordre $n$ et $i$ un entier naturel :
 		\begin{itemize}
-			\item Si $i > 0$, $\displaystyle{A^i = \underbrace{A \times \dots \times A}_{i \text{ fois}} = A^{i-1} \times A}$.
+			\item Si $i > 0$, $A^i = \underbrace{A \times \dots \times A}_{i \text{ fois}} = A^{i-1} \times A$.
 			\item Si $i = 0$, $A^i = A^0 = I_n$.
-			\item Si $i < 0$, $\displaystyle{A^i = \underbrace{A^{-1} \times \dots \times A^{-1}}_{i \text{ fois}} = A^{i-1} \times A^{-1}}$.
+			\item Si $i < 0$, $A^i = \underbrace{A^{-1} \times \dots \times A^{-1}}_{i \text{ fois}} = A^{i-1} \times A^{-1}$.
 		\end{itemize}
 		De plus, pour tout entier naturel $j$, on a $A^i \times A^j = A^{i+j}$.
 	\end{formula}
@@ -182,9 +173,9 @@
 	\end{formula}
 	
 	\begin{tip}[Exemple]
-		Soient $\displaystyle{A = \begin{pmatrix} 2 & 5 & 9 \\ 3 & 6 & 10 \end{pmatrix}}$ et $\displaystyle{B = \begin{pmatrix} 0 & 1 & 1 \\ 2 & 3 & 5 \\ 8 & 13 & 21 \end{pmatrix}}$. Calculons $^tA$ et $^tB$.
+		Soient $A = \begin{pmatrix} 2 & 5 & 9 \\ 3 & 6 & 10 \end{pmatrix}$ et $B = \begin{pmatrix} 0 & 1 & 1 \\ 2 & 3 & 5 \\ 8 & 13 & 21 \end{pmatrix}$. Calculons $^tA$ et $^tB$.
 		\newpar
-		On a $\displaystyle{^tA = \begin{pmatrix} 2 & 3 \\ 5 & 6 \\ 9 & 10 \end{pmatrix}}$ et $\displaystyle{^tB = \begin{pmatrix} 0 & 2 & 8 \\ 1 & 3 & 13 \\ 1 & 5 & 21 \end{pmatrix}}$.
+		On a $^tA = \begin{pmatrix} 2 & 3 \\ 5 & 6 \\ 9 & 10 \end{pmatrix}$ et $^tB = \begin{pmatrix} 0 & 2 & 8 \\ 1 & 3 & 13 \\ 1 & 5 & 21 \end{pmatrix}$.
 	\end{tip}
 	
 	\section{Applications}
@@ -192,9 +183,10 @@
 	\subsection{Écriture matricielle d'un système d'équations linéaires}
 	
 	\begin{formula}[Lien entre système d'équations linéaires et matrices]
-		Soient quatre réels $a$, $b$, $c$ et $d$ et soient deux réels $\alpha$ et $\beta$. Le système d'équations linéaires à deux inconnues $\displaystyle{(S) : \begin{cases}ax + by = \alpha \\ cx + dy = \beta\end{cases}}$ (d'inconnues $x$ et $y$) peut s'écrire matriciellement :
-		\newpar
-		$\displaystyle{(S) \iff \underbrace{\begin{pmatrix}a & b \\ c & d\end{pmatrix}}_{= \, A} \underbrace{\begin{pmatrix}x \\ y\end{pmatrix}}_{= \, X} = \underbrace{\begin{pmatrix}\alpha \\ \beta\end{pmatrix}}_{= \, B}}$
+		Soient quatre réels $a$, $b$, $c$ et $d$ et soient deux réels $\alpha$ et $\beta$. Le système d'équations linéaires à deux inconnues
+		\[ \begin{cases}ax + by = \alpha \\ cx + dy = \beta\end{cases} \tag{S} \]
+		(d'inconnues $x$ et $y$) peut s'écrire matriciellement :
+		\[ (S) \iff \underbrace{\begin{pmatrix}a & b \\ c & d\end{pmatrix}}_{= \, A} \underbrace{\begin{pmatrix}x \\ y\end{pmatrix}}_{= \, X} = \underbrace{\begin{pmatrix}\alpha \\ \beta\end{pmatrix}}_{= \, B} \]
 	\end{formula}
 	
 	\begin{formula}[Résolution du système $(S)$]
@@ -204,11 +196,13 @@
 	\begin{tip}[Exemple]
 		Cela peut sembler compliqué à appliquer, mais il n'en est rien !
 		\newpar
-		Par exemple, transformons le système $\displaystyle{(S) : \begin{cases}x + 2y = 1 \\ 2x + 5y = 4 \end{cases}}$ en une égalité de matrices :
+		Par exemple, transformons le système
+		\[ \begin{cases}x + 2y = 1 \\ 2x + 5y = 4 \end{cases} \tag{S} \]
+		en une égalité de matrices :
 		\newpar
-		$\displaystyle{(S) \iff \begin{pmatrix}1 & 2 \\ 2 & 5\end{pmatrix} \begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}1 \\ 4 \end{pmatrix}}$
+		\[ (S) \iff \begin{pmatrix}1 & 2 \\ 2 & 5\end{pmatrix} \begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}1 \\ 4 \end{pmatrix} \]
 		\newpar
-		Or l'inverse de $\displaystyle{\begin{pmatrix}1 & 2 \\ 2 & 5\end{pmatrix}}$ est $\displaystyle{\begin{pmatrix}5 & -2 \\ -2 & 1\end{pmatrix}}$. D'où $\displaystyle{\begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}5 & -2 \\ -2 & 1\end{pmatrix} \begin{pmatrix}1 \\ 4\end{pmatrix} = \begin{pmatrix}-3 \\ 2\end{pmatrix}}$.
+		Or l'inverse de $\begin{pmatrix}1 & 2 \\ 2 & 5\end{pmatrix}$ est $\begin{pmatrix}5 & -2 \\ -2 & 1\end{pmatrix}$. D'où $\begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}5 & -2 \\ -2 & 1\end{pmatrix} \begin{pmatrix}1 \\ 4\end{pmatrix} = \begin{pmatrix}-3 \\ 2\end{pmatrix}$.
 		\newpar
 		Or deux matrices sont égales si et seulement si leurs coefficients sont tous égaux. Donc on a $x = -3$ et $y = 2$.
 	\end{tip}
@@ -224,12 +218,10 @@
 	\end{formula}
 	
 	\begin{tip}
-		Il peut sembler étrange de manipuler des suites de matrices, mais c'est en réalité très intuitif. Par exemple, définissions la suite $(U_n)$ par $\displaystyle{U_0 = \begin{pmatrix} 1 \\ 2 \end{pmatrix}}$ et pour tout $n \geq 1$ par $\displaystyle{U_{n+1} = \underbrace{\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}}_{= A} U_n}$ et cherchons son terme général.
+		Il peut sembler étrange de manipuler des suites de matrices, mais c'est en réalité très intuitif. Par exemple, définissions la suite $(U_n)$ par $U_0 = \begin{pmatrix} 1 \\ 2 \end{pmatrix}$ et pour tout $n \geq 1$ par $U_{n+1} = \underbrace{\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}}_{= A} U_n$ et cherchons son terme général.
 		\newpar
-		Par la formule précédente, pour tout $n \in \mathbb{N}$, $U_n = A^n U_0$. Or, $A$ est une matrice diagonale, donc $\displaystyle{A^n = \begin{pmatrix} 1^n & 0 \\ 0 & 2^n \end{pmatrix}}$, et ainsi :
-		\newpar
-		$\displaystyle{U_n = \begin{pmatrix} 1 & 0 \\ 0 & 2^n \end{pmatrix} \begin{pmatrix} 1 \\ 2 \end{pmatrix} = \begin{pmatrix} 1 \\ 2^{n+1} \end{pmatrix}}$
-		\newpar
+		Par la formule précédente, pour tout $n \in \mathbb{N}$, $U_n = A^n U_0$. Or, $A$ est une matrice diagonale, donc $A^n = \begin{pmatrix} 1^n & 0 \\ 0 & 2^n \end{pmatrix}$, et ainsi :
+		\[ U_n = \begin{pmatrix} 1 & 0 \\ 0 & 2^n \end{pmatrix} \begin{pmatrix} 1 \\ 2 \end{pmatrix} = \begin{pmatrix} 1 \\ 2^{n+1} \end{pmatrix} \]
 		On remarque en particulier que la suite $(U_n)$ est divergente (à cause de sa deuxième coordonnée qui tend vers $+\infty$).
 	\end{tip}
 	
@@ -246,18 +238,16 @@
 	\begin{formula}
 		On se place dans un repère $(O; \overrightarrow{i}, \overrightarrow{j})$. Soient $A = (x_A; y_A)$ et $B = (x_B; y_B)$ deux points du plan.
 		\begin{itemize}
-			\item $B$ est l'image de $A$ par la translation de vecteur $\displaystyle{\overrightarrow{u} = \begin{pmatrix} x_{\overrightarrow{u}} \\ y_{\overrightarrow{u}} \end{pmatrix}}$ si et seulement si $\displaystyle{\begin{pmatrix} x_B \\ y_B \end{pmatrix} = \begin{pmatrix} x_{\overrightarrow{u}} \\ y_{\overrightarrow{u}} \end{pmatrix} + \begin{pmatrix} x_A \\ y_A \end{pmatrix}}$.
-			\item $B$ est l'image de $A$ par la rotation de centre $O$ et d'angle $\theta \in \mathbb{R}$ si et seulement si $\displaystyle{\begin{pmatrix} x_B \\ y_B \end{pmatrix} = \begin{pmatrix} \cos(\theta) & -\sin(\theta) \\ \sin(\theta) & \cos(\theta) \end{pmatrix} \begin{pmatrix} x_A \\ y_A \end{pmatrix}}$.
+			\item $B$ est l'image de $A$ par la translation de vecteur $\overrightarrow{u} = \begin{pmatrix} x_{\overrightarrow{u}} \\ y_{\overrightarrow{u}} \end{pmatrix}$ si et seulement si $\begin{pmatrix} x_B \\ y_B \end{pmatrix} = \begin{pmatrix} x_{\overrightarrow{u}} \\ y_{\overrightarrow{u}} \end{pmatrix} + \begin{pmatrix} x_A \\ y_A \end{pmatrix}$.
+			\item $B$ est l'image de $A$ par la rotation de centre $O$ et d'angle $\theta \in \mathbb{R}$ si et seulement si $\begin{pmatrix} x_B \\ y_B \end{pmatrix} = \begin{pmatrix} \cos(\theta) & -\sin(\theta) \\ \sin(\theta) & \cos(\theta) \end{pmatrix} \begin{pmatrix} x_A \\ y_A \end{pmatrix}$.
 		\end{itemize}
 	\end{formula}
 	
 	\begin{tip}[Exemple]
-		On pose $A = (1; 1)$. Calculons les coordonnées de $B$ qui est l'image de $A$ par la translation de vecteur $\displaystyle{\overrightarrow{u} = \begin{pmatrix} -1 \\ -2 \end{pmatrix}}$, et de $C$ qui est l'image de $A$ par la rotation de centre $O$ et d'angle $\displaystyle{\frac{\pi}{4}}$.
+		On pose $A = (1; 1)$. Calculons les coordonnées de $B$ qui est l'image de $A$ par la translation de vecteur $\overrightarrow{u} = \begin{pmatrix} -1 \\ -2 \end{pmatrix}$, et de $C$ qui est l'image de $A$ par la rotation de centre $O$ et d'angle $\frac{\pi}{4}$.
 		\newpar
 		On a :
-		\newpar
-		$\displaystyle{\begin{pmatrix} x_B \\ y_B \end{pmatrix} = \begin{pmatrix} -1 \\ -2 \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix}}$ et $\displaystyle{\begin{pmatrix} x_C \\ y_C \end{pmatrix} = \begin{pmatrix} \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2} \\ \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix}}$.
-		\newpar
+		\[ \begin{pmatrix} x_B \\ y_B \end{pmatrix} = \begin{pmatrix} -1 \\ -2 \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix} \text{ et } \begin{pmatrix} x_C \\ y_C \end{pmatrix} = \begin{pmatrix} \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2} \\ \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix} \]
 		Donc $B = (-1; 1)$ et $C = (0; \sqrt{2})$.
 		\includerepresentation{tjwgwr8j}
 	\end{tip}
@@ -276,7 +266,7 @@
 	
 	\begin{tip}[Exemple]
 		\contentwidth[big]
-		Par exemple, $G = (\{A; B; C; D; E\}, \{\{A; B\}; \{B; C\}; \{C; D\}; \{D; A\}; \{D; E\}; \{E; A\}\}$ est un graphe non-orienté que l'on peut représenter comme tel :
+		Par exemple, $G = (\{A; B; C; D; E\}, \{\{A; B\}; \{B; C\}; \{C; D\}; \{D; A\}; \{D; E\}; \{E; A\}\})$ est un graphe non-orienté que l'on peut représenter comme tel :
 		\includelatexpicture[\width]{graphe-1}
 		Signalons tout de même que l'ordre dans lequel on relie les sommets n'a pas d'importance.
 	\end{tip}
@@ -291,7 +281,7 @@
 	
 	\begin{tip}[Exemple]
 		\contentwidth[big]
-		Par exemple, $G = (\{A; B; C; D; E\}, \{(A; B); (B; C); (C; D); (D; E); (A; E)\}$ est un graphe orienté que l'on peut représenter comme tel :
+		Par exemple, $G = \{\{A; B; C; D; E\}, \{(A; B); (B; C); (C; D); (D; E); (A; E)\})$ est un graphe orienté que l'on peut représenter comme tel :
 		\includelatexpicture[\width]{graphe-2}
 	\end{tip}
 	
@@ -370,13 +360,13 @@
 	\begin{tip}[Exemple]
 		On considère le graphe orienté $G_1$ suivant :
 		\includelatexpicture[\width]{graphe-5}
-		Sa matrice d'adjacence est la matrice $\displaystyle{M_1 = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{pmatrix}}$.
+		Sa matrice d'adjacence est la matrice $M_1 = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{pmatrix}$.
 	\end{tip}
 	
 	\begin{tip}[Exemple]
 		On considère le graphe non-orienté $G_2$ suivant (i.e. le même que le $G_1$ mais sans les orientations) :
 		\includelatexpicture[\width]{graphe-6}
-		Sa matrice d'adjacence est la matrice $\displaystyle{M_2 = \begin{pmatrix} 0 & 1 & 1 \\ 1 & 0 & 1 \\ 1 & 1 & 0 \end{pmatrix}}$.
+		Sa matrice d'adjacence est la matrice $M_2 = \begin{pmatrix} 0 & 1 & 1 \\ 1 & 0 & 1 \\ 1 & 1 & 0 \end{pmatrix}$.
 	\end{tip}
 	
 	Remarquons sur ces deux exemples que le caractère orienté ou non d'un graphe change sa matrice d'adjacence !

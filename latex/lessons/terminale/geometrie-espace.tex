@@ -2,7 +2,7 @@
 
 \begin{document}
 	%<*content>
-	\lesson{terminale}{geometrie-espace}{Chapitre VIII – Géométrie dans l'espace}
+	\lesson{terminale}{geometrie-espace}{Chapitre VIII -- Géométrie dans l'espace}
 
 	\section{Vecteurs de l'espace}
 
@@ -17,8 +17,8 @@
 	\begin{formula}[Opérations sur les vecteurs]
 		Soient $\overrightarrow{u} = \begin{pmatrix} x_1 \\ y_1 \\ z_1 \end{pmatrix}$ et $\overrightarrow{v} = \begin{pmatrix} x_2 \\ y_2 \\ z_2 \end{pmatrix}$ deux vecteurs de l'espace et $\lambda$ un réel quelconque.
 		\begin{itemize}
-			\item On peut additionner deux vecteurs : $u + v = \begin{pmatrix} x_1 + x_2 \\ y_1 + y_2 \\ z_1 + z_2 \end{pmatrix}$.
-			\item On peut multiplier un vecteur par un réel : $\lambda u =  \begin{pmatrix} \lambda x_1 \\ \lambda y_1 \\ \lambda z_1 \end{pmatrix}$.
+			\item On peut additionner deux vecteurs : $\overrightarrow{u} + \overrightarrow{v} = \begin{pmatrix} x_1 + x_2 \\ y_1 + y_2 \\ z_1 + z_2 \end{pmatrix}$.
+			\item On peut multiplier un vecteur par un réel : $\lambda \overrightarrow{u} =  \begin{pmatrix} \lambda x_1 \\ \lambda y_1 \\ \lambda z_1 \end{pmatrix}$.
 		\end{itemize}
 	\end{formula}
 
@@ -41,9 +41,7 @@
 	\begin{formula}[Repère de l'espace]
 		Soient $\overrightarrow{i}$, $\overrightarrow{j}$ et $\overrightarrow{k}$ trois vecteurs non coplanaires de l'espace et $O$ un point de l'espace.
 		Tout point $M$ peut alors être identifié dans ce repère par un unique triplet de réels $(x;y;z)$ tel que :
-		\newpar
-		$\overrightarrow{OM} = x\overrightarrow{i} + y\overrightarrow{j} + z\overrightarrow{k}$.
-		\newpar
+		\[ \overrightarrow{OM} = x\overrightarrow{i} + y\overrightarrow{j} + z\overrightarrow{k} \]
 		On dit alors $(O ; \overrightarrow{i} ; \overrightarrow{j} ; \overrightarrow{k})$ est un \textbf{repère de l'espace} et les \textbf{coordonnées} de $M$ dans ce repère sont alors $(x; y; z)$. Par abus de langage, on notera cela $M = (x; y; z)$.
 	\end{formula}
 
@@ -53,8 +51,8 @@
 
 	Dans toute la suite du chapitre, on se placera dans le repère précédent $(O ; \overrightarrow{i} ; \overrightarrow{j} ; \overrightarrow{k})$.
 
-
 	\begin{formula}[Types de repères]
+		\entretitreetliste
 		\begin{itemize}
 			\item Le repère est dit \textbf{orthogonal} si $\overrightarrow{i}$, $\overrightarrow{j}$ et $\overrightarrow{k}$ sont orthogonaux les uns par rapport aux autres.
 			\item Le repère est dit \textbf{normé} si $\overrightarrow{i}$, $\overrightarrow{j}$ et $\overrightarrow{k}$ sont de norme $1$.
@@ -75,13 +73,13 @@
 	\begin{formula}[Calcul avec les coordonnées]
 		Soient $\overrightarrow{u} = \begin{pmatrix} {x_1} \\ {y_1} \\ {z_1} \end{pmatrix}$ et $\overrightarrow{v} = \begin{pmatrix} {x_2} \\ {y_2} \\ {z_2} \end{pmatrix}$ deux vecteurs de l'espace.
 		\newpar
-		On a $\overrightarrow{u} \cdot \overrightarrow{v} = x_1x_2 + y_1y_2 + z_1z_2$.
+		On a :
+		\[ \overrightarrow{u} \cdot \overrightarrow{v} = x_1x_2 + y_1y_2 + z_1z_2 \]
 	\end{formula}
 
 	\begin{formula}[Calcul avec un angle]
 		Soient $\overrightarrow{u}$ et $\overrightarrow{v}$ deux vecteurs du plan et $\theta$ l'angle orienté entre les deux. On a :
-		\newpar
-		$\overrightarrow{u} \cdot \overrightarrow{v} = ||\overrightarrow{u}|| \times ||\overrightarrow{v}|| \times \cos(\theta)$
+		\[ \overrightarrow{u} \cdot \overrightarrow{v} = \Vert \overrightarrow{u} \Vert \times \Vert \overrightarrow{v} \Vert \times \cos(\theta) \]
 	\end{formula}
 
 	\begin{formula}[Calcul un projeté orthogonal]
@@ -96,7 +94,7 @@
 
 	\begin{formula}[Formule de polarisation]
 		Soient $\overrightarrow{u}$ et $\overrightarrow{v}$ deux vecteurs de l'espace :
-		$\overrightarrow{u} \cdot \overrightarrow{v} = \displaystyle{\frac{1}{2} \left(||\overrightarrow{u + v}||^2 - ||\overrightarrow{u}||^2 - ||\overrightarrow{v}||^2\right)}$.
+		\[ \overrightarrow{u} \cdot \overrightarrow{v} = \frac{1}{2} \left(\Vert \overrightarrow{u} + \overrightarrow{v} \Vert^2 - \Vert \overrightarrow{u} \Vert^2 - \Vert \overrightarrow{v} \Vert^2\right) \]
 	\end{formula}
 
 	\begin{tip}[Utilisation des formules]
@@ -113,13 +111,11 @@
 			\hline
 			$\overrightarrow{u} = \begin{pmatrix} {x_1} \\ {y_1} \\ {z_1} \end{pmatrix}$ \medskip $\overrightarrow{v} = \begin{pmatrix} {x_2} \\ {y_2} \\ {z_2} \end{pmatrix}$. & $\overrightarrow{u} \cdot \overrightarrow{v} = x_1 \times x_2 + y_1 \times y_2 + z_1 \times z_2$ \medskip (Calcul à partir des coordonnées.) & Les coordonnées de $\overrightarrow{u}$ et $\overrightarrow{v}$. \\
 			\hline
-			$\theta$ est l'angle orienté entre $\overrightarrow{u}$ et $\overrightarrow{v}$. & $\overrightarrow{u} \cdot \overrightarrow{v} = ||\overrightarrow{u}|| \times ||\overrightarrow{v}|| \times \cos(\theta)$ \medskip (Calcul à partir des normes et d'un angle.) & La norme de $\overrightarrow{u}$, la norme de $\overrightarrow{v}$ et l'angle $\theta$ entre les deux vecteurs. \\
+			$\theta$ est l'angle orienté entre $\overrightarrow{u}$ et $\overrightarrow{v}$. & $\overrightarrow{u} \cdot \overrightarrow{v} = \Vert \overrightarrow{u} \Vert \times \Vert \overrightarrow{v} \Vert \times \cos(\theta)$ \medskip (Calcul à partir des normes et d'un angle.) & La norme de $\overrightarrow{u}$, la norme de $\overrightarrow{v}$ et l'angle $\theta$ entre les deux vecteurs. \\
 			\hline
 			$A$ et $B$ sont les deux extrémités de $\overrightarrow{u}$, $A$ et $C$ sont les deux extrémités de $\overrightarrow{v}$, et $P$ est le projeté orthogonal de $C$ sur $(AB)$. & $\overrightarrow{u} \cdot \overrightarrow{v} = \overrightarrow{AB} \cdot \overrightarrow{AC} = \pm AB \times AP$ \medskip $+$ si $P \in [AB)$ et $-$ sinon. \medskip (Calcul à partir d'une projection orthogonale.) & 3 points distincts (qui sont ici $A$, $B$ et $C$). \\
 			\hline
-			& $\displaystyle{\overrightarrow{u} \cdot \overrightarrow{v} =}$
-			\smallskip
-			$\displaystyle{\frac{||\overrightarrow{u + v}||^2 - ||\overrightarrow{u}||^2 - ||\overrightarrow{v}||^2}{2}}$ \medskip (Calcul à partir des normes.) & On possède la norme de $\overrightarrow{u}$, celle de $\overrightarrow{v}$ mais surtout celle de $\overrightarrow{u} + \overrightarrow{v}$. \\
+			& $\overrightarrow{u} \cdot \overrightarrow{v} = \frac{\Vert \overrightarrow{u} + \overrightarrow{v} \Vert^2 - \Vert \overrightarrow{u} \Vert^2 - \Vert \overrightarrow{v} \Vert^2}{2}$ \medskip (Calcul à partir des normes.) & On possède la norme de $\overrightarrow{u}$, celle de $\overrightarrow{v}$ mais surtout celle de $\overrightarrow{u} + \overrightarrow{v}$. \\
 			\hline
 		\end{whitetabularx}
 	\end{tip}
@@ -144,11 +140,10 @@
 		Soit $M = (x; y; z)$. On peut caractériser $\mathcal{D}$ de deux manières :
 		\begin{itemize}
 			\item \textbf{Caractérisation vectorielle :}
-			\newline
-			$M \in \mathcal{D} \iff \overrightarrow{AM} = \lambda \overrightarrow{u}$ où $\lambda \in \mathbb{R}$.
+			\[ M \in \mathcal{D} \iff \overrightarrow{AM} = \lambda \overrightarrow{u} \]
+			où $\lambda \in \mathbb{R}$
 			\item \textbf{Caractérisation par système d'équations paramétriques :}
-			\newline
-			$M \in \mathcal{D} \iff \text{ il existe } \lambda \in \mathbb{R} \text{ tel que } \begin{cases} x = x_A + \lambda a \\ y = y_A + \lambda b \\ z = z_A + \lambda c \end{cases}$.
+			\[ M \in \mathcal{D} \iff \text{il existe } \lambda \in \mathbb{R} \text{ tel que } \begin{cases} x = x_A + \lambda a \\ y = y_A + \lambda b \\ z = z_A + \lambda c \end{cases} \]
 		\end{itemize}
 	\end{formula}
 
@@ -202,11 +197,10 @@
 		Soit $M = (x; y; z)$. On peut caractériser $\mathcal{P}$ de deux manières :
 		\begin{itemize}
 			\item \textbf{Caractérisation vectorielle :}
-			\newline
-			$M \in \mathcal{P} \iff \text{ il existe } \lambda \text{ et } \mu \in \mathbb{R} \text{ tels que } \overrightarrow{AM} = \lambda \overrightarrow{u} + \mu \overrightarrow{v}$.
+			\[ M \in \mathcal{P} \iff \text{il existe } \lambda \text{ et } \mu \in \mathbb{R} \text{ tels que } \overrightarrow{AM} = \lambda \overrightarrow{u} + \mu \overrightarrow{v} \]
 			\item \textbf{Caractérisation par une équation cartésienne :}
 			\newline
-			Il existe $d \in \mathbb{R}$ tel que $M \in \mathcal{P} \iff ax + by + cz + d = 0$.
+			\[ M \in \mathcal{P} \iff \text{il existe } d \in \mathbb{R} \text{ tel que } ax + by + cz + d = 0 \]
 		\end{itemize}
 	\end{formula}
 

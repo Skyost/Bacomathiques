@@ -2,7 +2,7 @@
 
 \begin{document}
 	%<*content>
-	\lesson{terminale}{algorithmique}{Chapitre XII – Algorithmique}
+	\lesson{terminale}{algorithmique}{Chapitre XII -- Algorithmique}
 	
 	\section{Définition}
 	
@@ -20,6 +20,7 @@
 	Dans certains langages, on leur donne également un type (entier, réel, ...) pour travailler avec (ce qui n'est pas le cas dans Python).
 	
 	\begin{formula}[En python]
+		\entretitreetliste
 \begin{lstlisting}[language=python]
 nombre = 0 # On crée la variable "nombre" et on lui assigne la valeur 0.
 chaine = 'Bonjour' # On crée la variable "chaine" et on lui assigne la valeur 'Bonjour'.
@@ -40,6 +41,7 @@ chaine = 'Bonjour' # On crée la variable "chaine" et on lui assigne la valeur '
 	Il existe plusieurs manières d'affecter une valeur à une variable : soit on lui donne directement sa valeur dans l'algorithme, soit on demande à l'utilisateur d'entrer une valeur (il faut garder à l'esprit que nos algorithmes sont faits pour être utilisés par des utilisateurs).
 	
 	\begin{formula}[En python]
+		\entretitreetliste
 \begin{lstlisting}[language=python]
 x = int(input('Veuillez entrer une valeur : ')) # L'utilisateur va entrer une valeur, on la convertir en entier et on va affecter celui-ci à notre variable "x".
 y = 2*x + 10 # Une fois fait, "y" va prendre la valeur 2 * x + 10. Par exemple, si l'utilisateur entre "10", "y" vaudra 30.
@@ -56,6 +58,7 @@ y = 2*x + 10 # Une fois fait, "y" va prendre la valeur 2 * x + 10. Par exemple, 
 	Les \textbf{listes} sont des types de variables particuliers. Ce sont en effet, ``des variables qui contiennent des variables''.
 	
 	\begin{formula}[En python]
+		\entretitreetliste
 \begin{lstlisting}[language=python]
 fruits = ['pomme', 'banane', 'poire']
 fruits.append('cerise') # On peut ajouter un objet à notre liste.
@@ -70,6 +73,7 @@ fruits.remove('pomme') # Mais on peut aussi en supprimer un avec sa valeur.
 	Nos algorithmes étant faits pour être utilisés, il faut donc \textbf{retourner un résultat} sinon ceux-ci seraient inutiles. C'est pourquoi, on peut ``afficher'' les valeurs des variables (les montrer à l'utilisateur).
 	
 	\begin{formula}[En python]
+		\entretitreetliste
 \begin{lstlisting}[language=python]
 print('Voici la valeur de "maVariable" :', maVariable) # Permet d'afficher la valeur de "maVariable".
 \end{lstlisting}
@@ -91,6 +95,7 @@ print('Voici la valeur de "maVariable" :', maVariable) # Permet d'afficher la va
 	Les blocs \textbf{SI} et \textbf{SINON} sont des blocs d'instructions très utilisés qui permettent de tester une condition : si elle est réalisée, on va exécuter les instructions se situant sous le bloc SI et sinon, on va exécuter celles se situant sous le bloc SINON.
 	
 	\begin{formula}[En python]
+		\entretitreetliste
 \begin{lstlisting}[language=python]
 x = 2 # On attribue à "x" la valeur 2.
 if x == 3: # Si "x" est égal à 3...
@@ -112,6 +117,7 @@ else: # Sinon...
 	La \textbf{boucle POUR} est un bloc d'instruction qui s'exécute et qui va faire prendre à une variable toutes les valeurs comprises dans un ensemble d'entiers.
 	
 	\begin{formula}[En python]
+		\entretitreetliste
 \begin{lstlisting}[language=python]
 for i in range(-5, 6): # Pour chaque entier entre -5 (inclus) et 6 (exclu)...
 	print(i) # ... On affiche cet entier.
@@ -132,6 +138,7 @@ for i in range(-5, 6): # Pour chaque entier entre -5 (inclus) et 6 (exclu)...
 	Cette boucle, différente de la boucle POUR, permet d'exécuter son bloc d'instructions tant qu'une certaine condition est valable.
 	
 	\begin{formula}[En python]
+		\entretitreetliste
 \begin{lstlisting}[language=python]
 x = 100 # On affecte à "x" la valeur 100.
 while x > 10: # Tant que x est supérieur à 10...
@@ -153,9 +160,9 @@ while x > 10: # Tant que x est supérieur à 10...
 		\begin{tip}[Quelques logiciels d'algorithmique]
 			Divers logiciels à télécharger, dont certains ne nécessitant pas d'installation sont disponibles :
 			\begin{itemize}
+				\item \href{https://python.org}{Python}
 				\item \href{https://www.algogo.xyz}{Algogo}
 				\item \href{http://www.xm1math.net/algobox/}{AlgoBox}
-				\item \href{https://python.org}{Python}
 				\item \href{https://scratch.mit.edu/}{Scratch}
 				\item \href{http://proglab.fr/}{Proglab}
 			\end{itemize}

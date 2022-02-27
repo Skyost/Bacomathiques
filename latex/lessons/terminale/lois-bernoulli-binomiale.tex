@@ -2,7 +2,7 @@
 
 \begin{document}
 	%<*content>
-	\lesson{terminale}{lois-bernoulli-binomiale}{Chapitre X – Lois de Bernoulli et binomiale}
+	\lesson{terminale}{lois-bernoulli-binomiale}{Chapitre X -- Lois de Bernoulli et binomiale}
 	
 	\section{Rappels sur les variables aléatoires}
 	
@@ -44,7 +44,7 @@
 	
 	\begin{formula}[Espérance]
 		L'\textbf{espérance} $E(X)$ d'une variable aléatoire $X$ est le réel :
-		$E(X) = x_1 \times p_1 + x_2 \times p_2 + \dots + x_n \times p_n$.
+		\[ E(X) = x_1 \times p_1 + x_2 \times p_2 + \dots + x_n \times p_n \]
 	\end{formula}
 	
 	\begin{formula}[Variance et écart-type]
@@ -77,6 +77,7 @@
 	Chacun de ces paramètres a une utilité bien précise. En effet :
 	
 	\begin{formula}[Signification des paramètres]
+		\entretitreetliste
 		\begin{itemize}
 			\item L'espérance est la \textbf{valeur moyenne} prise par $X$.
 			\item La variance et l'écart-type mesurent la \textbf{dispersion} des valeurs prises par $X$. Plus ces valeurs sont grandes, plus les valeurs sont dispersées autour de l'espérance.
@@ -192,7 +193,7 @@
 	\subsection{Calculs de probabilités}
 	
 	\begin{formula}[Probabilité d'un nombre de succès]
-		Soit $X$ une variable aléatoire suivant une loi $\mathcal{B}(n; p)$. Alors pour tout entier $k$ compris entre $0$ et $n$, on a $\displaystyle{P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}}$.
+		Soit $X$ une variable aléatoire suivant une loi $\mathcal{B}(n; p)$. Alors pour tout entier $k$ compris entre $0$ et $n$, on a $P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}$.
 	\end{formula}
 	
 	\begin{demonstration}[Probabilité d'un nombre de succès]
@@ -201,9 +202,9 @@
 		\newpar
 		$\underbrace{p \times \dots \times p}_{k \text{ succès}} \times \underbrace{(1-p) \times \dots \times (1-p)}_{n-k \text{ échecs}} = p^k(1-p)^{n-k}$.
 		\newpar
-		De plus, il y a $\displaystyle{\binom{n}{k}}$ chemins de ce type (cela correspond au nombre de façons de placer la pondération $p$ $k$ fois sur les $n$ branches).
+		De plus, il y a $\binom{n}{k}$ chemins de ce type (cela correspond au nombre de façons de placer la pondération $p$ $k$ fois sur les $n$ branches).
 		\newpar
-		D'où $\displaystyle{P(X = k) = \underbrace{p^k(1-p)^{n-k} + \dots + p^k(1-p)^{n-k}}_{\binom{n}{k} \text{ branches}} = \binom{n}{k} p^k(1-p)^{n-k}}$.
+		D'où $P(X = k) = \underbrace{p^k(1-p)^{n-k} + \dots + p^k(1-p)^{n-k}}_{\binom{n}{k} \text{ branches}} = \binom{n}{k} p^k(1-p)^{n-k}$.
 	\end{demonstration}
 	
 	\begin{tip}[Exemple]
@@ -219,9 +220,9 @@
 		\newpar
 		Il ne reste qu'à appliquer la formule :
 		\begin{itemize}
-			\item $\displaystyle{P(X = 0) = \binom{5}{0}(0,5)^0(1-0,5)^5 = 0,03125}$
-			\item $\displaystyle{P(X = 1) = \binom{5}{1}(0,5)^1(1-0,5)^4 = 0,15625}$
-			\item $\displaystyle{P(X = 2) = \binom{5}{2}(0,5)^2(1-0,5)^3 = 0,3125}$
+			\item $P(X = 0) = \binom{5}{0}(0,5)^0(1-0,5)^5 = 0,03125$
+			\item $P(X = 1) = \binom{5}{1}(0,5)^1(1-0,5)^4 = 0,15625$
+			\item $P(X = 2) = \binom{5}{2}(0,5)^2(1-0,5)^3 = 0,3125$
 		\end{itemize}
 		Finalement, on trouve $P(X \leq 2) = 0,5$.
 		\newpar

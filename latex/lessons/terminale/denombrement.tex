@@ -2,7 +2,7 @@
 
 \begin{document}
 	%<*content>
-	\lesson{terminale}{denombrement}{Chapitre IX – Dénombrement}
+	\lesson{terminale}{denombrement}{Chapitre IX -- Dénombrement}
 	
 	\section{Définitions}
 	
@@ -83,7 +83,8 @@
 	\subsection{Factorielle}
 	
 	\begin{formula}[Définition]
-		Soit $n$ un nombre entier. On appelle factorielle de $n$ le nombre entier $n! = 1 \times 2 \times \dots \times n$.
+		Soit $n$ un nombre entier. On appelle factorielle de $n$ le nombre entier suivant :
+		\[ n! = 1 \times 2 \times \dots \times n \]
 	\end{formula}
 	
 	\begin{tip}[Convention]
@@ -95,18 +96,16 @@
 	\subsection{Qu'est-ce-qu'une combinaison ?}
 	
 	\begin{formula}[Définition]
-		Une \textbf{combinaison} de $k$ éléments parmi $n$ éléments, notée $\displaystyle{\binom{n}{k}}$, est le nombre de sous-ensembles de $k$ éléments que possède un ensemble de $n$ éléments.
+		Une \textbf{combinaison} de $k$ éléments parmi $n$ éléments, notée $\binom{n}{k}$, est le nombre de sous-ensembles de $k$ éléments que possède un ensemble de $n$ éléments.
 	\end{formula}
 	
 	\begin{formula}[Calcul d'une combinaison]
-		Soient $n$ et $k$ deux entiers. Alors $\displaystyle{\binom{n}{k} = \frac{n!}{(n-k)!k!}}$.
+		Soient $n$ et $k$ deux entiers. Alors $\binom{n}{k} = \frac{n!}{(n-k)!k!}$.
 	\end{formula}
 	
 	\begin{tip}[Exemple]
 		Soit $E = \{1, 2, 3, \dots, 30 \}$. On cherche à connaître le nombre de sous-ensembles de $3$ éléments que possède $E$. Pour cela, il suffit d'appliquer la formule :
-		\newpar
-		$\displaystyle{\binom{30}{3} = \frac{30!}{27!3!} = \frac{28 \times 29 \times 30}{1 \times 2 \times 3} = 4060}$
-		\newpar
+		\[ \binom{30}{3} = \frac{30!}{27!3!} = \frac{28 \times 29 \times 30}{1 \times 2 \times 3} = 4060 \]
 		$E$ contient $4060$ sous-ensembles de $3$ éléments.
 	\end{tip}
 	
@@ -115,23 +114,23 @@
 	\begin{formula}[Formules]
 		Soient $n$ et $k$ deux entiers.
 		\begin{itemize}
-			\item $\displaystyle{\binom{n}{0} = \binom{n}{n} = 1}$
-			\item $\displaystyle{\binom{n}{1} = \binom{n}{n-1} = n}$
-			\item $\displaystyle{\binom{n}{k} = \binom{n}{n-k}}$
+			\item $\binom{n}{0} = \binom{n}{n} = 1$
+			\item $\binom{n}{1} = \binom{n}{n-1} = n$
+			\item $\binom{n}{k} = \binom{n}{n-k}$
 		\end{itemize}
 	\end{formula}
 	
 	\begin{tip}[Triangle de Pascal]
-		Une autre formule très utile est $\displaystyle{\binom{n}{k} + \binom{n}{k+1} = \binom{n+1}{k+1}}$. Elle peut se retrouver à l'aide du triangle de Pascal, que l'on construit comme tel :
+		Une autre formule très utile est $\binom{n}{k} + \binom{n}{k+1} = \binom{n+1}{k+1}$. Elle peut se retrouver à l'aide du triangle de Pascal, que l'on construit comme tel :
 		\begin{enumerate}
 			\item Dans une pyramide, on place un $1$ au sommet de la pyramide.
 			\item On place $1$ et $1$ en dessous, de part et d'autre.
 			\item Les extrémités des lignes sont toujours des $1$, et les autres nombres sont la somme des deux nombres directement au-dessus.
 		\end{enumerate}
 		Les premières lignes du triangle de Pascal sont donc :
-		\includelatexpicture{pascal}
+		\includelatexpicture[100pt]{pascal}
 		
-		Ainsi, le $k$-ième coefficient de la $n$-ième ligne est égal à $\displaystyle{\binom{n}{k}}$ (en partant de $0$).
+		Ainsi, le $k$-ième coefficient de la $n$-ième ligne est égal à $\binom{n}{k}$ (en partant de $0$).
 	\end{tip}
 	
 	\section{Dénombrement}
@@ -161,9 +160,7 @@
 	\end{tip}
 	
 	\begin{tip}[Construction du plan cartésien]
-		Prenons maintenant $E = F = \mathbb{R}$.
-		\newpar
-		Le produit cartésien $E \times F$ est l'ensemble des couples $(x; y)$ où $x \in \mathbb{R}$ et $y \in \mathbb{R}$.
+		Prenons maintenant $E = F = \mathbb{R}$. Le produit cartésien $E \times F$ est l'ensemble des couples $(x; y)$ où $x \in \mathbb{R}$ et $y \in \mathbb{R}$.
 		\newpar
 		Il s'agit en fait du plan cartésien.
 	\end{tip}
@@ -199,7 +196,7 @@
 			\item Le nombre de $p$-uplets d'éléments distincts de $E$ est égal à $\frac{n!}{(n-p)!}$.
 			\item Le nombre de permutations de $E$ est égal à $n!$.
 			\item Le nombre de sous-ensembles de $E$ est égal à $2^n$.
-			\item Le nombre de sous-ensembles de $k$ éléments que possède $E$ est égal à $\displaystyle{\binom{n}{k}}$ (pour rappel).
+			\item Le nombre de sous-ensembles de $k$ éléments que possède $E$ est égal à $\binom{n}{k}$ (pour rappel).
 		\end{itemize}
 	\end{formula}
 	
@@ -207,17 +204,18 @@
 		À noter également une dernière petite formule qu'il peut être utile de savoir démontrer à l'aide des formules ci-dessus.
 		
 		\begin{formula}
-			$\displaystyle{\sum_{k = 0}^n \binom{n}{k} = 2^n}$ pour tout $n \in \mathbb{N}$.
+			Pour tout $n \in \mathbb{N}$ :
+			\[ \sum_{k = 0}^n \binom{n}{k} = 2^n \]
 		\end{formula}
 		
 		\begin{demonstration}
 			Soit $n \in \mathbb{N}$ et soit $E$ un ensemble à $n$ éléments.
 			\newpar
-			Par la dernière formule de dénombrement, $E$ a $\displaystyle{\binom{n}{0}}$ sous-ensembles qui possèdent $0$ éléments, $\displaystyle{\binom{n}{1}}$ sous-ensembles qui possèdent $1$ éléments, ...
+			Par la dernière formule de dénombrement, $E$ a $\binom{n}{0}$ sous-ensembles qui possèdent $0$ éléments, $\binom{n}{1}$ sous-ensembles qui possèdent $1$ éléments, ...
 			\newpar
-			En fait, pour tout $k$ compris entre $0$ et $n$, $E$ a exactement $\displaystyle{\binom{n}{k}}$ sous-ensembles qui possèdent $k$ éléments (toujours d'après la dernière formule).
+			En fait, pour tout $k$ compris entre $0$ et $n$, $E$ a exactement $\binom{n}{k}$ sous-ensembles qui possèdent $k$ éléments (toujours d'après la dernière formule).
 			\newpar
-			Donc finalement, on obtient bien que la somme des $\displaystyle{\binom{n}{k}}$ vaut $2^n$ (qui est, d'après l'avant-dernière formule, le nombre de sous-ensembles que possède $E$).
+			Donc finalement, on obtient bien que la somme des $\binom{n}{k}$ vaut $2^n$ (qui est, d'après l'avant-dernière formule, le nombre de sous-ensembles que possède $E$).
 		\end{demonstration}
 	\end{nosummary}
 	%</content>

@@ -2,9 +2,9 @@
 
 \begin{document}
 	%<*content>
-	\lesson{premiere}{derivation}{Chapitre III – Dérivation}
+	\lesson{premiere}{derivation}{Chapitre III -- Dérivation}
 
-	\section{Qu'est-ce-qu'une dérivée ?}
+	\section{Nombre et fonction dérivés}
 
 	\subsection{Nombre dérivé}
 
@@ -12,23 +12,19 @@
 		Soient $f$ une fonction définie sur un intervalle $I$ et deux réels $a \in I$ et $h \neq 0$ tels que $(a + h) \in I$.
 		\newpar
 		La fonction $f$ est \textbf{dérivable} en $a$ si la limite ci-dessous existe et est finie :
-		\newpar
-		$\displaystyle{\lim\limits_{\substack{h \rightarrow 0}} \frac{f(a + h) - f(a)}{h}}$
-		\newpar
+		\[ \lim\limits_{h \rightarrow 0} \frac{f(a + h) - f(a)}{h} \]
 		Ou en posant $x = a + h$ :
-		\newpar
-		$\displaystyle{\lim\limits_{\substack{x \rightarrow a}} \frac{f(x) - f(a)}{x-a}}$
-		\newpar
+		\[ \lim\limits_{x \rightarrow a} \frac{f(x) - f(a)}{x-a} \]
 		Si cette limite existe et est finie, alors elle est égale au \textbf{nombre dérivé} de $f$ en $a$, noté $f'(a)$.
 	\end{formula}
 
 	\begin{tip}[Limite d'une fonction]
-		La notation $\displaystyle{\lim\limits_{\substack{h \rightarrow 0}}}$ veut simplement dire que l'on rend $h$ aussi proche de $0$ que possible (sans pour autant que $h$ soit égal à $0$). On dit que l'on ``fait tendre $h$ vers $0$'' et on appelle cela \textbf{une limite}.
+		La notation $\lim\limits_{h \rightarrow 0}$ veut simplement dire que l'on rend $h$ aussi proche de $0$ que possible (sans pour autant que $h$ soit égal à $0$). On dit que l'on ``fait tendre $h$ vers $0$'' et on appelle cela \textbf{une limite}.
 		\newpar
 		\textbf{Attention !} Il arrive que cette limite n'existe pas ou ne soit pas finie. Dans ce cas-là, $f'(a)$ n'existe pas et on dit que $f$ n'est pas dérivable en $a$.
 	\end{tip}
 
-	\subsection{La tangente}
+	\subsection{Tangente en un point}
 
 	\begin{formula}[Équation de la tangente]
 		Soient $f$ une fonction définie sur un intervalle $I$ et un réel $a \in I$. Si $f$ est dérivable en $a$, alors la courbe représentative de $f$ admet une tangente $\mathcal{T}$ au point de coordonnées $(a; f(a))$.
@@ -67,25 +63,25 @@
 	Le tableau suivant est à connaître et nous donne la dérivée de la plupart des fonctions usuelles :
 
 	\begin{formula}
-		Soit $\lambda$ une constante réelle.
+		Soient $\lambda$ une constante réelle et $n$ un entier.
 		\newpar
 		\begin{whitetabularx}{|X|X|l|}
 			\hline
 			\textbf{Fonction} & \textbf{Dérivée} & \textbf{Domaine de dérivabilité} \\
 			\hline
-			$\lambda$ & $0$ & $\mathbb{R}$ \\
+			$x \mapsto \lambda$ & $x \mapsto 0$ & $\mathbb{R}$ \\
 			\hline
-			$x^n$ avec $n \in \mathbb{N}^*$ & $nx^{n-1}$ & $\mathbb{R}$ \\
+			$x \mapsto x^n$ & $x \mapsto nx^{n-1}$ & $\mathbb{R}$ \\
 			\hline
-			$\displaystyle{\frac{1}{x}}$ & $\displaystyle{-\frac{1}{x^2}}$ & $\mathbb{R}^*$ \\
+			$x \mapsto \frac{1}{x}$ & $x \mapsto -\frac{1}{x^2}$ & $\mathbb{R}^*$ \\
 			\hline
-			$\sqrt{x}$ & $\displaystyle{\frac{1}{2\sqrt{x}}}$ & $\mathbb{R}^+_*$ \\
+			$x \mapsto \sqrt{x}$ & $x \mapsto \frac{1}{2\sqrt{x}}$ & $\mathbb{R}^+_*$ \\
 			\hline
-			$e^x$ & $e^x$ & $\mathbb{R}$ \\
+			$x \mapsto e^x$ & $x \mapsto e^x$ & $\mathbb{R}$ \\
 			\hline
-			$\sin(x)$ & $\cos(x)$ & $\mathbb{R}$ \\
+			$x \mapsto \sin(x)$ & $x \mapsto \cos(x)$ & $\mathbb{R}$ \\
 			\hline
-			$\cos(x)$ & $-\sin(x)$ & $\mathbb{R}$ \\
+			$x \mapsto \cos(x)$ & $x \mapsto -\sin(x)$ & $\mathbb{R}$ \\
 			\hline
 		\end{whitetabularx}
 	\end{formula}
@@ -107,9 +103,9 @@
 			\hline
 			$u \times v$ & $u' \times v + u \times v'$ & En tout point où $u$ et $v$ sont dérivables. \\
 			\hline
-			$\displaystyle{\frac{1}{v}}$ & $\displaystyle{-\frac{v'}{v^2}}$ & En tout point où $v$ est dérivable et non nulle. \\
+			$\frac{1}{v}$ & $-\frac{v'}{v^2}$ & En tout point où $v$ est dérivable et non nulle. \\
 			\hline
-			$\displaystyle{\frac{u}{v}}$ & $\frac{u' \times v - u \times v'}{v^2}$ & En tout point où $u$ et $v$ sont dérivables et non nulles. \\
+			$\frac{u}{v}$ & $\frac{u' \times v - u \times v'}{v^2}$ & En tout point où $u$ et $v$ sont dérivables et non nulles. \\
 			\hline
 		\end{whitetabularx}
 	\end{formula}
@@ -127,9 +123,9 @@
 			\hline
 			$u^n$ avec $n \in \mathbb{N}^*$ & $nu'u^{n-1}$ & En tout point où $u$ est dérivable. \\
 			\hline
-			$\displaystyle{\frac{1}{u}}$ & $\displaystyle{-\frac{u'}{u^2}}$ & En tout point où $u$ est dérivable et non nulle. \\
+			$\frac{1}{u}$ & $-\frac{u'}{u^2}$ & En tout point où $u$ est dérivable et non nulle. \\
 			\hline
-			$\sqrt{u}$ & $\displaystyle{\frac{u'}{2\sqrt{u}}}$ & En tout point où $u$ est dérivable et strictement positive. \\
+			$\sqrt{u}$ & $\frac{u'}{2\sqrt{u}}$ & En tout point où $u$ est dérivable et strictement positive. \\
 			\hline
 			$e^u$ & $u'e^u$ & En tout point où $u$ est dérivable. \\
 			\hline

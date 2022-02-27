@@ -2,7 +2,7 @@
 
 \begin{document}
 	%<*content>
-	\lesson{premiere}{suites}{Chapitre I – Les suites}
+	\lesson{premiere}{suites}{Chapitre I -- Les suites}
 	
 	\section{Généralités}
 	
@@ -51,13 +51,10 @@
 	Il est possible de trouver le terme général d'une suite arithmétique :
 	
 	\begin{formula}[Terme général]
-		On note $p$ le rang initial de la suite (celui à partir duquel la suite est définie) :
-		\newpar
-		$u_n = u_p + (n-p) \times r$
-		\newpar
-		Et si $(u_n)$ est définie à partir du rang $0$ (on a $p = 0$) :
-		\newpar
-		$u_n = u_0 + (n-0) \times r = u_0 + n \times r$
+		On note $p$ le rang initial de la suite (celui à partir duquel la suite est définie). Alors, pour tout $n \geq p$ :
+		\[ u_n = u_p + (n-p) \times r \]
+		Et si $(u_n)$ est définie à partir du rang $0$ (on a $p = 0$), alors pour tout $n \in \mathbb{N}$ :
+		\[ u_n = u_0 + (n-0) \times r = u_0 + n \times r \]
 	\end{formula}
 	
 	\begin{demonstration}[Terme général]
@@ -69,13 +66,14 @@
 	\end{demonstration}
 	
 	\begin{formula}[Somme des termes]
-		$\displaystyle{1 + 2 + \dots + n = \frac{n(n + 1)}{2}}$ pour tout $n \in \mathbb{N}$.
+		Pour tout $n \in \mathbb{N}^*$,
+		\[ 1 + 2 + \dots + n = \frac{n(n + 1)}{2} \]
 	\end{formula}
 	
 	\begin{demonstration}[Somme des termes]
 		On pose pour tout $n \in \mathbb{N}$, $S_n = 1 + 2 + \dots + n$. On a également $S_n = n + (n-1) + \dots + 1$ (en écrivant la somme à l'envers).
 		\newline
-		D'où $S_n + S_n = 2S_n = \underbrace{(n + 1) + (n + 1) + \dots + (n + 1)}_{n \text{ fois}} = n \times (n + 1)$. Et ainsi $\displaystyle{S_n = \frac{n(n + 1)}{2}}$.
+		D'où $S_n + S_n = 2S_n = \underbrace{(n + 1) + (n + 1) + \dots + (n + 1)}_{n \text{ fois}} = n \times (n + 1)$. Et ainsi $S_n = \frac{n(n + 1)}{2}$.
 	\end{demonstration}
 	
 	\begin{tip}[Exemple]
@@ -83,8 +81,8 @@
 		\newpar
 		En fait, $S = 1 + 2 + \dots + 23 + 24 + 25 + \dots + 104 - (1 + 2 + \dots + 23)$. Calculons les deux sommes séparément :
 		\begin{itemize}
-			\item $1 + 2 + \dots + 23 = \displaystyle{\frac{23 \times 24}{2}} = 276$
-			\item $1 + 2 + \dots + 104 = \displaystyle{\frac{104 \times 105}{2}} = 5460$
+			\item $1 + 2 + \dots + 23 = \frac{23 \times 24}{2} = 276$
+			\item $1 + 2 + \dots + 104 = \frac{104 \times 105}{2} = 5460$
 		\end{itemize}
 		D'où $S = 5460 - 276 = 5184$.
 	\end{tip}
@@ -102,13 +100,10 @@
 	Il est possible de trouver le terme général d'une suite géométrique :
 	
 	\begin{formula}[Terme général]
-		On note $p$ le rang initial de la suite (celui à partir duquel la suite est définie) :
-		\newpar
-		$v_n = v_p \times q^{n-p}$
-		\newpar
-		Et si $(v_n)$ est définie à partir du rang $0$ (on a $p = 0$) :
-		\newpar
-		$v_n = v_0 \times q^{n-0} = v_0 \times q^n$
+		On note $p$ le rang initial de la suite (celui à partir duquel la suite est définie). Alors, pour tout $n \geq p$ :
+		\[ v_n = v_p \times q^{n-p} \]
+		Et si $(u_n)$ est définie à partir du rang $0$ (on a $p = 0$), alors pour tout $n \in \mathbb{N}$ :
+		\[ v_n = v_0 \times q^{n-0} = v_0 \times q^n \]
 	\end{formula}
 	
 	\begin{demonstration}[Terme général]
@@ -122,8 +117,8 @@
 	\begin{formula}[Somme des termes]
 		Soit $n \neq 0$ un entier et $q$ un réel, alors :
 		\begin{itemize}
-			\item Si $q \neq 1$, alors $\displaystyle{1 + q^1 + q^2 + \dots + q^n = \frac{1 - q^{n + 1}}{1 - q}}$.
-			\item Si $q = 1$, alors $\displaystyle{1 + q^1 + q^2 + \dots + q^n = \underbrace{1 + 1 + 1 + \dots + 1}_{n \text{ fois}} = n}$.
+			\item Si $q \neq 1$, alors $1 + q^1 + q^2 + \dots + q^n = \frac{1 - q^{n + 1}}{1 - q}$.
+			\item Si $q = 1$, alors $1 + q^1 + q^2 + \dots + q^n = \underbrace{1 + 1 + 1 + \dots + 1}_{n \text{ fois}} = n$.
 		\end{itemize}
 	\end{formula}
 	
@@ -133,7 +128,6 @@
 		On a : $qS_n = q^1 + q^2 + q^3 + \dots + q^{n+1}$, puis : $S_n - qS_n = 1 + q^1 + q^2 + \dots + q^n - q^1 - q^2 - q^3 - \dots - q^{n+1} = 1 - q^{n+1}$.
 		\newpar
 		Donc on a en factorisant par $S_n$ : $(1 - q)S_n = 1 - q^{n+1} \iff S_n = \frac{1 - q^{n+1}}{1 - q}$.
-		\newpar
 	\end{demonstration}
 	
 	\begin{tip}[Exemple]
@@ -141,8 +135,8 @@
 		\newpar
 		En fait, $S = 1 + 3 + \dots + 3^4 + 3^5 + 3^6 + \dots + 3^{10} - (1 + \dots + 3^4)$. Calculons les deux sommes séparément :
 		\begin{itemize}
-			\item $1 + 3 + \dots + 3^4 = \displaystyle{\frac{1 - 3^5}{1 - 3}} = 121$
-			\item $1 + 3 + \dots + 3^{10} = \displaystyle{\frac{1 - 3^{11}}{1 - 3}} = 88573$
+			\item $1 + 3 + \dots + 3^4 = \frac{1 - 3^5}{1 - 3} = 121$
+			\item $1 + 3 + \dots + 3^{10} = \frac{1 - 3^{11}}{1 - 3} = 88573$
 		\end{itemize}
 		D'où $S = 88573 - 121 = 88452$.
 	\end{tip}

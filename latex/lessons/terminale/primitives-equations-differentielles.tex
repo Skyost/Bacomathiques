@@ -9,7 +9,8 @@
 	\subsection{Définition}
 
 	\begin{formula}[Définition]
-		Soit $f$ une fonction définie et continue sur un intervalle $I$. On appelle \textbf{primitive} de $f$, toute fonction $F$ définie sur $I$ et qui vérifie pour tout $x \in I$ : $F'(x) = f(x)$.
+		Soit $f$ une fonction définie et continue sur un intervalle $I$. On appelle \textbf{primitive} de $f$, toute fonction $F$ définie sur $I$ et qui vérifie pour tout $x \in I$ :
+		\[ F'(x) = f(x) \]
 	\end{formula}
 
 	\begin{tip}[Note]
@@ -41,25 +42,25 @@
 	Le tableau suivant est à connaître (mais il peut être obtenu en prenant celui des dérivées usuelles à l'envers) :
 
 	\begin{formula}
-		Soit $\lambda$ une constante réelle.
+		Soient $\lambda$ et $a$ deux constantes réelles avec $a \neq 1$.
 		\newpar
 		\begin{whitetabularx}{|X|X|X|}
 			\hline
 			\textbf{Fonction} & \textbf{Primitive} & \textbf{Domaine de définition de la primitive} \\
 			\hline
-			$\lambda$ & $\lambda x$ & $\mathbb{R}$ \\
+			$x \mapsto \lambda$ & $x \mapsto \lambda x$ & $\mathbb{R}$ \\
 			\hline
-			$e^x$ & $e^x$ & $\mathbb{R}$ \\
+			$x \mapsto e^x$ & $x \mapsto e^x$ & $\mathbb{R}$ \\
 			\hline
-      $\displaystyle{\frac{1}{x}}$ & $\ln(x)$ & $\mathbb{R}^{*}_{+}$ \\
+      		$x \mapsto \frac{1}{x}$ & $x \mapsto \ln(x)$ & $\mathbb{R}^{*}_{+}$ \\
 			\hline
-			$\displaystyle{\frac{1}{\sqrt{x}}}$ & $2\sqrt{x}$ & $\mathbb{R}^{*}_{+}$ \\
+			$x \mapsto \frac{1}{\sqrt{x}}$ & $x \mapsto 2\sqrt{x}$ & $\mathbb{R}^{*}_{+}$ \\
 			\hline
-			$x^a$ avec $a \in \mathbb{R}$ et $a \neq -1$ & $\displaystyle{\frac{1}{a + 1} x^{a + 1}}$ & $\mathbb{R}^{*}_{+}$ \\
+			$x \mapsto x^a$ & $x \mapsto \frac{1}{a + 1} x^{a + 1}$ & $\mathbb{R}^{*}_{+}$ \\
 			\hline
-			$\sin(x)$ & $-\cos(x)$ & $\mathbb{R}$ \\
+			$x \mapsto \sin(x)$ & $x \mapsto -\cos(x)$ & $\mathbb{R}$ \\
 			\hline
-			$\cos(x)$ & $\sin(x)$ & $\mathbb{R}$ \\
+			$x \mapsto \cos(x)$ & $x \mapsto \sin(x)$ & $\mathbb{R}$ \\
 			\hline
 		\end{whitetabularx}
 	\end{formula}
@@ -77,11 +78,11 @@
 			\hline
 			$u'e^u$ & $e^u$ & En tout point où $u$ est définie. \\
 			\hline
-			$\displaystyle{\frac{u'}{u}}$ & $\ln(|u|)$ & En tout point où $u$ est définie et est non-nulle. On peut retirer la valeur absolue si $u$ est positive. \\
+			$\frac{u'}{u}$ & $\ln(|u|)$ & En tout point où $u$ est définie et est non-nulle. On peut retirer la valeur absolue si $u$ est positive. \\
 			\hline
-			$\displaystyle{\frac{u'}{\sqrt{u}}}$ & $2\sqrt{u}$ & En tout point où $u$ est définie et est strictement positive. \\
+			$\frac{u'}{\sqrt{u}}$ & $2\sqrt{u}$ & En tout point où $u$ est définie et est strictement positive. \\
 			\hline
-			$u' (u)^a$ avec $a \in \mathbb{R}$ et $a \neq -1$ & $\displaystyle{\frac{1}{a + 1} u^{a + 1}}$ & En tout point où $u$ est définie. \\
+			$u' (u)^a$ avec $a \in \mathbb{R}$ et $a \neq -1$ & $\frac{1}{a + 1} u^{a + 1}$ & En tout point où $u$ est définie. \\
 			\hline
 			$u' \sin(u)$ & $-\cos(u)$ & En tout point où $u$ est définie. \\
 			\hline
@@ -97,6 +98,7 @@
 	Commençons cette partie par quelques définitions.
 
 	\begin{formula}[Définition]
+		\entretitreetliste
 		\begin{itemize}
 			\item Une \textbf{équation différentielle} est une égalité liant une fonction inconnue $y$ à ses dérivées successives ($y'$, $y''$, ...) contenant éventuellement d'autres fonctions connues.
 			\item Une \textbf{solution} d'une équation différentielle est une fonction vérifiant l'égalité décrite précédemment.
@@ -165,8 +167,8 @@
 		On a donc $a = 2$ et $b = -1$. Les solutions de l'équation $(E)$ sont les fonctions définies $x \mapsto c e^{2x} + \frac{1}{2}$ où $c \in \mathbb{R}$.
 		\newpar
 		Maintenant, il faut trouver la fonction $y$ qui vaut $0$ en $1$. Soit donc $y$ une telle solution de $(E)$. Alors :
-		\newpar
-		$y(1) =  0 \iff c e^{2 \times 1} + \frac{1}{2} = 0 \iff c = -\frac{1}{2e^2}$. La solution recherchée est donc la fonction $y : x \mapsto -\frac{e^{2x}}{2e^2} + \frac{1}{2}$.
+		\[ y(1) =  0 \iff c e^{2 \times 1} + \frac{1}{2} = 0 \iff c = -\frac{1}{2e^2} \]
+		La solution recherchée est donc la fonction $y : x \mapsto -\frac{e^{2x}}{2e^2} + \frac{1}{2}$.
 	\end{tip}
 	%</content>
 \end{document}

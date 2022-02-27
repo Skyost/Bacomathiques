@@ -2,7 +2,7 @@
 
 \begin{document}
 	%<*content>
-	\lesson{terminale}{arithmetique}{Chapitre XIV – Arithmétique (Maths expertes)}
+	\lesson{terminale}{arithmetique}{Chapitre XIV -- Arithmétique (Maths expertes)}
 	
 	\section{Divisibilité et congruence}
 	
@@ -19,6 +19,7 @@
 	\end{tip}
 	
 	\begin{formula}[Propriétés]
+		\entretitreetliste
 		\begin{itemize}
 			\item Tout entier relatif $b$ divise $0$ (car $0 = 0 \times b$).
 			\item $1$ divise tout entier relatif $a$ (car $a = a \times 1$).
@@ -174,7 +175,7 @@
 		Supposons que l'on souhaite résoudre une congruence du type $ax \equiv b \mod n$ d'inconnue $x$. On pose $d = \operatorname{PGCD(a; n)}$. Alors :
 		\begin{enumerate}
 			\item Si $d$ ne divise pas $b$, on cherche deux entiers $u$ et $v$ tels que $au + nv = 1$ (avec l'algorithme d'Euclide étendu par exemple). Les solutions de la congruence sont alors les entiers $x$ vérifiant $x \equiv ub \mod n$.
-			\item Si $d \mid b$, cela revient à résoudre la congruence $\displaystyle{\frac{a}{d}x \equiv \frac{b}{d} \mod \frac{n}{d}}$, et on se ramène au cas 1 (avec la nouvelle congruence à résoudre).
+			\item Si $d \mid b$, cela revient à résoudre la congruence $\frac{a}{d}x \equiv \frac{b}{d} \mod \frac{n}{d}$, et on se ramène au cas 1 (avec la nouvelle congruence à résoudre).
 		\end{enumerate}
 	\end{formula}
 	
@@ -203,7 +204,7 @@
 	\begin{formula}[Solutions de $(E)$]
 		En reprenant les notations précédentes, on pose $d = \operatorname{PGCD}(a; b)$. Alors :
 		\begin{itemize}
-			\item Si $d \mid c$, on cherche une solution particulière à $(E)$ que l'on note $(x_0; y_0)$. Alors les solutions de $(E)$ sont les couples $(x_k; y_k)$ où $\displaystyle{x_k = x_0 + k\frac{b}{d}}$ et $\displaystyle{y_k = y_0 - k\frac{a}{d}}$.
+			\item Si $d \mid c$, on cherche une solution particulière à $(E)$ que l'on note $(x_0; y_0)$. Alors les solutions de $(E)$ sont les couples $(x_k; y_k)$ où $x_k = x_0 + k\frac{b}{d}$ et $y_k = y_0 - k\frac{a}{d}$.
 			\item Sinon, $(E)$ n'a pas de solution.
 		\end{itemize}
 	\end{formula}
@@ -291,9 +292,7 @@
 	
 	\begin{formula}[Théorème fondamental de l'arithmétique]
 		Soit $n \in \mathbb{N}$ supérieur ou égal à 2, alors $n$ peut s'écrire de la façon suivante :
-		\newpar
-		$n = p_{1}^{\alpha_1} \times p_{2}^{\alpha_2} \times \dots \times p_{n}^{\alpha_n}$
-		\newpar
+		\[ n = p_{1}^{\alpha_1} \times p_{2}^{\alpha_2} \times \dots \times p_{n}^{\alpha_n} \]
 		où $p_1$, $p_2$, ... , $p_n$ des nombres premiers tels que $p_1 < p_2 < \dots < p_n$ et $\alpha_1$, $\alpha_2$, ... , $\alpha_n$ des entiers naturels non nuls.
 	\end{formula}
 	

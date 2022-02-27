@@ -2,7 +2,7 @@
 
 \begin{document}
 	%<*content>
-	\lesson{premiere}{geometrie-reperee}{Chapitre VI – Géométrie repérée}
+	\lesson{premiere}{geometrie-reperee}{Chapitre VI -- Géométrie repérée}
 
 	\section{Le produit scalaire}
 
@@ -29,13 +29,13 @@
 	À l'aide du produit scalaire, il est possible de calculer la \textbf{norme} d'un vecteur.
 
 	\begin{formula}[Calcul de la norme]
-		Soit $\overrightarrow{u} = \begin{pmatrix} {x} \\ {y} \end{pmatrix}$ un vecteur du plan : sa norme (notée $||\overrightarrow{u}||$) vaut $||\overrightarrow{u}|| = \sqrt{\overrightarrow{u} \cdot \overrightarrow{u}} = \sqrt{x^2 + y^2}$.
+		Soit $\overrightarrow{u} = \begin{pmatrix} {x} \\ {y} \end{pmatrix}$ un vecteur du plan : sa norme (notée $\Vert \overrightarrow{u} \Vert$) vaut $\Vert \overrightarrow{u} \Vert = \sqrt{\overrightarrow{u} \cdot \overrightarrow{u}} = \sqrt{x^2 + y^2}$.
 	\end{formula}
 
 	\begin{tip}[Caractéristiques d'un vecteur]
 		On rappelle qu'un vecteur possède 3 caractéristiques :
 		\begin{itemize}
-			\item Une \textbf{norme} (sa longueur, par exemple si $\overrightarrow{u} = \overrightarrow{AB}$ alors $||\overrightarrow{u}|| = AB$)
+			\item Une \textbf{norme} (sa longueur, par exemple si $\overrightarrow{u} = \overrightarrow{AB}$ alors $\Vert \overrightarrow{u} \Vert = AB$)
 			\item Un \textbf{sens} (exemple : ``de $A$ vers $B$'' ou ``de haut en bas'')
 			\item Une \textbf{direction} (la direction de la droite que porte le vecteur, horizontale ou verticale par exemple)
 		\end{itemize}
@@ -47,8 +47,7 @@
 
 	\begin{formula}[Calcul avec un angle]
 		Soient $\overrightarrow{u}$, $\overrightarrow{v}$ deux vecteurs du plan et $\theta$ l'angle orienté entre les deux. On a :
-		\newpar
-		$\overrightarrow{u} \cdot \overrightarrow{v} = ||\overrightarrow{u}|| \times ||\overrightarrow{v}|| \times \cos(\theta)$
+		\[ \overrightarrow{u} \cdot \overrightarrow{v} = \Vert \overrightarrow{u} \Vert \times \Vert \overrightarrow{v} \Vert \times \cos(\theta) \]
 	\end{formula}
 
 	\begin{formula}[Calcul avec un projeté orthogonal]
@@ -62,8 +61,8 @@
 	Si on ne possède que les normes de nos vecteurs, il est possible d'utiliser la formule de polarisation.
 
 	\begin{formula}[Formule de polarisation]
-		Soient $\overrightarrow{u}$ et $\overrightarrow{v}$ deux vecteurs du plan :
-		$\overrightarrow{u} \cdot \overrightarrow{v} = \displaystyle{\frac{1}{2} \left(||\overrightarrow{u + v}||^2 - ||\overrightarrow{u}||^2 - ||\overrightarrow{v}||^2\right)}$.
+		Soient $\overrightarrow{u}$ et $\overrightarrow{v}$ deux vecteurs du plan. Alors :
+		\[ \overrightarrow{u} \cdot \overrightarrow{v} = \frac{1}{2} \left(\Vert \overrightarrow{u} + \overrightarrow{v} \Vert^2 - \Vert \overrightarrow{u} \Vert^2 - \Vert \overrightarrow{v} \Vert^2\right) \]
 	\end{formula}
 
 	\begin{tip}[Utilisation des formules]
@@ -79,14 +78,11 @@
 			\hline
 			$\overrightarrow{u} = \begin{pmatrix} {x_1} \\ {y_1} \end{pmatrix}$ \medskip $\overrightarrow{v} = \begin{pmatrix} {x_2} \\ {y_2} \end{pmatrix}$. & $\overrightarrow{u} \cdot \overrightarrow{v} = x_1 \times x_2 + y_1 \times y_2$ \medskip (Calcul à partir des coordonnées.) & Les coordonnées de $\overrightarrow{u}$ et $\overrightarrow{v}$. \\
 			\hline
-			$\theta$ est l'angle orienté entre $\overrightarrow{u}$ et $\overrightarrow{v}$. & $\overrightarrow{u} \cdot \overrightarrow{v} = ||\overrightarrow{u}|| \times ||\overrightarrow{v}|| \times \cos(\theta)$ \medskip (Calcul à partir des normes et d'un angle.) & La norme de $\overrightarrow{u}$, la norme de $\overrightarrow{v}$ et l'angle $\theta$ entre les deux vecteurs. \\
+			$\theta$ est l'angle orienté entre $\overrightarrow{u}$ et $\overrightarrow{v}$. & $\overrightarrow{u} \cdot \overrightarrow{v} = \Vert \overrightarrow{u} \Vert \times \Vert \overrightarrow{v} \Vert \times \cos(\theta)$ \medskip (Calcul à partir des normes et d'un angle.) & La norme de $\overrightarrow{u}$, la norme de $\overrightarrow{v}$ et l'angle $\theta$ entre les deux vecteurs. \\
 			\hline
 			$A$ et $B$ sont les deux extrémités de $\overrightarrow{u}$, $A$ et $C$ sont les deux extrémités de $\overrightarrow{v}$, et $P$ est le projeté orthogonal de $C$ sur $(AB)$. & $\overrightarrow{u} \cdot \overrightarrow{v} = \overrightarrow{AB} \cdot \overrightarrow{AC} = \pm AB \times AP$ \medskip $+$ si $P \in [AB)$ et $-$ sinon. \medskip (Calcul à partir d'une projection orthogonale.) & 3 points distincts (qui sont ici $A$, $B$ et $C$). \\
 			\hline
-			& $\displaystyle{\overrightarrow{u} \cdot \overrightarrow{v} =}$
-			\smallskip
-
-			$\displaystyle{\frac{||\overrightarrow{u + v}||^2 - ||\overrightarrow{u}||^2 - ||\overrightarrow{v}||^2}{2}}$ \medskip (Calcul à partir des normes.) & On possède la norme de $\overrightarrow{u}$, celle de $\overrightarrow{v}$ mais surtout celle de $\overrightarrow{u} + \overrightarrow{v}$. \\
+			& $\overrightarrow{u} \cdot \overrightarrow{v} = \frac{\Vert \overrightarrow{u} + \overrightarrow{v} \Vert^2 - \Vert \overrightarrow{u} \Vert^2 - \Vert \overrightarrow{v} \Vert^2}{2}$ \medskip (Calcul à partir des normes.) & On possède la norme de $\overrightarrow{u}$, celle de $\overrightarrow{v}$ mais surtout celle de $\overrightarrow{u} + \overrightarrow{v}$. \\
 			\hline
 		\end{whitetabularx}
 	\end{tip}
@@ -97,23 +93,18 @@
 
 	\begin{formula}[Théorème d'Al-Kashi]
 		Soient $A$, $B$ et $C$ trois points du plan non alignés (formant donc un triangle). On pose $a = BC$, $b = CA$ et $c = AB$. Alors :
-		\newpar
-		$c^2 = a^2 + b^2 - 2 \times a \times b \times \cos(\widehat{ACB})$
+		\[ c^2 = a^2 + b^2 - 2 \times a \times b \times \cos(\widehat{ACB}) \]
 	\end{formula}
 
 	\begin{demonstration}[Théorème d'Al-Kashi]
 		En reprenant les notations de l'énoncé :
-		$c^2$
-		\newline
-		$= ||\overrightarrow{AB}||^2$
-		\newline
-		$= ||\overrightarrow{CB} - \overrightarrow{CA}||^2$ (par la relation de Chasles)
-		\newline
-		$= ||\overrightarrow{CB}||^2 - 2(\overrightarrow{CB} \cdot \overrightarrow{CA}) + ||\overrightarrow{CA}||^2$ (par la formule de polarisation)
-		\newline
-		$= CB^2 - 2(CB \times CA \times \cos(\widehat{ACB})) + CA^2$
-		\newline
-		$= a^2 + b^2 - 2 \times a \times b \times \cos(\widehat{ACB})$
+		\begin{align*}
+			c^2 &= \Vert \overrightarrow{AB} \Vert^2 \\
+			&= \Vert \overrightarrow{CB} - \overrightarrow{CA} \Vert^2 \text{ (par la relation de Chasles)} \\
+			&= \Vert \overrightarrow{CB} \Vert^2 - 2(\overrightarrow{CB} \cdot \overrightarrow{CA}) + \Vert \overrightarrow{CA} \Vert^2 \text{ (par la formule de polarisation)} \\
+			&= CB^2 - 2(CB \times CA \times \cos(\widehat{ACB})) + CA^2 \\
+			&= a^2 + b^2 - 2 \times a \times b \times \cos(\widehat{ACB})
+		\end{align*}
 	\end{demonstration}
 
 	\section{Géométrie}
@@ -177,15 +168,10 @@
 		Déterminons l'équation cartésienne de la droite $\mathcal{D}$ de vecteur directeur $\overrightarrow{u} = \begin{pmatrix} 1 \\ 2\end{pmatrix}$ et passant par $A = (1; 0)$.
 		\newpar
 		On a déjà $a$ et $b$ par la propriété précédente :
-		\newline
-		$-b = 1 \iff b = -1$
-		\newline
-		$a = 2$
-		\newpar
+		\[ -b = 1 \iff b = -1 \text{ et } a = 2 \]
 		Une équation cartésienne de la droite est $2x - y + c = 0$. Il reste à trouver $c$. Mais comme $\mathcal{D}$ passe par $A$, les coordonnées de $A$ vérifient l'équation cartésienne de $\mathcal{D}$.
 		\newpar
-		Remplaçons $x$ et $y$ par les coordonnées de $A$ dans l'équation cartésienne : $2 + c = 0 \iff c = -2$.
-		\newpar
+		Remplaçons $x$ et $y$ par les coordonnées de $A$ dans l'équation cartésienne : \[ 2 + c = 0 \iff c = -2 \]
 		L'équation cartésienne recherchée est donc $2x - y - 2 = 0$ ou encore $y = 2x - 2$.
 	\end{tip}
 
