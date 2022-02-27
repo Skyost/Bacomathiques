@@ -59,7 +59,7 @@ async function processFiles (ignored, pandocRedefinitions, directory, mdDir, pdf
         fs.writeFileSync(path.resolve(summaryDir, fileName + '.md'), root.innerHTML)
       }
       fs.mkdirSync(pdfDir, { recursive: true })
-      execSync(`latexmk -quiet -pdf "${file}"`, { cwd: directory })
+      execSync(`latexmk -pdflatex=lualatex -quiet -pdf "${file}"`, { cwd: directory })
       fs.copyFileSync(path.resolve(directory, `${fileName}.pdf`), path.resolve(pdfDir, `${fileName}.pdf`))
       // execSync(`latexmk -quiet -c`, { cwd: directory })
     }
