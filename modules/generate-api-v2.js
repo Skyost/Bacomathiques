@@ -203,10 +203,14 @@ function formatHTML (srcDir, lesson, html) {
   const root = parse(html)
   const maths = root.querySelectorAll('.katex')
   for (const math of maths) {
-    const display = math.querySelector('math').attributes.display === 'block'
     const annotation = math.querySelector('annotation[encoding="application/x-tex"]')
     if (annotation) {
-      math.replaceWith(`<math${display ? ' display' : ''}>${annotation.rawText.trim()}</math>`)
+      const display = math.querySelector('math').attributes.display === 'block'
+      if (display) {
+        math.replaceWith(`<math class="center" displaystyle>${annotation.rawText.trim()}</math>`)
+      } else {
+        math.replaceWith(`<math>${annotation.rawText.trim()}</math>`)
+      }
     }
   }
   const bubbles = root.querySelectorAll('bubble')
