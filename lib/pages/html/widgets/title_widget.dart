@@ -1,15 +1,16 @@
+import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/app/theme/bubble.dart';
 import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/pages/html/html_widget.dart';
-import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:html/dom.dart' as dom;
 
 /// Allows to get the color according to the specified app theme.
 typedef ColorGetter = Color? Function(AppTheme theme, dom.Element element);
 
 /// Allows to display a title.
-class TitleWidget extends StatelessWidget {
+class TitleWidget extends ConsumerWidget {
   /// The base size.
   static const int _BASE_SIZE = 16;
 
@@ -50,7 +51,7 @@ class TitleWidget extends StatelessWidget {
         margin = null;
 
   /// Creates a new headline 4 formatted title.
-  TitleWidget.h4({
+  const TitleWidget.h4({
     required this.element,
   })  : fontSize = 1.25 * _BASE_SIZE,
         getColor = _getH4Color,
@@ -73,8 +74,8 @@ class TitleWidget extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    AppTheme theme = context.resolveTheme();
+  Widget build(BuildContext context, WidgetRef ref) {
+    AppTheme theme = ref.watch(settingsModelProvider).resolveTheme(context);
     TextStyle textStyle = TextStyle(
         fontFamily: 'FuturaBT',
         fontSize: fontSize,

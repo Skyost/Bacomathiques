@@ -2,14 +2,14 @@
 import 'package:bacomathiques/app/dialogs/consent.dart';
 import 'package:bacomathiques/app/settings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// The ads dialog.
-class AdsDialog extends StatelessWidget {
+class AdsDialog extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) => AlertDialog(
+  Widget build(BuildContext context, WidgetRef ref) => AlertDialog(
     title: _createTitleWidget(),
     content: _createContentWidget(),
     actions: [
@@ -17,7 +17,7 @@ class AdsDialog extends StatelessWidget {
         alignment: WrapAlignment.end,
         crossAxisAlignment: WrapCrossAlignment.end,
         direction: Axis.vertical,
-        children: createActionsWidgets(context, context.watch<SettingsModel>()),
+        children: createActionsWidgets(context, ref.watch(settingsModelProvider)),
       ),
     ],
   );

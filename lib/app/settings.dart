@@ -3,8 +3,16 @@ import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/credentials.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+/// The settings model provider.
+final settingsModelProvider = ChangeNotifierProvider((ref) {
+  SettingsModel settingsModel = SettingsModel();
+  settingsModel.load();
+  return settingsModel;
+});
 
 /// Allows to load and set required AdMob information.
 class SettingsModel extends ChangeNotifier {
@@ -17,27 +25,16 @@ class SettingsModel extends ChangeNotifier {
   /// Whether AdMob is enabled.
   bool _adMobEnabled = false;
 
-  /// Creates a new AdMob instance.
-  SettingsModel({
-    String? adMobBannerId,
-  }) {
-    if (adMobBannerId != null) {
-      _adMobBannerId = adMobBannerId;
-    }
-  }
-
   /// Loads the class data.
-  Future<void> load(BuildContext context) async {
+  Future<void> load() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     _themeMode = ThemeMode.values[preferences.getInt('app.themeMode') ?? ThemeMode.system.index];
     _adMobEnabled = preferences.getBool('admob.enable') ?? true;
 
-    if (kDebugMode || !_adMobEnabled) {
-      notifyListeners();
-      return;
+    if (!kDebugMode && _adMobEnabled) {
+      _adMobBannerId = Credentials.adUnit;
     }
 
-    _adMobBannerId = Credentials.adUnit;
     notifyListeners();
   }
 
@@ -52,10 +49,18 @@ class SettingsModel extends ChangeNotifier {
               adUnitId: _adMobBannerId,
               size: size ?? AdSize.banner,
               request: AdRequest(
+                keywords: ['math', 'cours', 'leçons'],
                 contentUrl: API.BASE_URL,
                 nonPersonalizedAds: nonPersonalizedAds,
               ),
-              listener: BannerAdListener(onAdFailedToLoad: (ad, error) => ad.dispose()),
+              listener: BannerAdListener(
+                onAdFailedToLoad: (ad, error) {
+                  ad.dispose();
+                  if (kDebugMode) {
+                    print(error);
+                  }
+                },
+              ),
             )
           : null;
 

@@ -1,22 +1,22 @@
 import 'package:bacomathiques/app/settings.dart';
 import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// The theme mode dialog.
-class ThemeModeDialog extends StatelessWidget {
+class ThemeModeDialog extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
-    SettingsModel settings = context.watch<SettingsModel>();
+  Widget build(BuildContext context, WidgetRef ref) {
+    SettingsModel settingsModel = ref.watch(settingsModelProvider);
     return AlertDialog(
       title: _createTitleWidget(),
-      content: _createContentWidget(context, settings),
+      content: _createContentWidget(context, settingsModel),
       actions: [
         Wrap(
           alignment: WrapAlignment.end,
           crossAxisAlignment: WrapCrossAlignment.end,
           direction: Axis.vertical,
-          children: createActionsWidgets(context, context.watch<SettingsModel>()),
+          children: createActionsWidgets(context, settingsModel),
         ),
       ],
     );

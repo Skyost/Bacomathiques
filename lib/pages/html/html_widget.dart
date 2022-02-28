@@ -1,14 +1,16 @@
 import 'package:bacomathiques/app/api/common.dart';
+import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/pages/html/widget_factory.dart';
 import 'package:bacomathiques/pages/html/widgets/representation_preview_widget.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:html/dom.dart' as dom;
 
 /// Allows to display a HTML widget.
-class AppHtmlWidget extends StatelessWidget {
+class AppHtmlWidget extends ConsumerWidget {
   /// The HTML data.
   final String data;
 
@@ -26,12 +28,12 @@ class AppHtmlWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => HtmlWidget(
+  Widget build(BuildContext context, WidgetRef ref) => HtmlWidget(
         data,
         baseUrl: Uri.parse(API.BASE_URL),
         buildAsync: buildAsync,
         customWidgetBuilder: buildCustomWidget,
-        customStylesBuilder: (element) => buildCustomStyle(context, element),
+        customStylesBuilder: (element) => buildCustomStyle(context, ref, element),
         onLoadingBuilder: (context, element, progress) {
           String message = 'Rendu…';
           if (progress != null) {
@@ -70,7 +72,7 @@ class AppHtmlWidget extends StatelessWidget {
   }
 
   /// Builds the style of an element.
-  Map<String, String>? buildCustomStyle(BuildContext context, dom.Element element) {
+  Map<String, String>? buildCustomStyle(BuildContext context, WidgetRef ref, dom.Element element) {
     Map<String, String> style = {
       if (element.classes.contains('mb-0')) 'margin-bottom': '0',
       if (element.classes.contains('center')) 'text-align': 'center',
@@ -116,7 +118,7 @@ class AppHtmlWidget extends StatelessWidget {
           ...style,
         };
       case 'table':
-        AppTheme theme = context.resolveTheme(listen: false);
+        AppTheme theme = ref.read(settingsModelProvider).resolveTheme(context);
         return {
           'background-color': theme.brightness == Brightness.light ? 'white' : 'transparent',
           'border': '0.5px solid #cfcfcf',

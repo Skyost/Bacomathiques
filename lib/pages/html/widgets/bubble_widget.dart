@@ -1,12 +1,13 @@
+import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/app/theme/bubble.dart';
 import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/utils/expandable_widget.dart';
-import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:html/dom.dart' as dom;
 
 /// Allows to display a bubble (formula, tip, proof, ...).
-class BubbleWidget extends StatefulWidget {
+class BubbleWidget extends ConsumerStatefulWidget {
   /// The bubble.
   final Bubble bubble;
 
@@ -34,7 +35,7 @@ class BubbleWidget extends StatefulWidget {
         );
 
   @override
-  State<StatefulWidget> createState() => _BubbleWidgetState();
+  _BubbleWidgetState createState() => _BubbleWidgetState();
 
   /// Whether the widget should in a scrollable view.
   static bool _inScrollableView(dom.Element element) {
@@ -47,13 +48,13 @@ class BubbleWidget extends StatefulWidget {
 }
 
 /// The bubble widget state.
-class _BubbleWidgetState extends State<BubbleWidget> {
+class _BubbleWidgetState extends ConsumerState<BubbleWidget> {
   /// Whether to show the label.
   bool showLabel = false;
 
   @override
   Widget build(BuildContext context) {
-    AppTheme theme = context.resolveTheme();
+    AppTheme theme = ref.watch(settingsModelProvider).resolveTheme(context);
     BubbleTheme bubbleTheme = theme.bubbleThemes[widget.bubble]!;
     Widget column = _createColumn(bubbleTheme);
     Widget bubbleWidget = GestureDetector(

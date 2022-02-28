@@ -1,15 +1,28 @@
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/dialogs/message.dart';
+import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// A scaffold that allows to request remote objects.
-abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointResult> extends State<W> {
+abstract class RequestScaffold<R extends APIEndpointResult> extends ConsumerStatefulWidget {
+  /// The API endpoint.
+  final APIEndpoint<R> endpoint;
+
+  /// Creates a new request scaffold instance.
+  const RequestScaffold({
+    Key? key,
+    required this.endpoint,
+  }) : super(
+          key: key,
+        );
+}
+
+/// The request scaffold state.
+abstract class RequestScaffoldState<R extends APIEndpointResult, W extends RequestScaffold<R>> extends ConsumerState<W> {
   /// Whether the screen is currently loading.
   bool _loading = true;
-
-  /// The API endpoint.
-  APIEndpoint<R> endpoint;
 
   /// The object.
   R? _result;
@@ -24,8 +37,7 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
   bool cacheRequest;
 
   /// Creates a new loading scaffold instance.
-  RequestScaffold({
-    required this.endpoint,
+  RequestScaffoldState({
     required this.failMessage,
     this.failDialogOptions = const FailDialogOptions(),
     this.cacheRequest = true,
@@ -49,7 +61,7 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
       );
     }
 
-    return _result!.createAppBar(context);
+    return _result!.createAppBar(context, ref.watch(settingsModelProvider).resolveTheme(context));
   }
 
   @override
@@ -79,7 +91,7 @@ abstract class RequestScaffold<W extends StatefulWidget, R extends APIEndpointRe
 
   /// Triggers a request.
   Future<void> triggerRequest() async {
-    R? result = await endpoint.request(cache: cacheRequest);
+    R? result = await widget.endpoint.request(cache: cacheRequest);
     if (result != null) {
       this.result = result;
       onSuccess(result);

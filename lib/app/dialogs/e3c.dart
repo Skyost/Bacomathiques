@@ -1,11 +1,13 @@
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/content.dart';
+import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Dialog that displays E3C.
-class E3CDialog extends StatelessWidget {
+class E3CDialog extends ConsumerWidget {
   /// The lesson E3C.
   final List<LessonE3C> e3c;
 
@@ -15,8 +17,8 @@ class E3CDialog extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    AppTheme theme = context.resolveTheme();
+  Widget build(BuildContext context, WidgetRef ref) {
+    AppTheme theme = ref.watch(settingsModelProvider).resolveTheme(context);
     return AlertDialog(
       title: _createTitleWidget(),
       contentPadding: EdgeInsets.zero,

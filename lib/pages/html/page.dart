@@ -9,14 +9,14 @@ import 'package:bacomathiques/utils/request_scaffold.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fwfh_text_style/fwfh_text_style.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
-import 'package:provider/provider.dart';
 
 /// Allows to display the html content with an AdMob banner.
-class AdMobHTMLPage extends StatefulWidget {
+class AdMobHTMLPage extends ConsumerStatefulWidget {
   /// The endpoint to display.
   final APIEndpoint<APIEndpointResultHTML> endpoint;
 
@@ -30,11 +30,11 @@ class AdMobHTMLPage extends StatefulWidget {
   });
 
   @override
-  State<StatefulWidget> createState() => _AdMobHTMLPageState();
+  _AdMobHTMLPageState createState() => _AdMobHTMLPageState();
 }
 
 /// The AdMob HTML page state.
-class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
+class _AdMobHTMLPageState extends ConsumerState<AdMobHTMLPage> {
   /// The consent information.
   ConsentInformation? consentInformation;
 
@@ -47,7 +47,7 @@ class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
     WidgetsBinding.instance?.addPostFrameCallback((_) async {
       await askConsent();
       if (mounted) {
-        SettingsModel settingsModel = context.read<SettingsModel>();
+        SettingsModel settingsModel = ref.read(settingsModelProvider);
         AdSize? size = await AdSize.getAnchoredAdaptiveBannerAdSize(MediaQuery.of(context).orientation, MediaQuery.of(context).size.width.truncate());
         BannerAd? banner = settingsModel.createAdMobBanner(
           context,
@@ -111,35 +111,44 @@ class _AdMobHTMLPageState extends State<AdMobHTMLPage> {
 }
 
 /// A screen that is able to display some HTML content.
-class _HTMLPage extends StatefulWidget {
-  /// The endpoint to display.
-  final APIEndpoint<APIEndpointResultHTML> endpoint;
-
+class _HTMLPage extends RequestScaffold<APIEndpointResultHTML> {
   /// The current anchor.
   final String? anchor;
 
   /// Creates a new HTML screen instance.
   const _HTMLPage({
-    required this.endpoint,
+    required APIEndpoint<APIEndpointResultHTML> endpoint,
     this.anchor,
-  });
+  }) : super(
+          endpoint: endpoint,
+        );
 
   @override
-  State<StatefulWidget> createState() => endpoint is LessonContentEndpoint ? _LessonContentHTMLPageState(endpoint: endpoint as LessonContentEndpoint) : _HTMLPageState(endpoint: endpoint);
+  _HTMLPageState createState() => _HTMLPageState();
 }
 
 /// State of HTML screens.
-class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
+class _HTMLPageState extends RequestScaffoldState<APIEndpointResultHTML, _HTMLPage> {
   /// Contains the parsed HTML.
   String? parsedHtml;
 
+  /// The share button key.
+  late GlobalKey shareButtonKey;
+
   /// Creates a new HTML screen state instance.
-  _HTMLPageState({
-    required APIEndpoint<APIEndpointResultHTML> endpoint,
-  }) : super(
-          endpoint: endpoint,
+  _HTMLPageState()
+      : super(
           failMessage: 'Impossible de charger ce contenu et aucune sauvegarde n\'est disponible.',
         );
+
+  @override
+  void initState() {
+    super.initState();
+    shareButtonKey = GlobalKey();
+  }
+
+  @override
+  AppBar createAppBar(BuildContext context) => (result is LessonContent) ? (result as LessonContent).createAppBar(context, ref.watch(settingsModelProvider).resolveTheme(context), shareButtonKey: shareButtonKey) : super.createAppBar(context);
 
   @override
   Widget createBody(BuildContext context, APIEndpointResultHTML result) {
@@ -155,10 +164,7 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
 
   @override
   void onSuccess(APIEndpointResultHTML result) {
-    String html = result.html;
-    html = html.replaceAllMapped(RegExp(r'(\$+)(?:(?!\1)[\s\S])*\1'), (match) => '<math>${_removeTrailingAndLeadingDollars(match.group(0)!)}</math>');
-
-    dom.Document document = parser.parse(html);
+    dom.Document document = parser.parse(result.html);
     _formatTitles(document);
     _formatImages(document, mounted ? context : null);
     _removeBottomMarginOfLastElements(document);
@@ -205,7 +211,7 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
 
   /// Center the images.
   void _formatImages(dom.Document document, BuildContext? context) {
-    Brightness? brightness = context?.resolveTheme(listen: false).brightness;
+    Brightness? brightness = context == null ? null : ref.read(settingsModelProvider).resolveTheme(context).brightness;
     List<dom.Element> images = document.getElementsByTagName('img');
     for (dom.Element image in images) {
       if (brightness == Brightness.dark && image.attributes['data-src-dark'] != null) {
@@ -244,7 +250,7 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
   void _formatLinks(dom.Document document) {
     List<dom.Element> links = document.getElementsByTagName('a');
     for (dom.Element link in links) {
-      link.attributes['data-current-endpoint'] = endpoint.path;
+      link.attributes['data-current-endpoint'] = widget.endpoint.path;
     }
   }
 
@@ -268,32 +274,4 @@ class _HTMLPageState extends RequestScaffold<_HTMLPage, APIEndpointResultHTML> {
       lastChild.classes.add('mb-0');
     }
   }
-
-  /// Removes trailing and leading dollars of a string.
-  String _removeTrailingAndLeadingDollars(String input) {
-    if (input.startsWith('\$')) {
-      return _removeTrailingAndLeadingDollars(input.substring(1));
-    }
-    if (input.endsWith('\$')) {
-      return _removeTrailingAndLeadingDollars(input.substring(0, input.length - 1));
-    }
-
-    return input;
-  }
-}
-
-/// Page state for lessons contents.
-class _LessonContentHTMLPageState extends _HTMLPageState {
-  /// The share button key.
-  GlobalKey shareButtonKey = GlobalKey();
-
-  /// Creates a new lesson content HTML page state instance.
-  _LessonContentHTMLPageState({
-    required LessonContentEndpoint endpoint,
-  }) : super(
-          endpoint: endpoint,
-        );
-
-  @override
-  AppBar createAppBar(BuildContext context) => result == null ? super.createAppBar(context) : (result as LessonContent).createAppBar(context, shareButtonKey: shareButtonKey);
 }

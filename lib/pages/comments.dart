@@ -1,32 +1,27 @@
 import 'package:bacomathiques/app/api/comments.dart';
 import 'package:bacomathiques/app/api/common.dart';
+import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/utils/request_scaffold.dart';
-import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 /// The comments screen, where previews are shown.
-class CommentsPage extends StatefulWidget {
-  /// The comments endpoint.
-  final APIEndpoint<LessonComments> endpoint;
-
+class CommentsPage extends RequestScaffold<LessonComments> {
   /// Creates a new comments screen instance.
   const CommentsPage({
-    required this.endpoint,
-  });
+    required APIEndpoint<LessonComments> endpoint,
+  }) : super(endpoint: endpoint,);
 
   @override
-  _CommentsPageState createState() => _CommentsPageState(endpoint: endpoint);
+  _CommentsPageState createState() => _CommentsPageState();
 }
 
 /// The comments screen state.
-class _CommentsPageState extends RequestScaffold<CommentsPage, LessonComments> {
+class _CommentsPageState extends RequestScaffoldState<LessonComments, CommentsPage> {
   /// Creates a new home screen state instance.
-  _CommentsPageState({
-    required APIEndpoint<LessonComments> endpoint,
-  }) : super(
-          endpoint: endpoint,
+  _CommentsPageState() : super(
           failMessage: 'Impossible de charger les commentaires de ce cours.',
           cacheRequest: false,
         );
@@ -56,7 +51,7 @@ class _CommentsPageState extends RequestScaffold<CommentsPage, LessonComments> {
 }
 
 /// A widget that allows to show a comment.
-class _CommentWidget extends StatelessWidget {
+class _CommentWidget extends ConsumerWidget {
   /// The comment to show.
   final LessonComment comment;
 
@@ -66,8 +61,8 @@ class _CommentWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    AppTheme theme = context.resolveTheme();
+  Widget build(BuildContext context, WidgetRef ref) {
+    AppTheme theme = ref.watch(settingsModelProvider).resolveTheme(context);
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: Row(

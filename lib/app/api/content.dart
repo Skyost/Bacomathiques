@@ -1,5 +1,6 @@
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/dialogs/e3c.dart';
+import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart' hide AboutDialog;
 import 'package:share_plus/share_plus.dart';
@@ -69,13 +70,13 @@ class LessonContent extends APIEndpointResultHTML {
         );
 
   @override
-  AppBar createAppBar(BuildContext context, {GlobalKey? shareButtonKey}) => AppBar(
+  AppBar createAppBar(BuildContext context, AppTheme theme, {GlobalKey? shareButtonKey}) => AppBar(
     title: createTitle(context),
-    actions: createActions(context, shareButtonKey: shareButtonKey),
+    actions: createActions(context, theme, shareButtonKey: shareButtonKey),
   );
 
   @override
-  List<Widget> createActions(BuildContext context, {GlobalKey? shareButtonKey}) {
+  List<Widget> createActions(BuildContext context, AppTheme theme, {GlobalKey? shareButtonKey}) {
     ActionMenu? shareActionMenu = e3c.isEmpty ? createShareActionMenu(shareButtonKey) : null;
     return [
       if (shareActionMenu != null)
@@ -106,16 +107,16 @@ class LessonContent extends APIEndpointResultHTML {
           });
         },
       ),
-      createPopupMenuButton(context),
+      createPopupMenuButton(context, theme),
     ];
   }
 
   @override
-  Widget createPopupMenuButton(BuildContext context, {GlobalKey? shareButtonKey}) => e3c.isEmpty
-      ? super.createPopupMenuButton(context)
+  Widget createPopupMenuButton(BuildContext context, AppTheme theme, {GlobalKey? shareButtonKey}) => e3c.isEmpty
+      ? super.createPopupMenuButton(context, theme)
       : Container(
           key: shareButtonKey,
-          child: super.createPopupMenuButton(context),
+          child: super.createPopupMenuButton(context, theme),
         );
 
   @override

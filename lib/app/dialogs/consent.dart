@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/credentials.dart';
-import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:http/http.dart' as http;
@@ -137,7 +138,7 @@ class ConsentInformation {
 }
 
 /// The personalized ads consent dialog widget.
-class _PersonalizedAdsConsentDialog extends StatelessWidget {
+class _PersonalizedAdsConsentDialog extends ConsumerWidget {
   /// The app message.
   final String appMessage;
 
@@ -163,8 +164,8 @@ class _PersonalizedAdsConsentDialog extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    AppTheme theme = context.resolveTheme();
+  Widget build(BuildContext context, WidgetRef ref) {
+    AppTheme theme = ref.watch(settingsModelProvider).resolveTheme(context);
     return WillPopScope(
       onWillPop: () => Future<bool>.value(false),
       child: AlertDialog(

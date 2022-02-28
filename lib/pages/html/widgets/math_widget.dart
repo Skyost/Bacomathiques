@@ -1,10 +1,11 @@
-import 'package:bacomathiques/utils/utils.dart';
+import 'package:bacomathiques/app/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:html/dom.dart' as dom;
 
 /// Allows to display some math.
-class MathWidget extends StatelessWidget {
+class MathWidget extends ConsumerWidget {
   /// The math content.
   final String content;
 
@@ -27,10 +28,10 @@ class MathWidget extends StatelessWidget {
         );
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     Math math = Math.tex(
       content.replaceAll(r'\displaystyle', ''),
-      textStyle: textStyle.copyWith(color: textStyle.color ?? context.resolveTheme().textColor),
+      textStyle: textStyle.copyWith(color: textStyle.color ?? ref.watch(settingsModelProvider).resolveTheme(context).textColor),
     );
 
     List<Math> parts = math.texBreak().parts;

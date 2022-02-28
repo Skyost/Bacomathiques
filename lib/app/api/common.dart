@@ -208,24 +208,24 @@ abstract class APIEndpointResult {
   const APIEndpointResult();
 
   /// Creates the app bar.
-  AppBar createAppBar(BuildContext context) => AppBar(
+  AppBar createAppBar(BuildContext context, AppTheme theme) => AppBar(
         title: createTitle(context),
-        actions: createActions(context),
+        actions: createActions(context, theme),
       );
 
   /// Creates the title widget.
   Widget createTitle(BuildContext context) => GestureDetector(
-    onTap: () => AboutDialog.show(context),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        _createLogoWidget(context),
-        _createTitleTextWidget(context),
-      ],
-    ),
-  );
+        onTap: () => AboutDialog.show(context),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _createLogoWidget(context),
+            _createTitleTextWidget(context),
+          ],
+        ),
+      );
 
   /// Creates the logo widget.
   Widget _createLogoWidget(BuildContext context) => SvgPicture.asset(
@@ -244,7 +244,7 @@ abstract class APIEndpointResult {
       );
 
   @protected
-  List<Widget>? createActions(BuildContext context) => null;
+  List<Widget>? createActions(BuildContext context, AppTheme theme) => null;
 }
 
 /// An API endpoint result with a HTML body.
@@ -283,19 +283,16 @@ abstract class APIEndpointResultHTML extends APIEndpointResult {
   }
 
   @override
-  List<Widget> createActions(BuildContext context) => [createPopupMenuButton(context)];
+  List<Widget> createActions(BuildContext context, AppTheme theme) => [createPopupMenuButton(context, theme)];
 
   /// Creates the popup menu button.
-  Widget createPopupMenuButton(BuildContext context) {
-    AppTheme theme = context.resolveTheme(listen: false);
-    return PopupMenuButton<ActionMenu>(
-      color: theme.scaffoldBackgroundColor,
-      onSelected: (action) => action.callback(context, this),
-      itemBuilder: (context) => [
-        ...createActionMenus(context).map((action) => action.createPopupMenuItem(theme)),
-      ],
-    );
-  }
+  Widget createPopupMenuButton(BuildContext context, AppTheme theme) => PopupMenuButton<ActionMenu>(
+        color: theme.scaffoldBackgroundColor,
+        onSelected: (action) => action.callback(context, this),
+        itemBuilder: (context) => [
+          ...createActionMenus(context).map((action) => action.createPopupMenuItem(theme)),
+        ],
+      );
 
   /// Creates the action menus.
   List<ActionMenu> createActionMenus(BuildContext context) => [

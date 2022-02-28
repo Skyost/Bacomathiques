@@ -1,4 +1,5 @@
 import 'package:bacomathiques/app/api/common.dart';
+import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,7 +37,7 @@ class LessonList extends APIEndpointResult {
         );
 
   @override
-  List<Widget> createActions(BuildContext context) => [_LevelIconButton()];
+  List<Widget> createActions(BuildContext context, AppTheme theme) => [_LevelIconButton()];
 }
 
 /// A lesson list item.

@@ -1,13 +1,14 @@
 import 'package:bacomathiques/app/api/content.dart';
+import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/app/theme/bubble.dart';
-import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fwfh_text_style/fwfh_text_style.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:url_launcher/url_launcher.dart';
 
 /// Allows to display a link.
-class LinkWidget extends StatelessWidget {
+class LinkWidget extends ConsumerWidget {
   /// Allows to match URL parts.
   static final RegExp urlParts = RegExp(r'/cours/([A-Za-zÀ-ÖØ-öø-ÿ0-9\-\_]+)/([A-Za-zÀ-ÖØ-öø-ÿ0-9\-\_]+)/?(#[A-Za-zÀ-ÖØ-öø-ÿ0-9\-\_]+)?');
 
@@ -47,8 +48,8 @@ class LinkWidget extends StatelessWidget {
         );
 
   @override
-  Widget build(BuildContext context) {
-    BubbleTheme bubbleTheme = context.resolveTheme().bubbleThemes[bubble ?? Bubble.FORMULA]!;
+  Widget build(BuildContext context, WidgetRef ref) {
+    BubbleTheme bubbleTheme = ref.watch(settingsModelProvider).resolveTheme(context).bubbleThemes[bubble ?? Bubble.FORMULA]!;
     return GestureDetector(
       onTap: () async {
         LessonContentEndpoint? endpoint = _targetLessonEndpoint;

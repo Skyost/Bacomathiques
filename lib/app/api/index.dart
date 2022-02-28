@@ -1,10 +1,11 @@
 import 'package:bacomathiques/app/api/common.dart';
+import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 /// /api/v2/ endpoint.
 class APIIndexEndpoint extends APIEndpoint<APIIndex> {
   /// Creates a new API index endpoint instance.
-  APIIndexEndpoint()
+  const APIIndexEndpoint()
       : super(
           path: '/api/v2',
         );
@@ -35,7 +36,7 @@ class APIIndex extends APIEndpointResult {
         );
 
   @override
-  AppBar createAppBar(BuildContext context) => AppBar(
+  AppBar createAppBar(BuildContext context, AppTheme theme) => AppBar(
         title: const Text('Choix de la classe'),
       );
 }

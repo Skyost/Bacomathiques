@@ -5,6 +5,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 /// The home page that allows to redirect to the corresponding route according to user preferences.
 class HomePage extends StatefulWidget {
+  /// Creates a new home page instance.
+  const HomePage();
+
   @override
   State<StatefulWidget> createState() => _HomePageState();
 }

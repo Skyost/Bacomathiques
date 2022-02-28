@@ -9,27 +9,28 @@ environment:
   flutter: '>=1.10.0'
 
 dependencies:
+  flutter:
+    sdk: flutter
   http: ^0.13.4
-  url_launcher: ^6.0.18
+  url_launcher: ^6.0.20
   catcher: ^0.6.9
   flutter_svg: ^1.0.3
-  share_plus: ^3.0.4
-  rate_my_app: ^1.1.1
-  path_provider: ^2.0.8
-  shared_preferences: ^2.0.12
+  share_plus: ^3.1.0
+  rate_my_app: ^1.1.2
+  path_provider: ^2.0.9
+  shared_preferences: ^2.0.13
   day_night_switcher: ^0.2.0
   flutter_layout_grid: ^1.0.3
-  google_fonts: ^2.2.0
+  google_fonts: ^2.3.1
   collection: ^1.15.0
-  flutter_widget_from_html_core: ^0.8.4
+  flutter_widget_from_html_core: ^0.8.5
   fwfh_svg: ^0.7.2
   flutter_math_fork: ^0.6.1
   indexed_list_view: ^2.0.1
-  google_mobile_ads: ^1.0.1
+  google_mobile_ads: ^1.1.0
   app_tracking_transparency: ^2.0.2
-  fwfh_text_style: ^2.7.2
-  flutter:
-    sdk: flutter
+  fwfh_text_style: ^2.7.3
+  flutter_riverpod: ^1.0.3
 
 dev_dependencies:
   flutter_lints: ^1.0.4

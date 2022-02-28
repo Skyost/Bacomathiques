@@ -3,9 +3,8 @@ import 'dart:math' as math;
 import 'dart:typed_data';
 
 import 'package:bacomathiques/app/settings.dart';
-import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// The app store page.
@@ -93,7 +92,7 @@ bool isTablet(Size screenSize) {
 }
 
 /// A centered circular progress indicator.
-class CenteredCircularProgressIndicator extends StatelessWidget {
+class CenteredCircularProgressIndicator extends ConsumerWidget {
   /// The message to show.
   final String? message;
 
@@ -103,9 +102,9 @@ class CenteredCircularProgressIndicator extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     Widget progressIndicator = CircularProgressIndicator(
-      valueColor: AlwaysStoppedAnimation<Color>(context.resolveTheme().progressIndicatorColor),
+      valueColor: AlwaysStoppedAnimation<Color>(ref.watch(settingsModelProvider).resolveTheme(context).progressIndicatorColor),
     );
 
     return Center(
@@ -177,10 +176,4 @@ extension IntUtils on int {
     }
     return result;
   }
-}
-
-/// Contains some useful methods for build context.
-extension BuildContextUtils on BuildContext {
-  /// Resolves the theme from the specified context.
-  AppTheme resolveTheme({bool listen = true}) => Provider.of<SettingsModel>(this, listen: listen).resolveTheme(this);
 }

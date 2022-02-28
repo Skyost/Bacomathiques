@@ -13,15 +13,15 @@ import 'package:catcher/catcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:provider/provider.dart';
 
 /// Hello world !
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await MobileAds.instance.initialize();
 
-  Widget main = BacomathiquesApp();
+  Widget main = ProviderScope(child: BacomathiquesApp());
   if (kDebugMode) {
     runApp(main);
   } else {
@@ -45,43 +45,36 @@ void main() async {
 }
 
 /// The app main class.
-class BacomathiquesApp extends StatelessWidget {
+class BacomathiquesApp extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) => MultiProvider(
-        providers: [
-          ChangeNotifierProvider<SettingsModel>(
-            create: (_) => SettingsModel()..load(context),
-            lazy: false,
-          ),
-        ],
-        child: Consumer<SettingsModel>(
-          builder: (context, settings, _) => AnnotatedRegion<SystemUiOverlayStyle>(
-            value: SystemUiOverlayStyle(systemNavigationBarColor: settings.resolveTheme(context).actionBarColor),
-            child: MaterialApp(
-              title: App.APP_NAME,
-              initialRoute: '/',
-              navigatorKey: Catcher.navigatorKey,
-              theme: AppTheme.LIGHT.flutterThemeData,
-              darkTheme: AppTheme.DARK.flutterThemeData,
-              themeMode: settings.themeMode,
-              routes: {
-                '/': (context) => HomePage(),
-                '/levels': (context) => LevelsPage(),
-                '/lessons': (context) {
-                  Map<String, dynamic> arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
-                  return LessonsPage(endpoint: arguments['endpoint']);
-                },
-                '/html': (context) {
-                  Map<String, dynamic> arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
-                  return AdMobHTMLPage(endpoint: arguments['endpoint'], anchor: arguments['anchor']);
-                },
-                '/comments': (context) {
-                  Map<String, dynamic> arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
-                  return CommentsPage(endpoint: arguments['endpoint']);
-                },
-              },
-            ),
-          ),
-        ),
-      );
+  Widget build(BuildContext context, WidgetRef ref) {
+    SettingsModel settingsModel = ref.watch(settingsModelProvider);
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(systemNavigationBarColor: settingsModel.resolveTheme(context).actionBarColor),
+      child: MaterialApp(
+        title: App.APP_NAME,
+        initialRoute: '/',
+        navigatorKey: Catcher.navigatorKey,
+        theme: AppTheme.LIGHT.flutterThemeData,
+        darkTheme: AppTheme.DARK.flutterThemeData,
+        themeMode: settingsModel.themeMode,
+        routes: {
+          '/': (context) => const HomePage(),
+          '/levels': (context) => const LevelsPage(),
+          '/lessons': (context) {
+            Map<String, dynamic> arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+            return LessonsPage(endpoint: arguments['endpoint']);
+          },
+          '/html': (context) {
+            Map<String, dynamic> arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+            return AdMobHTMLPage(endpoint: arguments['endpoint'], anchor: arguments['anchor']);
+          },
+          '/comments': (context) {
+            Map<String, dynamic> arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+            return CommentsPage(endpoint: arguments['endpoint']);
+          },
+        },
+      ),
+    );
+  }
 }

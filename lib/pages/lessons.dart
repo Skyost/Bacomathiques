@@ -1,37 +1,36 @@
 import 'package:bacomathiques/app/api/common.dart';
 import 'package:bacomathiques/app/api/list.dart';
 import 'package:bacomathiques/app/dialogs/message.dart';
+import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/utils/fade_stack_widget.dart';
 import 'package:bacomathiques/utils/request_scaffold.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// The home screen, where previews are shown.
-class LessonsPage extends StatefulWidget {
-  /// The endpoint.
-  final APIEndpoint<LessonList> endpoint;
-
+class LessonsPage extends RequestScaffold<LessonList> {
   /// Creates a new lessons page instance.
-  LessonsPage({
-    required this.endpoint,
-  });
-
-  @override
-  _LessonsPageState createState() => _LessonsPageState(endpoint: endpoint);
-}
-
-/// The home screen state.
-class _LessonsPageState extends RequestScaffold<LessonsPage, LessonList> {
-  /// Creates a new home screen state instance.
-  _LessonsPageState({
+  const LessonsPage({
     required APIEndpoint<LessonList> endpoint,
   }) : super(
           endpoint: endpoint,
+        );
+
+  @override
+  _LessonsPageState createState() => _LessonsPageState();
+}
+
+/// The home screen state.
+class _LessonsPageState extends RequestScaffoldState<LessonList, LessonsPage> {
+  /// Creates a new home screen state instance.
+  _LessonsPageState()
+      : super(
           failMessage: 'Impossible de charger la liste des cours et aucune sauvegarde n\'est disponible.',
           failDialogOptions: const FailDialogOptions(show: false),
         );
@@ -178,7 +177,7 @@ class _PreviewsList extends StatelessWidget {
 }
 
 /// A widget which shows a lesson preview.
-class _PreviewWidget extends StatelessWidget {
+class _PreviewWidget extends ConsumerWidget {
   /// The lesson to preview.
   final LessonListItem item;
 
@@ -186,14 +185,14 @@ class _PreviewWidget extends StatelessWidget {
   final bool tablet;
 
   /// Creates a new preview widget instance.
-  _PreviewWidget({
+  const _PreviewWidget({
     required this.item,
     this.tablet = false,
   });
 
   @override
-  Widget build(BuildContext context) {
-    AppTheme theme = context.resolveTheme();
+  Widget build(BuildContext context, WidgetRef ref) {
+    AppTheme theme = ref.watch(settingsModelProvider).resolveTheme(context);
     return Padding(
       padding: const EdgeInsets.all(15),
       child: Card(
