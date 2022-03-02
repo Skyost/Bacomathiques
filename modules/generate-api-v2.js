@@ -18,7 +18,11 @@ const levels = []
 const lessons = []
 
 module.exports = function () {
-  const { srcDir, rootDir, generate: { dir: generateDir } } = this.options
+  const {
+    srcDir,
+    rootDir,
+    generate: { dir: generateDir }
+  } = this.options
 
   this.nuxt.hook('build:compile', function ({ name }) {
     if (name !== 'server') {
@@ -161,12 +165,30 @@ function lessonCommentsEndpoint (lesson) {
     post: {
       url: 'https://postman.bacomathiqu.es/v3/entry/github/Skyost/Bacomathiques/master/comments',
       fields: [
-        { name: 'slug', type: 'options' },
-        { name: 'lesson', type: 'fields' },
-        { name: 'level', type: 'fields' },
-        { name: 'client', type: 'fields' },
-        { name: 'message', type: 'fields' },
-        { name: 'author', type: 'fields' }
+        {
+          name: 'slug',
+          type: 'options'
+        },
+        {
+          name: 'lesson',
+          type: 'fields'
+        },
+        {
+          name: 'level',
+          type: 'fields'
+        },
+        {
+          name: 'client',
+          type: 'fields'
+        },
+        {
+          name: 'message',
+          type: 'fields'
+        },
+        {
+          name: 'author',
+          type: 'fields'
+        }
       ]
     },
     list: lesson.comments
@@ -201,6 +223,10 @@ function getHTML (srcDir, lesson, isSummary) {
 
 function formatHTML (srcDir, lesson, html) {
   const root = parse(html)
+  const displays = root.querySelectorAll('.katex-display')
+  for (const display of displays) {
+    display.replaceWith(`<div class="katex-display">${display.innerHTML}</div>`)
+  }
   const maths = root.querySelectorAll('.katex')
   for (const math of maths) {
     const annotation = math.querySelector('annotation[encoding="application/x-tex"]')

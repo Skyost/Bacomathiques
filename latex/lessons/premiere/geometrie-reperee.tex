@@ -97,6 +97,7 @@
 	\end{formula}
 
 	\begin{demonstration}[Théorème d'Al-Kashi]
+		\contentwidth[big]
 		En reprenant les notations de l'énoncé :
 		\begin{align*}
 			c^2 &= \Vert \overrightarrow{AB} \Vert^2 \\
@@ -247,22 +248,17 @@
 	\end{formula}
 
 	\begin{demonstration}[Description par produit scalaire]
+		\contentwidth[big]
 		On pose $A = (x_A; y_A)$, $B = (x_B; y_B)$ et on cherche les points $M = (x; y)$ tels que $\overrightarrow{MA} \cdot \overrightarrow{MB} = 0$.
 		\newpar
 		Soit $O$ le milieu de $[AB]$ :
-		\newpar
-		$\overrightarrow{MA} \cdot \overrightarrow{MB} = 0$
-		\newline
-		$\iff (\overrightarrow{MO} + \overrightarrow{OA}) \cdot (\overrightarrow{MO} + \overrightarrow{OB}) = 0$
-		\newline
-		$\iff (\overrightarrow{MO} + \overrightarrow{OA}) \cdot (\overrightarrow{MO} - \overrightarrow{OA}) = 0$
-		\newline
-		$\iff (\overrightarrow{MO} \cdot \overrightarrow{MO}) - (\overrightarrow{OA} \cdot \overrightarrow{OA}) = 0$
-		\newline
-		$\iff MO^2 - OA^2 = 0$
-		\newline
-		$\iff MO = OA$
-		\newpar
+		\begin{align*}
+			\overrightarrow{MA} \cdot \overrightarrow{MB} = 0 &\iff (\overrightarrow{MO} + \overrightarrow{OA}) \cdot (\overrightarrow{MO} + \overrightarrow{OB}) = 0 \\
+			&\iff (\overrightarrow{MO} + \overrightarrow{OA}) \cdot (\overrightarrow{MO} - \overrightarrow{OA}) = 0 \\
+			&\iff (\overrightarrow{MO} \cdot \overrightarrow{MO}) - (\overrightarrow{OA} \cdot \overrightarrow{OA}) = 0 \\
+			&\iff MO^2 - OA^2 = 0 \\
+			&\iff MO = OA
+		\end{align*}
 		Donc l'ensemble cherché est l'ensemble des points situés à une distance $OA$ du point $O$, c'est bien le cercle de centre $O$ et de diamètre $[AB]$.
 	\end{demonstration}
 
