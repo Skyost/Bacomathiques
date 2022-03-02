@@ -225,7 +225,7 @@ function formatHTML (srcDir, lesson, html) {
   const root = parse(html)
   const displays = root.querySelectorAll('.katex-display')
   for (const display of displays) {
-    display.replaceWith(`<div class="katex-display">${display.innerHTML}</div>`)
+    display.replaceWith(`<div class="katex-display center">${display.innerHTML}</div>`)
   }
   const maths = root.querySelectorAll('.katex')
   for (const math of maths) {
@@ -233,7 +233,7 @@ function formatHTML (srcDir, lesson, html) {
     if (annotation) {
       const display = math.querySelector('math').attributes.display === 'block'
       if (display) {
-        math.replaceWith(`<math class="center" displaystyle>${annotation.rawText.trim()}</math>`)
+        math.replaceWith(`<math displaystyle>${annotation.rawText.trim()}</math>`)
       } else {
         math.replaceWith(`<math>${annotation.rawText.trim()}</math>`)
       }
