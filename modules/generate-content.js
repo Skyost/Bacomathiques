@@ -41,7 +41,7 @@ async function processFiles (ignored, pandocRedefinitions, directory, mdDir, pdf
       logger.info(`Processing "${filePath}"...`)
       const fileName = getFileName(file)
       fs.mkdirSync(mdDir, { recursive: true })
-      const htmlContent = execSync(`pandoc "${path.relative(directory, pandocRedefinitions)}" "${filePath}" -f latex-auto_identifiers -t html --gladtex --shift-heading-level-by=1 --html-q-tags`, {
+      const htmlContent = execSync(`pandoc "${path.relative(directory, pandocRedefinitions)}" "${filePath}" -f latex-auto_identifiers -t html --gladtex --shift-heading-level-by=1 --html-q-tags --wrap=preserve`, {
         cwd: directory,
         encoding: 'utf-8'
       })
