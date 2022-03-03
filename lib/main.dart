@@ -29,7 +29,7 @@ void main() async {
       SilentReportMode(),
       [
         DiscordHandler(
-          Credentials.DISCORD_WEBHOOK,
+          Credentials.discordWebhook,
           printLogs: true,
           enableDeviceParameters: false,
           enableApplicationParameters: true,
@@ -52,11 +52,11 @@ class BacomathiquesApp extends ConsumerWidget {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(systemNavigationBarColor: settingsModel.resolveTheme(context).actionBarColor),
       child: MaterialApp(
-        title: App.APP_NAME,
+        title: App.appName,
         initialRoute: '/',
         navigatorKey: Catcher.navigatorKey,
-        theme: AppTheme.LIGHT.flutterThemeData,
-        darkTheme: AppTheme.DARK.flutterThemeData,
+        theme: AppTheme.light.flutterThemeData,
+        darkTheme: AppTheme.dark.flutterThemeData,
         themeMode: settingsModel.themeMode,
         routes: {
           '/': (context) => const HomePage(),

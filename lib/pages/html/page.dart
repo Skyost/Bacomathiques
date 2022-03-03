@@ -157,7 +157,7 @@ class _HTMLPageState extends RequestScaffoldState<APIEndpointResultHTML, _HTMLPa
 
     return AppHtmlWidget(
       data: parsedHtml!,
-      textStyle: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16),
+      anchor: widget.anchor,
     );
   }
 
@@ -171,9 +171,8 @@ class _HTMLPageState extends RequestScaffoldState<APIEndpointResultHTML, _HTMLPa
     _formatLinks(document);
     _formatTables(document);
 
-    String dataAnchor = widget.anchor == null ? '' : 'data-scroll-target="${widget.anchor}"';
     if (mounted) {
-      setState(() => parsedHtml = '<lv $dataAnchor>${document.outerHtml}</lv>');
+      setState(() => parsedHtml = document.outerHtml);
     }
   }
 

@@ -79,7 +79,7 @@ class E3CDialog extends ConsumerWidget {
                   shape: MaterialStateProperty.all(const RoundedRectangleBorder()),
                   padding: MaterialStateProperty.all(const EdgeInsets.all(5)),
                 ),
-                onPressed: () => openURL(API.BASE_URL + e3c.subject),
+                onPressed: () => openURL(API.baseUrl + e3c.subject),
                 child: const Text(
                   'Voir le sujet',
                   style: TextStyle(fontSize: 14, color: Colors.white),

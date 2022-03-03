@@ -125,7 +125,7 @@ class LessonContent extends APIEndpointResultHTML {
         ActionMenu(
           icon: Icons.save,
           label: 'Enregistrer le PDF',
-          callback: (context, endpointResult) => openURL(API.BASE_URL + (endpointResult as LessonContent).pdf),
+          callback: (context, endpointResult) => openURL(API.baseUrl + (endpointResult as LessonContent).pdf),
         ),
         ...super.createActionMenus(context),
       ];

@@ -104,7 +104,7 @@ class _LevelIconButtonState extends State<_LevelIconButton> {
     }
 
     return createButton(SvgPicture.network(
-      API.BASE_URL + imageUrl!,
+      API.baseUrl + imageUrl!,
       height: 60,
       placeholderBuilder: (_) => createIcon(),
     ));

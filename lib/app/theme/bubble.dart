@@ -4,13 +4,13 @@ import 'package:html/dom.dart' as dom;
 /// Contains all possible bubbles.
 enum Bubble {
   /// Formula bubble.
-  FORMULA,
+  formula,
 
   /// Tip bubble.
-  TIP,
+  tip,
 
   /// Proof bubble.
-  PROOF
+  proof,
 }
 
 /// The bubble class extension.
@@ -18,11 +18,11 @@ extension BubbleUtils on Bubble {
   /// Returns the bubble CSS class name.
   String get className {
     switch (this) {
-      case Bubble.FORMULA:
+      case Bubble.formula:
         return 'formula';
-      case Bubble.TIP:
+      case Bubble.tip:
         return 'tip';
-      case Bubble.PROOF:
+      case Bubble.proof:
         return 'proof';
     }
   }
@@ -31,39 +31,39 @@ extension BubbleUtils on Bubble {
   static Bubble getByClassName(String? className) {
     switch(className) {
       case 'tip':
-        return Bubble.TIP;
+        return Bubble.tip;
       case 'proof':
-        return Bubble.PROOF;
+        return Bubble.proof;
       default:
-        return Bubble.FORMULA;
+        return Bubble.formula;
     }
   }
 
   /// Returns the bubble of an element.
   static Bubble of(dom.Element element) {
     if(element.classes.contains('tip')) {
-      return Bubble.TIP;
+      return Bubble.tip;
     }
     if(element.classes.contains('proof')) {
-      return Bubble.PROOF;
+      return Bubble.proof;
     }
-    return Bubble.FORMULA;
+    return Bubble.formula;
   }
 
   /// Returns whether this bubble is expandable.
-  bool get isExpandable => this == Bubble.PROOF;
+  bool get isExpandable => this == Bubble.proof;
 
   /// Returns the expand button of this bubble (if it's expandable).
-  String? get expandButton => this == Bubble.PROOF ? 'Démonstration' : null;
+  String? get expandButton => this == Bubble.proof ? 'Démonstration' : null;
 
   /// Returns the bubble label.
   String get bubbleLabel {
     switch (this) {
-      case Bubble.FORMULA:
+      case Bubble.formula:
         return 'À connaître 💡';
-      case Bubble.TIP:
+      case Bubble.tip:
         return 'À lire 👀';
-      case Bubble.PROOF:
+      case Bubble.proof:
         return 'Démonstration 🧠';
     }
   }
@@ -78,16 +78,16 @@ class BubbleTheme {
   final Color leftBorderColor;
 
   /// The link color.
-  final Color? linkColor;
+  final Color linkColor;
 
   /// The link decoration color.
-  final Color? linkDecorationColor;
+  final Color linkDecorationColor;
 
   /// Creates a new bubble theme instance.
   const BubbleTheme({
     this.backgroundColor,
     required this.leftBorderColor,
-    this.linkColor,
-    this.linkDecorationColor,
+    required this.linkColor,
+    required this.linkDecorationColor,
   });
 }

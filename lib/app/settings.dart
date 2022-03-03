@@ -50,7 +50,7 @@ class SettingsModel extends ChangeNotifier {
               size: size ?? AdSize.banner,
               request: AdRequest(
                 keywords: ['math', 'cours', 'leçons'],
-                contentUrl: API.BASE_URL,
+                contentUrl: API.baseUrl,
                 nonPersonalizedAds: nonPersonalizedAds,
               ),
               listener: BannerAdListener(
@@ -102,5 +102,5 @@ class SettingsModel extends ChangeNotifier {
   }
 
   /// Returns the theme corresponding to the specified brightness.
-  AppTheme getThemeFromBrightness(Brightness brightness) => brightness == Brightness.light ? AppTheme.LIGHT : AppTheme.DARK;
+  AppTheme getThemeFromBrightness(Brightness brightness) => brightness == Brightness.light ? AppTheme.light : AppTheme.dark;
 }

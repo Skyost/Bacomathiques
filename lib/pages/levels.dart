@@ -116,7 +116,7 @@ class _LevelWidget extends StatelessWidget {
         child: Column(
           children: [
             SvgPicture.network(
-              API.BASE_URL + level.image,
+              API.baseUrl + level.image,
               height: 60,
             ),
             Padding(

@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 /// Contains the application theme data.
 abstract class AppTheme {
   /// The light theme instance.
-  static final _LightAppTheme LIGHT = const _LightAppTheme();
+  static const _LightAppTheme light = _LightAppTheme();
 
   /// The dark theme instance.
-  static final _DarkAppTheme DARK = const _DarkAppTheme();
+  static const _DarkAppTheme dark = _DarkAppTheme();
 
   /// The app theme brightness.
   final Brightness brightness;
@@ -57,8 +57,17 @@ abstract class AppTheme {
   /// The headline 2 color.
   final Color? h2Color;
 
+  /// The headline 2 size.
+  final double h2Size;
+
   /// The headline 3 color.
   final Color? h3Color;
+
+  /// The headline 3 size.
+  final double h3Size;
+
+  /// The headline 4 size.
+  final double h4Size;
 
   /// The horizontal rule color.
   final Color? hrColor;
@@ -87,6 +96,9 @@ abstract class AppTheme {
     required this.progressIndicatorColor,
     this.highlightColor = Colors.black12,
     this.h2Color,
+    this.h2Size = 38,
+    this.h3Size = 28,
+    this.h4Size = 20,
     this.h3Color,
     this.hrColor,
     required this.inputDecorationColor,
@@ -157,24 +169,26 @@ class _LightAppTheme extends AppTheme {
           progressIndicatorColor: const Color(0xFF29CBB1),
           h2Color: const Color(0xff23618a),
           h3Color: const Color(0xff3498db),
-          hrColor: Colors.black12,
+          hrColor: const Color(0xffcecece),
           inputDecorationColor: const Color(0xFF3498DB),
           bubbleThemes: const {
-            Bubble.FORMULA: BubbleTheme(
+            Bubble.formula: BubbleTheme(
               backgroundColor: Color(0xffebf3fb),
               leftBorderColor: Color(0xff3498db),
               linkColor: Color(0xff217dbb),
               linkDecorationColor: Color(0xffa0cfee),
             ),
-            Bubble.TIP: BubbleTheme(
+            Bubble.tip: BubbleTheme(
               backgroundColor: Color(0xffdcf3d8),
               leftBorderColor: Color(0xff208d4d),
               linkColor: Color(0xff13532e),
               linkDecorationColor: Color(0xff219150),
             ),
-            Bubble.PROOF: BubbleTheme(
+            Bubble.proof: BubbleTheme(
               backgroundColor: Color(0xfffff8de),
               leftBorderColor: Color(0xfff1c40f),
+              linkColor: Color(0xffe09e0d),
+              linkDecorationColor: Color(0xfff1c40f),
             ),
           },
         );
@@ -196,22 +210,26 @@ class _DarkAppTheme extends AppTheme {
           lessonBackgroundColor: const Color(0xFF192734),
           textColor: Colors.white,
           progressIndicatorColor: Colors.white,
-          hrColor: Colors.white12,
+          hrColor: const Color(0xff2e2e2e),
           inputDecorationColor: Colors.white,
           bubbleThemes: const {
-            Bubble.FORMULA: BubbleTheme(
+            Bubble.formula: BubbleTheme(
               backgroundColor: Color(0xff192734),
               leftBorderColor: Color(0xff3498db),
               linkColor: Colors.white,
               linkDecorationColor: Colors.white,
             ),
-            Bubble.TIP: BubbleTheme(
+            Bubble.tip: BubbleTheme(
               backgroundColor: Color(0xff192734),
               leftBorderColor: Color(0xff208d4d),
+              linkColor: Colors.white,
+              linkDecorationColor: Colors.white,
             ),
-            Bubble.PROOF: BubbleTheme(
+            Bubble.proof: BubbleTheme(
               backgroundColor: Color(0xff192734),
               leftBorderColor: Color(0xfff1c40f),
+              linkColor: Colors.white,
+              linkDecorationColor: Colors.white,
             ),
           },
         );

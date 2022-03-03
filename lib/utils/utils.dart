@@ -140,7 +140,7 @@ extension DoubleUtils on double {
 /// Contains some useful methods for integers.
 extension IntUtils on int {
   /// The numerals.
-  static const Map<String, int> _NUMERALS = {
+  static const Map<String, int> _numerals = {
     'M': 1000,
     'CM': 900,
     'D': 500,
@@ -160,7 +160,7 @@ extension IntUtils on int {
   String romanize() {
     int number = this;
     String result = '';
-    _NUMERALS.forEach((key, value) {
+    _numerals.forEach((key, value) {
       int quotient = (number / value).floor();
       number -= quotient * value;
       result += _repeatString(key, quotient);
@@ -176,4 +176,13 @@ extension IntUtils on int {
     }
     return result;
   }
+}
+
+/// Contains some useful methods for colors.
+extension ColorUtils on Color {
+  /// Prefixes a hash sign if [leadingHashSign] is set to `true` (default is `true`).
+  String toHex({bool leadingHashSign = true}) => '${leadingHashSign ? '#' : ''}'
+      '${red.toRadixString(16).padLeft(2, '0')}'
+      '${green.toRadixString(16).padLeft(2, '0')}'
+      '${blue.toRadixString(16).padLeft(2, '0')}';
 }

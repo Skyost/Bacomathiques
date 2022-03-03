@@ -18,10 +18,10 @@ class ConsentInformation {
   static ConsentInformation? _cached;
 
   /// The preferences key for the "should display" parameter.
-  static const String PREFERENCES_SHOULD_DISPLAY = 'consent.should-display';
+  static const String preferencesShouldDisplay = 'consent.should-display';
 
   /// Whether the user wants (or no) personalized ads.
-  static const String PREFERENCES_WANTS_NON_PERSONALIZED_ADS = 'consent.wants-non-personalized-ads';
+  static const String preferencesWantsNonPersonalizedAds = 'consent.wants-non-personalized-ads';
 
   /// Whether an explicit consent should be given.
   final bool isRequestLocationInEeaOrUnknown;
@@ -38,10 +38,10 @@ class ConsentInformation {
   /// Reads the consent information from the shared preferences.
   static Future<ConsentInformation?> read() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    if (preferences.containsKey(PREFERENCES_SHOULD_DISPLAY) && preferences.containsKey(PREFERENCES_WANTS_NON_PERSONALIZED_ADS)) {
+    if (preferences.containsKey(preferencesShouldDisplay) && preferences.containsKey(preferencesWantsNonPersonalizedAds)) {
       _cached = ConsentInformation._internal(
-        isRequestLocationInEeaOrUnknown: preferences.getBool(PREFERENCES_SHOULD_DISPLAY)!,
-        wantsNonPersonalizedAds: preferences.getBool(PREFERENCES_WANTS_NON_PERSONALIZED_ADS)!,
+        isRequestLocationInEeaOrUnknown: preferences.getBool(preferencesShouldDisplay)!,
+        wantsNonPersonalizedAds: preferences.getBool(preferencesWantsNonPersonalizedAds)!,
       );
       return _cached;
     }
@@ -58,7 +58,7 @@ class ConsentInformation {
     required String nonPersonalizedAdsButton,
   }) async {
     Uri uri = Uri.https('adservice.google.com', '/getconfig/pubvendors', {
-      'pubs': Credentials.PUBLISHER_ID,
+      'pubs': Credentials.publisherId,
       'es': '2',
       'plat': Platform.isAndroid ? 'android' : 'ios',
       'v': '1.0.8', // Should be v1.0.5 on iOS.
@@ -125,15 +125,15 @@ class ConsentInformation {
   /// Writes the current data to shared preferences.
   Future<void> write() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setBool(PREFERENCES_SHOULD_DISPLAY, isRequestLocationInEeaOrUnknown);
-    await preferences.setBool(PREFERENCES_WANTS_NON_PERSONALIZED_ADS, wantsNonPersonalizedAds);
+    await preferences.setBool(preferencesShouldDisplay, isRequestLocationInEeaOrUnknown);
+    await preferences.setBool(preferencesWantsNonPersonalizedAds, wantsNonPersonalizedAds);
   }
 
   /// Resets the data that was stored into shared preferences.
   static Future<void> reset() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.remove(PREFERENCES_SHOULD_DISPLAY);
-    await preferences.remove(PREFERENCES_WANTS_NON_PERSONALIZED_ADS);
+    await preferences.remove(preferencesShouldDisplay);
+    await preferences.remove(preferencesWantsNonPersonalizedAds);
   }
 }
 

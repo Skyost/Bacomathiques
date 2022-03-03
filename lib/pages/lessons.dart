@@ -231,7 +231,7 @@ class _PreviewWidget extends ConsumerWidget {
             width: double.infinity,
             color: Colors.black.withAlpha(30),
             child: FadeInImage.memoryNetwork(
-              image: API.BASE_URL + item.preview,
+              image: API.baseUrl + item.preview,
               placeholder: kTransparentImage,
               height: 100,
               fit: BoxFit.cover,

@@ -21,7 +21,7 @@ import 'package:pedantic/pedantic.dart';
 /// The API.
 class API {
   /// The website base URL.
-  static const String BASE_URL = 'https://bacomathiqu.es';
+  static const String baseUrl = 'https://bacomathiqu.es';
 }
 
 /// The API status object.
@@ -185,7 +185,7 @@ abstract class APIEndpoint<T extends APIEndpointResult> {
     }
 
     try {
-      content = await http.read(Uri.parse(API.BASE_URL + path));
+      content = await http.read(Uri.parse(API.baseUrl + path));
       if (file != null) {
         if (!file.existsSync()) {
           file.createSync(recursive: true);
@@ -238,7 +238,7 @@ abstract class APIEndpointResult {
   Widget _createTitleTextWidget(BuildContext context) => Padding(
         padding: const EdgeInsets.only(top: 5, left: 7),
         child: Text(
-          App.APP_NAME,
+          App.appName,
           style: GoogleFonts.handlee(fontSize: 26),
         ),
       );

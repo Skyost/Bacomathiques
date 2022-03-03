@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 
+/// A build bit that allows to display some math.
 class MathBit extends BuildBit<void, InlineSpan> {
+  /// The math content.
   final String math;
+
+  /// The text style.
   final TextStyle? textStyle;
+
+  /// Whether the math should be in display style.
   final bool displayStyle;
 
+  /// Creates a new math bit instance.
   const MathBit({
     BuildTree? parent,
     required TextStyleBuilder tsb,
@@ -34,14 +41,14 @@ class MathBit extends BuildBit<void, InlineSpan> {
     }
     children.removeLast();
 
-    if (displayStyle) {
-      return WidgetSpan(
-        child: RichText(
-          text: TextSpan(children: children),
-          textAlign: TextAlign.center,
-        ),
-      );
-    }
+    // if (displayStyle) {
+    //   return WidgetSpan(
+    //     child: RichText(
+    //       text: TextSpan(children: children),
+    //       textAlign: TextAlign.center,
+    //     ),
+    //   );
+    // }
 
     return TextSpan(
       children: children,
