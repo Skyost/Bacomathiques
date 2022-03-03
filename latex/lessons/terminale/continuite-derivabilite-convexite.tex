@@ -3,19 +3,19 @@
 \begin{document}
 	%<*content>
 	\lesson{terminale}{continuite-derivabilite-convexite}{Chapitre III -- Continuité, dérivabilité et convexité}
-	
+
 	\section{Continuité}
-	
+
 	\subsection{Définition}
-	
+
 	\begin{formula}[Définition]
 		Soient $f$ une fonction définie sur un intervalle $I$ et un réel $a \in I$. La fonction $f$ est continue en $a$ si on a $\lim\limits_{x \rightarrow a} f(x) = f(a)$.
 		\newpar
 		$f$ est dite \textbf{continue} sur $I$, si on peut appliquer la formule ci-dessus à tous les réels de l'intervalle $I$.
 	\end{formula}
-	
+
 	On dit de manière générale qu'une fonction est continue sur un intervalle s'il est possible de tracer sa courbe représentative sur cet intervalle ``sans lever le crayon''.
-	
+
 	\begin{formula}[Opérations sur les fonctions continues]
 		\entretitreetliste
 		\begin{itemize}
@@ -23,52 +23,52 @@
 			\item Toute fonction dérivable sur un intervalle est continue sur cet intervalle (la réciproque n'est pas vraie cependant).
 		\end{itemize}
 	\end{formula}
-	
+
 	\begin{tip}[Exemple]
 		La fonction $x \mapsto \frac{1}{x}$ est continue en tout point de son ensemble de définition ($\mathbb{R}^{*}$) mais n'est pas continue sur $\mathbb{R}$.
 	\end{tip}
-	
+
 	\subsection{Théorème des valeurs intermédiaires}
-	
+
 	\begin{formula}[Théorème des valeurs intermédiaires]
 		Si une fonction $f$ est continue sur un intervalle $[a;b]$, alors pour tout réel $y_0$ tel que $f(a) < y_0 < f(b)$ (ou $f(a) > y_0 > f(b)$), il existe \textbf{au moins} un réel $x_0 \in [a;b]$ tel que $f(x_0) = y_0$.
 	\end{formula}
-	
+
 	\begin{tip}[Exemple]
 		Ce théorème est \textbf{très important} ! Voici un exemple : soit $f$ définie pour tout $x \in \mathbb{R}$ par $f(x) = x^3+x^2-x$. Prouvons qu'il existe au moins un réel $x_0 \in [0;3]$ tel que $f(x_0) = 5$. On a $f(0) = 0$ et $f(3) = 33$. D'après le théorème des valeurs intermédiaires, comme $f$ est continue sur $[0;3]$ et que $0 < 5 < 33$,
 		il existe un réel $x_0 \in [0,3]$ tel que $f(x_0) = 5$.
 		\newpar
 		On peut encore tenter d'affiner la précision : $f(1) = 1$ et $f(2) = 10$. On a bien $1 < 5 < 10$ donc $x_0 \in [1;2]$, etc.
 	\end{tip}
-	
+
 	\begin{tip}
 		Une conséquence de ce théorème est que si $f(a)$ et $f(b)$ sont de signes opposés, alors la fonction $f$ s'annule au moins une fois entre $a$ et $b$.
 	\end{tip}
-	
+
 	Enfin, il existe un corollaire qui donne en plus \textbf{l'unicité} du point $x_0$.
-	
+
 	\begin{formula}[Corollaire]
 		Si $f$ est continue sur $[a;b]$ et que $f$ est \textbf{strictement monotone} sur cet intervalle, alors pour tout réel $y_0$ tel que $f(a) < y_0 < f(b)$ (ou $f(a) > y_0 > f(b)$), il existe \textbf{un unique} réel $x_0 \in [a;b]$ tel que $f(x_0) = y_0$.
 	\end{formula}
-	
+
 	\subsection{La partie entière $\floor{x}$}
-	
+
 	\begin{formula}[Définition]
 		Soit $x \in \mathbb{R}$. La \textbf{partie entière} de $x$ notée $\floor{x}$ (ou $E(x)$) est l'unique réel tel que : $\floor{x} \leq x < \floor{x} + 1$.
 	\end{formula}
-	
+
 	\begin{tip}[Exemple]
 		$\floor{1,216} = 1$ et $\floor{-2,198} = -3$.
 	\end{tip}
-	
+
 	La fonction partie entière définie par $x \mapsto \floor{x}$ \textbf{n'est pas continue} sur $\mathbb{R}$ :
-	
+
 	\includerepresentation{cpzeryjp}
-	
+
 	\section{Dérivation}
-	
+
 	\subsection{Nombre dérivé}
-	
+
 	\begin{formula}[Définition]
 		Soient $f$ une fonction définie sur un intervalle $I$ et deux réels $a \in I$ et $h \neq 0$ tels que $(a + h) \in I$. La fonction $f$ est \textbf{dérivable} en $a$ si la limite ci-dessous existe et est finie :
 		\[ \lim\limits_{h \rightarrow 0} \frac{f(a + h) - f(a)}{h} \]
@@ -76,19 +76,19 @@
 		\[ \lim\limits_{x \rightarrow a} \frac{f(x) - f(a)}{x-a} \]
 		Si cette limite existe et est finie, alors elle est égale au \textbf{nombre dérivé} de $f$ en $a$, noté $f'(a)$.
 	\end{formula}
-	
+
 	\begin{tip}[Remarque]
 		Notez bien que toute fonction dérivable en un point est continue en ce point.
 	\end{tip}
-	
+
 	\subsection{Tangente en un point}
-	
+
 	\begin{formula}[Équation de la tangente]
 		Soient $f$ une fonction définie sur un intervalle $I$ et un réel $a \in I$. Si $f$ est dérivable en $a$, alors la courbe représentative de $f$ admet une tangente $\mathcal{T}$ au point de coordonnées $(a; f(a))$.
 		\newpar
 		De plus, $f'(a)$ est le coefficient directeur de $\mathcal{T}$, et une équation de $\mathcal{T}$ est $y = f'(a)(x-a)+f(a)$.
 	\end{formula}
-	
+
 	\begin{tip}[Exemple]
 		Soit $f(x) = e^x$ définie sur $\mathbb{R}$ (voir cours sur \href{https://bacomathiqu.es/cours/premiere/fonction-exponentielle/}{la fonction exponentielle}).
 		\newpar
@@ -97,25 +97,25 @@
 		On a $f'(x) = f(x)$ donc $f'(0) = 1$.
 		\newpar
 		Par conséquent, une équation de la tangente est $y = f'(0)(x-0)+f(0) = x + 1$ :
-		on retrouve ce qui a été constaté sur \href{https://bacomathiqu.es/cours/premiere/fonction-exponentielle/#3-représentation-graphique}{la représentation graphique} de la fonction exponentielle.
+		on retrouve ce qui a été constaté sur \href{https://bacomathiqu.es/cours/premiere/fonction-exponentielle/#3-representation-graphique}{la représentation graphique} de la fonction exponentielle.
 	\end{tip}
-	
+
 	\includerepresentation{znryeret}
-	
+
 	\subsection{Fonction dérivée}
-	
+
 	\begin{formula}[Définition]
 		Soit $f$ une fonction dérivable sur un intervalle $I$.
 		\newpar
 		On appelle fonction dérivée (ou plus simplement \textbf{dérivée}) de $f$ la fonction $g$ qui à tout réel $x$ de $I$, associe le nombre dérivé $f'(x)$ (i.e. $g(x) = f'(x)$).
 	\end{formula}
-	
+
 	Très souvent, la fonction $g$ sera notée $f'$.
-	
+
 	\subsection{Applications}
-	
+
 	Plusieurs applications peuvent être trouvées aux dérivées. Avec le signe de la dérivée d'une fonction, il est possible d'obtenir le sens de variation de cette fonction.
-	
+
 	\begin{formula}[Variations d'une fonction]
 		Soit une fonction $f$ dérivable sur un intervalle $I$.
 		\begin{itemize}
@@ -124,11 +124,11 @@
 			\item Si $f' = 0$ sur $I$, alors $f$ est constante sur $I$.
 		\end{itemize}
 	\end{formula}
-	
+
 	\includerepresentation{sjeph3eh}
-	
+
 	Il est également possible d'en déduire diverses propriétés sur les extrema dits ``locaux'' (sur un certain intervalle) d'une fonction.
-	
+
 	\begin{formula}[Étude des extrema]
 		Soient $f$ dérivable sur un intervalle $I$, et $a \in I$ :
 		\begin{itemize}
@@ -138,13 +138,13 @@
 			\item Si $f'(a) = 0$ et qu'on est positif avant $a$ et négatif après, cet extremum local est un maximum local.
 		\end{itemize}
 	\end{formula}
-	
+
 	\section{Tables de dérivation}
-	
+
 	\subsection{Dérivées usuelles}
-	
+
 	Le tableau suivant est à connaître et nous donne la dérivée de la plupart des fonctions usuelles :
-	
+
 	\begin{formula}
 		Soient $\lambda$ une constante réelle et $n$ un entier.
 		\newpar
@@ -170,11 +170,11 @@
 			\hline
 		\end{whitetabularx}
 	\end{formula}
-	
+
 	\subsection{Opérations sur les dérivées}
-	
+
 	Le tableau suivant est également à connaître et nous donne la dérivée qui dépend des opérations sur les fonctions $u$ et $v$ :
-	
+
 	\begin{formula}
 		Soient deux fonctions $u$ et $v$ et soit $\lambda$ une constante réelle.
 		\newpar
@@ -194,11 +194,11 @@
 			\hline
 		\end{whitetabularx}
 	\end{formula}
-	
+
 	\subsection{Dérivées de composées}
-	
+
 	Le tableau suivant, toujours à connaître, nous donne la dérivée des fonctions composées usuelles :
-	
+
 	\begin{formula}
 		Soit $u$ une fonction.
 		\newpar
@@ -222,29 +222,29 @@
 			\hline
 		\end{whitetabularx}
 	\end{formula}
-	
+
 	Il est cependant possible de donner une formule plus générale.
-	
+
 	\begin{formula}[Dérivée d'une composée]
 		Soient $f$ dérivable sur $I$ et $g$ dérivable sur l'ensemble des valeurs prises par $f$ sur $I$. On a alors $(g \circ f)' = (g' \circ f) \times f'$.
 	\end{formula}
-	
+
 	\begin{tip}[Fonction composée]
 		On rappelle que la fonction $g \circ f$ est la fonction définie pour tout $x$ par $(g \circ f)(x) = g(f(x))$.
 	\end{tip}
-	
+
 	\section{Convexité}
-	
+
 	\subsection{Dérivée seconde d'une fonction}
-	
+
 	\begin{formula}[Définition]
 		Soit $f$ une fonction dérivable sur un intervalle $I$, de dérivée $f'$ dérivable sur $I$.
 		\newpar
 		On appelle \textbf{dérivée seconde} (notée $f''$) de $f$, la fonction dérivée de $f'$.
 	\end{formula}
-	
+
 	Ainsi, pour calculer $f''$, on calcule d'abord $f'$, puis on dérive $f'$.
-	
+
 	\begin{tip}[Exemple]
 		Soit $f$ la fonction définie pour tout $x \in \mathbb{R}$ par $f(x) = \sin(2x)$. Calculons $f''$.
 		\newpar
@@ -254,9 +254,9 @@
 		\newpar
 		Pour finir, il suffit juste de dériver $f'$ : pour tout $x \in \mathbb{R}$, $f''(x) = 2 \times (-2 \sin(2x)) = -4 \sin(2x)$.
 	\end{tip}
-	
+
 	\subsection{Fonction convexe}
-	
+
 	\begin{formula}[Définition]
 		Soit $f$ une fonction dérivable sur un intervalle $I$, de dérivée $f'$ dérivable sur $I$.
 		\begin{itemize}
@@ -265,13 +265,13 @@
 			\item On dit que $a \in I$ est un \textbf{point d'inflexion} si $f''$ change de signe en $a$ (i.e. $f''(a) = 0$ et $f''$ est positive avant $a$ puis négative après ou inversement).
 		\end{itemize}
 	\end{formula}
-	
+
 	\begin{tip}
 		Dire que $f''$ est positive sur $I$ revient à dire que $f'$ est croissante sur $I$. De même, dire que $f''$ est négative sur $I$ revient à dire que $f'$ est décroissante sur $I$.
 	\end{tip}
-	
+
 	\subsection{Lien avec les tangentes}
-	
+
 	\begin{formula}[Lien avec la représentation graphique]
 		Soit $f$ une fonction dérivable sur un intervalle $I$, de dérivée $f'$ dérivable sur $I$. On note $\mathcal{C}_f$ la courbe représentative de $f$.
 		\begin{itemize}
@@ -279,9 +279,9 @@
 			\item $f$ est \textbf{concave} sur $I$ si $\mathcal{C}_f$ est en dessous de chacune de ses tangentes sur $I$.
 		\end{itemize}
 	\end{formula}
-	
+
 	\includerepresentation{v74xn9rx}
-	
+
 	\begin{tip}[Exemple]
 		À titre d'exemple, la fonction exponentielle est une fonction convexe.
 	\end{tip}
