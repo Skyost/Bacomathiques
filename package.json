@@ -28,6 +28,7 @@
     "node-html-parser": "^5.2.0",
     "nuxt": "^2.15.8",
     "sal.js": "^0.8.5",
+    "svgson": "^5.2.1",
     "vue-slick-carousel": "^1.0.6",
     "vue-slide-up-down": "^2.0.1",
     "yaml": "^1.10.2"
