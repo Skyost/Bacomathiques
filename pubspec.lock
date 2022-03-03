@@ -215,7 +215,7 @@ packages:
     source: hosted
     version: "0.7.2"
   fwfh_text_style:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: fwfh_text_style
       url: "https://pub.dartlang.org"

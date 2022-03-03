@@ -1,9 +1,9 @@
 import 'package:bacomathiques/app/api/content.dart';
 import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/app/theme/bubble.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fwfh_text_style/fwfh_text_style.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:url_launcher/url_launcher.dart';
 
@@ -50,24 +50,23 @@ class LinkWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     BubbleTheme bubbleTheme = ref.watch(settingsModelProvider).resolveTheme(context).bubbleThemes[bubble ?? Bubble.FORMULA]!;
-    return GestureDetector(
-      onTap: () async {
-        LessonContentEndpoint? endpoint = _targetLessonEndpoint;
-        if (endpoint != null) {
-          await Navigator.pushReplacementNamed(context, '/html', arguments: {'endpoint': endpoint, 'anchor': _targetLessonEndpointHash});
-        } else if (await canLaunch(href)) {
-          await launch(href);
-        }
-      },
-      child: Text(
-        text,
-        style: FwfhTextStyle.from(
-          Theme.of(context).textTheme.bodyText2!.copyWith(
-                fontSize: fontSize,
-                color: bubbleTheme.linkColor,
-                decoration: TextDecoration.underline,
-                decorationColor: bubbleTheme.linkDecorationColor,
-              ),
+    return RichText(
+      text: TextSpan(
+        recognizer: TapGestureRecognizer()
+          ..onTap = () async {
+            LessonContentEndpoint? endpoint = _targetLessonEndpoint;
+            if (endpoint != null) {
+              await Navigator.pushReplacementNamed(context, '/html', arguments: {'endpoint': endpoint, 'anchor': _targetLessonEndpointHash});
+            } else if (await canLaunch(href)) {
+              await launch(href);
+            }
+          },
+        text: text,
+        style: TextStyle(
+          fontSize: fontSize,
+          color: bubbleTheme.linkColor,
+          decoration: TextDecoration.underline,
+          decorationColor: bubbleTheme.linkDecorationColor,
         ),
       ),
     );

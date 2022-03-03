@@ -31,18 +31,18 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
         onChild: scrollTarget == null || scrollToThisKey != null
             ? null
             : (meta) {
-          if (meta.element.id == scrollTarget) {
-            scrollToThisKey = GlobalKey();
-            meta.register(
-              BuildOp(
-                onWidgets: (meta, children) => [
-                  ScrollToThis(scrollToThisKey!),
-                  ...children,
-                ],
-              ),
-            );
-          }
-        },
+                if (meta.element.id == scrollTarget) {
+                  scrollToThisKey = GlobalKey();
+                  meta.register(
+                    BuildOp(
+                      onWidgets: (meta, children) => [
+                        ScrollToThis(scrollToThisKey!),
+                        ...children,
+                      ],
+                    ),
+                  );
+                }
+              },
         onWidgets: (meta, children) => [
           ListViewWidget(
             scrollToThisKey: scrollToThisKey,
@@ -52,27 +52,25 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
       );
       meta.register(lv);
     } else if (meta.element.localName == 'a') {
-      BuildOp a = BuildOp(
-        onTree: (meta, tree) {
-          while(tree.first != null) {
-            tree.first?.detach();
-          }
-          tree.add(
-            WidgetBit.inline(
-              tree,
-              LinkWidget.fromElement(
-                element: meta.element,
-                fontSize: textStyle.fontSize!,
-              ),
-            ),
-          );
+      BuildOp a = BuildOp(onTree: (meta, tree) {
+        while (tree.first != null) {
+          tree.first?.detach();
         }
-      );
+        tree.add(
+          WidgetBit.inline(
+            tree,
+            LinkWidget.fromElement(
+              element: meta.element,
+              fontSize: textStyle.fontSize!,
+            ),
+          ),
+        );
+      });
       meta.register(a);
     } else if (meta.element.localName == 'math') {
       BuildOp math = BuildOp(
         onTree: (meta, tree) {
-          while(tree.first != null) {
+          while (tree.first != null) {
             tree.first?.detach();
           }
           tree.add(
@@ -113,7 +111,7 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
   /// Creates a title build op.
   BuildOp _createTitleBuildOp(BuildMetadata meta) => BuildOp(
         onTree: (meta, tree) {
-          while(tree.first != null) {
+          while (tree.first != null) {
             tree.first?.detach();
           }
           tree.add(

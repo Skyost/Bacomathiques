@@ -9,12 +9,16 @@ class MathWidget extends ConsumerWidget {
   /// The math content.
   final String content;
 
+  /// Whether to render in display mode.
+  final bool displayStyle;
+
   /// The text style.
   final TextStyle textStyle;
 
   /// Creates a new math widget instance.
   const MathWidget({
     required this.content,
+    this.displayStyle = true,
     this.textStyle = const TextStyle(),
   });
 
@@ -24,6 +28,7 @@ class MathWidget extends ConsumerWidget {
     required TextStyle textStyle,
   }) : this(
           content: element.text,
+          displayStyle: element.attributes.containsKey('displaystyle'),
           textStyle: textStyle,
         );
 
@@ -31,6 +36,7 @@ class MathWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     Math math = Math.tex(
       content.replaceAll(r'\displaystyle', ''),
+      mathStyle: displayStyle ? MathStyle.display : MathStyle.text,
       textStyle: textStyle.copyWith(color: textStyle.color ?? ref.watch(settingsModelProvider).resolveTheme(context).textColor),
     );
 
@@ -39,6 +45,7 @@ class MathWidget extends ConsumerWidget {
       text: TextSpan(
         children: _handleParts(parts),
       ),
+      textAlign: displayStyle ? TextAlign.center : TextAlign.start,
     );
   }
 

@@ -10,7 +10,6 @@ import 'package:bacomathiques/utils/utils.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fwfh_text_style/fwfh_text_style.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
@@ -158,7 +157,7 @@ class _HTMLPageState extends RequestScaffoldState<APIEndpointResultHTML, _HTMLPa
 
     return AppHtmlWidget(
       data: parsedHtml!,
-      textStyle: FwfhTextStyle.from(Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16)),
+      textStyle: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16),
     );
   }
 

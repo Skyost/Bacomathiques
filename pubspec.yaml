@@ -29,7 +29,6 @@ dependencies:
   indexed_list_view: ^2.0.1
   google_mobile_ads: ^1.1.0
   app_tracking_transparency: ^2.0.2
-  fwfh_text_style: ^2.7.3
   flutter_riverpod: ^1.0.3
 
 dev_dependencies:
