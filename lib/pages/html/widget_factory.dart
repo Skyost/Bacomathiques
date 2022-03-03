@@ -1,8 +1,8 @@
 import 'package:bacomathiques/app/theme/bubble.dart';
+import 'package:bacomathiques/pages/html/math_bit.dart';
 import 'package:bacomathiques/pages/html/widgets/bubble_widget.dart';
 import 'package:bacomathiques/pages/html/widgets/link_widget.dart';
 import 'package:bacomathiques/pages/html/widgets/list_view_widget.dart';
-import 'package:bacomathiques/pages/html/widgets/math_widget.dart';
 import 'package:bacomathiques/pages/html/widgets/title_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -70,18 +70,18 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
     } else if (meta.element.localName == 'math') {
       BuildOp math = BuildOp(
         onTree: (meta, tree) {
-          while (tree.first != null) {
-            tree.first?.detach();
-          }
-          tree.add(
-            WidgetBit.inline(
-              tree,
-              MathWidget.fromElement(
-                element: meta.element,
+          for (BuildBit bit in tree.bits) {
+            if (bit is TextBit) {
+              MathBit(
+                parent: bit.parent,
+                tsb: bit.tsb,
+                math: bit.data,
                 textStyle: textStyle,
-              ),
-            ),
-          );
+                displayStyle: meta.element.attributes.containsKey('displaystyle'),
+              ).insertAfter(bit);
+              bit.detach();
+            }
+          }
         },
       );
       meta.register(math);
