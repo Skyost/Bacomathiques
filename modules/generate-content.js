@@ -1,4 +1,5 @@
 import { parse } from 'node-html-parser'
+import { normalize } from '../utils/utils'
 
 const path = require('path')
 const fs = require('fs')
@@ -70,7 +71,7 @@ function addIdentifiersToTitles (root) {
   const slugger = new GithubSlugger()
   const titles = root.querySelectorAll('h2, h3')
   for (const title of titles) {
-    title.setAttribute('id', slugger.slug(title.text, false))
+    title.setAttribute('id', normalize(slugger.slug(title.text, false)))
   }
 }
 

@@ -17,6 +17,7 @@
 
 <script>
 import { BIconPenFill } from 'bootstrap-vue'
+import { normalize } from '~/utils/utils'
 
 export default {
   name: 'DropdownEntries',
@@ -58,9 +59,7 @@ export default {
     getLessonURL (level, lesson) {
       return `/cours/${level.id}/${lesson.id}/`
     },
-    normalize (string) {
-      return string.normalize('NFD').replace(/[\u0300-\u036F]/g, '').toLowerCase()
-    }
+    normalize
   }
 }
 </script>
