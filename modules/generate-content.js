@@ -141,16 +141,7 @@ async function handleImages (imagesDir, imagesDestDir) {
       execSync(`latexmk -quiet -pdf "${file}"`, { cwd: imagesDir })
       execSync(`pdftocairo -svg "${fileName}.pdf" "${fileName}.svg"`, { cwd: imagesDir })
       fs.mkdirSync(imagesDestDir, { recursive: true })
-      // TODO: FlutterSVG doesn't handle pt very well, this is a just a temporary hack until they fix it.
-      const svgJson = svgson.parseSync(fs.readFileSync(path.resolve(imagesDir, `${fileName}.svg`)).toString())
-      if (svgJson.attributes.height && svgJson.attributes.height.endsWith('pt')) {
-        svgJson.attributes.height = svgJson.attributes.height.substring(0, svgJson.attributes.height.length - 1) + 'x'
-      }
-      if (svgJson.attributes.width && svgJson.attributes.width.endsWith('pt')) {
-        svgJson.attributes.width = svgJson.attributes.width.substring(0, svgJson.attributes.width.length - 1) + 'x'
-      }
-      fs.writeFileSync(path.resolve(imagesDestDir, `${fileName}.svg`), svgson.stringify(svgJson))
-      // fs.copyFileSync(path.resolve(imagesDir, `${fileName}.svg`), path.resolve(imagesDestDir, `${fileName}.svg`))
+      fs.copyFileSync(path.resolve(imagesDir, `${fileName}.svg`), path.resolve(imagesDestDir, `${fileName}.svg`))
     } else if (file.endsWith('.png')) {
       fs.copyFileSync(path.resolve(imagesDir, file), path.resolve(imagesDestDir, file))
     }
