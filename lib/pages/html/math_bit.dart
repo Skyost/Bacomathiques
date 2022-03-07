@@ -25,7 +25,7 @@ class MathBit extends BuildBit<void, InlineSpan> {
   @override
   InlineSpan buildBit(void input) {
     Math math = Math.tex(
-      this.math.replaceAll(r'\displaystyle', ''),
+      this.math,
       textStyle: textStyle?.copyWith(fontSize: textStyle?.fontSize),
       mathStyle: displayStyle ? MathStyle.display : MathStyle.text,
     );

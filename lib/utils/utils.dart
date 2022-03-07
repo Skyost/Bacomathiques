@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'dart:typed_data';
 
 import 'package:bacomathiques/app/settings.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -89,6 +90,27 @@ void openURL(String url) async {
 bool isTablet(Size screenSize) {
   double diagonal = math.sqrt(math.pow(screenSize.width, 2) + math.pow(screenSize.height, 2));
   return diagonal > 1100 || screenSize.shortestSide >= 600;
+}
+
+/// Returns the platform name.
+String get platformName {
+  if (kIsWeb) {
+    return 'web';
+  }
+  switch(defaultTargetPlatform) {
+    case TargetPlatform.android:
+      return 'Android';
+    case TargetPlatform.fuchsia:
+      return 'Fuschia';
+    case TargetPlatform.iOS:
+      return 'iOS';
+    case TargetPlatform.linux:
+      return 'Linux';
+    case TargetPlatform.macOS:
+      return 'macOS';
+    case TargetPlatform.windows:
+      return 'Windows';
+  }
 }
 
 /// A centered circular progress indicator.

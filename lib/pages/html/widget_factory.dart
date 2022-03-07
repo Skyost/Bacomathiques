@@ -30,15 +30,24 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
     if (meta.element.localName == 'math') {
       BuildOp math = BuildOp(
         onTree: (meta, tree) {
+          String math = '';
           for (BuildBit bit in tree.bits.toList(growable: false)) {
             if (bit is TextBit) {
-              MathBit(
-                parent: bit.parent,
-                tsb: bit.tsb,
-                math: bit.data,
-                textStyle: textStyle,
-                displayStyle: meta.element.attributes.containsKey('displaystyle'),
-              ).insertAfter(bit);
+              math += bit.data;
+            }
+          }
+          for (BuildBit bit in tree.bits.toList(growable: false)) {
+            if (bit is TextBit) {
+              if (math.isNotEmpty) {
+                MathBit(
+                  parent: bit.parent,
+                  tsb: bit.tsb,
+                  math: math,
+                  textStyle: textStyle,
+                  displayStyle: meta.element.attributes.containsKey('displaystyle'),
+                ).insertAfter(bit);
+                math = '';
+              }
               bit.detach();
             }
           }

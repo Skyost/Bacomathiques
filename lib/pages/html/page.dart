@@ -8,6 +8,7 @@ import 'package:bacomathiques/pages/html/html_widget.dart';
 import 'package:bacomathiques/utils/request_scaffold.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -45,7 +46,7 @@ class _AdMobHTMLPageState extends ConsumerState<AdMobHTMLPage> {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) async {
       await askConsent();
-      if (mounted) {
+      if (mounted && (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS)) {
         SettingsModel settingsModel = ref.read(settingsModelProvider);
         AdSize? size = await AdSize.getAnchoredAdaptiveBannerAdSize(MediaQuery.of(context).orientation, MediaQuery.of(context).size.width.truncate());
         BannerAd? banner = settingsModel.createAdMobBanner(
@@ -168,7 +169,6 @@ class _HTMLPageState extends RequestScaffoldState<APIEndpointResultHTML, _HTMLPa
     _formatImages(document, mounted ? context : null);
     _removeBottomMarginOfLastElements(document);
     _formatBubbles(document);
-    _formatLinks(document);
     _formatTables(document);
 
     if (mounted) {
@@ -241,14 +241,6 @@ class _HTMLPageState extends RequestScaffoldState<APIEndpointResultHTML, _HTMLPa
           _removeBottomMarginOfLastElements(lastDirectList);
         }
       }
-    }
-  }
-
-  /// Formats the links.
-  void _formatLinks(dom.Document document) {
-    List<dom.Element> links = document.getElementsByTagName('a');
-    for (dom.Element link in links) {
-      link.attributes['data-current-endpoint'] = widget.endpoint.path;
     }
   }
 

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:bacomathiques/app/app.dart';
 import 'package:bacomathiques/app/settings.dart';
 import 'package:bacomathiques/app/theme/theme.dart';
@@ -9,6 +7,7 @@ import 'package:bacomathiques/pages/home.dart';
 import 'package:bacomathiques/pages/html/page.dart';
 import 'package:bacomathiques/pages/lessons.dart';
 import 'package:bacomathiques/pages/levels.dart';
+import 'package:bacomathiques/utils/utils.dart';
 import 'package:catcher/catcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,9 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 /// Hello world !
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await MobileAds.instance.initialize();
+  if (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS) {
+    await MobileAds.instance.initialize();
+  }
 
   Widget main = ProviderScope(child: BacomathiquesApp());
   if (kDebugMode) {
@@ -37,7 +38,7 @@ void main() async {
           enableStackTrace: true,
         ),
       ],
-      customParameters: {'platform': Platform.isAndroid ? 'Android' : 'iOS'},
+      customParameters: {'platform': platformName},
     );
 
     Catcher(rootWidget: main, releaseConfig: releaseConfig);

@@ -44,7 +44,7 @@ class SettingsModel extends ChangeNotifier {
     AdSize? size,
     bool? nonPersonalizedAds,
   }) =>
-      _adMobEnabled
+      _adMobEnabled && (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS)
           ? BannerAd(
               adUnitId: _adMobBannerId,
               size: size ?? AdSize.banner,

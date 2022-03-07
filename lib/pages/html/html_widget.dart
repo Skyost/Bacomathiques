@@ -6,6 +6,7 @@ import 'package:bacomathiques/app/theme/theme.dart';
 import 'package:bacomathiques/pages/html/widget_factory.dart';
 import 'package:bacomathiques/pages/html/widgets/representation_preview_widget.dart';
 import 'package:bacomathiques/utils/utils.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -90,6 +91,9 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
         return CenteredCircularProgressIndicator(message: message);
       },
       onErrorBuilder: (context, element, error) {
+        if (kDebugMode) {
+          print(element);
+        }
         String title = error == null ? 'Erreur' : 'Erreur "${error.toString()}"';
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -237,14 +241,15 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
           'max-height': '150px',
           ...style,
         };
-      case 'a': {
-        Bubble bubble = BubbleUtils.getByClassName(element.attributes['data-parent-bubble']);
-        return {
-          'color': theme.bubbleThemes[bubble]!.linkColor.toHex(),
-          'text-decoration-color': theme.bubbleThemes[bubble]!.linkDecorationColor.toHex(),
-          ...style,
-        };
-      }
+      case 'a':
+        {
+          Bubble bubble = BubbleUtils.getByClassName(element.attributes['data-parent-bubble']);
+          return {
+            'color': theme.bubbleThemes[bubble]!.linkColor.toHex(),
+            'text-decoration-color': theme.bubbleThemes[bubble]!.linkDecorationColor.toHex(),
+            ...style,
+          };
+        }
     }
 
     return null;
