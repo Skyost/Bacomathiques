@@ -28,38 +28,19 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
       super.parse(meta);
     }
     if (meta.element.localName == 'math') {
-      BuildOp math = BuildOp(
-        onTree: (meta, tree) {
-          String math = '';
-          for (BuildBit bit in tree.bits.toList(growable: false)) {
-            if (bit is TextBit) {
-              math += bit.data;
-            }
-          }
-          for (BuildBit bit in tree.bits.toList(growable: false)) {
-            if (bit is TextBit) {
-              if (math.isNotEmpty) {
-                MathBit(
-                  parent: bit.parent,
-                  tsb: bit.tsb,
-                  math: math,
-                  textStyle: textStyle,
-                  displayStyle: meta.element.attributes.containsKey('displaystyle'),
-                ).insertAfter(bit);
-                math = '';
-              }
-              bit.detach();
-            }
-          }
-        },
-      );
-      meta.register(math);
+      _registerMathOp(meta);
+    } else if (meta.element.localName == 'latex') {
+      _registerMathOp(meta);
     } else if (meta.element.classes.contains(Bubble.formula.className)) {
-      meta.register(_createBubbleBuildOp(Bubble.formula, meta));
-    } else if (meta.element.classes.contains(Bubble.tip.className)) {
-      meta.register(_createBubbleBuildOp(Bubble.tip, meta));
+      _registerBubbleBuildOp(Bubble.formula, meta);
     } else if (meta.element.classes.contains(Bubble.proof.className)) {
-      meta.register(_createBubbleBuildOp(Bubble.proof, meta));
+      _registerBubbleBuildOp(Bubble.proof, meta);
+    } else if (meta.element.classes.contains(Bubble.tip.className)) {
+      _registerBubbleBuildOp(Bubble.tip, meta);
+    } else if (meta.element.classes.contains(Bubble.exercise.className)) {
+      _registerBubbleBuildOp(Bubble.exercise, meta);
+    } else if (meta.element.classes.contains(Bubble.correction.className)) {
+      _registerBubbleBuildOp(Bubble.correction, meta);
     } else if (meta.element.localName == 'h2') {
       _registerTitleBuildOps(meta);
     } else if (meta.element.localName == 'h3') {
@@ -84,6 +65,36 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
       return '— ';
     }
     return super.getListMarkerText(type, i);
+  }
+
+  /// Creates and registers the math build op.
+  void _registerMathOp(BuildMetadata meta) {
+    BuildOp math = BuildOp(
+      onTree: (meta, tree) {
+        String math = '';
+        for (BuildBit bit in tree.bits.toList(growable: false)) {
+          if (bit is TextBit) {
+            math += bit.data;
+          }
+        }
+        for (BuildBit bit in tree.bits.toList(growable: false)) {
+          if (bit is TextBit) {
+            if (math.isNotEmpty) {
+              MathBit(
+                parent: bit.parent,
+                tsb: bit.tsb,
+                math: math,
+                textStyle: textStyle,
+                displayStyle: meta.element.attributes.containsKey('displaystyle'),
+              ).insertAfter(bit);
+              math = '';
+            }
+            bit.detach();
+          }
+        }
+      },
+    );
+    meta.register(math);
   }
 
   /// Creates and registers title build ops.
@@ -111,20 +122,23 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
     }
   }
 
-  /// Creates a bubble build op.
-  BuildOp _createBubbleBuildOp(Bubble bubble, BuildMetadata meta) => BuildOp(
-        onChild: (meta) {
-          if (meta.element.localName == 'h4' || meta.element.localName == 'a') {
-            meta.element.attributes['data-parent-bubble'] = bubble.className;
-          }
-        },
-        onWidgets: (meta, children) => [
-          BubbleWidget.fromElement(
-            element: meta.element,
-            children: children.toList(),
-          ),
-        ],
-      );
+  /// Creates and register a bubble build op.
+  void _registerBubbleBuildOp(Bubble bubble, BuildMetadata meta) {
+    BuildOp bubbleBuildOp = BuildOp(
+      onChild: (meta) {
+        if (meta.element.localName == 'h4' || meta.element.localName == 'a') {
+          meta.element.attributes['data-parent-bubble'] = bubble.className;
+        }
+      },
+      onWidgets: (meta, children) => [
+        BubbleWidget.fromElement(
+          element: meta.element,
+          children: children.toList(),
+        ),
+      ],
+    );
+    meta.register(bubbleBuildOp);
+  }
 
   /// Taken from the super method.
   BuildOp _anchorOp(String id) {

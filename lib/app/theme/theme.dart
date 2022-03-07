@@ -178,17 +178,29 @@ class _LightAppTheme extends AppTheme {
               linkColor: Color(0xff217dbb),
               linkDecorationColor: Color(0xffa0cfee),
             ),
+            Bubble.proof: BubbleTheme(
+              backgroundColor: Color(0xfffff8de),
+              leftBorderColor: Color(0xfff1c40f),
+              linkColor: Color(0xffe09e0d),
+              linkDecorationColor: Color(0xfff1c40f),
+            ),
             Bubble.tip: BubbleTheme(
               backgroundColor: Color(0xffdcf3d8),
               leftBorderColor: Color(0xff208d4d),
               linkColor: Color(0xff13532e),
               linkDecorationColor: Color(0xff219150),
             ),
-            Bubble.proof: BubbleTheme(
-              backgroundColor: Color(0xfffff8de),
-              leftBorderColor: Color(0xfff1c40f),
-              linkColor: Color(0xffe09e0d),
-              linkDecorationColor: Color(0xfff1c40f),
+            Bubble.exercise: BubbleTheme(
+              backgroundColor: Color(0xffe0f2f1),
+              leftBorderColor: Color(0xff009688),
+              linkColor: Color(0xff006f65),
+              linkDecorationColor: Color(0xff009688),
+            ),
+            Bubble.correction: BubbleTheme(
+              backgroundColor: Color(0xffe0f7fa),
+              leftBorderColor: Color(0xff00bcd4),
+              linkColor: Color(0xff006b78),
+              linkDecorationColor: Color(0xff00bcd4),
             ),
           },
         );
@@ -219,15 +231,27 @@ class _DarkAppTheme extends AppTheme {
               linkColor: Colors.white,
               linkDecorationColor: Colors.white,
             ),
+            Bubble.proof: BubbleTheme(
+              backgroundColor: Color(0xff192734),
+              leftBorderColor: Color(0xfff1c40f),
+              linkColor: Colors.white,
+              linkDecorationColor: Colors.white,
+            ),
             Bubble.tip: BubbleTheme(
               backgroundColor: Color(0xff192734),
               leftBorderColor: Color(0xff208d4d),
               linkColor: Colors.white,
               linkDecorationColor: Colors.white,
             ),
-            Bubble.proof: BubbleTheme(
+            Bubble.exercise: BubbleTheme(
               backgroundColor: Color(0xff192734),
-              leftBorderColor: Color(0xfff1c40f),
+              leftBorderColor: Color(0xff009688),
+              linkColor: Colors.white,
+              linkDecorationColor: Colors.white,
+            ),
+            Bubble.correction: BubbleTheme(
+              backgroundColor: Color(0xff192734),
+              leftBorderColor: Color(0xff00bcd4),
               linkColor: Colors.white,
               linkDecorationColor: Colors.white,
             ),
