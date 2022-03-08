@@ -17,7 +17,7 @@
       <b-col lg="4" md="6" class="mb-md-0 mb-5">
         <h3>Licence</h3>
 
-        <p>Copyright &copy; 2021 {{ siteName }}. Toute reproduction totale ou partielle est interdite excepté pour un usage pédagogique et non-commercial (en citant explicitement la propriété de {{ siteName }}).</p>
+        <p>Copyright &copy; 2022 {{ siteName }}. Toute reproduction totale ou partielle est interdite excepté pour un usage pédagogique et non-commercial (en citant explicitement la propriété de {{ siteName }}).</p>
         <p class="mb-0">
           <em><strong>Google Play</strong> et le logo Google Play sont des marques de Google LLC. <strong>App Store</strong> et le logo App Store sont des marques de Apple Inc.</em>
         </p>
@@ -68,7 +68,7 @@
     </b-row>
     <hr class="mt-5">
     <p class="mb-0 text-break">
-      Copyright &copy; 2021 - {{ siteName }}.
+      Copyright &copy; 2022 - {{ siteName }}.
       <br>Généré le {{ buildDate }} à {{ buildTime }}.
     </p>
   </footer>

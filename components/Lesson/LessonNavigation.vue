@@ -112,7 +112,6 @@ export default {
           })
         }
       }
-      console.log(result)
       this.entries = result
     },
     getMaxAcceptableEntry (topOffset, entries) {

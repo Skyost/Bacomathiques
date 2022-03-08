@@ -4,7 +4,6 @@ import { normalize } from '../utils/utils'
 const path = require('path')
 const fs = require('fs')
 const execSync = require('child_process').execSync
-const svgson = require('svgson')
 const katex = require('katex')
 const GithubSlugger = require('github-slugger')
 const logger = require('./logger')
@@ -89,7 +88,7 @@ function renderMath (root) {
 }
 
 function addVueComponents (root) {
-  const variants = ['formula', 'tip', 'proof']
+  const variants = ['formula', 'proof', 'tip', 'exercise', 'correction']
   for (const variant of variants) {
     const bubbles = root.querySelectorAll(`.bubble-${variant}`)
     for (const bubble of bubbles) {

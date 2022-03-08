@@ -30,12 +30,19 @@ export default {
   },
   data () {
     return {
-      hidden: this.variant === 'proof'
+      hidden: this.variant === 'proof' || this.variant === 'correction'
     }
   },
   computed: {
     hideMessage () {
-      return this.variant === 'proof' ? 'Démonstration' : null
+      switch (this.variant) {
+        case 'proof':
+          return 'Démonstration'
+        case 'correction':
+          return 'Correction'
+        default:
+          return null
+      }
     }
   }
 }
@@ -45,7 +52,7 @@ export default {
 @import 'assets/breakpoints';
 @import 'assets/colors';
 
-@mixin bubble($text, $borderColor, $backgroundColor) {
+@mixin bubble($text, $borderColor, $backgroundColor, $linkColor, $linkDecorationColor) {
   $borderLeft: 8px;
 
   padding: 20px 20px 20px (20 + $borderLeft);
@@ -59,7 +66,18 @@ export default {
   }
 
   h4 {
-    color: darken($borderColor, 6%);
+    // color: darken($borderColor, 6%);
+    color: $borderColor;
+  }
+
+  a {
+    color: $linkColor;
+    text-decoration-color: $linkDecorationColor;
+
+    &:hover,
+    &:active {
+      color: darken($linkColor, 10%) !important;
+    }
   }
 }
 
@@ -154,28 +172,23 @@ export default {
   @include bubble-li();
 
   &.formula {
-    @include bubble('À connaître 💡', $main-color, #ebf3fb);
+    @include bubble('À connaître 💡', $main-color, #ebf3fb, #217dbb, #a0cfee);
   }
 
   &.proof {
-    @include bubble('Démonstration 🧠', #f1c40f, #fff8de);
+    @include bubble('Démonstration 🧠', #f1c40f, #fff8de, #e09e0d, #f1c40f);
   }
 
   &.tip {
-    $border-color: #26a65b;
+    @include bubble('À lire 👀', #26a65b, #dcf3d8, #13532e, #219150);
+  }
 
-    @include bubble('À lire 👀', $border-color, #dcf3d8);
+  &.exercise {
+    @include bubble('Exercice ✍', #009688, #e0f2f1, #006f65, #009688);
+  }
 
-    a {
-      color: darken($border-color, 10%) !important;
-      text-decoration-color: lighten($border-color, 5%) !important;
-
-      &:hover,
-      &:active {
-        color: darken($border-color, 20%) !important;
-        text-decoration-color: darken($border-color, 5%) !important;
-      }
-    }
+  &.correction {
+    @include bubble('Correction 💯', #00bcd4, #e0f7fa, #006b78, #00bcd4);
   }
 }
 </style>

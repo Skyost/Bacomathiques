@@ -127,6 +127,8 @@ export default {
 .spring-spinner {
   height: 60px;
   width: 60px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .spring-spinner .spring-spinner-part {

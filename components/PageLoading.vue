@@ -1,6 +1,6 @@
 <template>
   <page-content class="pt-5">
-    <spring-spinner class="ml-auto mr-auto mt-5 mb-5" />
+    <spring-spinner class="mt-5 mb-5" />
   </page-content>
 </template>
 
