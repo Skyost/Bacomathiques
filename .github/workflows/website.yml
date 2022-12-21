@@ -16,7 +16,7 @@ jobs:
       containerUser: ${{ steps.get-user.outputs.containerUser }}
     steps:
       - id: get-user
-        run: echo "::set-output name=containerUser::`id -u`:`id -g`"
+        run: echo "containerUser=`id -u`:`id -g`" >> $GITHUB_OUTPUT
   build:
     needs: configure
     runs-on: ${{ matrix.os }}
