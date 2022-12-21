@@ -14,80 +14,66 @@
       Pas de problème, il vous suffit de remplir le formulaire de contact ci-dessous :
     </p>
 
-    <b-form class="contact-form" method="post" action="https://formspree.io/moqkkawg" @submit.prevent="onSubmit">
-      <b-form-row>
-        <b-col md="6">
-          <b-form-group>
-            <b-form-input
-              v-model="form.name"
-              name="name"
-              class="form-control"
-              type="text"
-              placeholder="Entrez votre nom et prénom / pseudonyme"
-              required
-            />
-          </b-form-group>
-        </b-col>
-        <b-col md="6">
-          <b-form-group>
-            <b-form-input
-              v-model="form.email"
-              name="_replyto"
-              class="form-control"
-              type="text"
-              placeholder="Entrez votre adresse e-mail"
-              required
-            />
-          </b-form-group>
-        </b-col>
-      </b-form-row>
-      <b-form-group>
-        <b-form-select
-          v-model="form.subject"
-          name="subject"
-          class="form-control"
-          :options="subjects"
-          :value="subjects[0]"
-          required
-        />
-      </b-form-group>
-      <b-form-group class="mb-1">
-        <b-form-textarea
-          v-model="form.message"
-          name="message"
-          class="form-control"
-          rows="5"
-          placeholder="Entrez votre message"
-          required
-        />
-      </b-form-group>
-      <recaptcha />
-      <small class="text-muted">
-        <b-icon-eye-fill /> Protégé par reCaptcha (<a href="https://policies.google.com/privacy">Politique de confidentialité</a> &amp; <a href="https://policies.google.com/terms">Conditions d'utilisation</a>).
+    <form class="contact-form" method="post" action="https://formspree.io/moqkkawg" @submit.prevent="onSubmit">
+      <ski-columns>
+        <ski-column md="6">
+          <ski-form-control
+            v-model="form.name"
+            name="name"
+            placeholder="Entrez votre nom et prénom / pseudonyme"
+            required
+          />
+        </ski-column>
+        <ski-column md="6">
+          <ski-form-control
+            v-model="form.email"
+            name="_replyto"
+            placeholder="Entrez votre adresse e-mail"
+            required
+          />
+        </ski-column>
+      </ski-columns>
+      <select
+        v-model="form.subject"
+        name="subject"
+        :value="subjects[0]"
+        class="form-control mt-3"
+        required
+      >
+        <option
+          v-for="subject in subjects"
+          :key="subject"
+          :value="subject"
+        >
+          {{ subject }}
+        </option>
+      </select>
+      <textarea
+        v-model="form.message"
+        name="message"
+        rows="5"
+        placeholder="Entrez votre message"
+        required
+        class="form-control mt-3 mb-3"
+      />
+      <small class="text-muted float-start">
+        <ski-icon icon="eye-fill" /> Protégé par reCaptcha (<a href="https://policies.google.com/privacy">Politique de confidentialité</a> &amp; <a href="https://policies.google.com/terms">Conditions d'utilisation</a>).
       </small>
-      <b-form-row>
-        <b-col cols="6" md="3" offset="6" offset-md="9">
-          <b-button variant="white" class="float-right w-100" type="submit" :disabled="!form.enabled">
-            <b-icon-check-all /> Envoyer
-          </b-button>
-        </b-col>
-      </b-form-row>
-      <b-alert variant="success" class="mt-3" :show="form.success">
-        <b-icon-check /> Message envoyé avec succès !
-      </b-alert>
-      <b-alert variant="danger" class="mt-3" :show="form.error">
-        <b-icon-exclamation-circle-fill /> Une erreur est survenue pendant l'envoi du message. Veuillez réessayer plus tard.
-      </b-alert>
-    </b-form>
+      <ski-button variant="white" class="float-end" type="submit" :disabled="!form.enabled">
+        <ski-icon icon="check-all" /> Envoyer
+      </ski-button>
+      <div v-if="form.success" class="mt-3 alert alert-success">
+        <ski-icon icon="check" /> Message envoyé avec succès !
+      </div>
+      <div v-if="form.error" class="mt-3 alert alert-danger">
+        <ski-icon icon="exclamation-circle-fill" /> Une erreur est survenue pendant l'envoi du message. Veuillez réessayer plus tard.
+      </div>
+    </form>
   </div>
 </template>
 
 <script>
-import { BIconCheck, BIconCheckAll, BIconExclamationCircleFill, BIconEyeFill } from 'bootstrap-vue'
-
 export default {
-  name: 'ContactForm',
-  components: { BIconEyeFill, BIconCheckAll, BIconCheck, BIconExclamationCircleFill },
   data () {
     return {
       form: {
@@ -108,17 +94,24 @@ export default {
     }
   },
   mounted () {
-    this.$recaptcha.init()
     this.form.subject = this.subjects[0]
   },
   methods: {
     async onSubmit (event) {
       this.form.enabled = false
       try {
-        const response = await fetch(event.target.action, {
-          method: event.target.method,
-          body: new FormData(event.target),
-          headers: { Accept: 'application/json' }
+        const form = event.target
+        const recaptcha = await load('6LesY2MhAAAAAG0AhWnGpMBLXAv3H4Bb7R3MQlYR', { autoHideBadge: true })
+        const token = await recaptcha.execute('contact')
+        const response = await $fetch(form.action, {
+          method: form.method,
+          body: {
+            name: this.name,
+            _replyto: this.email,
+            subject: this.subject,
+            message: this.message,
+            'g-recaptcha-response': token
+          }
         })
         this.onResponse(response.ok)
       } catch (ex) {
@@ -153,8 +146,10 @@ export default {
     }
   }
 
-  .g-recaptcha {
-    margin-top: 1em;
+  .alert {
+    display: flex;
+    align-items: center;
+    margin-top: 3em;
   }
 }
 </style>

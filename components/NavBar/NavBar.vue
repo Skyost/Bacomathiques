@@ -1,83 +1,58 @@
 <template>
-  <b-navbar id="page-navbar" toggleable="lg" type="dark">
-    <b-navbar-toggle target="nav-collapse" />
-    <b-navbar-brand class="d-lg-none d-block">
-      <logo to="/" />
-    </b-navbar-brand>
-    <b-collapse id="nav-collapse" is-nav class="row">
-      <b-col cols="12" lg="6" xl="4">
-        <b-navbar-nav>
-          <nav-bar-item v-for="item in items" :key="item.id" :to="item.href">
-            <b-icon :icon="item.icon" /> {{ item.title }}
-          </nav-bar-item>
-        </b-navbar-nav>
-      </b-col>
-      <b-col xl="4" class="d-xl-block d-none">
-        <logo to="/" />
-      </b-col>
-      <b-col lg="6" xl="4" class="d-md-block d-none">
-        <b-navbar-nav>
-          <lesson-list-dropdown />
-        </b-navbar-nav>
-      </b-col>
-      <b-col cols="12" class="d-md-none d-block">
-        <b-navbar-nav>
-          <nav-bar-item v-b-modal.modal-lesson-list>
-            <b-icon-tag-fill /> Accès direct à un cours
-          </nav-bar-item>
-        </b-navbar-nav>
-        <lesson-list-modal />
-      </b-col>
-    </b-collapse>
-  </b-navbar>
+  <div>
+    <ski-navbar id="page-navbar" ref="navbar" brightness="primary" class="navbar-dark">
+      <ski-navbar-collapse id="page-navbar-collapse" class="collapse-container">
+        <ski-navbar-items class="ms-auto ms-lg-0">
+          <ski-navbar-item class="page-navbar-item" to="/" :active="$route.path === '/'">
+            <ski-icon icon="house-door-fill" /> Accueil
+          </ski-navbar-item>
+          <ski-navbar-item class="page-navbar-item" to="/cours/" :active="$route.path.startsWith('/cours')">
+            <ski-icon icon="bookmark-fill" /> Liste des cours
+          </ski-navbar-item>
+          <ski-navbar-item class="page-navbar-item" to="/a-propos/" :active="$route.path === '/a-propos/'">
+            <ski-icon icon="pencil-fill" /> À propos
+          </ski-navbar-item>
+          <ski-navbar-item class="page-navbar-item d-lg-none" to="/cours/" data-bs-toggle="modal" data-bs-target="#modal-lesson-list">
+            <ski-icon icon="tag-fill" /> Accès direct à un cours
+          </ski-navbar-item>
+        </ski-navbar-items>
+        <page-navbar-brand class="desktop-navbar-brand" />
+        <ski-navbar-items class="d-none d-lg-block ms-auto">
+          <lesson-list-dropdown class="page-navbar-item" />
+        </ski-navbar-items>
+        <template #brand>
+          <page-navbar-brand class="mobile-navbar-brand" />
+        </template>
+      </ski-navbar-collapse>
+    </ski-navbar>
+    <lesson-list-modal />
+  </div>
 </template>
 
 <script>
-import { BIcon, BIconHouseDoorFill, BIconBookmarkFill, BIconPencilFill, BIconTagFill } from 'bootstrap-vue'
-import Logo from '../Logo'
-import NavBarItem from './NavBarItem'
-import LessonListDropdown from './LessonListDropdown/LessonListDropdown'
-import LessonListModal from './LessonListModal'
+import { SkiIcon, SkiNavbar, SkiNavbarCollapse, SkiNavbarItem, SkiNavbarItems } from 'skimple-components'
+import PageNavbarBrand from '~/components/Navbar/NavbarBrand'
+import LessonListModal from '~/components/Navbar/LessonListModal'
+import LessonListDropdown from '~/components/Navbar/LessonListDropdown.vue'
 
 export default {
-  name: 'NavBar',
-  // eslint-disable-next-line vue/no-unused-components
-  components: { LessonListModal, BIcon, BIconHouseDoorFill, BIconBookmarkFill, BIconPencilFill, BIconTagFill, LessonListDropdown, Logo, NavBarItem },
+  name: 'PageNavbar',
+  components: { LessonListDropdown, LessonListModal, PageNavbarBrand, SkiNavbar, SkiNavbarCollapse, SkiNavbarItems, SkiNavbarItem, SkiIcon },
   data () {
     return {
-      items: [
-        {
-          id: 'home',
-          href: '/',
-          title: 'Accueil',
-          icon: 'house-door-fill'
-        },
-        {
-          id: 'lessons',
-          href: '/cours/',
-          title: 'Liste des cours',
-          icon: 'bookmark-fill'
-        },
-        {
-          id: 'about',
-          href: '/a-propos/',
-          title: 'À propos',
-          icon: 'pencil-fill'
-        }
-      ],
       heightDelta: 0,
       currentTopOffset: 0
     }
   },
   watch: {
     currentTopOffset (value) {
-      this.$el.classList.toggle('shrinked', value > this.heightDelta)
+      this.$refs.navbar.$el.classList.toggle('shrinked', value > this.heightDelta)
     }
   },
   async mounted () {
     await this.$nextTick()
 
-    const navbar = this.$el
+    const navbar = this.$refs.navbar.$el
     const fullHeight = 130
     const shrinkedHeight = 70
 
@@ -85,6 +60,7 @@ export default {
     navbar.setAttribute('data-height', fullHeight.toString())
     navbar.setAttribute('data-shrinked-height', shrinkedHeight.toString())
     const spacer = document.createElement('div')
+    spacer.classList.add('bg-primary')
     spacer.setAttribute('id', 'page-navbar-spacer')
     spacer.style.height = `${fullHeight}px`
 
@@ -97,7 +73,7 @@ export default {
   beforeMount () {
     window.addEventListener('scroll', this.handleScroll)
   },
-  beforeDestroy () {
+  beforeUnmount () {
     window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
@@ -108,118 +84,101 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import 'assets/breakpoints';
+<style lang="scss" scoped>
+@import 'assets/bootstrap-mixins';
 @import 'assets/colors';
+
+$shrinked-shadow: 0 0 20px rgba(black, 0.2);
 
 #page-navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 2;
-  background-color: $main-color;
-  padding: 20px 40px;
-  font-weight: bold;
+  z-index: 3;
+  background-color: $primary !important;
   transition: all 300ms;
   height: var(--height);
 
-  .logo {
-    display: table;
-    margin: auto;
-    font-size: 60px;
-    text-align: center;
-
-    @media (max-width: $tablet-width) {
-      font-size: 30px !important;
-    }
-  }
-
-  .nav-link {
+  &:deep(#page-navbar-collapse) {
     position: relative;
 
-    &::before {
-      position: absolute;
-      content: '';
-      height: 2px;
-      background-color: white;
-      bottom: 4px;
-      left: 50%;
-      right: 50%;
-      opacity: 0.75;
-      transition: all 500ms;
+    &.collapsing, &.show {
+      margin-left: -40px;
+      margin-right: -40px;
+      // box-shadow: $shrinked-shadow;
+    }
 
-      @media (max-width: $tablet-width) {
-        height: 1.5px;
-        left: 0;
-        right: 100%;
+    @include media-breakpoint-up(lg) {
+      .page-navbar-item {
+        position: relative;
+
+        &:before {
+          position: absolute;
+          content: '';
+          height: 2px;
+          background-color: white;
+          bottom: 4px;
+          left: 50%;
+          right: 50%;
+          opacity: 0.75;
+          transition: all 500ms;
+        }
+
+        &:hover:before {
+          left: 8px;
+          right: 8px;
+        }
       }
     }
 
-    &:hover::before {
-      left: 8px;
-      right: 8px;
+    @include media-breakpoint-down(lg) {
+      .page-navbar-item {
+        padding: 10px 20px;
+        background-color: darken($primary, 5%);
 
-      @media (max-width: $tablet-width) {
-        left: 0;
-        right: 0;
+        :deep(a) {
+          padding: 10px;
+        }
       }
-    }
-  }
-
-  .nav-item.active.nav-link::before {
-    opacity: 1;
-    left: 8px;
-    right: 8px;
-
-    @media (max-width: $tablet-width) {
-      left: 0;
-      right: 0;
-    }
-  }
-
-  .dropdown-menu {
-    height: auto;
-    max-height: 75vh;
-    overflow-y: auto;
-
-    .form-control {
-      border: none;
-    }
-
-    @media (max-width: $tablet-width) {
-      max-height: 300px;
-      overflow-x: hidden;
-    }
-
-    @media (max-width: $mobile-width) {
-      max-width: 60%;
     }
   }
 
   &.shrinked {
-    box-shadow: 0 0 20px rgba(black, 0.2);
+    box-shadow: $shrinked-shadow;
     padding-top: 5px;
     padding-bottom: 5px;
-    background-color: darken($main-color, 10%);
+    background-color: darken($primary, 10%) !important;
     height: var(--shrinked-height);
 
-    .logo {
+    .desktop-navbar-brand {
       font-size: 40px;
+    }
+
+    .mobile-navbar-brand {
+      font-size: 30px;
     }
   }
 
-  @media (max-width: $large-width) {
-    height: auto !important;
+  .desktop-navbar-brand {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+
+    @include media-breakpoint-down(xl) {
+      display: none;
+    }
   }
 
-  @media (max-width: $tablet-width) {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
+  .mobile-navbar-brand {
+    flex: 1;
+    font-size: 60px;
 
-#page-navbar-spacer {
-  background-color: $main-color;
+    @include media-breakpoint-up(lg) {
+      display: none;
+    }
+  }
 }
 </style>

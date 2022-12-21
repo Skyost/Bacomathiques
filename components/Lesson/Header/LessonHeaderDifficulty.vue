@@ -1,16 +1,12 @@
 <template>
   <span :class="`lesson-info difficulties level-${difficulty}`" title="Difficulté du cours">
-    <b-icon-pencil-fill v-for="i in 5" :key="i" :class="{'colored': i <= difficulty}" />
+    <ski-icon v-for="i in 5" :key="i" icon="pencil-fill" :class="{'colored': i <= difficulty}" />
     {{ difficultyText }}
   </span>
 </template>
 
 <script>
-import { BIconPencilFill } from 'bootstrap-vue'
-
 export default {
-  name: 'LessonHeaderDifficulty',
-  components: { BIconPencilFill },
   props: {
     difficulty: {
       type: Number,
@@ -29,9 +25,9 @@ export default {
         case 4:
           return 'Difficile'
         case 5:
+        default:
           return 'Complexe'
       }
-      return null
     }
   }
 }

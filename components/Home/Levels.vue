@@ -6,20 +6,20 @@
       Alors sélectionnez votre classe et découvrez sans plus attendre les cours qui y sont rattachés !
     </p>
 
-    <b-row class="card-levels mb-5">
-      <b-col
+    <ski-columns class="card-levels mb-5">
+      <ski-column
         v-for="(level, index) in levels"
         :key="level.id"
-        cols="12"
-        :lg="12 / levels.length"
+        width="12"
+        :lg="(12 / levels.length).toString()"
         class="mb-lg-0"
         :class="{'mb-3': index !== levels.length}"
       >
-        <b-btn variant="white" class="card-level-button" :to="`/cours/${ level.id }/`">
+        <ski-button variant="white" class="card-level-button" :to="`/cours/${ level.id }/`">
           <img :src="level.image" :alt="level.name"> {{ level.name }}
-        </b-btn>
-      </b-col>
-    </b-row>
+        </ski-button>
+      </ski-column>
+    </ski-columns>
 
     <p class="mb-0">
       <em>Les cours pour Terminale option maths complémentaires arrivent bientôt !</em>
@@ -28,24 +28,18 @@
 </template>
 
 <script>
+import { levels } from '~/utils/lesson'
+
 export default {
-  name: 'Levels',
-  data () {
-    return {
-      levels: []
+  computed: {
+    levels () {
+      return Object.values(levels)
     }
-  },
-  async fetch () {
-    this.levels = await this.$content('levels')
-      .sortBy('order')
-      .fetch()
   }
 }
 </script>
 
 <style lang="scss">
-@import 'assets/flat_card';
-
 .card-levels {
   .card-level-button {
     height: 100%;

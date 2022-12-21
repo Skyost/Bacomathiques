@@ -1,0 +1,47 @@
+name: Continuous Delivery
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  configure:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+    outputs:
+      containerUser: ${{ steps.get-user.outputs.containerUser }}
+    steps:
+      - id: get-user
+        run: echo "::set-output name=containerUser::`id -u`:`id -g`"
+  build:
+    needs: configure
+    runs-on: ${{ matrix.os }}
+    container:
+      image: skyost/latex-docker
+      options: --user ${{ needs.configure.outputs.containerUser }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        node: [ 16 ]
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v3
+      - name: Setup Node.js ${{ matrix.node-version }} 🏗
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+      - name: Install dependencies 👨🏻‍💻
+        run: yarn install --frozen-lockfile
+      - name: Generate ⚙️
+        run: yarn generate
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          folder: dist
+          branch: gh-pages
+          single-commit: true

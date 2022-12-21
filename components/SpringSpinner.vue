@@ -12,7 +12,6 @@
 <script>
 // Thanks https://github.com/epicmaxco/epic-spinners/blob/master/src/components/lib/SpringSpinner.vue !
 export default {
-  name: 'SpringSpinner',
   props: {
     animationDuration: {
       type: Number,
@@ -70,7 +69,7 @@ export default {
   mounted () {
     this.updateAnimation()
   },
-  beforeDestroy () {
+  beforeUnmount () {
     this.removeKeyframes(this.animationName)
   },
   methods: {

@@ -1,50 +1,69 @@
 <template>
-  <small-card
-    class="lesson-card"
-    :image="lesson.preview"
-    :size="4"
-    :mb="5"
-  >
-    <span class="lesson-caption" v-html="lesson.caption" />
-    <h3 class="lesson-title" v-html="lesson.title" />
-    <p class="lesson-description" v-html="lesson.excerpt" />
-    <b-btn
-      :to="`/cours/${lesson.level}/${lesson.id}/`"
-      :variant="variant"
-      block
-    >
-      Lire ce cours
-    </b-btn>
-  </small-card>
+  <flat-card class="lesson-card">
+    <div class="lesson-card-content">
+      <img class="lesson-preview" :src="previewImage" :alt="lesson.title">
+      <span class="lesson-caption" v-html="lesson.caption" />
+      <span class="text-muted text-uppercase">
+        <span v-if="showLevel">{{ levelName }} •</span> Chapitre {{ chapter }}
+      </span>
+      <h3 class="lesson-title" v-html="lesson.title" />
+      <p class="lesson-description" v-html="lesson.excerpt" />
+      <ski-button
+        :to="`/cours/${lesson.level}/${lesson.id}/`"
+        :variant="variant"
+        class="d-block"
+      >
+        Lire ce cours
+      </ski-button>
+    </div>
+  </flat-card>
 </template>
 
 <script>
-import SmallCard from './SmallCard'
+import FlatCard from '~/components/Cards/FlatCard'
+import { getLessonPreviewImage, levels } from '~/utils/lesson'
+import { romanize } from '~/utils/utils'
 
 export default {
-  name: 'LessonCard',
-  components: { SmallCard },
+  components: { FlatCard },
   props: {
     lesson: {
       type: Object,
       default: null
+    },
+    showLevel: {
+      type: String,
+      default: null
     }
   },
   computed: {
+    levelName () {
+      return levels[this.lesson.level].name
+    },
+    chapter () {
+      return romanize(this.lesson.chapter)
+    },
     variant () {
       return 'specialty' in this.lesson && this.lesson.specialty ? 'green' : 'blue'
+    },
+    previewImage () {
+      return getLessonPreviewImage(this.lesson)
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import 'assets/colors';
 
-.lesson-card.flat-card {
+.lesson-card {
   margin-bottom: 5rem;
 
-  .flat-card-content {
+  :deep(.flat-card-content) {
+    padding: 0;
+  }
+
+  .lesson-card-content {
     $image-height: 130px;
     $horizontal-padding: 20px;
 
@@ -56,8 +75,9 @@ export default {
     max-width: 1600px;
     margin: auto;
     padding: ($image-height + $horizontal-padding) $horizontal-padding $horizontal-padding $horizontal-padding;
+    height: 100%;
 
-    .flat-card-image {
+    .lesson-preview {
       position: absolute;
       top: 0;
       left: 50%;

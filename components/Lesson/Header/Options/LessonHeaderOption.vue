@@ -9,7 +9,6 @@
 
 <script>
 export default {
-  name: 'LessonHeaderOption',
   props: {
     id: {
       type: String,

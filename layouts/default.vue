@@ -1,33 +1,36 @@
 <template>
   <div>
-    <nav-bar />
-    <nuxt />
+    <NuxtLoadingIndicator color="#f2f4f6" />
+    <navbar />
+    <slot />
     <page-footer />
   </div>
 </template>
 
 <script>
-import NavBar from '../components/NavBar/NavBar'
-import PageFooter from '../components/PageFooter'
+import Navbar from '~/components/Navbar/Navbar'
+import PageFooter from '~/components/PageFooter'
 
 export default {
-  components: { NavBar, PageFooter }
+  components: { Navbar, PageFooter }
 }
 </script>
 
 <style lang="scss">
-@import 'assets/breakpoints';
+@import 'assets/bootstrap-mixins';
 @import 'assets/colors';
+
+// TODO: https://www.reddit.com/r/webdev/comments/wdsctt/if_your_website_is_dark_by_default_consider/
 
 .btn {
   font-weight: bold !important;
-  border-radius: 0;
   padding: 14px;
   border: 0;
 
+  // TODO: Use Bootstrap themes.
   &.btn-white {
     background-color: white !important;
-    color: $main-color !important;
+    color: $primary !important;
 
     &:hover,
     &:active {
@@ -36,12 +39,12 @@ export default {
   }
 
   &.btn-blue {
-    background-color: $main-color !important;
+    background-color: $primary !important;
     color: white !important;
 
     &:hover,
     &:active {
-      background-color: darken($main-color, 5%) !important;
+      background-color: darken($primary, 5%) !important;
     }
   }
 
@@ -59,12 +62,8 @@ export default {
 }
 
 .modal {
-  .modal-content {
-    border-radius: 0;
-
-    .b-icon-prefix {
-      width: 1em;
-    }
+  .modal-content .b-icon-prefix {
+    width: 1em;
   }
 
   .modal-footer .btn {
@@ -75,12 +74,12 @@ export default {
 .container-fluid {
   padding: 0 100px;
 
-  @media (max-width: $tablet-width) {
+  @include media-breakpoint-down(lg) {
     padding-left: 40px;
     padding-right: 40px;
   }
 
-  @media (max-width: $mobile-width) {
+  @include media-breakpoint-down(md) {
     padding-left: 15px;
     padding-right: 15px;
   }
@@ -89,10 +88,6 @@ export default {
 form {
   label {
     display: none;
-  }
-
-  .form-control {
-    border-radius: 0 !important;
   }
 }
 

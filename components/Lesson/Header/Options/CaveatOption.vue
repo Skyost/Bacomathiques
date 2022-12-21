@@ -2,31 +2,35 @@
   <div class="d-inline-block">
     <lesson-header-option
       id="caveat"
-      v-b-modal.modal-caveat
+      data-bs-toggle="modal"
+      data-bs-target="#modal-caveat"
       title="Signaler une erreur"
     />
-    <b-modal id="modal-caveat" title="Signaler une erreur" hide-footer>
+    <ski-modal id="modal-caveat" title="Signaler une erreur" close-button="Fermer">
       <p>Pour apporter une correction à un cours, vous avez deux solutions :</p>
-      <ul>
-        <li>
-          Vous pouvez <nuxt-link to="/a-propos/#contact">me contacter</nuxt-link> en m'indiquant où se trouve la
-          faute ou l'amélioration que vous souhaitez apporter.
-        </li>
-        <li>
-          Vous pouvez modifier directement le
-          <a :href="`${github}/edit/master/latex/lessons/${lesson.level}/${lesson.id}.tex`">code source</a> de la page.
-        </li>
-      </ul>
-    </b-modal>
+      <div class="list-group text-start mb-4">
+        <nuxt-link
+          class="list-group-item list-group-item-action text-decoration-none"
+          to="/a-propos/#contact"
+        >
+          <ski-icon icon="envelope-fill" /> Me contacter
+        </nuxt-link>
+        <a
+          class="list-group-item list-group-item-action text-decoration-none"
+          :href="`${githubRepo}/edit/master/latex/lessons/${lesson.level}/${lesson.id}.tex`"
+        >
+          <ski-icon icon="github" /> Modifier le code source de la page
+        </a>
+      </div>
+    </ski-modal>
   </div>
 </template>
 
 <script>
-import LessonHeaderOption from './LessonHeaderOption'
-import { GITHUB } from '~/utils/site'
+import site from '~/site'
+import LessonHeaderOption from '~/components/Lesson/Header/Options/LessonHeaderOption'
 
 export default {
-  name: 'CaveatOption',
   components: { LessonHeaderOption },
   props: {
     lesson: {
@@ -34,10 +38,16 @@ export default {
       required: true
     }
   },
-  data () {
-    return {
-      github: GITHUB
+  computed: {
+    githubRepo () {
+      return `https://github.com/${site.github.username}/${site.github.repository}`
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.list-group-item {
+  color: var(--bs-list-group-color) !important;
+}
+</style>

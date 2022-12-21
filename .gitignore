@@ -67,6 +67,7 @@ typings/
 
 # nuxt.js build output
 .nuxt
+.output
 
 # Nuxt generate
 dist
@@ -89,6 +90,9 @@ sw.*
 # Vim swap files
 *.swp
 
+# Vercel
+.vercel
+
 # "Generate content" module
 *.aux
 *.fdb_latexmk
@@ -100,7 +104,7 @@ sw.*
 latex/lessons/*/*.pdf
 latex/images/lessons/**/*.pdf
 latex/images/lessons/**/*.svg
-static/img/lessons/**/*.png
-static/img/lessons/**/*.svg
-content/markdown/
-static/pdf/lessons/
+public/img/lessons/**/*.png
+public/img/lessons/**/*.svg
+content/generated/
+public/pdf/lessons/

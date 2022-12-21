@@ -5,15 +5,14 @@
 </template>
 
 <script>
-import PageContent from '../components/PageContent'
-import ErrorCard from './Cards/ErrorCard'
+import PageContent from '~/components/PageContent'
+import ErrorCard from '~/components/Cards/ErrorCard'
 
 export default {
-  name: 'PageError',
   components: { PageContent, ErrorCard },
   props: {
     errorCode: {
-      type: Number,
+      type: String,
       required: true
     }
   }

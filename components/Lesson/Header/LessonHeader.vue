@@ -1,15 +1,15 @@
 <template>
-  <image-header :image="lesson.preview" background>
+  <image-header :image="previewImage" background>
     <lesson-header-content :level="level" :lesson="lesson" :is-summary="isSummary" />
   </image-header>
 </template>
 
 <script>
-import ImageHeader from '../../ImageHeader'
-import LessonHeaderContent from './LessonHeaderContent'
+import ImageHeader from '~/components/ImageHeader'
+import LessonHeaderContent from '~/components/Lesson/Header/LessonHeaderContent'
+import { getLessonPreviewImage } from '~/utils/lesson'
 
 export default {
-  name: 'LessonHeader',
   components: { ImageHeader, LessonHeaderContent },
   props: {
     level: {
@@ -25,10 +25,15 @@ export default {
       default: false
     }
   },
+  computed: {
+    previewImage () {
+      return getLessonPreviewImage(this.lesson)
+    }
+  },
   beforeMount () {
     window.addEventListener('resize', this.adjustPreviewHeight)
   },
-  beforeDestroy () {
+  beforeUnmount () {
     window.removeEventListener('resize', this.adjustPreviewHeight)
   },
   async mounted () {
@@ -47,9 +52,9 @@ export default {
 
 <style lang="scss" scoped>
 @import 'assets/colors';
-@import 'assets/breakpoints';
+@import 'assets/bootstrap-mixins';
 
-::v-deep .header-image {
+:deep(.header-image) {
   position: relative;
   display: block;
   border-radius: 100%;
@@ -68,10 +73,10 @@ export default {
     height: 100%;
     width: 100%;
     opacity: 0.5;
-    background-color: $main-color;
+    background-color: $primary;
   }
 
-  @media (max-width: $mobile-width) {
+  @include media-breakpoint-down(md) {
     max-width: 150px;
     border: 4px solid white;
   }

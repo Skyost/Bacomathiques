@@ -5,11 +5,10 @@
 </template>
 
 <script>
-import SpringSpinner from '../components/SpringSpinner'
-import PageContent from '../components/PageContent'
+import SpringSpinner from '~/components/SpringSpinner'
+import PageContent from '~/components/PageContent'
 
 export default {
-  name: 'PageLoading',
   components: { SpringSpinner, PageContent }
 }
 </script>

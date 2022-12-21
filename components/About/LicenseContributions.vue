@@ -1,3 +1,7 @@
+<script setup>
+import site from '~/site'
+</script>
+
 <template>
   <div>
     <h2 id="licence-contributions">
@@ -6,13 +10,13 @@
 
     <p>
       Les cours ont été écrits intégralement par <a href="https://skyost.eu">Hugo Delaunay</a>,
-      Toute reproduction totale ou partielle est interdite excepté pour un usage pédagogique et non-commercial (en citant explicitement la propriété de {{ siteName }}).
+      Toute reproduction totale ou partielle est interdite excepté pour un usage pédagogique et non commercial (en citant explicitement la propriété de {{ site.name }}).
       Certaines démonstrations sont tirées de <a href="https://www.sesamath.net/">Sésamath</a>,
       et certaines introductions ont été reprises de <a href="https://fr.wikipedia.org">Wikipédia</a>.
     </p>
 
     <p>
-      Toutes les technologies intégrées dans ce site web sont disponibles sous licence <strong>open-source</strong>.
+      Toutes les technologies intégrées dans ce site web sont disponibles sous licence <strong>GNU GPL v3</strong>.
       N'hésitez pas à aller faire un tour sur leurs pages respectives !
     </p>
 
@@ -25,30 +29,16 @@
     <hr>
 
     <p>
-      Il existe énormément de moyens de <strong>contribuer</strong> au projet {{ siteName }} !
+      Il existe énormément de moyens de <strong>contribuer</strong> au projet {{ site.name }} !
       Vous pouvez y faire des modifications ou même tout simplement lui donner une étoile sur
-      <a :href="github">Github</a>.
+      <a :href="`https://github.com/${site.github.username}/${site.github.repository}`">Github</a>.
       Il vous est également possible d'effectuer des dons via <a href="https://paypal.me/Skyost">PayPal</a>.
     </p>
 
     <p>
       Par ailleurs, les contributions sont facultatives et vous pouvez pleinement profiter
-      de {{ siteName }} sans aucune action de votre part. Sachez cependant que les contributions sont
+      de {{ site.name }} sans aucune action de votre part. Sachez cependant que les contributions sont
       très appréciées. 😉
     </p>
   </div>
 </template>
-
-<script>
-import { GITHUB, SITE_NAME } from '~/utils/site'
-
-export default {
-  name: 'LicenseContributions',
-  data () {
-    return {
-      siteName: SITE_NAME,
-      github: GITHUB
-    }
-  }
-}
-</script>

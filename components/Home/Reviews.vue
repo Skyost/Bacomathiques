@@ -1,17 +1,21 @@
+<script setup>
+import site from '~/site'
+</script>
+
 <template>
   <transition name="fade">
     <div v-if="currentReview" class="review">
       <span class="rating">
-        <b-icon-star-fill v-for="index in currentReview.rating" :key="`star-fill-${index}`" /><b-icon-star v-for="index in 5 - currentReview.rating" :key="`star-${index}`" />
+        <ski-icon v-for="index in currentReview.rating" :key="`star-fill-${index}`" class="icon" icon="star-fill" /><ski-icon v-for="index in 5 - currentReview.rating" :key="`star-${index}`" class="icon" icon="star" />
       </span>
       <q class="content" v-html="currentReview.message" />
       <span class="author">
         {{ currentReview.author }}, {{ currentReview.date }} sur
         <span v-if="currentReview.source === 0">
-          <a :href="googlePlay">Google Play</a>.
+          <a :href="site.mobile.googlePlay">Google Play</a>.
         </span>
         <span v-else>
-          l'<a :href="appStore">App Store</a>.
+          l'<a :href="site.mobile.appStore">App Store</a>.
         </span>
       </span>
     </div>
@@ -19,19 +23,13 @@
 </template>
 
 <script>
-import { BIconStar, BIconStarFill } from 'bootstrap-vue'
-import { APP_STORE, GOOGLE_PLAY } from '~/utils/site'
 import { sleeper } from '~/utils/utils'
 
 export default {
-  name: 'Reviews',
-  components: { BIconStarFill, BIconStar },
   data () {
     return {
       currentReviewIndex: false,
       currentReview: null,
-      googlePlay: GOOGLE_PLAY,
-      appStore: APP_STORE,
       reviews: [
         {
           author: 'Linasa',
@@ -162,7 +160,7 @@ export default {
       while (index === this.currentReviewIndex)
       this.currentReviewIndex = index
       this.currentReview = this.reviews[index]
-      setTimeout(() => this.pickRandom(), 5000)
+      setTimeout(this.pickRandom, 5000)
     }
   }
 }
@@ -186,13 +184,13 @@ export default {
     font-size: 50px;
     margin-bottom: 40px;
 
-    .b-icon:nth-child(1),
-    .b-icon:nth-child(5) {
+    .icon:nth-child(1),
+    .icon:nth-child(5) {
       vertical-align: -0.4em;
     }
 
-    .b-icon:nth-child(2),
-    .b-icon:nth-child(4) {
+    .icon:nth-child(2),
+    .icon:nth-child(4) {
       vertical-align: -0.2em;
     }
   }

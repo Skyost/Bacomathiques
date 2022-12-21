@@ -1,35 +1,22 @@
 <template>
-  <b-modal id="modal-lesson-list" title="Accès direct à un cours" hide-footer>
-    <ul>
-      <dropdown-entries
-        v-for="level in levels"
-        :key="level.id"
-        :level="level"
-        :click-callback="closeModal"
-      />
-    </ul>
-  </b-modal>
+  <ski-modal
+    id="modal-lesson-list"
+    title="Accès direct à un cours"
+    close-button="Fermer"
+    size="lg"
+  >
+    <lesson-list @lessonpicked="closeModal" />
+  </ski-modal>
 </template>
 
 <script>
-import DropdownEntries from './LessonListDropdown/DropdownEntries'
+import LessonList from '~/components/Navbar/LessonList/LessonList'
 
 export default {
-  name: 'LessonListModal',
-  components: { DropdownEntries },
-  data () {
-    return {
-      levels: []
-    }
-  },
-  async fetch () {
-    this.levels = await this.$content('levels')
-      .sortBy('order')
-      .fetch()
-  },
+  components: { LessonList },
   methods: {
     closeModal () {
-      this.$bvModal.hide('modal-lesson-list')
+      new bootstrap.Modal(`#${this.$el.id}`).hide()
     }
   }
 }
@@ -37,15 +24,16 @@ export default {
 
 <style lang="scss">
 #modal-lesson-list ul {
-  list-style-type: none;
   margin-bottom: 0;
-  padding-left: 0;
+  padding-top: 14px;
 
-  .dropdown-header,
-  .dropdown-item {
-    padding-left: 0;
-    padding-right: 0;
+  li {
+    padding: 6px 0;
     white-space: normal;
+  }
+
+  &.dropdown-header {
+    text-transform: uppercase;
   }
 }
 </style>

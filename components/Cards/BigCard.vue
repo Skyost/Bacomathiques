@@ -1,18 +1,20 @@
 <template>
-  <b-container fluid="">
-    <b-row :data-sal="sal" class="justify-content-center">
-      <b-col cols="12" xl="9" lg="10" class="flat-card pr-md-0 pl-md-0">
-        <div class="flat-card-content big-flat-card-content" :class="{'blue': blue}">
+  <ski-container :fluid="true">
+    <ski-columns :data-sal="sal" class="justify-content-center">
+      <ski-column width="12" xl="9" lg="10" class="pr-md-0 pl-md-0">
+        <flat-card :big="true" :blue="blue">
           <slot />
-        </div>
-      </b-col>
-    </b-row>
-  </b-container>
+        </flat-card>
+      </ski-column>
+    </ski-columns>
+  </ski-container>
 </template>
 
 <script>
+import FlatCard from '~/components/Cards/FlatCard'
+
 export default {
-  name: 'BigCard',
+  components: { FlatCard },
   props: {
     sal: {
       type: String,
@@ -25,8 +27,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import 'assets/common';
-@import 'assets/flat_card';
-</style>

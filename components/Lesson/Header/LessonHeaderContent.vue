@@ -1,6 +1,6 @@
 <template>
   <div id="lesson-header">
-    <h3 v-text="lesson.title" />
+    <h3 v-text="lessonTitle" />
     <h4 v-if="isSummary" class="lesson-subtitle">
       Fiche résumée
     </h4>
@@ -8,49 +8,47 @@
     <span class="lesson-info level" title="Niveau du cours">
       <img :src="level.image" :alt="level.name"> {{ level.name }}
     </span>
-    <lesson-header-difficulty :difficulty="lesson.difficulty" />
+    <lesson-header-difficulty :difficulty="parseInt(lesson.difficulty)" />
 
     <p v-html="lesson.excerpt" />
 
-    <b-btn v-if="isSummary" variant="white" :to="`/cours/${level.id}/${lesson.id}/`" block>
+    <ski-button v-if="isSummary" class="btn-block w-100" variant="white" :to="`/cours/${level.id}/${lesson.id}/`">
       Retour au cours
-    </b-btn>
-    <b-row v-else>
-      <b-col cols="12" lg="6" class="mb-lg-0 mb-2">
-        <b-btn
+    </ski-button>
+    <ski-columns v-else>
+      <ski-column width="12" lg="6" class="mb-lg-0 mb-2">
+        <ski-button
           variant="white"
           class="w-100 h-100 d-flex justify-content-center align-items-center"
           :to="`/cours/${level.id}/${lesson.id}/resume/`"
         >
           Lire le résumé
-        </b-btn>
-      </b-col>
-      <b-col cols="12" lg="6">
-        <b-btn variant="white" class="w-100" @click="showOptions = !showOptions">
+        </ski-button>
+      </ski-column>
+      <ski-column width="12" lg="6">
+        <ski-button variant="white" class="w-100" @click="showOptions = !showOptions">
           Plus d'options
           <span class="hint">Télécharger le PDF, partager, ...</span>
-        </b-btn>
-      </b-col>
-      <b-col lg="12" class="options" :class="{expanded: showOptions}">
+        </ski-button>
+      </ski-column>
+      <ski-column lg="12" class="options" :class="{expanded: showOptions}">
         <pdf-option :lesson="lesson" />
         <share-option :lesson="lesson" />
         <caveat-option :lesson="lesson" />
-        <e3-c-option :lesson="lesson" />
-      </b-col>
-    </b-row>
+      </ski-column>
+    </ski-columns>
   </div>
 </template>
 
 <script>
 import LessonHeaderDifficulty from './LessonHeaderDifficulty'
-import PdfOption from './Options/PdfOption'
-import ShareOption from './Options/ShareOption'
-import CaveatOption from './Options/CaveatOption'
-import E3COption from './Options/E3COption'
+import PdfOption from '~/components/Lesson/Header/Options/PdfOption'
+import ShareOption from '~/components/Lesson/Header/Options/ShareOption'
+import CaveatOption from '~/components/Lesson/Header/Options/CaveatOption'
+import { prependChapterToTitle } from '~/utils/lesson'
 
 export default {
-  name: 'LessonHeaderContent',
-  components: { E3COption, CaveatOption, ShareOption, PdfOption, LessonHeaderDifficulty },
+  components: { CaveatOption, ShareOption, PdfOption, LessonHeaderDifficulty },
   props: {
     level: {
       type: Object,
@@ -69,11 +67,16 @@ export default {
     return {
       showOptions: false
     }
+  },
+  computed: {
+    lessonTitle () {
+      return prependChapterToTitle(this.lesson)
+    }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #lesson-header {
   .lesson-subtitle {
     font-size: 1.2rem;
@@ -103,6 +106,7 @@ export default {
     padding-top: 0;
     opacity: 0;
     transition: all 500ms;
+    color: initial !important;
 
     &.expanded {
       padding-top: 20px;

@@ -1,3 +1,23 @@
+<script setup>
+import { useHead } from 'nuxt/app'
+
+function ensureScriptExecuteOnce (script) {
+  return `if (!window.__abg_called){ ${script} window.__abg_called = true;}`
+}
+
+useHead({
+  script: [
+    {
+      src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
+      async: true
+    },
+    {
+      innerHTML: ensureScriptExecuteOnce('(window.adsbygoogle = window.adsbygoogle || []).push({});')
+    }
+  ]
+})
+</script>
+
 <template>
   <ins
     class="adsbygoogle d-block"
@@ -11,33 +31,12 @@
 
 <script>
 export default {
-  name: 'AdByGoogle',
-  head () {
-    return {
-      script: [
-        {
-          hid: 'adsbygoogle',
-          src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
-          async: true
-        },
-        {
-          hid: 'adsbygoogle-load',
-          innerHTML: this.ensureScriptExecuteOnce('(window.adsbygoogle = window.adsbygoogle || []).push({});')
-        }
-      ]
-    }
-  },
   computed: {
     test () {
       return process.env.NODE_ENV !== 'production'
     },
     clientID () {
       return this.test ? 'ca-google' : 'ca-pub-7167241518798106'
-    }
-  },
-  methods: {
-    ensureScriptExecuteOnce (script) {
-      return `if (!window.__abg_called){ ${script} window.__abg_called = true;}`
     }
   }
 }

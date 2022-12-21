@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import SmartBannerContent from './SmartBannerContent'
-import { APP_STORE, GOOGLE_PLAY } from '~/utils/site'
+import Cookie from 'cookie-universal'
+import SmartBannerContent from '~/components/Lesson/SmartBanner/SmartBannerContent'
+import site from '~/site'
 
 export default {
-  name: 'SmartBanner',
   components: { SmartBannerContent },
   data () {
     return {
@@ -22,32 +22,9 @@ export default {
       bannerClass: null
     }
   },
-  mounted () {
-    if (this.$cookies.get('smartbanner_closed') ?? false) {
-      return
-    }
-
-    const mobileOS = this.getMobileOS()
-    switch (mobileOS) {
-      case 'Android':
-        this.storeName = 'Sur Google Play'
-        this.storeLink = GOOGLE_PLAY
-        this.bannerClass = 'smartbanner-android'
-        break
-      case 'iOS':
-        this.storeName = 'Sur l\'App Store'
-        this.storeLink = APP_STORE
-        this.bannerClass = 'smartbanner-ios'
-        break
-    }
-  },
-  methods: {
-    getMobileOS () {
+  computed: {
+    mobileOS () {
       const userAgent = navigator.userAgent || navigator.vendor || window.opera
-      if (/windows phone/i.test(userAgent)) {
-        return 'Windows Phone'
-      }
-
       if (/android/i.test(userAgent)) {
         return 'Android'
       }
@@ -57,11 +34,37 @@ export default {
       }
 
       return 'unknown'
-    },
+    }
+  },
+  mounted () {
+    const cookie = Cookie()
+    if (!cookie.get('smartbanner_closed')) {
+      return
+    }
+
+    const mobileOS = this.mobileOS
+    switch (mobileOS) {
+      case 'Android':
+        this.storeName = 'Sur Google Play'
+        this.storeLink = site.mobile.googlePlay
+        this.bannerClass = 'smartbanner-android'
+        break
+      case 'iOS':
+        this.storeName = 'Sur l\'App Store'
+        this.storeLink = site.mobile.appStore
+        this.bannerClass = 'smartbanner-ios'
+        break
+    }
+  },
+  methods: {
     onClose () {
-      let expirationDate = new Date()
-      expirationDate = new Date(expirationDate.setMonth(expirationDate.getMonth() + 6))
-      this.$cookies.set('smartbanner_closed', true, { expires: expirationDate })
+      const cookie = Cookie()
+      let expires = new Date()
+      expires = new Date(expires.setMonth(expires.getMonth() + 6))
+      cookie.set('smartbanner_closed', true, {
+        path: '/',
+        expires
+      })
     }
   }
 }
@@ -73,7 +76,7 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 3;
+  z-index: 4;
   padding: 10px 20px;
   max-height: 120px;
 

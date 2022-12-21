@@ -1,0 +1,82 @@
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import 'bootstrap/scss/functions';
+
+// 2. Include any default variable overrides here
+@import 'assets/colors';
+$headings-font-family: 'FuturaBT Medium', sans-serif;
+$enable-rounded: false;
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import 'bootstrap/scss/variables';
+
+// 4. Include any default map overrides here
+
+// 5. Include remainder of required parts
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/root';
+
+// 6. Optionally include any other parts as needed
+@import 'bootstrap/scss/utilities';
+@import 'bootstrap/scss/reboot';
+@import 'bootstrap/scss/type';
+@import 'bootstrap/scss/containers';
+@import 'bootstrap/scss/grid';
+@import 'bootstrap/scss/nav';
+@import 'bootstrap/scss/navbar';
+@import 'bootstrap/scss/dropdown';
+@import 'bootstrap/scss/transitions';
+@import 'bootstrap/scss/buttons';
+@import 'bootstrap/scss/forms';
+@import 'bootstrap/scss/helpers';
+@import 'bootstrap/scss/modal';
+@import 'bootstrap/scss/close';
+@import 'bootstrap/scss/carousel';
+@import 'bootstrap/scss/tables';
+@import 'bootstrap/scss/list-group';
+@import 'bootstrap/scss/alert';
+@import 'bootstrap/scss/badge';
+
+// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import 'bootstrap/scss/utilities/api';
+
+// 8. Add additional custom code here
+@font-face {
+  font-family: 'FuturaBT Medium';
+  src: url('/fonts/futurabt-medium/FuturaBT-Medium.eot');
+  src: url('/fonts/futurabt-medium/FuturaBT-Medium.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/futurabt-medium/FuturaBT-Medium.woff2') format('woff2'),
+  url('/fonts/futurabt-medium/FuturaBT-Medium.woff') format('woff'),
+  url('/fonts/futurabt-medium/FuturaBT-Medium.ttf') format('truetype'),
+  url('/fonts/futurabt-medium/FuturaBT-Medium.svg#FuturaBT-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+.blue {
+  background-color: $primary !important;
+  color: rgba(white, 0.8) !important;
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: white;
+  }
+
+  a:not(.btn-white) {
+    color: white;
+    font-weight: normal;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-color: white;
+    }
+  }
+
+  hr {
+    border-color: white;
+  }
+}

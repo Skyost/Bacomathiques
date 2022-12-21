@@ -1,6 +1,6 @@
 <template>
   <cards-row sal="slide-up">
-    <small-card
+    <card-column
       v-for="card in technologieCards"
       :key="card.id"
       class="mb-5"
@@ -8,16 +8,16 @@
       :size="3"
     >
       <span v-html="card.content" />
-    </small-card>
+    </card-column>
   </cards-row>
 </template>
 
 <script>
-import CardsRow from '../Cards/CardsRow'
-import SmallCard from '../Cards/SmallCard'
+import CardsRow from '~/components/Cards/CardsRow'
+import CardColumn from '~/components/Cards/CardColumn'
+
 export default {
-  name: 'TechnologieCards',
-  components: { SmallCard, CardsRow },
+  components: { CardColumn, CardsRow },
   data () {
     return {
       technologieCards: [

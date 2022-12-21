@@ -1,6 +1,6 @@
 <template>
   <div>
-    <social-head :title="pageTitle" :description="lesson.excerpt" />
+    <page-head :title="pageTitle" :description="lesson.excerpt" />
 
     <smart-banner />
 
@@ -8,31 +8,26 @@
       <lesson-header :level="level" :lesson="lesson" :is-summary="isSummary" />
     </page-header>
 
-    <b-container v-if="content" id="page-lesson" class="mb-5" fluid="">
-      <lesson-content :content="content" :lesson="lesson" :is-summary="isSummary" />
-    </b-container>
+    <ski-container id="page-lesson" class="mb-5" :fluid="true">
+      <lesson-content :lesson="lesson" />
+    </ski-container>
 
     <comment-section v-if="!isSummary" :lesson="lesson" />
   </div>
 </template>
 
 <script>
-import SocialHead from '../SocialHead'
-import PageHeader from '../PageHeader'
-import CommentSection from './Comments/CommentSection'
-import LessonContent from './LessonContent'
-import SmartBanner from './SmartBanner/SmartBanner'
-import LessonHeader from './Header/LessonHeader'
-import { buildBrowserLessonTitle } from '~/utils/lesson'
+import PageHead from '~/components/PageHead'
+import PageHeader from '~/components/PageHeader'
+import CommentSection from '~/components/Lesson/Comments/CommentSection'
+import LessonContent from '~/components/Lesson/LessonContent'
+import SmartBanner from '~/components/Lesson/SmartBanner/SmartBanner'
+import LessonHeader from '~/components/Lesson/Header/LessonHeader'
+import { levels } from '~/utils/lesson'
 
 export default {
-  name: 'Lesson',
-  components: { LessonContent, SocialHead, SmartBanner, LessonHeader, PageHeader, CommentSection },
+  components: { LessonContent, PageHead, SmartBanner, LessonHeader, PageHeader, CommentSection },
   props: {
-    level: {
-      type: Object,
-      required: true
-    },
     lesson: {
       type: Object,
       required: true
@@ -42,18 +37,17 @@ export default {
       default: false
     }
   },
-  data () {
-    return {
-      content: null
-    }
-  },
-  async fetch () {
-    this.content = await this.$content('markdown', this.isSummary ? 'summaries' : 'lessons', this.$route.params.level, this.$route.params.lesson)
-      .fetch()
-  },
   computed: {
+    level () {
+      return levels[this.lesson.level]
+    },
     pageTitle () {
-      return buildBrowserLessonTitle(this.level, this.lesson, this.isSummary)
+      const level = this.level
+      let result = `${level.name} > ${this.lesson.title}`
+      if (this.isSummary) {
+        result += ' > Fiche résumée'
+      }
+      return result
     }
   }
 }
@@ -62,8 +56,12 @@ export default {
 <style lang="scss" scoped>
 @import 'assets/colors';
 
+:deep(#page-header) {
+  padding: 50px 0;
+}
+
 #page-lesson {
-  background: linear-gradient(180deg, $main-color 110px, transparent 110px);
+  background: linear-gradient(180deg, $primary 110px, transparent 110px);
   padding-bottom: 20px;
 }
 </style>

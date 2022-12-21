@@ -11,12 +11,11 @@
         v-html="entry.html"
       />
 
-      <slide-up-down
+      <ul
         v-if="entry.children.length > 0"
-        :duration="300"
-        :active="activeEntry.section === entry.section"
-        tag="ul"
-        class="children"
+        :ref="entry.section"
+        class="collapse children"
+        :class="{ show: activeEntry.section === entry.section }"
       >
         <li
           v-for="child in entry.children"
@@ -25,22 +24,19 @@
           <a
             :href="`#${child.id}`"
             class="entry child"
-            :class="{'active': child.id === activeEntry.id}"
+            :class="{ active: child.id === activeEntry.id }"
             v-html="child.html"
           />
         </li>
-      </slide-up-down>
+      </ul>
     </div>
   </nav>
 </template>
 
 <script>
-import SlideUpDown from 'vue-slide-up-down'
-import { ResizeObserver } from '@juggle/resize-observer'
+// import { ResizeObserver } from '@juggle/resize-observer'
 
 export default {
-  name: 'LessonNavigation',
-  components: { SlideUpDown },
   props: {
     toc: {
       type: Array,
@@ -68,60 +64,60 @@ export default {
 
     this.refreshEntries()
     this.activeEntry = this.entries[0]
-    await this.$nextTick()
+    if (process.client) {
+      await this.$nextTick()
 
-    this.resizeObserver = new ResizeObserver(this.refreshEntries)
-    this.resizeObserver.observe(document.body)
+      this.resizeObserver = new ResizeObserver(this.refreshEntries)
+      this.resizeObserver.observe(document.body)
 
-    const top = document.getElementById('page-navbar').getAttribute('data-shrinked-height')
-    this.$el.style.top = `${top}px`
+      const top = document.getElementById('page-navbar').getAttribute('data-shrinked-height')
+      this.$el.style.top = `${top}px`
+    }
   },
   beforeMount () {
     window.addEventListener('scroll', this.handleScroll)
   },
-  beforeDestroy () {
+  beforeUnmount () {
     window.removeEventListener('scroll', this.handleScroll)
     this.resizeObserver?.disconnect()
   },
   methods: {
     refreshEntries () {
-      const result = []
-      let currentDepth2
-      for (const entry of this.toc) {
-        const element = document.getElementById(entry.id)
-        if (!element) {
-          continue
-        }
+      this.entries = this.toc.map(this.tocEntryToNavigationEntry)
+    },
+    tocEntryToNavigationEntry (tocEntry, section = null) {
+      if (tocEntry.depth === 2) {
+        section = tocEntry.id
+      }
 
-        const common = {
-          id: entry.id,
-          html: entry.html,
-          children: [],
-          topOffset: this.getAbsoluteTopOffset(element) - element.offsetHeight
-        }
-        if (entry.depth === 2) {
-          currentDepth2 = {
-            section: entry.id,
-            ...common
-          }
-          result.push(currentDepth2)
-        } else if (entry.depth === 3) {
-          currentDepth2.children.push({
-            section: currentDepth2.id,
-            ...common
-          })
+      const result = {
+        id: tocEntry.id,
+        html: tocEntry.text,
+        children: [],
+        section
+      }
+
+      const htmlElement = document.getElementById(tocEntry.id)
+      if (htmlElement) {
+        result.html = htmlElement.querySelector('.toc-content').innerHTML
+        result.topOffset = this.getAbsoluteTopOffset(htmlElement) - htmlElement.offsetHeight
+      }
+
+      if (tocEntry.children) {
+        for (const child of tocEntry.children) {
+          result.children.push(this.tocEntryToNavigationEntry(child, section))
         }
       }
-      this.entries = result
+
+      return result
     },
     getMaxAcceptableEntry (topOffset, entries) {
       let maxAcceptableEntry = null
       for (const entry of entries) {
-        if (topOffset >= entry.topOffset) {
-          maxAcceptableEntry = this.getMaxAcceptableEntry(topOffset, entry.children) ?? entry
-        } else {
+        if (topOffset < entry.topOffset) {
           break
         }
+        maxAcceptableEntry = this.getMaxAcceptableEntry(topOffset, entry.children) ?? entry
       }
 
       return maxAcceptableEntry
@@ -153,28 +149,44 @@ export default {
   z-index: 1;
   box-shadow: 20px 0 30px -10px rgba(black, 0.2);
   font-weight: lighter;
+  counter-reset: headline-2 headline-3;
 
   .entry {
-    color: $page-text;
+    color: $body-color;
     text-decoration: none;
     display: block;
     position: relative;
     padding-left: 20px;
 
-    &.active {
+    &.active,
+    &.show {
       font-weight: bold;
-      color: $main-color;
+      color: $primary;
+
+      &::after {
+        background-color: $primary;
+      }
+    }
+
+    &.parent {
+      counter-increment: headline-2;
+      counter-reset: headline-3;
 
       &::before {
-        background-color: $main-color;
+        content: counter(headline-2, upper-roman) ' – '
       }
     }
 
     &.child {
       padding-left: 40px;
+      counter-increment: headline-3;
+
+      &::before {
+        content: counter(headline-3) '. '
+      }
     }
 
-    &::before {
+    &::after {
       background-color: #eee;
       content: ' ';
       display: inline-block;

@@ -1,36 +1,35 @@
 <template>
-  <b-row v-if="show" class="smartbanner">
-    <b-col cols="1" class="d-flex align-items-center">
+  <ski-columns v-if="show" class="smartbanner">
+    <ski-column width="1" class="d-flex align-items-center">
       <span class="smartbanner-close" @click="onClose">&times;</span>
-    </b-col>
-    <b-col cols="3" class="d-flex align-items-center">
+    </ski-column>
+    <ski-column width="3" class="d-flex align-items-center">
       <img src="/img/logo.svg" alt="Logo" class="w-100">
-    </b-col>
-    <b-col cols="5" class="d-flex align-items-center">
+    </ski-column>
+    <ski-column width="5" class="d-flex align-items-center">
       <div>
         <span class="info info-title" v-text="siteName" />
         <span class="info info-author">Skyost</span>
         <span class="info info-price">GRATUIT - {{ storeName }}</span>
       </div>
-    </b-col>
-    <b-col cols="3" class="d-flex align-items-center">
-      <b-btn
+    </ski-column>
+    <ski-column width="3" class="d-flex align-items-center">
+      <ski-button
         :href="storeLink"
         target="_blank"
         variant="green"
         block
       >
         VOIR
-      </b-btn>
-    </b-col>
-  </b-row>
+      </ski-button>
+    </ski-column>
+  </ski-columns>
 </template>
 
 <script>
-import { SITE_NAME } from '~/utils/site'
+import siteMeta from '~/site'
 
 export default {
-  name: 'SmartBannerContent',
   props: {
     storeName: {
       type: String,
@@ -41,10 +40,15 @@ export default {
       required: true
     }
   },
+  emits: ['close'],
   data () {
     return {
-      siteName: SITE_NAME,
       show: true
+    }
+  },
+  computed: {
+    siteName () {
+      return siteMeta.name
     }
   },
   methods: {

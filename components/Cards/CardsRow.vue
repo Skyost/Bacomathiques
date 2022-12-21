@@ -1,14 +1,13 @@
 <template>
-  <b-container class="flat-cards" fluid="">
-    <b-row class="justify-content-center" :data-sal="sal">
+  <ski-container class="flat-cards" :fluid="true">
+    <ski-columns class="justify-content-center" :data-sal="sal">
       <slot />
-    </b-row>
-  </b-container>
+    </ski-columns>
+  </ski-container>
 </template>
 
 <script>
 export default {
-  name: 'CardsRow',
   props: {
     sal: {
       type: String,
@@ -22,7 +21,7 @@ export default {
 @import 'assets/colors';
 
 .flat-cards {
-  background: linear-gradient(180deg, $main-color 90px, transparent 90px);
+  background: linear-gradient(180deg, $primary 90px, transparent 90px);
 
   .flat-card-content {
     height: 100%;
