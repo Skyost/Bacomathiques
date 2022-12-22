@@ -154,8 +154,8 @@
 
 % Commandes :
 
-\newcommand{\newpar}{\\[\medskipamount]}
-\newcommand{\header}[2]{}
+\providecommand{\newpar}{\\[\medskipamount]}
+\providecommand{\header}[2]{}
 \newcommand{\romannum}[1]{%
   \ifnum#1<1
     \ifnum#1=0
@@ -167,19 +167,19 @@
       \romannumeral #1%
   \fi}
 \DeclareRobustCommand{\Romannum}[1]{\MakeUppercase{\romannum{#1}}}
-\newcommand{\lesson}[5][]{%
+\providecommand{\lesson}[5][]{%
 	\newcommand{\level}{#2}%
 	\newcommand{\id}{#4}%
 	\hypersetup{pdftitle={Chapitre \Romannum{#3} -- #5\ifstrempty{#1}{}{ (Maths expertes)}}}
 	\begin{center}%
 		\includegraphics[width=150px]{\imagespath/bacomathiques}%
-		
+
 		\vspace{30pt}%
 		{\Huge\color{title} Chapitre \Romannum{#3} -- #5\ifstrempty{#1}{}{ (Maths expertes)}}%
-		
+
 		\vspace{10pt}%
 		{Bacomathiques --- \href{https://bacomathiqu.es/cours/#2/#4}{\color{section} https://bacomathiqu.es}}%
-		
+
 		\vspace{20pt}%
 	\end{center}%
 	\begin{toc}
@@ -189,9 +189,9 @@
 	\newpage%
 	\setcounter{page}{1}%
 }
-\newcommand{\imagespath}{../../images}
+\providecommand{\imagespath}{../../images}
 \newcommand{\lessonimagespath}{\imagespath/lessons/\level/\id/}
-\newcommand{\includelatexpicture}[2][\textwidth - 100pt]{%
+\providecommand{\includelatexpicture}[2][\textwidth - 100pt]{%
 	\begin{center}%
 		\resizebox{#1}{!}{%
 			\input{\lessonimagespath#2}%
@@ -199,13 +199,13 @@
 	\end{center}%
 	\medskip%
 }
-\newcommand{\includeimage}[1]{%
+\providecommand{\includeimage}[1]{%
 	\begin{center}%
 		\includegraphics{\lessonimagespath#1}%
 	\end{center}%
 	\medskip%
 }
-\newcommand{\includerepresentation}[1]{%
+\providecommand{\includerepresentation}[1]{%
 	\begin{center}%
 		\setlength{\fboxrule}{0.5pt}%
 		\href{https://www.geogebra.org/m/#1}{\includegraphics[width=\textwidth-1pt,fbox]{\lessonimagespath#1}}%
@@ -226,7 +226,7 @@
 
 \let\oldsection\section
 \renewcommand\section{\clearpage\oldsection}
-\newcommand{\contentwidth}[1][medium]{}
+\providecommand{\contentwidth}[1][medium]{}
 
 % En-têtes :
 
@@ -245,7 +245,18 @@
 
 % Environnements :
 
-\newenvironment{nosummary}{}{}
+\makeatletter
+\def\provideenvironment{\@star@or@long\provide@environment}
+\def\provide@environment#1{%
+        \@ifundefined{#1}%
+                {\def\reserved@a{\newenvironment{#1}}}%
+                {\def\reserved@a{\renewenvironment{dummy@environ}}}%
+        \reserved@a
+}
+\def\dummy@environ{}
+\makeatother
+
+\provideenvironment{nosummary}{}{}
 \newcommand{\tcolorboxtitle}[2]{\setlength{\fboxsep}{2.5pt}\hspace{-10pt}\colorbox{#1-left}{\hspace{8pt}\color{white}\MakeUppercase{#2} \hspace{2pt} \includegraphics[height=0.8em]{\imagespath/bubbles/#1}\hspace{5pt}}}
 \newcommand{\tcolorboxsubtitle}[2]{\ifstrempty{#2}{}{\textcolor{#1-left}{\large#2}\\[\medskipamount]}}
 \tcbset{
@@ -305,4 +316,4 @@
 
 \newlength{\espacetitreliste}
 \setlength{\espacetitreliste}{-16pt}
-\newcommand{\entretitreetliste}{\vspace{\espacetitreliste}}
+\providecommand{\entretitreetliste}{\vspace{\espacetitreliste}}
