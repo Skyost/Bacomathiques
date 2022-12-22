@@ -188,7 +188,7 @@ function getLessonInfo (lesson, isSummary = false) {
     id: lesson.id,
     level: lesson.level,
     title: lesson.title + (isSummary ? ' - Fiche résumée' : ''),
-    chapter: lesson.chapter,
+    chapter: parseInt(lesson.chapter),
     specialty: !!lesson.specialty,
     content: apiRoot,
     comments: `${apiRoot}comments/`,
