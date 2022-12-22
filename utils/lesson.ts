@@ -5,10 +5,17 @@ export interface Lesson {
   excerpt: string;
   level: string;
   chapter: string;
+  difficulty: string;
+
+  specialty: string;
 }
 
 export interface Level {
   name: string;
+}
+
+function getPdfUrl (lesson: Lesson): string {
+  return `/pdf/lessons/${lesson.level}/${lesson.id}.pdf`
 }
 
 function prependChapterToTitle (lesson: Lesson): string {
@@ -44,4 +51,4 @@ const levels = {
   }
 }
 
-export { prependChapterToTitle, getLessonPreviewImage, getAvatarURL, levels }
+export { getPdfUrl, prependChapterToTitle, getLessonPreviewImage, getAvatarURL, levels }

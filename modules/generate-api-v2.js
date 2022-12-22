@@ -1,14 +1,13 @@
 // This is just a temporary module that will allow users to upgrade to the new API (which is not ready at all to be honest).
 
 import fs from 'fs'
-import { dirname } from 'path'
 import { parse } from 'node-html-parser'
 import yaml from 'yaml'
 import mkdirp from 'mkdirp'
 import { createResolver, defineNuxtModule } from '@nuxt/kit'
 import * as matter from 'gray-matter'
 import site from '../site'
-import { levels as levelsData, getAvatarURL } from '../utils/lesson'
+import { levels as levelsData, getAvatarURL, getPdfUrl } from '../utils/lesson'
 import logger from '../utils/logger'
 
 const name = 'generate-api-v2'
@@ -30,11 +29,6 @@ export default defineNuxtModule({
 
     for (const level of levels) {
       level.lessons = `/api/v2/${level.id}/`
-      // levels.push(level)
-    }
-    levels.sort((a, b) => a.order - b.order)
-
-    for (const level of levels) {
       const lessonsDirectory = resolver.resolve(nuxt.options.srcDir, 'content', 'generated', 'lessons', level.id)
       const files = fs.readdirSync(lessonsDirectory)
       for (const file of files) {
@@ -47,6 +41,7 @@ export default defineNuxtModule({
         lessons.push(lesson)
       }
     }
+    levels.sort((a, b) => a.order - b.order)
     lessons.sort((a, b) => a.chapter - b.chapter)
 
     const commentsDirectory = resolver.resolve(nuxt.options.srcDir, 'content', 'comments')
@@ -69,7 +64,7 @@ export default defineNuxtModule({
       lesson.comments.sort((a, b) => b.date - a.date)
     }
 
-    const apiDirectory = resolver.resolve(nuxt.options.srcDir, 'node_modules/.cache/.api-v2')
+    const apiDirectory = resolver.resolve(nuxt.options.srcDir, 'node_modules/.cache/.api-v2/api/v2')
     mkdirp.sync(apiDirectory)
     fs.writeFileSync(resolver.resolve(apiDirectory, 'index.json'), JSON.stringify(mainEndpoint(levels)))
 
@@ -99,7 +94,7 @@ export default defineNuxtModule({
     nuxt.options.nitro.publicAssets = nuxt.options.nitro.publicAssets || []
     nuxt.options.nitro.publicAssets.push({
       baseURL: '/',
-      dir: '/api/v2/'
+      dir: '/'
     })
   }
 })
@@ -132,11 +127,11 @@ function lessonContentEndpoint (lesson) {
   return {
     api,
     lesson: getLessonInfo(lesson),
-    difficulty: lesson.difficulty,
-    pdf: lesson.pdf,
+    difficulty: parseInt(lesson.difficulty),
+    pdf: getPdfUrl(lesson),
     html: lesson.html,
     annals: [],
-    e3c: lesson.e3c
+    e3c: []
   }
 }
 
@@ -187,14 +182,14 @@ function lessonCommentsEndpoint (lesson) {
   }
 }
 
-function getLessonInfo (lesson, isSummary?: boolean) {
+function getLessonInfo (lesson, isSummary = false) {
   const apiRoot = `/api/v2/${lesson.level}/${lesson.id}/`
   return {
     id: lesson.id,
     level: lesson.level,
     title: lesson.title + (isSummary ? ' - Fiche résumée' : ''),
     chapter: lesson.chapter,
-    specialty: lesson.specialty,
+    specialty: !!lesson.specialty,
     content: apiRoot,
     comments: `${apiRoot}comments/`,
     summary: `${apiRoot}summary/`
@@ -248,6 +243,9 @@ function formatHTML (resolver, srcDir, lesson, html) {
   const images = root.querySelectorAll('img')
   for (const image of images) {
     let src = image.getAttribute('src')
+    if (!src) {
+      continue
+    }
     if (src.startsWith('/')) {
       image.setAttribute('src', site.host + src)
       src = src.substring(1)

@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@juggle/resize-observer": "^3.3.1",
+    "@nuxt/kit": "^3.0.0",
     "@octokit/auth-app": "^4.0.7",
     "@octokit/auth-oauth-app": "^5.0.4",
     "@octokit/core": "^4.1.0",

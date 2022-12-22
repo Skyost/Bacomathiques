@@ -1,5 +1,5 @@
 <template>
-  <a :href="lesson.pdf" target="_blank">
+  <a :href="pdfUrl" target="_blank">
     <lesson-header-option
       id="pdf"
       title="Télécharger le PDF"
@@ -9,6 +9,7 @@
 
 <script>
 import LessonHeaderOption from '~/components/Lesson/Header/Options/LessonHeaderOption'
+import { getPdfUrl } from '~/utils/lesson'
 
 export default {
   components: { LessonHeaderOption },
@@ -16,6 +17,11 @@ export default {
     lesson: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    pdfUrl () {
+      return getPdfUrl(this.lesson)
     }
   }
 }
