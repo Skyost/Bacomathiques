@@ -213,7 +213,7 @@ function getFileName (file: string) {
 }
 
 function getHeader (root: HTMLElement) {
-  const yamlHeader : { [key: string]: string } = {}
+  const yamlHeader : { [key: string]: string | number } = {}
   const headers = root.querySelectorAll('.document-header')
   for (const header of headers) {
     const content = header.querySelector('p')
@@ -221,7 +221,8 @@ function getHeader (root: HTMLElement) {
       const h2 = header.querySelector('h2')
       if (h2) {
         const id = h2.innerHTML
-        yamlHeader[id] = content.innerHTML
+        const value = content.innerHTML.trim()
+        yamlHeader[id] = /^[0-9]+$/.test(value) ? parseInt(value) : value
       }
     }
     header.remove()

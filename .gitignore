@@ -104,8 +104,7 @@ sw.*
 latex/lessons/*/*.pdf
 latex/images/lessons/**/*.pdf
 latex/images/lessons/**/*.svg
-public/img/lessons/**/*.png
-public/img/lessons/**/*.svg
+public/img/lessons/*/**/*.svg
 content/generated/
 public/pdf/lessons/
 
