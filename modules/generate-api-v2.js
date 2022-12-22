@@ -64,7 +64,7 @@ export default defineNuxtModule({
       lesson.comments.sort((a, b) => b.date - a.date)
     }
 
-    const apiDirectory = resolver.resolve(nuxt.options.srcDir, 'node_modules/.cache/.api-v2/api/v2')
+    const apiDirectory = resolver.resolve(nuxt.options.srcDir, 'node_modules/.cache/.api-v2')
     mkdirp.sync(apiDirectory)
     fs.writeFileSync(resolver.resolve(apiDirectory, 'index.json'), JSON.stringify(mainEndpoint(levels)))
 
@@ -93,8 +93,8 @@ export default defineNuxtModule({
 
     nuxt.options.nitro.publicAssets = nuxt.options.nitro.publicAssets || []
     nuxt.options.nitro.publicAssets.push({
-      baseURL: '/',
-      dir: '/'
+      baseURL: '/api/v2',
+      dir: apiDirectory
     })
   }
 })
