@@ -99,7 +99,7 @@ export default defineNuxtModule({
     nuxt.options.nitro.publicAssets = nuxt.options.nitro.publicAssets || []
     nuxt.options.nitro.publicAssets.push({
       baseURL: '/',
-      dir: dirname(apiDirectory)
+      dir: '/api/v2/'
     })
   }
 })
