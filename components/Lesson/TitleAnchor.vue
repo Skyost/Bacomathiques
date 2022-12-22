@@ -4,7 +4,6 @@
 
 <script>
 export default {
-  name: 'TitleAnchor',
   props: {
     anchor: {
       type: String,

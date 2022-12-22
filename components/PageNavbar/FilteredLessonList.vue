@@ -26,7 +26,6 @@
 import { prependChapterToTitle, levels } from '~/utils/lesson'
 
 export default {
-  name: 'FilteredLessonList',
   props: {
     level: {
       type: String,

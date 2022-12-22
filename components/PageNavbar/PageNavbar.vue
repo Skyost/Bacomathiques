@@ -16,12 +16,12 @@
             <ski-icon icon="tag-fill" /> Accès direct à un cours
           </ski-navbar-item>
         </ski-navbar-items>
-        <page-navbar-brand class="desktop-navbar-brand" />
+        <navbar-brand class="desktop-navbar-brand" />
         <ski-navbar-items class="d-none d-lg-block ms-auto">
           <lesson-list-dropdown class="page-navbar-item" />
         </ski-navbar-items>
         <template #brand>
-          <page-navbar-brand class="mobile-navbar-brand" />
+          <navbar-brand class="mobile-navbar-brand" />
         </template>
       </ski-navbar-collapse>
     </ski-navbar>
@@ -31,13 +31,12 @@
 
 <script>
 import { SkiIcon, SkiNavbar, SkiNavbarCollapse, SkiNavbarItem, SkiNavbarItems } from 'skimple-components'
-import PageNavbarBrand from '~/components/Navbar/NavbarBrand'
-import LessonListModal from '~/components/Navbar/LessonListModal'
-import LessonListDropdown from '~/components/Navbar/LessonListDropdown'
+import NavbarBrand from '~/components/PageNavbar/NavbarBrand'
+import LessonListModal from '~/components/PageNavbar/LessonListModal'
+import LessonListDropdown from '~/components/PageNavbar/LessonListDropdown'
 
 export default {
-  name: 'PageNavbar',
-  components: { LessonListDropdown, LessonListModal, PageNavbarBrand, SkiNavbar, SkiNavbarCollapse, SkiNavbarItems, SkiNavbarItem, SkiIcon },
+  components: { LessonListDropdown, LessonListModal, NavbarBrand, SkiNavbar, SkiNavbarCollapse, SkiNavbarItems, SkiNavbarItem, SkiIcon },
   data () {
     return {
       heightDelta: 0,

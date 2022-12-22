@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import LessonList from '~/components/Navbar/LessonList/LessonList'
+import LessonList from '~/components/PageNavbar/LessonList.vue'
 
 export default {
   components: { LessonList },

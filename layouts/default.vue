@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Navbar from '~/components/Navbar/Navbar'
+import Navbar from '~/components/PageNavbar/PageNavbar.vue'
 import PageFooter from '~/components/PageFooter'
 
 export default {

@@ -9,12 +9,6 @@ import site from '~/site'
   </ski-navbar-brand>
 </template>
 
-<script>
-export default {
-  name: 'PageNavbarBrand'
-}
-</script>
-
 <style lang="scss" scoped>
 .logo {
   height: 0.9em;

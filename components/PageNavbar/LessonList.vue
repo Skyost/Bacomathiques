@@ -45,10 +45,9 @@ const { pending, data } = useLazyAsyncData(
 </template>
 
 <script>
-import FilteredLessonList from '~/components/Navbar/LessonList/FilteredLessonList'
+import FilteredLessonList from '~/components/PageNavbar/FilteredLessonList.vue'
 
 export default {
-  name: 'LessonList',
   components: { FilteredLessonList },
   data () {
     return {

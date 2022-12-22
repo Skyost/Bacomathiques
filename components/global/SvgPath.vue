@@ -4,7 +4,6 @@
 
 <script>
 export default {
-  name: 'SvgPath',
   props: {
     d: {
       type: String,
