@@ -81,7 +81,7 @@ const year = (new Date()).getFullYear()
 </template>
 
 <script>
-import CurrentCommitSha from '~/components/CurrentCommitSha.vue'
+import CurrentCommitSha from '~/components/CurrentCommitSha'
 
 export default {
   components: { CurrentCommitSha }

@@ -46,8 +46,7 @@ export default defineNuxtConfig({
     '~/modules/generate-sitemap',
     'skimple-components/nuxt',
     '@nuxt/content',
-    '@nuxtjs/google-fonts',
-    '~/modules/generate-404'
+    '@nuxtjs/google-fonts'
   ],
 
   googleFonts: {

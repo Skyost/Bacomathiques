@@ -152,6 +152,8 @@ function lessonCommentsEndpoint (lesson) {
   return {
     api,
     lesson: getLessonInfo(lesson),
+    postCommentUrl: 'https://vercel.bacomathiqu.es/api/post-comment',
+    // TODO: Remove below.
     post: {
       url: 'https://postman.bacomathiqu.es/v3/entry/github/Skyost/Bacomathiques/master/comments',
       fields: [

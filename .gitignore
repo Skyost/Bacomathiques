@@ -108,3 +108,6 @@ public/img/lessons/**/*.png
 public/img/lessons/**/*.svg
 content/generated/
 public/pdf/lessons/
+
+# "Generate commit sha file" module
+content/latest-commit.json

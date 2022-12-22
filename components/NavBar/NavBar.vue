@@ -33,7 +33,7 @@
 import { SkiIcon, SkiNavbar, SkiNavbarCollapse, SkiNavbarItem, SkiNavbarItems } from 'skimple-components'
 import PageNavbarBrand from '~/components/Navbar/NavbarBrand'
 import LessonListModal from '~/components/Navbar/LessonListModal'
-import LessonListDropdown from '~/components/Navbar/LessonListDropdown.vue'
+import LessonListDropdown from '~/components/Navbar/LessonListDropdown'
 
 export default {
   name: 'PageNavbar',
