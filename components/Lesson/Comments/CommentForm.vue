@@ -2,17 +2,19 @@
   <div>
     <h2>Vous avez aimé ce cours ?</h2>
     <p>Faîtes-le nous savoir dans les commentaires !</p>
-    <!-- TODO: Migrate to the new comments API -->
-    <form action="https://postman.bacomathiqu.es/v3/entry/github/Skyost/Bacomathiques/master/comments" method="post" @submit.prevent="onSubmit">
-      <input name="options[redirect]" type="hidden" :value="`${currentAddress}#commentaires`">
-      <input name="options[slug]" type="hidden" :value="`${lesson.level}_${lesson.id}`">
-      <input name="fields[lesson]" type="hidden" :value="lesson.id">
-      <input name="fields[level]" type="hidden" :value="lesson.level">
-      <input name="fields[client]" type="hidden" value="bacomathiqu.es">
+    <form
+      class="comment-form"
+      action="https://vercel.bacomathiqu.es/api/post-comment"
+      method="post"
+      @submit.prevent="onSubmit"
+    >
+      <input name="lesson" type="hidden" :value="lesson.id">
+      <input name="level" type="hidden" :value="lesson.level">
+      <input name="client" type="hidden" value="bacomathiqu.es">
       <textarea
         v-model="form.message"
         class="form-control mb-3"
-        name="fields[message]"
+        name="message"
         rows="5"
         placeholder="Exprimez-vous !"
         required
@@ -27,18 +29,20 @@
         <ski-form-control
           v-model="form.author"
           class="comment-author form-control"
-          name="fields[author]"
+          name="author"
           placeholder="Nom d'utilisateur"
           required
         />
       </div>
-      <ski-button variant="white" class="float-end" type="submit" :disabled="!form.enabled">
-        <ski-icon icon="check-all" /> Envoyer
-      </ski-button>
-      <div v-if="form.success" class="mt-3 alert alert-success">
+      <div class="clearfix">
+        <ski-button variant="white" class="float-end" type="submit" :disabled="!form.enabled">
+          <ski-icon icon="check-all" /> Envoyer
+        </ski-button>
+      </div>
+      <div v-if="form.success" class="alert alert-success">
         <ski-icon icon="check" /> Votre commentaire a été envoyé avec succès. Veuillez cependant noter qu'il ne sera publié qu'après modération 😉
       </div>
-      <div v-if="form.error" class="mt-3 alert alert-danger">
+      <div v-if="form.error" class="alert alert-danger">
         <ski-icon icon="exclamation-circle-fill" /> Impossible de poster votre commentaire. Veuillez réessayer plus tard.
       </div>
     </form>
@@ -131,10 +135,18 @@ export default {
 </script>
 
 <style lang="scss">
+.comment-form {
   .comment-avatar {
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
   }
+
+  .alert {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+  }
+}
 </style>

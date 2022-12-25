@@ -56,16 +56,18 @@
         required
         class="form-control mt-3 mb-3"
       />
-      <small class="text-muted float-start">
-        <ski-icon icon="eye-fill" /> Protégé par reCaptcha (<a href="https://policies.google.com/privacy">Politique de confidentialité</a> &amp; <a href="https://policies.google.com/terms">Conditions d'utilisation</a>).
-      </small>
-      <ski-button variant="white" class="float-end" type="submit" :disabled="!form.enabled">
-        <ski-icon icon="check-all" /> Envoyer
-      </ski-button>
-      <div v-if="form.success" class="mt-3 alert alert-success">
+      <div class="clearfix">
+        <small class="text-muted float-start">
+          <ski-icon icon="eye-fill" /> Protégé par reCaptcha (<a href="https://policies.google.com/privacy">Politique de confidentialité</a> &amp; <a href="https://policies.google.com/terms">Conditions d'utilisation</a>).
+        </small>
+        <ski-button variant="white" class="float-end" type="submit" :disabled="!form.enabled">
+          <ski-icon icon="check-all" /> Envoyer
+        </ski-button>
+      </div>
+      <div v-if="form.success" class="alert alert-success">
         <ski-icon icon="check" /> Message envoyé avec succès !
       </div>
-      <div v-if="form.error" class="mt-3 alert alert-danger">
+      <div v-if="form.error" class="alert alert-danger">
         <ski-icon icon="exclamation-circle-fill" /> Une erreur est survenue pendant l'envoi du message. Veuillez réessayer plus tard.
       </div>
     </form>
@@ -73,6 +75,8 @@
 </template>
 
 <script>
+import { load } from 'recaptcha-v3'
+
 export default {
   data () {
     return {
@@ -149,7 +153,7 @@ export default {
   .alert {
     display: flex;
     align-items: center;
-    margin-top: 3em;
+    margin-top: 1rem;
   }
 }
 </style>
