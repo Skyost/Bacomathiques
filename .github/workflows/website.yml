@@ -40,8 +40,7 @@ jobs:
       - name: Generate ⚙️
         run: yarn generate
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
           folder: dist
-          branch: gh-pages
           single-commit: true
