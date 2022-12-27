@@ -3,45 +3,45 @@
 \begin{document}
 	%<*content>
 	\lesson{terminale}{7}{calcul-integral}{Calcul intégral}
-	
+
 	\header{caption}{Les intégrales sont utilisées dans beaucoup de domaines, particulièrement
 		dans le calcul d'aires et même de volumes.}
-	
+
 	\header{excerpt}{L'intégration est une opération très utilisée en mathématiques et permet
 		notamment de calculer l'aire sous la courbe d'une fonction sur un intervalle donné.
 		Ici nous étudierons principalement les méthodes de calcul mais également les propriétés
-		remarquables des intégrales.<br>Attention cependant; il est fortement recommandé
+		remarquables des intégrales. \newpar Attention cependant; il est fortement recommandé
 		d'avoir une bonne connaissance du Chapitre VI sur les primitives de fonctions continues.}
-	
+
 	\header{difficulty}{4}
-	
+
 	\section{Calcul d'aire}
-	
+
 	\subsection{Aires et intégrales}
-	
+
 	Dans un repère orthogonal $(O; I; J)$, on prend un point $A = (1; 1)$ et on appelle \textbf{Unité d'Aire} (U.A.) l'aire du rectangle formé par les points $O$, $I$, $A$ et $J$.
-	
+
 	\includerepresentation{mxqfqsm5}
-	
+
 	Soient $a$ et $b$ deux réels avec $a \leq b$ et $f$ une fonction continue sur $[a;b]$. L'\textbf{intégrale} de la fonction $f$ sur $[a;b]$ notée
 	\[ \int_{a}^{b} f(x) \, \mathrm{d}x \]
 	représente l'aire entre la courbe de $f$ et l'axe des abscisses délimitée par les droites d'équation $x = a$ et $x = b$
 	et est exprimée en \textbf{U.A.}.
-	
+
 	\includerepresentation{txmfnhst}
-	
+
 	On dit que les réels $a$ et $b$ sont les \textbf{bornes} de l'intégrale.
-	
+
 	\subsection{Théorème fondamental de l'analyse}
-	
+
 	Pour calculer l'intégrale d'une fonction, il faut d'abord trouver la primitive de celle-ci (voir le cours sur les \href{https://bacomathiqu.es/cours/terminale/primitives-equations-differentielles/}{primitives}).
-	
+
 	\begin{formula}[Théorème fondamental de l'analyse]
 		Soient une fonction $f$ continue sur un intervalle $I$ et deux réels $a$ et $b$ appartenant à $I$. Alors :
 		\[ \int_{a}^{b} f(x) \, \mathrm{d}x = \left[ F(x) \right]_a^b = F(b) - F(a) \]
 		où $F$ est une primitive de $f$ sur $I$.
 	\end{formula}
-	
+
 	\begin{tip}[Exemple]
 		On veut calculer l'aire entre la courbe d'une fonction $f$ définie pour tout $x \in \mathbb{R}$ par $f(x) = 2x + 1$, et l'axe des abscisses sur l'intervalle $[1;4]$ :
 		\newpar
@@ -50,7 +50,7 @@
 		\textbf{2\ieme{} étape :} On calcule l'intégrale.
 		On a $\int_{1}^{4} 2x + 1 \, \mathrm{d}x = \left[ x(x + 1) \right]_1^4 = 4(4 + 1) - 1(1 + 1) = 20 - 2 = 18$ U.A.
 	\end{tip}
-	
+
 	\begin{tip}[Autre exemple]
 		On veut calculer l'aire entre la courbe d'une fonction $f$ définie pour tout $x \in \mathbb{R}$ par $f(x) = x$, et l'axe des abscisses sur l'intervalle $[-2;2]$ :
 		\newpar
@@ -60,11 +60,11 @@
 		\newpar
 		Ce résultat est logique car l'aire au-dessus de la courbe de la fonction $f$ sur $[-2;0]$ est égale à l'aire sous la courbe de $f$ sur $[0;2]$ (voir \hyperref[integrales-paires-impaires]{les propriétés sur les intégrales des fonctions impaires}).
 	\end{tip}
-	
+
 	\subsection{Signe de l'intégrale}
-	
+
 	De manière générale, le signe de l'intégrale d'une fonction sur un intervalle dépend du signe de cette fonction sur cet intervalle.
-	
+
 	\begin{formula}[Relation signe de l'intégrale - signe de la fonction]
 		Soient une fonction $f$ continue sur un intervalle $I = [a; b]$.
 		\begin{itemize}
@@ -74,19 +74,19 @@
 			\item Soit $g$ une fonction définie sur $I$ avec $f > g$ sur $I$, alors $\int_{a}^{b} f(x) \, \mathrm{d}x > \int_{a}^{b} g(x) \, \mathrm{d}x$.
 		\end{itemize}
 	\end{formula}
-	
+
 	Ainsi, cette intégrale sera positive :
-	
+
 	\includerepresentation{egjpfkzq}
-	
+
 	Et cette intégrale sera négative :
-	
+
 	\includerepresentation{zyjkgrkc}
-	
+
 	\section{Propriétés de l'intégrale}
-	
+
 	\subsection{Propriétés algébriques}
-	
+
 	\begin{formula}[Propriétés]
 		Soient une fonction $f$ continue sur un intervalle $I$ et deux réels $a$ et $b$ appartenant à $I$.
 		\begin{itemize}
@@ -94,9 +94,9 @@
 			\item $\int_{a}^{a} f(x) \, \mathrm{d}x = 0$
 		\end{itemize}
 	\end{formula}
-	
+
 	\subsection{Linéarité}
-	
+
 	\begin{formula}[Linéarité de l'intégrale]
 		Soient une fonction $f$ continue sur un intervalle $I$ et deux réels $a$ et $b$ appartenant à $I$. Soit $\lambda$ un réel quelconque.
 		\begin{itemize}
@@ -104,14 +104,14 @@
 			\item $\int_{a}^{b} \lambda f(x) \, \mathrm{d}x = \lambda \int_{b}^{a} f(x) \, \mathrm{d}x$
 		\end{itemize}
 	\end{formula}
-	
+
 	\subsection{Relation de Chasles}
-	
+
 	\begin{formula}[Relation de Chasles]
 		Soient une fonction $f$ continue sur un intervalle $I$ et deux réels $a$ et $b$ appartenant à $I$.
 		Pour tout $c \in I$, on a $\int_{a}^{b} f(x) \, \mathrm{d}x = \int_{a}^{c} f(x) \, \mathrm{d}x + \int_{c}^{b} f(x) \, \mathrm{d}x$.
 	\end{formula}
-	
+
 	\begin{tip}[Exemple]
 		On veut calculer $I = \int_{-2}^4 f(x) \, \mathrm{d}x$ où $f(x) = |x| = \begin{cases} -x \text{ si } x < 0 \\ x \text{ si } x \geq 0 \end{cases}$.
 		\newpar
@@ -123,18 +123,18 @@
 		\newpar
 		$I = \int_{-2}^{0} -x \, \mathrm{d}x + \int_{0}^{4} x \, \mathrm{d}x = \left[ -\frac{x^2}{2} \right]_{-2}^0 + \left[ \frac{x^2}{2} \right]_0^4 = 0 - (-\frac{2^2}{2}) + ((\frac{4^2}{2}) - 0) = 10$ U.A.
 	\end{tip}
-	
+
 	\section{Calculs d'intégrale}
-	
+
 	\subsection{Intégration par parties}
-	
+
 	Il peut arriver que vous ayez à intégrer un produit de fonctions. En classe de Terminale, il est possible de faire appel à une technique appelée \textbf{intégration par parties} pour en venir à bout.
-	
+
 	\begin{formula}[Intégration par parties]
 		Soient $u$ et $v$ deux fonctions dérivables sur un intervalle $I$ et soient $a$ et $b$ appartenant à $I$. Alors :
 		\[ \int_a^b u'(x) v(x) \, \mathrm{d}x = \left[u(x) v(x)\right]_a^b - \int_a^b u(x) v'(x) \, \mathrm{d}x \]
 	\end{formula}
-	
+
 	\begin{demonstration}[Intégration par parties]
 		Comme $(u \times v)' = u'v + uv'$, la fonction $u \times v$ est une primitive de la fonction $u'v + uv'$ sur $I$. Or, par la relation de Chasles :
 		\[ \int_a^b u'(x) v(x) + u(x) v'(x) \, \mathrm{d}x = \int_a^b u'(x) v(x) \, \mathrm{d}x + \int_a^b u(x) v'(x) \, \mathrm{d}x \]
@@ -143,7 +143,7 @@
 		C'est-à-dire :
 		\[ \int_a^b u'(x) v(x) \, \mathrm{d}x = \left[u(x) v(x)\right]_a^b - \int_a^b u(x) v'(x) \, \mathrm{d}x \]
 	\end{demonstration}
-	
+
 	\begin{tip}[Exemple]
 		En utilisant cette technique, calculons $I = \int_{0}^1 xe^x \, \mathrm{d}x$. Nous souhaitons faire disparaître le ``$x$'', on va donc poser $u'(x) = e^x$ et $v(x) = x$ (afin de dériver $x$).
 		\newpar
@@ -151,58 +151,58 @@
 		\[ I = \left[\underbrace{e^x}_{= u} \underbrace{x}_{= v}\right]_0^1 - \int_{0}^1 \underbrace{e^x}_{= u} \times \underbrace{1}_{= v'} \, \mathrm{d}x = e - \left[ e^x \right]_0^1 = 1 \]
 		Il vous faudra un peu d'expérience pour savoir quelle fonction il faut dériver et quelle fonction il faut primitiver.
 	\end{tip}
-	
+
 	\subsection{Intégrales de fonctions paires et impaires}
 	\label{integrales-paires-impaires}
-	
+
 	\begin{formula}[Intégrale d'une fonction paire]
 		Soit $f$ une \textbf{fonction paire} continue sur un intervalle $I$ (comme $x \mapsto x^2$). On a la relation suivante pour tout $a \in I$ ($-a$ doit aussi être dans $I$) :
 		\[ \int_{-a}^{a} f(x) \, \mathrm{d}x = 2 \times \int_{0}^{a} f(x) \, \mathrm{d}x = 2 \times \int_{-a}^{0} f(x) \, \mathrm{d}x \]
 	\end{formula}
-	
+
 	\begin{tip}[Exemple]
 		Cette relation peut se retrouver visuellement, l'aire du côté gauche par rapport à $(Oy)$ est égale à l'aire de l'autre côté de $(Oy)$, et les deux sont positives ; on peut donc les additionner pour retrouver l'aire totale :
 		\includerepresentation{txmfnhst}
 	\end{tip}
-	
+
 	\begin{formula}[Intégrale d'une fonction impaire]
 		Soit $f$ une \textbf{fonction impaire} continue sur un intervalle $I$ (comme $x \mapsto x^3$). On a la relation suivante pour tout $a \in I$ ($-a$ doit aussi être dans $I$) :
 		\[ \int_{-a}^{a} f(x) \, \mathrm{d}x = 0 \]
 	\end{formula}
-	
+
 	\begin{tip}[Exemple]
 		De même, on peut retrouver cette relation visuellement, l'aire du côté gauche par rapport à $(Oy)$ est négative et égale à l'aire de l'autre côté de $(Oy)$ qui est positive, les deux s'annulent donc :
 		\includerepresentation{jde5vc4m}
 	\end{tip}
-	
+
 	\subsection{Intégrales de fonctions périodiques}
-	
+
 	\begin{formula}[Intégrale d'une fonction périodique]
 		Soit $f$ une \textbf{fonction périodique} de période $T$ (comme $\cos$ avec $T = 2\pi$) continue sur chacune de ses périodes, on a la relation suivante pour tout $a \in \mathbb{R}$ :
 		\[ \int_{0}^{T} f(x) \, \mathrm{d}x = \int_{a}^{a + T} f(x) \, \mathrm{d}x \]
 	\end{formula}
-	
+
 	\subsection{Valeur moyenne d'une fonction}
-	
+
 	\begin{formula}[Valeur moyenne]
 		Soient $f$ une fonction continue sur un intervalle $[a;b]$. La valeur moyenne $M$ de $f$ sur $[a;b]$ est donnée par :
 		\[ M = \frac{1}{b-a}\int_{a}^{b} f(x) \, \mathrm{d}x \]
 	\end{formula}
-	
+
 	\subsection{Aire entre deux courbes}
-	
+
 	\begin{formula}[Différence d'aires]
 		Soient $f$ et $g$ deux fonctions continues sur un intervalle $[a;b]$. Si on a $f \geq g$ sur cet intervalle, alors l'aire entre les deux courbes est donnée par :
 		\[ \int_{a}^{b} f(x) - g(x) \, \mathrm{d}x \]
 	\end{formula}
-	
+
 	\subsection{Primitive s'annulant en \texorpdfstring{$a$}{a}}
-	
+
 	\begin{formula}[Existence d'une primitive s'annulant en un point]
 		Soient une fonction $f$ continue sur un intervalle $I$ et un réel $a \in I$. La primitive de $f$ sur $I$ qui vaut $0$ en $a$ (notée $F_a$) est donnée par :
 		\[ F_a : x \mapsto \int_{a}^{x} f(t) \, \mathrm{d}t \]
 	\end{formula}
-	
+
 	\begin{demonstration}[Existence d'une primitive]
 		Soit $F$ une autre primitive de $f$. Alors on a pour tout $x \in I$, $F_a(x) = \int_a^x f(t) \, \mathrm{d}t = F(x) - F(a)$ par le théorème fondamental de l'analyse.
 		\newpar

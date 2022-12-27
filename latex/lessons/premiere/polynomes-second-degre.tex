@@ -3,43 +3,43 @@
 \begin{document}
 	%<*content>
 	\lesson{premiere}{2}{polynomes-second-degre}{Les polynômes du second degré}
-	
+
 	\header{caption}{Les fonctions polynômiales du second degré sont utilisés dans l'aviation
 		pour les vols paraboliques entre autres.}
-	
+
 	\header{excerpt}{Les fonctions polynômiales du second degré sont parfois appelées trinômes,
 		fonctions quadratiques ou encore fonctions du second degré. Ce sont les fonctions
 		les plus simples, après les fonctions affines mais leur étude et leurs applications
-		n'en sont pas moins très intéressants.\newline Ce cours nous permettra d'établir des
+		n'en sont pas moins très intéressants. \newpar Ce cours nous permettra d'établir des
 		bases solides (définition, représentation, différentes formes, ...) afin d'étudier
 		ce type de fonctions.}
-	
+
 	\header{difficulty}{3}
-	
+
 	\section{Fonctions polynômiales du second degré}
-	
+
 	\subsection{Définition}
-	
+
 	\begin{formula}[Définition]
 		Soit $f$ une fonction. $f$ est une \textbf{fonction polynômiale du second degré} si elle est de la forme $f : x \mapsto ax^2 + bx + c$ avec $a \neq 0$, $b$ et $c$ réels qui sont les \textbf{coefficients} de $f$.
 	\end{formula}
-	
+
 	\subsection{Représentation graphique}
-	
+
 	\begin{formula}[Parabole]
 		Soit $f$ une fonction polynômiale du second degré. Alors la courbe représentative de $f$ (notée $\mathcal{C}_f$) est une \textbf{parabole}.
 	\end{formula}
-	
+
 	\includerepresentation{drmymnkb}
-	
+
 	\begin{tip}[Parité d'une fonction]
 		On voit sur la représentation ci-dessus que la courbe est symétrique par rapport à l'axe des ordonnées : la fonction $f$ représentée est \textbf{paire} (i.e. pour tout $x \in D_f$, $f(-x) = f(x)$).
 		\newpar
 		Inversement si une fonction $f$ est symétrique par rapport à l'axe des abscisses, elle est dite \textbf{impaire} (i.e. pour tout $x \in D_f$, $f(-x) = -f(x)$).
 	\end{tip}
-	
+
 	Chaque coefficient d'une fonction du second degré a un rôle dans le tracé de sa parabole.
-	
+
 	\begin{formula}[Rôle des coefficients dans la représentation graphique]
 		Soit $f$ de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels). Alors on a :
 		\begin{itemize}
@@ -47,7 +47,7 @@
 			\item $c$ contrôle l'éloignement de la courbe par rapport à \textbf{l'axe des abscisses}.
 		\end{itemize}
 	\end{formula}
-	
+
 	\begin{tip}
 		Rien que le signe de $a$ peut changer toute l'allure de la courbe :
 		\begin{itemize}
@@ -55,26 +55,26 @@
 			\item Si $a > 0$, la fonction est décroissante puis croissante.
 		\end{itemize}
 	\end{tip}
-	
+
 	\section{Recherche de racines}
-	
+
 	\subsection{Définition}
-	
+
 	\begin{formula}[Définition]
 		Soient $f$ une fonction polynômiale du second degré et $x_0 \in \mathbb{R}$. On dit que $x_0$ est \textbf{une racine} de $f$ si $f(x_0) = 0$.
 	\end{formula}
-	
+
 	\begin{tip}
 		Autrement dit, résoudre l'équation $f(x) = 0$ revient à rechercher les racines de $f$. Pour cela il existe beaucoup de méthodes et nous en détaillerons certaines par la suite.
 	\end{tip}
-	
+
 	\subsection{Discriminant}
-	
+
 	\begin{formula}[Définition]
 		Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx + c$ (avec $a \neq 0$, $b$ et $c$ réels). On appelle \textbf{discriminant} de $f$ le réel suivant :
 		\[ \Delta = b^2 - 4ac \]
 	\end{formula}
-	
+
 	\begin{formula}[Propriétés]
 		Plusieurs propriétés découlent du signe de $\Delta$ :
 		\begin{itemize}
@@ -83,7 +83,7 @@
 			\item Si $\Delta > 0$ alors $f$ admet deux racines réelles : $x_1 = \frac{-b - \sqrt{\Delta}}{2a}$ et $x_2 = \frac{-b + \sqrt{\Delta}}{2a}$.
 		\end{itemize}
 	\end{formula}
-	
+
 	\begin{tip}[Exemple]
 		Résolvons l'équation $x^2 = 4$ pour $x \in \mathbb{R}$.
 		\newpar
@@ -96,15 +96,15 @@
 		\newpar
 		Donc l'ensemble des solutions est $S = \{-2; 2\}$.
 	\end{tip}
-	
+
 	\subsection{Racines évidentes}
-	
+
 	\begin{formula}[Recherche des racines rationnelles]
 		Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels). On note $D_c$ l'ensemble des diviseurs de $c$ et $D_a$ l'ensemble des diviseurs de $a$. Alors :
 		\newpar
 		Pour trouver une éventuelle racine rationnelle de $f$, on calcule $f\left(\frac{p}{q}\right)$ pour tout $p \in D_c$ et $q \in D_a$, jusqu'à tomber sur $0$.
 	\end{formula}
-	
+
 	\begin{tip}[Exemple]
 		Utilisons cette méthode pour déterminer les éventuelles racines rationnelles de la fonction $f$ définie sur $\mathbb{R}$ par $f(x) = 4x^2 - 1$.
 		\newpar
@@ -125,9 +125,9 @@
 		\newpar
 		Signalons de plus que l'on aurait pu s'arrêter après avoir trouvé la première racine car $f$ est une fonction paire.
 	\end{tip}
-	
+
 	\subsection{Somme et produit de racines}
-	
+
 	\begin{formula}[Relations]
 		Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels) admettant deux racines réelles $x_1$ et $x_2$. Alors :
 		\begin{itemize}
@@ -135,7 +135,7 @@
 			\item Le produit $P = x_1 \times x_2$ des racines vaut également $\frac{c}{a}$.
 		\end{itemize}
 	\end{formula}
-	
+
 	\begin{tip}[Exemple]
 		Il peut être très utile de combiner cette méthode avec celle des racines évidentes !
 		Par exemple, cherchons les solutions de l'équation $x^2 + 2x + 1 = 0$.
@@ -148,15 +148,15 @@
 		\newpar
 		On dit que $-1$ est \textbf{racine double}.
 	\end{tip}
-	
+
 	\subsection{Forme factorisée}
-	
+
 	\begin{formula}[Définition]
 		Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels) admettant deux racines réelles $x_1$ et $x_2$. Alors :
 		\newpar
 		$f$ admet une \textbf{forme factorisée} qui vaut $f(x) = a(x-x_1)(x-x_2)$ pour tout $x \in \mathbb{R}$.
 	\end{formula}
-	
+
 	\begin{tip}[Exemple]
 		Chercher les racines de la fonction définie pour tout $x \in \mathbb{R}$ par $f(x) = x^2 - 6x + 9$.
 		\newpar
@@ -164,17 +164,17 @@
 		\newpar
 		Cela correspond à la forme factorisée de $f$ et elle nous permet d'en déduire que $3$ est une racine double de $f$.
 	\end{tip}
-	
+
 	Une propriété découle immédiatement de cette méthode :
-	
+
 	\begin{formula}[Propriété]
 		Si $c = 0$, alors $-\frac{b}{a}$ et $0$ sont racines.
 	\end{formula}
-	
+
 	\section{Étude des fonctions polynômiales du second degré}
-	
+
 	\subsection{Signe}
-	
+
 	\begin{formula}[Signe d'une fonction du second degré]
 		Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels) admettant deux racines réelles $x_1$ et $x_2$. On suppose ici que $x_1 < x_2$, alors :
 		\begin{itemize}
@@ -182,28 +182,28 @@
 			\item Si $a > 0$ : $f(x) > 0$ sur $]-\infty; x_1[ \, \cup \, ]x_2; +\infty[$ et $f(x) < 0$ sur $]x_1; x_2[$.
 		\end{itemize}
 	\end{formula}
-	
+
 	\begin{tip}
 		Si $x_1 = x_2$ ou si $f$ n'admet pas de racine, alors $f$ est du signe de $a$.
 	\end{tip}
-	
+
 	\subsection{Variations}
 	\label{variations}
-	
+
 	\begin{formula}[Forme canonique]
 		Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels), alors pour tout $x \in \mathbb{R}$, on peut écrire $f$ de la forme :
 		\newpar
 		$f(x) = a(x - \alpha)^2 + \beta$ avec $\alpha = -\frac{b}{2a}$ et $\beta = f(\alpha)$.
 	\end{formula}
-	
+
 	Cette forme est appelée \textbf{forme canonique} de $f$ et elle possède de nombreuses propriétés intéressantes.
-	
+
 	\begin{formula}[Sommet de la parabole]
 		Soit $S$ le sommet de la parabole $\mathcal{C}_f$. Alors les coordonnées de $S$ sont $(\alpha, \beta)$.
 		\newline
 		Si $a < 0$, ce sommet est un maximum et si $a > 0$, ce sommet est un minimum.
 	\end{formula}
-	
+
 	\begin{tip}
 		Cela veut tout simplement dire que :
 		\begin{itemize}
@@ -211,9 +211,9 @@
 			\item Si $a > 0$, le minimum de $f$ est atteint en $\alpha$ et vaut $\beta$ (donc pour tout $x \in \mathbb{R}$, $f(x) \geq \beta$).
 		\end{itemize}
 	\end{tip}
-	
+
 	Avec les remarques données précédemment, on peut en déduire les variations de la fonction $f$.
-	
+
 	\begin{formula}[Sens de variation]
 		\entretitreetliste
 		\begin{itemize}
@@ -221,15 +221,15 @@
 			\item Si $a > 0$ : $f$ est strictement décroissante sur $]-\infty; \alpha]$ et est strictement croissante sur $]\alpha; +\infty]$.
 		\end{itemize}
 	\end{formula}
-	
+
 	\subsection{Axe de symétrie}
-	
+
 	\begin{formula}[Axe de symétrie]
 		Soit $f$ une fonction polynômiale du second degré de la forme $f(x) = ax^2 + bx +c$ (avec $a \neq 0$, $b$ et $c$ réels). On note $\mathcal{C}_f$ sa courbe représentative. Alors :
 		\newpar
 		$\mathcal{C}_f$ possède un axe de symétrie : la droite $\mathcal{D}$ d'équation $x = -\frac{b}{2a}$.
 	\end{formula}
-	
+
 	\begin{tip}
 		En fait, $\mathcal{D}$ est juste la droite verticale passant par le \hyperref[variations]{sommet} de la parabole.
 	\end{tip}

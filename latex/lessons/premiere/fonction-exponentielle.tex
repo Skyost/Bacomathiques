@@ -3,43 +3,43 @@
 \begin{document}
 	%<*content>
 	\lesson{premiere}{4}{fonction-exponentielle}{La fonction exponentielle}
-	
+
 	\header{caption}{Les exponentielles sont notamment utilisées dans l'étude des croissances.}
 
 	\header{excerpt}{La fonction exponentielle est la fonction qui est sa propre dérivée et qui
 		prend la valeur 1 en 0. Elle est utilisée pour modéliser des phénomènes dans lesquels
-		une différence constante sur la variable conduit à un rapport constant sur les images.<br>Dans
+		une différence constante sur la variable conduit à un rapport constant sur les images. \newpar Dans
 		ce chapitre, on va étudier les propriétés de cette fonction (relations algébriques,
 		dérivées, variations, signe, ...).}
-	
+
 	\header{difficulty}{3}
-	
+
 	\section{Le nombre \texorpdfstring{$e$}{e}}
-	
+
 	Le \textbf{nombre d'Euler} $e$ (également appelé constante de Neper) est une constante mathématique irrationnelle qui possède de nombreuses propriétés.
-	
+
 	\begin{formula}[Valeur approchée]
 		Une valeur approchée de $e$ est $\approx 2,71828$.
 	\end{formula}
-	
+
 	\begin{nosummary}
 		Cependant, une définition plus exacte de $e$ existe.
-		
+
 		\begin{formula}[Autre définition]
 			On définit la suite $(e_n)$ pour tout $n \in \mathbb{N}$ par $e_n = \left(1 + \frac{1}{n}\right)^n$.
 			Alors la limite de la suite $(e_n)$ quand $n$ tend vers $+\infty$ est $e$.
 		\end{formula}
-		
+
 		\begin{tip}
 			Grâce à cette définition, il est plus facile de construire un algorithme pour approximer $e$.
 		\end{tip}
 	\end{nosummary}
-	
+
 	\section{La fonction exponentielle}
-	
+
 	\subsection{Définition}
 	\label{definition}
-	
+
 	\begin{formula}[Définition]
 		La fonction exponentielle notée pour tout $x \in \mathbb{R}$ par $e^x$ (ou parfois $\exp(x)$) est l'unique fonction $f$ définie sur $\mathbb{R}$ remplissant les critères suivants :
 		\begin{itemize}
@@ -48,7 +48,7 @@
 			\item $f(0) = 1$
 		\end{itemize}
 	\end{formula}
-	
+
 	\begin{demonstration}[Existence]
 		\textbf{L'existence} de cette fonction est admise, il faut cependant en démontrer \textbf{l'unicité}.
 		\newpar
@@ -62,7 +62,7 @@
 		\newpar
 		Pour tout $x \in \mathbb{R}$, $h(x) = 1 \iff \frac{f(x)}{g(x)} = 1 \iff f(x) = g(x)$. Donc $g = f$.
 	\end{demonstration}
-	
+
 	\begin{tip}[Formules]
 		La fonction exponentielle, telle qu'on l'a écrite, est composée d'un réel ($e \approx 2,718 $) et d'un exposant réel $x$. \textbf{Les opérations sur les exposants} sont disponibles, par exemple, pour tout $x$, $y \in \mathbb{R}$ :
 		\begin{itemize}
@@ -73,9 +73,9 @@
 		\end{itemize}
 		Et bien entendu, $e^0 = 1$.
 	\end{tip}
-	
+
 	\subsection{Relations algébriques}
-	
+
 	\begin{formula}[Relations algébriques]
 		La fonction exponentielle a plusieurs propriétés algébriques qu'il faut connaître. Ainsi, pour tous réels $x$ et $y$ :
 		\begin{itemize}
@@ -83,15 +83,15 @@
 			\item $e^x < e^y \iff x < y$
 		\end{itemize}
 	\end{formula}
-	
+
 	\subsection{Représentation graphique}
-	
+
 	Voici une représentation graphique de la fonction exponentielle (courbe bleue) et de sa tangente au point d'abscisse $0$ :
-	
+
 	\includerepresentation{d62ctre4}
-	
+
 	On voit plusieurs propriétés données précédemment : $e^0 = 1$, $e \approx 2,718$, etc. Mais également d'autres propriétés que nous verrons par la suite comme le fait que la fonction soit \textbf{strictement positive} sur $\mathbb{R}$. À noter que la \textbf{tangente} à sa courbe représentative en $x = 0$ est $y = x + 1$.
-	
+
 	\begin{tip}[Représentation d'une fonction exponentielle]
 		Il peut être utile de savoir représenter une courbe d'une fonction du type $x \mapsto e^{kx}$ avec $k \in \mathbb{R}$ :
 		\begin{itemize}
@@ -100,36 +100,36 @@
 			\item Si $k$ est négatif, la courbe est symétrique à celle de $x \mapsto e^{-kx}$ par rapport à l'axe des ordonnées.
 		\end{itemize}
 	\end{tip}
-	
+
 	\section{Étude de la fonction}
-	
+
 	\subsection{Dérivée}
-	
+
 	\begin{formula}[Dérivée d'une composée]
 		Soit une fonction $u$ dérivable sur un intervalle $I$, on a pour tout $x$ appartenant à cet intervalle : $(e^{u(x)})' = u'(x)e^{u(x)}$.
 	\end{formula}
-	
+
 	\begin{formula}[Dérivée]
 		Ainsi, si pour tout $x \in I$ on a $u(x) = x$, on retrouve : $({e^x})' = e^x$.
 	\end{formula}
-	
+
 	Cette propriété a été donnée dans la section \hyperref[definition]{``Définition''}.
-	
+
 	\subsection{Variations}
-	
+
 	Avec la dérivée donnée précédemment, il est désormais possible d'obtenir les variations de la fonction exponentielle.
-	
+
 	\begin{formula}[Variations]
 		\includelatexpicture{variations}
 		On remarque sur le tableau de variation que la fonction exponentielle est strictement positive et croissante sur $\mathbb{R}$.
 	\end{formula}
-	
+
 	\subsection{La suite \texorpdfstring{$(e^{na})$}{(exp(na))}}
-	
+
 	\begin{formula}
 		Soit $a \in \mathbb{R}$. La suite $(e^{na})$ est une suite géométrique de raison $e^a$ et de premier terme $1$.
 	\end{formula}
-	
+
 	\begin{demonstration}
 		Posons pour tout $n \in \mathbb{N}$, $u_n = e^{na}$.
 		\newpar

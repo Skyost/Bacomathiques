@@ -3,32 +3,32 @@
 \begin{document}
 	%<*content>
 	\lesson{terminale}{9}{denombrement}{Dénombrement}
-	
+
 	\header{caption}{On peut utiliser le dénombrement pour connaître le nombre de combinaisons
 		possibles dans un jeu de cartes.}
-	
+
 	\header{excerpt}{En mathématiques, le dénombrement est la détermination du nombre d'éléments
-		d'un ensemble. \newline Nous allons voir, dans ce chapitre, toutes les formules utiles
+		d'un ensemble. \newpar Nous allons voir, dans ce chapitre, toutes les formules utiles
 		au dénombrement (combinaisons, permutations, nombre de sous-ensembles, principe
 		additif et multiplicatif, etc...). Nous ferons également quelques rappels concernant
 		la théorie des ensembles.}
-	
+
 	\header{difficulty}{2}
-	
+
 	\section{Définitions}
-	
+
 	\subsection{Ensemble d'éléments}
-	
+
 	Cette partie donne quelques rappels sur la notion d'ensemble en mathématiques.
-	
+
 	\begin{formula}[Définition]
 		Un \textbf{ensemble} $E$ désigne une collection finie ou infinie d'objets distincts qu'on appelle ses \textbf{éléments}.
 		\newpar
 		On note $x \in E$ si l'objet $x$ appartient à $E$. Dans le cas contraire, on note $x \notin E$.
 	\end{formula}
-	
+
 	À noter que l'ordre des objets n'a aucune importance lorsque l'on compare deux ensembles.
-	
+
 	\begin{tip}[Exemple]
 		Voici quelques exemples d'ensembles :
 		\begin{itemize}
@@ -38,11 +38,11 @@
 			\item $\{1\}$ est un ensemble content $1$ élément : c'est un \textbf{singleton}.
 		\end{itemize}
 	\end{tip}
-	
+
 	\begin{tip}
 		Il est possible de créer des ensembles contenant autre choses que des nombres. Par exemple, on définit les fonctions $f : x \mapsto x^2$ et $g : x \mapsto x^3 + 1$. Alors l'ensemble $E = \{f; g\}$ est un ensemble contenant des fonctions.
 	\end{tip}
-	
+
 	\begin{formula}[Réunion et intersection]
 		Soient $E$ et $F$ deux ensembles.
 		\begin{itemize}
@@ -51,36 +51,36 @@
 			\item Si $E \, \cap \, F = \emptyset$, on dit que $E$ et $F$ sont \textbf{disjoints}.
 		\end{itemize}
 	\end{formula}
-	
+
 	\subsection{Sous-ensemble}
-	
+
 	\begin{formula}[Définition]
 		Soient $E$ et $F$ deux ensembles. On dit que $F$ est un \textbf{sous-ensemble} (ou une partie) de $E$ si tout élément de $F$ est un élément de $E$.
 		\newpar
 		On note ceci par $F \subset E$ (qui signifie ``$F$ est inclus dans $E$'').
 	\end{formula}
-	
-	
+
+
 	\begin{tip}[Exemple]
 		Soient $E$ et $F$ deux ensembles. Alors $E \, \cap \, F \subset E$ et $E \, \cap \, F \subset F$.
 	\end{tip}
-	
+
 	\subsection{Liste d'éléments}
-	
+
 	Nous allons désormais voir un type de collection similaire aux ensembles, mais qui prend en compte l'ordre des éléments.
-	
+
 	\begin{formula}[Définition]
 		Un \textbf{$p$-uplet} (ou une $p$-liste) d'un ensemble $E$ désigne une collection ordonnée de $p$ éléments de $E$.
 	\end{formula}
-	
+
 	Remarquons que l'on ne demande pas que les éléments d'un $p$-uplet soient tous distincts.
-	
+
 	\begin{tip}[Attention à l'ordre des éléments]
 		Il faut bien faire attention à l'ordre des éléments ! Prenons par exemple deux points du plan $A = (1; 2)$ et $B = (2; 1)$.
 		\newpar
 		On peut voir $A$ et $B$ comme des $2$-uplets de $\mathbb{R}$. Or, ce sont deux points différents, d'où la nécessité de bien faire attention à ne pas mélanger $(1; 2)$ et $(2; 1)$.
 	\end{tip}
-	
+
 	\begin{tip}[Notation]
 		Bien que l'on note un ensemble avec des accolades, on note plutôt un $p$-uplet avec des parenthèses. Ainsi :
 		\begin{itemize}
@@ -88,40 +88,40 @@
 			\item $(1; 2; 3; 4; 5)$ désigne le $5$-uplet constitué des nombres entiers de $1$ à $5$ (on a $(1; 2; 3; 4; 5) \neq (2; 1; 3; 4; 5) \neq (5; 4; 3; 2; 1) \neq ...$).
 		\end{itemize}
 	\end{tip}
-	
+
 	\section{Combinaisons}
-	
+
 	\subsection{Factorielle}
-	
+
 	\begin{formula}[Définition]
 		Soit $n$ un nombre entier. On appelle factorielle de $n$ le nombre entier suivant :
 		\[ n! = 1 \times 2 \times \dots \times n \]
 	\end{formula}
-	
+
 	\begin{tip}[Convention]
 		Par convention, on pose $0! = 1$.
 	\end{tip}
-	
+
 	Il est très courant de rencontrer des calculs avec des factorielles en mathématiques, leur utilisation ne se limitant pas au dénombrement.
-	
+
 	\subsection{Définition}
-	
+
 	\begin{formula}[Définition]
 		Une \textbf{combinaison} de $k$ éléments parmi $n$ éléments, notée $\binom{n}{k}$, est le nombre de sous-ensembles de $k$ éléments que possède un ensemble de $n$ éléments.
 	\end{formula}
-	
+
 	\begin{formula}[Calcul d'une combinaison]
 		Soient $n$ et $k$ deux entiers. Alors $\binom{n}{k} = \frac{n!}{(n-k)!k!}$.
 	\end{formula}
-	
+
 	\begin{tip}[Exemple]
 		Soit $E = \{1, 2, 3, \dots, 30 \}$. On cherche à connaître le nombre de sous-ensembles de $3$ éléments que possède $E$. Pour cela, il suffit d'appliquer la formule :
 		\[ \binom{30}{3} = \frac{30!}{27!3!} = \frac{28 \times 29 \times 30}{1 \times 2 \times 3} = 4060 \]
 		$E$ contient $4060$ sous-ensembles de $3$ éléments.
 	\end{tip}
-	
+
 	\subsection{Formules}
-	
+
 	\begin{formula}[Formules]
 		Soient $n$ et $k$ deux entiers.
 		\begin{itemize}
@@ -130,7 +130,7 @@
 			\item $\binom{n}{k} = \binom{n}{n-k}$
 		\end{itemize}
 	\end{formula}
-	
+
 	\begin{tip}[Triangle de Pascal]
 		Une autre formule très utile est $\binom{n}{k} + \binom{n}{k+1} = \binom{n+1}{k+1}$. Elle peut se retrouver à l'aide du triangle de Pascal, que l'on construit comme tel :
 		\begin{enumerate}
@@ -140,54 +140,54 @@
 		\end{enumerate}
 		Les premières lignes du triangle de Pascal sont donc :
 		\includelatexpicture[100pt]{pascal}
-		
+
 		Ainsi, le $k$-ième coefficient de la $n$-ième ligne est égal à $\binom{n}{k}$ (en partant de $0$).
 	\end{tip}
-	
+
 	\section{Dénombrement}
-	
+
 	\subsection{Principe additif}
-	
+
 	\begin{formula}[Principe additif]
 		Soient $E$ et $F$ deux ensembles disjoints contenant respectivement $n$ et $m$ éléments. Alors $E \, \cup \, F$ contient $n + m$ éléments.
 	\end{formula}
-	
+
 	\begin{tip}[Exemple]
 		Si on pose $E = \{1; 3; 5\}$ et $F = \{2; 4; 6; 8\}$. $E$ et $F$ sont alors bien disjoints, donc $E \, \cup \, F$ contient $3 + 4 = 7$ éléments.
 	\end{tip}
-	
+
 	\subsection{Principe multiplicatif}
-	
+
 	Commençons cette sous-section par une définition.
-	
+
 	\begin{formula}[Produit cartésien]
 		Soient $E$ et $F$ deux ensembles. Leur produit cartésien $E \times F$ est l'ensemble des couples $(e; f)$ où $e \in E$ et $f \in F$.
 	\end{formula}
-	
+
 	\begin{tip}[Exemple]
 		Cette définition peut sembler un peu compliquée, mais elle est en faite très intuitive. Prenons $E = \{1; 2; 3\}$ et $F = \{4; 5\}$.
 		\newpar
 		Alors on a $E \times F = \{(1; 4); (1; 5); (2; 4); (2; 5); (3; 4); (3; 5)\}$.
 	\end{tip}
-	
+
 	\begin{tip}[Construction du plan cartésien]
 		Prenons maintenant $E = F = \mathbb{R}$. Le produit cartésien $E \times F$ est l'ensemble des couples $(x; y)$ où $x \in \mathbb{R}$ et $y \in \mathbb{R}$.
 		\newpar
 		Il s'agit en fait du plan cartésien.
 	\end{tip}
-	
+
 	\begin{formula}[Principe multiplicatif]
 		Soient $E$ et $F$ deux ensembles contenant respectivement $n$ et $m$ éléments. Alors $E \times F$ contient $n \times m$ éléments.
 	\end{formula}
-	
+
 	Ce principe (tout comme le principe additif vu précédemment) sont notamment utilisés en probabilités.
-	
+
 	\subsection{Formules de dénombrement}
-	
+
 	\begin{formula}[Permutations]
 		Soit $E$ un ensemble de taille $n$. On appelle \textbf{permutation} de $E$ tout $n$-uplet d'éléments distincts de $E$.
 	\end{formula}
-	
+
 	\begin{tip}[Exemple]
 		Prenons $E = \{1; 2; 3\}$. Alors $E$ admet $6$ permutations qui sont :
 		\begin{itemize}
@@ -199,7 +199,7 @@
 			\item $(3; 2; 1)$
 		\end{itemize}
 	\end{tip}
-	
+
 	\begin{formula}[Formules]
 		Soit $E$ un ensemble possédant $n$ éléments.
 		\begin{itemize}
@@ -210,15 +210,15 @@
 			\item Le nombre de sous-ensembles de $k$ éléments que possède $E$ est égal à $\binom{n}{k}$ (pour rappel).
 		\end{itemize}
 	\end{formula}
-	
+
 	\begin{nosummary}
 		À noter également une dernière petite formule qu'il peut être utile de savoir démontrer à l'aide des formules ci-dessus.
-		
+
 		\begin{formula}
 			Pour tout $n \in \mathbb{N}$ :
 			\[ \sum_{k = 0}^n \binom{n}{k} = 2^n \]
 		\end{formula}
-		
+
 		\begin{demonstration}
 			Soit $n \in \mathbb{N}$ et soit $E$ un ensemble à $n$ éléments.
 			\newpar
