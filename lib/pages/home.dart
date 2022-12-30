@@ -1,5 +1,4 @@
 import 'package:bacomathiques/model/api/list.dart';
-import 'package:bacomathiques/utils/utils.dart';
 import 'package:bacomathiques/widgets/centered_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

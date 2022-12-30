@@ -1,6 +1,4 @@
 import 'package:bacomathiques/model/api/common.dart';
-import 'package:bacomathiques/widgets/theme/theme.dart';
-import 'package:flutter/material.dart';
 
 /// /api/v2/ endpoint.
 class APIIndexEndpoint extends APIEndpoint<APIIndex> {

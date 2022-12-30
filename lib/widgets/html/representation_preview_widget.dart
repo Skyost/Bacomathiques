@@ -1,5 +1,5 @@
-import 'package:bacomathiques/widgets/fade_stack_widget.dart';
 import 'package:bacomathiques/utils/utils.dart';
+import 'package:bacomathiques/widgets/fade_stack_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 

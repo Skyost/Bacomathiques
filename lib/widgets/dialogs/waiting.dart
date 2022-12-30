@@ -1,4 +1,3 @@
-import 'package:bacomathiques/utils/utils.dart';
 import 'package:bacomathiques/widgets/centered_circular_progress_indicator.dart';
 import 'package:bacomathiques/widgets/dialogs/app_alert_dialog.dart';
 import 'package:flutter/material.dart';

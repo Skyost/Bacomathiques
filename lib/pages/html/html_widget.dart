@@ -1,12 +1,12 @@
 import 'package:bacomathiques/model/api/common.dart';
 import 'package:bacomathiques/model/api/content.dart';
 import 'package:bacomathiques/model/settings.dart';
+import 'package:bacomathiques/pages/html/widget_factory.dart';
+import 'package:bacomathiques/utils/utils.dart';
 import 'package:bacomathiques/widgets/centered_circular_progress_indicator.dart';
 import 'package:bacomathiques/widgets/html/representation_preview_widget.dart';
 import 'package:bacomathiques/widgets/theme/bubble.dart';
 import 'package:bacomathiques/widgets/theme/theme.dart';
-import 'package:bacomathiques/pages/html/widget_factory.dart';
-import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

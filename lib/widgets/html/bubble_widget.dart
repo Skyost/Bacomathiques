@@ -1,7 +1,7 @@
 import 'package:bacomathiques/model/settings.dart';
+import 'package:bacomathiques/widgets/expandable_widget.dart';
 import 'package:bacomathiques/widgets/theme/bubble.dart';
 import 'package:bacomathiques/widgets/theme/theme.dart';
-import 'package:bacomathiques/widgets/expandable_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:html/dom.dart' as dom;

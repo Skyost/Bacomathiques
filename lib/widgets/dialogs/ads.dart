@@ -1,6 +1,6 @@
+import 'package:bacomathiques/model/settings.dart';
 import 'package:bacomathiques/widgets/dialogs/app_alert_dialog.dart';
 import 'package:bacomathiques/widgets/dialogs/consent.dart';
-import 'package:bacomathiques/model/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';

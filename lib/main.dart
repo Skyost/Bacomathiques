@@ -1,11 +1,11 @@
 import 'package:bacomathiques/model/app.dart';
 import 'package:bacomathiques/model/settings.dart';
-import 'package:bacomathiques/widgets/theme/theme.dart';
 import 'package:bacomathiques/pages/comments.dart';
 import 'package:bacomathiques/pages/home.dart';
 import 'package:bacomathiques/pages/html/page.dart';
 import 'package:bacomathiques/pages/lessons.dart';
 import 'package:bacomathiques/pages/levels.dart';
+import 'package:bacomathiques/widgets/theme/theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

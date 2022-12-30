@@ -1,6 +1,6 @@
+import 'package:bacomathiques/credentials.dart';
 import 'package:bacomathiques/model/api/common.dart';
 import 'package:bacomathiques/widgets/theme/theme.dart';
-import 'package:bacomathiques/credentials.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
