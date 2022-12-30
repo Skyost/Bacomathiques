@@ -1,10 +1,11 @@
-import 'package:bacomathiques/app/api/common.dart';
-import 'package:bacomathiques/app/api/content.dart';
-import 'package:bacomathiques/app/settings.dart';
-import 'package:bacomathiques/app/theme/bubble.dart';
-import 'package:bacomathiques/app/theme/theme.dart';
+import 'package:bacomathiques/model/api/common.dart';
+import 'package:bacomathiques/model/api/content.dart';
+import 'package:bacomathiques/model/settings.dart';
+import 'package:bacomathiques/widgets/centered_circular_progress_indicator.dart';
+import 'package:bacomathiques/widgets/html/representation_preview_widget.dart';
+import 'package:bacomathiques/widgets/theme/bubble.dart';
+import 'package:bacomathiques/widgets/theme/theme.dart';
 import 'package:bacomathiques/pages/html/widget_factory.dart';
-import 'package:bacomathiques/pages/html/widgets/representation_preview_widget.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +66,7 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
   void initState() {
     super.initState();
     if (widget.anchor != null) {
-      WidgetsBinding.instance?.addPostFrameCallback((_) async {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
         // await Future.delayed(const Duration(milliseconds: 500));
         htmlWidgetKey.currentState?.scrollToAnchor(widget.anchor!); // TODO: Doesn't work because the widget is not loaded yet.
       });
@@ -86,7 +87,7 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
       onLoadingBuilder: (context, element, progress) {
         String message = 'Rendu…';
         if (progress != null) {
-          message += '\n' + progress.toString() + '%';
+          message += '\n$progress%';
         }
         return CenteredCircularProgressIndicator(message: message);
       },
@@ -120,8 +121,8 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
 
         Uri uri = Uri.parse(url);
         if (uri.host != Uri.parse(API.baseUrl).host || uri.pathSegments.length < 3 || uri.pathSegments.first != 'cours') {
-          if (await canLaunch(url)) {
-            await launch(url);
+          if (await canLaunchUrl(uri)) {
+            await launchUrl(uri);
           }
           return true;
         }

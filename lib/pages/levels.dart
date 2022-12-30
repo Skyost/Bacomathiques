@@ -1,11 +1,11 @@
-import 'package:bacomathiques/app/api/common.dart';
-import 'package:bacomathiques/app/api/index.dart';
-import 'package:bacomathiques/app/settings.dart';
-import 'package:bacomathiques/app/theme/theme.dart';
-import 'package:bacomathiques/utils/request_scaffold.dart';
+import 'package:bacomathiques/model/api/common.dart';
+import 'package:bacomathiques/model/api/index.dart';
+import 'package:bacomathiques/model/settings.dart';
+import 'package:bacomathiques/widgets/app_bar/app_bar.dart';
+import 'package:bacomathiques/widgets/theme/theme.dart';
+import 'package:bacomathiques/widgets/request_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pedantic/pedantic.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// The page that allows the user to show his level.
@@ -17,7 +17,7 @@ class LevelsPage extends RequestScaffold<APIIndex> {
         );
 
   @override
-  _LevelsPageState createState() => _LevelsPageState();
+  RequestScaffoldState createState() => _LevelsPageState();
 }
 
 /// The levels page state.
@@ -28,6 +28,11 @@ class _LevelsPageState extends RequestScaffoldState<APIIndex, LevelsPage> {
           failMessage: 'Impossible de récupérer la liste des classes.',
           failDialogOptions: const FailDialogOptions(show: false),
         );
+
+  @override
+  AppBar? createAppBar(BuildContext context) => BacomathiquesAppBar(
+        title: const Text('Choix de la classe'),
+      );
 
   @override
   Widget createBody(BuildContext context, APIIndex result) {
@@ -73,7 +78,7 @@ class _LevelsPageState extends RequestScaffoldState<APIIndex, LevelsPage> {
 }
 
 /// A level widget.
-class _LevelWidget extends StatelessWidget {
+class _LevelWidget extends StatefulWidget {
   /// The color.
   final Color color;
 
@@ -87,23 +92,31 @@ class _LevelWidget extends StatelessWidget {
   });
 
   @override
+  State<StatefulWidget> createState() => _LevelWidgetState();
+}
+
+/// A level widget state.
+class _LevelWidgetState extends State<_LevelWidget> {
+  @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.all(10),
         child: Material(
-          color: color,
+          color: widget.color,
           child: InkWell(
             onTap: () async {
               SharedPreferences preferences = await SharedPreferences.getInstance();
-              await preferences.setString('preferences.level-image', level.image);
-              await preferences.setString('preferences.lesson-list', level.lessons.path);
-              unawaited(Navigator.pushNamedAndRemoveUntil(
-                context,
-                '/lessons',
-                (route) => false,
-                arguments: {
-                  'endpoint': level.lessons,
-                },
-              ));
+              await preferences.setString('preferences.level-image', widget.level.image);
+              await preferences.setString('preferences.lesson-list', widget.level.lessons.path);
+              if (mounted) {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  '/lessons',
+                  (route) => false,
+                  arguments: {
+                    'endpoint': widget.level.lessons,
+                  },
+                );
+              }
             },
             child: buildMainWidget(context),
           ),
@@ -116,13 +129,13 @@ class _LevelWidget extends StatelessWidget {
         child: Column(
           children: [
             SvgPicture.network(
-              API.baseUrl + level.image,
+              API.baseUrl + widget.level.image,
               height: 60,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 5, bottom: 15),
               child: Text(
-                level.name,
+                widget.level.name,
                 style: const TextStyle(
                   fontFamily: 'FuturaBT',
                   fontSize: 40,
@@ -132,7 +145,7 @@ class _LevelWidget extends StatelessWidget {
               ),
             ),
             Text(
-              level.description,
+              widget.level.description,
               style: const TextStyle(
                 fontSize: 14,
                 color: Colors.white,

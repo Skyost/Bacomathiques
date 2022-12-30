@@ -1,8 +1,8 @@
-import 'package:bacomathiques/app/theme/bubble.dart';
-import 'package:bacomathiques/app/theme/theme.dart';
+import 'package:bacomathiques/widgets/html/bubble_widget.dart';
+import 'package:bacomathiques/widgets/theme/bubble.dart';
+import 'package:bacomathiques/widgets/theme/theme.dart';
 import 'package:bacomathiques/pages/html/html_widget.dart';
 import 'package:bacomathiques/pages/html/math_bit.dart';
-import 'package:bacomathiques/pages/html/widgets/bubble_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';

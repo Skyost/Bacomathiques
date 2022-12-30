@@ -1,14 +1,11 @@
-import 'package:bacomathiques/app/app.dart';
-import 'package:bacomathiques/app/settings.dart';
-import 'package:bacomathiques/app/theme/theme.dart';
-import 'package:bacomathiques/credentials.dart';
+import 'package:bacomathiques/model/app.dart';
+import 'package:bacomathiques/model/settings.dart';
+import 'package:bacomathiques/widgets/theme/theme.dart';
 import 'package:bacomathiques/pages/comments.dart';
 import 'package:bacomathiques/pages/home.dart';
 import 'package:bacomathiques/pages/html/page.dart';
 import 'package:bacomathiques/pages/lessons.dart';
 import 'package:bacomathiques/pages/levels.dart';
-import 'package:bacomathiques/utils/utils.dart';
-import 'package:catcher/catcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,27 +19,7 @@ void main() async {
     await MobileAds.instance.initialize();
   }
 
-  Widget main = ProviderScope(child: BacomathiquesApp());
-  if (kDebugMode) {
-    runApp(main);
-  } else {
-    CatcherOptions releaseConfig = CatcherOptions(
-      SilentReportMode(),
-      [
-        DiscordHandler(
-          Credentials.discordWebhook,
-          printLogs: true,
-          enableDeviceParameters: false,
-          enableApplicationParameters: true,
-          enableCustomParameters: true,
-          enableStackTrace: true,
-        ),
-      ],
-      customParameters: {'platform': platformName},
-    );
-
-    Catcher(rootWidget: main, releaseConfig: releaseConfig);
-  }
+  runApp(ProviderScope(child: BacomathiquesApp()));
 }
 
 /// The app main class.
@@ -55,7 +32,6 @@ class BacomathiquesApp extends ConsumerWidget {
       child: MaterialApp(
         title: App.appName,
         initialRoute: '/',
-        navigatorKey: Catcher.navigatorKey,
         theme: AppTheme.light.flutterThemeData,
         darkTheme: AppTheme.dark.flutterThemeData,
         themeMode: settingsModel.themeMode,

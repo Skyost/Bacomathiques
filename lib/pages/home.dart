@@ -1,5 +1,6 @@
-import 'package:bacomathiques/app/api/list.dart';
+import 'package:bacomathiques/model/api/list.dart';
 import 'package:bacomathiques/utils/utils.dart';
+import 'package:bacomathiques/widgets/centered_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -21,11 +22,11 @@ class _HomePageState extends State<HomePage> {
     SharedPreferences.getInstance().then((preferences) {
       String? lessonListEndpoint = preferences.getString('preferences.lesson-list');
       if (lessonListEndpoint == null) {
-        WidgetsBinding.instance?.addPostFrameCallback((_) => Navigator.pushReplacementNamed(context, '/levels'));
+        WidgetsBinding.instance.addPostFrameCallback((_) => Navigator.pushReplacementNamed(context, '/levels'));
         return;
       }
 
-      WidgetsBinding.instance?.addPostFrameCallback(
+      WidgetsBinding.instance.addPostFrameCallback(
         (_) => Navigator.pushReplacementNamed(
           context,
           '/lessons',

@@ -1,12 +1,10 @@
 import 'dart:io';
 import 'dart:math' as math;
-import 'dart:typed_data';
-
-import 'package:bacomathiques/app/settings.dart';
+import 'package:bacomathiques/model/settings.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 /// The app store page.
 final String storePage = Platform.isAndroid ? 'https://play.google.com/store/apps/details?id=fr.bacomathiques' : 'http://itunes.apple.com/app/id1458503418';
@@ -80,9 +78,9 @@ Uint8List kTransparentImage = Uint8List.fromList(const [
 ]);
 
 /// Opens an URL with the default browser.
-void openURL(String url) async {
-  if (await canLaunch(url)) {
-    await launch(url);
+Future<void> openUrl(String url) async {
+  if (await canLaunchUrlString(url)) {
+    await launchUrlString(url);
   }
 }
 
@@ -110,43 +108,6 @@ String get platformName {
       return 'macOS';
     case TargetPlatform.windows:
       return 'Windows';
-  }
-}
-
-/// A centered circular progress indicator.
-class CenteredCircularProgressIndicator extends ConsumerWidget {
-  /// The message to show.
-  final String? message;
-
-  /// Creates a new centered circular progress indicator instance.
-  const CenteredCircularProgressIndicator({
-    this.message,
-  });
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    Widget progressIndicator = CircularProgressIndicator(
-      valueColor: AlwaysStoppedAnimation<Color>(ref.watch(settingsModelProvider).resolveTheme(context).progressIndicatorColor),
-    );
-
-    return Center(
-      child: message == null
-          ? progressIndicator
-          : Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 15),
-                  child: progressIndicator,
-                ),
-                Text(
-                  message!,
-                  style: const TextStyle(fontStyle: FontStyle.italic),
-                  textAlign: TextAlign.center,
-                )
-              ],
-            ),
-    );
   }
 }
 

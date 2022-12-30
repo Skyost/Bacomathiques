@@ -1,10 +1,12 @@
-import 'package:bacomathiques/app/api/common.dart';
-import 'package:bacomathiques/app/api/list.dart';
-import 'package:bacomathiques/app/dialogs/message.dart';
-import 'package:bacomathiques/app/settings.dart';
-import 'package:bacomathiques/app/theme/theme.dart';
-import 'package:bacomathiques/utils/fade_stack_widget.dart';
-import 'package:bacomathiques/utils/request_scaffold.dart';
+import 'package:bacomathiques/model/api/common.dart';
+import 'package:bacomathiques/model/api/list.dart';
+import 'package:bacomathiques/widgets/app_bar/app_bar.dart';
+import 'package:bacomathiques/widgets/level_icon_button.dart';
+import 'package:bacomathiques/widgets/dialogs/message.dart';
+import 'package:bacomathiques/model/settings.dart';
+import 'package:bacomathiques/widgets/theme/theme.dart';
+import 'package:bacomathiques/widgets/fade_stack_widget.dart';
+import 'package:bacomathiques/widgets/request_scaffold.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
@@ -23,7 +25,7 @@ class LessonsPage extends RequestScaffold<LessonList> {
         );
 
   @override
-  _LessonsPageState createState() => _LessonsPageState();
+  RequestScaffoldState createState() => _LessonsPageState();
 }
 
 /// The home screen state.
@@ -42,11 +44,12 @@ class _LessonsPageState extends RequestScaffoldState<LessonList, LessonsPage> {
     RateMyApp rateMyApp = RateMyApp(appStoreIdentifier: '1458503418');
     rateMyApp.init().then((_) {
       if (rateMyApp.shouldOpenDialog) {
-        WidgetsBinding.instance?.addPostFrameCallback(
+        WidgetsBinding.instance.addPostFrameCallback(
           (_) => rateMyApp.showRateDialog(
             context,
             title: 'Noter l\'application',
-            message: 'Si vous aimez cette application, n\'hésitez pas à prendre un peu de votre temps pour la noter !\nCe serait d\'une grande aide et cela ne devrait pas vous prendre plus d\'une minute.',
+            message:
+                'Si vous aimez cette application, n\'hésitez pas à prendre un peu de votre temps pour la noter !\nCe serait d\'une grande aide et cela ne devrait pas vous prendre plus d\'une minute.',
             rateButton: 'Noter'.toUpperCase(),
             noButton: 'Non merci'.toUpperCase(),
             laterButton: 'Plus tard'.toUpperCase(),
@@ -56,6 +59,11 @@ class _LessonsPageState extends RequestScaffoldState<LessonList, LessonsPage> {
       }
     });
   }
+
+  @override
+  AppBar? createAppBar(BuildContext context) => BacomathiquesAppBar(
+        actions: [LevelIconButton()],
+      );
 
   @override
   Widget createBody(BuildContext context, LessonList result) => _PreviewsList(items: result.list);
@@ -103,14 +111,18 @@ class _LessonsPageState extends RequestScaffoldState<LessonList, LessonsPage> {
     }
 
     SharedPreferences.getInstance().then((preferences) {
-      bool shown = preferences.getBool('preferences.api-warn-v' + result.api.version.toString()) ?? false;
+      bool shown = preferences.getBool('preferences.api-warn-v${result.api.version}') ?? false;
       if (shown) {
         return;
       }
 
-      preferences.setBool('preferences.api-warn-v' + result.api.version.toString(), true);
+      preferences.setBool('preferences.api-warn-v${result.api.version}', true);
       if (mounted) {
-        MessageDialog.show(context, message: 'Une mise à jour de l\'application est disponible. Vous pouvez dès maintenant aller la télécharger.');
+        MessageDialog.show(
+          context,
+          title: 'Mise à jour',
+          message: 'Une mise à jour de l\'application est disponible. Vous pouvez dès maintenant aller la télécharger.',
+        );
       }
     });
   }
@@ -202,58 +214,54 @@ class _PreviewWidget extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _createPreviewWidget(),
-            _createTitleWidget(theme),
-            _createDescriptionWidget(),
-            _createLessonButton(context, theme),
-            _createSummaryButton(context, theme),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: _PreviewWidgetImage(item: item),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8, right: 20, left: 20),
+              child: Text(
+                'Chapitre ${item.lesson.chapter.romanize()}'.toUpperCase(),
+                style: TextStyle(color: theme.lessonChapterColor),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8, right: 20, left: 20),
+              child: Text(
+                item.lesson.title,
+                style: const TextStyle(
+                  fontFamily: 'FuturaBT',
+                  fontSize: 26,
+                ),
+              ),
+            ),
+            createDescriptionWidget(),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+              child: createActionButton(
+                context,
+                buttonText: 'Lire le cours',
+                backgroundColor: theme.blueButtonColor,
+                endpoint: item.lesson.content,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+              child: createActionButton(
+                context,
+                buttonText: 'Lire le résumé',
+                backgroundColor: theme.greenButtonColor,
+                endpoint: item.lesson.summary,
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  /// Creates a new preview widget.
-  Widget _createPreviewWidget() => Padding(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: AboveWidgetFade(
-          above: Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(color: Colors.black.withAlpha(175)),
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Text(
-              item.caption,
-              textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.white),
-            ),
-          ),
-          under: Container(
-            width: double.infinity,
-            color: Colors.black.withAlpha(30),
-            child: FadeInImage.memoryNetwork(
-              image: API.baseUrl + item.preview,
-              placeholder: kTransparentImage,
-              height: 100,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-      );
-
-  /// Creates a new title widget.
-  Widget _createTitleWidget(AppTheme theme) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-        child: Text(
-          item.lesson.title,
-          style: const TextStyle(
-            fontFamily: 'FuturaBT',
-            fontSize: 26,
-          ),
-        ),
-      );
-
   /// Creates a new description widget.
-  Widget _createDescriptionWidget() {
+  Widget createDescriptionWidget() {
     Widget description = Padding(
       padding: const EdgeInsets.symmetric(horizontal: 21),
       child: HtmlWidget(item.excerpt),
@@ -263,11 +271,15 @@ class _PreviewWidget extends ConsumerWidget {
   }
 
   /// Creates the lesson button.
-  Widget _createLessonButton(BuildContext context, AppTheme theme) => Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-        child: TextButton(
+  Widget createActionButton(
+    BuildContext context, {
+    required String buttonText,
+    required Color backgroundColor,
+    required APIEndpoint<APIEndpointResultHTML> endpoint,
+  }) =>
+      TextButton(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(theme.blueButtonColor),
+            backgroundColor: MaterialStateProperty.all(backgroundColor),
             overlayColor: MaterialStateProperty.all(Colors.white12),
             shape: MaterialStateProperty.all(const RoundedRectangleBorder()),
             padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 5)),
@@ -276,36 +288,44 @@ class _PreviewWidget extends ConsumerWidget {
             context,
             '/html',
             arguments: {
-              'endpoint': item.lesson.content,
+              'endpoint': endpoint,
             },
           ),
           child: Text(
-            'Lire le cours'.toUpperCase(),
+            buttonText.toUpperCase(),
             style: const TextStyle(fontSize: 14, color: Colors.white),
+          ),
+      );
+}
+
+/// A widget that allows to show the preview image.
+class _PreviewWidgetImage extends StatelessWidget {
+  /// The lesson to show the preview image.
+  final LessonListItem item;
+
+  /// Creates a new preview image widget instance.
+  const _PreviewWidgetImage({required this.item});
+
+  @override
+  Widget build(BuildContext context) => AboveWidgetFade(
+        above: Container(
+          alignment: Alignment.center,
+          decoration: BoxDecoration(color: Colors.black.withAlpha(175)),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Text(
+            item.caption,
+            textAlign: TextAlign.center,
+            style: const TextStyle(color: Colors.white),
           ),
         ),
-      );
-
-  /// Creates the summary button.
-  Widget _createSummaryButton(BuildContext context, AppTheme theme) => Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-        child: TextButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(theme.greenButtonColor),
-            overlayColor: MaterialStateProperty.all(Colors.white12),
-            shape: MaterialStateProperty.all(const RoundedRectangleBorder()),
-            padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 5)),
-          ),
-          onPressed: () => Navigator.pushNamed(
-            context,
-            '/html',
-            arguments: {
-              'endpoint': item.lesson.summary,
-            },
-          ),
-          child: Text(
-            'Lire le résumé'.toUpperCase(),
-            style: const TextStyle(fontSize: 14, color: Colors.white),
+        under: Container(
+          width: double.infinity,
+          color: Colors.black.withAlpha(30),
+          child: FadeInImage.memoryNetwork(
+            image: API.baseUrl + item.preview,
+            placeholder: kTransparentImage,
+            height: 100,
+            fit: BoxFit.cover,
           ),
         ),
       );
