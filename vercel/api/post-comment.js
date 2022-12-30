@@ -131,6 +131,7 @@ export default async function handler (request, response) {
 function allowCors (request, response) {
   response.setHeader('Access-Control-Allow-Credentials', true)
   response.setHeader('Access-Control-Allow-Origin', site.host)
+  // response.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
   response.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
   response.setHeader(
     'Access-Control-Allow-Headers',
@@ -151,7 +152,7 @@ async function askimetCheck (request, comment) {
 
   return await client.checkSpam({
     ip: request.headers['x-forwarded-for'],
-    useragent: request.headers['User-Agent'],
+    useragent: request.headers['user-agent'],
     content: comment.message,
     name: comment.author,
     type: 'comment'

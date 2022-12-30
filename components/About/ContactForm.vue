@@ -65,10 +65,10 @@
         </ski-button>
       </div>
       <div v-if="form.success" class="alert alert-success">
-        <ski-icon icon="check" /> Message envoyé avec succès !
+        <ski-icon icon="check" class="me-2" /> Message envoyé avec succès !
       </div>
       <div v-if="form.error" class="alert alert-danger">
-        <ski-icon icon="exclamation-circle-fill" /> Une erreur est survenue pendant l'envoi du message. Veuillez réessayer plus tard.
+        <ski-icon icon="exclamation-circle-fill" class="me-2" /> Une erreur est survenue pendant l'envoi du message. Veuillez réessayer plus tard.
       </div>
     </form>
   </div>
@@ -130,9 +130,11 @@ export default {
         this.form.subject = null
         this.form.message = null
         this.form.recaptchaToken = null
+        this.form.error = false
       } else {
         this.form.success = false
         this.form.enabled = true
+        this.form.error = true
       }
     }
   }

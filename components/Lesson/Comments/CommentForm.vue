@@ -26,13 +26,14 @@
           title="Avatar (prévisualisation)"
           class="comment-avatar"
         >
-        <ski-form-control
+        <input
           v-model="form.author"
+          type="text"
           class="comment-author form-control"
           name="author"
           placeholder="Nom d'utilisateur"
           required
-        />
+        >
       </div>
       <div class="clearfix">
         <ski-button variant="white" class="float-end" type="submit" :disabled="!form.enabled">
@@ -40,10 +41,10 @@
         </ski-button>
       </div>
       <div v-if="form.success" class="alert alert-success">
-        <ski-icon icon="check" /> Votre commentaire a été envoyé avec succès. Veuillez cependant noter qu'il ne sera publié qu'après modération 😉
+        <ski-icon icon="check" class="me-2" /> Votre commentaire a été envoyé avec succès. Veuillez cependant noter qu'il ne sera publié qu'après modération 😉
       </div>
       <div v-if="form.error" class="alert alert-danger">
-        <ski-icon icon="exclamation-circle-fill" /> Impossible de poster votre commentaire. Veuillez réessayer plus tard.
+        <ski-icon icon="exclamation-circle-fill" class="me-2" /> Impossible de poster votre commentaire. Veuillez réessayer plus tard.
       </div>
     </form>
   </div>
@@ -52,7 +53,6 @@
 <script>
 import debounce from 'just-debounce-it'
 import { getAvatarURL } from '~/utils/lesson'
-import site from '~/site'
 
 export default {
   props: {
@@ -72,11 +72,6 @@ export default {
         success: false,
         error: false
       }
-    }
-  },
-  computed: {
-    currentAddress () {
-      return site.getCurrentAddress(this.$route)
     }
   },
   watch: {
@@ -104,9 +99,9 @@ export default {
       this.form.enabled = false
 
       try {
-        const formdata = new FormData(event.target)
+        const formData = new FormData(event.target)
         const json = {}
-        formdata.forEach(function (value, prop) {
+        formData.forEach(function (value, prop) {
           json[prop] = value
         })
         const formBody = Object.keys(json).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(json[key])).join('&')
@@ -125,9 +120,11 @@ export default {
         this.form.success = true
         this.form.author = null
         this.form.message = null
+        this.form.error = false
       } else {
         this.form.success = false
         this.form.enabled = true
+        this.form.error = true
       }
     }
   }
