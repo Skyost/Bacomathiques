@@ -2,6 +2,7 @@ import { Octokit } from '@octokit/core'
 import { v4 as uuidv4 } from 'uuid'
 import yaml from 'yaml'
 import { createAppAuth } from '@octokit/auth-app'
+import { AkismetClient } from 'akismet-api'
 import site from '../../site'
 
 export default async function handler (request, response) {
@@ -10,18 +11,12 @@ export default async function handler (request, response) {
   }
 
   if (!request.body || !request.body.level || !request.body.lesson || !request.body.message || !request.body.author || !request.body.client) {
-    response.status(400).send('Il manque au moins un paramètre.')
+    response.status(400).json({
+      success: false,
+      message: 'Il manque un paramètre.'
+    })
     return
   }
-
-  const octokit = new Octokit({
-    authStrategy: createAppAuth,
-    auth: {
-      appId: process.env.GITHUB_APP_ID,
-      privateKey: process.env.GITHUB_APP_PRIVATE_KEY,
-      installationId: process.env.GITHUB_APP_INSTALLATION_ID
-    }
-  })
 
   const id = uuidv4()
   const comment = {
@@ -33,6 +28,23 @@ export default async function handler (request, response) {
     date: Math.round((new Date()).getTime() / 1000),
     client: request.body.client
   }
+
+  if (!await askimetCheck(request, comment)) {
+    response.status(400).json({
+      success: false,
+      message: 'Une erreur est survenue. Veuillez réessayer plus tard.'
+    })
+    return
+  }
+
+  const octokit = new Octokit({
+    authStrategy: createAppAuth,
+    auth: {
+      appId: process.env.GITHUB_APP_ID,
+      privateKey: process.env.GITHUB_APP_PRIVATE_KEY,
+      installationId: process.env.GITHUB_APP_INSTALLATION_ID
+    }
+  })
 
   const branch = `comment-${id}`
   let githubResponse = await octokit.request('GET /repos/{owner}/{repo}/commits', {
@@ -129,4 +141,19 @@ function allowCors (request, response) {
     return false
   }
   return true
+}
+
+async function askimetCheck (request, comment) {
+  const client = new AkismetClient({
+    key: process.env.ASKIMET_API_KEY,
+    blog: 'https://vercel.bacomathiqu.es'
+  })
+
+  return await client.checkSpam({
+    ip: request.headers['x-forwarded-for'],
+    useragent: request.headers['User-Agent'],
+    content: comment.message,
+    name: comment.author,
+    type: 'comment'
+  })
 }

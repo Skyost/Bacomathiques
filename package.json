@@ -19,6 +19,7 @@
     "@octokit/auth-app": "^4.0.7",
     "@octokit/auth-oauth-app": "^5.0.4",
     "@octokit/core": "^4.1.0",
+    "akismet-api": "^5.3.0",
     "cookie-universal": "^2.2.2",
     "dotenv": "^16.0.3",
     "html-escaper": "^3.0.3",
