@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import yaml from 'yaml'
 import { createAppAuth } from '@octokit/auth-app'
 import { AkismetClient } from 'akismet-api'
+import { createPullRequest } from 'octokit-plugin-create-pull-request'
 import site from '../../site'
 
 export default async function handler (request, response) {
@@ -13,7 +14,7 @@ export default async function handler (request, response) {
   if (!request.body || !request.body.level || !request.body.lesson || !request.body.message || !request.body.author || !request.body.client) {
     response.status(400).json({
       success: false,
-      message: 'Il manque un paramètre.'
+      message: 'Il manque au moins un paramètre.'
     })
     return
   }
@@ -29,7 +30,7 @@ export default async function handler (request, response) {
     client: request.body.client
   }
 
-  if (!await askimetCheck(request, comment)) {
+  if (await akismetSpam(request, comment)) {
     response.status(400).json({
       success: false,
       message: 'Une erreur est survenue. Veuillez réessayer plus tard.'
@@ -37,7 +38,8 @@ export default async function handler (request, response) {
     return
   }
 
-  const octokit = new Octokit({
+  const PullRequestOctokit = Octokit.plugin(createPullRequest)
+  const octokit = new PullRequestOctokit({
     authStrategy: createAppAuth,
     auth: {
       appId: process.env.GITHUB_APP_ID,
@@ -46,59 +48,11 @@ export default async function handler (request, response) {
     }
   })
 
-  const branch = `comment-${id}`
-  let githubResponse = await octokit.request('GET /repos/{owner}/{repo}/commits', {
+  const title = `Nouveau commentaire par ${comment.author} (${id})`
+  const githubResponse = await octokit.createPullRequest({
     owner: site.github.username,
     repo: site.github.repository,
-    per_page: 1
-  })
-
-  if (githubResponse.status !== 200) {
-    response.status(githubResponse.status).json({
-      success: false,
-      message: 'Failed to get latest commit.'
-    })
-    return
-  }
-
-  const latestCommit = githubResponse.data[0].sha
-  githubResponse = await octokit.request('POST /repos/{owner}/{repo}/git/refs', {
-    owner: site.github.username,
-    repo: site.github.repository,
-    ref: `refs/heads/${branch}`,
-    sha: latestCommit
-  })
-
-  if (githubResponse.status !== 201) {
-    response.status(githubResponse.status).json({
-      success: false,
-      message: 'Failed to create a new ref.'
-    })
-    return
-  }
-
-  const pullRequestTitle = `Nouveau commentaire par ${comment.author} (${id})`
-  githubResponse = await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
-    owner: site.github.username,
-    repo: site.github.repository,
-    path: `content/comments/${id}.yml`,
-    message: pullRequestTitle,
-    content: btoa(yaml.stringify(comment)),
-    branch
-  })
-
-  if (githubResponse.status !== 201) {
-    response.status(githubResponse.status).json({
-      success: false,
-      message: 'Failed to create comment file.'
-    })
-    return
-  }
-
-  githubResponse = await octokit.request('POST /repos/{owner}/{repo}/pulls', {
-    owner: site.github.username,
-    repo: site.github.repository,
-    title: pullRequestTitle,
+    title,
     body: `Nouveau commentaire sur Bacomathiques !
 
 | Champ   | Contenu                                 |
@@ -110,8 +64,15 @@ export default async function handler (request, response) {
 | Date    | ${comment.date}                    |
 | Client  | ${comment.client}                  |
 `,
-    head: branch,
-    base: 'master'
+    head: `comment-${id}`,
+    changes: [
+      {
+        files: {
+          [`content/comments/${id}.yml`]: yaml.stringify(comment)
+        },
+        commit: title
+      }
+    ]
   })
 
   if (githubResponse.status !== 201) {
@@ -144,7 +105,7 @@ function allowCors (request, response) {
   return true
 }
 
-async function askimetCheck (request, comment) {
+async function akismetSpam (request, comment) {
   const client = new AkismetClient({
     key: process.env.ASKIMET_API_KEY,
     blog: 'https://vercel.bacomathiqu.es'

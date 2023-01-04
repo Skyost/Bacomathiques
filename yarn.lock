@@ -6006,6 +6006,13 @@ object.values@^1.1.5:
     define-properties "^1.1.4"
     es-abstract "^1.20.4"
 
+octokit-plugin-create-pull-request@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/octokit-plugin-create-pull-request/-/octokit-plugin-create-pull-request-4.0.0.tgz#1ea0c093882cc4944cd1f72eb4d018b32cc1e97c"
+  integrity sha512-ieo9CHoz4Q4W0Wu7bVTeQUBamH8HwZR+SrARY13cB99/kTCj8rP5SGHpw9cxEvCoZs0LGdoYemiQk+sgPDeU3g==
+  dependencies:
+    "@octokit/types" "^8.0.0"
+
 ofetch@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ofetch/-/ofetch-1.0.0.tgz#5a2604cdcb33349900e4f73ffe44de449a61101a"
