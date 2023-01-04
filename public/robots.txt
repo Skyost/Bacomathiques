@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /_nuxt/
-Disallow: 404.html
-Sitemap: https://bacomathiqu.es/sitemap.xml

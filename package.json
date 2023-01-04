@@ -47,6 +47,7 @@
     "mkdirp": "^1.0.4",
     "node-html-parser": "^6.1.4",
     "nuxt": "3.0.0",
+    "nuxt-simple-robots": "^0.1.6",
     "sass": "^1.56.1",
     "sass-loader": "^13.2.0",
     "sitemap": "^7.1.1",

@@ -44,6 +44,7 @@ export default defineNuxtConfig({
     '~/modules/generate-api-v2',
     '~/modules/generate-cname',
     '~/modules/generate-sitemap',
+    'nuxt-simple-robots',
     'skimple-components/nuxt',
     '@nuxt/content',
     '@nuxtjs/google-fonts'
@@ -67,5 +68,12 @@ export default defineNuxtConfig({
 
   cname: {
     hostname: site.host
+  },
+
+  robots: {
+    sitemap: `${site.host}/sitemap.xml`,
+    disallow: [
+      '404.html'
+    ]
   }
 })

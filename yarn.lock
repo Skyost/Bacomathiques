@@ -5922,6 +5922,13 @@ nuxi@3.0.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
+nuxt-simple-robots@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/nuxt-simple-robots/-/nuxt-simple-robots-0.1.6.tgz#149a363fc5e53e849823f1a36b20219c20bae840"
+  integrity sha512-q0cXDkErIromENRtj9n1xDNA3fQtb8TUtobeIBNqK7nt40xfWbMd6FHY0haOcJJq/GKiT4OmS/RS5huTPeRzpw==
+  dependencies:
+    "@nuxt/kit" "3.0.0"
+
 nuxt@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-3.0.0.tgz#0909e6566d79805f3a4ed6229573817cbde12e89"
