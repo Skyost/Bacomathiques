@@ -137,7 +137,7 @@ class AppAlertDialogOkButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => TextButton(
         onPressed: onPressed,
-        child: Text(MaterialLocalizations.of(context).okButtonLabel.toUpperCase()),
+        child: const Text('OK'),
       );
 }
 
@@ -156,7 +156,7 @@ class AppAlertDialogCloseButton extends StatelessWidget {
   Widget build(BuildContext context) => TextButton(
         onPressed: () => Navigator.pop(context),
         child: Text(
-          (cancel ? MaterialLocalizations.of(context).cancelButtonLabel : MaterialLocalizations.of(context).closeButtonLabel).toUpperCase(),
+          (cancel ? 'Annuler' : 'Fermer').toUpperCase(),
         ),
       );
 }
