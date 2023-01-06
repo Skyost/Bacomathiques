@@ -16,7 +16,7 @@
     <Meta name="twitter:creator" content="@Skyost" />
     <Meta name="twitter:url" :content="currentAddress" />
     <Meta name="twitter:image" :content="twitterImage" />
-    <Link rel="canonical" :href="$route.path" />
+    <Link rel="canonical" :href="currentAddress" />
     <slot />
   </Head>
 </template>

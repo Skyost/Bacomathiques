@@ -17,7 +17,7 @@ export default defineNuxtConfig({
         lang: 'fr'
       },
       meta: [
-        { hid: 'description', name: 'description', content: site.description },
+        { name: 'description', content: site.description },
         { name: 'theme-color', content: '#23313d' }
       ],
       link: [
@@ -43,7 +43,7 @@ export default defineNuxtConfig({
     '~/modules/generate-commit-sha-file',
     '~/modules/generate-api-v2',
     '~/modules/generate-cname',
-    '~/modules/generate-sitemap',
+    'nuxt-simple-sitemap',
     'nuxt-simple-robots',
     'skimple-components/nuxt',
     '@nuxt/content',
@@ -63,7 +63,8 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
-    hostname: site.host
+    hostname: site.host,
+    trailingSlash: true
   },
 
   cname: {
@@ -71,9 +72,6 @@ export default defineNuxtConfig({
   },
 
   robots: {
-    sitemap: `${site.host}/sitemap.xml`,
-    disallow: [
-      '404.html'
-    ]
+    sitemap: `${site.host}/sitemap.xml`
   }
 })

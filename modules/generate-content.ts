@@ -1,4 +1,4 @@
-import path, { dirname } from 'path'
+import path from 'path'
 import fs from 'fs'
 import { execSync } from 'child_process'
 import { HTMLElement, parse } from 'node-html-parser'
@@ -39,7 +39,7 @@ export default defineNuxtModule({
     ignored.push(resolver.resolve(nuxt.options.rootDir, options.pandocRedefinitions))
     ignored.push(resolver.resolve(nuxt.options.rootDir, options.imagesDir))
 
-    const proceededFiles = await processFiles(
+    await processFiles(
       resolver,
       ignored,
       resolver.resolve(nuxt.options.rootDir, options.pandocRedefinitions),
@@ -55,13 +55,6 @@ export default defineNuxtModule({
       resolver.resolve(nuxt.options.rootDir, options.imagesDir),
       resolver.resolve(nuxt.options.rootDir, options.imagesDestDir)
     )
-
-    const filePath = resolver.resolve(
-      nuxt.options.srcDir,
-      'node_modules/.cache/.contentGenerator/proceededFiles.json'
-    )
-    mkdirp.sync(dirname(filePath))
-    fs.writeFileSync(filePath, JSON.stringify(proceededFiles))
   }
 })
 
@@ -74,8 +67,7 @@ async function processFiles (
   pdfDir: string,
   lessonsDir: string,
   summariesDir: string
-) : Promise<Array<string>> {
-  const proceededFiles = []
+) {
   const files = fs.readdirSync(directory)
   for (const file of files) {
     const filePath = resolver.resolve(directory, file)
@@ -83,8 +75,7 @@ async function processFiles (
       continue
     }
     if (fs.lstatSync(filePath).isDirectory()) {
-      const result = await processFiles(resolver, ignored, pandocRedefinitions, filePath, resolver.resolve(mdDir, file), resolver.resolve(pdfDir, file), lessonsDir, summariesDir)
-      proceededFiles.push(...result)
+      await processFiles(resolver, ignored, pandocRedefinitions, filePath, resolver.resolve(mdDir, file), resolver.resolve(pdfDir, file), lessonsDir, summariesDir)
     } else if (file.endsWith('.tex')) {
       logger.info(name, `Processing "${filePath}"...`)
       const fileName = getFileName(file)
@@ -109,7 +100,6 @@ async function processFiles (
           fs.writeFileSync(resolver.resolve(summaryDir, `${fileName}.md`), toString(root, header))
         }
       }
-      proceededFiles.push(resultFile)
       const lessonPdfFile = resolver.resolve(pdfDir, `${fileName}.pdf`)
       if (!fs.existsSync(lessonPdfFile)) {
         mkdirp.sync(pdfDir)
@@ -119,7 +109,6 @@ async function processFiles (
       }
     }
   }
-  return proceededFiles
 }
 
 function addIdentifiersToTitles (root: HTMLElement) {
@@ -179,7 +168,7 @@ function addVueComponents (root: HTMLElement) {
 }
 
 function removeUnnecessaryElements (root: HTMLElement) {
-  const elements = root.querySelectorAll('bubble[variant="tip"], bubble[variant="proof"], .no-summary')
+  const elements = root.querySelectorAll('bubble[variant="tip"], bubble[variant="proof"], .nosummary')
   for (const element of elements) {
     element.remove()
   }

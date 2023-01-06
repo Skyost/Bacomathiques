@@ -1,13 +1,16 @@
 module.exports = {
-  plugins: ['stylelint-scss'],
-  extends: ['stylelint-config-standard'],
+  extends: [
+    'stylelint-config-standard-scss',
+    'stylelint-config-recommended-vue'
+  ],
   rules: {
     'at-rule-no-unknown': null,
     'scss/at-rule-no-unknown': true,
-    'selector-pseudo-element-no-unknown': [
+    'scss/no-global-function-names': null,
+    'function-no-unknown': [
       true,
       {
-        ignorePseudoElements: ['v-deep']
+        ignoreFunctions: ['lighten', 'darken']
       }
     ]
   }
