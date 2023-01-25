@@ -3,7 +3,7 @@ import { useLazyAsyncData } from '#app'
 
 const { data: commitSha } = useLazyAsyncData(
   'current-commit-sha',
-  () => queryContent('/latest-commit')
+  () => queryContent('latest-commit')
     .findOne()
 )
 </script>

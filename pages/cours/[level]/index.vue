@@ -4,6 +4,7 @@ import { useLazyAsyncData, useRoute } from 'nuxt/app'
 const route = useRoute()
 const { pending, data: lessons } = useLazyAsyncData(
   () => queryContent('generated', 'lessons', route.params.level)
+    .without(['body'])
     .sort({ chapter: 1 })
     .find()
 )

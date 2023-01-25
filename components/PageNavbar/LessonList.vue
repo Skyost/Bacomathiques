@@ -10,6 +10,7 @@ const { pending, data } = useLazyAsyncData(
   async () => {
     const lessons = await queryContent('generated', 'lessons')
       // .sort({ chapter: 1 })
+      .only(['chapter', 'level', 'id', 'title'])
       .find()
     for (const lesson of lessons) {
       lesson.searchTerms = normalize(`${lesson.title} (${levels[lesson.level].name})`)
