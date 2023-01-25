@@ -544,7 +544,7 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@nuxt/content@^2.2.2":
+"@nuxt/content@^2.4.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@nuxt/content/-/content-2.4.0.tgz#9a40923d7c3c8527291b1f787b89bcfa580b503c"
   integrity sha512-yqb0Z9Hah5TNV3srLaumHPABHNH/uwx3UT0AL74EnKHS5A+KqB5zYGGwzorrPU/+3g0WR0088VyD9RjDYbJm8A==
