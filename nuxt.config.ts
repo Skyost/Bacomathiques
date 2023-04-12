@@ -10,6 +10,12 @@ import site from './site'
 export default defineNuxtConfig({
   ssr: true,
 
+  runtimeConfig: {
+    public: {
+      debug: process.env.DEBUG === 'true'
+    }
+  },
+
   app: {
     head: {
       titleTemplate: `%s | ${site.name}`,

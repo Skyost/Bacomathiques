@@ -1,9 +1,7 @@
-// This is just a temporary module that will allow users to upgrade to the new API (which is not ready at all to be honest).
-
 import fs from 'fs'
 import { parse } from 'node-html-parser'
 import yaml from 'yaml'
-import mkdirp from 'mkdirp'
+import { mkdirp } from 'mkdirp'
 import { createResolver, defineNuxtModule } from '@nuxt/kit'
 import * as matter from 'gray-matter'
 import site from '../site'

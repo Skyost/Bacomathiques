@@ -5,7 +5,7 @@
     close-button="Fermer"
     size="lg"
   >
-    <lesson-list @lessonpicked="closeModal" />
+    <lesson-list />
   </ski-modal>
 </template>
 
@@ -13,12 +13,7 @@
 import LessonList from '~/components/PageNavbar/LessonList.vue'
 
 export default {
-  components: { LessonList },
-  methods: {
-    closeModal () {
-      new bootstrap.Modal(`#${this.$el.id}`).hide()
-    }
-  }
+  components: { LessonList }
 }
 </script>
 

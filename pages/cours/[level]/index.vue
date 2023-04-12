@@ -5,7 +5,7 @@ const route = useRoute()
 const { pending, data: lessons } = useLazyAsyncData(
   () => queryContent('generated', 'lessons', route.params.level)
     .without(['body'])
-    .sort({ chapter: 1 })
+    .sort({ chapter: 1, $numeric: true })
     .find()
 )
 </script>

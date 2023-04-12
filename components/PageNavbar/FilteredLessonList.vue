@@ -10,14 +10,13 @@
       v-for="lesson in filteredLessons"
       :key="lesson.id"
     >
-      <nuxt-link
+      <a
         class="dropdown-item"
         :class="{'current': (getLessonUrl(lesson) === $route.path || getLessonUrl(lesson) === ($route.path + '/'))}"
-        :to="getLessonUrl(lesson)"
-        @click="$emit('lessonpicked', { level, lesson })"
+        :href="getLessonUrl(lesson)"
       >
         {{ prependChapterToTitle(lesson) }}
-      </nuxt-link>
+      </a>
     </li>
   </ul>
 </template>
@@ -40,7 +39,6 @@ export default {
       default: null
     }
   },
-  emits: ['lessonpicked'],
   computed: {
     levelName () {
       return levels[this.level].name

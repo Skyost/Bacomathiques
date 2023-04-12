@@ -16,28 +16,18 @@ useHead({
     }
   ]
 })
+
+const runtimeConfig = useRuntimeConfig()
+const debug = runtimeConfig.public.debug
 </script>
 
 <template>
   <ins
     class="adsbygoogle d-block"
-    :data-ad-client="clientID"
+    :data-ad-client="debug ? 'ca-google' : 'ca-pub-7167241518798106'"
     data-ad-slot="4882057404"
     data-ad-format="auto"
     data-full-width-responsive="true"
-    :data-adtest="test ? 'on' : null"
+    :data-adtest="debug ? 'on' : null"
   />
 </template>
-
-<script>
-export default {
-  computed: {
-    test () {
-      return process.env.NODE_ENV !== 'production'
-    },
-    clientID () {
-      return this.test ? 'ca-google' : 'ca-pub-7167241518798106'
-    }
-  }
-}
-</script>

@@ -9,14 +9,13 @@ const levelsList = computed(() => Object.values(levels))
 const { pending, data } = useLazyAsyncData(
   async () => {
     const lessons = await queryContent('generated', 'lessons')
-      // .sort({ chapter: 1 })
       .only(['chapter', 'level', 'id', 'title'])
+      .sort({ chapter: 1, $numeric: true })
       .find()
     for (const lesson of lessons) {
       lesson.searchTerms = normalize(`${lesson.title} (${levels[lesson.level].name})`)
     }
     return lessons
-      .sort((a, b) => parseInt(a.chapter) - parseInt(b.chapter))
   }
 )
 </script>

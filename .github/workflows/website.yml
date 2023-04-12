@@ -34,13 +34,14 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
+          cache: 'npm'
       - name: Install dependencies 👨🏻‍💻
-        run: yarn install --frozen-lockfile
+        run: npm ci
       - name: Generate ⚙️
-        run: yarn generate
+        run: npm run generate
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
           folder: dist
+          branch: gh-pages
           single-commit: true

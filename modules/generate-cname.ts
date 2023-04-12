@@ -1,6 +1,6 @@
 import { dirname } from 'path'
-import fs from 'fs'
-import mkdirp from 'mkdirp'
+import * as fs from 'fs'
+import { mkdirp } from 'mkdirp'
 import { createResolver, defineNuxtModule } from '@nuxt/kit'
 
 export default defineNuxtModule({
