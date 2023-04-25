@@ -58,7 +58,7 @@
     "typescript": "^5.0.4",
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-stylelint": "^4.3.0",
-    "yaml": "^2.2.1"
+    "yaml": "^2.2.2"
   },
   "description": "Petit site web qui contient tout ce dont vous avez besoin pour réviser vos maths en toute tranquillité.",
   "main": ".eslintrc.js",
