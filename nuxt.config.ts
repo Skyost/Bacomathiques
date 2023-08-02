@@ -69,15 +69,11 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
-    hostname: site.host,
+    siteUrl: site.host,
     trailingSlash: true
   },
 
   cname: {
     hostname: site.host
-  },
-
-  robots: {
-    sitemap: `${site.host}/sitemap.xml`
   }
 })

@@ -23,7 +23,7 @@ import site from '~/site'
     <p>
       Ce site utilise des services tiers tels que Google AdSense.
       L'application utilise Google AdMob, il vous est donc possible de consulter
-      la <a href="/pdf/politique-de-confidentialite.pdf">Politique de confidentialité</a>.
+      la <a href="https://github.com/Skyost/Bacomathiques/blob/master/politique-de-confidentialite.md">Politique de confidentialité</a>.
     </p>
 
     <hr>
