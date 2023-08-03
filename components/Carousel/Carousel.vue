@@ -128,7 +128,7 @@ export default {
 
     .carousel-indicator {
       display: inline-block;
-      background-color: #efefef;
+      background-color: #efefef !important;
       height: $indicatorSize;
       width: $indicatorSize;
       border-radius: calc($indicatorSize / 2);
@@ -142,7 +142,7 @@ export default {
       }
 
       &.active {
-        background-color: white;
+        background-color: white !important;
         width: $indicatorBigSize;
       }
     }
