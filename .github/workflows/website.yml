@@ -26,7 +26,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest ]
-        node: [ 16 ]
+        node: [ latest ]
     steps:
       - name: Checkout 🛎
         uses: actions/checkout@v3
@@ -40,7 +40,7 @@ jobs:
       - name: Generate ⚙️
         run: npm run generate
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
           branch: gh-pages
