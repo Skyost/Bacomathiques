@@ -1,0 +1,44 @@
+% Commandes :
+
+\providecommand{\header}[2]{
+	\begin{document-header}
+		\section{#1}
+		#2
+	\end{document-header}
+}
+\providecommand{\lesson}[5][]{%
+	\newcommand{\level}{#2}%
+	\newcommand{\id}{#4}%
+	\header{level}{#2}%
+	\header{id}{#4}%
+	\header{title}{#5}%
+	\header{chapter}{#3}%
+	\header{specialty}{#1}%
+}
+\providecommand{\imagespath}{/img}
+\providecommand{\includelatexpicture}[2][]{
+  \begin{center}
+    \includegraphics{\lessonimagespath#2.svg}
+  \end{center}
+}
+\providecommand{\includeimage}[1]{
+  \begin{center}
+    \includegraphics{\lessonimagespath#1}
+  \end{center}
+}
+\providecommand{\includerepresentation}[1]{\begin{geogebra-representation}#1\end{geogebra-representation}}
+\providecommand{\newpar}{
+
+
+}
+\providecommand{\contentwidth}[1][medium]{\begin{content-width}#1\end{content-width}}
+\providecommand{\iere}{ère}
+\providecommand{\ieme}{ème}
+\providecommand{\entretitreetliste}{}
+
+% Environnements :
+
+\renewenvironment{formula}[1][]{\begin{bubble-formula}\subsubsection{#1}}{\end{bubble-formula}}
+\renewenvironment{tip}[1][]{\begin{bubble-tip}\subsubsection{#1}}{\end{bubble-tip}}
+\renewenvironment{demonstration}[1][]{\begin{bubble-proof}\subsubsection{#1}}{\end{bubble-proof}}
+\renewenvironment{whitetabularx}[1]{\begin{tabularx}{\textwidth}{#1}}{\end{tabularx}}

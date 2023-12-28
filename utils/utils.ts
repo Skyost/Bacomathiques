@@ -1,14 +1,48 @@
-function sleeper (ms: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms))
-}
+import path from 'path'
+import crypto from 'crypto'
 
-function normalize (string: string): string {
-  return string.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()
-}
+/**
+ * Extracts the filename from a given file path.
+ *
+ * @param {string} file - File path.
+ * @returns {string} - Filename.
+ */
+export const getFileName = (file: string): string => path.parse(file).name
 
-function romanize (num: number) {
+/**
+ * Generates an MD5 checksum for a given string.
+ *
+ * @param {string} string - Input string.
+ * @returns {string} - MD5 checksum.
+ */
+export const generateChecksum = (string: string): string => crypto
+  .createHash('md5')
+  .update(string, 'utf8')
+  .digest('hex')
+
+/**
+ * Sleeps for a given time.
+ *
+ * @param {number} ms - The time to sleep.
+ */
+export const sleeper = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms))
+
+/**
+ * Normalizes a string by removing diacritics and converting to lowercase.
+ *
+ * @param {string} string - Input string.
+ * @returns {string} - Normalized string.
+ */
+export const normalizeString = (string: string): string => string.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()
+
+/**
+ * Romanizes a given number.
+ *
+ * @param {number} num - The number.
+ */
+export const romanize = (num: number) : string => {
   if (isNaN(num)) {
-    return NaN
+    return ''
   }
   const digits = String(+num).split('')
   const key = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM',
@@ -17,9 +51,7 @@ function romanize (num: number) {
   let roman = ''
   let i = 3
   while (i--) {
-    roman = (key[+digits.pop() + (i * 10)] || '') + roman
+    roman = (key[+digits.pop()! + (i * 10)] || '') + roman
   }
   return Array(+digits.join('') + 1).join('M') + roman
 }
-
-export { sleeper, normalize, romanize }

@@ -1,3 +1,20 @@
+<script setup lang="ts">
+import FlatCard from '~/components/Cards/FlatCard'
+
+withDefaults(defineProps<{
+  to?: string,
+  blue?: boolean,
+  size: number,
+  mb?: number,
+  image?: string
+}>(), {
+  to: undefined,
+  blue: false,
+  mb: 0,
+  image: undefined
+})
+</script>
+
 <template>
   <ski-column :class="`mb-xl-${mb}`" width="12" :lg="(size + 1).toString()" :xl="size.toString()">
     <nuxt-link class="link" :to="to">
@@ -7,36 +24,6 @@
     </nuxt-link>
   </ski-column>
 </template>
-
-<script>
-import FlatCard from '~/components/Cards/FlatCard'
-
-export default {
-  components: { FlatCard },
-  props: {
-    to: {
-      type: String,
-      default: null
-    },
-    blue: {
-      type: Boolean,
-      default: false
-    },
-    size: {
-      type: Number,
-      required: true
-    },
-    mb: {
-      type: Number,
-      default: 0
-    },
-    image: {
-      type: String,
-      default: null
-    }
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 .link {

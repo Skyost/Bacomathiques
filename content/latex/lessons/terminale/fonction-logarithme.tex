@@ -1,0 +1,154 @@
+\input{../common}
+
+\begin{document}
+	%<*content>
+	\lesson{terminale}{5}{fonction-logarithme}{La fonction logarithme népérien}
+
+	\header{caption}{Le logarithme népérien est utilisé dans les calculs logarithmiques et dans
+		l'étude de certaines croissances.}
+
+	\header{description}{Une fonction logarithme est une fonction possédant la propriété de pouvoir
+		transformer des produits en sommes. L''utilisation de telles fonctions permet de
+		faciliter les calculs comprenant de nombreuses multiplications, divisions et élévations
+		à des puissances rationnelles. Ici, nous étudierons la fonction logarithme népérien
+		: relations algébriques, signe, dérivée, variations, représentation et plus encore
+		!}
+
+	\header{difficulty}{4}
+
+	\section{Propriétés du logarithme népérien}
+
+	\subsection{Définition}
+
+	\begin{formula}[Définition]
+		Le \textbf{logarithme népérien} notée $\ln$ est la fonction définie sur $]0;+\infty[$ telle que pour tout $x > 0$ et $y$ réels :
+		\[ \ln(x) = y \iff x = e^y \]
+	\end{formula}
+
+	Ainsi, a tout réel \textbf{strictement positif} $x$, la fonction logarithme népérien y associe \textbf{son unique antécédent} $y$ par rapport à \href{https://bacomathiqu.es/cours/premiere/fonction-exponentielle/}{la fonction exponentielle}. De même pour la fonction exponentielle.
+
+	On dit que ces fonctions sont des \textbf{fonctions réciproques} (à la manière de $\sin$ et $\arcsin$ ou $\cos$ et $\arccos$).
+
+	\begin{tip}[Exemple]
+		Cette relation peut sembler compliquer à assimiler mais il n'en est rien ! Prenons $x = 0$, on a :
+		\newpar
+		$e^0 = 1$ (tout réel mis à la puissance zéro vaut un), la relation précédente nous donne $\ln(1) = 0$.
+		\newpar
+		Si on prend maintenant $x = 1$, on a :
+		\newpar
+		$e^1 = e$, on a donc $\ln(e) = 1$.
+	\end{tip}
+
+	Les relations suivantes sont par conséquent disponibles :
+
+	\begin{formula}[Relations entre fonctions réciproques]
+		Pour tout réel $x$ \textbf{strictement positif}, on a $e^{\ln(x)} = x$.
+		\newpar
+		Et pour tout réel $x$, on a $\ln(e^x) = x$.
+	\end{formula}
+
+	\subsection{Relations algébriques}
+
+	Le logarithme népérien a plusieurs propriétés intéressantes qu'il faut connaître.
+
+	\begin{formula}[Formules]
+		Pour tous réels $x$ et $y$ \textbf{strictement positifs} :
+		\begin{itemize}
+			\item $\ln(x \times y) = \ln(x) + \ln(y)$
+			\item $\ln(x^n) = n \times \ln(x)$ pour $n \in \mathbb{Z}$
+			\item $\ln\left(\frac{x}{y}\right) = \ln(x) - \ln(y)$
+			\item $\ln\left(\frac{1}{y}\right) = -\ln(y)$
+			\item $\ln(\sqrt[p]{x}) = \frac{1}{p} \times \ln(x)$ pour $p \in \mathbb{N}^*$
+		\end{itemize}
+	\end{formula}
+
+	Certaines de ces propriétés peuvent se déduire les unes des autres.
+
+	\subsection{Représentation graphique}
+	\label{representation-graphique}
+
+	Voici une représentation graphique de la fonction logarithme népérien :
+
+	\includerepresentation{wsntfeab}
+
+	On voit sur ce graphique plusieurs propriétés données précédemment : $\ln(1) = 0$ et $\ln(e) = 1$ par exemple.
+	On trace maintenant le graphe de la fonction logarithme népérien, avec celui de la fonction exponentielle. On trace également la droite d'équation $y = x$ :
+
+	\includerepresentation{aymmb94w}
+
+	On remarque plusieurs choses : le graphe de la fonction logarithme népérien est le symétrique de celui de la fonction exponentielle par rapport à la
+	droite $y = x$ et on voit que la fonction logarithme népérien croît moins vite que la fonction puissance qui elle-même croît moins vite que la fonction exponentielle. Cette propriété est importante : c'est la \textbf{croissance comparée}.
+
+	\section{Étude de la fonction}
+
+	\subsection{Limites}
+
+	\begin{formula}[Limites]
+		Les limites de la fonction logarithme népérien aux bornes de son ensemble de définition sont :
+		\begin{itemize}
+			\item $\lim\limits_{x \rightarrow 0^+} \ln(x) = -\infty$
+			\item $\lim\limits_{x \rightarrow +\infty} \ln(x) = +\infty$
+		\end{itemize}
+	\end{formula}
+
+	Il faut aussi savoir que la fonction puissance ``l'emporte'' sur le logarithme népérien (voir la partie \hyperref[representation-graphique]{``Représentation graphique''}).
+
+	\begin{formula}[Croissances comparées]
+		Pour tout $n \in \mathbb{N}$ :
+		\begin{itemize}
+			\item $\lim\limits_{x \rightarrow +\infty} \frac{\ln(x)}{x^n} = 0$.
+			\item $\lim\limits_{x \rightarrow 0^+} x^n \ln(x) = 0$.
+		\end{itemize}
+	\end{formula}
+
+	\begin{demonstration}[Croissances comparées]
+		Nous allons démontrer le second point en utilisant le premier (qui n'est pas éligible à une démonstration au lycée) dans le cas $n = 1$. Pour tout $x > 0$, posons $y = \frac{1}{x}$.
+		\newpar
+		On a donc pour tout, $x \ln(x) = \frac{1}{y} \ln\left(\frac{1}{y}\right) = -\frac{\ln(y)}{y}$.
+		\newpar
+		Or, quand $x$ tend vers $0^+$, $y$ tend vers $+\infty$. Par le premier point :
+		\[ \lim\limits_{\substack{y \rightarrow +\infty}} \frac{\ln(y)}{y} = 0 \iff \lim\limits_{\substack{y \rightarrow +\infty}} -\frac{\ln(y)}{y} = 0 \]
+		Et en remplaçant $y$ par $\frac{1}{x}$ dans le résultat ci-dessus, on a bien ce que l'on cherchait.
+	\end{demonstration}
+
+	Pour finir, on donne une limite qu'il peut être utile de savoir redémontrer.
+
+	\begin{formula}
+		\[ \lim\limits_{\substack{x \rightarrow 0}} \frac{\ln(1 + x)}{x} = 1 \]
+	\end{formula}
+
+	\begin{demonstration}
+		La fonction logarithme népérien est dérivable en $1$ (voir sous-section suivante), on peut donc écrire :
+		\[ \lim\limits_{x \rightarrow 0} \frac{\ln(1+x)}{x} = \lim\limits_{x \rightarrow 0} \frac{\ln(x+1) - \ln(1)}{x} = \ln'(1) = \frac{1}{1} = 1 \]
+	\end{demonstration}
+
+	\subsection{Dérivée}
+
+	\begin{formula}[Dérivée d'une composée]
+		Soit une fonction $u$ dérivable et \textbf{strictement positive} sur un intervalle $I$, on a pour tout $x$ appartenant à cet intervalle :
+		\[ \ln'(u(x)) = \frac{u'(x)}{u(x)} \]
+	\end{formula}
+
+	\begin{formula}[Dérivée]
+		Ainsi, si pour tout $x \in I$ on a $u(x) = x$, on trouve :
+		\[ \ln'(x) = \frac{1}{x} \]
+	\end{formula}
+
+	\subsection{Variations}
+
+	Avec la dérivée donnée précédemment ainsi que les limites données, il est désormais possible d'obtenir les variations de la fonction logarithme népérien.
+
+	\begin{formula}[Signe et variations]
+		\contentwidth[big]
+		\includelatexpicture{variations}
+
+		On remarque qu'avec le tableau de variation, il est possible d'obtenir le signe de la fonction (avec le théorème des valeurs
+		intermédiaires).
+		\newpar
+		Ainsi, sur $]0;1[$, $\ln$ est \textbf{strictement négative} et sur $]1;+\infty[$,
+		$\ln(x)$ est \textbf{strictement positive} et, comme vu précédemment, $\ln(1) = 0$.
+		\newpar
+		On observe également les variations de la fonction : strictement croissante sur son ensemble de définition.
+	\end{formula}
+	%</content>
+\end{document}

@@ -1,0 +1,178 @@
+\input{../common}
+
+\begin{document}
+	%<*content>
+	\lesson{premiere}{5}{fonctions-trigonometriques}{Les fonctions trigonométriques}
+
+	\header{caption}{Les fonctions trigonométriques sont notamment utilisées dans l'étude de certaines
+		trajectoires.}
+
+	\header{description}{La trigonométrie est une branche des mathématiques qui traite des relations
+		entre distances et angles dans les triangles et des fonctions trigonométriques telles
+		que sinus, cosinus et tangente. Ce cours va introduire la notion de radian et de
+		cercle trigonométrique, puis il permettra d'étudier les fonctions citées précédemment
+		(périodicité, parité, valeurs remarquables, et plus encore).}
+
+	\header{difficulty}{4}
+
+	\section{Le cercle trigonométrique}
+
+	\subsection{Définition}
+
+	Dans tout le cours, le plan sera muni d'un repère orthonormé $(O,\ \overrightarrow{i} ;\ \overrightarrow{j})$. Il sera également muni d'un cercle $\mathcal{C}$ appelé \textbf{cercle trigonométrique} de centre $O$ et de rayon $1$ orienté dans le sens inverse des aiguilles d'une montre (c'est le \textbf{sens direct}) :
+
+	\includerepresentation{t52gsb2h}
+
+	\begin{formula}[Cosinus et sinus]
+		Soit $M$ un point quelconque situé sur le cercle $\mathcal{C}$ faisant un angle $x$ avec l'axe des abscisses. Les coordonnées de $M$ sont :
+		\begin{itemize}
+			\item L'abscisse de $M$ appelée \textbf{cosinus} est notée $\cos(x)$.
+			\item L'ordonnée de $M$ appelée \textbf{sinus} est notée $\sin(x)$.
+			\item Pour tout $x \in \mathbb{R}$, on a $-1 \leq \cos(x) \leq 1$ et $-1 \leq \sin(x) \leq 1$.
+		\end{itemize}
+	\end{formula}
+
+	\subsection{Enroulement de la droite des réels autour du cercle trigonométrique}
+
+	Il est possible ``d'enrouler'' la droite des réels autour du cercle $\mathcal{C}$ dans le sens inverse des aiguilles d'une montre :
+	\includerepresentation{b4vazqb5}
+
+	\begin{tip}[Longueur d'arcs de cercle]
+		L'enroulement de cette droite permet ainsi de mesurer des longueurs d'arcs sur le cercle $\mathcal{C}$. Ainsi, la longueur d'un quart de cercle vaut $\displaystyle{\frac{\pi}{2}}$ (celle d'un demi-cercle vaut $\pi$ et celle d'un cercle vaut $2\pi$).
+	\end{tip}
+
+	Ainsi, puisque l'on peut enrouler infiniment cette droite autour du cercle, les fonctions sinus et cosinus sont périodiques de période $2\pi$.
+
+	\begin{formula}[Périodicité]
+		Ainsi, pour tout $x$ réel et $k$ entier relatif :
+		\begin{itemize}
+			\item $\cos(x) = \cos(x + 2k\pi)$
+			\item $\sin(x) = \sin(x + 2k\pi)$
+		\end{itemize}
+	\end{formula}
+
+	\begin{tip}
+		Concrètement, cela signifie que pour tout $x \in \mathbb{R}$, $\cos(x) = \cos(x + 2\pi) = \cos(x + 4\pi) = \dots = \cos(x + 2k\pi)$ et idem pour $\sin(x)$.
+	\end{tip}
+
+	\subsection{Le radian}
+
+	\begin{formula}[Définition]
+		Le \textbf{radian} est une unité de mesure permettant de mesurer des \textbf{angles orientés}. La \textbf{mesure} en radians d'un angle vaut la longueur de l'arc de $\mathcal{C}$ que cet angle intercepte.
+	\end{formula}
+
+	\includerepresentation{yh9n8feb}
+
+	\begin{tip}
+		Cela veut simplement dire qu'un angle en radian n'est rien d'autre qu'une mesure de longueur d'arc du cercle trigonométrique.
+		\newpar
+		Attention cependant, comme le radian est une unité de mesure d'angles orientés, mesurer $\frac{\pi}{2}$ ou $-\frac{\pi}{2}$ radians n'est pas la même chose car les angles ont \textbf{une orientation}.
+		\newpar
+		La mesure est positive, si la rotation est effectuée dans le sens inverse des aiguilles d'une montre (le sens direct). Elle est négative si elle est effectuée dans le sens des aiguilles d'une montre (le sens indirect).
+	\end{tip}
+
+	\section{Étude des fonctions trigonométriques}
+
+	\subsection{Formules de trigonométrie}
+
+	\begin{formula}[Formules]
+		On a les relations suivantes pour tout $x \in \mathbb{R}$ :
+		\begin{itemize}
+			\item $\cos(-x) = \cos(x)$ (la fonction cosinus est \textbf{paire})
+			\item $\sin(-x) = -\sin(x)$ (la fonction sinus est \textbf{impaire})
+			\item $\cos(\pi + x) = -\cos(x)$
+			\item $\sin(\pi + x) = -\sin(x)$
+			\item $\cos(\pi - x) = -\cos(x)$
+			\item $\sin(\pi - x) = \sin(x)$
+			\item $\cos \left(\frac{\pi}{2} + x \right) = -\sin(x)$
+			\item $\sin \left(\frac{\pi}{2} + x \right) = \cos(x)$
+			\item $\cos \left(\frac{\pi}{2} - x \right) = \sin(x)$
+			\item $\sin \left(\frac{\pi}{2} - x \right) = \cos(x)$
+			\item $\cos(x + y) = \cos(x) \times \cos(y) - \sin(x) \times \sin(y)$
+			\item $\sin(x + y) = \sin(x) \times \cos(y) + \cos(x) \times \sin(y)$
+			\item $\cos(x)^2 + \sin(x)^2 = 1$
+		\end{itemize}
+	\end{formula}
+
+	\begin{tip}[Retrouver les formules]
+		Il n'est aucunement demandé de mémoriser ces formules (sauf les trois dernières). Cependant, il doit être possible de les retrouver à l'aide du cercle trigonométrique. Ainsi, prenons l'exemple de $\cos(x + \pi)$ :
+		\includerepresentation{xghkwjkf}
+		On remarque que l'ordonnée reste la même (le sinus est le même). Cependant, on a bien une abscisse opposée. On a retrouvé la formule $\cos(x + \pi) = -\cos(x)$.
+	\end{tip}
+
+	\subsection{Dérivée}
+
+	\begin{formula}[Dérivée d'une composée]
+		Soit une fonction $u$ dérivable sur un intervalle $I$, on a pour tout $x$ appartenant à cet intervalle :
+		\begin{itemize}
+			\item $\cos'(u(x)) = -u'(x)\sin(u(x))$
+			\item $\sin'(u(x)) = u'(x)\cos(u(x))$
+		\end{itemize}
+	\end{formula}
+
+	\begin{formula}[Dérivée]
+		Ainsi, si pour tout $x \in I$ on a $u(x) = x$, on trouve :
+		\begin{itemize}
+			\item $\cos'(x) = -\sin(x)$
+			\item $\sin'(x) = \cos(x)$
+		\end{itemize}
+	\end{formula}
+
+	\subsection{Signe et variations}
+
+	L'étude du signe des dérivées des fonctions trigonométriques permet d'obtenir les variations de celles-ci. Nous allons donc voir le signe et les variations de ces fonctions.
+
+	\begin{formula}[Signe et variation de la fonction cosinus]
+		\contentwidth[big]
+		\includelatexpicture{variations-cos}
+
+		Veuillez noter que ce tableau est périodique de période $2\pi$.
+	\end{formula}
+
+	\begin{formula}[Signe et variation de la fonction sinus]
+		\contentwidth[big]
+		\includelatexpicture{variations-sin}
+
+		Ce tableau est également périodique de période $2\pi$.
+	\end{formula}
+
+	\subsection{Valeurs remarquables}
+
+	\begin{formula}[Valeurs remarquables]
+		Voici un tableau regroupant quelques valeurs remarquables de sinus et de cosinus :
+		\newpar
+		\begin{whitetabularx}{|X|l|l|}
+			\hline
+			\textbf{Valeur de $x$ (à $2k\pi$ près, $k \in \mathbb{Z}$)} & \textbf{Valeur de $\cos(x)$} & \textbf{Valeur de $\sin(x)$} \\
+			\hline
+			$0$ & $1$ & $0$ \\
+			\hline
+			$\frac{\pi}{6}$ & $\frac{\sqrt{3}}{2}$ & $\frac{1}{2}$ \\
+			\hline
+			$\frac{\pi}{4}$ & $\frac{\sqrt{2}}{2}$ & $\frac{\sqrt{2}}{2}$ \\
+			\hline
+			$\frac{\pi}{3}$ & $\frac{1}{2}$ & $\frac{\sqrt{3}}{2}$ \\
+			\hline
+			$\frac{\pi}{2}$ & $0$ & $1$ \\
+			\hline
+			$\frac{2\pi}{3}$ & $-\frac{1}{2}$ & $\frac{\sqrt{3}}{2}$ \\
+			\hline
+			$\frac{3\pi}{4}$ & $-\frac{\sqrt{2}}{2}$ & $\frac{\sqrt{2}}{2}$ \\
+			\hline
+			$\frac{5\pi}{6}$ & $-\frac{\sqrt{3}}{2}$ & $\frac{1}{2}$ \\
+			\hline
+			$\pi$ & $-1$ & $0$ \\
+			\hline
+		\end{whitetabularx}
+	\end{formula}
+
+	\subsection{Représentation graphique}
+
+	À l'aide de toutes les informations et valeurs données précédemment, il est possible d'établir une représentation graphique de la fonction cosinus :
+	\includerepresentation{gkpmaugu}
+
+	De même pour la fonction sinus :
+	\includerepresentation{zhwqmkjd}
+	On remarque sur ces graphiques plusieurs propriétés données : parité, signe, périodicité, etc.
+	%</content>
+\end{document}

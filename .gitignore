@@ -93,7 +93,7 @@ sw.*
 # Vercel
 .vercel
 
-# "Generate content" module
+# Generated files
 *.aux
 *.fdb_latexmk
 *.fls
@@ -101,12 +101,7 @@ sw.*
 *.synctex
 *.synctex.gz
 *.toc
-latex/lessons/*/*.pdf
-latex/images/lessons/**/*.pdf
-latex/images/lessons/**/*.svg
-public/img/lessons/*/**/*.svg
-content/generated/
-public/pdf/lessons/
-
-# "Generate commit sha file" module
+content/**/*.pdf
+content/**/*.svg
+content/**/*.checksums
 content/latest-commit.json

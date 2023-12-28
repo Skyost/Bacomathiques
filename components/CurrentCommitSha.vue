@@ -1,25 +1,20 @@
-<script setup>
-import { useLazyAsyncData } from '#app'
+<script setup lang="ts">
+import { site } from '~/site/site'
 
-const { data: commitSha } = useLazyAsyncData(
+interface CommitSha {
+  long: string,
+  short: string
+}
+
+const { data } = useLazyAsyncData<CommitSha>(
   'current-commit-sha',
-  () => queryContent('latest-commit')
+  () => queryContent<CommitSha>('latest-commit')
     .findOne()
 )
+
+const githubRepo = `https://github.com/${site.github.username}/${site.github.repository}`
 </script>
 
 <template>
-  <span v-if="commitSha">Révision <a :href="`${githubRepo}/commit/${commitSha.long}`">&#35;{{ commitSha.short }}</a>.</span>
+  <span v-if="data">Révision <a :href="`${githubRepo}/commit/${data.long}`">&#35;{{ data.short }}</a>.</span>
 </template>
-
-<script>
-import site from '~/site'
-
-export default {
-  computed: {
-    githubRepo () {
-      return `https://github.com/${site.github.username}/${site.github.repository}`
-    }
-  }
-}
-</script>

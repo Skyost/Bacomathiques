@@ -1,3 +1,15 @@
+<script setup lang="ts">
+import FlatCard from '~/components/Cards/FlatCard'
+
+withDefaults(defineProps<{
+  sal?: string,
+  blue?: boolean
+}>(), {
+  sal: undefined,
+  blue: false
+})
+</script>
+
 <template>
   <ski-container :fluid="true">
     <ski-columns :data-sal="sal" class="justify-content-center">
@@ -9,21 +21,3 @@
     </ski-columns>
   </ski-container>
 </template>
-
-<script>
-import FlatCard from '~/components/Cards/FlatCard'
-
-export default {
-  components: { FlatCard },
-  props: {
-    sal: {
-      type: String,
-      default: null
-    },
-    blue: {
-      type: Boolean,
-      default: false
-    }
-  }
-}
-</script>

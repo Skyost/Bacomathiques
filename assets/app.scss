@@ -82,3 +82,36 @@ $enable-rounded: false;
     border-color: white;
   }
 }
+
+.btn-white {
+  --bs-btn-color: var(--bs-primary);
+  --bs-btn-bg: var(--bs-white);
+  --bs-btn-border-color: var(--bs-white);
+  --bs-btn-hover-color: var(--bs-primary);
+  --bs-btn-hover-bg: #{shade-color(white, 10%)};
+  --bs-btn-hover-border-color: #{shade-color(white, 10%)};
+  --bs-btn-focus-shadow-rgb: var(--bs-primary);
+  --bs-btn-active-color: var(--bs-btn-hover-color);
+  --bs-btn-active-bg: #{shade-color(white, 20%)};
+  --bs-btn-active-border-color: #{shade-color(white, 20%)};
+}
+
+.btn-primary {
+  --bs-btn-color: var(--bs-white) !important;
+  --bs-btn-hover-color: var(--bs-white) !important;
+  --bs-btn-hover-bg: #{shade-color($primary, 10%)} !important;
+  --bs-btn-active-color: var(--bs-btn-hover-color);
+}
+
+.btn-green {
+  --bs-btn-color: var(--bs-white);
+  --bs-btn-bg: var(--bs-green);
+  --bs-btn-border-color: var(--bs-green);
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: #{shade-color($green, 10%)};
+  --bs-btn-hover-border-color: #{shade-color($green, 10%)};
+  --bs-btn-focus-shadow-rgb: var(--bs-green);
+  --bs-btn-active-color: var(--bs-btn-hover-color);
+  --bs-btn-active-bg: #{shade-color($green, 20%)};
+  --bs-btn-active-border-color: #{shade-color($green, 20%)};
+}

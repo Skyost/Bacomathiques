@@ -1,3 +1,11 @@
+<script setup lang="ts">
+withDefaults(defineProps<{
+  sal?: string
+}>(), {
+  sal: undefined
+})
+</script>
+
 <template>
   <ski-container class="flat-cards" :fluid="true">
     <ski-columns class="justify-content-center" :data-sal="sal">
@@ -6,18 +14,7 @@
   </ski-container>
 </template>
 
-<script>
-export default {
-  props: {
-    sal: {
-      type: String,
-      default: null
-    }
-  }
-}
-</script>
-
-<style lang="scss">
+<style lang="scss" scoped>
 @import 'assets/colors';
 
 .flat-cards {

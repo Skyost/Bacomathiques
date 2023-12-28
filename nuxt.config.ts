@@ -1,20 +1,13 @@
-import * as dotenv from 'dotenv'
-dotenv.config()
-
 import { defineNuxtConfig } from 'nuxt/config'
 import StylelintPlugin from 'vite-plugin-stylelint'
 import eslintPlugin from 'vite-plugin-eslint'
-import site from './site'
+import 'dotenv/config'
+import { site } from './site/site'
+import { debug } from './site/debug'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   ssr: true,
-
-  runtimeConfig: {
-    public: {
-      debug: process.env.DEBUG === 'true'
-    }
-  },
 
   app: {
     head: {
@@ -27,7 +20,7 @@ export default defineNuxtConfig({
         { name: 'theme-color', content: '#23313d' }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/img/favicon.ico' }
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
       ]
     }
   },
@@ -45,16 +38,29 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    '~/modules/generate-content',
-    '~/modules/generate-commit-sha-file',
-    '~/modules/generate-api-v2',
-    '~/modules/generate-cname',
+    '~/modules/commit-sha-file-generator',
+    '~/modules/cname-generator',
+    '~/modules/latex-pdf-generator',
+    '~/modules/nuxt-content-latex',
+    '~/modules/api-v2-generator',
     'nuxt-simple-sitemap',
     'nuxt-simple-robots',
     'skimple-components/nuxt',
     '@nuxt/content',
     '@nuxtjs/google-fonts'
   ],
+
+  content: {
+    watch: false,
+    ignores: [
+      ...'log,aux,dvi,lof,lot,bit,idx,glo,bbl,bcf,ilg,toc,ind,out,blg,fdb_latexmk,fls,run.xml,synctex.gz,snm,nav,sta,pdf,checksums'
+        .split(',')
+        .map(extension => `\\.${extension}$`),
+      '/latex/images/',
+      '/latex/lessons/common.tex',
+      '/latex/lessons/pandoc.tex'
+    ]
+  },
 
   googleFonts: {
     display: 'swap',
@@ -68,12 +74,19 @@ export default defineNuxtConfig({
     bootstrapJs: false
   },
 
-  sitemap: {
-    siteUrl: site.host,
+  site: {
+    url: site.host,
+    name: site.name,
     trailingSlash: true
   },
 
   cname: {
     hostname: site.host
+  },
+
+  runtimeConfig: {
+    public: {
+      debug
+    }
   }
 })

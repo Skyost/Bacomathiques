@@ -1,3 +1,15 @@
+<script setup lang="ts">
+withDefaults(defineProps<{
+  big?: boolean,
+  blue?: boolean
+  image?: string
+}>(), {
+  big: false,
+  blue: false,
+  image: undefined
+})
+</script>
+
 <template>
   <div class="flat-card">
     <div class="flat-card-content h-100" :class="{'big-flat-card-content': big, 'blue': blue}">
@@ -6,25 +18,6 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  props: {
-    big: {
-      type: Boolean,
-      default: false
-    },
-    blue: {
-      type: Boolean,
-      default: false
-    },
-    image: {
-      type: String,
-      default: null
-    }
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 @import 'assets/colors.scss';
@@ -68,6 +61,10 @@ export default {
 
     &.blue:hover {
       background-color: darken($primary, 3%) !important;
+    }
+
+    :deep(a) {
+      text-decoration: none !important;
     }
 
     form {

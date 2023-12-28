@@ -1,38 +1,45 @@
+<script setup lang="ts">
+import BigCard from '~/components/Cards/BigCard.vue'
+
+const props = defineProps<{ error: any }>()
+
+const errorCode = computed<number | null>(() => {
+  if (/^-?\d+$/.test(props.error.toString())) {
+    return parseInt(props.error.toString())
+  }
+  if (Object.prototype.hasOwnProperty.call(props.error, 'statusCode')) {
+    return parseInt(props.error.statusCode)
+  }
+  return null
+})
+
+const title = computed<string>(() => {
+  if (errorCode.value === 404) {
+    return 'Page non trouvée !'
+  }
+  if (errorCode.value) {
+    return `Erreur ${errorCode.value}`
+  }
+  return 'Erreur'
+})
+</script>
+
 <template>
   <big-card>
-    <h2 v-if="errorCode === '404'">
-      Page non trouvée !
-    </h2>
-    <h2 v-else>
-      Erreur {{ errorCode }}
-    </h2>
+    <h2>{{ title }}</h2>
 
     <p>
       Vous pouvez continuer votre navigation en allant sur <a href="javascript:history.back()">la page précédente</a>,
       en allant sur <nuxt-link to="/">la page d'accueil</nuxt-link> ou accédant à <nuxt-link to="/cours">l'index des cours</nuxt-link>.
     </p>
 
-    <p v-if="errorCode === '404'">
+    <p v-if="errorCode === 404">
       Si quelque chose devait se trouver ici, n'hésitez pas à
       <nuxt-link to="/a-propos/#contact">me contacter</nuxt-link> pour me le signaler.
     </p>
 
-    <span v-if="errorCode === '404'" class="d-block mt-4">
+    <span v-if="errorCode === 404" class="d-block mt-4">
       <span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 5.80007em; vertical-align: -2.65003em;" /><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 3.15003em;"><span class="" style="top: -5.15003em;"><span class="pstrut" style="height: 3.56401em;" /><span class="mord"><span class="mop"><span class="mop op-symbol large-op" style="margin-right: 0.44445em; position: relative; top: -0.001125em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.56401em;"><span class="" style="top: -1.78805em; margin-left: -0.44445em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;" /><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span><span class="" style="top: -3.8129em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;" /><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">5</span></span></span></span></span><span class="vlist-s">&ZeroWidthSpace;</span></span><span class="vlist-r"><span class="vlist" style="height: 0.91195em;"><span class="" /></span></span></span></span></span><span class="mspace" style="margin-right: 0.166667em;" /><span class="mord">9</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.864108em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;" /><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mord">2</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mord">2</span><span class="mspace" style="margin-right: 0.166667em;" /><span class="mord mathrm">d</span><span class="mord mathnormal">x</span></span></span><span class="" style="top: -3.07398em;"><span class="pstrut" style="height: 3.56401em;" /><span class="mord" /></span><span class="" style="top: -1.57398em;"><span class="pstrut" style="height: 3.56401em;" /><span class="mord" /></span></span><span class="vlist-s">&ZeroWidthSpace;</span></span><span class="vlist-r"><span class="vlist" style="height: 2.65003em;"><span class="" /></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 3.15003em;"><span class="" style="top: -5.15003em;"><span class="pstrut" style="height: 3.56401em;" /><span class="mord"><span class="mord" /><span class="mspace" style="margin-right: 0.277778em;" /><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;" /><span class="minner"><span class="minner"><span class="mopen delimcenter" style="top: 0;"><span class="delimsizing size1">[</span></span><span class="mord">3</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.864108em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;" /><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.864108em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;" /><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mord">2</span><span class="mord mathnormal">x</span><span class="mclose delimcenter" style="top: 0;"><span class="delimsizing size1">]</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.06812em;"><span class="" style="top: -2.30029em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;" /><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span><span class="" style="top: -3.31701em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;" /><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span><span class="vlist-s">&ZeroWidthSpace;</span></span><span class="vlist-r"><span class="vlist" style="height: 0.39971em;"><span class="" /></span></span></span></span></span></span></span><span class="" style="top: -3.07398em;"><span class="pstrut" style="height: 3.56401em;" /><span class="mord"><span class="mord" /><span class="mspace" style="margin-right: 0.277778em;" /><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;" /><span class="minner"><span class="mopen delimcenter" style="top: 0;"><span class="delimsizing size1">(</span></span><span class="mord">3</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mord"><span class="mord">5</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.864108em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;" /><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mord"><span class="mord">5</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.864108em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;" /><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mord">2</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mord">5</span><span class="mclose delimcenter" style="top: 0;"><span class="delimsizing size1">)</span></span></span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="minner"><span class="mopen delimcenter" style="top: 0;"><span class="delimsizing size1">(</span></span><span class="mord">3</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.864108em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;" /><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.864108em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;" /><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mord">2</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mord">1</span><span class="mclose delimcenter" style="top: 0;"><span class="delimsizing size1">)</span></span></span></span></span><span class="" style="top: -1.57398em;"><span class="pstrut" style="height: 3.56401em;" /><span class="mord"><span class="mord" /><span class="mspace" style="margin-right: 0.277778em;" /><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;" /><span class="mord" style="color: red;"><span class="mord" style="color: red;">404</span></span></span></span></span><span class="vlist-s">&ZeroWidthSpace;</span></span><span class="vlist-r"><span class="vlist" style="height: 2.65003em;"><span class="" /></span></span></span></span></span></span></span></span></span></span>
     </span>
   </big-card>
 </template>
-
-<script>
-import BigCard from '~/components/Cards/BigCard'
-
-export default {
-  components: { BigCard },
-  props: {
-    errorCode: {
-      type: String,
-      required: true
-    }
-  }
-}
-</script>

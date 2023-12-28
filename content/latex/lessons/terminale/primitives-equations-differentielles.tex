@@ -1,0 +1,186 @@
+\input{../common}
+
+\begin{document}
+	%<*content>
+	\lesson{terminale}{6}{primitives-equations-differentielles}{Primitives et équations différentielles}
+
+	\header{caption}{Les primitives sont notamment utilisées dans dans le cadre de la dynamique
+		Newtonienne.}
+
+	\header{description}{Une primitive d'une fonction d'une variable réelle définie sur un intervalle
+		est une autre fonction, définie et dérivable sur cet intervalle, et dont la dérivée
+		et notre fonction de départ. Ce cours contient essentiellement (en plus de la
+		définition d'une primitive) les tableaux à connaître pour pouvoir trouver les
+		primitives des fonctions usuelles, mais également des méthodes de résolution pour
+		certaines équations différentielles !}
+
+	\header{difficulty}{3}
+
+	\section{Primitives de fonctions continues}
+
+	\subsection{Définition}
+
+	\begin{formula}[Définition]
+		Soit $f$ une fonction définie et continue sur un intervalle $I$. On appelle \textbf{primitive} de $f$, toute fonction $F$ définie sur $I$ et qui vérifie pour tout $x \in I$ :
+		\[ F'(x) = f(x) \]
+	\end{formula}
+
+	\begin{tip}[Note]
+		Une primitive est toujours définie à une constante près.
+		\newpar
+		En effet. On considère la fonction $f$ définie pour tout $x \in \mathbb{R}$ par $f(x) = 2x$. Alors, $F_{1} : x \mapsto x^2 + 1$ est une primitive de la fonction $f$ (car pour tout $x$, $F'(x) = 2x = f(x)$).
+		\newpar
+		Mais $F_{1}$ \textbf{n'est pas la seule primitive} de $f$ ! On peut citer par exemple $F_{2} : x \mapsto x^2 + 10$ et $F_{3} : x \mapsto x^2 + 3$ qui sont également des primitives de $f$.
+		\newpar
+		C'est pour cette raison que l'on dit que les primitives sont définies à une constante près (lorsque l'on dérive, la constante devient nulle).
+	\end{tip}
+
+	Ainsi, toute \textbf{fonction continue} sur un intervalle admet \textbf{une infinité de primitives} d'une forme particulière sur cet intervalle. Plus formellement :
+
+	\begin{formula}[Infinité de primitives]
+		Une fonction continue $f$ sur un intervalle $I$ admet une infinité de primitives sur $I$ de la forme $x \mapsto F_0(x) + c$ avec $c \in \mathbb{R}$ (où $F_0$ est une primitive de $f$).
+	\end{formula}
+
+	\begin{demonstration}[Infinité de primitives]
+		Soit $F$ une autre primitive de $f$ sur $I$. On a pour tout $x \in I$ :
+		\newpar
+		$(F - F_0)'(x) = F'(x) - F_0'(x) = f(x) - f(x) = 0$ (car $F_0$ et $F$ sont deux primitives de $f$).
+		\newpar
+		Donc il existe une constante réelle $c$ telle que $F - F_0 = c$. D'où pour tout $x \in I$, $F(x) = F_0(x) + c$ : ce qu'il fallait démontrer.
+	\end{demonstration}
+
+	\subsection{Primitive de fonctions usuelles}
+
+	Le tableau suivant est à connaître (mais il peut être obtenu en prenant celui des dérivées usuelles à l'envers) :
+
+	\begin{formula}
+		Soient $\lambda$ et $a$ deux constantes réelles avec $a \neq 1$.
+		\newpar
+		\begin{whitetabularx}{|X|X|X|}
+			\hline
+			\textbf{Fonction} & \textbf{Primitive} & \textbf{Domaine de définition de la primitive} \\
+			\hline
+			$x \mapsto \lambda$ & $x \mapsto \lambda x$ & $\mathbb{R}$ \\
+			\hline
+			$x \mapsto e^x$ & $x \mapsto e^x$ & $\mathbb{R}$ \\
+			\hline
+      		$x \mapsto \frac{1}{x}$ & $x \mapsto \ln(x)$ & $\mathbb{R}^{*}_{+}$ \\
+			\hline
+			$x \mapsto \frac{1}{\sqrt{x}}$ & $x \mapsto 2\sqrt{x}$ & $\mathbb{R}^{*}_{+}$ \\
+			\hline
+			$x \mapsto x^a$ & $x \mapsto \frac{1}{a + 1} x^{a + 1}$ & $\mathbb{R}^{*}_{+}$ \\
+			\hline
+			$x \mapsto \sin(x)$ & $x \mapsto -\cos(x)$ & $\mathbb{R}$ \\
+			\hline
+			$x \mapsto \cos(x)$ & $x \mapsto \sin(x)$ & $\mathbb{R}$ \\
+			\hline
+		\end{whitetabularx}
+	\end{formula}
+
+	\subsection{Opérations sur les primitives}
+
+	Le tableau suivant est également à connaître (mais il peut être obtenu en prenant celui des dérivées usuelles à l'envers) :
+
+	\begin{formula}
+		Soit $u$ une fonction continue.
+		\newpar
+		\begin{whitetabularx}{|X|X|X|}
+			\hline
+			\textbf{Fonction} & \textbf{Primitive} & \textbf{Domaine de définition de la primitive} \\
+			\hline
+			$u'e^u$ & $e^u$ & En tout point où $u$ est définie. \\
+			\hline
+			$\frac{u'}{u}$ & $\ln(|u|)$ & En tout point où $u$ est définie et est non-nulle. On peut retirer la valeur absolue si $u$ est positive. \\
+			\hline
+			$\frac{u'}{\sqrt{u}}$ & $2\sqrt{u}$ & En tout point où $u$ est définie et est strictement positive. \\
+			\hline
+			$u' (u)^a$ avec $a \in \mathbb{R}$ et $a \neq -1$ & $\frac{1}{a + 1} u^{a + 1}$ & En tout point où $u$ est définie. \\
+			\hline
+			$u' \sin(u)$ & $-\cos(u)$ & En tout point où $u$ est définie. \\
+			\hline
+			$u' \cos(u)$ & $\sin(u)$ & En tout point où $u$ est définie. \\
+			\hline
+		\end{whitetabularx}
+	\end{formula}
+
+	\section{Équations différentielles}
+
+	\subsection{Qu'est-ce-qu'une équation différentielle ?}
+
+	Commençons cette partie par quelques définitions.
+
+	\begin{formula}[Définition]
+		\entretitreetliste
+		\begin{itemize}
+			\item Une \textbf{équation différentielle} est une égalité liant une fonction inconnue $y$ à ses dérivées successives ($y'$, $y''$, ...) contenant éventuellement d'autres fonctions connues.
+			\item Une \textbf{solution} d'une équation différentielle est une fonction vérifiant l'égalité décrite précédemment.
+		\end{itemize}
+	\end{formula}
+
+	\begin{tip}[Exemple]
+		La fonction logarithme est une solution de l'équation différentielle $y' = \frac{1}{x}$.
+		\newpar
+		La fonction exponentielle est une solution de l'équation différentielle $y' = y$, mais aussi de l'équation différentielle $y'' = y$, etc.
+	\end{tip}
+
+	\subsection{Résolution d'équations différentielles de la forme $y'=ay$}
+
+	Nous allons donner une formule permettant de résoudre des équations différentielles de la forme $y' = ay$.
+
+	\begin{formula}[Formule]
+		On pose $(E) : y'=ay$ (où $a$ est un réel). Alors l'ensemble des solutions de $(E)$ est l'ensemble des fonctions $x \mapsto c e^{ax}$ où $c \in \mathbb{R}$.
+	\end{formula}
+
+	\begin{demonstration}
+		Vérifions tout d'abord que les fonctions $x \mapsto k e^{ax}$ sont solutions de $(E)$. Soit $c \in \mathbb{R}$, posons pour tout $x \in \mathbb{R}$, $y_c(x) = c e^{ax}$.
+		\newpar
+		Alors pour tout $x \in \mathbb{R}$, $y'_c(x) = ac e^{ax}$ et $ay_c(x) = ac e^{ax}$. Donc $y'_c = a y_c$ : $y_c$ est bien solution de $(E)$.
+		\newpar
+		Montrons que les fonctions $y_c$ sont les seules solutions de $(E)$. Soit $y$ une solution quelconque de $(E)$ sur $\mathbb{R}$. Pour tout $x \in \mathbb{R}$, on pose $z(x) = y(x) e^{-ax}$. En dérivant :
+		\newpar
+		$z'(x) = y'(x) e^{-ax} + y(x) (-ae^{-ax}) = e^{-ax}(y'(x) - ay(x))$
+		\newpar
+		De plus, comme $y$ est solution de $(E)$, on a $y' - ay = 0$, donc $z' = 0$.
+		\newpar
+		Ainsi, il existe une constante réelle $c$ telle que $z = c$. C'est-à-dire que pour tout $x \in \mathbb{R}$ :
+		\newpar
+		$c = y(x) e^{-ax} \iff y(x) = c e^{ax}$. Ce qui termine la preuve.
+	\end{demonstration}
+
+	\begin{formula}[Théorème]
+		Pour tout réels $x_0$ et $y_0$, il existe une \textbf{unique} fonction $y$ solution de l'équation différentielle $(E)$ telle que $y(x_0) = y_0$.
+	\end{formula}
+
+	\begin{tip}[Exemple]
+		Résolvons l'équation différentielle $(E) : y' - 5y = 0$ sous condition d'avoir $y(0) = 1$.
+		\newpar
+		Dans un premier temps, on écrit l'équation sous une meilleure forme : $y' - 5y = 0 \iff y' = 5y$. On a donc $a = 5$. Les solutions de l'équation $(E)$ sont les fonctions définies $x \mapsto c e^{5x}$ où $c \in \mathbb{R}$.
+		\newpar
+		Maintenant, il faut trouver la fonction $y$ qui vaut $1$ en $0$. Soit donc $y$ une telle solution de $(E)$. Alors :
+		\newpar
+		$y(0) = 1 \iff c e^{5 \times 0} = 1 \iff c = e^{-1}$. La solution recherchée est donc la fonction $y : x \mapsto e^{-1} e^{5x}$.
+	\end{tip}
+
+	\subsection{Résolution d'équations différentielles de la forme \texorpdfstring{$y'=ay+b$}{y'=ay+b}}
+
+	Nous allons donner une formule permettant de résoudre des équations différentielles de la forme $y' = ay+b$.
+
+	\begin{formula}[Formule]
+		On pose $(E) : y'=ay+b$ (où $a$ est un réel non-nul et $b$ est un réel). Alors l'ensemble des solutions de $(E)$ est l'ensemble des fonctions $x \mapsto c e^{ax} - \frac{b}{a}$ où $c \in \mathbb{R}$.
+	\end{formula}
+
+	\begin{formula}[Théorème]
+		Pour tout réels $x_0$ et $y_0$, il existe une \textbf{unique} fonction $y$ solution de l'équation différentielle $(E)$ telle que $y(x_0) = y_0$.
+	\end{formula}
+
+	\begin{tip}[Exemple]
+		Résolvons l'équation différentielle $(E) : y'=2y-1$ sous condition d'avoir $y(1) = 0$.
+		\newpar
+		On a donc $a = 2$ et $b = -1$. Les solutions de l'équation $(E)$ sont les fonctions définies $x \mapsto c e^{2x} + \frac{1}{2}$ où $c \in \mathbb{R}$.
+		\newpar
+		Maintenant, il faut trouver la fonction $y$ qui vaut $0$ en $1$. Soit donc $y$ une telle solution de $(E)$. Alors :
+		\[ y(1) =  0 \iff c e^{2 \times 1} + \frac{1}{2} = 0 \iff c = -\frac{1}{2e^2} \]
+		La solution recherchée est donc la fonction $y : x \mapsto -\frac{e^{2x}}{2e^2} + \frac{1}{2}$.
+	\end{tip}
+	%</content>
+\end{document}

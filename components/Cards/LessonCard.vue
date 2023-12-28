@@ -1,57 +1,41 @@
+<script setup lang="ts">
+import FlatCard from '~/components/Cards/FlatCard'
+import { romanize } from '~/utils/utils'
+import type { Lesson } from '~/types'
+import { levels } from '~/site/site'
+
+const props = withDefaults(defineProps<{
+  lesson: Lesson,
+  showLevel?: boolean
+}>(), {
+  showLevel: false
+})
+
+const levelName = computed<string>(() => levels[props.lesson.level].name)
+const chapter = computed<string>(() => romanize(props.lesson.chapter))
+const variant = computed<string>(() => props.lesson.specialty ? 'green' : 'primary')
+</script>
+
 <template>
   <flat-card class="lesson-card">
     <div class="lesson-card-content">
-      <img class="lesson-preview" :src="previewImage" :alt="lesson.title">
+      <img class="lesson-preview" :src="lesson.preview" :alt="lesson.title">
       <span class="lesson-caption" v-html="lesson.caption" />
       <span class="text-muted text-uppercase">
         <span v-if="showLevel">{{ levelName }} •</span> Chapitre {{ chapter }}
       </span>
       <h3 class="lesson-title" v-html="lesson.title" />
-      <p class="lesson-description" v-html="lesson.excerpt" />
+      <p class="lesson-description" v-html="lesson.description" />
       <ski-button
         :to="`/cours/${lesson.level}/${lesson.id}/`"
         :variant="variant"
-        class="d-block"
+        class="btn"
       >
         Lire ce cours
       </ski-button>
     </div>
   </flat-card>
 </template>
-
-<script>
-import FlatCard from '~/components/Cards/FlatCard'
-import { getLessonPreviewImage, levels } from '~/utils/lesson'
-import { romanize } from '~/utils/utils'
-
-export default {
-  components: { FlatCard },
-  props: {
-    lesson: {
-      type: Object,
-      default: null
-    },
-    showLevel: {
-      type: String,
-      default: null
-    }
-  },
-  computed: {
-    levelName () {
-      return levels[this.lesson.level].name
-    },
-    chapter () {
-      return romanize(this.lesson.chapter)
-    },
-    variant () {
-      return 'specialty' in this.lesson && this.lesson.specialty ? 'green' : 'blue'
-    },
-    previewImage () {
-      return getLessonPreviewImage(this.lesson)
-    }
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 @import 'assets/colors';
@@ -114,6 +98,11 @@ export default {
       flex: 1;
       margin-bottom: 2rem;
       color: rgba(black, 0.75);
+    }
+
+    .btn {
+      font-weight: bold;
+      padding: 14px;
     }
   }
 }

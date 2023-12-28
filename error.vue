@@ -1,20 +1,22 @@
-<template>
-  <NuxtLayout>
-    <page-head :title="`Erreur ${error.statusCode}`" />
-    <page-error :error-code="error.statusCode.toString()" />
-  </NuxtLayout>
-</template>
+<script setup lang="ts">
+import type { NuxtError } from '@nuxt/types'
 
-<script>
-import PageError from '~/components/PageError'
+const props = defineProps<{ error: NuxtError }>()
 
-export default {
-  components: { PageError },
-  props: {
-    error: {
-      type: Object,
-      required: true
-    }
+const title = computed(() => {
+  let result = 'Erreur'
+  if ((Object.hasOwnProperty.call(props.error, 'statusCode'))) {
+    result += ` ${props.error.statusCode}`
   }
-}
+  return result
+})
+
+// onMounted(() => console.error(props.error))
 </script>
+
+<template>
+  <nuxt-layout>
+    <page-head :title="title" />
+    <page-error :error="error" />
+  </nuxt-layout>
+</template>

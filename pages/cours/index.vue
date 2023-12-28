@@ -1,3 +1,14 @@
+<script setup lang="ts">
+import PageHeader from '~/components/Page/PageHeader.vue'
+import Carousel from '~/components/Page/Carousel/Carousel'
+import PageContent from '~/components/Page/PageContent.vue'
+import PageHead from '~/components/Page/PageHead.vue'
+import CardColumn from '~/components/Cards/CardColumn'
+import { levels } from '~/site/site'
+
+const levelObjects = Object.values(levels)
+</script>
+
 <template>
   <div>
     <page-head title="Liste des cours" />
@@ -10,7 +21,7 @@
       <ski-container :fluid="true" class="pt-5">
         <ski-columns class="pt-5 pb-5 d-flex justify-content-center align-items-lg-stretch align-items-center">
           <card-column
-            v-for="level in levels"
+            v-for="level in levelObjects"
             :key="level.id"
             class="mb-5"
             :to="`/cours/${level.id}/`"
@@ -26,24 +37,6 @@
     </page-content>
   </div>
 </template>
-
-<script>
-import PageHeader from '~/components/PageHeader'
-import Carousel from '~/components/Carousel/Carousel'
-import PageContent from '~/components/PageContent'
-import PageHead from '~/components/PageHead'
-import CardColumn from '~/components/Cards/CardColumn'
-import { levels } from '~/utils/lesson'
-
-export default {
-  components: { CardColumn, PageHead, PageContent, Carousel, PageHeader },
-  computed: {
-    levels () {
-      return Object.values(levels)
-    }
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 .level-image {

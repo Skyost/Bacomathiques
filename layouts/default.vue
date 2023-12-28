@@ -1,75 +1,22 @@
+<script setup lang="ts">
+import PageNavbar from '~/components/Page/Navbar/PageNavbar.vue'
+import PageFooter from '~/components/Page/PageFooter.vue'
+</script>
+
 <template>
   <div>
-    <NuxtLoadingIndicator color="#f2f4f6" />
-    <navbar />
+    <nuxt-loading-indicator color="#f2f4f6" />
+    <page-navbar />
     <slot />
     <page-footer />
   </div>
 </template>
-
-<script>
-import Navbar from '~/components/PageNavbar/PageNavbar.vue'
-import PageFooter from '~/components/PageFooter'
-
-export default {
-  components: { Navbar, PageFooter }
-}
-</script>
 
 <style lang="scss">
 @import 'assets/bootstrap-mixins';
 @import 'assets/colors';
 
 // TODO: https://www.reddit.com/r/webdev/comments/wdsctt/if_your_website_is_dark_by_default_consider/
-
-.btn {
-  font-weight: bold !important;
-  padding: 14px;
-  border: 0;
-
-  // TODO: Use Bootstrap themes.
-  &.btn-white {
-    background-color: white !important;
-    color: $primary !important;
-
-    &:hover,
-    &:active {
-      background-color: #f5f5f5 !important;
-    }
-  }
-
-  &.btn-blue {
-    background-color: $primary !important;
-    color: white !important;
-
-    &:hover,
-    &:active {
-      background-color: darken($primary, 5%) !important;
-    }
-  }
-
-  &.btn-green {
-    $color: #43baa8;
-
-    background-color: $color !important;
-    color: white !important;
-
-    &:hover,
-    &:active {
-      background-color: darken($color, 5%) !important;
-    }
-  }
-}
-
-.modal {
-  .modal-content .b-icon-prefix {
-    width: 1em;
-  }
-
-  .modal-footer .btn {
-    font-weight: normal !important;
-  }
-}
 
 .container-fluid {
   padding: 0 100px;
@@ -85,10 +32,8 @@ export default {
   }
 }
 
-form {
-  label {
-    display: none;
-  }
+form label {
+  display: none;
 }
 
 ::-webkit-scrollbar {
