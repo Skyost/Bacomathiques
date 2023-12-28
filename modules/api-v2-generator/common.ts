@@ -349,7 +349,7 @@ export const formatHtml = (resolver: Resolver, contentDirectoryPath: string, les
   const representations = root.querySelectorAll('.representation')
   for (let i = 0; i < representations.length; i++) {
     const representation = representations[i]
-    const id = representation.getAttribute('geogebra-id')
+    const id = representation.getAttribute('data-geogebra-id')
     representation.replaceWith(`<div id="representation-${i + 1}" class="plot" data-api-v2-geogebra-id="${id}" data-api-v2-geogebra-image="${site.host}/img/lessons/${lesson.level}/${lesson.id}/${id}.png"></div>`)
   }
 
