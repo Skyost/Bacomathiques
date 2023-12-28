@@ -313,21 +313,21 @@ const renderMath = (root: HTMLElement) => {
   const mathElements = root.querySelectorAll('eq')
   for (const mathElement of mathElements) {
     // Get the trimmed text content.
-    const text = mathElement.text.trim()
-
+    const latex = mathElement.text.trim()
+    // Determine if it's a display math environment.
+    const displayMode = mathElement.getAttribute('env') === 'displaymath'
     // Replace the math element with the rendered KaTeX HTML.
-    mathElement.replaceWith(
-      katex.renderToString(text, {
-        displayMode: mathElement.getAttribute('env') === 'displaymath', // Determine if it's a display math environment.
-        output: 'html',
-        trust: true,
-        strict: (errorCode: any) => errorCode === 'htmlExtension' ? 'ignore' : 'warn',
-        macros: {
-          '\\parallelslant': '\\mathbin{\\!/\\mkern-5mu/\\!}',
-          '\\ensuremath': '#1'
-        }
-      })
-    )
+    const renderedMath = katex.renderToString(latex, {
+      displayMode,
+      output: 'html',
+      trust: true,
+      strict: (errorCode: any) => errorCode === 'htmlExtension' ? 'ignore' : 'warn',
+      macros: {
+        '\\parallelslant': '\\mathbin{\\!/\\mkern-5mu/\\!}',
+        '\\ensuremath': '#1'
+      }
+    })
+    mathElement.replaceWith(`<span class="math-rendered" data-latex="${latex}" data-latex-display="${displayMode}">${renderedMath}</span>`)
   }
 }
 
