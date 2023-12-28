@@ -1,3 +1,5 @@
+// noinspection ES6PreferShortImport
+
 import { spawnSync } from 'child_process'
 import path from 'path'
 import fs from 'fs'
@@ -7,7 +9,7 @@ import { HTMLElement, parse } from 'node-html-parser'
 import katex from 'katex'
 import GithubSlugger from 'github-slugger'
 import { createResolver, type Resolver } from '@nuxt/kit'
-import { normalizeString } from '../../utils/utils'
+import { normalizeString, replaceLineBreaks } from '../../utils/utils'
 import * as latex from '../../utils/latex'
 import * as logger from '../../utils/logger'
 import { siteContentSettings } from '../../site/content'
@@ -87,7 +89,7 @@ export default defineTransformer({
     replaceVspaceElements(root)
 
     // Adjust columns size in the HTML content.
-    addVueComponents(root)
+    addDataAttributes(root)
 
     // Render math elements in the HTML content.
     renderMath(root)
@@ -129,7 +131,7 @@ const replaceImages = (
   contentDirectoryPath: string
 ) => {
   // Possible image file extensions.
-  const extensions = ['', '.pdf', '.svg', '.png', '.jpeg', '.jpg', '.gif']
+  const extensions = ['', '.tex', '.pdf', '.svg', '.png', '.jpeg', '.jpg', '.gif']
 
   // Select all image elements in the HTML tree.
   const images = root.querySelectorAll('img')
@@ -202,8 +204,9 @@ const resolveImageSrc = (
   assetsDestinationDirectoryPath: string,
   cacheDirectoryPath: string
 ): string | null => {
-  // Check if the image has a PDF extension.
-  if (path.extname(imagePath) === '.pdf') {
+  // Check if the image has a PDF or a TEX extension.
+  const extension = path.extname(imagePath)
+  if (extension === '.pdf' || extension === '.tex') {
     // Generate an SVG from the PDF.
     const { builtFilePath } = latex.generateSvg(
       imagePath,
@@ -271,11 +274,11 @@ const replaceVspaceElements = (root: HTMLElement) => {
 }
 
 /**
- * Add Vue components to the HTML content.
+ * Add some data attributes to the HTML content.
  *
  * @param {HTMLElement} root - The root HTML element.
  */
-function addVueComponents (root: HTMLElement) {
+function addDataAttributes (root: HTMLElement) {
   const variants = ['formula', 'proof', 'tip', 'exercise', 'correction']
   for (const variant of variants) {
     let variantCount = 1
@@ -313,7 +316,7 @@ const renderMath = (root: HTMLElement) => {
   const mathElements = root.querySelectorAll('eq')
   for (const mathElement of mathElements) {
     // Get the trimmed text content.
-    const latex = mathElement.text.trim()
+    const latex = replaceLineBreaks(mathElement.text.trim())
     // Determine if it's a display math environment.
     const displayMode = mathElement.getAttribute('env') === 'displaymath'
     // Replace the math element with the rendered KaTeX HTML.
@@ -349,7 +352,7 @@ const getHeader = (root: HTMLElement): { [key: string]: any } => {
       const h2 = header.querySelector('h2')
       if (h2) {
         const id = h2.innerHTML
-        const value = content.innerHTML.trim()
+        const value = replaceLineBreaks(content.innerHTML.trim())
         yamlHeader[id] = /^[0-9]+$/.test(value) ? parseInt(value) : value
       }
     }

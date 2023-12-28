@@ -36,6 +36,15 @@ export const sleeper = (ms: number): Promise<void> => new Promise(resolve => set
 export const normalizeString = (string: string): string => string.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()
 
 /**
+ * Replaces all line breaks from a string.
+ *
+ * @param {string} string - Input string.
+ * @param {string} by - The replacement string.
+ * @returns {string} - The string without line breaks.
+ */
+export const replaceLineBreaks = (string: string, by: string = ' '): string => string.replace(/\r?\n|\r/gm, by)
+
+/**
  * Romanizes a given number.
  *
  * @param {number} num - The number.

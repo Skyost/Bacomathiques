@@ -91,7 +91,7 @@ export const siteContentSettings: SiteContentSettings = {
       path.parse(filePath).base
     )
   },
-  isAsset: (filePath: string) => ['.pdf', '.svg', '.png', '.jpeg', '.jpg', '.gif'].includes(path.parse(filePath).ext),
+  isAsset: (filePath: string) => ['.tex', '.pdf', '.svg', '.png', '.jpeg', '.jpg', '.gif'].includes(path.parse(filePath).ext),
   pandocRedefinitions: 'pandoc.tex',
   ignores: [
     'common.tex',
