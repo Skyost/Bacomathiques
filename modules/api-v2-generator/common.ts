@@ -296,7 +296,7 @@ export const formatHtml = (resolver: Resolver, contentDirectoryPath: string, les
     const latex = math.getAttribute('data-latex')
     if (latex) {
       const display = math.getAttribute('data-latex-display') === 'true'
-      const mathTag = display ? `<math displaystyle>${latex}</math>` : `<math>${latex}</math>`
+      const mathTag = display ? `<div class="katex-display"><math displaystyle>${latex}</math></div>` : `<math>${latex}</math>`
       math.replaceWith(mathTag)
     }
   }
@@ -335,14 +335,6 @@ export const formatHtml = (resolver: Resolver, contentDirectoryPath: string, les
     if (fs.existsSync(resolver.resolve(contentDirectoryPath, siteContentSettings.dataAssetsDirectory, darkPath))) {
       image.setAttribute('data-src-dark', site.host + '/' + darkPath)
     }
-  }
-
-  // Modify table elements.
-  const tables = root.querySelectorAll('table')
-  for (const table of tables) {
-    table.classList.add('table')
-    table.classList.add('table-bordered')
-    table.classList.add('table-hover')
   }
 
   // Modify representation elements.
