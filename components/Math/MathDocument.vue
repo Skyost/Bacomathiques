@@ -214,8 +214,8 @@ onMounted(async () => {
   }
 
   a {
-    color: $linkColor;
-    text-decoration-color: $linkDecorationColor;
+    color: $linkColor !important;
+    text-decoration-color: $linkDecorationColor !important;
 
     &:hover,
     &:active {

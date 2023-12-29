@@ -81,10 +81,13 @@ if (!config.public.debug) {
   <page-error v-else :error="error" />
 </template>
 
+<style lang="scss">
+@import 'assets/highlighting';
+</style>
+
 <style lang="scss" scoped>
 @import 'assets/bootstrap-mixins';
 @import 'assets/colors';
-@import 'assets/highlighting';
 
 .page-header {
   padding: 50px 0;

@@ -9,7 +9,7 @@ import { HTMLElement, parse } from 'node-html-parser'
 import katex from 'katex'
 import GithubSlugger from 'github-slugger'
 import { createResolver, type Resolver } from '@nuxt/kit'
-import { normalizeString, replaceLineBreaks } from '../../utils/utils'
+import { getFileName, normalizeString, replaceLineBreaks } from '../../utils/utils'
 import * as latex from '../../utils/latex'
 import * as logger from '../../utils/logger'
 import { siteContentSettings } from '../../site/content'
@@ -171,11 +171,14 @@ const replaceImages = (
           // Format the resolved source as an absolute path.
           if (resolvedSrc) {
             // Update the image source and alt attribute.
-            image.setAttribute('src', resolvedSrc)
-            image.setAttribute('alt', src)
+            image.setAttribute('src', resolvedSrc.src)
+            if (resolvedSrc.dark) {
+              image.setAttribute('data-src-dark', resolvedSrc.dark)
+            }
+            image.setAttribute('alt', getFileName(src))
 
             resolved = true
-            logger.success(name, `Resolved image ${src} to ${resolvedSrc} in ${texFilePath}.`)
+            logger.success(name, `Resolved image ${src} to ${resolvedSrc.src} in ${texFilePath}.`)
             break
           }
         }
@@ -196,38 +199,50 @@ const replaceImages = (
  * @param {string[]} includeGraphicsDirectories - Directories for including graphics.
  * @param {string} assetsDestinationDirectoryPath - The destination directory for assets.
  * @param {string} cacheDirectoryPath - The path to the cache directory.
- * @returns {string | null} - The resolved source of the image or null if not resolved.
+ * @returns { {src: string, dark: string | null} | null} - The resolved source of the image or null if not resolved.
  */
 const resolveImageSrc = (
   imagePath: string,
   includeGraphicsDirectories: string[],
   assetsDestinationDirectoryPath: string,
   cacheDirectoryPath: string
-): string | null => {
-  // Check if the image has a PDF or a TEX extension.
-  const extension = path.extname(imagePath)
-  if (extension === '.pdf' || extension === '.tex') {
-    // Generate an SVG from the PDF.
-    const { builtFilePath } = latex.generateSvg(
-      imagePath,
-      {
-        includeGraphicsDirectories,
-        cacheDirectory: cacheDirectoryPath,
-        optimize: true
-      }
-    )
+): { src: string, dark: string | null } | null => {
+  const result = []
+  for (const suffix of ['', '-dark']) {
+    // Build the image path with suffix.
+    const extension = path.extname(imagePath)
+    let imagePathWithSuffix = path.resolve(path.dirname(imagePath), getFileName(imagePath) + suffix + extension)
 
-    // If the PDF couldn't be converted to SVG, return null.
-    if (!builtFilePath) {
-      return null
+    // Check if the image has a PDF or a TEX extension.
+    if (extension === '.pdf' || extension === '.tex') {
+      // Generate an SVG from the PDF.
+      const { builtFilePath } = latex.generateSvg(
+        imagePathWithSuffix,
+        {
+          includeGraphicsDirectories,
+          cacheDirectory: cacheDirectoryPath,
+          optimize: true
+        }
+      )
+
+      // If the PDF couldn't be converted to SVG, return null.
+      if (!builtFilePath) {
+        result.push(null)
+        continue
+      }
+
+      // Update the image path to the generated SVG.
+      imagePathWithSuffix = builtFilePath
     }
 
-    // Update the image path to the generated SVG.
-    imagePath = builtFilePath
+    // Return the relative path from the assets destination directory.
+    result.push('/' + path.relative(path.dirname(assetsDestinationDirectoryPath), imagePathWithSuffix).replace(/\\/g, '/'))
   }
 
-  // Return the relative path from the assets destination directory.
-  return '/' + path.relative(path.dirname(assetsDestinationDirectoryPath), imagePath).replace(/\\/g, '/')
+  if (result.length === 0 || !result[0]) {
+    return null
+  }
+  return { src: result[0], dark: result.length >= 2 ? result[1] : null }
 }
 
 /**
