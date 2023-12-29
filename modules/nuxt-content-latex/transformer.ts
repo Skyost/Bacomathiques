@@ -158,29 +158,26 @@ const replaceImages = (
         // Get the destination path of the image in the assets directory.
         const filePath = siteContentSettings.getLatexAssetDestination(assetsDirectoryPath, directory + '/' + src + extension)
 
-        // Check if the file exists.
-        if (fs.existsSync(filePath)) {
-          // Resolve the image source.
-          const resolvedSrc = resolveImageSrc(
-            filePath,
-            directories.map(includedGraphicDirectory => resolver.resolve(contentDirectoryPath, includedGraphicDirectory)),
-            assetsDirectoryPath,
-            resolver.resolve(sourceDirectoryPath, siteContentSettings.previousBuildDownloadDirectory, directory)
-          )
+        // Resolve the image source.
+        const resolvedSrc = resolveImageSrc(
+          filePath,
+          directories.map(includedGraphicDirectory => resolver.resolve(contentDirectoryPath, includedGraphicDirectory)),
+          assetsDirectoryPath,
+          resolver.resolve(sourceDirectoryPath, siteContentSettings.previousBuildDownloadDirectory, directory)
+        )
 
-          // Format the resolved source as an absolute path.
-          if (resolvedSrc) {
-            // Update the image source and alt attribute.
-            image.setAttribute('src', resolvedSrc.src)
-            if (resolvedSrc.dark) {
-              image.setAttribute('data-src-dark', resolvedSrc.dark)
-            }
-            image.setAttribute('alt', getFileName(src))
-
-            resolved = true
-            logger.success(name, `Resolved image ${src} to ${resolvedSrc.src} in ${texFilePath}.`)
-            break
+        // Format the resolved source as an absolute path.
+        if (resolvedSrc) {
+          // Update the image source and alt attribute.
+          image.setAttribute('src', resolvedSrc.src)
+          if (resolvedSrc.dark) {
+            image.setAttribute('data-src-dark', resolvedSrc.dark)
           }
+          image.setAttribute('alt', getFileName(src))
+
+          resolved = true
+          logger.success(name, `Resolved image ${src} to ${resolvedSrc.src} in ${texFilePath}.`)
+          break
         }
       }
 
@@ -212,6 +209,10 @@ const resolveImageSrc = (
     // Build the image path with suffix.
     const extension = path.extname(imagePath)
     let imagePathWithSuffix = path.resolve(path.dirname(imagePath), getFileName(imagePath) + suffix + extension)
+    if (!fs.existsSync(imagePathWithSuffix)) {
+      result.push(null)
+      continue
+    }
 
     // Check if the image has a PDF or a TEX extension.
     if (extension === '.pdf' || extension === '.tex') {
