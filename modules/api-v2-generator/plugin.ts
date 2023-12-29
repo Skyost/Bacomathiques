@@ -39,8 +39,8 @@ export default defineNitroPlugin((nitroApp) => {
       summary: file.summary,
       comments: []
     }
-    lesson.html = formatHtml(resolver, contentDirectoryPath, lesson, lesson.html)
-    lesson.summary = formatHtml(resolver, contentDirectoryPath, lesson, lesson.summary)
+    lesson.html = formatHtml(lesson, lesson.html)
+    lesson.summary = formatHtml(lesson, lesson.summary)
 
     // We add the comments to the current lesson.
     const commentsDirectoryPath = resolver.resolve(contentDirectoryPath, 'comments')

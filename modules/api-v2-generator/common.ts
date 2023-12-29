@@ -1,10 +1,7 @@
 // noinspection ES6PreferShortImport
 
-import fs from 'fs'
-import type { Resolver } from '@nuxt/kit'
 import { parse } from 'node-html-parser'
 import { site } from '../../site/site'
-import { siteContentSettings } from '../../site/content'
 import type { Lesson, Level, LevelId } from '../../types'
 
 /**
@@ -276,13 +273,11 @@ export const getLessonInfo = (lesson: ApiLesson, isSummary: boolean = false): Ap
 /**
  * Formats HTML content by modifying certain elements.
  *
- * @param {Resolver} resolver - Resolver object.
- * @param {string} contentDirectoryPath - Path to the content directory.
  * @param {ApiLesson} lesson - API lesson object.
  * @param {string} html - HTML content to be formatted.
  * @returns {string} - Formatted HTML content.
  */
-export const formatHtml = (resolver: Resolver, contentDirectoryPath: string, lesson: ApiLesson, html: string): string => {
+export const formatHtml = (lesson: ApiLesson, html: string): string => {
   const root = parse(html)
 
   // Modify displays and maths elements.
@@ -320,20 +315,17 @@ export const formatHtml = (resolver: Resolver, contentDirectoryPath: string, les
   const images = root.querySelectorAll('img')
   for (const image of images) {
     // Modify the 'src' attribute of images
-    let src = image.getAttribute('src')
+    const src = image.getAttribute('src')
     if (!src) {
       continue
     }
     if (src.startsWith('/')) {
       image.setAttribute('src', site.host + src)
-      src = src.substring(1)
-    } else if (src && src.startsWith(site.host)) {
-      src = src.substring(site.host.length)
     }
-    const extension = src.substring(src.lastIndexOf('.'))
-    const darkPath = src.substring(0, src.length - extension.length) + '-dark' + extension
-    if (fs.existsSync(resolver.resolve(contentDirectoryPath, siteContentSettings.dataAssetsDirectory, darkPath))) {
-      image.setAttribute('data-src-dark', site.host + '/' + darkPath)
+
+    const dark = image.getAttribute('data-src-dark')
+    if (dark && dark.startsWith('/')) {
+      image.setAttribute('data-src-dark', site.host + dark)
     }
   }
 
