@@ -10,11 +10,11 @@ class AboutDialog extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => openUrl('https://bacomathiqu.es/a-propos/'),
-            child: Text('Plus d\'informations'.toUpperCase()),
+            child: const Text('Plus d\'informations'),
           ),
           TextButton(
             onPressed: () => openUrl(storePage),
-            child: Text('Fiche de l\'application'.toUpperCase()),
+            child: const Text('Fiche de l\'application'),
           ),
           const AppAlertDialogCloseButton(),
         ],

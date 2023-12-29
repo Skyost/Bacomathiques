@@ -68,7 +68,7 @@ class _LevelsPageState extends RequestScaffoldState<APIIndex, LevelsPage> {
                 triggerRequest();
               },
               child: Text(
-                'Réessayer'.toUpperCase(),
+                'Réessayer',
                 style: const TextStyle(color: Colors.white),
               ),
             ),

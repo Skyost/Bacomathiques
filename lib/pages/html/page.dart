@@ -1,4 +1,3 @@
-import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:bacomathiques/model/api/common.dart';
 import 'package:bacomathiques/model/api/content.dart';
 import 'package:bacomathiques/model/settings.dart';
@@ -7,11 +6,9 @@ import 'package:bacomathiques/utils/utils.dart';
 import 'package:bacomathiques/widgets/app_bar/actions/save_pdf.dart';
 import 'package:bacomathiques/widgets/app_bar/app_bar.dart';
 import 'package:bacomathiques/widgets/centered_circular_progress_indicator.dart';
-import 'package:bacomathiques/widgets/dialogs/consent.dart' as consent_dialog;
 import 'package:bacomathiques/widgets/request_scaffold.dart';
 import 'package:bacomathiques/widgets/theme/bubble.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -40,7 +37,7 @@ class AdMobHTMLPage extends ConsumerStatefulWidget {
 /// The AdMob HTML page state.
 class _AdMobHTMLPageState extends ConsumerState<AdMobHTMLPage> {
   /// The consent information.
-  consent_dialog.ConsentInformation? consentInformation;
+  ConsentStatus? consentStatus;
 
   /// The banner ad.
   BannerAd? banner;
@@ -49,14 +46,12 @@ class _AdMobHTMLPageState extends ConsumerState<AdMobHTMLPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      MediaQueryData mediaQuery = MediaQuery.of(context);
       await askConsent();
-      if (mounted && (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS)) {
+      AdSize? adSize = await AdSize.getAnchoredAdaptiveBannerAdSize(mediaQuery.orientation, mediaQuery.size.width.truncate());
+      if (mounted) {
         SettingsModel settingsModel = ref.read(settingsModelProvider);
-        BannerAd? banner = settingsModel.createAdMobBanner(
-          context,
-          size: await AdSize.getAnchoredAdaptiveBannerAdSize(MediaQuery.of(context).orientation, MediaQuery.of(context).size.width.truncate()),
-          nonPersonalizedAds: consentInformation!.wantsNonPersonalizedAds,
-        );
+        BannerAd? banner = settingsModel.createAdMobBanner(context, size: adSize);
         await banner?.load();
         setState(() => this.banner = banner);
       }
@@ -65,18 +60,32 @@ class _AdMobHTMLPageState extends ConsumerState<AdMobHTMLPage> {
 
   /// Asks for the user consent.
   Future<void> askConsent() async {
-    consent_dialog.ConsentInformation? consentInformation = await consent_dialog.ConsentInformation.askIfNeeded(
-      context: context,
-      appMessage:
-          'Nous souhaitons votre accord pour vous afficher des publicités personnalisées. Sachez que cette application et son contenu sont mis à disposition gratuitement pour les utilisateurs et que les publicités constituent les seuls revenus de cette application.',
-      question: 'Pouvons-nous utiliser vos données pour vous afficher des publicités personnalisées ?',
-      privacyPolicyMessage:
-          'Vous pourrez changer votre choix dans le menu déroulant de l\'application. Sachez que des cookies seront stockés sur votre appareil. Consultez notre <a href="https://bacomathiqu.es/pdf/politique-de-confidentialite.pdf">politique de confidentialité</a> pour plus d\'informations.',
-      personalizedAdsButton: 'Oui, je souhaite voir des annonces pertinentes'.toUpperCase(),
-      nonPersonalizedAdsButton: 'Non, je souhaite voir des annonces moins pertinentes'.toUpperCase(),
+    ConsentRequestParameters parameters = ConsentRequestParameters();
+    ConsentInformation.instance.requestConsentInfoUpdate(
+      parameters,
+      () async {
+        if (await ConsentInformation.instance.isConsentFormAvailable()) {
+          _loadForm();
+        }
+      },
+      (_) {},
     );
-    await AppTrackingTransparency.requestTrackingAuthorization();
-    setState(() => this.consentInformation = consentInformation);
+  }
+
+  /// Loads the UMP form and displays it.
+  void _loadForm() {
+    ConsentForm.loadConsentForm(
+      (ConsentForm consentForm) async {
+        ConsentStatus status = await ConsentInformation.instance.getConsentStatus();
+        if (status == ConsentStatus.required) {
+          consentForm.show((_) => _loadForm());
+        }
+        if (mounted) {
+          setState(() => consentStatus = status);
+        }
+      },
+      (_) {},
+    );
   }
 
   @override
@@ -86,7 +95,7 @@ class _AdMobHTMLPageState extends ConsumerState<AdMobHTMLPage> {
       anchor: widget.anchor,
     );
 
-    if (consentInformation == null || banner == null) {
+    if (consentStatus == null || banner == null) {
       return htmlPage;
     }
 
@@ -122,11 +131,9 @@ class _HTMLPage extends RequestScaffold<APIEndpointResultHTML> {
 
   /// Creates a new HTML screen instance.
   const _HTMLPage({
-    required APIEndpoint<APIEndpointResultHTML> endpoint,
+    required super.endpoint,
     this.anchor,
-  }) : super(
-          endpoint: endpoint,
-        );
+  });
 
   @override
   _HTMLPageState createState() => _HTMLPageState();

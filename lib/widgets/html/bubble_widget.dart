@@ -4,6 +4,7 @@ import 'package:bacomathiques/widgets/theme/bubble.dart';
 import 'package:bacomathiques/widgets/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:html/dom.dart' as dom;
 
 /// Allows to display a bubble (formula, tip, proof, ...).
@@ -11,8 +12,8 @@ class BubbleWidget extends ConsumerStatefulWidget {
   /// The bubble.
   final Bubble bubble;
 
-  /// The bubble children.
-  final List<Widget> children;
+  /// The bubble child.
+  final Widget child;
 
   /// Whether to put its content in a scrollable view.
   final bool inScrollableView;
@@ -20,17 +21,17 @@ class BubbleWidget extends ConsumerStatefulWidget {
   /// Creates a new bubble widget instance.
   const BubbleWidget({
     required this.bubble,
-    required this.children,
+    required this.child,
     required this.inScrollableView,
   });
 
   /// Creates a new bubble widget from a dom element.
   BubbleWidget.fromElement({
     required dom.Element element,
-    required List<Widget> children,
+    required WidgetPlaceholder placeholder,
   }) : this(
           bubble: BubbleUtils.of(element),
-          children: children,
+          child: placeholder,
           inScrollableView: BubbleWidget._inScrollableView(element),
         );
 
@@ -58,11 +59,7 @@ class _BubbleWidgetState extends ConsumerState<BubbleWidget> {
     BubbleTheme bubbleTheme = theme.bubbleThemes[widget.bubble]!;
     Widget column = Padding(
       padding: const EdgeInsets.all(20),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: widget.children,
-      ),
+      child: widget.child,
     );
 
     Widget bubbleWidget = GestureDetector(

@@ -43,30 +43,25 @@ class SettingsModel extends ChangeNotifier {
   }
 
   /// Creates the banner ad.
-  BannerAd? createAdMobBanner(
-    BuildContext context, {
-    AdSize? size,
-    bool? nonPersonalizedAds,
-  }) =>
-      _adMobEnabled && (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS)
-          ? BannerAd(
-              adUnitId: _adMobBannerId,
-              size: size ?? AdSize.banner,
-              request: AdRequest(
-                keywords: ['math', 'cours', 'leçons'],
-                contentUrl: API.baseUrl,
-                nonPersonalizedAds: nonPersonalizedAds,
-              ),
-              listener: BannerAdListener(
-                onAdFailedToLoad: (ad, error) {
-                  ad.dispose();
-                  if (kDebugMode) {
-                    print(error);
-                  }
-                },
-              ),
-            )
-          : null;
+  BannerAd? createAdMobBanner(BuildContext context, {AdSize? size}) => _adMobEnabled
+      ? BannerAd(
+          adUnitId: _adMobBannerId,
+          size: size ?? AdSize.banner,
+          request: const AdRequest(
+            keywords: ['math', 'cours', 'leçons'],
+            contentUrl: API.baseUrl,
+            // nonPersonalizedAds: nonPersonalizedAds,
+          ),
+          listener: BannerAdListener(
+            onAdFailedToLoad: (ad, error) {
+              ad.dispose();
+              if (kDebugMode) {
+                print(error);
+              }
+            },
+          ),
+        )
+      : null;
 
   /// Returns the theme mode.
   ThemeMode get themeMode => _themeMode;

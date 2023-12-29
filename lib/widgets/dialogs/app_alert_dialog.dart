@@ -155,8 +155,6 @@ class AppAlertDialogCloseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => TextButton(
         onPressed: () => Navigator.pop(context),
-        child: Text(
-          (cancel ? 'Annuler' : 'Fermer').toUpperCase(),
-        ),
+        child: Text(cancel ? 'Annuler' : 'Fermer'),
       );
 }

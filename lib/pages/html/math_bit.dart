@@ -3,7 +3,11 @@ import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 
 /// A build bit that allows to display some math.
-class MathBit extends BuildBit<void, InlineSpan> {
+class MathBit extends BuildBit {
+  /// The parent build bit.
+  @override
+  final BuildTree parent;
+
   /// The math content.
   final String math;
 
@@ -15,57 +19,41 @@ class MathBit extends BuildBit<void, InlineSpan> {
 
   /// Creates a new math bit instance.
   const MathBit({
-    BuildTree? parent,
-    required TextStyleBuilder tsb,
+    required this.parent,
     required this.math,
     this.textStyle,
     this.displayStyle = false,
-  }) : super(parent, tsb);
+  });
 
   @override
-  InlineSpan buildBit(void input) {
+  void flatten(Flattened f) {
     Math math = Math.tex(
       this.math,
       textStyle: textStyle?.copyWith(fontSize: textStyle?.fontSize),
       mathStyle: displayStyle ? MathStyle.display : MathStyle.text,
     );
     List<Math> parts = math.texBreak().parts;
-    List<InlineSpan> children = [];
-    for (Math part in parts) {
-      children.add(WidgetSpan(
+    for (int i = 0; i < parts.length; i++) {
+      f.inlineWidget(
         baseline: TextBaseline.alphabetic,
         alignment: PlaceholderAlignment.baseline,
-        child: part,
-      ));
-      children.add(const TextSpan(text: ' '));
+        child: parts[i],
+      );
+      if (i < parts.length - 1) {
+        f.write(text: ' ');
+      }
     }
-    children.removeLast();
-
-    // if (displayStyle) {
-    //   return WidgetSpan(
-    //     child: RichText(
-    //       text: TextSpan(children: children),
-    //       textAlign: TextAlign.center,
-    //     ),
-    //   );
-    // }
-
-    return TextSpan(
-      children: children,
-    );
   }
 
   @override
   MathBit copyWith({
     BuildTree? parent,
-    TextStyleBuilder? tsb,
     String? math,
     TextStyle? textStyle,
     bool? displayStyle,
   }) =>
       MathBit(
         parent: parent ?? this.parent,
-        tsb: tsb ?? this.tsb,
         math: math ?? this.math,
         textStyle: textStyle ?? this.textStyle,
         displayStyle: displayStyle ?? this.displayStyle,

@@ -48,11 +48,10 @@ class _LessonsPageState extends RequestScaffoldState<LessonList, LessonsPage> {
           (_) => rateMyApp.showRateDialog(
             context,
             title: 'Noter l\'application',
-            message:
-                'Si vous aimez cette application, n\'hésitez pas à prendre un peu de votre temps pour la noter !\nCe serait d\'une grande aide et cela ne devrait pas vous prendre plus d\'une minute.',
-            rateButton: 'Noter'.toUpperCase(),
-            noButton: 'Non merci'.toUpperCase(),
-            laterButton: 'Plus tard'.toUpperCase(),
+            message: 'Si vous aimez cette application, n\'hésitez pas à prendre un peu de votre temps pour la noter !\nCe serait d\'une grande aide et cela ne devrait pas vous prendre plus d\'une minute.',
+            rateButton: 'Noter',
+            noButton: 'Non merci',
+            laterButton: 'Plus tard',
             ignoreNativeDialog: false,
           ),
         );
@@ -85,7 +84,7 @@ class _LessonsPageState extends RequestScaffoldState<LessonList, LessonsPage> {
             ElevatedButton(
               onPressed: () => Navigator.pushNamed(context, '/levels'),
               child: Text(
-                'Liste des classes'.toUpperCase(),
+                'Liste des classes',
                 style: const TextStyle(color: Colors.white),
               ),
             ),
@@ -95,7 +94,7 @@ class _LessonsPageState extends RequestScaffoldState<LessonList, LessonsPage> {
                 triggerRequest();
               },
               child: Text(
-                'Réessayer'.toUpperCase(),
+                'Réessayer',
                 style: const TextStyle(color: Colors.white),
               ),
             ),
@@ -210,6 +209,7 @@ class _PreviewWidget extends ConsumerWidget {
       child: Card(
         shape: const BeveledRectangleBorder(),
         color: theme.lessonBackgroundColor,
+        surfaceTintColor: theme.lessonBackgroundColor,
         elevation: 10,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -237,7 +237,7 @@ class _PreviewWidget extends ConsumerWidget {
             ),
             createDescriptionWidget(),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
               child: createActionButton(
                 context,
                 buttonText: 'Lire le cours',
@@ -292,7 +292,7 @@ class _PreviewWidget extends ConsumerWidget {
             },
           ),
           child: Text(
-            buttonText.toUpperCase(),
+            buttonText,
             style: const TextStyle(fontSize: 14, color: Colors.white),
           ),
       );

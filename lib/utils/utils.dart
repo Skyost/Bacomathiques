@@ -89,27 +89,6 @@ bool isTablet(Size screenSize) {
   return diagonal > 1100 || screenSize.shortestSide >= 600;
 }
 
-/// Returns the platform name.
-String get platformName {
-  if (kIsWeb) {
-    return 'web';
-  }
-  switch(defaultTargetPlatform) {
-    case TargetPlatform.android:
-      return 'Android';
-    case TargetPlatform.fuchsia:
-      return 'Fuschia';
-    case TargetPlatform.iOS:
-      return 'iOS';
-    case TargetPlatform.linux:
-      return 'Linux';
-    case TargetPlatform.macOS:
-      return 'macOS';
-    case TargetPlatform.windows:
-      return 'Windows';
-  }
-}
-
 /// Contains some useful methods for doubles.
 extension DoubleUtils on double {
   /// Does a linear interpolation of two doubles, this one and another.

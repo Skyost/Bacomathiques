@@ -11,28 +11,27 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.13.5
-  url_launcher: ^6.1.7
-  flutter_svg: ^1.1.6
-  share_plus: ^6.3.0
-  rate_my_app: ^1.1.3
-  path_provider: ^2.0.11
-  shared_preferences: ^2.0.15
-  day_night_switcher: ^0.2.0
-  flutter_layout_grid: ^2.0.1
-  google_fonts: ^3.0.1
-  collection: ^1.16.0
-  flutter_widget_from_html_core: ^0.8.5
-  fwfh_svg: ^0.7.2
-  flutter_math_fork: ^0.6.3
-  indexed_list_view: ^2.0.2
-  google_mobile_ads: ^2.3.0
-  app_tracking_transparency: ^2.0.3
-  flutter_riverpod: ^2.1.3
-  html: ^0.15.1
+  http: ^1.1.2
+  url_launcher: ^6.2.2
+  flutter_svg: ^2.0.9
+  share_plus: ^7.2.1
+  rate_my_app: ^2.0.0
+  path_provider: ^2.1.1
+  shared_preferences: ^2.2.2
+  day_night_switcher: ^0.2.0+1
+  flutter_layout_grid: ^2.0.5
+  google_fonts: ^6.1.0
+  collection: ^1.18.0
+  flutter_widget_from_html_core: ^0.14.9
+  fwfh_svg: ^0.8.0+4
+  flutter_math_fork: ^0.7.2
+  indexed_list_view: ^3.0.1
+  google_mobile_ads: ^4.0.0
+  flutter_riverpod: ^2.4.9
+  html: ^0.15.4
 
 dev_dependencies:
-  flutter_lints: ^2.0.1
+  flutter_lints: ^3.0.1
 
 flutter:
   uses-material-design: true

@@ -38,16 +38,8 @@ class _WriteCommentDialogState extends ConsumerState<WriteCommentDialog> {
   }
 
   @override
-  Widget build(BuildContext context) => AlertDialog(
-        title: const Text('Nouveau commentaire'),
-        content: TextField(
-          keyboardType: TextInputType.multiline,
-          controller: controller,
-          decoration: const InputDecoration(
-            hintText: 'Exprimez-vous !',
-          ),
-          maxLines: null,
-        ),
+  Widget build(BuildContext context) => AppAlertDialog.oneChild(
+        title: 'Nouveau commentaire',
         actions: [
           TextButton(
             onPressed: () async {
@@ -77,10 +69,18 @@ class _WriteCommentDialogState extends ConsumerState<WriteCommentDialog> {
                 );
               }
             },
-            child: Text('Envoyer'.toUpperCase()),
+            child: const Text('Envoyer'),
           ),
           const AppAlertDialogCloseButton(),
         ],
+        child: TextField(
+          keyboardType: TextInputType.multiline,
+          controller: controller,
+          decoration: const InputDecoration(
+            hintText: 'Exprimez-vous !',
+          ),
+          maxLines: null,
+        ),
       );
 
   @override

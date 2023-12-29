@@ -1,10 +1,8 @@
 import 'package:bacomathiques/model/settings.dart';
 import 'package:bacomathiques/widgets/dialogs/app_alert_dialog.dart';
-import 'package:bacomathiques/widgets/dialogs/consent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 /// The ads dialog.
 class AdsDialog extends ConsumerStatefulWidget {
@@ -25,16 +23,12 @@ class _AdsDialogState extends ConsumerState<AdsDialog> {
         title: 'Publicités',
         actions: [
           TextButton(
-            onPressed: () => changeAdMobSettings(true, preferencesWantsNonPersonalizedAds: false),
-            child: Text('Voir des annonces sur mesure'.toUpperCase()),
-          ),
-          TextButton(
-            onPressed: () => changeAdMobSettings(true, preferencesWantsNonPersonalizedAds: true),
-            child: Text('Voir des annonces moins pertinentes'.toUpperCase()),
+            onPressed: () => changeAdMobSettings(true),
+            child: const Text('Activer les publicités'),
           ),
           TextButton(
             onPressed: () => changeAdMobSettings(false),
-            child: Text('Désactiver les publicités'.toUpperCase()),
+            child: const Text('Désactiver les publicités'),
           ),
           const AppAlertDialogCloseButton(),
         ],
@@ -48,13 +42,10 @@ class _AdsDialogState extends ConsumerState<AdsDialog> {
         ),
       );
 
-  Future<void> changeAdMobSettings(bool adMobEnabled, {bool? preferencesWantsNonPersonalizedAds}) async {
+  Future<void> changeAdMobSettings(bool adMobEnabled) async {
     SettingsModel settingsModel = ref.read(settingsModelProvider);
     settingsModel.adMobEnabled = adMobEnabled;
     await settingsModel.flush();
-    if (preferencesWantsNonPersonalizedAds != null) {
-      await (await SharedPreferences.getInstance()).setBool(ConsentInformation.preferencesWantsNonPersonalizedAds, preferencesWantsNonPersonalizedAds);
-    }
     if (mounted) {
       await showRestartDialog(context);
       if (mounted) {
@@ -75,7 +66,7 @@ class _AdsDialogState extends ConsumerState<AdsDialog> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('Ok'.toUpperCase()),
+              child: Text('Ok'),
             ),
           ],
         ),

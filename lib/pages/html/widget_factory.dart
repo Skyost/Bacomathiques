@@ -1,4 +1,3 @@
-import 'package:bacomathiques/pages/html/html_widget.dart';
 import 'package:bacomathiques/pages/html/math_bit.dart';
 import 'package:bacomathiques/widgets/html/bubble_widget.dart';
 import 'package:bacomathiques/widgets/theme/bubble.dart';
@@ -6,71 +5,56 @@ import 'package:bacomathiques/widgets/theme/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'package:flutter_widget_from_html_core/src/internal/core_ops.dart';
 import 'package:fwfh_svg/fwfh_svg.dart';
 
 /// Allows to display custom widgets to the HTML content.
 class AppWidgetFactory extends WidgetFactory with SvgFactory {
   /// The text style.
-  final TextStyle textStyle;
+  final BuildContext context;
 
   /// The app theme.
   final AppTheme appTheme;
 
   /// Creates a new app widget factory instance.
   AppWidgetFactory({
-    required this.textStyle,
+    required this.context,
     required this.appTheme,
   });
 
   @override
-  void parse(BuildMetadata meta) {
-    if (meta.element.localName != 'h2' && meta.element.localName != 'h3' && meta.element.localName != 'h4') {
-      super.parse(meta);
-    }
-    if (meta.element.localName == 'math') {
+  void parse(BuildTree meta) {
+    if (meta.element.localName == 'math' || meta.element.localName == 'latex') {
       _registerMathOp(meta);
-    } else if (meta.element.localName == 'latex') {
-      _registerMathOp(meta);
-    } else if (meta.element.classes.contains(Bubble.formula.className)) {
-      _registerBubbleBuildOp(Bubble.formula, meta);
-    } else if (meta.element.classes.contains(Bubble.proof.className)) {
-      _registerBubbleBuildOp(Bubble.proof, meta);
-    } else if (meta.element.classes.contains(Bubble.tip.className)) {
-      _registerBubbleBuildOp(Bubble.tip, meta);
-    } else if (meta.element.classes.contains(Bubble.exercise.className)) {
-      _registerBubbleBuildOp(Bubble.exercise, meta);
-    } else if (meta.element.classes.contains(Bubble.correction.className)) {
-      _registerBubbleBuildOp(Bubble.correction, meta);
-    } else if (meta.element.localName == 'h2') {
-      _registerTitleBuildOps(meta);
-    } else if (meta.element.localName == 'h3') {
-      _registerTitleBuildOps(meta);
-    } else if (meta.element.localName == 'h4') {
-      _registerTitleBuildOps(meta);
+      return;
     }
-  }
 
-  @override
-  Widget? buildText(BuildMetadata meta, TextStyleHtml tsh, InlineSpan text) {
-    TextStyleHtml textStyleHtml = tsh;
-    if (meta.element.classes.contains('katex-display')) {
-      textStyleHtml = textStyleHtml.copyWith(textAlign: TextAlign.center);
+    for (Bubble bubble in Bubble.values) {
+      if (meta.element.classes.contains(bubble.className)) {
+        _registerBubbleBuildOp(bubble, meta);
+        return;
+      }
     }
-    return super.buildText(meta, textStyleHtml, text);
+
+    if (meta.element.localName == kTagH2 || meta.element.localName == kTagH3 || meta.element.localName == kTagH4) {
+      _registerTitleBuildOps(meta);
+      return;
+    }
+
+    super.parse(meta);
   }
 
   @override
   String getListMarkerText(String type, int i) {
-    if (type == 'dash') {
-      return '— ';
-    }
-    return super.getListMarkerText(type, i);
+    String result = super.getListMarkerText(type, i);
+    return result.isEmpty ? type : result;
   }
 
   /// Creates and registers the math build op.
-  void _registerMathOp(BuildMetadata meta) {
-    BuildOp math = BuildOp(
-      onTree: (meta, tree) {
+  void _registerMathOp(BuildTree meta) {
+    BuildOp math = BuildOp.v2(
+      onParsed: (tree) {
+        BuildTree newTree = tree.parent.sub();
         String math = '';
         for (BuildBit bit in tree.bits.toList(growable: false)) {
           if (bit is TextBit) {
@@ -80,111 +64,40 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
         for (BuildBit bit in tree.bits.toList(growable: false)) {
           if (bit is TextBit) {
             if (math.isNotEmpty) {
-              MathBit(
-                parent: bit.parent,
-                tsb: bit.tsb,
+              newTree.append(MathBit(
+                parent: tree,
                 math: math,
-                textStyle: textStyle,
+                textStyle: tree.inheritanceResolvers.resolve(context).style.copyWith(fontWeight: FontWeight.normal),
                 displayStyle: meta.element.attributes.containsKey('displaystyle'),
-              ).insertAfter(bit);
-              math = '';
+              ));
             }
-            bit.detach();
+          } else {
+            newTree.append(bit);
           }
         }
+        return newTree;
       },
     );
     meta.register(math);
   }
 
   /// Creates and registers title build ops.
-  void _registerTitleBuildOps(BuildMetadata meta) {
-    BuildOp headline = BuildOp(
-      onTree: (meta, tree) {
-        for (BuildBit bit in tree.bits.toList(growable: false)) {
-          if (bit is MathBit) {
-            bit
-                .copyWith(
-                  textStyle: TextStyle(
-                    color: AppHtmlWidget.getHeadlineColor(appTheme, meta.element),
-                    fontSize: AppHtmlWidget.getHeadlineFontSize(appTheme, meta.element),
-                  ),
-                )
-                .insertAfter(bit);
-            bit.detach();
-          }
-        }
-      },
-    );
+  void _registerTitleBuildOps(BuildTree meta) {
+    BuildOp headline = const BuildOp.v2();
     meta.register(headline);
-    if (meta.element.attributes.containsKey('id')) {
-      meta.register(_anchorOp(meta.element.attributes['id']!));
+    if (meta.element.attributes.containsKey(kAttributeId)) {
+      meta.register(Anchor(this, meta.element.attributes[kAttributeId]!).buildOp);
     }
   }
 
   /// Creates and register a bubble build op.
-  void _registerBubbleBuildOp(Bubble bubble, BuildMetadata meta) {
-    BuildOp bubbleBuildOp = BuildOp(
-      onChild: (meta) {
-        if (meta.element.localName == 'h4' || meta.element.localName == 'a') {
-          meta.element.attributes['data-parent-bubble'] = bubble.className;
-        }
-      },
-      onWidgets: (meta, children) => [
-        BubbleWidget.fromElement(
-          element: meta.element,
-          children: children.toList(),
-        ),
-      ],
+  void _registerBubbleBuildOp(Bubble bubble, BuildTree meta) {
+    BuildOp bubbleBuildOp = BuildOp.v2(
+      onRenderBlock: (tree, placeholder) => BubbleWidget.fromElement(
+        element: tree.element,
+        placeholder: placeholder,
+      ),
     );
     meta.register(bubbleBuildOp);
-  }
-
-  /// Taken from the super method.
-  BuildOp _anchorOp(String id) {
-    final anchor = GlobalKey(debugLabel: id);
-
-    return BuildOp(
-      onTree: (meta, tree) {
-        anchorRegistry.register(id, anchor);
-        tree.registerAnchor(anchor);
-      },
-      onTreeFlattening: (meta, tree) {
-        final widget = WidgetPlaceholder('#$id').wrapWith(
-          (context, _) => SizedBox(
-            height: meta.tsb.build(context).style.fontSize,
-            key: anchor,
-          ),
-        );
-
-        final bit = tree.first;
-        if (bit == null) {
-          // most likely an A[name]
-          tree.add(
-            WidgetBit.inline(
-              tree,
-              widget,
-              alignment: PlaceholderAlignment.baseline,
-            ),
-          );
-        } else {
-          // most likely a SPAN[id]
-          WidgetBit.inline(
-            bit.parent!,
-            widget,
-            alignment: PlaceholderAlignment.baseline,
-          ).insertBefore(bit);
-        }
-      },
-      onWidgets: (meta, widgets) {
-        return listOrNull(
-          buildColumnPlaceholder(meta, widgets)?.wrapWith(
-            (context, child) => SizedBox(key: anchor, child: child),
-          ),
-        );
-      },
-      onWidgetsIsOptional: true,
-      priority: BuildOp.kPriorityMax,
-    );
   }
 }

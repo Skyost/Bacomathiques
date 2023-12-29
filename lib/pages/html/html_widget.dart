@@ -30,31 +30,6 @@ class AppHtmlWidget extends ConsumerStatefulWidget {
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _AppHtmlWidgetState();
-
-  /// Returns the headline color.
-  static Color? getHeadlineColor(AppTheme theme, dom.Element headline) {
-    if (headline.localName == 'h2') {
-      return theme.h2Color ?? theme.textColor;
-    } else if (headline.localName == 'h3') {
-      return theme.h3Color ?? theme.textColor;
-    } else if (headline.localName == 'h4') {
-      Bubble bubble = BubbleUtils.getByClassName(headline.attributes['data-parent-bubble']);
-      return theme.bubbleThemes[bubble]?.leftBorderColor;
-    }
-    return theme.textColor;
-  }
-
-  /// Returns the headline font size.
-  static double getHeadlineFontSize(AppTheme theme, dom.Element headline) {
-    if (headline.localName == 'h2') {
-      return theme.h2Size;
-    } else if (headline.localName == 'h3') {
-      return theme.h3Size;
-    } else if (headline.localName == 'h4') {
-      return theme.h4Size;
-    }
-    return 16;
-  }
 }
 
 /// The html widget state.
@@ -109,7 +84,7 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
       },
       //rebuildTriggers: RebuildTriggers([data, buildCustomWidget, buildCustomStyle]),
       textStyle: bodyTextStyle,
-      factoryBuilder: () => AppWidgetFactory(textStyle: bodyTextStyle, appTheme: theme),
+      factoryBuilder: () => AppWidgetFactory(context: context, appTheme: theme),
       renderMode: const ListViewMode(
         padding: EdgeInsets.all(20),
         shrinkWrap: true,
@@ -152,8 +127,9 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
   /// Builds the style of an element.
   Map<String, String>? buildCustomStyle(BuildContext context, AppTheme theme, dom.Element element) {
     Map<String, String> style = {
+      if (element.classes.contains('katex-display')) 'text-align': 'center',
+      if (element.classes.contains('katex-display')) 'margin-bottom': '1em',
       if (element.classes.contains('mb-0')) 'margin-bottom': '0',
-      if (element.classes.contains('katex-display')) 'display': 'block',
       if (element.classes.contains('center')) 'text-align': 'center',
     };
 
@@ -161,8 +137,7 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
       case 'h2':
       case 'h3':
       case 'h4':
-        Color? color = AppHtmlWidget.getHeadlineColor(theme, element);
-        double fontSize = AppHtmlWidget.getHeadlineFontSize(theme, element);
+        Color? color = _getHeadlineColor(theme, element);
         double paddingBottom = 0;
         double marginBottom = 0;
         String? borderBottom;
@@ -177,7 +152,7 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
         }
         return {
           'display': 'block',
-          'font-size': '${fontSize}px',
+          'font-size': '${_getHeadlineFontSize(theme, element)}px',
           'color': (color ?? Colors.black).toHex(),
           if (borderBottom != null) 'border-bottom': borderBottom,
           'padding-bottom': '${paddingBottom}px',
@@ -205,7 +180,7 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
         }
       case 'ul':
         return {
-          'list-style-type': 'dash',
+          'list-style-type': '— ',
           'margin-top': '0',
           'margin-bottom': '0',
           'padding-left': '2em',
@@ -253,6 +228,32 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
         }
     }
 
-    return null;
+    return style;
+  }
+
+
+  /// Returns the headline color.
+  Color? _getHeadlineColor(AppTheme theme, dom.Element headline) {
+    if (headline.localName == 'h2') {
+      return theme.h2Color ?? theme.textColor;
+    } else if (headline.localName == 'h3') {
+      return theme.h3Color ?? theme.textColor;
+    } else if (headline.localName == 'h4') {
+      Bubble bubble = BubbleUtils.getByClassName(headline.parent?.className ?? Bubble.formula.className);
+      return theme.bubbleThemes[bubble]?.leftBorderColor;
+    }
+    return theme.textColor;
+  }
+
+  /// Returns the headline font size.
+  double _getHeadlineFontSize(AppTheme theme, dom.Element headline) {
+    if (headline.localName == 'h2') {
+      return theme.h2Size;
+    } else if (headline.localName == 'h3') {
+      return theme.h3Size;
+    } else if (headline.localName == 'h4') {
+      return theme.h4Size;
+    }
+    return 16;
   }
 }
