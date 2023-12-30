@@ -217,8 +217,8 @@ const resolveImageSrc = (
       continue
     }
 
-    // Check if the image has a PDF or a TEX extension.
-    if (extension === '.pdf' || extension === '.tex') {
+    // Check if the image has a TEX extension.
+    if (extension === '.tex') {
       // Generate an SVG from the PDF.
       const { builtFilePath } = latex.generateSvg(
         imagePathWithSuffix,
@@ -237,6 +237,8 @@ const resolveImageSrc = (
 
       // Update the image path to the generated SVG.
       imagePathWithSuffix = builtFilePath
+    } else if (extension === '.pdf') {
+      imagePathWithSuffix = latex.pdftocairo(path.dirname(imagePathWithSuffix), path.basename(imagePathWithSuffix))
     }
 
     // Return the relative path from the assets destination directory.

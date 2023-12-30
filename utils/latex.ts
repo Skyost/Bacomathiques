@@ -221,49 +221,42 @@ export const generateSvg = (texFilePath: string, options: SvgGenerateOptions = {
     return { builtFilePath: svgFilePath, wasCached: true }
   }
 
-  // Initialize the path to the PDF file.
-  let pdfFilePath = path.resolve(directory, `${fileName}.pdf`)
-  let wasCached = false
+  // Generate the PDF file, if not cached.
+  const pdfGenerateResult = generatePdf(texFilePath, options)
 
-  // Check if the PDF file does not exist.
-  if (!fs.existsSync(pdfFilePath)) {
-    // Generate the PDF file, if not cached.
-    const result = generatePdf(texFilePath, options)
-    // If PDF generation fails, return information about the failure.
-    if (!result.builtFilePath) {
-      return { builtFilePath: null, wasCached: false }
-    }
-    // Update the PDF file path and cache status.
-    pdfFilePath = result.builtFilePath
-    wasCached = result.wasCached
+  // If PDF generation fails, return information about the failure.
+  if (!pdfGenerateResult.builtFilePath) {
+    return { builtFilePath: null, wasCached: false }
   }
 
   // Convert the PDF file to SVG using pdftocairo.
-  svgFilePath = pdftocairo(path.dirname(pdfFilePath), `${fileName}.pdf`)
-  if (svgFilePath && options.optimize) {
-    const svgContent = fs.readFileSync(svgFilePath, { encoding: 'utf8' })
-    const size = fs.statSync(svgFilePath).size
-    const { data: optimizedSvgContent } = optimize(svgContent, {
-      path: svgFilePath,
-      multipass: true,
-      floatPrecision: size >= 100000 ? 2 : 5,
-      plugins: [
-        {
-          name: 'preset-default',
-          params: {
-            overrides: {
-              removeViewBox: false
+  if (!pdfGenerateResult.wasCached || !fs.existsSync(svgFilePath)) {
+    svgFilePath = pdftocairo(path.dirname(pdfGenerateResult.builtFilePath), `${fileName}.pdf`)
+    if (svgFilePath && options.optimize) {
+      const svgContent = fs.readFileSync(svgFilePath, { encoding: 'utf8' })
+      const size = fs.statSync(svgFilePath).size
+      const { data: optimizedSvgContent } = optimize(svgContent, {
+        path: svgFilePath,
+        multipass: true,
+        floatPrecision: size >= 100000 ? 2 : 5,
+        plugins: [
+          {
+            name: 'preset-default',
+            params: {
+              overrides: {
+                removeViewBox: false
+              }
             }
-          }
-        },
-        forceUnit
-      ]
-    })
-    fs.writeFileSync(svgFilePath, optimizedSvgContent)
+          },
+          forceUnit
+        ]
+      })
+      fs.writeFileSync(svgFilePath, optimizedSvgContent)
+    }
   }
 
   // Return information about the generated SVG file.
-  return { builtFilePath: svgFilePath, wasCached }
+  return { builtFilePath: svgFilePath, wasCached: pdfGenerateResult.wasCached }
 }
 
 /**
@@ -312,7 +305,7 @@ const latexmk = (directory: string, texFile: string, clean: boolean): string | n
  * @param {string} pdfFile - Path to the PDF file.
  * @returns {string} - Path to the generated SVG file.
  */
-const pdftocairo = (directory: string, pdfFile: string): string => {
+export const pdftocairo = (directory: string, pdfFile: string): string => {
   // Generate the desired SVG file name based on the PDF file name.
   const svgFile = `${getFileName(pdfFile)}.svg`
   // Generate the full path to the SVG file.
