@@ -26,7 +26,7 @@
 
 	\begin{tip}[Schéma]
 		Il peut être dur de se représenter l'ensemble des nombres complexes, voici un schéma représentant les ensembles de nombres déjà connus :
-		\includelatexpicture{ensembles}
+		\includelatexpicture[200pt]{ensembles}
 
 		Comme on peut le voir ici, l'ensemble $\mathbb{C}$ contient l'ensemble $\mathbb{R}$ mais également des nombres qui ne sont pas réels ($i$, $1 + i$, etc.).
 	\end{tip}
@@ -139,9 +139,8 @@
 	On donne enfin la \textbf{formule du binôme de Newton}, qui peut s'avérer utile pour développer certaines expressions.
 
 	\begin{formula}[Formule du binôme de Newton]
-		Soient $a$ et $b$ deux nombres complexes.
-		\newpar
-		Alors pour tout $n \in \mathbb{N}$, $\displaystyle{(a + b)^n = \sum_{k = 0}^n \binom{k}{n} a^k b^{n-k}}$.
+		Soient $a$ et $b$ deux nombres complexes. Alors pour tout $n \in \mathbb{N}$ :
+		\[ (a + b)^n = \sum_{k = 0}^n \binom{k}{n} a^k b^{n-k} \]
 	\end{formula}
 
 	\begin{demonstration}[Formule du binôme de Newton]
@@ -158,9 +157,7 @@
 		Ainsi, forcément, $i = n-k$ (car si on ne choisit pas $a$, alors on choisit $b$ ; choisir $k$ fois $a$ revient donc à choisir $n-k$ fois $b$).
 		\newpar
 		De plus, il y a $\binom{n}{k}$ manières de choisir $k$ fois $a$ parmi les $n$ expressions $(a+b)$, alors l'expression $a^k b^{n-k}$ apparaît $\binom{n}{k}$ lors du développement. Notre somme de termes devient donc :
-		\newpar
-		$ \displaystyle (a+b)^n = \underbrace{(a^0b^{n-0} + \dots + a^0b^{n-0})}_{\binom{n}{0} \text{ termes}} + \dots + \underbrace{(a^kb^{n-k} + \dots + a^kb^{n-k})}_{\binom{n}{k} \text{ termes}} + \dots + \underbrace{(a^nb^{n-n} + \dots + a^nb^{n-n})}_{\binom{n}{n} \text{ termes}} $
-		\newpar
+		\[ (a+b)^n = \underbrace{(a^0b^{n-0} + \dots + a^0b^{n-0})}_{\binom{n}{0} \text{ termes}} + \dots + \underbrace{(a^kb^{n-k} + \dots + a^kb^{n-k})}_{\binom{n}{k} \text{ termes}} + \dots + \underbrace{(a^nb^{n-n} + \dots + a^nb^{n-n})}_{\binom{n}{n} \text{ termes}} \]
 		C'est ce qu'il fallait démontrer.
 	\end{demonstration}
 
@@ -183,7 +180,7 @@
 		On considère l'équation $(E) : az^2 + bz + c = 0$ (où $a$, $b$ et $c$ sont trois réels et $a \neq 0$). On pose $\Delta = b^2 - 4ac$, et alors les solutions de $(E)$ dépendent du signe de $\Delta$ :
 		\begin{itemize}
 			\item Si $\Delta > 0$, $(E)$ admet deux solutions réelles $z_1 = \frac{-b - \sqrt{\Delta}}{2a}$ et $z_2 = \frac{-b + \sqrt{\Delta}}{2a}$.
-			\item Si $\Delta = 0$, $(E)$ admet une solution réelle $\displaystyle{z_0 = \frac{-b}{2a}}$.
+			\item Si $\Delta = 0$, $(E)$ admet une solution réelle $z_0 = \frac{-b}{2a}$.
 			\item Si $\Delta < 0$, $(E)$ admet deux solutions complexes conjuguées $z_1 = \frac{-b - i\sqrt{-\Delta}}{2a}$ et $z_2 = \frac{-b + i\sqrt{-\Delta}}{2a} = \bar{z_1}$.
 		\end{itemize}
 	\end{formula}

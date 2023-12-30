@@ -65,7 +65,7 @@
 	\end{formula}
 
 	\begin{tip}[Exemple]
-		Dans l'exemple précédent (en supposant que $S$ est le 1\ier{} sommet et que $M$ est le 2\ieme{}) la matrice de transition du graphe $G$ est $\displaystyle{\begin{pmatrix} 0,9 & 0,1 \\ 0,4 & 0,6 \end{pmatrix}}$.
+		Dans l'exemple précédent (en supposant que $S$ est le 1\ier{} sommet et que $M$ est le 2\ieme{}) la matrice de transition du graphe $G$ est $\begin{pmatrix} 0,9 & 0,1 \\ 0,4 & 0,6 \end{pmatrix}$.
 	\end{tip}
 
 	Attention cependant à ne pas confondre matrice de transition et matrice d'adjacence.
@@ -105,11 +105,11 @@
 		\newpar
 		Si on note par $X_n$ le nombre de vignettes différentes dans la collection d'Eliott après qu'il eut ouvert $n$ paquets de céréales, alors $(X_n)$ est une chaîne de Markov homogène (commençant par $X_0 = 0$). En effet, pour tout $k \in \{0, 1, \dots, 11\}$, on a que l'événement $(X_{n+1} = k)$ ne dépend que de $X_n$ :
 		\newpar
-		$\displaystyle{P_A(X_{n+1} = k) = \begin{cases}
-				\frac{k}{11} \text{ si } A \text{ est l'événement } (X_n = k) \\
-				1 - \frac{k-1}{11} \text{ si } A \text{ est l'événement } (X_n = k-1) \text{ et que } k \geq 1 \\
-				0 \text{ sinon}
-		\end{cases}}$
+		\[ P_A(X_{n+1} = k) = \begin{cases}
+      \frac{k}{11} \text{ si } A \text{ est l'événement } (X_n = k) \\
+      1 - \frac{k-1}{11} \text{ si } A \text{ est l'événement } (X_n = k-1) \text{ et que } k \geq 1 \\
+      0 \text{ sinon}
+    \end{cases} \]
 		\newpar
 		Pour détailler un peu plus :
 		\begin{itemize}
@@ -183,7 +183,7 @@
 
 	\begin{formula}[Définition]
 		\contentwidth[big]
-		Soit $(X_n)$ une chaîne de Markov homogène dont on note $E = \{x_1, x_2, \dots, x_m\}$ l'espace des états. On appelle \textbf{suite des distributions} de $(X_n)$ la suite de matrices $(\pi_n)$, définie pour tout $n \in \mathbb{N}$ par $\displaystyle{\pi_n = \begin{pmatrix} P(X_n = x_1) & P(X_n = x_2) & \dots & P(X_n = e_m) \end{pmatrix}}$.
+		Soit $(X_n)$ une chaîne de Markov homogène dont on note $E = \{x_1, x_2, \dots, x_m\}$ l'espace des états. On appelle \textbf{suite des distributions} de $(X_n)$ la suite de matrices $(\pi_n)$, définie pour tout $n \in \mathbb{N}$ par $\pi_n = \begin{pmatrix} P(X_n = x_1) & P(X_n = x_2) & \dots & P(X_n = e_m) \end{pmatrix}$.
 		\newpar
 		$\pi_n$ est donc une matrice ligne d'ordre $m$ et est appelée \textbf{distribution au temps $n$}.
 		\newpar
@@ -217,9 +217,9 @@
 		\newpar
 		Soit $M$ la matrice de transition $M$ de $(X_n)$. Calculons quelques puissances de $M$ :
 		\begin{itemize}
-			\item $\displaystyle{M = \begin{pmatrix} 0,5 & 0,3 & 0,2 \\ 0,2 & 0,7 & 0,1 \\ 0,3 & 0,3 & 0,4 \end{pmatrix}}$
-			\item $\displaystyle{M^2 = \begin{pmatrix} 0,37 & 0,42 & 0,21 \\ 0,27 & 0,58 & 0,15 \\ 0,33 & 0,42 & 0,25 \end{pmatrix}}$
-			\item $\displaystyle{M^3 = \begin{pmatrix} 0,332 & 0,468 & 0,2 \\ 0,296 & 0,532 & 0,172 \\ 0,324 & 0,468 & 0,208 \end{pmatrix}}$
+			\item $M = \begin{pmatrix} 0,5 & 0,3 & 0,2 \\ 0,2 & 0,7 & 0,1 \\ 0,3 & 0,3 & 0,4 \end{pmatrix}$
+			\item $M^2 = \begin{pmatrix} 0,37 & 0,42 & 0,21 \\ 0,27 & 0,58 & 0,15 \\ 0,33 & 0,42 & 0,25 \end{pmatrix}$
+			\item $M^3 = \begin{pmatrix} 0,332 & 0,468 & 0,2 \\ 0,296 & 0,532 & 0,172 \\ 0,324 & 0,468 & 0,208 \end{pmatrix}$
 		\end{itemize}
 		Ainsi :
 		\begin{itemize}
@@ -235,7 +235,7 @@
 	\begin{formula}[Définition]
 		Soit $(X_n)$ une chaîne de Markov homogène de matrice de transition $M$. Une distribution $\pi$ est \textbf{invariante} si les deux conditions suivantes sont respectées :
 		\begin{itemize}
-			\item $\displaystyle{\pi M = \pi}$ (donc si $\pi$ est une distribution à un temps $n$, on a $\pi = \pi_n$ et cette condition se résume à avoir $\pi_n = \pi_n M = \pi_{n+1}$).
+			\item $\pi M = \pi$ (donc si $\pi$ est une distribution à un temps $n$, on a $\pi = \pi_n$ et cette condition se résume à avoir $\pi_n = \pi_n M = \pi_{n+1}$).
 			\item La somme des coefficients de $\pi$ vaut $1$.
 		\end{itemize}
 	\end{formula}
