@@ -134,7 +134,7 @@ const replaceImages = (
   contentDirectoryPath: string
 ) => {
   // Possible image file extensions.
-  const extensions = ['', '.tex', '.pdf', '.svg', '.png', '.jpeg', '.jpg', '.gif']
+  const extensions = ['', '.svg', '.tex', '.pdf', '.png', '.jpeg', '.jpg', '.gif']
 
   // Select all image elements in the HTML tree.
   const images = root.querySelectorAll('img')
