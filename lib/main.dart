@@ -11,10 +11,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:syntax_highlight/syntax_highlight.dart';
+
+/// Python syntax highlighting file path.
+const String pythonSyntaxHighlightingFilePath = '../../../assets/languages/python';
 
 /// Hello world !
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Highlighter.initialize([pythonSyntaxHighlightingFilePath]);
   if (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS) {
     await MobileAds.instance.initialize();
   }

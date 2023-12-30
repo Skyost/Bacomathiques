@@ -4,8 +4,8 @@ import 'package:bacomathiques/model/api/common.dart';
 class LessonListEndpoint extends APIEndpoint<LessonList> {
   /// Creates a new lesson list endpoint instance.
   const LessonListEndpoint({
-    required String path,
-  }) : super(path: path);
+    required super.path,
+  });
 
   @override
   LessonList createObjectFromJSON(Map<String, dynamic> parsedJSON) => LessonList.fromParsedJSON(parsedJSON);

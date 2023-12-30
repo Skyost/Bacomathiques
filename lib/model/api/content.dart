@@ -4,10 +4,8 @@ import 'package:bacomathiques/model/api/common.dart';
 class LessonContentEndpoint extends APIEndpoint<LessonContent> {
   /// Creates a new lesson content endpoint instance.
   const LessonContentEndpoint({
-    required String path,
-  }) : super(
-          path: path,
-        );
+    required super.path,
+  });
 
   /// Creates a new lesson content endpoint instance from a level and a lesson.
   const LessonContentEndpoint.fromLevelAndLesson({

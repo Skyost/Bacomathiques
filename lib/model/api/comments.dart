@@ -8,10 +8,8 @@ import 'package:http/http.dart' as http;
 class LessonCommentsEndpoint extends APIEndpoint<LessonComments> {
   /// Creates a new lesson comments endpoint instance.
   const LessonCommentsEndpoint({
-    required String path,
-  }) : super(
-          path: path,
-        );
+    required super.path,
+  });
 
   @override
   LessonComments createObjectFromJSON(Map<String, dynamic> parsedJSON) => LessonComments.fromParsedJSON(parsedJSON);

@@ -39,26 +39,34 @@ class BubbleWidget extends ConsumerStatefulWidget {
   ConsumerState createState() => _BubbleWidgetState();
 
   /// Whether the widget should in a scrollable view.
-  static bool _inScrollableView(dom.Element element) {
-    if (element.getElementsByTagName('table').isNotEmpty || element.getElementsByTagName('pre').isNotEmpty) {
-      return true;
-    }
-
-    return element.attributes['data-api-v2-content-width'] == 'big';
-  }
+  static bool _inScrollableView(dom.Element element) => element.getElementsByTagName('table').isNotEmpty || element.getElementsByTagName('pre').isNotEmpty;
 }
 
 /// The bubble widget state.
 class _BubbleWidgetState extends ConsumerState<BubbleWidget> {
+  /// The scroll controller, if enabled.
+  ScrollController? scrollController;
+
   /// Whether to show the label.
   bool showLabel = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.inScrollableView) {
+      scrollController = ScrollController();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     AppTheme theme = ref.watch(settingsModelProvider).resolveTheme(context);
     BubbleTheme bubbleTheme = theme.bubbleThemes[widget.bubble]!;
-    Widget column = Padding(
-      padding: const EdgeInsets.all(20),
+
+    double width = MediaQuery.of(context).size.width;
+    double padding = 20;
+    Widget child = Padding(
+      padding: EdgeInsets.all(padding),
       child: widget.child,
     );
 
@@ -69,7 +77,7 @@ class _BubbleWidgetState extends ConsumerState<BubbleWidget> {
       child: Stack(
         children: [
           Container(
-            width: MediaQuery.of(context).size.width,
+            width: width,
             decoration: BoxDecoration(
               color: bubbleTheme.backgroundColor,
               border: Border(
@@ -81,12 +89,17 @@ class _BubbleWidgetState extends ConsumerState<BubbleWidget> {
             ),
             margin: const EdgeInsets.only(bottom: 16),
             child: widget.inScrollableView
-                ? SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    physics: const BouncingScrollPhysics(),
-                    child: column,
+                ? Scrollbar(
+                    thumbVisibility: true,
+                    controller: scrollController,
+                    child: SingleChildScrollView(
+                      controller: scrollController,
+                      scrollDirection: Axis.horizontal,
+                      physics: const BouncingScrollPhysics(),
+                      child: child,
+                    ),
                   )
-                : column,
+                : child,
           ),
           AnimatedOpacity(
             opacity: showLabel ? 1 : 0,

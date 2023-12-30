@@ -129,7 +129,8 @@ class _AvatarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (url.endsWith('.svg')) {
+    List<String> pathSegments = Uri.parse(url).pathSegments;
+    if (pathSegments.lastOrNull?.endsWith('svg') ?? false) {
       return SvgPicture.network(
         url,
         width: 60,

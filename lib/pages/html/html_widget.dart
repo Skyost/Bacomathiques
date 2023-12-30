@@ -1,3 +1,4 @@
+import 'package:bacomathiques/main.dart';
 import 'package:bacomathiques/model/api/common.dart';
 import 'package:bacomathiques/model/api/content.dart';
 import 'package:bacomathiques/model/settings.dart';
@@ -12,7 +13,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:html/dom.dart' as dom;
+import 'package:syntax_highlight/syntax_highlight.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+/// Allows to identify some elements parent.
+const String kAttributeParentBubble = 'data-parent-bubble';
 
 /// Allows to display a HTML widget.
 class AppHtmlWidget extends ConsumerStatefulWidget {
@@ -50,15 +55,15 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
 
   @override
   Widget build(BuildContext context) {
-    TextStyle bodyTextStyle = Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16);
+    TextStyle? bodyTextStyle = Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 16);
     AppTheme theme = ref.watch(settingsModelProvider).resolveTheme(context);
 
     return HtmlWidget(
       widget.data,
       key: htmlWidgetKey,
       buildAsync: true,
-      customWidgetBuilder: buildCustomWidget,
-      customStylesBuilder: (element) => buildCustomStyle(context, theme, element),
+      customWidgetBuilder: (element) => buildCustomWidget(theme, element),
+      customStylesBuilder: (element) => buildCustomStyle(theme, element),
       onLoadingBuilder: (context, element, progress) {
         String message = 'Rendu…';
         if (progress != null) {
@@ -68,7 +73,7 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
       },
       onErrorBuilder: (context, element, error) {
         if (kDebugMode) {
-          print(element);
+          print(error);
         }
         String title = error == null ? 'Erreur' : 'Erreur "${error.toString()}"';
         return Padding(
@@ -84,7 +89,7 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
       },
       //rebuildTriggers: RebuildTriggers([data, buildCustomWidget, buildCustomStyle]),
       textStyle: bodyTextStyle,
-      factoryBuilder: () => AppWidgetFactory(context: context, appTheme: theme),
+      factoryBuilder: () => AppWidgetFactory(context: context),
       renderMode: const ListViewMode(
         padding: EdgeInsets.all(20),
         shrinkWrap: true,
@@ -113,7 +118,7 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
   }
 
   /// Builds the widget of an element.
-  Widget? buildCustomWidget(dom.Element element) {
+  Widget? buildCustomWidget(AppTheme theme, dom.Element element) {
     if (element.attributes.containsKey('data-api-v2-geogebra-image') && element.attributes.containsKey('data-api-v2-geogebra-id')) {
       return RepresentationPreviewWidget(
         imageURL: element.attributes['data-api-v2-geogebra-image']!,
@@ -121,11 +126,26 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
       );
     }
 
+    if (element.localName == 'pre') {
+      Highlighter highlighter = Highlighter(
+        language: pythonSyntaxHighlightingFilePath,
+        theme: theme.highlighterTheme,
+      );
+      return Container(
+        padding: const EdgeInsets.all(10),
+        color: theme.codeBackgroundColor,
+        child: Text.rich(
+          highlighter.highlight(element.text),
+          style: const TextStyle(fontFamily: 'Monaco'),
+        ),
+      );
+    }
+
     return null;
   }
 
   /// Builds the style of an element.
-  Map<String, String>? buildCustomStyle(BuildContext context, AppTheme theme, dom.Element element) {
+  Map<String, String>? buildCustomStyle(AppTheme theme, dom.Element element) {
     Map<String, String> style = {
       if (element.classes.contains('katex-display')) 'text-align': 'center',
       if (element.classes.contains('katex-display')) 'margin-bottom': '1em',
@@ -219,7 +239,7 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
         };
       case 'a':
         {
-          Bubble bubble = BubbleUtils.getByClassName(element.attributes['data-parent-bubble']);
+          Bubble bubble = BubbleUtils.getByClassName(element.attributes[kAttributeParentBubble]);
           return {
             'color': theme.bubbleThemes[bubble]!.linkColor.toHex(),
             'text-decoration-color': theme.bubbleThemes[bubble]!.linkDecorationColor.toHex(),
@@ -231,7 +251,6 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
     return style;
   }
 
-
   /// Returns the headline color.
   Color? _getHeadlineColor(AppTheme theme, dom.Element headline) {
     if (headline.localName == 'h2') {
@@ -239,7 +258,7 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
     } else if (headline.localName == 'h3') {
       return theme.h3Color ?? theme.textColor;
     } else if (headline.localName == 'h4') {
-      Bubble bubble = BubbleUtils.getByClassName(headline.parent?.className ?? Bubble.formula.className);
+      Bubble bubble = BubbleUtils.getByClassName(headline.attributes[kAttributeParentBubble]);
       return theme.bubbleThemes[bubble]?.leftBorderColor;
     }
     return theme.textColor;

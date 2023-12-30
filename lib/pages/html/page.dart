@@ -305,6 +305,16 @@ class _HTMLPageState extends RequestScaffoldState<APIEndpointResultHTML, _HTMLPa
           continue;
         }
 
+        List<dom.Element> links = element.getElementsByTagName('a');
+        for (dom.Element link in links) {
+          link.attributes[kAttributeParentBubble] = bubble.className;
+        }
+
+        List<dom.Element> headings = element.getElementsByTagName('h4');
+        for (dom.Element heading in headings) {
+          heading.attributes[kAttributeParentBubble] = bubble.className;
+        }
+
         removeBottomMarginOfLastElements(element);
 
         List<dom.Element> lists = element.querySelectorAll('ol, ul');

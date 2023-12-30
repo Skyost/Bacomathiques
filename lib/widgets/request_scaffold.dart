@@ -12,11 +12,9 @@ abstract class RequestScaffold<R extends APIEndpointResult> extends ConsumerStat
 
   /// Creates a new request scaffold instance.
   const RequestScaffold({
-    Key? key,
+    super.key,
     required this.endpoint,
-  }) : super(
-          key: key,
-        );
+  });
 }
 
 /// The request scaffold state.
@@ -117,14 +115,14 @@ abstract class RequestScaffoldState<R extends APIEndpointResult, W extends Reque
 
   /// Updates the current result.
   set result(R? result) {
-    if (mounted) {
-      setState(() {
-        _loading = false;
-        _result = result;
-      });
-    } else {
+    callback() {
       _loading = false;
       _result = result;
+    }
+    if (mounted) {
+      setState(callback);
+    } else {
+      callback();
     }
   }
 

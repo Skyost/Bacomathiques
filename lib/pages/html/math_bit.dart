@@ -37,7 +37,11 @@ class MathBit extends BuildBit {
       f.inlineWidget(
         baseline: TextBaseline.alphabetic,
         alignment: PlaceholderAlignment.baseline,
-        child: parts[i],
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          alignment: Alignment.centerLeft,
+          child: parts[i],
+        ),
       );
       if (i < parts.length - 1) {
         f.write(text: ' ');

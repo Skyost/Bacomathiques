@@ -1,12 +1,11 @@
 name: bacomathiques
 description: Cours gratuits pour réviser les maths au lycée !
-version: 2.2.1+49
+version: 3.0.0+50
 homepage: https://bacomathiqu.es
 publish_to: none
 
 environment:
-  sdk: '>=2.17.0 <3.0.0'
-  flutter: '>=3.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   flutter:
@@ -18,10 +17,7 @@ dependencies:
   rate_my_app: ^2.0.0
   path_provider: ^2.1.1
   shared_preferences: ^2.2.2
-  day_night_switcher: ^0.2.0+1
   flutter_layout_grid: ^2.0.5
-  google_fonts: ^6.1.0
-  collection: ^1.18.0
   flutter_widget_from_html_core: ^0.14.9
   fwfh_svg: ^0.8.0+4
   flutter_math_fork: ^0.7.2
@@ -29,6 +25,8 @@ dependencies:
   google_mobile_ads: ^4.0.0
   flutter_riverpod: ^2.4.9
   html: ^0.15.4
+  syntax_highlight: ^0.3.0
+  collection: ^1.18.0
 
 dev_dependencies:
   flutter_lints: ^3.0.1
@@ -39,8 +37,14 @@ flutter:
     - family: FuturaBT
       fonts:
         - asset: assets/fonts/FuturaBT-Medium.ttf
+    - family: Handlee
+      fonts:
+        - asset: assets/fonts/Handlee-Regular.ttf
+    - family: Monaco
+      fonts:
+        - asset: assets/fonts/Monaco-Regular.ttf
   assets:
     - assets/
     - assets/images/
     - assets/fonts/
-    - google_fonts/
+    - assets/languages/

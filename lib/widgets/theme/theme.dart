@@ -1,14 +1,15 @@
 import 'package:bacomathiques/widgets/theme/bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:syntax_highlight/syntax_highlight.dart';
 
 /// Contains the application theme data.
 abstract class AppTheme {
   /// The light theme instance.
-  static const AppTheme light = _LightAppTheme();
+  static final AppTheme light = _LightAppTheme();
 
   /// The dark theme instance.
-  static const AppTheme dark = _DarkAppTheme();
+  static final AppTheme dark = _DarkAppTheme();
 
   /// The app theme brightness.
   final Brightness brightness;
@@ -79,11 +80,17 @@ abstract class AppTheme {
   /// The input decoration color.
   final Color inputDecorationColor;
 
+  /// The code background color.
+  final Color? codeBackgroundColor;
+
   /// Contains all bubble themes.
   final Map<Bubble, BubbleTheme> bubbleThemes;
 
+  /// The current highlighter theme.
+  late final HighlighterTheme _highlighterTheme;
+
   /// Creates a new app theme data instance.
-  const AppTheme({
+  AppTheme({
     required this.brightness,
     required this.primaryColor,
     required this.primaryColorDark,
@@ -107,8 +114,11 @@ abstract class AppTheme {
     this.h3Color,
     this.hrColor,
     required this.inputDecorationColor,
+    this.codeBackgroundColor,
     required this.bubbleThemes,
-  });
+  }) {
+    HighlighterTheme.loadForBrightness(brightness).then((highlighterTheme) => _highlighterTheme = highlighterTheme);
+  }
 
   /// Returns the flutter theme data.
   ThemeData get flutterThemeData => ThemeData(
@@ -118,6 +128,9 @@ abstract class AppTheme {
           color: actionBarColor,
           foregroundColor: Colors.white,
           systemOverlayStyle: SystemUiOverlayStyle.light,
+        ),
+        scrollbarTheme: const ScrollbarThemeData(
+          radius: Radius.circular(0),
         ),
         textTheme: TextTheme(
           displayLarge: TextStyle(color: textColor),
@@ -158,12 +171,15 @@ abstract class AppTheme {
         ),
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: accentColor),
       );
+
+  /// Creates the highlighter theme.
+  HighlighterTheme get highlighterTheme => _highlighterTheme;
 }
 
 /// The light app theme data.
 class _LightAppTheme extends AppTheme {
   /// Creates a new light app theme data instance.
-  const _LightAppTheme()
+  _LightAppTheme()
       : super(
           brightness: Brightness.light,
           primaryColor: const Color(0xff3498DB),
@@ -180,6 +196,7 @@ class _LightAppTheme extends AppTheme {
           h3Color: const Color(0xff3498db),
           hrColor: const Color(0xffcecece),
           inputDecorationColor: const Color(0xff3498db),
+          codeBackgroundColor: Colors.white,
           bubbleThemes: const {
             Bubble.formula: BubbleTheme(
               backgroundColor: Color(0xffebf3fb),
@@ -218,7 +235,7 @@ class _LightAppTheme extends AppTheme {
 /// The dark app theme data.
 class _DarkAppTheme extends AppTheme {
   /// Creates a new dark app theme data instance.
-  const _DarkAppTheme()
+  _DarkAppTheme()
       : super(
           brightness: Brightness.dark,
           primaryColor: const Color(0xff253341),
@@ -234,6 +251,7 @@ class _DarkAppTheme extends AppTheme {
           progressIndicatorColor: Colors.white,
           hrColor: const Color(0xff2e2e2e),
           inputDecorationColor: Colors.white,
+          codeBackgroundColor: Colors.black,
           bubbleThemes: const {
             Bubble.formula: BubbleTheme(
               backgroundColor: Color(0xff192734),

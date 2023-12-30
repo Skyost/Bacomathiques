@@ -19,10 +19,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LessonsPage extends RequestScaffold<LessonList> {
   /// Creates a new lessons page instance.
   const LessonsPage({
-    required APIEndpoint<LessonList> endpoint,
-  }) : super(
-          endpoint: endpoint,
-        );
+    required super.endpoint,
+  });
 
   @override
   RequestScaffoldState createState() => _LessonsPageState();
@@ -48,7 +46,8 @@ class _LessonsPageState extends RequestScaffoldState<LessonList, LessonsPage> {
           (_) => rateMyApp.showRateDialog(
             context,
             title: 'Noter l\'application',
-            message: 'Si vous aimez cette application, n\'hésitez pas à prendre un peu de votre temps pour la noter !\nCe serait d\'une grande aide et cela ne devrait pas vous prendre plus d\'une minute.',
+            message:
+                'Si vous aimez cette application, n\'hésitez pas à prendre un peu de votre temps pour la noter !\nCe serait d\'une grande aide et cela ne devrait pas vous prendre plus d\'une minute.',
             rateButton: 'Noter',
             noButton: 'Non merci',
             laterButton: 'Plus tard',
@@ -83,9 +82,9 @@ class _LessonsPageState extends RequestScaffoldState<LessonList, LessonsPage> {
             ),
             ElevatedButton(
               onPressed: () => Navigator.pushNamed(context, '/levels'),
-              child: Text(
+              child: const Text(
                 'Liste des classes',
-                style: const TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white),
               ),
             ),
             ElevatedButton(
@@ -93,9 +92,9 @@ class _LessonsPageState extends RequestScaffoldState<LessonList, LessonsPage> {
                 loading = true;
                 triggerRequest();
               },
-              child: Text(
+              child: const Text(
                 'Réessayer',
-                style: const TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white),
               ),
             ),
           ],
@@ -154,12 +153,13 @@ class _PreviewsList extends StatelessWidget {
             for (int i = 0; i < rowCount; i++) //
               const IntrinsicContentTrackSize(),
           ],
-          children: items.map((item) {
-            return _PreviewWidget(
-              item: item,
-              tablet: true,
-            );
-          }).toList(),
+          children: [
+            for (LessonListItem item in items)
+              _PreviewWidget(
+                item: item,
+                tablet: true,
+              ),
+          ],
         ),
       );
     }
@@ -278,23 +278,23 @@ class _PreviewWidget extends ConsumerWidget {
     required APIEndpoint<APIEndpointResultHTML> endpoint,
   }) =>
       TextButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(backgroundColor),
-            overlayColor: MaterialStateProperty.all(Colors.white12),
-            shape: MaterialStateProperty.all(const RoundedRectangleBorder()),
-            padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 5)),
-          ),
-          onPressed: () => Navigator.pushNamed(
-            context,
-            '/html',
-            arguments: {
-              'endpoint': endpoint,
-            },
-          ),
-          child: Text(
-            buttonText,
-            style: const TextStyle(fontSize: 14, color: Colors.white),
-          ),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(backgroundColor),
+          overlayColor: MaterialStateProperty.all(Colors.white12),
+          shape: MaterialStateProperty.all(const RoundedRectangleBorder()),
+          padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 5)),
+        ),
+        onPressed: () => Navigator.pushNamed(
+          context,
+          '/html',
+          arguments: {
+            'endpoint': endpoint,
+          },
+        ),
+        child: Text(
+          buttonText,
+          style: const TextStyle(fontSize: 14, color: Colors.white),
+        ),
       );
 }
 

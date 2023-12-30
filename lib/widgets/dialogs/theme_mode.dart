@@ -1,6 +1,5 @@
 import 'package:bacomathiques/model/settings.dart';
 import 'package:bacomathiques/widgets/dialogs/app_alert_dialog.dart';
-import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -30,9 +29,22 @@ class ThemeModeDialog extends ConsumerWidget {
           ),
         ),
         if (settingsModel.themeMode != ThemeMode.system)
-          DayNightSwitcher(
-            isDarkModeEnabled: settingsModel.themeMode == ThemeMode.dark,
-            onStateChanged: (isDarkModeEnabled) => setThemeMode(settingsModel, isDarkModeEnabled ? ThemeMode.dark : ThemeMode.light),
+          LayoutBuilder(
+            builder: (context, constraints) => DropdownMenu<ThemeMode>(
+              width: constraints.maxWidth,
+              initialSelection: settingsModel.themeMode,
+              onSelected: (theme) => theme == null ? null : setThemeMode(settingsModel, theme),
+              dropdownMenuEntries: const [
+                DropdownMenuEntry<ThemeMode>(
+                  value: ThemeMode.dark,
+                  label: 'Sombre',
+                ),
+                DropdownMenuEntry<ThemeMode>(
+                  value: ThemeMode.light,
+                  label: 'Clair',
+                ),
+              ],
+            ),
           ),
       ],
     );

@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:html/dom.dart' as dom;
 
@@ -22,53 +23,13 @@ enum Bubble {
 /// The bubble class extension.
 extension BubbleUtils on Bubble {
   /// Returns the bubble CSS class name.
-  String get className {
-    switch (this) {
-      case Bubble.formula:
-        return 'formula';
-      case Bubble.proof:
-        return 'proof';
-      case Bubble.tip:
-        return 'tip';
-      case Bubble.exercise:
-        return 'exercise';
-      case Bubble.correction:
-        return 'correction';
-    }
-  }
+  String get className => name;
 
   /// Returns the bubble that corresponds to the specified class name.
-  static Bubble getByClassName(String? className) {
-    switch (className) {
-      case 'tip':
-        return Bubble.tip;
-      case 'proof':
-        return Bubble.proof;
-      case 'exercise':
-        return Bubble.exercise;
-      case 'correction':
-        return Bubble.correction;
-      default:
-        return Bubble.formula;
-    }
-  }
+  static Bubble getByClassName(String? className) => Bubble.values.firstWhereOrNull((bubble) => bubble.className == className) ?? Bubble.formula;
 
   /// Returns the bubble of an element.
-  static Bubble of(dom.Element element) {
-    if (element.classes.contains('tip')) {
-      return Bubble.tip;
-    }
-    if (element.classes.contains('proof')) {
-      return Bubble.proof;
-    }
-    if (element.classes.contains('exercise')) {
-      return Bubble.exercise;
-    }
-    if (element.classes.contains('correction')) {
-      return Bubble.correction;
-    }
-    return Bubble.formula;
-  }
+  static Bubble of(dom.Element element) => Bubble.values.firstWhereOrNull((bubble) => element.classes.contains(bubble.className)) ?? Bubble.formula;
 
   /// Returns whether this bubble is expandable.
   bool get isExpandable => this == Bubble.proof || this == Bubble.correction;

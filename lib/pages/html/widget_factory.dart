@@ -1,7 +1,6 @@
 import 'package:bacomathiques/pages/html/math_bit.dart';
 import 'package:bacomathiques/widgets/html/bubble_widget.dart';
 import 'package:bacomathiques/widgets/theme/bubble.dart';
-import 'package:bacomathiques/widgets/theme/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -13,13 +12,9 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
   /// The text style.
   final BuildContext context;
 
-  /// The app theme.
-  final AppTheme appTheme;
-
   /// Creates a new app widget factory instance.
   AppWidgetFactory({
     required this.context,
-    required this.appTheme,
   });
 
   @override
@@ -70,6 +65,7 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
                 textStyle: tree.inheritanceResolvers.resolve(context).style.copyWith(fontWeight: FontWeight.normal),
                 displayStyle: meta.element.attributes.containsKey('displaystyle'),
               ));
+              math = '';
             }
           } else {
             newTree.append(bit);
