@@ -1,8 +1,7 @@
-\documentclass[tikz]{standalone}
-\usepackage{fourier}
-\usepackage{tikz}
+\input{../../../common}
 
 \begin{document}
+  %<*content>
 	\providecommand{\tikzcolor}{black}
 	\begin{tikzpicture}[draw=\tikzcolor, text=\tikzcolor, fill=\tikzcolor]
 		\node[draw,circle,fill=blue!40!white](a) at (0,1.8) {\textbf{A}};
@@ -15,4 +14,5 @@
 		\draw[->] (d)--(b);
 		\draw[->] (c) edge [loop right] ();
 	\end{tikzpicture}
+	%</content>
 \end{document}

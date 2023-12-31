@@ -205,7 +205,6 @@ const resolveImageSrc = (
   imagePath: string,
   includeGraphicsDirectories: string[],
   assetsDestinationDirectoryPath: string,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   cacheDirectoryPath: string
 ): { src: string, dark: string | null } | null => {
   const result = []
@@ -225,7 +224,7 @@ const resolveImageSrc = (
         imagePathWithSuffix,
         {
           includeGraphicsDirectories,
-          // cacheDirectory: cacheDirectoryPath,
+          cacheDirectory: cacheDirectoryPath,
           optimize: true
         }
       )

@@ -1,0 +1,21 @@
+\documentclass[tikz]{standalone}
+
+% Load all required packages for my graphics.
+\usepackage{fourier-otf}
+\usepackage{fontspec}
+\usepackage{tkz-euclide}
+\usepackage{catchfilebetweentags}
+
+% 1.5x scale.
+\tikzset{
+  graphfonctionlabel/.style args={at #1 #2 with #3}{
+    postaction={
+      decorate, decoration={markings, mark= at position #1 with \node [#2] {#3};}
+    }
+  },
+  every picture/.append style={scale=2, every node/.style={scale=2}}
+}
+
+% Input content.
+\newcommand{\inputcontent}[1]{\ExecuteMetaData[#1]{content}}
+
