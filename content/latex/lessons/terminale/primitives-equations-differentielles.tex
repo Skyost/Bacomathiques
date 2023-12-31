@@ -43,9 +43,8 @@
 
 	\begin{demonstration}[Infinité de primitives]
 		Soit $F$ une autre primitive de $f$ sur $I$. On a pour tout $x \in I$ :
-		\newpar
-		$(F - F_0)'(x) = F'(x) - F_0'(x) = f(x) - f(x) = 0$ (car $F_0$ et $F$ sont deux primitives de $f$).
-		\newpar
+		\[ (F - F_0)'(x) = F'(x) - F_0'(x) = f(x) - f(x) = 0 \]
+		car $F_0$ et $F$ sont deux primitives de $f$.
 		Donc il existe une constante réelle $c$ telle que $F - F_0 = c$. D'où pour tout $x \in I$, $F(x) = F_0(x) + c$ : ce qu'il fallait démontrer.
 	\end{demonstration}
 
@@ -137,9 +136,7 @@
 		Alors pour tout $x \in \mathbb{R}$, $y'_c(x) = ac e^{ax}$ et $ay_c(x) = ac e^{ax}$. Donc $y'_c = a y_c$ : $y_c$ est bien solution de $(E)$.
 		\newpar
 		Montrons que les fonctions $y_c$ sont les seules solutions de $(E)$. Soit $y$ une solution quelconque de $(E)$ sur $\mathbb{R}$. Pour tout $x \in \mathbb{R}$, on pose $z(x) = y(x) e^{-ax}$. En dérivant :
-		\newpar
-		$z'(x) = y'(x) e^{-ax} + y(x) (-ae^{-ax}) = e^{-ax}(y'(x) - ay(x))$
-		\newpar
+		\[ z'(x) = y'(x) e^{-ax} + y(x) (-ae^{-ax}) = e^{-ax}(y'(x) - ay(x)) \]
 		De plus, comme $y$ est solution de $(E)$, on a $y' - ay = 0$, donc $z' = 0$.
 		\newpar
 		Ainsi, il existe une constante réelle $c$ telle que $z = c$. C'est-à-dire que pour tout $x \in \mathbb{R}$ :

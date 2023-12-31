@@ -209,9 +209,7 @@
 	\begin{demonstration}[Probabilité d'un nombre de succès]
 		\contentwidth[big]
 		En représentant la situation dans un arbre de probabilité, chaque chemin correspondant à $k$ succès contient $k$ branches pondérées par $p$ (car, pour rappel, un succès a une probabilité de $p$ de se produit). Ces chemins contiennent aussi $n-k$ branches pondérées par $1-p$ (correspondantes à un échec) car chaque chemin est de taille $n$. Ainsi, la pondération totale de ce type de chemin est :
-		\newpar
-		$\underbrace{p \times \dots \times p}_{k \text{ succès}} \times \underbrace{(1-p) \times \dots \times (1-p)}_{n-k \text{ échecs}} = p^k(1-p)^{n-k}$.
-		\newpar
+		\[ \underbrace{p \times \dots \times p}_{k \text{ succès}} \times \underbrace{(1-p) \times \dots \times (1-p)}_{n-k \text{ échecs}} = p^k(1-p)^{n-k} \]
 		De plus, il y a $\binom{n}{k}$ chemins de ce type (cela correspond au nombre de façons de placer la pondération $p$ $k$ fois sur les $n$ branches).
 		\newpar
 		D'où $P(X = k) = \underbrace{p^k(1-p)^{n-k} + \dots + p^k(1-p)^{n-k}}_{\binom{n}{k} \text{ branches}} = \binom{n}{k} p^k(1-p)^{n-k}$.
@@ -225,9 +223,7 @@
 		On cherche donc à calculer $P(X \leq 2)$. Il suffit pour cela de décomposer l'événement :
 		\newpar
 		La probabilité d'obtenir au plus $2$ fois un nombre pair est égale à la probabilité d'obtenir $0$, $1$ ou $2$ fois un nombre pair. D'où :
-		\newpar
-		$P(X \leq 2) = P(X = 0) + P(X = 1) + P(X = 2)$.
-		\newpar
+		\[ P(X \leq 2) = P(X = 0) + P(X = 1) + P(X = 2) \]
 		Il ne reste qu'à appliquer la formule :
 		\begin{itemize}
 			\item $P(X = 0) = \binom{5}{0}(0,5)^0(1-0,5)^5 = 0,03125$
