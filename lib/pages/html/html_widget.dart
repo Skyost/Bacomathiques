@@ -121,7 +121,7 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
   Widget? buildCustomWidget(AppTheme theme, dom.Element element) {
     if (element.attributes.containsKey('data-api-v2-geogebra-image') && element.attributes.containsKey('data-api-v2-geogebra-id')) {
       return RepresentationPreviewWidget(
-        imageURL: element.attributes['data-api-v2-geogebra-image']!,
+        imageUrl: element.attributes['data-api-v2-geogebra-image']!,
         geogebraId: element.attributes['data-api-v2-geogebra-id']!,
       );
     }
@@ -230,11 +230,6 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
         return {
           'padding': '10px',
           'border': '0.5px solid #cfcfcf',
-          ...style,
-        };
-      case 'img':
-        return {
-          'max-height': '150px',
           ...style,
         };
       case 'a':

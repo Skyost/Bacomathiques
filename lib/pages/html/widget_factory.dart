@@ -1,11 +1,13 @@
+import 'package:bacomathiques/model/api/common.dart';
 import 'package:bacomathiques/pages/html/math_bit.dart';
+import 'package:bacomathiques/utils/svg_factory/svg_factory.dart';
+import 'package:bacomathiques/widgets/fade_stack_widget.dart';
 import 'package:bacomathiques/widgets/html/bubble_widget.dart';
 import 'package:bacomathiques/widgets/theme/bubble.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:flutter_widget_from_html_core/src/internal/core_ops.dart';
-import 'package:fwfh_svg/fwfh_svg.dart';
 
 /// Allows to display custom widgets to the HTML content.
 class AppWidgetFactory extends WidgetFactory with SvgFactory {
@@ -43,6 +45,24 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
   String getListMarkerText(String type, int i) {
     String result = super.getListMarkerText(type, i);
     return result.isEmpty ? type : result;
+  }
+
+  @override
+  Widget? buildImage(BuildTree tree, ImageMetadata data) {
+    String? url;
+    for (ImageSource source in data.sources) {
+      if (source.url.startsWith(API.baseUrl)) {
+        url = source.url;
+      }
+    }
+    Widget? result = super.buildImage(tree, data);
+    return url == null || result == null
+        ? result
+        : ButtonAboveWidget(
+            url: url,
+            buttonText: 'Ouvrir dans le navigateur',
+            child: result,
+          );
   }
 
   /// Creates and registers the math build op.

@@ -1,53 +1,31 @@
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:bacomathiques/widgets/fade_stack_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 /// Allows to preview representations.
 class RepresentationPreviewWidget extends StatelessWidget {
   /// The image URL.
-  final String imageURL;
+  final String imageUrl;
 
   /// The GeoGebra id.
   final String geogebraId;
 
   /// Creates a new representation preview instance.
   const RepresentationPreviewWidget({
-    required this.imageURL,
+    required this.imageUrl,
     required this.geogebraId,
   });
 
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.only(bottom: 16),
-        child: AboveWidgetFade(
-          above: Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(color: Colors.black.withAlpha(175)),
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: OutlinedButton(
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all(Colors.white),
-                overlayColor: MaterialStateProperty.all(Colors.white24),
-                side: MaterialStateProperty.all(const BorderSide(color: Colors.white)),
-              ),
-              onPressed: () async {
-                String url = 'https://www.geogebra.org/m/$geogebraId';
-                if (await canLaunchUrlString(url)) {
-                  await launchUrlString(url);
-                }
-              },
-              child: const Text('Voir sur GeoGebra.org'),
-            ),
-          ),
-          under: Container(
-            width: MediaQuery.of(context).size.width,
-            color: Colors.black.withAlpha(30),
-            child: FadeInImage.memoryNetwork(
-              image: imageURL,
-              placeholder: kTransparentImage,
-              fit: BoxFit.cover,
-            ),
+        child: ButtonAboveWidget(
+          url: 'https://www.geogebra.org/m/$geogebraId',
+          buttonText: 'Voir sur GeoGebra.org',
+          child: FadeInImage.memoryNetwork(
+            image: imageUrl,
+            placeholder: kTransparentImage,
+            fit: BoxFit.cover,
           ),
         ),
       );
