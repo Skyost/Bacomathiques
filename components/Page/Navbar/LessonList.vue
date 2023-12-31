@@ -47,6 +47,6 @@ const { pending, data } = useLazyAsyncData(
 .list {
   max-height: calc(100vh - 130px);
   overflow: auto;
-  padding: 8px 0;
+  padding: 0;
 }
 </style>

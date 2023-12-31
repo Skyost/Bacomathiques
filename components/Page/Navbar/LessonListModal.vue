@@ -14,17 +14,33 @@ import LessonList from '~/components/Page/Navbar/LessonList.vue'
 </template>
 
 <style lang="scss" scoped>
-#modal-lesson-list ul {
-  margin-bottom: 0;
-  padding-top: 14px;
+@import 'assets/colors';
 
-  li {
-    padding: 6px 0;
-    white-space: normal;
+#modal-lesson-list {
+  :deep(ul) {
+    margin-bottom: 0;
+    padding-top: 14px;
   }
 
-  &.dropdown-header {
-    text-transform: uppercase;
+  :deep(li) {
+    max-width: 100%;
+
+    &.dropdown-header {
+      color: rgba(black, 0.6);
+    }
+
+    a {
+      padding: 10px 4px;
+      transition: all 200ms;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+
+      &:active {
+        color: white;
+        background-color: $primary;
+      }
+    }
   }
 }
 </style>

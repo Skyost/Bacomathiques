@@ -150,6 +150,10 @@ $shrinked-shadow: 0 0 20px rgba(black, 0.2);
 
     .mobile-navbar-brand {
       font-size: 30px;
+
+      @include media-breakpoint-down(sm) {
+        font-size: 24px;
+      }
     }
   }
 
@@ -171,6 +175,14 @@ $shrinked-shadow: 0 0 20px rgba(black, 0.2);
 
     @include media-breakpoint-up(lg) {
       display: none;
+    }
+
+    @include media-breakpoint-down(xs) {
+      font-size: 50px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      font-size: 24px;
     }
   }
 }

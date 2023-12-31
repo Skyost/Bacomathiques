@@ -30,7 +30,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <ul v-if="filteredLessons.length > 0" ref="root" class="lesson-list">
+  <ul v-if="filteredLessons.length > 0" ref="root" class="lesson-list list-group">
     <li class="dropdown-header">
       <ski-icon icon="pen-fill" /> Cours de {{ level.name }}
     </li>
@@ -50,8 +50,14 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
+@import 'assets/colors';
+
 .lesson-list {
   list-style-type: none;
   padding-left: 0;
+
+  .current {
+    color: $primary;
+  }
 }
 </style>

@@ -17,7 +17,7 @@ export default defineNuxtConfig({
       },
       meta: [
         { name: 'description', content: site.description },
-        { name: 'theme-color', content: '#23313d' }
+        { name: 'theme-color', content: '#23618a' }
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
