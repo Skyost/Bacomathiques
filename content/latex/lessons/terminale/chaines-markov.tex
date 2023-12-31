@@ -27,7 +27,7 @@
 
 	\begin{tip}[Exemple]
 		On considère le graphe orienté et pondéré suivant :
-		\includelatexpicture[\width]{graphe-1}
+		\includelatexpicture{graphe-1}
 		On a :
 		\begin{itemize}
 			\item Le poids de l'arête $A-B$ vaut $0$.
@@ -52,7 +52,7 @@
 			\item La probabilité qu'une personne saine tombe malade le lendemain est $0,1$.
 		\end{itemize}
 		Le graphe probabiliste modélisant cette situation est le graphe $G$ suivant :
-		\includelatexpicture[\width]{graphe-2}
+		\includelatexpicture{graphe-2}
 		On remarque que la somme des poids des arêtes issues du sommet $S$ vaut $0,9+0,1 = 1$ (idem pour $M$ qui vaut $0,6+0,4 = 1$).
 	\end{tip}
 
@@ -149,7 +149,7 @@
 		0 & 0 & \dots & 0 & 1 \\ \end{pmatrix} \]
 		\endgroup
 		Et le graphe associé à $(X_n)$ est le graphe probabiliste d'ordre $12$ :
-		\includelatexpicture[\width]{graphe-3}
+		\includelatexpicture{graphe-3}
 	\end{tip}
 
 	\subsection{Distributions dans une chaîne de Markov}
@@ -212,7 +212,7 @@
 	\begin{tip}[Exemple]
 		Intéressons-nous à l'alimentation d'un chat durant la journée. Il dispose de trois gamelles différentes $L$, $C$ et $P$ dans lesquelles se trouvent respectivement du lait, des croquettes et de la pâté.
 		On suppose que le chat a commencé sa journée par du lait et que toutes les heures, il se dirige vers une des gamelles suivant le graphe probabiliste ci-dessous :
-		\includelatexpicture[\width]{graphe-4}
+		\includelatexpicture{graphe-4}
 		On note par $X_n$ la variable aléatoire qui donne la gamelle qu'a choisi le chat à la $n$-ième heure. On a donc que $(X_n)$ est une chaîne de Markov homogène dont l'espace des états est $E = \{L; C; P\}$. Si on note $(\pi_n)$ la suite des distributions de $(X_n)$, on a alors que $\pi_0 = \begin{pmatrix} 1 & 0 & 0 \end{pmatrix}$.
 		\newpar
 		Soit $M$ la matrice de transition $M$ de $(X_n)$. Calculons quelques puissances de $M$ :

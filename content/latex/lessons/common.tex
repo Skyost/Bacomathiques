@@ -191,10 +191,10 @@
 }
 \providecommand{\imagespath}{../../images}
 \newcommand{\lessonimagespath}{\imagespath/lessons/\level/\id/}
-\providecommand{\includelatexpicture}[2][\textwidth - 100pt]{%
+\providecommand{\includelatexpicture}[2][\width]{%
 	\begin{center}%
 		\resizebox{#1}{!}{%
-			\input{\lessonimagespath#2}%
+			\inputcontent*{\lessonimagespath#2}%
 		}%
 	\end{center}%
 	\medskip%
