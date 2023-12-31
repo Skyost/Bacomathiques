@@ -488,7 +488,7 @@ const calculateTexFileChecksums = (filePath: string, includeGraphicsDirectories:
 const forceUnit: PluginConfig = {
   name: 'forceUnit',
   fn: (_root: XastRoot, params: any) => {
-    const requiredUnit = params?.unit ?? 'pt'
+    const requiredUnit = params?.unit ?? 'px'
     const size: {[key: string]: string | null } = { width: null, height: null }
     return {
       element: {
