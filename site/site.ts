@@ -1,7 +1,7 @@
 // noinspection ES6PreferShortImport
 
 import { romanize } from '../utils/utils'
-import type { Lesson, Level } from '~/types'
+import type { Lesson, Level } from '../types'
 
 interface Mobile {
   googlePlay: string
