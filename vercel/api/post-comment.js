@@ -1,16 +1,14 @@
 // noinspection ES6PreferShortImport
 
-import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { Octokit } from '@octokit/core'
 import { v4 as uuidv4 } from 'uuid'
 import * as yaml from 'yaml'
 import { createAppAuth } from '@octokit/auth-app'
 import { AkismetClient } from 'akismet-api'
 import { createPullRequest } from 'octokit-plugin-create-pull-request'
-import type { Comment } from '../../types'
 import { site } from '../../site/site.js'
 
-export default async function handler (request: VercelRequest, response: VercelResponse) {
+export default async function handler (request, response) {
   if (!allowCors(request, response)) {
     return
   }
@@ -24,7 +22,7 @@ export default async function handler (request: VercelRequest, response: VercelR
   }
 
   const id = uuidv4()
-  const comment: Comment = {
+  const comment = {
     _id: id,
     level: request.body.level,
     lesson: request.body.lesson,
@@ -94,7 +92,7 @@ export default async function handler (request: VercelRequest, response: VercelR
   })
 }
 
-function allowCors (request: VercelRequest, response: VercelResponse) {
+function allowCors (request, response) {
   response.setHeader('Access-Control-Allow-Credentials', 'true')
   response.setHeader('Access-Control-Allow-Origin', site.host)
   // response.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
@@ -110,7 +108,7 @@ function allowCors (request: VercelRequest, response: VercelResponse) {
   return true
 }
 
-async function akismetSpam (request: VercelRequest, comment: Comment) {
+async function akismetSpam (request, comment) {
   if (!process.env.ASKIMET_API_KEY) {
     return true
   }
@@ -121,7 +119,7 @@ async function akismetSpam (request: VercelRequest, comment: Comment) {
   })
 
   return await client.checkSpam({
-    ip: request.headers['x-forwarded-for']!.toString(),
+    ip: request.headers['x-forwarded-for'].toString(),
     useragent: request.headers['user-agent'],
     content: comment.message,
     name: comment.author,
