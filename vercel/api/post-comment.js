@@ -6,7 +6,7 @@ import * as yaml from 'yaml'
 import { createAppAuth } from '@octokit/auth-app'
 import { AkismetClient } from 'akismet-api'
 import { createPullRequest } from 'octokit-plugin-create-pull-request'
-import { site } from '../../site/site.js'
+import { site } from '../../site/site'
 
 export default async function handler (request, response) {
   if (!allowCors(request, response)) {
