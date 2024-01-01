@@ -58,7 +58,7 @@ watch(author, (author) => {
 onMounted(async () => {
   avatar.value = getAvatarUrl(author.value)
   await nextTick()
-  avatarImageElement.value!.style.height = `${avatarInputElement.value!.offsetHeight - 2}px`
+  avatarImageElement.value!.style.height = `${avatarInputElement.value!.offsetHeight}px`
   avatarInputElement.value!.style.paddingLeft = `${avatarInputElement.value!.offsetHeight + 6}px`
 })
 </script>
