@@ -1,14 +1,15 @@
 // noinspection ES6PreferShortImport
 
+import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { Octokit } from '@octokit/core'
 import { v4 as uuidv4 } from 'uuid'
 import * as yaml from 'yaml'
 import { createAppAuth } from '@octokit/auth-app'
 import { AkismetClient } from 'akismet-api'
 import { createPullRequest } from 'octokit-plugin-create-pull-request'
-import { site } from '../../site/site'
+import type { Comment } from '../../types'
 
-export default async function handler (request, response) {
+export default async function handler (request: VercelRequest, response: VercelResponse) {
   if (!allowCors(request, response)) {
     return
   }
@@ -22,7 +23,7 @@ export default async function handler (request, response) {
   }
 
   const id = uuidv4()
-  const comment = {
+  const comment: Comment = {
     _id: id,
     level: request.body.level,
     lesson: request.body.lesson,
@@ -52,8 +53,8 @@ export default async function handler (request, response) {
 
   const title = `Nouveau commentaire par ${comment.author} (${id})`
   const githubResponse = await octokit.createPullRequest({
-    owner: site.github.username,
-    repo: site.github.repository,
+    owner: 'Skyost', // TODO: Use "site".
+    repo: 'Bacomathiques',
     title,
     body: `Nouveau commentaire sur Bacomathiques !
 
@@ -92,9 +93,9 @@ export default async function handler (request, response) {
   })
 }
 
-function allowCors (request, response) {
+function allowCors (request: VercelRequest, response: VercelResponse) {
   response.setHeader('Access-Control-Allow-Credentials', 'true')
-  response.setHeader('Access-Control-Allow-Origin', site.host)
+  response.setHeader('Access-Control-Allow-Origin', 'https://bacomathiqu.es') // TODO: Same here.
   // response.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
   response.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
   response.setHeader(
@@ -108,7 +109,7 @@ function allowCors (request, response) {
   return true
 }
 
-async function akismetSpam (request, comment) {
+async function akismetSpam (request: VercelRequest, comment: Comment) {
   if (!process.env.ASKIMET_API_KEY) {
     return true
   }
@@ -119,7 +120,7 @@ async function akismetSpam (request, comment) {
   })
 
   return await client.checkSpam({
-    ip: request.headers['x-forwarded-for'].toString(),
+    ip: request.headers['x-forwarded-for']!.toString(),
     useragent: request.headers['user-agent'],
     content: comment.message,
     name: comment.author,
