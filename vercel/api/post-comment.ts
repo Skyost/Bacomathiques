@@ -8,7 +8,7 @@ import { createAppAuth } from '@octokit/auth-app'
 import { AkismetClient } from 'akismet-api'
 import { createPullRequest } from 'octokit-plugin-create-pull-request'
 import type { Comment } from '../../types'
-import { site } from '../../site/site'
+import { site } from '../../site/site.js'
 
 export default async function handler (request: VercelRequest, response: VercelResponse) {
   if (!allowCors(request, response)) {
