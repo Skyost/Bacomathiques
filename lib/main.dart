@@ -1,3 +1,4 @@
+import 'package:bacomathiques/firebase_options.dart';
 import 'package:bacomathiques/model/app.dart';
 import 'package:bacomathiques/model/settings.dart';
 import 'package:bacomathiques/pages/comments.dart';
@@ -6,6 +7,8 @@ import 'package:bacomathiques/pages/html/page.dart';
 import 'package:bacomathiques/pages/lessons.dart';
 import 'package:bacomathiques/pages/levels.dart';
 import 'package:bacomathiques/widgets/theme/theme.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,6 +25,12 @@ void main() async {
   Highlighter.initialize([pythonSyntaxHighlightingFilePath]);
   if (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS) {
     await MobileAds.instance.initialize();
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+    PlatformDispatcher.instance.onError = (error, stack) {
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      return true;
+    };
   }
 
   runApp(ProviderScope(child: BacomathiquesApp()));

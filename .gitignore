@@ -10,8 +10,6 @@
 .svn/
 lib/credentials.dart
 android/key.properties
-ios/Runner/GoogleService-Info.plist
-android/app/google-services.json
 list_assets.py
 
 # IntelliJ related
@@ -75,3 +73,9 @@ list_assets.py
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 /.flutter-plugins-dependencies
 /local.properties
+
+# Firebase / Google
+/ios/Runner/GoogleService-Info.plist
+/ios/firebase_app_id_file.json
+/lib/firebase_options.dart
+/android/app/google-services.json
