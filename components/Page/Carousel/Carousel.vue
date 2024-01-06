@@ -56,9 +56,9 @@ const root = ref<HTMLDivElement>()
 onMounted(async () => {
   await nextTick()
   // @ts-ignore
-  const bootstrap = await import('bootstrap')
+  const Carousel = useNuxtApp().$bootstrap.carousel
   // eslint-disable-next-line
-  new bootstrap.Carousel(root.value)
+  new Carousel(root.value)
 })
 </script>
 

@@ -91,6 +91,15 @@ if (!config.public.debug) {
 
 .page-header {
   padding: 50px 0;
+
+  @include media-breakpoint-down(md) {
+    padding: 30px 0;
+  }
+
+  @include media-breakpoint-down(sm) {
+    padding-top: 10px;
+    padding-bottom: 0;
+  }
 }
 
 .page-lesson {

@@ -70,6 +70,28 @@ const onClose = () => {
 </template>
 
 <style lang="scss" scoped>
+.smartbanner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  padding: 10px 20px;
+  max-height: 120px;
+
+  .smartbanner-close {
+    font-size: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .info {
+    display: block;
+    width: 100%;
+  }
+}
+
 .smartbanner-android {
   background: #3d3d3d url('data:image/gif;base64,R0lGODlhCAAIAIABAFVVVf///yH5BAEHAAEALAAAAAAIAAgAAAINRG4XudroGJBRsYcxKAA7');
   color: white;
