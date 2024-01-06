@@ -50,10 +50,20 @@ const slides = [
             </p>`
   }
 ]
+
+const root = ref<HTMLDivElement>()
+
+onMounted(async () => {
+  await nextTick()
+  // @ts-ignore
+  const bootstrap = await import('bootstrap')
+  // eslint-disable-next-line
+  new bootstrap.Carousel(root.value)
+})
 </script>
 
 <template>
-  <div id="page-carousel" class="carousel carousel-dark slide stripes" data-bs-ride="carousel">
+  <div id="page-carousel" ref="root" class="carousel carousel-dark slide stripes" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button
         v-for="(slide, index) in slides"

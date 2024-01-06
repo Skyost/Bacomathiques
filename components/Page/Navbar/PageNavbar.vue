@@ -1,5 +1,4 @@
 <script lang="ts">
-export const fullHeight = 130
 export const shrinkedHeight = 70
 </script>
 
@@ -10,34 +9,46 @@ import LessonListModal from '~/components/Page/Navbar/LessonListModal.vue'
 import LessonListDropdown from '~/components/Page/Navbar/LessonListDropdown.vue'
 
 const heightDelta = ref<number>(0)
-const currentTopOffset = ref<number>(0)
+
 const navbar = ref<ComponentPublicInstance | null>(null)
 
 onMounted(async () => {
   await nextTick()
 
-  navbar.value!.$el.setAttribute('style', `--height: ${fullHeight}px; --shrinked-height: ${shrinkedHeight}px`)
-  navbar.value!.$el.setAttribute('data-height', fullHeight.toString())
-  navbar.value!.$el.setAttribute('data-shrinked-height', shrinkedHeight.toString())
-  const spacer = document.createElement('div')
-  spacer.classList.add('bg-primary')
-  spacer.setAttribute('id', 'page-navbar-spacer')
-  spacer.style.height = `${fullHeight}px`
+  handleResize()
+})
 
-  navbar.value!.$el.parentNode.insertBefore(spacer, navbar.value!.$el)
+onBeforeMount(() => {
+  window.addEventListener('resize', handleResize)
+  window.addEventListener('scroll', handleScroll)
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize)
+  window.removeEventListener('scroll', handleScroll)
+})
+
+const handleResize = () => {
+  const windowsWidth = window.innerWidth
+  const fullHeight = windowsWidth < 768 ? 70 : 130
+
+  navbar.value!.$el.setAttribute('style', `--height: ${fullHeight}px; --shrinked-height: ${shrinkedHeight}px`)
+  let spacer = document.getElementById('page-navbar-spacer')
+  if (!spacer) {
+    spacer = document.createElement('div')
+    spacer.classList.add('bg-primary')
+    spacer.setAttribute('id', 'page-navbar-spacer')
+    navbar.value!.$el.parentNode.insertBefore(spacer, navbar.value!.$el)
+  }
+  spacer.style.height = `${fullHeight}px`
 
   document.documentElement.scrollTop = Math.max(document.documentElement.scrollTop - fullHeight, 0)
 
   heightDelta.value = fullHeight - shrinkedHeight
-})
-
-onBeforeMount(() => window.addEventListener('scroll', handleScroll))
-onBeforeUnmount(() => window.removeEventListener('scroll', handleScroll))
-
-watch(currentTopOffset, value => navbar.value?.$el.classList.toggle('shrinked', value > heightDelta.value))
+}
 
 const handleScroll = () => {
-  currentTopOffset.value = document.documentElement.scrollTop
+  const scrollTop = document.documentElement.scrollTop
+  navbar.value?.$el.classList.toggle('shrinked', scrollTop > heightDelta.value)
 }
 </script>
 
@@ -47,9 +58,9 @@ const handleScroll = () => {
       id="page-navbar"
       ref="navbar"
       brightness="primary"
-      class="navbar-dark"
+      theme="dark"
     >
-      <ski-navbar-collapse id="page-navbar-collapse" class="collapse-container">
+      <ski-navbar-collapse id="page-navbar-collapse">
         <ski-navbar-items class="ms-auto ms-lg-0">
           <ski-navbar-item class="page-navbar-item" to="/" :active="$route.path === '/'">
             <ski-icon icon="house-door-fill" /> Accueil
@@ -97,8 +108,8 @@ $shrinked-shadow: 0 0 20px rgba(black, 0.2);
     position: relative;
 
     &.collapsing, &.show {
-      margin-left: -40px;
-      margin-right: -40px;
+      margin-left: -20px;
+      margin-right: -20px;
       // box-shadow: $shrinked-shadow;
     }
 
@@ -126,9 +137,10 @@ $shrinked-shadow: 0 0 20px rgba(black, 0.2);
     }
 
     @include media-breakpoint-down(lg) {
+      background-color: darken($primary, 5%);
+
       .page-navbar-item {
         padding: 10px 20px;
-        background-color: darken($primary, 5%);
 
         :deep(a) {
           padding: 10px;
