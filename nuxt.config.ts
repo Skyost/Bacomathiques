@@ -1,6 +1,6 @@
 import { defineNuxtConfig } from 'nuxt/config'
 import StylelintPlugin from 'vite-plugin-stylelint'
-import eslintPlugin from 'vite-plugin-eslint'
+import eslintPlugin from '@nabla/vite-plugin-eslint'
 import 'dotenv/config'
 import { site } from './site/site'
 import { debug } from './site/debug'
@@ -39,12 +39,13 @@ export default defineNuxtConfig({
 
   modules: [
     '~/modules/commit-sha-file-generator',
-    '~/modules/cname-generator',
+    'nuxt-cname-generator',
     '~/modules/latex-pdf-generator',
     '~/modules/nuxt-content-latex',
     '~/modules/api-v2-generator',
-    'nuxt-simple-sitemap',
+    '@nuxtjs/sitemap',
     'nuxt-simple-robots',
+    'nuxt-link-checker',
     'skimple-components/nuxt',
     '@nuxt/content',
     '@nuxtjs/google-fonts'
@@ -81,7 +82,14 @@ export default defineNuxtConfig({
   },
 
   cname: {
-    hostname: site.host
+    host: site.host
+  },
+
+  linkChecker: {
+    failOnError: false,
+    excludeLinks: [
+      '/pdf/**'
+    ]
   },
 
   runtimeConfig: {
