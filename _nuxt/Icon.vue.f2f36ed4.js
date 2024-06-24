@@ -1,0 +1,1 @@
+import{d as o,o as e,a,B as s}from"./entry.e4afedab.js";const p=o({name:"SkiIcon",__name:"Icon",props:{icon:{}},setup(c){return(n,r)=>(e(),a("i",{class:s(["bi",`bi-${n.icon}`])},null,2))}});export{p as _};
