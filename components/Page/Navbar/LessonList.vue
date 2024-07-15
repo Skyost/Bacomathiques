@@ -20,15 +20,19 @@ const { pending, data } = useLazyAsyncData(
   <div class="list">
     <em v-if="pending">Chargement de la liste des cours...</em>
     <div v-else-if="data">
-      <form action="/recherche/" method="get">
-        <ski-form-control
+      <b-form
+        action="/recherche/"
+        method="get"
+      >
+        <b-form-input
+          id="lesson-list-search"
           v-model="searchTerms"
           class="border-0"
           type="search"
           name="requete"
           placeholder="Chercher un cours..."
         />
-      </form>
+      </b-form>
       <filtered-lesson-list
         v-for="levelId in levelIdList"
         :key="levelId"

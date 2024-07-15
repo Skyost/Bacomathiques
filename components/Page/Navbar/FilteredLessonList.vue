@@ -3,8 +3,8 @@ import type { Lesson, Level, LevelId } from '~/types'
 import { levels, prependChapterToTitle } from '~/site/site'
 
 const props = withDefaults(defineProps<{
-  levelId: LevelId,
-  lessons: Lesson[],
+  levelId: LevelId
+  lessons: Lesson[]
   filter?: string
 }>(), {
   filter: undefined
@@ -30,9 +30,13 @@ onMounted(async () => {
 </script>
 
 <template>
-  <ul v-if="filteredLessons.length > 0" ref="root" class="lesson-list list-group">
+  <ul
+    v-if="filteredLessons.length > 0"
+    ref="root"
+    class="lesson-list list-group"
+  >
     <li class="dropdown-header">
-      <ski-icon icon="pen-fill" /> Cours de {{ level.name }}
+      <icon name="bi:pen-fill" /> Cours de {{ level.name }}
     </li>
     <li
       v-for="lesson in filteredLessons"

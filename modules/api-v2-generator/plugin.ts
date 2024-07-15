@@ -23,7 +23,6 @@ const logger = consola.withTag(moduleName)
  * Nitro plugin to generate API v2 files from parsed LaTeX files.
  */
 export default defineNitroPlugin((nitroApp) => {
-  // @ts-ignore
   nitroApp.hooks.hook('content:file:afterParse', (file) => {
     if (!file._id.endsWith('.tex')) {
       return
@@ -92,7 +91,8 @@ export default defineNitroPlugin((nitroApp) => {
       }
       levelData.list.push(lessonListEndpointItem(lesson))
       levelData.list.sort((a, b) => a.lesson.chapter - b.lesson.chapter)
-    } else {
+    }
+    else {
       levelData = lessonListEndpoint([lesson])
     }
     fs.writeFileSync(levelDataFilePath, JSON.stringify(levelData))

@@ -50,41 +50,23 @@ const slides = [
             </p>`
   }
 ]
-
-const root = ref<HTMLDivElement>()
-
-onMounted(async () => {
-  await nextTick()
-  // @ts-ignore
-  const Carousel = useNuxtApp().$bootstrap.carousel
-  // eslint-disable-next-line
-  new Carousel(root.value)
-})
 </script>
 
 <template>
-  <div id="page-carousel" ref="root" class="carousel carousel-dark slide stripes" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button
-        v-for="(slide, index) in slides"
-        :key="`carousel-indicator-${index}`"
-        type="button"
-        data-bs-target="#page-carousel"
-        :data-bs-slide-to="index"
-        class="carousel-indicator"
-        :class="{'active': index === 0}"
-        aria-current="true"
-        :aria-label="slide.title"
-      />
-    </div>
-    <div class="carousel-inner">
-      <div
-        v-for="(slide, index) in slides"
-        :key="`slide-item-${index}`"
-        class="carousel-item"
-        :class="{ active: index === 0 }"
-        data-bs-interval="5000"
-      >
+  <b-carousel
+    id="page-carousel"
+    class="carousel carousel-dark slide stripes"
+    indicators
+    ride="carousel"
+    interval="5000"
+  >
+    <b-carousel-slide
+      v-for="(slide, index) in slides"
+      :key="`slide-item-${index}`"
+      class="carousel-item"
+      background="transparent"
+    >
+      <template #img>
         <carousel-item-content
           class="content"
           :image="slide.image"
@@ -94,9 +76,9 @@ onMounted(async () => {
         >
           <div v-html="slide.content" />
         </carousel-item-content>
-      </div>
-    </div>
-  </div>
+      </template>
+    </b-carousel-slide>
+  </b-carousel>
 </template>
 
 <style lang="scss" scoped>
@@ -121,12 +103,12 @@ onMounted(async () => {
     }
   }
 
-  .carousel-indicators {
+  :deep(.carousel-indicators) {
     $indicatorSize: 18px;
     $indicatorBigSize: 70px;
     margin-bottom: calc(($paddingBottom - $indicatorSize) / 2);
 
-    .carousel-indicator {
+    button {
       display: inline-block;
       background-color: #efefef !important;
       height: $indicatorSize;

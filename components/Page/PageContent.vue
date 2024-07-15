@@ -1,5 +1,8 @@
 <template>
-  <article id="page-content" class="pb-5">
+  <article
+    id="page-content"
+    class="pb-5"
+  >
     <slot />
   </article>
 </template>

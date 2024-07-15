@@ -56,22 +56,24 @@ const onSubmitContactForm = async (event: Event) => {
     const form = event.target! as HTMLFormElement
     const recaptcha = await load('6LesY2MhAAAAAG0AhWnGpMBLXAv3H4Bb7R3MQlYR', { autoHideBadge: true })
     const token = await recaptcha.execute('contact')
-    const response: Object = await $fetch(form.action, {
+    const response: object = await $fetch(form.action, {
       method: method.value,
       body: {
-        name: name.value,
-        _replyto: email.value,
-        subject: subject.value,
-        message: message.value,
+        'name': name.value,
+        '_replyto': email.value,
+        'subject': subject.value,
+        'message': message.value,
         'g-recaptcha-response': token
       }
     })
     if ('ok' in response && response.ok) {
       submitSuccess.value = true
-    } else {
+    }
+    else {
       submitError.value = true
     }
-  } catch (ex) {
+  }
+  catch (ex) {
     submitError.value = true
   }
   formLoading.value = false
@@ -103,7 +105,10 @@ useSal()
         </cards-row>
       </section>
 
-      <section class="pt-5 pb-5" data-sal="slide-right">
+      <section
+        class="pt-5 pb-5"
+        data-sal="slide-right"
+      >
         <big-card>
           <h2 id="licence-contributions">
             Licences &amp; contributions
@@ -136,9 +141,16 @@ useSal()
             Il vous est également possible d'effectuer des dons via <a href="https://paypal.me/Skyost">PayPal</a>.
           </p>
 
-          <ski-button href="https://paypal.me/Skyost" class="paypal-button" variant="primary">
-            <img src="/img/about/paypal.svg" alt="PayPal">
-          </ski-button>
+          <b-button
+            href="https://paypal.me/Skyost"
+            class="paypal-button"
+            variant="primary"
+          >
+            <img
+              src="/img/about/paypal.svg"
+              alt="PayPal"
+            >
+          </b-button>
 
           <p>
             Par ailleurs, les contributions sont facultatives et vous pouvez pleinement profiter
@@ -149,8 +161,13 @@ useSal()
       </section>
 
       <section class="pt-5 pb-5">
-        <big-card blue sal="slide-down">
-          <h2 id="contact">Contact</h2>
+        <big-card
+          blue
+          sal="slide-down"
+        >
+          <h2 id="contact">
+            Contact
+          </h2>
 
           <p>
             Vous avez trouvé <strong>une faute dans un cours</strong> ?
@@ -168,25 +185,25 @@ useSal()
             action="https://formspree.io/moqkkawg"
             @submit.prevent="onSubmitContactForm"
           >
-            <ski-columns>
-              <ski-column md="6">
-                <ski-form-control
+            <b-row>
+              <b-col md="6">
+                <b-form-input
                   v-model="name"
                   name="name"
                   placeholder="Entrez votre nom et prénom / pseudonyme"
                   required
                 />
-              </ski-column>
-              <ski-column md="6">
-                <ski-form-control
+              </b-col>
+              <b-col md="6">
+                <b-form-input
                   v-model="email"
                   name="_replyto"
                   placeholder="Entrez votre adresse e-mail"
                   required
                 />
-              </ski-column>
-            </ski-columns>
-            <select
+              </b-col>
+            </b-row>
+            <b-form-select
               v-model="subject"
               name="subject"
               :value="subjects[0]"
@@ -199,8 +216,8 @@ useSal()
                 :value="availableSubject"
                 v-text="availableSubject"
               />
-            </select>
-            <textarea
+            </b-form-select>
+            <b-form-textarea
               v-model="message"
               name="message"
               rows="5"
@@ -208,28 +225,49 @@ useSal()
               required
               class="form-control mt-3 mb-3"
             />
-            <ski-columns>
-              <ski-column xs="12" sm="6" md="3">
-                <ski-button
+            <b-row>
+              <b-col
+                xs="12"
+                sm="6"
+                md="3"
+              >
+                <b-button
                   variant="white"
                   type="submit"
                   class="d-block w-100"
                   :disabled="formLoading === true || submitSuccess === true"
                 >
-                  <ski-icon icon="send-fill" /> Envoyer
-                </ski-button>
-              </ski-column>
-              <ski-column xs="12" sm="6" md="9" class="mt-2 mt-0-lg text-end">
+                  <icon name="bi:send-fill" /> Envoyer
+                </b-button>
+              </b-col>
+              <b-col
+                xs="12"
+                sm="6"
+                md="9"
+                class="mt-2 mt-0-lg text-end"
+              >
                 <small class="text-muted">
-                  <ski-icon icon="eye-fill" /> Protégé par reCaptcha (<a href="https://policies.google.com/privacy">Politique de confidentialité</a> &amp; <a href="https://policies.google.com/terms">Conditions d'utilisation</a>).
+                  <icon name="bi:eye-fill" /> Protégé par reCaptcha (<a href="https://policies.google.com/privacy">Politique de confidentialité</a> &amp; <a href="https://policies.google.com/terms">Conditions d'utilisation</a>).
                 </small>
-              </ski-column>
-            </ski-columns>
-            <div v-if="submitSuccess" class="alert alert-success">
-              <ski-icon icon="check" class="me-2" /> Message envoyé avec succès !
+              </b-col>
+            </b-row>
+            <div
+              v-if="submitSuccess"
+              class="alert alert-success"
+            >
+              <icon
+                name="bi:check"
+                class="me-2"
+              /> Message envoyé avec succès !
             </div>
-            <div v-if="submitError" class="alert alert-danger">
-              <ski-icon icon="exclamation-circle-fill" class="me-2" /> Une erreur est survenue pendant l'envoi du message. Veuillez réessayer plus tard.
+            <div
+              v-if="submitError"
+              class="alert alert-danger"
+            >
+              <icon
+                name="bi:exclamation-circle-fill"
+                class="me-2"
+              /> Une erreur est survenue pendant l'envoi du message. Veuillez réessayer plus tard.
             </div>
           </form>
         </big-card>

@@ -3,10 +3,19 @@ import { site } from '~/site/site'
 </script>
 
 <template>
-  <ski-navbar-brand>
-    <img class="logo" src="/img/logo.svg" alt="Logo">
-    <nuxt-link class="brand-link" to="/">{{ site.name }}</nuxt-link>
-  </ski-navbar-brand>
+  <b-navbar-brand>
+    <img
+      class="logo"
+      src="/img/logo.svg"
+      alt="Logo"
+    >
+    <nuxt-link
+      class="brand-link"
+      to="/"
+    >
+      {{ site.name }}
+    </nuxt-link>
+  </b-navbar-brand>
 </template>
 
 <style lang="scss" scoped>

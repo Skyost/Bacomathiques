@@ -28,12 +28,18 @@ const { pending, data } = useLazyAsyncData(
     <page-header>
       <image-header :image="level.image">
         <h3 v-text="level.name" />
-        <p class="mb-0" v-html="level.description" />
+        <p
+          class="mb-0"
+          v-html="level.description"
+        />
       </image-header>
     </page-header>
 
     <page-loading v-if="pending" />
-    <page-content v-else-if="data" class="pt-0">
+    <page-content
+      v-else-if="data"
+      class="pt-0"
+    >
       <cards-row>
         <lesson-card
           v-for="lesson in data"
@@ -44,7 +50,10 @@ const { pending, data } = useLazyAsyncData(
       </cards-row>
     </page-content>
   </div>
-  <page-error v-else error="404" />
+  <page-error
+    v-else
+    error="404"
+  />
 </template>
 
 <style lang="scss" scoped>

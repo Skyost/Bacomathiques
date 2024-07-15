@@ -9,7 +9,7 @@ import { createResolver, defineNuxtModule, useLogger } from '@nuxt/kit'
  */
 export interface ModuleOptions {
   /** The name of the file to store the latest commit information. */
-  fileName: string;
+  fileName: string
 }
 
 /**

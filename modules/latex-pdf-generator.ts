@@ -18,13 +18,13 @@ import { site } from '../site/site'
  * @interface
  */
 export interface ModuleOptions {
-  github: Github,
-  directory: string,
-  previousBuildDownloadDirectory: string,
-  destinationDirectory: string,
-  ignores: string[],
-  previousBuildDirectories: string[],
-  getIncludeGraphicsDirectories: (latexFilePath: string) => string[],
+  github: Github
+  directory: string
+  previousBuildDownloadDirectory: string
+  destinationDirectory: string
+  ignores: string[]
+  previousBuildDirectories: string[]
+  getIncludeGraphicsDirectories: (latexFilePath: string) => string[]
   moveFiles: boolean
 }
 
@@ -129,7 +129,8 @@ const downloadPreviousBuild = async (resolver: Resolver, directoryPath: string, 
     fs.renameSync(resolver.resolve(parentPath, zipRootDir), resolver.resolve(parentPath, path.basename(directoryPath)))
     logger.success('Done.')
     return true
-  } catch (exception) {
+  }
+  catch (exception) {
     logger.warn(exception)
   }
   return false
@@ -247,7 +248,8 @@ const generateAndCopy = (
 
     if (wasCached) {
       logger.success(`Fully cached PDF found in ${previousBuildDirectory}.`)
-    } else {
+    }
+    else {
       logger.success(previousBuildDirectory ? `File was not cached in ${previousBuildDirectory} but has been generated with success.` : 'Done.')
     }
     return true

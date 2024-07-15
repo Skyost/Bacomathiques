@@ -3,8 +3,8 @@ import { site } from '~/site/site'
 import type { MobileOs } from '~/components/SmartBanner/SmartBanner.vue'
 
 interface Store {
-  name: string,
-  link: string,
+  name: string
+  link: string
   bannerClass: string
 }
 
@@ -12,7 +12,7 @@ const props = defineProps<{
   mobileOs: MobileOs
 }>()
 
-const emit = defineEmits<{(e: 'close'): void}>()
+const emit = defineEmits<{ (e: 'close'): void }>()
 
 const store = ref<Store | null>(null)
 
@@ -42,31 +42,57 @@ const onClose = () => {
 </script>
 
 <template>
-  <ski-columns v-if="store" class="smartbanner" :class="store.bannerClass">
-    <ski-column width="1" class="d-flex align-items-center">
-      <span class="smartbanner-close" @click="onClose">&times;</span>
-    </ski-column>
-    <ski-column width="3" class="d-flex align-items-center">
-      <img src="/img/logo.svg" alt="Logo" class="w-100">
-    </ski-column>
-    <ski-column width="5" class="d-flex align-items-center">
+  <b-row
+    v-if="store"
+    class="smartbanner"
+    :class="store.bannerClass"
+  >
+    <b-col
+      width="1"
+      class="d-flex align-items-center"
+    >
+      <span
+        class="smartbanner-close"
+        @click="onClose"
+      >&times;</span>
+    </b-col>
+    <b-col
+      width="3"
+      class="d-flex align-items-center"
+    >
+      <img
+        src="/img/logo.svg"
+        alt="Logo"
+        class="w-100"
+      >
+    </b-col>
+    <b-col
+      width="5"
+      class="d-flex align-items-center"
+    >
       <div>
-        <span class="info info-title" v-text="site.name" />
+        <span
+          class="info info-title"
+          v-text="site.name"
+        />
         <span class="info info-author">Skyost</span>
         <span class="info info-price">GRATUIT - {{ store.name }}</span>
       </div>
-    </ski-column>
-    <ski-column width="3" class="d-flex align-items-center">
-      <ski-button
+    </b-col>
+    <b-col
+      width="3"
+      class="d-flex align-items-center"
+    >
+      <b-button
         :href="store.link"
         target="_blank"
         variant="green"
         block
       >
         VOIR
-      </ski-button>
-    </ski-column>
-  </ski-columns>
+      </b-button>
+    </b-col>
+  </b-row>
 </template>
 
 <style lang="scss" scoped>

@@ -78,7 +78,7 @@ export const siteContentSettings: SiteContentSettings = {
   dataAssetsDirectory: 'latex/images/lessons',
   dataLatexDirectory: 'latex/lessons',
   latexPdfDestinationDirectory: 'pdf',
-  latexAssetsDestinationDirectory: 'img',
+  latexAssetsDestinationDirectory: 'img/latex',
   getLatexAssetDestination: (assetsDirectoryPath: string, filePath: string): string => {
     if (path.basename(filePath) === 'common.tex') {
       return path.resolve(assetsDirectoryPath, 'lessons', 'common.tex')

@@ -19,8 +19,16 @@ const difficultyText = computed<string>(() => {
 </script>
 
 <template>
-  <span :class="`lesson-info difficulties level-${difficulty}`" title="Difficulté du cours">
-    <ski-icon v-for="i in 5" :key="i" icon="pencil-fill" :class="{'colored': i <= difficulty}" />
+  <span
+    :class="`lesson-info difficulties level-${difficulty}`"
+    title="Difficulté du cours"
+  >
+    <icon
+      v-for="i in 5"
+      :key="i"
+      name="bi:pencil-fill"
+      :class="{ colored: i <= difficulty }"
+    />
     {{ difficultyText }}
   </span>
 </template>

@@ -5,7 +5,7 @@ import type { Lesson } from '~/types'
 import { levels } from '~/site/site'
 
 const props = withDefaults(defineProps<{
-  lesson: Lesson,
+  lesson: Lesson
   showLevel?: boolean
 }>(), {
   showLevel: false
@@ -19,20 +19,33 @@ const variant = computed<string>(() => props.lesson.specialty ? 'green' : 'prima
 <template>
   <flat-card class="lesson-card">
     <div class="lesson-card-content">
-      <img class="lesson-preview" :src="lesson.preview" :alt="lesson.title">
-      <span class="lesson-caption" v-html="lesson.caption" />
+      <img
+        class="lesson-preview"
+        :src="lesson.preview"
+        :alt="lesson.title"
+      >
+      <span
+        class="lesson-caption"
+        v-html="lesson.caption"
+      />
       <span class="text-muted text-uppercase">
         <span v-if="showLevel">{{ levelName }} •</span> Chapitre {{ chapter }}
       </span>
-      <h3 class="lesson-title" v-html="lesson.title" />
-      <p class="lesson-description" v-html="lesson.description" />
-      <ski-button
+      <h3
+        class="lesson-title"
+        v-html="lesson.title"
+      />
+      <p
+        class="lesson-description"
+        v-html="lesson.description"
+      />
+      <b-button
         :to="`/cours/${lesson.level}/${lesson.id}/`"
         :variant="variant"
         class="btn"
       >
         Lire ce cours
-      </ski-button>
+      </b-button>
     </div>
   </flat-card>
 </template>

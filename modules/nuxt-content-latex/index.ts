@@ -12,9 +12,9 @@ import { moduleName } from './common'
  * @interface
  */
 export interface ModuleOptions {
-  directory: string,
-  assetsDestinationDirectoryName: string,
-  isAsset: (filePath: string) => boolean,
+  directory: string
+  assetsDestinationDirectoryName: string
+  isAsset: (filePath: string) => boolean
   getLatexAssetDestination: (assetDirectoryPath: string, filePath: string) => string
 }
 
@@ -39,7 +39,7 @@ export default defineNuxtModule<ModuleOptions>({
     isAsset: siteContentSettings.isAsset,
     getLatexAssetDestination: (assetDirectoryPath: string, filePath: string) => siteContentSettings.getLatexAssetDestination(assetDirectoryPath, filePath)
   },
-  setup (options, nuxt) {
+  setup(options, nuxt) {
     const resolver = createResolver(import.meta.url)
 
     // Set up Nitro externals for .tex content transformation.
@@ -48,7 +48,6 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.nitro.externals.inline.push(resolver.resolve('.'))
 
     // Register a hook to modify content context and add a transformer for .tex files.
-    // @ts-ignore
     nuxt.hook('content:context', (contentContext) => {
       contentContext.transformers.push(resolver.resolve('transformer.ts'))
     })

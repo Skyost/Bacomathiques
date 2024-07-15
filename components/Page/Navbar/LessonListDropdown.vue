@@ -3,12 +3,10 @@ import LessonList from '~/components/Page/Navbar/LessonList.vue'
 </script>
 
 <template>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <ski-icon icon="tag-fill" /> Accès direct à un cours
-    </a>
-    <div class="dropdown-menu dropdown-menu-end p-0">
-      <lesson-list />
-    </div>
-  </li>
+  <b-nav-item-dropdown auto-close="outside">
+    <template #button-content>
+      <icon name="bi:tag-fill" /> Accès direct à un cours
+    </template>
+    <lesson-list />
+  </b-nav-item-dropdown>
 </template>

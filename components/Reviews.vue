@@ -3,10 +3,10 @@ import { site } from '~/site/site'
 import { sleeper } from '~/utils/utils'
 
 interface Review {
-  author: string,
-  date: string,
-  message: string,
-  rating: number,
+  author: string
+  date: string
+  message: string
+  rating: number
   source: number
 }
 
@@ -87,7 +87,7 @@ const reviews: Review[] = [
   {
     author: 'S. Simon',
     date: '3 juin 2020',
-    message: "<strong>J'adore</strong> cette appli. Je suis en terminale, j'ai 17 ans et je suis fan ; elle est parfaite sur le cours, les leçons, etc...",
+    message: '<strong>J\'adore</strong> cette appli. Je suis en terminale, j\'ai 17 ans et je suis fan ; elle est parfaite sur le cours, les leçons, etc...',
     rating: 5,
     source: 0
   },
@@ -149,11 +149,27 @@ onMounted(async () => {
 
 <template>
   <transition name="fade">
-    <div v-if="currentReview" class="review">
+    <div
+      v-if="currentReview"
+      class="review"
+    >
       <span class="rating">
-        <ski-icon v-for="index in currentReview.rating" :key="`star-fill-${index}`" class="icon" icon="star-fill" /><ski-icon v-for="index in 5 - currentReview.rating" :key="`star-${index}`" class="icon" icon="star" />
+        <icon
+          v-for="index in currentReview.rating"
+          :key="`star-fill-${index}`"
+          class="icon"
+          name="bi:star-fill"
+        /><icon
+          v-for="index in 5 - currentReview.rating"
+          :key="`star-${index}`"
+          class="icon"
+          name="bi:star"
+        />
       </span>
-      <q class="content" v-html="currentReview.message" />
+      <q
+        class="content"
+        v-html="currentReview.message"
+      />
       <span class="author">
         {{ currentReview.author }}, {{ currentReview.date }} sur
         <span v-if="currentReview.source === 0">

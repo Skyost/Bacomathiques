@@ -115,3 +115,7 @@ $enable-rounded: false;
   --bs-btn-active-bg: #{shade-color($green, 20%)};
   --bs-btn-active-border-color: #{shade-color($green, 20%)};
 }
+
+.btn-link.dropdown-toggle {
+  text-decoration: none;
+}

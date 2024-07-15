@@ -2,7 +2,7 @@
 import { site } from '~/site/site'
 
 interface CommitSha {
-  long: string,
+  long: string
   short: string
 }
 

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { h, render, Suspense } from 'vue'
+import { Collapse } from '#components'
 import CommentForm from '~/components/Math/CommentForm.vue'
 import BigCard from '~/components/Cards/BigCard.vue'
 import CommentCard from '~/components/Cards/CommentCard.vue'
@@ -6,8 +8,8 @@ import Navigation from '~/components/Math/Navigation.vue'
 import type { Comment, Toc } from '~/types'
 
 const props = defineProps<{
-  comments?: Comment[],
-  toc?: Toc,
+  comments?: Comment[]
+  toc?: Toc
   ads?: boolean
 }>()
 
@@ -64,17 +66,16 @@ const setupDocument = () => {
     if (!hideMessage) {
       continue
     }
-    bubble.classList.add('collapse')
-    const label = document.createElement('span')
-    label.classList.add('bubble-collapse-label', 'btn', 'btn-link')
-    label.setAttribute('data-bs-toggle', 'collapse')
-    label.setAttribute('data-bs-target', `#${bubble.id}`)
-    label.innerHTML = `<i class="bi bi-chevron-down"></i> ${hideMessage}`
-    label.classList.add('collapsed')
-    const labelParent = document.createElement('div')
-    labelParent.classList.add('text-end', 'mb-3')
-    labelParent.appendChild(label)
-    bubble.parentNode?.insertBefore(labelParent, bubble)
+    const collapseElement = document.createElement('div')
+    const id: string = bubble.getAttribute('id')!
+    bubble.removeAttribute('id')
+    const collapseComponent = h(Collapse, { id: id, variant: 'link', buttonClass: 'bubble-collapse-label' }, {
+      default: () => h('div', { innerHTML: bubble.outerHTML }),
+      button: () => hideMessage
+    })
+    render(collapseComponent, collapseElement)
+    bubble.parentNode?.insertBefore(collapseElement, bubble)
+    bubble.remove()
   }
 
   const representations = root.value!.querySelectorAll<HTMLElement>('.representation')
@@ -104,7 +105,6 @@ const setupDocument = () => {
 }
 
 const createGeoGebraInstancesWhenPossible = (representations: NodeListOf<HTMLElement>) => {
-  // @ts-ignore
   if (!window.GGBApplet) {
     setTimeout(() => createGeoGebraInstancesWhenPossible(representations), 500)
     return
@@ -126,7 +126,6 @@ const createGeoGebraInstancesWhenPossible = (representations: NodeListOf<HTMLEle
       scale = 4
     }
 
-    // @ts-ignore
     new window.GGBApplet({
       id: representation.id,
       material_id: representation.getAttribute('data-geogebra-id'),
@@ -149,25 +148,44 @@ onMounted(async () => {
   await nextTick()
   setupDocument()
 })
-
 </script>
 
 <template>
   <div>
-    <ski-container class="mb-5" :fluid="true">
-      <ski-columns>
-        <ski-column width="12" lg="9" class="ps-0 pe-0">
-          <div ref="root" class="math-document">
+    <b-container
+      class="mb-5"
+      :fluid="true"
+    >
+      <b-row>
+        <b-col
+          width="12"
+          lg="9"
+          class="ps-0 pe-0"
+        >
+          <div
+            ref="root"
+            class="math-document"
+          >
             <slot />
           </div>
-        </ski-column>
-        <ski-column v-if="toc" lg="3" class="d-lg-block d-none ps-0 pe-0">
+        </b-col>
+        <b-col
+          v-if="toc"
+          lg="3"
+          class="d-lg-block d-none ps-0 pe-0"
+        >
           <navigation :toc="toc" />
-        </ski-column>
-      </ski-columns>
-    </ski-container>
-    <div v-if="comments" class="pt-5 pb-5">
-      <big-card class="mb-5" blue>
+        </b-col>
+      </b-row>
+    </b-container>
+    <div
+      v-if="comments"
+      class="pt-5 pb-5"
+    >
+      <big-card
+        class="mb-5"
+        blue
+      >
         <comment-form>
           <template #title>
             <slot name="comments-headings" />
@@ -177,7 +195,10 @@ onMounted(async () => {
           </template>
         </comment-form>
       </big-card>
-      <div v-if="comments.length > 0" class="pt-5">
+      <div
+        v-if="comments.length > 0"
+        class="pt-5"
+      >
         <comment-card
           v-for="comment in comments"
           :key="comment._id"
@@ -185,7 +206,10 @@ onMounted(async () => {
           :comment="comment"
         />
       </div>
-      <em v-else class="text-muted text-center d-block pt-5 pb-5">
+      <em
+        v-else
+        class="text-muted text-center d-block pt-5 pb-5"
+      >
         Il n'y a pas de commentaire sur ce cours pour le moment.
       </em>
     </div>
@@ -241,6 +265,8 @@ onMounted(async () => {
 }
 
 .math-document {
+  counter-reset: headline-2 headline-3;
+
   :deep(h2), :deep(h3) {
     &:hover .anchor {
       margin-left: 0.2em;
@@ -257,7 +283,7 @@ onMounted(async () => {
     border-bottom: 1px solid rgba(black, 0.1);
     text-align: left;
     counter-increment: headline-2;
-    counter-reset: headline-3;
+    counter-set: headline-3 0;
 
     &:before {
       content: counter(headline-2, upper-roman) ' – ';
@@ -280,10 +306,13 @@ onMounted(async () => {
   }
 
   :deep(.bubble-collapse-label) {
+    display: block;
+    margin-left: auto;
     font-size: 0.8em;
     padding: 0;
     text-decoration: none !important;
     color: rgba(black, 0.6);
+    margin-bottom: 16px;
 
     .bi-chevron-down::before {
       transition: transform 200ms;

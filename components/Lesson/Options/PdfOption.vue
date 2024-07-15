@@ -6,7 +6,10 @@ defineProps<{ lesson: Lesson }>()
 </script>
 
 <template>
-  <a :href="lesson.pdf" target="_blank">
+  <a
+    :href="lesson.pdf"
+    target="_blank"
+  >
     <lesson-header-option
       id="pdf"
       title="Télécharger le PDF"

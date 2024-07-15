@@ -6,7 +6,7 @@ import type { Lesson, Level } from '~/types'
 import { levels, prependChapterToTitle } from '~/site/site'
 
 const props = withDefaults(defineProps<{
-  lesson: Lesson,
+  lesson: Lesson
   isSummary?: boolean
 }>(), {
   isSummary: false
@@ -20,42 +20,71 @@ const lessonTitle = computed<string>(() => prependChapterToTitle(props.lesson))
 <template>
   <div id="lesson-header">
     <h3 v-text="lessonTitle" />
-    <h4 v-if="isSummary" class="lesson-subtitle">
+    <h4
+      v-if="isSummary"
+      class="lesson-subtitle"
+    >
       Fiche résumée
     </h4>
 
-    <span class="lesson-info level" title="Niveau du cours">
-      <img :src="level.image" :alt="level.name"> {{ level.name }}
+    <span
+      class="lesson-info level"
+      title="Niveau du cours"
+    >
+      <img
+        :src="level.image"
+        :alt="level.name"
+      > {{ level.name }}
     </span>
     <lesson-header-difficulty :difficulty="lesson.difficulty" />
 
     <p v-html="lesson.description" />
 
-    <ski-button v-if="isSummary" class="btn-block w-100" variant="white" :to="`/cours/${level.id}/${lesson.id}/`">
+    <b-button
+      v-if="isSummary"
+      class="btn-block w-100"
+      variant="white"
+      :to="`/cours/${level.id}/${lesson.id}/`"
+    >
       Retour au cours
-    </ski-button>
-    <ski-columns v-else>
-      <ski-column width="12" lg="6" class="mb-lg-0 mb-2">
-        <ski-button
+    </b-button>
+    <b-row v-else>
+      <b-col
+        width="12"
+        lg="6"
+        class="mb-lg-0 mb-2"
+      >
+        <b-button
           variant="white"
           class="btn d-flex justify-content-center align-items-center fw-bold"
           :to="`/cours/${level.id}/${lesson.id}/resume/`"
         >
           Lire le résumé
-        </ski-button>
-      </ski-column>
-      <ski-column width="12" lg="6">
-        <ski-button variant="white" class="btn" @click="showOptions = !showOptions">
+        </b-button>
+      </b-col>
+      <b-col
+        width="12"
+        lg="6"
+      >
+        <b-button
+          variant="white"
+          class="btn"
+          @click="showOptions = !showOptions"
+        >
           <strong>Plus d'options</strong>
           <span class="hint">Télécharger le PDF, partager, ...</span>
-        </ski-button>
-      </ski-column>
-      <ski-column lg="12" class="options" :class="{expanded: showOptions}">
+        </b-button>
+      </b-col>
+      <b-col
+        lg="12"
+        class="options"
+        :class="{ expanded: showOptions }"
+      >
         <pdf-option :lesson="lesson" />
         <share-option :lesson="lesson" />
         <caveat-option :lesson="lesson" />
-      </ski-column>
-    </ski-columns>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -97,7 +126,7 @@ const lessonTitle = computed<string>(() => prependChapterToTitle(props.lesson))
     }
   }
 
-  .btn {
+  :deep(.btn) {
     padding: 14px;
     width: 100%;
     height: 100%;

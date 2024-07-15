@@ -11,12 +11,12 @@ const isSummary = route.params.slug === 'resume'
 const level = levels[route.params.level.toString()]
 
 interface LessonContent extends Lesson {
-  body: string,
+  body: string
   toc: string
 }
 
 interface LessonSummaryContent extends Lesson {
-  summary: string,
+  summary: string
   toc: string
 }
 
@@ -64,7 +64,12 @@ if (!config.public.debug) {
         :is-summary="isSummary"
       />
     </page-header>
-    <math-document class="page-lesson" :comments="isLesson ? comments! : undefined" :ads="true" :toc="lesson!.toc">
+    <math-document
+      class="page-lesson"
+      :comments="isLesson ? comments! : undefined"
+      :ads="true"
+      :toc="lesson!.toc"
+    >
       <page-content class="page-content">
         <div v-html="'body' in lesson ? lesson!.body : lesson!.summary" />
       </page-content>
@@ -73,12 +78,23 @@ if (!config.public.debug) {
         <p>Faîtes-le nous savoir dans les commentaires !</p>
       </template>
       <template #comments-inputs>
-        <input name="lesson" type="hidden" :value="lesson!.id">
-        <input name="level" type="hidden" :value="lesson!.level">
+        <input
+          name="lesson"
+          type="hidden"
+          :value="lesson!.id"
+        >
+        <input
+          name="level"
+          type="hidden"
+          :value="lesson!.level"
+        >
       </template>
     </math-document>
   </div>
-  <page-error v-else :error="error" />
+  <page-error
+    v-else
+    :error="error"
+  />
 </template>
 
 <style lang="scss">

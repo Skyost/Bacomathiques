@@ -3,14 +3,14 @@ import LessonList from '~/components/Page/Navbar/LessonList.vue'
 </script>
 
 <template>
-  <ski-modal
+  <b-modal
     id="modal-lesson-list"
     title="Accès direct à un cours"
     close-button="Fermer"
     size="lg"
   >
     <lesson-list />
-  </ski-modal>
+  </b-modal>
 </template>
 
 <style lang="scss" scoped>

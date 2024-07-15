@@ -13,14 +13,12 @@ const cookie = useCookie('smartbanner_closed', {
 })
 
 const mobileOs = computed<MobileOs>(() => {
-  if (process.client) {
-    // @ts-ignore
+  if (import.meta.client) {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera
     if (/android/i.test(userAgent)) {
       return 'Android'
     }
 
-    // @ts-ignore
     if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
       return 'iOS'
     }

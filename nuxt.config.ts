@@ -7,6 +7,7 @@ import { debug } from './site/debug'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+  compatibilityDate: '2024-07-01',
   ssr: true,
 
   app: {
@@ -37,19 +38,34 @@ export default defineNuxtConfig({
     ]
   },
 
+  nitro: {
+    prerender: {
+      routes: ['/']
+    }
+  },
+
   modules: [
+    '@nuxt/eslint',
     '~/modules/commit-sha-file-generator',
     'nuxt-cname-generator',
     '~/modules/latex-pdf-generator',
     '~/modules/nuxt-content-latex',
     '~/modules/api-v2-generator',
     '@nuxtjs/sitemap',
-    'nuxt-simple-robots',
+    '@nuxtjs/robots',
     'nuxt-link-checker',
-    'skimple-components/nuxt',
+    '@bootstrap-vue-next/nuxt',
     '@nuxt/content',
-    '@nuxtjs/google-fonts'
+    '@nuxtjs/google-fonts',
+    '@nuxt/icon',
+    '@nuxt/image'
   ],
+
+  eslint: {
+    config: {
+      stylistic: true
+    }
+  },
 
   content: {
     watch: false,
@@ -68,11 +84,6 @@ export default defineNuxtConfig({
     families: {
       Handlee: true
     }
-  },
-
-  skimpleComponents: {
-    bootstrapCss: false,
-    bootstrapJs: false
   },
 
   site: {

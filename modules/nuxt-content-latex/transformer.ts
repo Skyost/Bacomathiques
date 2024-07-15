@@ -2,9 +2,8 @@
 
 import path from 'path'
 import fs from 'fs'
-// @ts-ignore
 import { defineTransformer } from '@nuxt/content/transformers'
-import { HTMLElement } from 'node-html-parser'
+import type { HTMLElement } from 'node-html-parser'
 import GithubSlugger from 'github-slugger'
 import * as latex from 'that-latex-lib'
 import { consola } from 'consola'
@@ -25,8 +24,8 @@ const logger = consola.withTag(moduleName)
 export default defineTransformer({
   name: 'latex',
   extensions: ['.tex'],
-  // @ts-ignore
-  parse (_id: string, rawContent: string) {
+  // @ts-expect-error Custom transformer.
+  parse(_id: string, rawContent: string) {
     // Absolute path to the source directory.
     const sourceDirectoryPath = path.resolve('./')
 
@@ -144,7 +143,7 @@ const replaceVspaceElements = (root: HTMLElement) => {
  */
 const handleDarkImages = (
   root: HTMLElement,
-  replacedImages: {[key: string]: string},
+  replacedImages: { [key: string]: string },
   assetsRootDirectoryPath: string,
   getResolvedImageCacheDirectoryPath: (filePath: string) => string
 ) => {
@@ -240,7 +239,7 @@ const renderMathElement = (element: HTMLElement): string => {
  */
 const getHeader = (root: HTMLElement): { [key: string]: any } => {
   // Initialize the header object with the slug.
-  const yamlHeader : { [key: string]: any } = {}
+  const yamlHeader: { [key: string]: any } = {}
 
   // Adds defined headers.
   const headers = root.querySelectorAll('.document-header')
@@ -284,7 +283,7 @@ const getHeader = (root: HTMLElement): { [key: string]: any } => {
  * @param {HTMLElement} root - The root HTML element of the document.
  * @returns {Toc} - The generated table of contents.
  */
-function generateToc (root: HTMLElement): Toc {
+function generateToc(root: HTMLElement): Toc {
   const toc: Toc = []
   const findEntryParent = (toFind: TocEntry, entries: TocEntry[] = toc) => {
     for (const entry of entries) {
@@ -313,7 +312,8 @@ function generateToc (root: HTMLElement): Toc {
         if (!preTocEntry) {
           preTocEntry = entry
           toc.push(preTocEntry!)
-        } else {
+        }
+        else {
           const parent = entry.depth > preTocEntry.depth ? preTocEntry : findEntryParent(preTocEntry)
           parent?.children.push(entry)
           preTocEntry = entry
@@ -346,7 +346,7 @@ function generateToc (root: HTMLElement): Toc {
  * Removes elements that should not be included inside the summary.
  * @param {HTMLElement} root - The root HTML element of the document.
  */
-function removeElementsForSummary (root: HTMLElement) {
+function removeElementsForSummary(root: HTMLElement) {
   const elements = root.querySelectorAll('.bubble[data-variant="tip"], .bubble[data-variant="proof"], .nosummary')
   for (const element of elements) {
     element.remove()
