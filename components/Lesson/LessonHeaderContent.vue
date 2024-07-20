@@ -50,7 +50,7 @@ const lessonTitle = computed<string>(() => prependChapterToTitle(props.lesson))
     </b-button>
     <b-row v-else>
       <b-col
-        width="12"
+        cols="12"
         lg="6"
         class="mb-lg-0 mb-2"
       >
@@ -63,7 +63,7 @@ const lessonTitle = computed<string>(() => prependChapterToTitle(props.lesson))
         </b-button>
       </b-col>
       <b-col
-        width="12"
+        cols="12"
         lg="6"
       >
         <b-button

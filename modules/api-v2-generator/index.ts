@@ -49,7 +49,8 @@ export default defineNuxtModule({
     nuxt.options.nitro.publicAssets = nuxt.options.nitro.publicAssets || []
     nuxt.options.nitro.publicAssets.push({
       baseURL: '/api/v2',
-      dir: apiDirectoryPath
+      dir: apiDirectoryPath,
+      fallthrough: true
     })
 
     logger.success('Will generate API v2 files.')

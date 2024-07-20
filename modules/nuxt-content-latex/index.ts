@@ -61,7 +61,8 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.nitro.publicAssets = nuxt.options.nitro.publicAssets || []
     nuxt.options.nitro.publicAssets.push({
       baseURL: `/${options.assetsDestinationDirectoryName}/`,
-      dir: assetsDestinationPath
+      dir: assetsDestinationPath,
+      fallthrough: true
     })
   }
 })

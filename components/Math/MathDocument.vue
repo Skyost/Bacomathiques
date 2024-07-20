@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { h, render, Suspense } from 'vue'
-import { Collapse } from '#components'
 import CommentForm from '~/components/Math/CommentForm.vue'
 import BigCard from '~/components/Cards/BigCard.vue'
 import CommentCard from '~/components/Cards/CommentCard.vue'
@@ -66,16 +64,17 @@ const setupDocument = () => {
     if (!hideMessage) {
       continue
     }
-    const collapseElement = document.createElement('div')
     const id: string = bubble.getAttribute('id')!
     bubble.removeAttribute('id')
-    const collapseComponent = h(Collapse, { id: id, variant: 'link', buttonClass: 'bubble-collapse-label' }, {
-      default: () => h('div', { innerHTML: bubble.outerHTML }),
-      button: () => hideMessage
-    })
-    render(collapseComponent, collapseElement)
-    bubble.parentNode?.insertBefore(collapseElement, bubble)
+    const details = document.createElement('details')
+    details.setAttribute('id', id)
+    details.innerHTML = bubble.outerHTML
+    bubble.parentNode?.insertBefore(details, bubble)
     bubble.remove()
+    const summary = document.createElement('summary')
+    summary.classList.add('bubble-collapse-label')
+    summary.textContent = 'Correction'
+    details.insertBefore(summary, details.firstChild)
   }
 
   const representations = root.value!.querySelectorAll<HTMLElement>('.representation')
@@ -158,7 +157,7 @@ onMounted(async () => {
     >
       <b-row>
         <b-col
-          width="12"
+          cols="12"
           lg="9"
           class="ps-0 pe-0"
         >
@@ -306,8 +305,7 @@ onMounted(async () => {
   }
 
   :deep(.bubble-collapse-label) {
-    display: block;
-    margin-left: auto;
+    text-align: right;
     font-size: 0.8em;
     padding: 0;
     text-decoration: none !important;

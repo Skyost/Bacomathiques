@@ -23,7 +23,9 @@ const currentAddress = computed<string>(() => site.host + route.fullPath)
       v-model="isShowingModal"
       title="Partager le cours"
       size="lg"
-      close-button="Fermer"
+      ok-variant="secondary"
+      ok-title="Fermer"
+      ok-only
     >
       <div class="list-group text-start mb-4">
         <a

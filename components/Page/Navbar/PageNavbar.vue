@@ -8,15 +8,13 @@ import NavbarBrand from '~/components/Page/Navbar/NavbarBrand.vue'
 import LessonListDropdown from '~/components/Page/Navbar/LessonListDropdown.vue'
 import LessonList from '~/components/Page/Navbar/LessonList.vue'
 
-const { show: openModal } = useModal()
-
 const heightDelta = ref<number>(0)
+const modelOpened = ref<boolean>(false)
 
 const navbar = ref<ComponentPublicInstance | null>(null)
 
 onMounted(async () => {
   await nextTick()
-
   handleResize()
 })
 
@@ -32,7 +30,6 @@ onBeforeUnmount(() => {
 const handleResize = () => {
   const windowsWidth = window.innerWidth
   const fullHeight = windowsWidth < 768 ? 70 : 130
-
   navbar.value!.$el.setAttribute('style', `--height: ${fullHeight}px; --shrinked-height: ${shrinkedHeight}px`)
   let spacer = document.getElementById('page-navbar-spacer')
   if (!spacer) {
@@ -42,9 +39,7 @@ const handleResize = () => {
     navbar.value!.$el.parentNode.insertBefore(spacer, navbar.value!.$el)
   }
   spacer.style.height = `${fullHeight}px`
-
   document.documentElement.scrollTop = Math.max(document.documentElement.scrollTop - fullHeight, 0)
-
   heightDelta.value = fullHeight - shrinkedHeight
 }
 
@@ -61,6 +56,7 @@ const handleScroll = () => {
       ref="navbar"
       v-b-color-mode="'dark'"
       toggleable="lg"
+      data-bs-theme="dark"
       variant="primary"
     >
       <navbar-brand class="mobile-navbar-brand" />
@@ -94,7 +90,7 @@ const handleScroll = () => {
           <b-nav-item
             class="page-navbar-item d-lg-none"
             to="/cours/"
-            @click="openModal"
+            @click="modelOpened = !modelOpened"
           >
             <icon name="bi:tag-fill" /> Accès direct à un cours
           </b-nav-item>
@@ -110,9 +106,12 @@ const handleScroll = () => {
     </b-navbar>
     <b-modal
       id="modal-lesson-list"
+      v-model="modelOpened"
       title="Accès direct à un cours"
-      close-button="Fermer"
       size="lg"
+      ok-variant="secondary"
+      ok-title="Fermer"
+      ok-only
     >
       <client-only>
         <lesson-list />
@@ -141,8 +140,8 @@ $shrinked-shadow: 0 0 20px rgba(black, 0.2);
     position: relative;
 
     &.collapsing, &.show {
-      margin-left: -20px;
-      margin-right: -20px;
+      margin-left: -40px;
+      margin-right: -40px;
       // box-shadow: $shrinked-shadow;
     }
 

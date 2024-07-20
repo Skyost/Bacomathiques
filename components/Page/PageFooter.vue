@@ -70,7 +70,7 @@ const year = (new Date()).getFullYear()
     </b-row>
     <b-row class="stores">
       <b-col
-        width="6"
+        cols="6"
         xl="3"
         lg="4"
       >
@@ -82,7 +82,7 @@ const year = (new Date()).getFullYear()
         </a>
       </b-col>
       <b-col
-        width="6"
+        cols="6"
         xl="3"
         lg="4"
       >

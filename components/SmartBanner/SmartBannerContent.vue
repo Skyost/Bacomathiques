@@ -48,7 +48,7 @@ const onClose = () => {
     :class="store.bannerClass"
   >
     <b-col
-      width="1"
+      cols="1"
       class="d-flex align-items-center"
     >
       <span
@@ -57,7 +57,7 @@ const onClose = () => {
       >&times;</span>
     </b-col>
     <b-col
-      width="3"
+      cols="3"
       class="d-flex align-items-center"
     >
       <img
@@ -67,7 +67,7 @@ const onClose = () => {
       >
     </b-col>
     <b-col
-      width="5"
+      cols="5"
       class="d-flex align-items-center"
     >
       <div>
@@ -80,7 +80,7 @@ const onClose = () => {
       </div>
     </b-col>
     <b-col
-      width="3"
+      cols="3"
       class="d-flex align-items-center"
     >
       <b-button

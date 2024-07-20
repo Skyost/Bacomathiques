@@ -9,7 +9,7 @@ const slots = useSlots()
 <template>
   <b-row class="ms-0 me-0">
     <b-col
-      width="12"
+      cols="12"
       xl="2"
       lg="3"
       md="3"
@@ -27,7 +27,7 @@ const slots = useSlots()
       >
     </b-col>
     <b-col
-      width="12"
+      cols="12"
       xl="4"
       lg="5"
       md="7"

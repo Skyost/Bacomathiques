@@ -15,7 +15,7 @@ const avatarUrl = computed<string>(() => getAvatarUrl(props.comment.author))
   <big-card class="comment">
     <b-row>
       <b-col
-        width="12"
+        cols="12"
         lg="3"
         class="mb-lg-0 mb-4"
       >
@@ -28,7 +28,7 @@ const avatarUrl = computed<string>(() => getAvatarUrl(props.comment.author))
         </a>
       </b-col>
       <b-col
-        width="12"
+        cols="12"
         lg="9"
         class="content"
       >

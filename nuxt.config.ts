@@ -61,6 +61,11 @@ export default defineNuxtConfig({
     '@nuxt/image'
   ],
 
+  icon: {
+    provider: 'iconify',
+    class: 'vue-icon'
+  },
+
   eslint: {
     config: {
       stylistic: true

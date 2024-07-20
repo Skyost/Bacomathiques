@@ -14,7 +14,7 @@ defineProps<{
         xl="3"
         lg="4"
         md="5"
-        width="12"
+        cols="12"
         class="offset-xl-3 offset-lg-2 offset-md-1 d-flex align-items-center"
       >
         <img
@@ -26,7 +26,7 @@ defineProps<{
         xl="3"
         lg="4"
         md="5"
-        width="12"
+        cols="12"
         class="d-flex align-items-center"
       >
         <div class="h-100 w-100 d-flex flex-column">

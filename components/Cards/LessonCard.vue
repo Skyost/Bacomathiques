@@ -113,7 +113,7 @@ const variant = computed<string>(() => props.lesson.specialty ? 'green' : 'prima
       color: rgba(black, 0.75);
     }
 
-    .btn {
+    :deep(.btn) {
       font-weight: bold;
       padding: 14px;
     }

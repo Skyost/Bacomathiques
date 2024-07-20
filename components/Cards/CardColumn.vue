@@ -18,7 +18,7 @@ withDefaults(defineProps<{
 <template>
   <b-col
     :class="`mb-xl-${mb}`"
-    width="12"
+    cols="12"
     :lg="size + 1"
     :xl="size"
   >
