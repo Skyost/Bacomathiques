@@ -125,6 +125,7 @@ onMounted(async () => {
           sm="6"
           md="9"
           class="mt-2 mt-0-lg text-end"
+          :class="{ 'align-items-center': submitSuccess || submitError }"
         >
           <small v-if="!submitSuccess && !submitError">
             <icon name="bi:incognito" /> Protégé par Akismet (<a href="https://akismet.com/privacy/">Politique de confidentialité</a> &amp; <a href="https://akismet.com/tos/">Conditions d'utilisation</a>).
