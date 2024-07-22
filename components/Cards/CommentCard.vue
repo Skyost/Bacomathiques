@@ -13,23 +13,41 @@ const avatarUrl = computed<string>(() => getAvatarUrl(props.comment.author))
 
 <template>
   <big-card class="comment">
-    <ski-columns>
-      <ski-column width="12" lg="3" class="mb-lg-0 mb-4">
+    <b-row>
+      <b-col
+        cols="12"
+        lg="3"
+        class="mb-lg-0 mb-4"
+      >
         <a :href="`#commentaire-${comment._id}`">
-          <img :src="avatarUrl" :alt="comment.author" class="avatar">
+          <img
+            :src="avatarUrl"
+            :alt="comment.author"
+            class="avatar"
+          >
         </a>
-      </ski-column>
-      <ski-column width="12" lg="9" class="content">
+      </b-col>
+      <b-col
+        cols="12"
+        lg="9"
+        class="content"
+      >
         <h3 :id="`commentaire-${comment._id}`">
           {{ comment.author }}
-          <span v-if="site.moderators.includes(comment.author)" class="badge bg-info">
+          <span
+            v-if="site.moderators.includes(comment.author)"
+            class="badge bg-info"
+          >
             Modérateur
           </span>
         </h3>
-        <p class="mb-4" v-text="comment.message" />
+        <p
+          class="mb-4"
+          v-text="comment.message"
+        />
         <small class="d-block text-right text-muted">{{ date }} {{ time }}</small>
-      </ski-column>
-    </ski-columns>
+      </b-col>
+    </b-row>
   </big-card>
 </template>
 

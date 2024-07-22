@@ -5,16 +5,16 @@ export const shrinkedHeight = 70
 <script setup lang="ts">
 import type { ComponentPublicInstance } from 'vue'
 import NavbarBrand from '~/components/Page/Navbar/NavbarBrand.vue'
-import LessonListModal from '~/components/Page/Navbar/LessonListModal.vue'
 import LessonListDropdown from '~/components/Page/Navbar/LessonListDropdown.vue'
+import LessonList from '~/components/Page/Navbar/LessonList.vue'
 
 const heightDelta = ref<number>(0)
+const modelOpened = ref<boolean>(false)
 
 const navbar = ref<ComponentPublicInstance | null>(null)
 
 onMounted(async () => {
   await nextTick()
-
   handleResize()
 })
 
@@ -30,7 +30,6 @@ onBeforeUnmount(() => {
 const handleResize = () => {
   const windowsWidth = window.innerWidth
   const fullHeight = windowsWidth < 768 ? 70 : 130
-
   navbar.value!.$el.setAttribute('style', `--height: ${fullHeight}px; --shrinked-height: ${shrinkedHeight}px`)
   let spacer = document.getElementById('page-navbar-spacer')
   if (!spacer) {
@@ -40,9 +39,7 @@ const handleResize = () => {
     navbar.value!.$el.parentNode.insertBefore(spacer, navbar.value!.$el)
   }
   spacer.style.height = `${fullHeight}px`
-
   document.documentElement.scrollTop = Math.max(document.documentElement.scrollTop - fullHeight, 0)
-
   heightDelta.value = fullHeight - shrinkedHeight
 }
 
@@ -54,37 +51,72 @@ const handleScroll = () => {
 
 <template>
   <div>
-    <ski-navbar
+    <b-navbar
       id="page-navbar"
       ref="navbar"
-      brightness="primary"
-      theme="dark"
+      v-b-color-mode="'dark'"
+      toggleable="lg"
+      data-bs-theme="dark"
+      variant="primary"
     >
-      <ski-navbar-collapse id="page-navbar-collapse">
-        <ski-navbar-items class="ms-auto ms-lg-0">
-          <ski-navbar-item class="page-navbar-item" to="/" :active="$route.path === '/'">
-            <ski-icon icon="house-door-fill" /> Accueil
-          </ski-navbar-item>
-          <ski-navbar-item class="page-navbar-item" to="/cours/" :active="$route.path.startsWith('/cours')">
-            <ski-icon icon="bookmark-fill" /> Liste des cours
-          </ski-navbar-item>
-          <ski-navbar-item class="page-navbar-item" to="/a-propos/" :active="$route.path === '/a-propos/'">
-            <ski-icon icon="pencil-fill" /> À propos
-          </ski-navbar-item>
-          <ski-navbar-item class="page-navbar-item d-lg-none" to="/cours/" data-bs-toggle="modal" data-bs-target="#modal-lesson-list">
-            <ski-icon icon="tag-fill" /> Accès direct à un cours
-          </ski-navbar-item>
-        </ski-navbar-items>
+      <navbar-brand class="mobile-navbar-brand" />
+      <b-navbar-toggle target="page-navbar-collapse" />
+      <b-collapse
+        id="page-navbar-collapse"
+        is-nav
+      >
+        <b-navbar-nav class="ms-auto ms-lg-0">
+          <b-nav-item
+            class="page-navbar-item"
+            to="/"
+            :active="$route.path === '/'"
+          >
+            <icon name="bi:house-door-fill" /> Accueil
+          </b-nav-item>
+          <b-nav-item
+            class="page-navbar-item"
+            to="/cours/"
+            :active="$route.path.startsWith('/cours')"
+          >
+            <icon name="bi:bookmark-fill" /> Liste des cours
+          </b-nav-item>
+          <b-nav-item
+            class="page-navbar-item"
+            to="/a-propos/"
+            :active="$route.path === '/a-propos/'"
+          >
+            <icon name="bi:pencil-fill" /> À propos
+          </b-nav-item>
+          <b-nav-item
+            class="page-navbar-item d-lg-none"
+            to="/cours/"
+            @click="modelOpened = !modelOpened"
+          >
+            <icon name="bi:tag-fill" /> Accès direct à un cours
+          </b-nav-item>
+        </b-navbar-nav>
         <navbar-brand class="desktop-navbar-brand" />
-        <ski-navbar-items class="d-none d-lg-block ms-auto">
-          <lesson-list-dropdown class="page-navbar-item" />
-        </ski-navbar-items>
-        <template #brand>
-          <navbar-brand class="mobile-navbar-brand" />
-        </template>
-      </ski-navbar-collapse>
-    </ski-navbar>
-    <lesson-list-modal />
+        <b-navbar-nav class="d-none d-lg-block ms-auto">
+          <lesson-list-dropdown
+            id="lesson-list-dropdown"
+            class="page-navbar-item"
+          />
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+    <b-modal
+      id="modal-lesson-list"
+      v-model="modelOpened"
+      title="Accès direct à un cours"
+      size="lg"
+      ok-variant="secondary"
+      ok-title="Fermer"
+      ok-only
+    >
+      <client-only>
+        <lesson-list />
+      </client-only>
+    </b-modal>
   </div>
 </template>
 
@@ -108,8 +140,8 @@ $shrinked-shadow: 0 0 20px rgba(black, 0.2);
     position: relative;
 
     &.collapsing, &.show {
-      margin-left: -20px;
-      margin-right: -20px;
+      margin-left: -40px;
+      margin-right: -40px;
       // box-shadow: $shrinked-shadow;
     }
 
@@ -195,6 +227,34 @@ $shrinked-shadow: 0 0 20px rgba(black, 0.2);
 
     @include media-breakpoint-down(sm) {
       font-size: 24px;
+    }
+  }
+}
+
+#modal-lesson-list {
+  :deep(ul) {
+    margin-bottom: 0;
+    padding-top: 14px;
+  }
+
+  :deep(li) {
+    max-width: 100%;
+
+    &.dropdown-header {
+      color: rgba(black, 0.6);
+    }
+
+    a {
+      padding: 10px 4px;
+      transition: all 200ms;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+
+      &:active {
+        color: white;
+        background-color: $primary;
+      }
     }
   }
 }

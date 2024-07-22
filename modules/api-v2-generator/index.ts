@@ -1,5 +1,5 @@
 import * as fs from 'fs'
-import { createResolver, defineNuxtModule } from '@nuxt/kit'
+import { createResolver, defineNuxtModule, useLogger } from '@nuxt/kit'
 import { levels as levelsData } from '../../site/site'
 import {
   apiDirectory,
@@ -7,6 +7,11 @@ import {
   mainEndpoint,
   moduleName
 } from './common'
+
+/**
+ * The logger instance.
+ */
+const logger = useLogger(moduleName)
 
 /**
  * Nuxt module to generate API v2 files from levels.
@@ -44,7 +49,10 @@ export default defineNuxtModule({
     nuxt.options.nitro.publicAssets = nuxt.options.nitro.publicAssets || []
     nuxt.options.nitro.publicAssets.push({
       baseURL: '/api/v2',
-      dir: apiDirectoryPath
+      dir: apiDirectoryPath,
+      fallthrough: true
     })
+
+    logger.success('Will generate API v2 files.')
   }
 })

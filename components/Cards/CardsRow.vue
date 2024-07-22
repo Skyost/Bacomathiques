@@ -7,11 +7,17 @@ withDefaults(defineProps<{
 </script>
 
 <template>
-  <ski-container class="flat-cards" :fluid="true">
-    <ski-columns class="justify-content-center" :data-sal="sal">
+  <b-container
+    class="flat-cards"
+    :fluid="true"
+  >
+    <b-row
+      class="justify-content-center"
+      :data-sal="sal"
+    >
       <slot />
-    </ski-columns>
-  </ski-container>
+    </b-row>
+  </b-container>
 </template>
 
 <style lang="scss" scoped>

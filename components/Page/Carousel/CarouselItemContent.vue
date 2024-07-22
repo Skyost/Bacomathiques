@@ -1,29 +1,32 @@
 <script setup lang="ts">
 defineProps<{
-  title: string,
-  to: string,
-  button: string,
+  title: string
+  to: string
+  button: string
   image: string
 }>()
 </script>
 
 <template>
   <div class="carousel-item-content">
-    <ski-columns>
-      <ski-column
+    <b-row>
+      <b-col
         xl="3"
         lg="4"
         md="5"
-        width="12"
+        cols="12"
         class="offset-xl-3 offset-lg-2 offset-md-1 d-flex align-items-center"
       >
-        <img :src="image" :alt="title">
-      </ski-column>
-      <ski-column
+        <img
+          :src="image"
+          :alt="title"
+        >
+      </b-col>
+      <b-col
         xl="3"
         lg="4"
         md="5"
-        width="12"
+        cols="12"
         class="d-flex align-items-center"
       >
         <div class="h-100 w-100 d-flex flex-column">
@@ -31,12 +34,16 @@ defineProps<{
           <div class="content">
             <slot />
           </div>
-          <ski-button variant="white" :to="to" class="btn">
+          <b-button
+            variant="white"
+            :to="to"
+            class="btn"
+          >
             {{ button }}
-          </ski-button>
+          </b-button>
         </div>
-      </ski-column>
-    </ski-columns>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -68,7 +75,7 @@ defineProps<{
     }
   }
 
-  .btn {
+  :deep(.btn) {
     padding: 14px;
     font-weight: bold;
   }

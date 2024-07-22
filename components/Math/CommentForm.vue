@@ -10,7 +10,7 @@ const message = ref('')
 const method = ref<'POST' | 'GET'>('POST')
 
 const debounced = ref<ReturnType<typeof debounce> | null>(null)
-const avatar = ref<string | null>(null)
+const avatar = ref<string | undefined>(undefined)
 
 const avatarInputElement = ref<HTMLInputElement>()
 const avatarImageElement = ref<HTMLImageElement>()
@@ -36,7 +36,8 @@ const onSubmitCommentForm = async (event: Event) => {
     })
     submitError.value = !response.ok
     submitSuccess.value = !submitError.value
-  } catch (ex) {
+  }
+  catch (ex) {
     submitError.value = true
   }
   formLoading.value = false
@@ -47,12 +48,12 @@ watch(author, (author) => {
     debounced.value.cancel()
   }
 
-  debounced.value = debounce(() => {
+  const updateAvatar = debounce(() => {
     avatar.value = getAvatarUrl(author)
     debounced.value = null
   }, 300)
-  // @ts-ignore
-  debounced.value()
+  debounced.value = updateAvatar
+  updateAvatar()
 })
 
 onMounted(async () => {
@@ -73,7 +74,11 @@ onMounted(async () => {
       @submit.prevent="onSubmitCommentForm"
     >
       <slot name="inputs" />
-      <input name="client" type="hidden" value="bacomathiqu.es">
+      <input
+        name="client"
+        type="hidden"
+        value="bacomathiqu.es"
+      >
       <textarea
         v-model="message"
         class="form-control mb-3"
@@ -100,29 +105,51 @@ onMounted(async () => {
           required
         >
       </div>
-      <ski-columns>
-        <ski-column xs="12" sm="6" md="3">
-          <ski-button
+      <b-row>
+        <b-col
+          xs="12"
+          sm="6"
+          md="3"
+        >
+          <b-button
             variant="white"
             type="submit"
             class="d-block w-100"
             :disabled="formLoading === true || submitSuccess === true"
           >
-            <ski-icon icon="send-fill" /> Envoyer
-          </ski-button>
-        </ski-column>
-        <ski-column xs="12" sm="6" md="9" class="mt-2 mt-0-lg text-end">
+            <icon name="bi:send-fill" /> Envoyer
+          </b-button>
+        </b-col>
+        <b-col
+          xs="12"
+          sm="6"
+          md="9"
+          class="mt-2 mt-0-lg text-end"
+          :class="{ 'align-items-center': submitSuccess || submitError }"
+        >
           <small v-if="!submitSuccess && !submitError">
-            <ski-icon icon="incognito" /> Protégé par Akismet (<a href="https://akismet.com/privacy/">Politique de confidentialité</a> &amp; <a href="https://akismet.com/tos/">Conditions d'utilisation</a>).
+            <icon name="bi:incognito" /> Protégé par Akismet (<a href="https://akismet.com/privacy/">Politique de confidentialité</a> &amp; <a href="https://akismet.com/tos/">Conditions d'utilisation</a>).
           </small>
-          <div v-if="submitSuccess" class="alert alert-success">
-            <ski-icon icon="check" class="me-2" /> Votre commentaire a été envoyé avec succès. Veuillez cependant noter qu'il ne sera publié qu'après modération 😉
+          <div
+            v-if="submitSuccess"
+            class="alert alert-success"
+          >
+            <icon
+              name="bi:check"
+              class="me-2"
+            /> Votre commentaire a été envoyé avec succès. Veuillez cependant noter qu'il ne sera publié qu'après modération 😉
           </div>
-          <div v-if="submitError" class="alert alert-danger">
-            <ski-icon icon="exclamation-circle-fill" class="me-2" /> Impossible de poster votre commentaire. Veuillez réessayer plus tard.
+          <div
+            v-if="submitError"
+            class="alert alert-danger"
+          >
+            <icon
+              name="bi:exclamation-circle-fill"
+              class="me-2"
+            /> Impossible de poster votre commentaire. Veuillez réessayer plus tard.
           </div>
-        </ski-column>
-      </ski-columns>
+        </b-col>
+      </b-row>
     </form>
   </div>
 </template>

@@ -2,11 +2,10 @@
 
 import fs from 'fs'
 import path from 'path'
-import { createResolver, defineNuxtModule, type Resolver } from '@nuxt/kit'
+import { createResolver, defineNuxtModule, type Resolver, useLogger } from '@nuxt/kit'
 import { Octokit } from '@octokit/core'
 import AdmZip from 'adm-zip'
-import * as latex from '../utils/latex'
-import * as logger from '../utils/logger'
+import * as latex from 'that-latex-lib'
 import { siteContentSettings } from '../site/content'
 import { debug } from '../site/debug'
 import { getFileName } from '../utils/utils'
@@ -19,13 +18,13 @@ import { site } from '../site/site'
  * @interface
  */
 export interface ModuleOptions {
-  github: Github,
-  directory: string,
-  previousBuildDownloadDirectory: string,
-  destinationDirectory: string,
-  ignores: string[],
-  previousBuildDirectories: string[],
-  getIncludeGraphicsDirectories: (latexFilePath: string) => string[],
+  github: Github
+  directory: string
+  previousBuildDownloadDirectory: string
+  destinationDirectory: string
+  ignores: string[]
+  previousBuildDirectories: string[]
+  getIncludeGraphicsDirectories: (latexFilePath: string) => string[]
   moveFiles: boolean
 }
 
@@ -33,6 +32,11 @@ export interface ModuleOptions {
  * The name of the module.
  */
 const name = 'latex-pdf-generator'
+
+/**
+ * The logger instance.
+ */
+const logger = useLogger(name)
 
 /**
  * Nuxt module to compile Latex files into PDF.
@@ -81,7 +85,8 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.nitro.publicAssets = nuxt.options.nitro.publicAssets || []
     nuxt.options.nitro.publicAssets.push({
       baseURL: `/${options.destinationDirectory}/`,
-      dir: moduleDirectoryPath
+      dir: moduleDirectoryPath,
+      fallthrough: true
     })
   }
 })
@@ -95,9 +100,9 @@ export default defineNuxtModule<ModuleOptions>({
  */
 const downloadPreviousBuild = async (resolver: Resolver, directoryPath: string, options: ModuleOptions): Promise<boolean> => {
   try {
-    logger.info(name, `Downloading and unzipping the previous build at ${options.github.username}/${options.github.repository}@gh-pages...`)
+    logger.info(`Downloading and unzipping the previous build at ${options.github.username}/${options.github.repository}@gh-pages...`)
     if (fs.existsSync(directoryPath)) {
-      logger.success(name, 'Already downloaded.')
+      logger.success('Already downloaded.')
       return true
     }
     // We create the Octokit instance.
@@ -123,10 +128,11 @@ const downloadPreviousBuild = async (resolver: Resolver, directoryPath: string, 
 
     // Then we can rename the main entry into the destination folder name.
     fs.renameSync(resolver.resolve(parentPath, zipRootDir), resolver.resolve(parentPath, path.basename(directoryPath)))
-    logger.success(name, 'Done.')
+    logger.success('Done.')
     return true
-  } catch (exception) {
-    logger.warn(name, exception)
+  }
+  catch (exception) {
+    logger.warn(exception)
   }
   return false
 }
@@ -158,7 +164,7 @@ const generatePdf = (
 
     // Ignore specified files and directories.
     if (ignores.includes(filePath) || !fs.existsSync(filePath)) {
-      logger.info(name, `Ignored ${filePath}.`)
+      logger.info(`Ignored ${filePath}.`)
       continue
     }
 
@@ -204,14 +210,14 @@ const generateAndCopy = (
   destinationFileName: string | null = null,
   variant: string | null = null
 ): boolean => {
-  logger.info(name, `Processing "${filePath}"${variant ?? ''}...`)
+  logger.info(`Processing "${filePath}"${variant ?? ''}...`)
 
   // Generate PDF and checksums files.
   const { wasCached, builtFilePath, checksumsFilePath } = latex.generatePdf(
     filePath,
     {
       includeGraphicsDirectories: options.getIncludeGraphicsDirectories(filePath),
-      cacheDirectory: previousBuildDirectory == null ? undefined : previousBuildDirectory,
+      cacheDirectoryPath: previousBuildDirectory == null ? undefined : previousBuildDirectory,
       cachedFileName: destinationFileName ?? getFileName(filePath)
     }
   )
@@ -242,12 +248,13 @@ const generateAndCopy = (
     }
 
     if (wasCached) {
-      logger.success(name, `Fully cached PDF found in ${previousBuildDirectory}.`)
-    } else {
-      logger.success(name, previousBuildDirectory ? `File was not cached in ${previousBuildDirectory} but has been generated with success.` : 'Done.')
+      logger.success(`Fully cached PDF found in ${previousBuildDirectory}.`)
+    }
+    else {
+      logger.success(previousBuildDirectory ? `File was not cached in ${previousBuildDirectory} but has been generated with success.` : 'Done.')
     }
     return true
   }
-  logger.fatal(name, 'Error.')
+  logger.fatal('Error.')
   return false
 }

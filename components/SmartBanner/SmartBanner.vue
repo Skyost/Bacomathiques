@@ -13,15 +13,15 @@ const cookie = useCookie('smartbanner_closed', {
 })
 
 const mobileOs = computed<MobileOs>(() => {
-  // @ts-ignore
-  const userAgent = navigator.userAgent || navigator.vendor || window.opera
-  if (/android/i.test(userAgent)) {
-    return 'Android'
-  }
+  if (import.meta.client) {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera
+    if (/android/i.test(userAgent)) {
+      return 'Android'
+    }
 
-  // @ts-ignore
-  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-    return 'iOS'
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      return 'iOS'
+    }
   }
 
   return 'unknown'

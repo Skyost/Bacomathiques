@@ -1,12 +1,13 @@
 import { defineNuxtConfig } from 'nuxt/config'
 import StylelintPlugin from 'vite-plugin-stylelint'
-import eslintPlugin from 'vite-plugin-eslint'
+import eslintPlugin from '@nabla/vite-plugin-eslint'
 import 'dotenv/config'
 import { site } from './site/site'
 import { debug } from './site/debug'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+  compatibilityDate: '2024-07-01',
   ssr: true,
 
   app: {
@@ -37,18 +38,39 @@ export default defineNuxtConfig({
     ]
   },
 
+  nitro: {
+    prerender: {
+      routes: ['/']
+    }
+  },
+
   modules: [
+    '@nuxt/eslint',
     '~/modules/commit-sha-file-generator',
-    '~/modules/cname-generator',
+    'nuxt-cname-generator',
     '~/modules/latex-pdf-generator',
     '~/modules/nuxt-content-latex',
     '~/modules/api-v2-generator',
-    'nuxt-simple-sitemap',
-    'nuxt-simple-robots',
-    'skimple-components/nuxt',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots',
+    'nuxt-link-checker',
+    '@bootstrap-vue-next/nuxt',
     '@nuxt/content',
-    '@nuxtjs/google-fonts'
+    '@nuxtjs/google-fonts',
+    '@nuxt/icon',
+    '@nuxt/image'
   ],
+
+  icon: {
+    provider: 'iconify',
+    class: 'vue-icon'
+  },
+
+  eslint: {
+    config: {
+      stylistic: true
+    }
+  },
 
   content: {
     watch: false,
@@ -69,11 +91,6 @@ export default defineNuxtConfig({
     }
   },
 
-  skimpleComponents: {
-    bootstrapCss: false,
-    bootstrapJs: false
-  },
-
   site: {
     url: site.host,
     name: site.name,
@@ -81,7 +98,14 @@ export default defineNuxtConfig({
   },
 
   cname: {
-    hostname: site.host
+    host: site.host
+  },
+
+  linkChecker: {
+    failOnError: false,
+    excludeLinks: [
+      '/pdf/**'
+    ]
   },
 
   runtimeConfig: {

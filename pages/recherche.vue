@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
+import katex from 'katex'
 import PageLoading from '~/components/Page/PageLoading.vue'
 import PageHeader from '~/components/Page/PageHeader.vue'
 import PageContent from '~/components/Page/PageContent.vue'
@@ -36,6 +37,14 @@ const doSearch = (list: Ref<Omit<Lesson, string>[] | null>): Lesson[] => {
   return result
 }
 
+const calculus = computed<string>(() => {
+  return katex.renderToString(`\\begin{align*}
+  \\&frac{1}{3} = 0,3333\\times \\\\
+  &\\iff 3 \\times frac{1}{3} &= 0,9999\\times \\\\
+  &\\iff 1 &= 0,9999\\times
+\\end{align*}`, { displayMode: true })
+})
+
 const lessons = computed<Lesson[]>(() => doSearch(data))
 </script>
 
@@ -65,7 +74,10 @@ const lessons = computed<Lesson[]>(() => doSearch(data))
         />
       </cards-row>
 
-      <cards-row v-else class="pb-5">
+      <cards-row
+        v-else
+        class="pb-5"
+      >
         <big-card class="text-center">
           <p>
             Nous n'avons aucun résultat de recherche à vous afficher.
@@ -73,7 +85,7 @@ const lessons = computed<Lesson[]>(() => doSearch(data))
           </p>
 
           <span class="d-block mt-4 mb-4">
-            <span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 6.11488em; vertical-align: -2.80744em;" /><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 3.30744em;"><span class="" style="top: -5.30744em;"><span class="pstrut" style="height: 3.32144em;" /><span class="mord" /></span><span class="" style="top: -3em;"><span class="pstrut" style="height: 3.32144em;" /><span class="mord"><span class="mspace" style="margin-right: 0.277778em;" /><span class="mrel">⟺</span><span class="mspace" style="margin-right: 0.277778em;" /></span></span><span class="" style="top: -1.174em;"><span class="pstrut" style="height: 3.32144em;" /><span class="mord"><span class="mspace" style="margin-right: 0.277778em;" /><span class="mrel">⟺</span><span class="mspace" style="margin-right: 0.277778em;" /></span></span></span><span class="vlist-s">&ZeroWidthSpace;</span></span><span class="vlist-r"><span class="vlist" style="height: 2.80744em;"><span class="" /></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 3.30744em;"><span class="" style="top: -5.30744em;"><span class="pstrut" style="height: 3.32144em;" /><span class="mord"><span class="mord" /><span class="mord"><span class="mopen nulldelimiter" /><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.32144em;"><span class="" style="top: -2.314em;"><span class="pstrut" style="height: 3em;" /><span class="mord"><span class="mord">3</span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;" /><span class="frac-line" style="border-bottom-width: 0.04em;" /></span><span class="" style="top: -3.677em;"><span class="pstrut" style="height: 3em;" /><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">&ZeroWidthSpace;</span></span><span class="vlist-r"><span class="vlist" style="height: 0.686em;"><span class="" /></span></span></span></span><span class="mclose nulldelimiter" /></span><span class="mspace" style="margin-right: 0.277778em;" /><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;" /><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;" /><span class="mord">3333</span><span class="mspace" style="margin-right: 0.166667em;" /><span class="minner">…</span></span></span><span class="" style="top: -3em;"><span class="pstrut" style="height: 3.32144em;" /><span class="mord"><span class="mord" /><span class="mord">3</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mord"><span class="mopen nulldelimiter" /><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.32144em;"><span class="" style="top: -2.314em;"><span class="pstrut" style="height: 3em;" /><span class="mord"><span class="mord">3</span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;" /><span class="frac-line" style="border-bottom-width: 0.04em;" /></span><span class="" style="top: -3.677em;"><span class="pstrut" style="height: 3em;" /><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">&ZeroWidthSpace;</span></span><span class="vlist-r"><span class="vlist" style="height: 0.686em;"><span class="" /></span></span></span></span><span class="mclose nulldelimiter" /></span><span class="mspace" style="margin-right: 0.277778em;" /><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;" /><span class="mord">3</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;" /><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;" /><span class="mord">3333</span><span class="mspace" style="margin-right: 0.166667em;" /><span class="minner">…</span></span></span><span class="" style="top: -1.174em;"><span class="pstrut" style="height: 3.32144em;" /><span class="mord"><span class="mord" /><span class="mord">1</span><span class="mspace" style="margin-right: 0.277778em;" /><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;" /><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;" /><span class="mord">9999</span><span class="mspace" style="margin-right: 0.166667em;" /><span class="minner">…</span></span></span></span><span class="vlist-s">&ZeroWidthSpace;</span></span><span class="vlist-r"><span class="vlist" style="height: 2.80744em;"><span class="" /></span></span></span></span></span></span></span></span></span></span>
+            <span v-html="calculus" />
           </span>
 
           <p class="mb-0">
@@ -83,7 +95,10 @@ const lessons = computed<Lesson[]>(() => doSearch(data))
         </big-card>
       </cards-row>
     </page-content>
-    <page-error v-else :error="error" />
+    <page-error
+      v-else
+      :error="error"
+    />
   </div>
 </template>
 

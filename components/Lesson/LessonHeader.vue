@@ -2,7 +2,7 @@
 import type { Lesson } from '~/types'
 
 withDefaults(defineProps<{
-  lesson: Lesson,
+  lesson: Lesson
   isSummary?: boolean
 }>(), {
   isSummary: false
@@ -25,7 +25,10 @@ const adjustPreviewHeight = () => {
 </script>
 
 <template>
-  <image-header ref="root" :image="lesson.preview">
+  <image-header
+    ref="root"
+    :image="lesson.preview"
+  >
     <template #image>
       <span
         ref="headerImage"
@@ -33,7 +36,10 @@ const adjustPreviewHeight = () => {
         :style="`background-image: url('${lesson.preview}');`"
       />
     </template>
-    <lesson-header-content :lesson="lesson" :is-summary="isSummary" />
+    <lesson-header-content
+      :lesson="lesson"
+      :is-summary="isSummary"
+    />
   </image-header>
 </template>
 

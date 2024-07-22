@@ -40,7 +40,7 @@ export interface ApiComment {
      * Indicates whether the author is a moderator.
      */
     isModerator: boolean
-  };
+  }
 
   /**
    * Timestamp representing the date of the comment.
@@ -94,56 +94,56 @@ interface ApiLessonInfo {
    *
    * @type {string}
    */
-  id: string;
+  id: string
 
   /**
    * Level identifier for the lesson.
    *
    * @type {LevelId}
    */
-  level: LevelId;
+  level: LevelId
 
   /**
    * Title of the lesson.
    *
    * @type {string}
    */
-  title: string;
+  title: string
 
   /**
    * Chapter number of the lesson.
    *
    * @type {number}
    */
-  chapter: number;
+  chapter: number
 
   /**
    * Indicates whether the lesson has a specialty.
    *
    * @type {boolean}
    */
-  specialty: boolean;
+  specialty: boolean
 
   /**
    * Content API endpoint for the lesson.
    *
    * @type {string}
    */
-  content: string;
+  content: string
 
   /**
    * Comments API endpoint for the lesson.
    *
    * @type {string}
    */
-  comments: string;
+  comments: string
 
   /**
    * Summary API endpoint for the lesson.
    *
    * @type {string}
    */
-  summary: string;
+  summary: string
 }
 
 /**
@@ -153,7 +153,7 @@ interface Api {
   /**
    * API version number.
    */
-  version: number,
+  version: number
 
   /**
    * Latest version of the API.
@@ -172,7 +172,7 @@ const api: Api = { version: 2, latestVersion: 2 }
  * @param {ApiLevel[]} levels - Array of API levels.
  * @returns {{ api: Api, levels: ApiLevel[] }} - Object containing API and levels.
  */
-export const mainEndpoint = (levels: ApiLevel[]): { api: Api; levels: ApiLevel[] } => {
+export const mainEndpoint = (levels: ApiLevel[]): { api: Api, levels: ApiLevel[] } => {
   return { api, levels }
 }
 
@@ -182,7 +182,7 @@ export const mainEndpoint = (levels: ApiLevel[]): { api: Api; levels: ApiLevel[]
  * @param {ApiLesson[]} lessons - Array of API lessons (optional).
  * @returns {{ api: Api, list: ReturnType<typeof lessonListEndpointItem>[] }} - Object containing API and a list of lesson items.
  */
-export const lessonListEndpoint = (lessons: ApiLesson[] = []): { api: Api; list: ReturnType<typeof lessonListEndpointItem>[] } => {
+export const lessonListEndpoint = (lessons: ApiLesson[] = []): { api: Api, list: ReturnType<typeof lessonListEndpointItem>[] } => {
   return {
     api,
     list: lessons.map(lessonListEndpointItem)
@@ -210,7 +210,7 @@ export const lessonListEndpointItem = (lesson: ApiLesson): { lesson: ApiLessonIn
  * @param {ApiLesson} lesson - API lesson object.
  * @returns {{ api: Api, lesson: ApiLessonInfo, difficulty: number, pdf: string, html: string }} - Object containing API, lesson details, and content.
  */
-export const lessonContentEndpoint = (lesson: ApiLesson): { api: Api; lesson: ApiLessonInfo; difficulty: number; pdf: string; html: string } => {
+export const lessonContentEndpoint = (lesson: ApiLesson): { api: Api, lesson: ApiLessonInfo, difficulty: number, pdf: string, html: string } => {
   return {
     api,
     lesson: getLessonInfo(lesson),
@@ -226,7 +226,7 @@ export const lessonContentEndpoint = (lesson: ApiLesson): { api: Api; lesson: Ap
  * @param {ApiLesson} lesson - API lesson object.
  * @returns {{ api: Api, lesson: ApiLessonInfo, html: string }} - Object containing API, lesson info, and HTML summary.
  */
-export const lessonSummaryEndpoint = (lesson: ApiLesson): { api: Api; lesson: ApiLessonInfo; html: string } => {
+export const lessonSummaryEndpoint = (lesson: ApiLesson): { api: Api, lesson: ApiLessonInfo, html: string } => {
   return {
     api,
     lesson: getLessonInfo(lesson),
@@ -240,7 +240,7 @@ export const lessonSummaryEndpoint = (lesson: ApiLesson): { api: Api; lesson: Ap
  * @param {ApiLesson} lesson - API lesson object.
  * @returns {{ api: Api, lesson: ApiLessonInfo, postCommentUrl: string, list: ApiComment[] }} - Object containing API, lesson info, post comment URL, and a list of comments.
  */
-export const lessonCommentsEndpoint = (lesson: ApiLesson): { api: Api; lesson: ApiLessonInfo; postCommentUrl: string; list: ApiComment[] } => {
+export const lessonCommentsEndpoint = (lesson: ApiLesson): { api: Api, lesson: ApiLessonInfo, postCommentUrl: string, list: ApiComment[] } => {
   return {
     api,
     lesson: getLessonInfo(lesson),

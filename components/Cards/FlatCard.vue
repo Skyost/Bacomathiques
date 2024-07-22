@@ -1,6 +1,6 @@
 <script setup lang="ts">
 withDefaults(defineProps<{
-  big?: boolean,
+  big?: boolean
   blue?: boolean
   image?: string
 }>(), {
@@ -12,8 +12,16 @@ withDefaults(defineProps<{
 
 <template>
   <div class="flat-card">
-    <div class="flat-card-content h-100" :class="{'big-flat-card-content': big, 'blue': blue}">
-      <img v-if="image" class="flat-card-image" :src="image" :alt="image">
+    <div
+      class="flat-card-content h-100"
+      :class="{ 'big-flat-card-content': big, 'blue': blue }"
+    >
+      <img
+        v-if="image"
+        class="flat-card-image"
+        :src="image"
+        :alt="image"
+      >
       <slot />
     </div>
   </div>

@@ -3,12 +3,30 @@ import LessonList from '~/components/Page/Navbar/LessonList.vue'
 </script>
 
 <template>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <ski-icon icon="tag-fill" /> Accès direct à un cours
-    </a>
-    <div class="dropdown-menu dropdown-menu-end p-0">
+  <client-only>
+    <b-nav-item-dropdown
+      v-b-color-mode="'light'"
+      auto-close="outside"
+      class="page-navbar-item"
+    >
+      <template #button-content>
+        <icon name="bi:tag-fill" /> Accès direct à un cours
+      </template>
       <lesson-list />
-    </div>
-  </li>
+    </b-nav-item-dropdown>
+  </client-only>
 </template>
+
+<style lang="scss" scoped>
+:deep(.btn-link) {
+  color: var(--bs-nav-link-color);
+
+  &:hover {
+    color: var(--bs-nav-link-hover-color);
+  }
+
+  &:active {
+    color: var(--bs-nav-link-hover-color);
+  }
+}
+</style>

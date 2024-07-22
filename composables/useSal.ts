@@ -3,7 +3,7 @@ import sal from 'sal.js'
 export const useSal = () => {
   onMounted(async () => {
     import('sal.js/dist/sal.css')
-    // @ts-ignore
+    // @ts-expect-error No need to implement all members.
     sal({ threshold: window.outerWidth <= 768 ? 0.1 : 0.25 })
     await nextTick()
     const handled: HTMLElement[] = []

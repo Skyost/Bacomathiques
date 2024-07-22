@@ -2,10 +2,10 @@
 import FlatCard from '~/components/Cards/FlatCard'
 
 withDefaults(defineProps<{
-  to?: string,
-  blue?: boolean,
-  size: number,
-  mb?: number,
+  to?: string
+  blue?: boolean
+  size: number
+  mb?: number
   image?: string
 }>(), {
   to: undefined,
@@ -16,13 +16,25 @@ withDefaults(defineProps<{
 </script>
 
 <template>
-  <ski-column :class="`mb-xl-${mb}`" width="12" :lg="(size + 1).toString()" :xl="size.toString()">
-    <nuxt-link class="link" :to="to">
-      <flat-card :image="image" class="h-100" :blue="blue">
+  <b-col
+    :class="`mb-xl-${mb}`"
+    cols="12"
+    :lg="size + 1"
+    :xl="size"
+  >
+    <nuxt-link
+      class="link"
+      :to="to"
+    >
+      <flat-card
+        :image="image"
+        class="h-100"
+        :blue="blue"
+      >
         <slot />
       </flat-card>
     </nuxt-link>
-  </ski-column>
+  </b-col>
 </template>
 
 <style lang="scss" scoped>

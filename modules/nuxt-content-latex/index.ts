@@ -2,9 +2,9 @@
 
 import fs from 'fs'
 import path from 'path'
-import { createResolver, defineNuxtModule, type Resolver } from '@nuxt/kit'
-import * as logger from '../../utils/logger'
+import { createResolver, defineNuxtModule, type Resolver, useLogger } from '@nuxt/kit'
 import { siteContentSettings } from '../../site/content'
+import { moduleName } from './common'
 
 /**
  * Options for this module.
@@ -12,23 +12,23 @@ import { siteContentSettings } from '../../site/content'
  * @interface
  */
 export interface ModuleOptions {
-  directory: string,
-  assetsDestinationDirectoryName: string,
-  isAsset: (filePath: string) => boolean,
+  directory: string
+  assetsDestinationDirectoryName: string
+  isAsset: (filePath: string) => boolean
   getLatexAssetDestination: (assetDirectoryPath: string, filePath: string) => string
 }
 
 /**
- * The name of the module.
+ * The logger instance.
  */
-export const name = 'nuxt-content-latex'
+const logger = useLogger(moduleName)
 
 /**
  * Nuxt module for transforming .tex files in Nuxt content.
  */
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name,
+    moduleName,
     version: '0.0.1',
     configKey: 'nuxtContentLatex',
     compatibility: { nuxt: '^3.0.0' }
@@ -39,7 +39,7 @@ export default defineNuxtModule<ModuleOptions>({
     isAsset: siteContentSettings.isAsset,
     getLatexAssetDestination: (assetDirectoryPath: string, filePath: string) => siteContentSettings.getLatexAssetDestination(assetDirectoryPath, filePath)
   },
-  setup (options, nuxt) {
+  setup(options, nuxt) {
     const resolver = createResolver(import.meta.url)
 
     // Set up Nitro externals for .tex content transformation.
@@ -54,14 +54,15 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Process additional assets such as images.
     const dataDirectory = resolver.resolve(nuxt.options.srcDir, 'content', options.directory)
-    const assetsDestinationPath = resolver.resolve(nuxt.options.srcDir, 'node_modules', `.${name}`, options.assetsDestinationDirectoryName)
+    const assetsDestinationPath = resolver.resolve(nuxt.options.srcDir, 'node_modules', `.${moduleName}`, options.assetsDestinationDirectoryName)
     processAssets(resolver, dataDirectory, assetsDestinationPath, options)
 
     // Register them in Nitro.
     nuxt.options.nitro.publicAssets = nuxt.options.nitro.publicAssets || []
     nuxt.options.nitro.publicAssets.push({
       baseURL: `/${options.assetsDestinationDirectoryName}/`,
-      dir: assetsDestinationPath
+      dir: assetsDestinationPath,
+      fallthrough: true
     })
   }
 })
@@ -106,7 +107,7 @@ const processAssets = (
         fs.copyFileSync(filePath, destinationPath)
 
         // Log the successful copying of an asset file.
-        logger.success(name, `${filePath} -> ${destinationPath}`)
+        logger.success(`${filePath} -> ${destinationPath}`)
       }
     }
   }

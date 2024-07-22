@@ -1,8 +1,9 @@
 <template>
   <div class="p-5 text-center">
-    <div class="spinner-border text-primary" role="status">
-      <span class="visually-hidden">Chargement...</span>
-    </div>
+    <b-spinner
+      variant="primary"
+      label="Chargement..."
+    />
   </div>
 </template>
 

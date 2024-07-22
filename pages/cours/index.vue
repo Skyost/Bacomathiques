@@ -18,8 +18,11 @@ const levelObjects = Object.values(levels)
     </page-header>
 
     <page-content>
-      <ski-container :fluid="true" class="pt-5">
-        <ski-columns class="pt-5 pb-5 d-flex justify-content-center align-items-lg-stretch align-items-center">
+      <b-container
+        :fluid="true"
+        class="pt-5"
+      >
+        <b-row class="pt-5 pb-5 d-flex justify-content-center align-items-lg-stretch align-items-center">
           <card-column
             v-for="level in levelObjects"
             :key="level.id"
@@ -28,12 +31,19 @@ const levelObjects = Object.values(levels)
             :size="6"
             :blue="true"
           >
-            <img class="level-image" :src="level.image" :alt="level.name">
+            <img
+              class="level-image"
+              :src="level.image"
+              :alt="level.name"
+            >
             <h2 v-text="level.name" />
-            <p class="mb-0" v-html="level.description" />
+            <p
+              class="mb-0"
+              v-html="level.description"
+            />
           </card-column>
-        </ski-columns>
-      </ski-container>
+        </b-row>
+      </b-container>
     </page-content>
   </div>
 </template>

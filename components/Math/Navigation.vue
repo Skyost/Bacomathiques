@@ -3,17 +3,17 @@ import type { Toc, TocEntry } from '~/types'
 import { shrinkedHeight } from '~/components/Page/Navbar/PageNavbar.vue'
 
 const props = withDefaults(defineProps<{
-  toc: Toc,
+  toc: Toc
   navbarShrinkedHeight?: number
 }>(), {
   navbarShrinkedHeight: shrinkedHeight
 })
 
 interface NavigationEntry {
-  id: string,
-  html: string,
-  children: NavigationEntry[],
-  section: string | null,
+  id: string
+  html: string
+  children: NavigationEntry[]
+  section: string | null
   topOffset: number
 }
 
@@ -128,7 +128,7 @@ const getAbsoluteTopOffset = (element: HTMLElement): number => {
       <a
         :href="`#${entry.id}`"
         class="entry parent"
-        :class="{'active': entry.id === activeEntry.id}"
+        :class="{ active: entry.id === activeEntry.id }"
         v-html="entry.html"
       />
 

@@ -48,27 +48,37 @@ useSal()
       </section>
 
       <section class="pt-5 pb-5">
-        <big-card :blue="true" sal="slide-right">
+        <big-card
+          :blue="true"
+          sal="slide-right"
+        >
           <h2>Convaincu ?</h2>
 
           <p class="mb-5">
             Alors sélectionnez votre classe et découvrez sans plus attendre les cours qui y sont rattachés !
           </p>
 
-          <ski-columns class="card-levels mb-5">
-            <ski-column
+          <b-row class="card-levels mb-5">
+            <b-col
               v-for="(level, index) in levelObjects"
               :key="level.id"
               width="12"
-              :lg="(12 / levelObjects.length).toString()"
+              :lg="12 / levelObjects.length"
               class="mb-lg-0"
-              :class="{'mb-3': index !== levelObjects.length}"
+              :class="{ 'mb-3': index !== levelObjects.length }"
             >
-              <ski-button variant="white" class="card-level-button" :to="`/cours/${ level.id }/`">
-                <img :src="level.image" :alt="level.name"> {{ level.name }}
-              </ski-button>
-            </ski-column>
-          </ski-columns>
+              <b-button
+                variant="white"
+                class="card-level-button"
+                :to="`/cours/${level.id}/`"
+              >
+                <img
+                  :src="level.image"
+                  :alt="level.name"
+                > {{ level.name }}
+              </b-button>
+            </b-col>
+          </b-row>
 
           <p class="mb-0">
             <em>Les cours pour Terminale option maths complémentaires arrivent bientôt !</em>
@@ -77,9 +87,16 @@ useSal()
       </section>
 
       <section class="pt-5 pb-5">
-        <ski-container :fluid="true" class="mobile-apps">
-          <ski-columns>
-            <ski-column width="12" xl="8" class="text text-center">
+        <b-container
+          :fluid="true"
+          class="mobile-apps"
+        >
+          <b-row>
+            <b-col
+              width="12"
+              xl="8"
+              class="text text-center"
+            >
               <h2>Besoin de mobilité ?</h2>
 
               <p class="pl-md-0 pl-3 pr-md-0 pr-3">
@@ -111,14 +128,24 @@ useSal()
                   Disponible sur <strong>Google Play</strong>.
                 </card-column>
               </cards-row>
-            </ski-column>
-            <ski-column xl="4" class="d-xl-block d-none position-relative">
-              <div class="device" data-sal="slide-left">
-                <img src="/img/index/app-screenshot.png" alt="Application Bacomathiques" class="w-100">
+            </b-col>
+            <b-col
+              xl="4"
+              class="d-xl-block d-none position-relative"
+            >
+              <div
+                class="device"
+                data-sal="slide-left"
+              >
+                <img
+                  src="/img/index/app-screenshot.png"
+                  alt="Application Bacomathiques"
+                  class="w-100"
+                >
               </div>
-            </ski-column>
-          </ski-columns>
-        </ski-container>
+            </b-col>
+          </b-row>
+        </b-container>
       </section>
 
       <section class="pt-5 pb-5">
@@ -228,7 +255,7 @@ useSal()
   }
 }
 
-.card-levels .card-level-button {
+.card-levels :deep(.card-level-button) {
   height: 100%;
   padding: 30px;
   width: 100%;
