@@ -77,9 +77,9 @@ class ButtonAboveWidget extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: OutlinedButton(
             style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all(Colors.white),
-              overlayColor: MaterialStateProperty.all(Colors.white24),
-              side: MaterialStateProperty.all(const BorderSide(color: Colors.white)),
+              foregroundColor: WidgetStateProperty.all(Colors.white),
+              overlayColor: WidgetStateProperty.all(Colors.white24),
+              side: WidgetStateProperty.all(const BorderSide(color: Colors.white)),
             ),
             onPressed: () async {
               if (await canLaunchUrlString(url)) {

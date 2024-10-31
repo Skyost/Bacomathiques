@@ -1,6 +1,6 @@
 import 'package:bacomathiques/model/api/common.dart';
 import 'package:bacomathiques/pages/html/math_bit.dart';
-import 'package:bacomathiques/utils/svg_factory/svg_factory.dart';
+import 'package:bacomathiques/utils/svg_factory.dart';
 import 'package:bacomathiques/widgets/fade_stack_widget.dart';
 import 'package:bacomathiques/widgets/html/bubble_widget.dart';
 import 'package:bacomathiques/widgets/theme/bubble.dart';
@@ -82,7 +82,7 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
               newTree.append(MathBit(
                 parent: tree,
                 math: math,
-                textStyle: tree.inheritanceResolvers.resolve(context).style.copyWith(fontWeight: FontWeight.normal),
+                textStyle: tree.inheritanceResolvers.resolve(context).prepareTextStyle().copyWith(fontWeight: FontWeight.normal),
                 displayStyle: meta.element.attributes.containsKey('displaystyle'),
               ));
               math = '';

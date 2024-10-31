@@ -54,7 +54,7 @@ class _WriteCommentDialogState extends ConsumerState<WriteCommentDialog> {
 
               WaitingDialog.show(context, message: 'Envoi en cours, veuillez patienter…');
               bool success = await widget.comments.postComment(ref.read(settingsModelProvider).commentsUsername, controller.text);
-              if (mounted) {
+              if (context.mounted) {
                 Navigator.pop(context);
                 if (success) {
                   Navigator.pop(context);

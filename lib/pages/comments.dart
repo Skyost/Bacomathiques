@@ -8,16 +8,14 @@ import 'package:bacomathiques/widgets/request_scaffold.dart';
 import 'package:bacomathiques/widgets/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jovial_svg/jovial_svg.dart';
 
 /// The comments screen, where previews are shown.
 class CommentsPage extends RequestScaffold<LessonComments> {
   /// Creates a new comments screen instance.
   const CommentsPage({
-    required APIEndpoint<LessonComments> endpoint,
-  }) : super(
-          endpoint: endpoint,
-        );
+    required super.endpoint,
+  });
 
   @override
   ConsumerState createState() => _CommentsPageState();
@@ -129,15 +127,17 @@ class _AvatarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> pathSegments = Uri.parse(url).pathSegments;
-    if (pathSegments.lastOrNull?.endsWith('svg') ?? false) {
-      return SvgPicture.network(
-        url,
+    Uri uri = Uri.parse(url);
+    if (uri.pathSegments.lastOrNull?.endsWith('svg') ?? false) {
+      return SizedBox(
         width: 60,
-        placeholderBuilder: (context) => Container(
-          decoration: BoxDecoration(
-            color: primaryColor.withAlpha(50),
-            shape: BoxShape.circle,
+        child: ScalableImageWidget.fromSISource(
+          si: ScalableImageSource.fromSvgHttpUrl(uri),
+          onLoading: (context) => Container(
+            decoration: BoxDecoration(
+              color: primaryColor.withAlpha(50),
+              shape: BoxShape.circle,
+            ),
           ),
         ),
       );

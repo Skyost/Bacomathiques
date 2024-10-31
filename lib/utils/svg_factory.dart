@@ -1,9 +1,9 @@
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'dart:io';
 
-import 'fallback.dart'
-if (dart.library.io) 'io.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'package:jovial_svg/jovial_svg.dart';
 
 const kAttributeSvgHeight = 'height';
 const kAttributeSvgWidth = 'width';
@@ -23,68 +23,66 @@ mixin SvgFactory on WidgetFactory {
   @override
   Widget? buildImageWidget(BuildTree meta, ImageSource src) {
     final url = src.url;
+    Uri? uri = Uri.tryParse(url);
 
-    BytesLoader? bytesLoader;
+    ScalableImageSource? scalableImageSource;
     if (url.startsWith('data:image/svg+xml')) {
-      bytesLoader = imageSvgFromDataUri(url);
-    } else if (Uri.tryParse(url)?.path.toLowerCase().endsWith('.svg') == true) {
+      if (uri != null) {
+        scalableImageSource = ScalableImageSource.fromSvgHttpUrl(uri);
+      }
+    } else if (uri?.path.toLowerCase().endsWith('.svg') == true) {
       if (url.startsWith('asset:')) {
-        bytesLoader = imageSvgFromAsset(url);
+        scalableImageSource = imageSvgFromAsset(url);
       } else if (url.startsWith('file:')) {
-        bytesLoader = imageSvgFromFileUri(url);
+        scalableImageSource = imageSvgFromFileUri(url);
       } else {
-        bytesLoader = imageSvgFromNetwork(url);
+        scalableImageSource = imageSvgFromNetwork(url);
       }
     }
 
-    if (bytesLoader == null) {
+    if (scalableImageSource == null) {
       return super.buildImageWidget(meta, src);
     }
 
-    return _buildSvgPicture(meta, src, bytesLoader);
+    return _buildSvgPicture(meta, src, scalableImageSource);
   }
 
-  /// Returns an [SvgAssetLoader].
-  BytesLoader? imageSvgFromAsset(String url) {
+  /// Returns a [ScalableImageSource].
+  ScalableImageSource? imageSvgFromAsset(String url) {
     final uri = Uri.parse(url);
     final assetName = uri.path;
     if (assetName.isEmpty) {
       return null;
     }
 
-    return SvgAssetLoader(
-      assetName,
-      packageName: uri.queryParameters['package'],
-    );
+    return ScalableImageSource.fromSvg(rootBundle, uri.queryParameters['package']!);
   }
 
-  /// Returns a [SvgBytesLoader].
-  BytesLoader? imageSvgFromDataUri(String dataUri) {
-    final bytes = bytesFromDataUri(dataUri);
-    if (bytes == null) {
-      return null;
-    }
-
-    return SvgBytesLoader(bytes);
-  }
-
-  /// Returns a [SvgFileLoader].
-  BytesLoader? imageSvgFromFileUri(String url) {
+  /// Returns a [ScalableImageSource].
+  ScalableImageSource? imageSvgFromFileUri(String url) {
     final filePath = Uri.parse(url).toFilePath();
     if (filePath.isEmpty) {
       return null;
     }
-
-    return fileLoader(filePath);
-  }
-
-  /// Returns a [SvgNetworkLoader].
-  BytesLoader? imageSvgFromNetwork(String url) {
-    if (url.isEmpty) {
+    File file = File(filePath);
+    if (!file.existsSync()) {
       return null;
     }
 
-    return SvgNetworkLoader(url);
+    return ScalableImageSource.fromSvgFile(file, () => file.readAsString());
+  }
+
+  /// Returns a [ScalableImageSource].
+  ScalableImageSource? imageSvgFromNetwork(String url) {
+    if (url.isEmpty) {
+      return null;
+    }
+    Uri? uri = Uri.tryParse(url);
+    if (uri == null) {
+      return null;
+    }
+
+    return ScalableImageSource.fromSvgHttpUrl(uri);
   }
 
   @override
@@ -114,9 +112,9 @@ mixin SvgFactory on WidgetFactory {
               };
             },
             onRenderBlock: (tree, placeholder) {
-              final bytesLoader = SvgStringLoader(meta.element.outerHtml);
+              final source = ScalableImageSource.fromSvgFile(meta.element.outerHtml, () => meta.element.outerHtml);
               const src = ImageSource('');
-              final built = _buildSvgPicture(meta, src, bytesLoader);
+              final built = _buildSvgPicture(meta, src, source);
               return built;
             },
           ),
@@ -128,33 +126,33 @@ mixin SvgFactory on WidgetFactory {
   }
 
   Widget _buildSvgPicture(
-      BuildTree meta,
-      ImageSource src,
-      BytesLoader bytesLoader,
-      ) {
+    BuildTree meta,
+    ImageSource src,
+    ScalableImageSource source,
+  ) {
     final image = src.image;
     final semanticLabel = image?.alt ?? image?.title;
 
-    return SvgPicture(
-      bytesLoader,
-      allowDrawingOutsideViewBox: svgAllowDrawingOutsideViewBox,
-      excludeFromSemantics: semanticLabel == null,
-      fit: BoxFit.scaleDown,
+    return SizedBox(
       height: src.height,
-      placeholderBuilder: (context) {
-        final loading = onLoadingBuilder(context, meta, null, src);
-        if (loading != null) {
-          return loading;
-        }
-
-        if (src.width != null && src.height != null) {
-          return SizedBox(width: src.width, height: src.height);
-        }
-
-        return SvgPicture.defaultPlaceholderBuilder(context);
-      },
-      semanticsLabel: semanticLabel,
       width: src.width,
+      child: ScalableImageWidget.fromSISource(
+        si: source,
+        clip: !svgAllowDrawingOutsideViewBox,
+        fit: BoxFit.scaleDown,
+        onLoading: (context) {
+          final loading = onLoadingBuilder(context, meta, null, src);
+          if (loading != null) {
+            return loading;
+          }
+
+          if (src.width != null && src.height != null) {
+            return SizedBox(width: src.width, height: src.height);
+          }
+
+          return const SizedBox.shrink();
+        },
+      ),
     );
   }
 }

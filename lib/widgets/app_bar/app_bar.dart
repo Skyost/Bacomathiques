@@ -7,7 +7,8 @@ import 'package:bacomathiques/widgets/app_bar/actions/rate.dart';
 import 'package:bacomathiques/widgets/app_bar/actions/theme.dart';
 import 'package:bacomathiques/widgets/dialogs/about.dart';
 import 'package:flutter/material.dart' hide AboutDialog;
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/services.dart';
+import 'package:jovial_svg/jovial_svg.dart';
 
 /// An app bar for endpoints.
 class BacomathiquesAppBar extends AppBar {
@@ -50,10 +51,11 @@ class _DefaultTitleWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            SvgPicture.asset(
-              'assets/images/logo.svg',
+            SizedBox(
               width: 30,
-              semanticsLabel: 'Logo',
+              child: ScalableImageWidget.fromSISource(
+                si: ScalableImageSource.fromSvg(rootBundle, 'assets/images/logo.svg'),
+              ),
             ),
             const Padding(
               padding: EdgeInsets.only(top: 5, left: 7),

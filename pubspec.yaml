@@ -1,6 +1,6 @@
 name: bacomathiques
 description: Cours gratuits pour réviser les maths au lycée !
-version: 3.0.1+51
+version: 3.0.2+52
 homepage: https://bacomathiqu.es
 publish_to: none
 
@@ -10,26 +10,26 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^1.1.2
-  url_launcher: ^6.2.2
-  flutter_svg: ^2.0.9
-  share_plus: ^7.2.1
-  rate_my_app: ^2.0.0
-  path_provider: ^2.1.1
-  shared_preferences: ^2.2.2
-  flutter_layout_grid: ^2.0.5
-  flutter_widget_from_html_core: ^0.14.10+1
+  http: ^1.2.2
+  url_launcher: ^6.3.1
+  jovial_svg: ^1.1.23
+  share_plus: ^10.1.1
+  rate_my_app: ^2.2.0
+  path_provider: ^2.1.5
+  shared_preferences: ^2.3.2
+  flutter_layout_grid: ^2.0.7
+  flutter_widget_from_html_core: ^0.15.2
   flutter_math_fork: ^0.7.2
-  indexed_list_view: ^3.0.1
-  google_mobile_ads: ^4.0.0
-  flutter_riverpod: ^2.4.9
-  html: ^0.15.4
-  syntax_highlight: ^0.3.0
+  indexed_list_view: ^4.0.0
+  google_mobile_ads: ^5.2.0
+  flutter_riverpod: ^2.6.1
+  html: ^0.15.5
+  syntax_highlight: ^0.4.0
   collection: ^1.18.0
-  firebase_crashlytics: ^3.4.9
+  firebase_crashlytics: ^4.1.3
 
 dev_dependencies:
-  flutter_lints: ^3.0.1
+  flutter_lints: ^5.0.0
 
 flutter:
   uses-material-design: true

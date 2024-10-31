@@ -1,6 +1,6 @@
 import 'package:bacomathiques/model/api/common.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jovial_svg/jovial_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// The level button.
@@ -34,22 +34,26 @@ class _LevelIconButtonState extends State<LevelIconButton> {
       return createButton(createIcon());
     }
 
-    return createButton(SvgPicture.network(
-      API.baseUrl + imageUrl!,
-      height: 60,
-      placeholderBuilder: (_) => createIcon(),
+    return createButton(SizedBox(
+      width: 60,
+      child: ScalableImageWidget.fromSISource(
+        si: ScalableImageSource.fromSvgHttpUrl(
+          Uri.parse(API.baseUrl + imageUrl!),
+        ),
+        onLoading: (_) => createIcon(),
+      ),
     ));
   }
 
   /// Creates the button.
   Widget createButton(Widget child) => IconButton(
-    icon: child,
-    onPressed: () => Navigator.pushNamed(context, '/levels'),
-  );
+        icon: child,
+        onPressed: () => Navigator.pushNamed(context, '/levels'),
+      );
 
   /// Creates the icon.
   Widget createIcon() => const Icon(
-    Icons.view_day,
-    color: Colors.white,
-  );
+        Icons.view_day,
+        color: Colors.white,
+      );
 }

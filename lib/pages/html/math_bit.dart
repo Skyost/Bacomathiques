@@ -34,7 +34,7 @@ class MathBit extends BuildBit {
       mathStyle: displayStyle ? MathStyle.display : MathStyle.text,
       settings: TexParserSettings(
         macros: {
-          '\\tag': MacroDefinition.fromString("\\qquad (#1)"),
+          '\\tag': MacroDefinition.fromString('\\qquad (#1)'),
         },
       ),
     );

@@ -5,7 +5,7 @@ import 'package:bacomathiques/widgets/app_bar/app_bar.dart';
 import 'package:bacomathiques/widgets/request_scaffold.dart';
 import 'package:bacomathiques/widgets/theme/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jovial_svg/jovial_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// The page that allows the user to show his level.
@@ -107,7 +107,7 @@ class _LevelWidgetState extends State<_LevelWidget> {
               SharedPreferences preferences = await SharedPreferences.getInstance();
               await preferences.setString('preferences.level-image', widget.level.image);
               await preferences.setString('preferences.lesson-list', widget.level.lessons.path);
-              if (mounted) {
+              if (context.mounted) {
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   '/lessons',
@@ -128,9 +128,11 @@ class _LevelWidgetState extends State<_LevelWidget> {
         padding: const EdgeInsets.all(15),
         child: Column(
           children: [
-            SvgPicture.network(
-              API.baseUrl + widget.level.image,
+            SizedBox(
               height: 60,
+              child: ScalableImageWidget.fromSISource(
+                si: ScalableImageSource.fromSvgHttpUrl(Uri.parse(API.baseUrl + widget.level.image)),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 5, bottom: 15),

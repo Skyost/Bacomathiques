@@ -35,7 +35,7 @@ class _UserDialogState extends ConsumerState<UserDialog> {
               SettingsModel settingsModel = ref.read(settingsModelProvider);
               settingsModel.commentsUsername = controller.text;
               await settingsModel.flush();
-              if (mounted) {
+              if (context.mounted) {
                 Navigator.pop(context);
               }
             },

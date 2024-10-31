@@ -13,7 +13,6 @@ import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:rate_my_app/rate_my_app.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 /// The home screen, where previews are shown.
 class LessonsPage extends RequestScaffold<LessonList> {
@@ -279,10 +278,10 @@ class _PreviewWidget extends ConsumerWidget {
   }) =>
       TextButton(
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(backgroundColor),
-          overlayColor: MaterialStateProperty.all(Colors.white12),
-          shape: MaterialStateProperty.all(const RoundedRectangleBorder()),
-          padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 5)),
+          backgroundColor: WidgetStateProperty.all(backgroundColor),
+          overlayColor: WidgetStateProperty.all(Colors.white12),
+          shape: WidgetStateProperty.all(const RoundedRectangleBorder()),
+          padding: WidgetStateProperty.all(const EdgeInsets.symmetric(horizontal: 5)),
         ),
         onPressed: () => Navigator.pushNamed(
           context,
