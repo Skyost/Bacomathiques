@@ -1,7 +1,6 @@
 import 'package:bacomathiques/model/app.dart';
 import 'package:bacomathiques/widgets/app_bar/actions/about.dart';
 import 'package:bacomathiques/widgets/app_bar/actions/action_menu.dart';
-import 'package:bacomathiques/widgets/app_bar/actions/ads.dart';
 import 'package:bacomathiques/widgets/app_bar/actions/bug.dart';
 import 'package:bacomathiques/widgets/app_bar/actions/rate.dart';
 import 'package:bacomathiques/widgets/app_bar/actions/theme.dart';
@@ -15,7 +14,6 @@ class BacomathiquesAppBar extends AppBar {
   /// Default actions to be shown.
   static const List<ActionMenu> defaultActions = [
     ThemeActionMenu(),
-    AdsActionMenu(),
     RateActionMenu(),
     BugActionMenu(),
     AboutActionMenu(),

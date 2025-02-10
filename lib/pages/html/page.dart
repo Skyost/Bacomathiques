@@ -10,137 +10,27 @@ import 'package:bacomathiques/widgets/request_scaffold.dart';
 import 'package:bacomathiques/widgets/theme/bubble.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
 import 'package:share_plus/share_plus.dart';
 
-/// Allows to display the html content with an AdMob banner.
-class AdMobHTMLPage extends ConsumerStatefulWidget {
-  /// The endpoint to display.
-  final APIEndpoint<APIEndpointResultHTML> endpoint;
-
-  /// The current anchor.
-  final String? anchor;
-
-  /// Creates a new AdMob HTML screen instance.
-  const AdMobHTMLPage({
-    required this.endpoint,
-    this.anchor,
-  });
-
-  @override
-  ConsumerState createState() => _AdMobHTMLPageState();
-}
-
-/// The AdMob HTML page state.
-class _AdMobHTMLPageState extends ConsumerState<AdMobHTMLPage> {
-  /// The consent information.
-  ConsentStatus? consentStatus;
-
-  /// The banner ad.
-  BannerAd? banner;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      MediaQueryData mediaQuery = MediaQuery.of(context);
-      await askConsent();
-      AdSize? adSize = await AdSize.getAnchoredAdaptiveBannerAdSize(mediaQuery.orientation, mediaQuery.size.width.truncate());
-      if (mounted) {
-        SettingsModel settingsModel = ref.read(settingsModelProvider);
-        BannerAd? banner = settingsModel.createAdMobBanner(context, size: adSize);
-        await banner?.load();
-        setState(() => this.banner = banner);
-      }
-    });
-  }
-
-  /// Asks for the user consent.
-  Future<void> askConsent() async {
-    ConsentRequestParameters parameters = ConsentRequestParameters();
-    ConsentInformation.instance.requestConsentInfoUpdate(
-      parameters,
-      () async {
-        if (await ConsentInformation.instance.isConsentFormAvailable()) {
-          _loadForm();
-        }
-      },
-      (_) {},
-    );
-  }
-
-  /// Loads the UMP form and displays it.
-  void _loadForm() {
-    ConsentForm.loadConsentForm(
-      (ConsentForm consentForm) async {
-        ConsentStatus status = await ConsentInformation.instance.getConsentStatus();
-        if (status == ConsentStatus.required) {
-          consentForm.show((_) => _loadForm());
-        }
-        if (mounted) {
-          setState(() => consentStatus = status);
-        }
-      },
-      (_) {},
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Widget htmlPage = _HTMLPage(
-      endpoint: widget.endpoint,
-      anchor: widget.anchor,
-    );
-
-    if (consentStatus == null || banner == null) {
-      return htmlPage;
-    }
-
-    double bannerHeight = banner?.size.height.toDouble() ?? 0;
-    return Stack(
-      children: [
-        Padding(
-          padding: EdgeInsets.only(bottom: bannerHeight),
-          child: htmlPage,
-        ),
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: 0,
-          height: bannerHeight,
-          child: AdWidget(ad: banner!),
-        ),
-      ],
-    );
-  }
-
-  @override
-  void dispose() {
-    banner?.dispose();
-    super.dispose();
-  }
-}
-
 /// A screen that is able to display some HTML content.
-class _HTMLPage extends RequestScaffold<APIEndpointResultHTML> {
+class HTMLPage extends RequestScaffold<APIEndpointResultHTML> {
   /// The current anchor.
   final String? anchor;
 
   /// Creates a new HTML screen instance.
-  const _HTMLPage({
+  const HTMLPage({
     required super.endpoint,
     this.anchor,
   });
 
   @override
-  _HTMLPageState createState() => _HTMLPageState();
+  RequestScaffoldState<APIEndpointResultHTML, HTMLPage> createState() => _HTMLPageState();
 }
 
 /// State of HTML screens.
-class _HTMLPageState extends RequestScaffoldState<APIEndpointResultHTML, _HTMLPage> {
+class _HTMLPageState extends RequestScaffoldState<APIEndpointResultHTML, HTMLPage> {
   /// Contains the parsed HTML.
   String? parsedHtml;
 

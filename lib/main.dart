@@ -13,7 +13,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:syntax_highlight/syntax_highlight.dart';
 
 /// Python syntax highlighting file path.
@@ -24,7 +23,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Highlighter.initialize([pythonSyntaxHighlightingFilePath]);
   if (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS) {
-    await MobileAds.instance.initialize();
     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
     PlatformDispatcher.instance.onError = (error, stack) {
@@ -58,7 +56,7 @@ class BacomathiquesApp extends ConsumerWidget {
           },
           '/html': (context) {
             Map<String, dynamic> arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
-            return AdMobHTMLPage(endpoint: arguments['endpoint'], anchor: arguments['anchor']);
+            return HTMLPage(endpoint: arguments['endpoint'], anchor: arguments['anchor']);
           },
           '/comments': (context) {
             Map<String, dynamic> arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;

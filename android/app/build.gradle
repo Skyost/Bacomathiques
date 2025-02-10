@@ -1,8 +1,11 @@
 plugins {
     id "com.android.application"
     id "kotlin-android"
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
+    // START: FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    id "com.google.firebase.crashlytics"
+    // END: FlutterFire Configuration
 }
 
 def keystoreProperties = new Properties()
@@ -57,11 +60,9 @@ android {
             signingConfig signingConfigs.release
             shrinkResources true
             minifyEnabled true
-            resValue 'string', 'admob_app_id', localProperties.getProperty('adMob.appId')
         }
         debug {
             versionNameSuffix '-dev'
-            resValue 'string', 'admob_app_id', localProperties.getProperty('adMob.appId')
         }
     }
 }

@@ -1,10 +1,6 @@
-import 'package:bacomathiques/credentials.dart';
-import 'package:bacomathiques/model/api/common.dart';
 import 'package:bacomathiques/widgets/theme/theme.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// The settings model provider.
@@ -14,16 +10,10 @@ final settingsModelProvider = ChangeNotifierProvider((ref) {
   return settingsModel;
 });
 
-/// Allows to load and set required AdMob information.
+/// Allows to load user preferences.
 class SettingsModel extends ChangeNotifier {
-  /// The banner ad identifier.
-  String _adMobBannerId = 'ca-app-pub-3940256099942544/6300978111';
-
   /// The app theme mode.
   ThemeMode _themeMode = ThemeMode.system;
-
-  /// Whether AdMob is enabled.
-  bool _adMobEnabled = false;
 
   /// The comments username.
   String _commentsUsername = 'Anonyme';
@@ -32,36 +22,10 @@ class SettingsModel extends ChangeNotifier {
   Future<void> load() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     _themeMode = ThemeMode.values[preferences.getInt('app.themeMode') ?? ThemeMode.system.index];
-    _adMobEnabled = preferences.getBool('admob.enable') ?? true;
     _commentsUsername = preferences.getString('comments.username') ?? 'Anonyme';
-
-    if (!kDebugMode && _adMobEnabled) {
-      _adMobBannerId = Credentials.adUnit;
-    }
 
     notifyListeners();
   }
-
-  /// Creates the banner ad.
-  BannerAd? createAdMobBanner(BuildContext context, {AdSize? size}) => _adMobEnabled
-      ? BannerAd(
-          adUnitId: _adMobBannerId,
-          size: size ?? AdSize.banner,
-          request: const AdRequest(
-            keywords: ['math', 'cours', 'leçons'],
-            contentUrl: API.baseUrl,
-            // nonPersonalizedAds: nonPersonalizedAds,
-          ),
-          listener: BannerAdListener(
-            onAdFailedToLoad: (ad, error) {
-              ad.dispose();
-              if (kDebugMode) {
-                print(error);
-              }
-            },
-          ),
-        )
-      : null;
 
   /// Returns the theme mode.
   ThemeMode get themeMode => _themeMode;
@@ -69,15 +33,6 @@ class SettingsModel extends ChangeNotifier {
   /// Sets the theme mode.
   set themeMode(ThemeMode themeMode) {
     _themeMode = themeMode;
-    notifyListeners();
-  }
-
-  /// Returns whether AdMob should be enabled.
-  bool get adMobEnabled => _adMobEnabled;
-
-  /// Sets whether AdMob should be enabled.
-  set adMobEnabled(bool isEnabled) {
-    _adMobEnabled = isEnabled;
     notifyListeners();
   }
 
@@ -93,7 +48,6 @@ class SettingsModel extends ChangeNotifier {
   /// Flushes the data to the shared preferences.
   Future<void> flush() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setBool('admob.enable', _adMobEnabled);
     await preferences.setInt('app.themeMode', _themeMode.index);
     await preferences.setString('app.commentsUsername', _commentsUsername);
   }
