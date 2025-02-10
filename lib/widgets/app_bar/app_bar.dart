@@ -2,6 +2,7 @@ import 'package:bacomathiques/model/app.dart';
 import 'package:bacomathiques/widgets/app_bar/actions/about.dart';
 import 'package:bacomathiques/widgets/app_bar/actions/action_menu.dart';
 import 'package:bacomathiques/widgets/app_bar/actions/bug.dart';
+import 'package:bacomathiques/widgets/app_bar/actions/privacy_policy.dart';
 import 'package:bacomathiques/widgets/app_bar/actions/rate.dart';
 import 'package:bacomathiques/widgets/app_bar/actions/theme.dart';
 import 'package:bacomathiques/widgets/dialogs/about.dart';
@@ -16,6 +17,7 @@ class BacomathiquesAppBar extends AppBar {
     ThemeActionMenu(),
     RateActionMenu(),
     BugActionMenu(),
+    PrivacyPolicyActionMenu(),
     AboutActionMenu(),
   ];
 
