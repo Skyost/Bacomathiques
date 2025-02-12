@@ -36,6 +36,10 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8
     }
 
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
     defaultConfig {
         applicationId = "fr.bacomathiques"
         // You can update the following values to match your application needs.
@@ -71,6 +75,4 @@ flutter {
     source = "../.."
 }
 
-dependencies {
-    implementation 'com.android.support:multidex:2.0.1'
-}
+dependencies {}

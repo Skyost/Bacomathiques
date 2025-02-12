@@ -10,7 +10,7 @@
     </queries>
 
     <application
-        android:name="androidx.multidex.MultiDexApplication"
+        android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:label="Bacomathiques"
         android:usesCleartextTraffic="true">

@@ -1,5 +1,4 @@
 import 'package:bacomathiques/model/api/comments.dart';
-import 'package:bacomathiques/model/api/common.dart';
 import 'package:bacomathiques/model/settings.dart';
 import 'package:bacomathiques/widgets/app_bar/app_bar.dart';
 import 'package:bacomathiques/widgets/dialogs/user.dart';

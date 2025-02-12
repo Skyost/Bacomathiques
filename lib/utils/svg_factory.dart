@@ -136,22 +136,25 @@ mixin SvgFactory on WidgetFactory {
     return SizedBox(
       height: src.height,
       width: src.width,
-      child: ScalableImageWidget.fromSISource(
-        si: source,
-        clip: !svgAllowDrawingOutsideViewBox,
-        fit: BoxFit.scaleDown,
-        onLoading: (context) {
-          final loading = onLoadingBuilder(context, meta, null, src);
-          if (loading != null) {
-            return loading;
-          }
+      child: Semantics(
+        label: semanticLabel,
+        child: ScalableImageWidget.fromSISource(
+          si: source,
+          clip: !svgAllowDrawingOutsideViewBox,
+          fit: BoxFit.scaleDown,
+          onLoading: (context) {
+            final loading = onLoadingBuilder(context, meta, null, src);
+            if (loading != null) {
+              return loading;
+            }
 
-          if (src.width != null && src.height != null) {
-            return SizedBox(width: src.width, height: src.height);
-          }
+            if (src.width != null && src.height != null) {
+              return SizedBox(width: src.width, height: src.height);
+            }
 
-          return const SizedBox.shrink();
-        },
+            return const SizedBox.shrink();
+          },
+        ),
       ),
     );
   }

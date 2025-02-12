@@ -500,18 +500,18 @@ packages:
     dependency: "direct main"
     description:
       name: shared_preferences
-      sha256: "688ee90fbfb6989c980254a56cb26ebe9bb30a3a2dff439a78894211f73de67a"
+      sha256: "846849e3e9b68f3ef4b60c60cf4b3e02e9321bc7f4d8c4692cf87ffa82fc8a3a"
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.1"
+    version: "2.5.2"
   shared_preferences_android:
     dependency: transitive
     description:
       name: shared_preferences_android
-      sha256: "650584dcc0a39856f369782874e562efd002a9c94aec032412c9eb81419cce1f"
+      sha256: ea86be7b7114f9e94fddfbb52649e59a03d6627ccd2387ebddcd6624719e9f16
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.4"
+    version: "2.4.5"
   shared_preferences_foundation:
     dependency: transitive
     description:
