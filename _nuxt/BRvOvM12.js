@@ -1,0 +1,1 @@
+import{n as r,o as s,c as a,O as o}from"./BRoMSsP6.js";const c={},t={id:"page-header",class:"blue"};function n(e,d){return s(),a("header",t,[o(e.$slots,"default")])}const l=r(c,[["render",n]]);export{l as P};
