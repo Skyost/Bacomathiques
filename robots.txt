@@ -1,0 +1,5 @@
+# START nuxt-robots (indexable)
+User-agent: *
+
+Sitemap: https://bacomathiqu.es/sitemap.xml
+# END nuxt-robots
