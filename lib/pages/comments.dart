@@ -1,9 +1,9 @@
 import 'package:bacomathiques/model/api/comments.dart';
-import 'package:bacomathiques/model/settings.dart';
 import 'package:bacomathiques/widgets/app_bar/app_bar.dart';
 import 'package:bacomathiques/widgets/dialogs/user.dart';
 import 'package:bacomathiques/widgets/dialogs/write_comment.dart';
 import 'package:bacomathiques/widgets/request_scaffold.dart';
+import 'package:bacomathiques/widgets/settings_loader.dart';
 import 'package:bacomathiques/widgets/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,6 +13,7 @@ import 'package:jovial_svg/jovial_svg.dart';
 class CommentsPage extends RequestScaffold<LessonComments> {
   /// Creates a new comments screen instance.
   const CommentsPage({
+    super.key,
     required super.endpoint,
   });
 
@@ -86,26 +87,30 @@ class _CommentWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AppTheme theme = ref.watch(settingsModelProvider).resolveTheme(context);
-    return Padding(
-      padding: const EdgeInsets.only(top: 20),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: _AvatarWidget(
-              url: comment.author.avatar,
-              primaryColor: theme.primaryColor,
-            ),
+    return SettingsLoader(
+      builder: (context, settings) {
+        AppTheme theme = settings.resolveTheme(context);
+        return Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: _AvatarWidget(
+                  url: comment.author.avatar,
+                  primaryColor: theme.primaryColor,
+                ),
+              ),
+              Expanded(
+                child: _CommentMessageWidget(
+                  comment: comment,
+                ),
+              ),
+            ],
           ),
-          Expanded(
-            child: _CommentMessageWidget(
-              comment: comment,
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
@@ -162,47 +167,51 @@ class _CommentMessageWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AppTheme theme = ref.watch(settingsModelProvider).resolveTheme(context);
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(theme.commentBorderRadius),
-          bottomRight: Radius.circular(theme.commentBorderRadius),
-          bottomLeft: Radius.circular(theme.commentBorderRadius),
-        ),
-        color: theme.commentBackgroundColor,
-      ),
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: Text(
-              comment.author.name + (comment.author.isModerator ? ' (Modérateur)' : ''),
-              style: const TextStyle(fontWeight: FontWeight.bold),
+    return SettingsLoader(
+      builder: (context, settings) {
+        AppTheme theme = settings.resolveTheme(context);
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(theme.commentBorderRadius),
+              bottomRight: Radius.circular(theme.commentBorderRadius),
+              bottomLeft: Radius.circular(theme.commentBorderRadius),
             ),
+            color: theme.commentBackgroundColor,
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16),
-            child: Text(
-              comment.message,
-            ),
-          ),
-          SizedBox(
-            width: double.infinity,
-            child: Text(
-              dateToString(DateTime.fromMillisecondsSinceEpoch(comment.date * 1000)),
-              textAlign: TextAlign.right,
-              style: TextStyle(
-                fontSize: 12,
-                color: theme.commentDateColor,
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Text(
+                  comment.author.name + (comment.author.isModerator ? ' (Modérateur)' : ''),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Text(
+                  comment.message,
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: Text(
+                  dateToString(DateTime.fromMillisecondsSinceEpoch(comment.date * 1000)),
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: theme.commentDateColor,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 

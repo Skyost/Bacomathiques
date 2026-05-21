@@ -19,11 +19,8 @@ abstract class RequestScaffold<R extends APIEndpointResult> extends ConsumerStat
 
 /// The request scaffold state.
 abstract class RequestScaffoldState<R extends APIEndpointResult, W extends RequestScaffold<R>> extends ConsumerState<W> {
-  /// Whether the screen is currently loading.
-  bool _loading = true;
-
-  /// The object.
-  R? _result;
+  /// The current request state.
+  AsyncValue<R> _request = const AsyncLoading();
 
   /// When the request fails.
   String failMessage;
@@ -53,38 +50,46 @@ abstract class RequestScaffoldState<R extends APIEndpointResult, W extends Reque
 
   @override
   Widget build(BuildContext context) {
-    Widget body;
-    if (_loading) {
-      body = const CenteredCircularProgressIndicator(message: 'Téléchargement…');
-    } else if (_result == null) {
-      body = createNoObjectBody(context);
-    } else {
-      body = createBody(context, _result!);
-    }
+    final R? currentResult = result;
+    Widget body = switch (_request) {
+      AsyncData(:final value) => createBody(context, value),
+      AsyncError() => createNoObjectBody(context),
+      _ => const CenteredCircularProgressIndicator(message: 'Téléchargement…'),
+    };
 
     return Scaffold(
-      appBar: _result == null ? AppBar(
-        title: Text(_loading ? 'Chargement…' : 'Erreur'),
-      ) : createAppBar(context),
+      appBar: currentResult == null
+          ? AppBar(
+              title: Text(loading ? 'Chargement…' : 'Erreur'),
+            )
+          : createAppBar(context),
       body: body,
     );
   }
 
   /// Sets whether the screen is currently loading.
   set loading(bool loading) {
-    setState(() => _loading = loading);
+    if (loading) {
+      setState(() => _request = const AsyncLoading());
+    }
   }
 
   /// Returns whether the current screen is loading.
-  bool get loading => _loading;
+  bool get loading => _request is AsyncLoading<R>;
 
   /// Triggers a request.
   Future<void> triggerRequest() async {
-    R? result = await widget.endpoint.request(cache: cacheRequest);
-    if (result != null) {
+    setState(() => _request = const AsyncLoading());
+
+    try {
+      R result = await widget.endpoint.request(cache: cacheRequest);
       this.result = result;
       onSuccess(result);
       return;
+    } catch (error, stackTrace) {
+      if (mounted) {
+        setState(() => _request = AsyncError(error, stackTrace));
+      }
     }
 
     if (mounted) {
@@ -97,7 +102,6 @@ abstract class RequestScaffoldState<R extends APIEndpointResult, W extends Reque
           onCancelled: failDialogOptions.callback ?? () => Navigator.pop(context),
         );
       }
-      setState(() => _loading = false);
     }
   }
 
@@ -111,14 +115,19 @@ abstract class RequestScaffoldState<R extends APIEndpointResult, W extends Reque
   Widget createNoObjectBody(BuildContext context) => const SizedBox.shrink();
 
   /// Returns the current result.
-  R? get result => _result;
+  R? get result => switch (_request) {
+    AsyncData(:final value) => value,
+    _ => null,
+  };
 
   /// Updates the current result.
   set result(R? result) {
-    callback() {
-      _loading = false;
-      _result = result;
+    if (result == null) {
+      return;
     }
+
+    void callback() => _request = AsyncData(result);
+
     if (mounted) {
       setState(callback);
     } else {
@@ -128,6 +137,12 @@ abstract class RequestScaffoldState<R extends APIEndpointResult, W extends Reque
 
   /// Triggered when the request has succeeded.
   void onSuccess(R result) {}
+
+  /// Returns the last request error.
+  Object? get error => switch (_request) {
+    AsyncError(:final error) => error,
+    _ => null,
+  };
 }
 
 /// Options for the fail dialog.

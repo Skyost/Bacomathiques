@@ -1,10 +1,14 @@
 import 'package:bacomathiques/model/api/common.dart';
+import 'package:bacomathiques/navigation/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:jovial_svg/jovial_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// The level button.
 class LevelIconButton extends StatefulWidget {
+  /// Creates a level button.
+  const LevelIconButton({super.key});
+
   @override
   State<StatefulWidget> createState() => _LevelIconButtonState();
 }
@@ -48,7 +52,7 @@ class _LevelIconButtonState extends State<LevelIconButton> {
   /// Creates the button.
   Widget createButton(Widget child) => IconButton(
         icon: child,
-        onPressed: () => Navigator.pushNamed(context, '/levels'),
+    onPressed: () => Navigator.pushNamed(context, AppRoutes.levels),
       );
 
   /// Creates the icon.

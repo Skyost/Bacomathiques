@@ -56,10 +56,14 @@ class LessonComments extends APIEndpointResult {
         'client': defaultTargetPlatform == TargetPlatform.iOS ? 'iOS' : 'Android',
       };
 
-      http.Response response = await http.post(Uri.parse(postCommentUrl), body: body);
+      http.Response response = await http.post(Uri.parse(postCommentUrl), body: body).timeout(API.timeout);
+      if (response.statusCode < 200 || response.statusCode >= 300) {
+        return false;
+      }
       Map<String, dynamic> data = json.decode(response.body);
       return data['success'] ?? false;
-    } catch (ignored) {
+    } catch (error) {
+      debugPrint('Unable to post comment: $error');
       return false;
     }
   }

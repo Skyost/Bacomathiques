@@ -12,6 +12,7 @@ class RepresentationPreviewWidget extends StatelessWidget {
 
   /// Creates a new representation preview instance.
   const RepresentationPreviewWidget({
+    super.key,
     required this.imageUrl,
     required this.geogebraId,
   });

@@ -1,4 +1,4 @@
-import 'package:bacomathiques/model/settings.dart';
+import 'package:bacomathiques/widgets/settings_loader.dart';
 import 'package:bacomathiques/widgets/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,6 +28,7 @@ class PopupActionMenu extends ConsumerWidget {
 
   /// Creates a new popup action menu instance.
   const PopupActionMenu({
+    super.key,
     required this.actionMenus,
   });
 
@@ -37,20 +38,25 @@ class PopupActionMenu extends ConsumerWidget {
       return const SizedBox.shrink();
     }
 
-    AppTheme theme = ref.watch(settingsModelProvider).resolveTheme(context);
-    return PopupMenuButton<ActionMenu>(
-      color: theme.scaffoldBackgroundColor,
-      // onSelected: (action) => action.onTap(context),
-      itemBuilder: (context) => [
-        for (ActionMenu actionMenu in actionMenus)
-          PopupMenuItem<ActionMenu>(
-            value: actionMenu,
-            onTap: () {
-              WidgetsBinding.instance.addPostFrameCallback((_) => actionMenu.onTap(context));
-            },
-            child: _ActionMenuWidget(actionMenu: actionMenu),
-          )
-      ],
+    return SettingsLoader(
+      builder: (context, settings) {
+        AppTheme theme = settings.resolveTheme(context);
+        return PopupMenuButton<ActionMenu>(
+          color: theme.scaffoldBackgroundColor,
+          // onSelected: (action) => action.onTap(context),
+          itemBuilder: (context) =>
+          [
+            for (ActionMenu actionMenu in actionMenus)
+              PopupMenuItem<ActionMenu>(
+                value: actionMenu,
+                onTap: () {
+                  WidgetsBinding.instance.addPostFrameCallback((_) => actionMenu.onTap(context));
+                },
+                child: _ActionMenuWidget(actionMenu: actionMenu),
+              )
+          ],
+        );
+      },
     );
   }
 }
@@ -67,23 +73,27 @@ class _ActionMenuWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AppTheme appTheme = ref.watch(settingsModelProvider).resolveTheme(context);
-    return Wrap(
-      crossAxisAlignment: WrapCrossAlignment.center,
-      spacing: 5,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(right: 5),
-          child: Icon(
-            actionMenu.icon,
-            color: appTheme.textColor ?? Colors.black,
-          ),
-        ),
-        Text(
-          actionMenu.label,
-          style: TextStyle(color: appTheme.textColor),
-        ),
-      ],
+    return SettingsLoader(
+      builder: (context, settings) {
+        AppTheme appTheme = settings.resolveTheme(context);
+        return Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: 5,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 5),
+              child: Icon(
+                actionMenu.icon,
+                color: appTheme.textColor ?? Colors.black,
+              ),
+            ),
+            Text(
+              actionMenu.label,
+              style: TextStyle(color: appTheme.textColor),
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -1,8 +1,9 @@
 import 'package:bacomathiques/model/api/common.dart';
 import 'package:bacomathiques/model/api/index.dart';
-import 'package:bacomathiques/model/settings.dart';
+import 'package:bacomathiques/navigation/app_routes.dart';
 import 'package:bacomathiques/widgets/app_bar/app_bar.dart';
 import 'package:bacomathiques/widgets/request_scaffold.dart';
+import 'package:bacomathiques/widgets/settings_loader.dart';
 import 'package:bacomathiques/widgets/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:jovial_svg/jovial_svg.dart';
@@ -11,9 +12,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// The page that allows the user to show his level.
 class LevelsPage extends RequestScaffold<APIIndex> {
   /// Creates a new levels page instance.
-  const LevelsPage()
-      : super(
-          endpoint: const APIIndexEndpoint(),
+  const LevelsPage({super.key})
+    : super(
+        endpoint: const APIIndexEndpoint(),
         );
 
   @override
@@ -36,15 +37,19 @@ class _LevelsPageState extends RequestScaffoldState<APIIndex, LevelsPage> {
 
   @override
   Widget createBody(BuildContext context, APIIndex result) {
-    AppTheme theme = ref.watch(settingsModelProvider).resolveTheme(context);
-    return ListView.builder(
-      padding: const EdgeInsets.all(20),
-      itemBuilder: (context, index) => _LevelWidget(
-        color: theme.primaryColor,
-        level: result.levels[index],
-      ),
-      itemCount: result.levels.length,
-      semanticChildCount: result.levels.length,
+    return SettingsLoader(
+      builder: (context, settings) {
+        AppTheme theme = settings.resolveTheme(context);
+        return ListView.builder(
+          padding: const EdgeInsets.all(20),
+          itemBuilder: (context, index) => _LevelWidget(
+            color: theme.primaryColor,
+            level: result.levels[index],
+          ),
+          itemCount: result.levels.length,
+          semanticChildCount: result.levels.length,
+        );
+      },
     );
   }
 
@@ -110,13 +115,11 @@ class _LevelWidgetState extends State<_LevelWidget> {
               if (context.mounted) {
                 Navigator.pushNamedAndRemoveUntil(
                   context,
-                  '/lessons',
-                  (route) => false,
-                  arguments: {
-                    'endpoint': widget.level.lessons,
-                  },
-                );
-              }
+              AppRoutes.lessons,
+              (route) => false,
+              arguments: LessonsRouteArguments(endpoint: widget.level.lessons),
+            );
+          }
             },
             child: buildMainWidget(context),
           ),

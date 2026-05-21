@@ -1,12 +1,13 @@
 import 'package:bacomathiques/model/api/common.dart';
 import 'package:bacomathiques/model/api/list.dart';
-import 'package:bacomathiques/model/settings.dart';
+import 'package:bacomathiques/navigation/app_routes.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:bacomathiques/widgets/app_bar/app_bar.dart';
 import 'package:bacomathiques/widgets/dialogs/message.dart';
 import 'package:bacomathiques/widgets/fade_stack_widget.dart';
 import 'package:bacomathiques/widgets/level_icon_button.dart';
 import 'package:bacomathiques/widgets/request_scaffold.dart';
+import 'package:bacomathiques/widgets/settings_loader.dart';
 import 'package:bacomathiques/widgets/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
@@ -18,6 +19,7 @@ import 'package:rate_my_app/rate_my_app.dart';
 class LessonsPage extends RequestScaffold<LessonList> {
   /// Creates a new lessons page instance.
   const LessonsPage({
+    super.key,
     required super.endpoint,
   });
 
@@ -59,8 +61,8 @@ class _LessonsPageState extends RequestScaffoldState<LessonList, LessonsPage> {
 
   @override
   AppBar? createAppBar(BuildContext context) => BacomathiquesAppBar(
-        actions: [LevelIconButton()],
-      );
+    actions: const [LevelIconButton()],
+  );
 
   @override
   Widget createBody(BuildContext context, LessonList result) => _PreviewsList(items: result.list);
@@ -80,9 +82,9 @@ class _LessonsPageState extends RequestScaffoldState<LessonList, LessonsPage> {
               ),
             ),
             ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, '/levels'),
-              child: const Text(
-                'Liste des classes',
+          onPressed: () => Navigator.pushNamed(context, AppRoutes.levels),
+          child: const Text(
+            'Liste des classes',
                 style: TextStyle(color: Colors.white),
               ),
             ),
@@ -202,60 +204,64 @@ class _PreviewWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AppTheme theme = ref.watch(settingsModelProvider).resolveTheme(context);
-    return Padding(
-      padding: const EdgeInsets.all(15),
-      child: Card(
-        shape: const BeveledRectangleBorder(),
-        color: theme.lessonBackgroundColor,
-        surfaceTintColor: theme.lessonBackgroundColor,
-        elevation: 10,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: _PreviewWidgetImage(item: item),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 8, right: 20, left: 20),
-              child: Text(
-                'Chapitre ${item.lesson.chapter.romanize()}'.toUpperCase(),
-                style: TextStyle(color: theme.lessonChapterColor),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8, right: 20, left: 20),
-              child: Text(
-                item.lesson.title,
-                style: const TextStyle(
-                  fontFamily: 'FuturaBT',
-                  fontSize: 26,
+    return SettingsLoader(
+      builder: (context, settings) {
+        AppTheme theme = settings.resolveTheme(context);
+        return Padding(
+          padding: const EdgeInsets.all(15),
+          child: Card(
+            shape: const BeveledRectangleBorder(),
+            color: theme.lessonBackgroundColor,
+            surfaceTintColor: theme.lessonBackgroundColor,
+            elevation: 10,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: _PreviewWidgetImage(item: item),
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8, right: 20, left: 20),
+                  child: Text(
+                    'Chapitre ${item.lesson.chapter.romanize()}'.toUpperCase(),
+                    style: TextStyle(color: theme.lessonChapterColor),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8, right: 20, left: 20),
+                  child: Text(
+                    item.lesson.title,
+                    style: const TextStyle(
+                      fontFamily: 'FuturaBT',
+                      fontSize: 26,
+                    ),
+                  ),
+                ),
+                createDescriptionWidget(),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
+                  child: createActionButton(
+                    context,
+                    buttonText: 'Lire le cours',
+                    backgroundColor: theme.blueButtonColor,
+                    endpoint: item.lesson.content,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                  child: createActionButton(
+                    context,
+                    buttonText: 'Lire le résumé',
+                    backgroundColor: theme.greenButtonColor,
+                    endpoint: item.lesson.summary,
+                  ),
+                ),
+              ],
             ),
-            createDescriptionWidget(),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
-              child: createActionButton(
-                context,
-                buttonText: 'Lire le cours',
-                backgroundColor: theme.blueButtonColor,
-                endpoint: item.lesson.content,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-              child: createActionButton(
-                context,
-                buttonText: 'Lire le résumé',
-                backgroundColor: theme.greenButtonColor,
-                endpoint: item.lesson.summary,
-              ),
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
@@ -285,12 +291,10 @@ class _PreviewWidget extends ConsumerWidget {
         ),
         onPressed: () => Navigator.pushNamed(
           context,
-          '/html',
-          arguments: {
-            'endpoint': endpoint,
-          },
-        ),
-        child: Text(
+      AppRoutes.html,
+      arguments: HtmlRouteArguments(endpoint: endpoint),
+    ),
+    child: Text(
           buttonText,
           style: const TextStyle(fontSize: 14, color: Colors.white),
         ),

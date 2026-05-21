@@ -21,7 +21,7 @@ mixin SvgFactory on WidgetFactory {
   bool get svgAllowDrawingOutsideViewBox => false;
 
   @override
-  Widget? buildImageWidget(BuildTree meta, ImageSource src) {
+  Widget? buildImageWidget(BuildTree tree, ImageSource src) {
     final url = src.url;
     Uri? uri = Uri.tryParse(url);
 
@@ -41,10 +41,10 @@ mixin SvgFactory on WidgetFactory {
     }
 
     if (scalableImageSource == null) {
-      return super.buildImageWidget(meta, src);
+      return super.buildImageWidget(tree, src);
     }
 
-    return _buildSvgPicture(meta, src, scalableImageSource);
+    return _buildSvgPicture(tree, src, scalableImageSource);
   }
 
   /// Returns a [ScalableImageSource].
@@ -86,10 +86,10 @@ mixin SvgFactory on WidgetFactory {
   }
 
   @override
-  void parse(BuildTree meta) {
-    switch (meta.element.localName) {
+  void parse(BuildTree tree) {
+    switch (tree.element.localName) {
       case kTagSvg:
-        meta.register(
+        tree.register(
           _tagSvg ??= BuildOp(
             // TODO: set debugLabel when our minimum core version >= 1.0
             defaultStyles: (element) {
@@ -112,9 +112,9 @@ mixin SvgFactory on WidgetFactory {
               };
             },
             onRenderBlock: (tree, placeholder) {
-              final source = ScalableImageSource.fromSvgFile(meta.element.outerHtml, () => meta.element.outerHtml);
+              final source = ScalableImageSource.fromSvgFile(tree.element.outerHtml, () => tree.element.outerHtml);
               const src = ImageSource('');
-              final built = _buildSvgPicture(meta, src, source);
+              final built = _buildSvgPicture(tree, src, source);
               return built;
             },
           ),
@@ -122,7 +122,7 @@ mixin SvgFactory on WidgetFactory {
         break;
     }
 
-    return super.parse(meta);
+    return super.parse(tree);
   }
 
   Widget _buildSvgPicture(

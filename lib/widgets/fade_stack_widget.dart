@@ -11,6 +11,7 @@ class AboveWidgetFade extends StatefulWidget {
 
   /// Creates a new above widget fade instance.
   const AboveWidgetFade({
+    super.key,
     required this.under,
     required this.above,
   });

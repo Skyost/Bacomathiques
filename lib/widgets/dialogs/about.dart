@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 
 /// The about dialog.
 class AboutDialog extends StatelessWidget {
+  /// Creates an about dialog.
+  const AboutDialog({super.key});
+
   @override
   Widget build(BuildContext context) => AppAlertDialog.oneChild(
         title: 'À propos de Bacomathiques',
@@ -26,6 +29,6 @@ class AboutDialog extends StatelessWidget {
   /// Shows the dialog.
   static void show(BuildContext context) => showDialog(
         context: context,
-        builder: (context) => AboutDialog(),
-      );
+    builder: (context) => const AboutDialog(),
+  );
 }

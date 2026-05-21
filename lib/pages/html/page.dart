@@ -1,17 +1,15 @@
 import 'package:bacomathiques/model/api/common.dart';
 import 'package:bacomathiques/model/api/content.dart';
 import 'package:bacomathiques/model/settings.dart';
+import 'package:bacomathiques/navigation/app_routes.dart';
+import 'package:bacomathiques/pages/html/html_document_formatter.dart';
 import 'package:bacomathiques/pages/html/html_widget.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:bacomathiques/widgets/app_bar/actions/save_pdf.dart';
 import 'package:bacomathiques/widgets/app_bar/app_bar.dart';
 import 'package:bacomathiques/widgets/centered_circular_progress_indicator.dart';
 import 'package:bacomathiques/widgets/request_scaffold.dart';
-import 'package:bacomathiques/widgets/theme/bubble.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:html/dom.dart' as dom;
-import 'package:html/parser.dart' as parser;
 import 'package:share_plus/share_plus.dart';
 
 /// A screen that is able to display some HTML content.
@@ -21,6 +19,7 @@ class HTMLPage extends RequestScaffold<APIEndpointResultHTML> {
 
   /// Creates a new HTML screen instance.
   const HTMLPage({
+    super.key,
     required super.endpoint,
     this.anchor,
   });
@@ -83,12 +82,14 @@ class _HTMLPageState extends RequestScaffoldState<APIEndpointResultHTML, HTMLPag
                 sharePositionOrigin = Rect.fromLTWH(position.dx, position.dy, 24, 12);
               }
 
-              await Share.share(
-                'Lisez le cours intitulé « ${result!.lesson.title} » en téléchargeant l\'application Bacomathiques !\n$storePage',
-                subject: 'Bacomathiques - ${result!.lesson.title}',
-                sharePositionOrigin: sharePositionOrigin,
-              );
-            },
+          await SharePlus.instance.share(
+            ShareParams(
+              text: 'Lisez le cours intitulé « ${result!.lesson.title} » en téléchargeant l\'application Bacomathiques !\n$storePage',
+              subject: 'Bacomathiques - ${result!.lesson.title}',
+              sharePositionOrigin: sharePositionOrigin,
+            ),
+          );
+        },
           ),
           if (result is LessonContent)
             IconButton(
@@ -97,11 +98,13 @@ class _HTMLPageState extends RequestScaffoldState<APIEndpointResultHTML, HTMLPag
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/comments', arguments: {
-                  'endpoint': result!.lesson.comments,
-                });
-              },
-            ),
+            Navigator.pushNamed(
+              context,
+              AppRoutes.comments,
+              arguments: CommentsRouteArguments(endpoint: result!.lesson.comments),
+            );
+          },
+        ),
         ],
         actionMenus: [
           if (result is LessonContent)
@@ -125,115 +128,13 @@ class _HTMLPageState extends RequestScaffoldState<APIEndpointResultHTML, HTMLPag
   }
 
   @override
-  void onSuccess(APIEndpointResultHTML result) {
-    dom.Document document = parser.parse(result.html);
-    formatTitles(document);
-    formatImages(document, mounted ? context : null);
-    removeBottomMarginOfLastElements(document);
-    formatBubbles(document);
-    formatTables(document);
+  void onSuccess(APIEndpointResultHTML result) async {
+    AppSettings settings = await ref.read(settingsModelProvider.future);
+    Brightness brightness = mounted ? settings.resolveTheme(context).brightness : Brightness.light;
+    String html = HtmlDocumentFormatter(brightness: brightness).format(result.html);
 
     if (mounted) {
-      setState(() => parsedHtml = document.outerHtml);
-    }
-  }
-
-  /// Formats the titles specified by the tag name.
-  void formatTitles(dom.Document document) {
-    List<dom.Element> titles = document.getElementsByTagName('h2, h3');
-    int h2Index = 0;
-    int h3Index = 0;
-    for (dom.Element title in titles) {
-      switch (title.localName) {
-        case 'h2':
-          h3Index = 0;
-          String prefix = '${(++h2Index).romanize()} – ';
-          if (!title.innerHtml.startsWith(prefix)) {
-            title.innerHtml = '$prefix${title.innerHtml}';
-          }
-          break;
-        case 'h3':
-          String prefix = '${++h3Index}. ';
-          if (!title.innerHtml.startsWith(prefix)) {
-            title.innerHtml = '$prefix${title.innerHtml}';
-          }
-          break;
-        default:
-          continue;
-      }
-    }
-
-    List<dom.Element> linksInside = document.querySelectorAll('h2 > a, h3 > a, h4 > a');
-    for (dom.Element linkInside in linksInside) {
-      linkInside.remove();
-    }
-  }
-
-  /// Center the images.
-  void formatImages(dom.Document document, BuildContext? context) {
-    Brightness? brightness = context == null ? null : ref.read(settingsModelProvider).resolveTheme(context).brightness;
-    List<dom.Element> images = document.getElementsByTagName('img');
-    for (dom.Element image in images) {
-      if (brightness == Brightness.dark && image.attributes['data-src-dark'] != null) {
-        image.attributes['src'] = image.attributes['data-src-dark']!;
-      }
-
-      dom.Element div = document.createElement('center');
-      div.attributes['style'] = 'margin-bottom: 0.75em';
-      div.innerHtml = image.outerHtml;
-      image.replaceWith(div);
-    }
-  }
-
-  /// Formats the bubbles.
-  void formatBubbles(dom.Document document) {
-    for (Bubble bubble in Bubble.values) {
-      List<dom.Element> bubbles = document.getElementsByClassName(bubble.className);
-      for (dom.Element element in bubbles) {
-        List<dom.Element> children = element.children;
-        if (children.isEmpty) {
-          continue;
-        }
-
-        List<dom.Element> links = element.getElementsByTagName('a');
-        for (dom.Element link in links) {
-          link.attributes[kAttributeParentBubble] = bubble.className;
-        }
-
-        List<dom.Element> headings = element.getElementsByTagName('h4');
-        for (dom.Element heading in headings) {
-          heading.attributes[kAttributeParentBubble] = bubble.className;
-        }
-
-        removeBottomMarginOfLastElements(element);
-
-        List<dom.Element> lists = element.querySelectorAll('ol, ul');
-        dom.Element? lastDirectList = lists.lastWhereOrNull((element) => element.parent?.classes.contains(bubble.className) ?? false);
-        if (lastDirectList != null && children.last == lastDirectList) {
-          removeBottomMarginOfLastElements(lastDirectList);
-        }
-      }
-    }
-  }
-
-  /// Formats the tables.
-  void formatTables(dom.Document document) {
-    List<dom.Element> tables = document.getElementsByTagName('table');
-    for (dom.Element table in tables) {
-      //table.attributes['border'] = '1';
-      table.attributes['cellspacing'] = '0';
-    }
-  }
-
-  /// Removes the last element of the given node.
-  void removeBottomMarginOfLastElements(dynamic node) {
-    if (!node.hasChildNodes()) {
-      return;
-    }
-
-    dom.Element lastChild = node.children.last;
-    if (!lastChild.classes.contains('mb-0')) {
-      lastChild.classes.add('mb-0');
+      setState(() => parsedHtml = html);
     }
   }
 }

@@ -12,6 +12,31 @@ import 'package:path_provider/path_provider.dart';
 class API {
   /// The website base URL.
   static const String baseUrl = 'https://bacomathiqu.es';
+
+  /// API request timeout.
+  static const Duration timeout = Duration(seconds: 15);
+}
+
+/// An API request failure.
+class APIRequestException implements Exception {
+  /// The endpoint path.
+  final String path;
+
+  /// The failure message.
+  final String message;
+
+  /// The original error, if any.
+  final Object? cause;
+
+  /// Creates an API request exception.
+  const APIRequestException({
+    required this.path,
+    required this.message,
+    this.cause,
+  });
+
+  @override
+  String toString() => 'APIRequestException($path): $message${cause == null ? '' : ' ($cause)'}';
 }
 
 /// The API status object.
@@ -150,20 +175,31 @@ abstract class APIEndpoint<T extends APIEndpointResult> {
   T createObjectFromJSON(Map<String, dynamic> parsedJSON);
 
   /// Requests the endpoint.
-  Future<T?> request({bool cache = true}) async {
-    String? content = await _getContent(cache: cache);
-    return content == null ? null : createObjectFromJSON(json.decode(content));
+  Future<T> request({bool cache = true}) async {
+    String content = await _getContent(cache: cache);
+    try {
+      final Object? decoded = json.decode(content);
+      if (decoded is! Map<String, dynamic>) {
+        throw const FormatException('Expected a JSON object.');
+      }
+      return createObjectFromJSON(decoded);
+    } catch (error) {
+      throw APIRequestException(
+        path: path,
+        message: 'La réponse de l\'API est invalide.',
+        cause: error,
+      );
+    }
   }
 
   /// Gets the content from the specified url and saves it to the local storage.
-  Future<String?> _getContent({bool cache = true}) async {
+  Future<String> _getContent({bool cache = true}) async {
     String path = this.path;
     if (!path.startsWith('/')) {
       path = '/$path';
     }
 
     File? file;
-    String? content;
 
     if (cache) {
       Directory libDirectory = await getApplicationDocumentsDirectory();
@@ -174,21 +210,43 @@ abstract class APIEndpoint<T extends APIEndpointResult> {
       file = File('${libDirectory.path}${filePath}index.json');
     }
 
+    Object? networkError;
     try {
-      content = await http.read(Uri.parse(API.baseUrl + path));
-      if (file != null) {
-        if (!file.existsSync()) {
-          file.createSync(recursive: true);
-        }
-        file.writeAsString(content);
+      http.Response response = await http.get(Uri.parse(API.baseUrl + path)).timeout(API.timeout);
+      if (response.statusCode < 200 || response.statusCode >= 300) {
+        throw APIRequestException(
+          path: path,
+          message: 'Le serveur a répondu avec le code ${response.statusCode}.',
+        );
       }
-    } catch (ignored) {
-      if (file != null && file.existsSync()) {
-        content = await file.readAsString();
+
+      String content = response.body;
+      if (file != null) {
+        await file.create(recursive: true);
+        await file.writeAsString(content);
+      }
+      return content;
+    } catch (error) {
+      networkError = error;
+    }
+
+    if (file != null && await file.exists()) {
+      try {
+        return await file.readAsString();
+      } catch (error) {
+        throw APIRequestException(
+          path: path,
+          message: 'Impossible de lire le cache local.',
+          cause: error,
+        );
       }
     }
 
-    return content;
+    throw APIRequestException(
+      path: path,
+      message: 'Impossible de récupérer les données.',
+      cause: networkError,
+    );
   }
 }
 

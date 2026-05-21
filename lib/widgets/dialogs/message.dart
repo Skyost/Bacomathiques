@@ -14,6 +14,7 @@ class MessageDialog extends StatelessWidget {
 
   /// Creates a new message dialog instance.
   const MessageDialog({
+    super.key,
     required this.title,
     required this.message,
     this.okButtonPressed,

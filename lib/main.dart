@@ -1,11 +1,13 @@
 import 'package:bacomathiques/firebase_options.dart';
 import 'package:bacomathiques/model/app.dart';
 import 'package:bacomathiques/model/settings.dart';
+import 'package:bacomathiques/navigation/app_routes.dart';
 import 'package:bacomathiques/pages/comments.dart';
 import 'package:bacomathiques/pages/home.dart';
 import 'package:bacomathiques/pages/html/page.dart';
 import 'package:bacomathiques/pages/lessons.dart';
 import 'package:bacomathiques/pages/levels.dart';
+import 'package:bacomathiques/widgets/centered_circular_progress_indicator.dart';
 import 'package:bacomathiques/widgets/theme/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -31,14 +33,20 @@ void main() async {
     };
   }
 
-  runApp(ProviderScope(child: BacomathiquesApp()));
+  runApp(const ProviderScope(child: BacomathiquesApp()));
 }
 
 /// The app main class.
 class BacomathiquesApp extends ConsumerWidget {
+  const BacomathiquesApp({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    SettingsModel settingsModel = ref.watch(settingsModelProvider);
+    AsyncValue<AppSettings> settings = ref.watch(settingsModelProvider);
+    AppSettings settingsModel = switch (settings) {
+      AsyncData(:final value) => value,
+      _ => const AppSettings(),
+    };
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(systemNavigationBarColor: settingsModel.resolveTheme(context).actionBarColor),
       child: MaterialApp(
@@ -47,23 +55,63 @@ class BacomathiquesApp extends ConsumerWidget {
         theme: AppTheme.light.flutterThemeData,
         darkTheme: AppTheme.dark.flutterThemeData,
         themeMode: settingsModel.themeMode,
-        routes: {
-          '/': (context) => const HomePage(),
-          '/levels': (context) => const LevelsPage(),
-          '/lessons': (context) {
-            Map<String, dynamic> arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
-            return LessonsPage(endpoint: arguments['endpoint']);
-          },
-          '/html': (context) {
-            Map<String, dynamic> arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
-            return HTMLPage(endpoint: arguments['endpoint'], anchor: arguments['anchor']);
-          },
-          '/comments': (context) {
-            Map<String, dynamic> arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
-            return CommentsPage(endpoint: arguments['endpoint']);
-          },
-        },
+        onGenerateRoute: _generateRoute,
+        builder: (context, child) => settings.when(
+          data: (_) => child ?? const SizedBox.shrink(),
+          loading: () => const Scaffold(
+            body: CenteredCircularProgressIndicator(message: 'Chargement des préférences…'),
+          ),
+          error: (error, stackTrace) => const Scaffold(
+            body: Center(
+              child: Padding(
+                padding: EdgeInsets.all(20),
+                child: Text(
+                  'Impossible de charger les préférences.',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
+
+  Route<void> _generateRoute(RouteSettings settings) => MaterialPageRoute(
+    settings: settings,
+    builder: (context) => switch (settings.name) {
+      AppRoutes.home => const HomePage(),
+      AppRoutes.levels => const LevelsPage(),
+      AppRoutes.lessons => switch (settings.arguments) {
+        LessonsRouteArguments(:final endpoint) => LessonsPage(endpoint: endpoint),
+        _ => const _InvalidRoutePage(),
+      },
+      AppRoutes.html => switch (settings.arguments) {
+        HtmlRouteArguments(:final endpoint, :final anchor) => HTMLPage(endpoint: endpoint, anchor: anchor),
+        _ => const _InvalidRoutePage(),
+      },
+      AppRoutes.comments => switch (settings.arguments) {
+        CommentsRouteArguments(:final endpoint) => CommentsPage(endpoint: endpoint),
+        _ => const _InvalidRoutePage(),
+      },
+      _ => const _InvalidRoutePage(),
+    },
+  );
+}
+
+class _InvalidRoutePage extends StatelessWidget {
+  const _InvalidRoutePage();
+
+  @override
+  Widget build(BuildContext context) => const Scaffold(
+    body: Center(
+      child: Padding(
+        padding: EdgeInsets.all(20),
+        child: Text(
+          'Impossible d\'ouvrir cette page.',
+          textAlign: TextAlign.center,
+        ),
+      ),
+    ),
+  );
 }

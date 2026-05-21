@@ -13,6 +13,7 @@ class Expandable extends StatefulWidget {
 
   /// Creates a new expandable widget instance.
   const Expandable({
+    super.key,
     required this.expandText,
     required this.expandTextStyle,
     required this.content,

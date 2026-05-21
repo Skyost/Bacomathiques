@@ -7,7 +7,10 @@ import 'package:bacomathiques/widgets/theme/bubble.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
-import 'package:flutter_widget_from_html_core/src/internal/core_ops.dart';
+
+const _tagH2 = 'h2';
+const _tagH3 = 'h3';
+const _tagH4 = 'h4';
 
 /// Allows to display custom widgets to the HTML content.
 class AppWidgetFactory extends WidgetFactory with SvgFactory {
@@ -20,25 +23,25 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
   });
 
   @override
-  void parse(BuildTree meta) {
-    if (meta.element.localName == 'math' || meta.element.localName == 'latex') {
-      _registerMathOp(meta);
+  void parse(BuildTree tree) {
+    if (tree.element.localName == 'math' || tree.element.localName == 'latex') {
+      _registerMathOp(tree);
       return;
     }
 
     for (Bubble bubble in Bubble.values) {
-      if (meta.element.classes.contains(bubble.className)) {
-        _registerBubbleBuildOp(bubble, meta);
+      if (tree.element.classes.contains(bubble.className)) {
+        _registerBubbleBuildOp(bubble, tree);
         return;
       }
     }
 
-    if (meta.element.localName == kTagH2 || meta.element.localName == kTagH3 || meta.element.localName == kTagH4) {
-      _registerTitleBuildOps(meta);
+    if (tree.element.localName == _tagH2 || tree.element.localName == _tagH3 || tree.element.localName == _tagH4) {
+      _registerTitleBuildOps(tree);
       return;
     }
 
-    super.parse(meta);
+    super.parse(tree);
   }
 
   @override
@@ -101,9 +104,7 @@ class AppWidgetFactory extends WidgetFactory with SvgFactory {
   void _registerTitleBuildOps(BuildTree meta) {
     BuildOp headline = const BuildOp.v2();
     meta.register(headline);
-    if (meta.element.attributes.containsKey(kAttributeId)) {
-      meta.register(Anchor(this, meta.element.attributes[kAttributeId]!).buildOp);
-    }
+    super.parse(meta);
   }
 
   /// Creates and register a bubble build op.

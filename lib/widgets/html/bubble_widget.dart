@@ -1,5 +1,5 @@
-import 'package:bacomathiques/model/settings.dart';
 import 'package:bacomathiques/widgets/expandable_widget.dart';
+import 'package:bacomathiques/widgets/settings_loader.dart';
 import 'package:bacomathiques/widgets/theme/bubble.dart';
 import 'package:bacomathiques/widgets/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +20,7 @@ class BubbleWidget extends ConsumerStatefulWidget {
 
   /// Creates a new bubble widget instance.
   const BubbleWidget({
+    super.key,
     required this.bubble,
     required this.child,
     required this.inScrollableView,
@@ -27,11 +28,13 @@ class BubbleWidget extends ConsumerStatefulWidget {
 
   /// Creates a new bubble widget from a dom element.
   BubbleWidget.fromElement({
+    Key? key,
     required dom.Element element,
     required WidgetPlaceholder placeholder,
   }) : this(
-          bubble: BubbleUtils.of(element),
-          child: placeholder,
+         key: key,
+         bubble: BubbleUtils.of(element),
+         child: placeholder,
           inScrollableView: BubbleWidget._inScrollableView(element),
         );
 
@@ -59,8 +62,14 @@ class _BubbleWidgetState extends ConsumerState<BubbleWidget> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    AppTheme theme = ref.watch(settingsModelProvider).resolveTheme(context);
+  Widget build(BuildContext context) => SettingsLoader(
+    builder: (context, settings) {
+      AppTheme theme = settings.resolveTheme(context);
+      return _buildWithTheme(context, theme);
+    },
+  );
+
+  Widget _buildWithTheme(BuildContext context, AppTheme theme) {
     BubbleTheme bubbleTheme = theme.bubbleThemes[widget.bubble]!;
 
     double width = MediaQuery.of(context).size.width;

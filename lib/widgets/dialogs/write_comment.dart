@@ -13,6 +13,7 @@ class WriteCommentDialog extends ConsumerStatefulWidget {
 
   /// Creates a new write comment dialog instance.
   const WriteCommentDialog({
+    super.key,
     required this.comments,
   });
 
@@ -53,9 +54,10 @@ class _WriteCommentDialogState extends ConsumerState<WriteCommentDialog> {
               }
 
               WaitingDialog.show(context, message: 'Envoi en cours, veuillez patienter…');
-              bool success = await widget.comments.postComment(ref.read(settingsModelProvider).commentsUsername, controller.text);
-              if (context.mounted) {
-                Navigator.pop(context);
+          AppSettings settings = await ref.read(settingsModelProvider.future);
+          bool success = await widget.comments.postComment(settings.commentsUsername, controller.text);
+          if (context.mounted) {
+            Navigator.pop(context);
                 if (success) {
                   Navigator.pop(context);
                 }

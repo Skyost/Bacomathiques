@@ -9,6 +9,7 @@ class WaitingDialog extends StatelessWidget {
 
   /// Creates a new waiting dialog instance.
   const WaitingDialog({
+    super.key,
     required this.message,
   });
 

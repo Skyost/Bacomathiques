@@ -1,11 +1,12 @@
 import 'package:bacomathiques/main.dart';
 import 'package:bacomathiques/model/api/common.dart';
 import 'package:bacomathiques/model/api/content.dart';
-import 'package:bacomathiques/model/settings.dart';
+import 'package:bacomathiques/navigation/app_routes.dart';
 import 'package:bacomathiques/pages/html/widget_factory.dart';
 import 'package:bacomathiques/utils/utils.dart';
 import 'package:bacomathiques/widgets/centered_circular_progress_indicator.dart';
 import 'package:bacomathiques/widgets/html/representation_preview_widget.dart';
+import 'package:bacomathiques/widgets/settings_loader.dart';
 import 'package:bacomathiques/widgets/theme/bubble.dart';
 import 'package:bacomathiques/widgets/theme/theme.dart';
 import 'package:flutter/foundation.dart';
@@ -29,6 +30,7 @@ class AppHtmlWidget extends ConsumerStatefulWidget {
 
   /// Creates a new app HTML widget instance.
   const AppHtmlWidget({
+    super.key,
     required this.data,
     this.anchor,
   });
@@ -56,63 +58,70 @@ class _AppHtmlWidgetState extends ConsumerState<AppHtmlWidget> {
   @override
   Widget build(BuildContext context) {
     TextStyle? bodyTextStyle = Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 16);
-    AppTheme theme = ref.watch(settingsModelProvider).resolveTheme(context);
-
-    return HtmlWidget(
-      widget.data,
-      key: htmlWidgetKey,
-      buildAsync: true,
-      customWidgetBuilder: (element) => buildCustomWidget(theme, element),
-      customStylesBuilder: (element) => buildCustomStyle(theme, element),
-      onLoadingBuilder: (context, element, progress) {
-        String message = 'Rendu…';
-        if (progress != null) {
-          message += '\n$progress%';
-        }
-        return CenteredCircularProgressIndicator(message: message);
-      },
-      onErrorBuilder: (context, element, error) {
-        if (kDebugMode) {
-          print(error);
-        }
-        String title = error == null ? 'Erreur' : 'Erreur "${error.toString()}"';
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Center(
-            child: Text(
-              '$title. Veuillez réessayer plus tard.',
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontStyle: FontStyle.italic),
-            ),
+    return SettingsLoader(
+      builder: (context, settings) {
+        AppTheme theme = settings.resolveTheme(context);
+        return HtmlWidget(
+          widget.data,
+          key: htmlWidgetKey,
+          buildAsync: true,
+          customWidgetBuilder: (element) => buildCustomWidget(theme, element),
+          customStylesBuilder: (element) => buildCustomStyle(theme, element),
+          onLoadingBuilder: (context, element, progress) {
+            String message = 'Rendu…';
+            if (progress != null) {
+              message += '\n$progress%';
+            }
+            return CenteredCircularProgressIndicator(message: message);
+          },
+          onErrorBuilder: (context, element, error) {
+            if (kDebugMode) {
+              print(error);
+            }
+            String title = error == null ? 'Erreur' : 'Erreur "${error.toString()}"';
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Center(
+                child: Text(
+                  '$title. Veuillez réessayer plus tard.',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontStyle: FontStyle.italic),
+                ),
+              ),
+            );
+          },
+          //rebuildTriggers: RebuildTriggers([data, buildCustomWidget, buildCustomStyle]),
+          textStyle: bodyTextStyle,
+          factoryBuilder: () => AppWidgetFactory(context: context),
+          renderMode: const ListViewMode(
+            padding: EdgeInsets.all(20),
+            shrinkWrap: true,
           ),
-        );
-      },
-      //rebuildTriggers: RebuildTriggers([data, buildCustomWidget, buildCustomStyle]),
-      textStyle: bodyTextStyle,
-      factoryBuilder: () => AppWidgetFactory(context: context),
-      renderMode: const ListViewMode(
-        padding: EdgeInsets.all(20),
-        shrinkWrap: true,
-      ),
-      onTapUrl: (url) async {
-        if (url.startsWith('#')) {
-          return false;
-        }
+          onTapUrl: (url) async {
+            if (url.startsWith('#')) {
+              return false;
+            }
 
-        Uri uri = Uri.parse(url);
-        if (uri.host != Uri.parse(API.baseUrl).host || uri.pathSegments.length < 3 || uri.pathSegments.first != 'cours') {
-          if (await canLaunchUrl(uri)) {
-            await launchUrl(uri);
-          }
-          return true;
-        }
+            Uri uri = Uri.parse(url);
+            if (uri.host != Uri.parse(API.baseUrl).host || uri.pathSegments.length < 3 || uri.pathSegments.first != 'cours') {
+              if (await canLaunchUrl(uri)) {
+                await launchUrl(uri);
+              }
+              return true;
+            }
 
-        LessonContentEndpoint endpoint = LessonContentEndpoint.fromLevelAndLesson(
-          level: uri.pathSegments[1],
-          lesson: uri.pathSegments[2],
+            LessonContentEndpoint endpoint = LessonContentEndpoint.fromLevelAndLesson(
+              level: uri.pathSegments[1],
+              lesson: uri.pathSegments[2],
+            );
+            await Navigator.pushReplacementNamed(
+              context,
+              AppRoutes.html,
+              arguments: HtmlRouteArguments(endpoint: endpoint, anchor: uri.fragment),
+            );
+            return true;
+          },
         );
-        await Navigator.pushReplacementNamed(context, '/html', arguments: {'endpoint': endpoint, 'anchor': uri.fragment});
-        return true;
       },
     );
   }

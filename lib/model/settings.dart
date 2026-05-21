@@ -1,60 +1,39 @@
+import 'dart:async';
+
 import 'package:bacomathiques/widgets/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// The settings model provider.
-final settingsModelProvider = ChangeNotifierProvider((ref) {
-  SettingsModel settingsModel = SettingsModel();
-  settingsModel.load();
-  return settingsModel;
-});
+/// The settings provider.
+final settingsModelProvider = AsyncNotifierProvider<SettingsController, AppSettings>(SettingsController.new);
 
-/// Allows to load user preferences.
-class SettingsModel extends ChangeNotifier {
+/// User settings.
+class AppSettings {
   /// The app theme mode.
-  ThemeMode _themeMode = ThemeMode.system;
+  final ThemeMode themeMode;
 
   /// The comments username.
-  String _commentsUsername = 'Anonyme';
+  final String commentsUsername;
 
-  /// Loads the class data.
-  Future<void> load() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    _themeMode = ThemeMode.values[preferences.getInt('app.themeMode') ?? ThemeMode.system.index];
-    _commentsUsername = preferences.getString('comments.username') ?? 'Anonyme';
+  /// Creates user settings.
+  const AppSettings({
+    this.themeMode = ThemeMode.system,
+    this.commentsUsername = 'Anonyme',
+  });
 
-    notifyListeners();
-  }
-
-  /// Returns the theme mode.
-  ThemeMode get themeMode => _themeMode;
-
-  /// Sets the theme mode.
-  set themeMode(ThemeMode themeMode) {
-    _themeMode = themeMode;
-    notifyListeners();
-  }
-
-  /// Returns the comments username.
-  String get commentsUsername => _commentsUsername;
-
-  /// Sets the comments username.
-  set commentsUsername(String commentsUsername) {
-    _commentsUsername = commentsUsername;
-    notifyListeners();
-  }
-
-  /// Flushes the data to the shared preferences.
-  Future<void> flush() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setInt('app.themeMode', _themeMode.index);
-    await preferences.setString('app.commentsUsername', _commentsUsername);
-  }
+  /// Creates a copy with updated values.
+  AppSettings copyWith({
+    ThemeMode? themeMode,
+    String? commentsUsername,
+  }) => AppSettings(
+    themeMode: themeMode ?? this.themeMode,
+    commentsUsername: commentsUsername ?? this.commentsUsername,
+  );
 
   /// Resolves the theme from the specified context.
   AppTheme resolveTheme(BuildContext context) {
-    switch (_themeMode) {
+    switch (themeMode) {
       case ThemeMode.light:
         return getThemeFromBrightness(Brightness.light);
       case ThemeMode.dark:
@@ -66,4 +45,43 @@ class SettingsModel extends ChangeNotifier {
 
   /// Returns the theme corresponding to the specified brightness.
   AppTheme getThemeFromBrightness(Brightness brightness) => brightness == Brightness.light ? AppTheme.light : AppTheme.dark;
+}
+
+/// Controls user settings.
+class SettingsController extends AsyncNotifier<AppSettings> {
+  static const _themeModeKey = 'app.themeMode';
+  static const _commentsUsernameKey = 'comments.username';
+  static const _legacyCommentsUsernameKey = 'app.commentsUsername';
+
+  @override
+  Future<AppSettings> build() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    final themeModeIndex = preferences.getInt(_themeModeKey);
+    final themeMode = themeModeIndex == null || themeModeIndex >= ThemeMode.values.length ? ThemeMode.system : ThemeMode.values[themeModeIndex];
+    final commentsUsername = preferences.getString(_commentsUsernameKey) ?? preferences.getString(_legacyCommentsUsernameKey) ?? 'Anonyme';
+    return AppSettings(
+      themeMode: themeMode,
+      commentsUsername: commentsUsername,
+    );
+  }
+
+  /// Updates the app theme mode.
+  Future<void> setThemeMode(ThemeMode themeMode) async {
+    state = AsyncData((await future).copyWith(themeMode: themeMode));
+    await flush();
+  }
+
+  /// Updates the comments username.
+  Future<void> setCommentsUsername(String commentsUsername) async {
+    state = AsyncData((await future).copyWith(commentsUsername: commentsUsername));
+    await flush();
+  }
+
+  /// Flushes the data to the shared preferences.
+  Future<void> flush() async {
+    AppSettings settings = await future;
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setInt(_themeModeKey, settings.themeMode.index);
+    await preferences.setString(_commentsUsernameKey, settings.commentsUsername);
+  }
 }

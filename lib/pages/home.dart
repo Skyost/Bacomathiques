@@ -1,4 +1,5 @@
 import 'package:bacomathiques/model/api/list.dart';
+import 'package:bacomathiques/navigation/app_routes.dart';
 import 'package:bacomathiques/widgets/centered_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -6,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// The home page that allows to redirect to the corresponding route according to user preferences.
 class HomePage extends StatefulWidget {
   /// Creates a new home page instance.
-  const HomePage();
+  const HomePage({super.key});
 
   @override
   State<StatefulWidget> createState() => _HomePageState();
@@ -21,17 +22,15 @@ class _HomePageState extends State<HomePage> {
     SharedPreferences.getInstance().then((preferences) {
       String? lessonListEndpoint = preferences.getString('preferences.lesson-list');
       if (lessonListEndpoint == null) {
-        WidgetsBinding.instance.addPostFrameCallback((_) => Navigator.pushReplacementNamed(context, '/levels'));
+        WidgetsBinding.instance.addPostFrameCallback((_) => Navigator.pushReplacementNamed(context, AppRoutes.levels));
         return;
       }
 
       WidgetsBinding.instance.addPostFrameCallback(
         (_) => Navigator.pushReplacementNamed(
           context,
-          '/lessons',
-          arguments: {
-            'endpoint': LessonListEndpoint(path: lessonListEndpoint),
-          },
+          AppRoutes.lessons,
+          arguments: LessonsRouteArguments(endpoint: LessonListEndpoint(path: lessonListEndpoint)),
         ),
       );
     });

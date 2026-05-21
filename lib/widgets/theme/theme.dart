@@ -125,9 +125,9 @@ abstract class AppTheme {
         primaryColor: primaryColor,
         primaryColorDark: primaryColorDark,
         appBarTheme: AppBarTheme(
-          color: actionBarColor,
-          foregroundColor: Colors.white,
-          systemOverlayStyle: SystemUiOverlayStyle.light,
+      backgroundColor: actionBarColor,
+      foregroundColor: Colors.white,
+      systemOverlayStyle: SystemUiOverlayStyle.light,
         ),
         scrollbarTheme: const ScrollbarThemeData(
           radius: Radius.circular(0),
@@ -149,9 +149,9 @@ abstract class AppTheme {
         ),
         unselectedWidgetColor: accentColor,
         scaffoldBackgroundColor: scaffoldBackgroundColor,
-        dialogBackgroundColor: scaffoldBackgroundColor,
-        highlightColor: highlightColor,
-        splashColor: highlightColor,
+    dialogTheme: DialogThemeData(backgroundColor: scaffoldBackgroundColor),
+    highlightColor: highlightColor,
+    splashColor: highlightColor,
         buttonTheme: ButtonThemeData(
           textTheme: ButtonTextTheme.accent,
           highlightColor: highlightColor,

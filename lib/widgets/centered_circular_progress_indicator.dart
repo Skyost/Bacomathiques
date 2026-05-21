@@ -1,4 +1,5 @@
 import 'package:bacomathiques/model/settings.dart';
+import 'package:bacomathiques/widgets/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -9,13 +10,19 @@ class CenteredCircularProgressIndicator extends ConsumerWidget {
 
   /// Creates a new centered circular progress indicator instance.
   const CenteredCircularProgressIndicator({
+    super.key,
     this.message,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    AppTheme fallbackTheme = const AppSettings().resolveTheme(context);
+    AppTheme theme = switch (ref.watch(settingsModelProvider)) {
+      AsyncData(:final value) => value.resolveTheme(context),
+      _ => fallbackTheme,
+    };
     Widget progressIndicator = CircularProgressIndicator(
-      valueColor: AlwaysStoppedAnimation<Color>(ref.watch(settingsModelProvider).resolveTheme(context).progressIndicatorColor),
+      valueColor: AlwaysStoppedAnimation<Color>(theme.progressIndicatorColor),
     );
 
     return Center(
