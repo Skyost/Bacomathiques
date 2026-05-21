@@ -5,12 +5,12 @@ import path from 'path'
 import { createResolver, defineNuxtModule, type Resolver, useLogger } from '@nuxt/kit'
 import { Octokit } from '@octokit/core'
 import AdmZip from 'adm-zip'
-import * as latex from 'that-latex-lib'
-import { siteContentSettings } from '../site/content'
-import { debug } from '../site/debug'
-import { getFileName } from '../utils/utils'
-import type { Github } from '../site/site'
-import { site } from '../site/site'
+import { LatexChecksumsCalculator, LatexIncludeCommand, PdfGenerator } from 'that-latex-lib'
+import { siteContentSettings } from '../app/site/content'
+import { debug } from '../app/site/debug'
+import { getFileName } from '../app/utils/utils'
+import type { Github } from '../app/site/site'
+import { site } from '../app/site/site'
 
 /**
  * Options for the PDF generator module.
@@ -45,7 +45,7 @@ export default defineNuxtModule<ModuleOptions>({
   meta: {
     name,
     version: '0.0.1',
-    compatibility: { nuxt: '^3.0.0' },
+    compatibility: { nuxt: '^4.0.0' },
     configKey: 'latexPdfGenerator'
   },
   defaults: {
@@ -60,18 +60,18 @@ export default defineNuxtModule<ModuleOptions>({
   },
   setup: async (options, nuxt) => {
     const resolver = createResolver(import.meta.url)
-    const srcDir = nuxt.options.srcDir
-    const directoryPath = resolver.resolve(srcDir, 'content', options.directory)
+    const rootDir = nuxt.options.rootDir
+    const directoryPath = resolver.resolve(rootDir, 'content', options.directory)
 
     // Download the previous build.
     // This allows to not compile files if they haven't changed.
-    let previousBuildDirectoryPath = resolver.resolve(srcDir, options.previousBuildDownloadDirectory)
+    let previousBuildDirectoryPath = resolver.resolve(rootDir, options.previousBuildDownloadDirectory)
     const downloadResult = await downloadPreviousBuild(resolver, previousBuildDirectoryPath, options)
     previousBuildDirectoryPath = resolver.resolve(previousBuildDirectoryPath, options.destinationDirectory)
 
     // And generate all PDFs !
     const ignores = options.ignores.map(file => resolver.resolve(directoryPath, file))
-    const moduleDirectoryPath = resolver.resolve(srcDir, 'node_modules', `.${name}`)
+    const moduleDirectoryPath = resolver.resolve(rootDir, 'node_modules', `.${name}`)
     generatePdf(
       resolver,
       directoryPath,
@@ -213,13 +213,22 @@ const generateAndCopy = (
   logger.info(`Processing "${filePath}"${variant ?? ''}...`)
 
   // Generate PDF and checksums files.
-  const { wasCached, builtFilePath, checksumsFilePath } = latex.generatePdf(
+  const pdfGenerator = new PdfGenerator({
+    generateIfExists: !debug,
+    checksumsCalculator: new LatexChecksumsCalculator({
+      latexIncludeCommands: [
+        LatexIncludeCommand.includeGraphics(options.getIncludeGraphicsDirectories(filePath)),
+        ...LatexIncludeCommand.defaultLatexIncludeCommands,
+        new LatexIncludeCommand('documentclass', { extensions: ['.cls'] }),
+        new LatexIncludeCommand('usepackage', { extensions: ['.sty'] }),
+        new LatexIncludeCommand('RequirePackage', { extensions: ['.sty'] })
+      ]
+    })
+  })
+  const { wasCached, builtFilePath, checksumsFilePath } = pdfGenerator.generate(
     filePath,
-    {
-      includeGraphicsDirectories: options.getIncludeGraphicsDirectories(filePath),
-      cacheDirectoryPath: previousBuildDirectory == null ? undefined : previousBuildDirectory,
-      cachedFileName: destinationFileName ?? getFileName(filePath)
-    }
+    previousBuildDirectory == null ? undefined : previousBuildDirectory,
+    destinationFileName ?? getFileName(filePath)
   )
 
   // If PDF generation is successful, copy files to the destination directory.

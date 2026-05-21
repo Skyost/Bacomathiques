@@ -7,9 +7,18 @@ import * as yaml from 'yaml'
 import { createAppAuth } from '@octokit/auth-app'
 import { AkismetClient } from 'akismet-api'
 import { createPullRequest } from 'octokit-plugin-create-pull-request'
-import type { Comment } from '../../types'
 
-export default async function handler (request: VercelRequest, response: VercelResponse) {
+interface Comment {
+  _id: string
+  level: string
+  lesson: string
+  message: string
+  author: string
+  date: number
+  client: string
+}
+
+export default async function handler(request: VercelRequest, response: VercelResponse) {
   if (!allowCors(request, response)) {
     return
   }
@@ -42,12 +51,24 @@ export default async function handler (request: VercelRequest, response: VercelR
   }
 
   const PullRequestOctokit = Octokit.plugin(createPullRequest)
+  const appId = process.env.GITHUB_APP_ID
+  const privateKey = process.env.GITHUB_APP_PRIVATE_KEY
+  const installationId = process.env.GITHUB_APP_INSTALLATION_ID
+
+  if (!appId || !privateKey || !installationId) {
+    response.status(500).json({
+      success: false,
+      message: 'GitHub app is not configured.'
+    })
+    return
+  }
+
   const octokit = new PullRequestOctokit({
     authStrategy: createAppAuth,
     auth: {
-      appId: process.env.GITHUB_APP_ID,
-      privateKey: process.env.GITHUB_APP_PRIVATE_KEY,
-      installationId: process.env.GITHUB_APP_INSTALLATION_ID
+      appId,
+      privateKey,
+      installationId
     }
   })
 
@@ -79,7 +100,7 @@ export default async function handler (request: VercelRequest, response: VercelR
   })
 
   const status = githubResponse?.status ?? 500
-  if (status) {
+  if (status >= 400) {
     response.status(status).json({
       success: false,
       message: 'Failed to create pull request.'
@@ -87,13 +108,13 @@ export default async function handler (request: VercelRequest, response: VercelR
     return
   }
 
-  response.status(status).json({
+  response.status(201).json({
     success: true,
     message: 'Pull request created with success.'
   })
 }
 
-function allowCors (request: VercelRequest, response: VercelResponse) {
+function allowCors(request: VercelRequest, response: VercelResponse) {
   response.setHeader('Access-Control-Allow-Credentials', 'true')
   response.setHeader('Access-Control-Allow-Origin', 'https://bacomathiqu.es') // TODO: Same here.
   // response.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
@@ -109,18 +130,23 @@ function allowCors (request: VercelRequest, response: VercelResponse) {
   return true
 }
 
-async function akismetSpam (request: VercelRequest, comment: Comment) {
-  if (!process.env.ASKIMET_API_KEY) {
+async function akismetSpam(request: VercelRequest, comment: Comment) {
+  const apiKey = process.env.AKISMET_API_KEY ?? process.env.ASKIMET_API_KEY
+  if (!apiKey) {
     return true
   }
 
   const client = new AkismetClient({
-    key: process.env.ASKIMET_API_KEY,
+    key: apiKey,
     blog: 'https://vercel.bacomathiqu.es'
   })
 
+  const ip = Array.isArray(request.headers['x-forwarded-for'])
+    ? request.headers['x-forwarded-for'][0]
+    : request.headers['x-forwarded-for']
+
   return await client.checkSpam({
-    ip: request.headers['x-forwarded-for']!.toString(),
+    ip: ip ?? request.socket.remoteAddress ?? '',
     useragent: request.headers['user-agent'],
     content: comment.message,
     name: comment.author,

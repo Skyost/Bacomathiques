@@ -1,5 +1,5 @@
-import { execSync } from 'child_process'
 import fs from 'fs'
+import path from 'path'
 import { createResolver, defineNuxtModule, useLogger } from '@nuxt/kit'
 
 /**
@@ -30,22 +30,31 @@ export default defineNuxtModule<ModuleOptions>({
     name,
     version: '0.0.1',
     configKey: 'commitShaFileGenerator',
-    compatibility: { nuxt: '^3.0.0' }
+    compatibility: { nuxt: '^4.0.0' }
   },
   defaults: {
     fileName: 'latest-commit.json'
   },
   setup: (options, nuxt) => {
     const resolver = createResolver(import.meta.url)
-    const srcDir = nuxt.options.srcDir
+    const rootDir = nuxt.options.rootDir
 
     // Retrieve commit hash information.
-    const long = execSync('git rev-parse HEAD', { cwd: srcDir }).toString().trim()
-    const short = execSync('git rev-parse --short HEAD', { cwd: srcDir }).toString().trim()
+    const long = readGitHead(rootDir)
+    const short = long.substring(0, 7)
 
     // Write commit information to file.
-    fs.writeFileSync(resolver.resolve(srcDir, 'content', options.fileName), JSON.stringify({ long, short }))
+    fs.writeFileSync(resolver.resolve(rootDir, 'content', options.fileName), JSON.stringify({ long, short }))
 
     logger.success(`Wrote latest commit info for ${long}.`)
   }
 })
+
+const readGitHead = (rootDir: string) => {
+  const head = fs.readFileSync(path.resolve(rootDir, '.git', 'HEAD'), { encoding: 'utf8' }).trim()
+  if (!head.startsWith('ref:')) {
+    return head
+  }
+  const ref = head.substring('ref:'.length).trim()
+  return fs.readFileSync(path.resolve(rootDir, '.git', ref), { encoding: 'utf8' }).trim()
+}

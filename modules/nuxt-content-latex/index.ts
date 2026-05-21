@@ -3,7 +3,7 @@
 import fs from 'fs'
 import path from 'path'
 import { createResolver, defineNuxtModule, type Resolver, useLogger } from '@nuxt/kit'
-import { siteContentSettings } from '../../site/content'
+import { siteContentSettings } from '../../app/site/content'
 import { moduleName } from './common'
 
 /**
@@ -28,10 +28,10 @@ const logger = useLogger(moduleName)
  */
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    moduleName,
+    name: moduleName,
     version: '0.0.1',
     configKey: 'nuxtContentLatex',
-    compatibility: { nuxt: '^3.0.0' }
+    compatibility: { nuxt: '^4.0.0' }
   },
   defaults: {
     directory: siteContentSettings.dataAssetsDirectory,
@@ -47,14 +47,14 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.nitro.externals.inline = nuxt.options.nitro.externals.inline || []
     nuxt.options.nitro.externals.inline.push(resolver.resolve('.'))
 
-    // Register a hook to modify content context and add a transformer for .tex files.
-    nuxt.hook('content:context', (contentContext) => {
-      contentContext.transformers.push(resolver.resolve('transformer.ts'))
-    })
+    nuxt.options.content = nuxt.options.content || {}
+    nuxt.options.content.build = nuxt.options.content.build || {}
+    nuxt.options.content.build.transformers = nuxt.options.content.build.transformers || []
+    nuxt.options.content.build.transformers.push(resolver.resolve('transformer.ts'))
 
     // Process additional assets such as images.
-    const dataDirectory = resolver.resolve(nuxt.options.srcDir, 'content', options.directory)
-    const assetsDestinationPath = resolver.resolve(nuxt.options.srcDir, 'node_modules', `.${moduleName}`, options.assetsDestinationDirectoryName)
+    const dataDirectory = resolver.resolve(nuxt.options.rootDir, 'content', options.directory)
+    const assetsDestinationPath = resolver.resolve(nuxt.options.rootDir, 'node_modules', `.${moduleName}`, options.assetsDestinationDirectoryName)
     processAssets(resolver, dataDirectory, assetsDestinationPath, options)
 
     // Register them in Nitro.

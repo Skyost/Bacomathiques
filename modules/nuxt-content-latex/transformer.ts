@@ -2,15 +2,23 @@
 
 import path from 'path'
 import fs from 'fs'
-import { defineTransformer } from '@nuxt/content/transformers'
+import { type ContentFile, defineTransformer } from '@nuxt/content'
 import type { HTMLElement } from 'node-html-parser'
 import GithubSlugger from 'github-slugger'
-import * as latex from 'that-latex-lib'
+import {
+  type ImageSrcResolverResult,
+  KatexRenderer,
+  LatexImageExtractorInDirectory,
+  PandocCommand,
+  PandocTransformer,
+  type RenderObject,
+  SvgGenerator
+} from 'that-latex-lib'
 import { consola } from 'consola'
-import { normalizeString, replaceLineBreaks } from '../../utils/utils'
-import { siteContentSettings } from '../../site/content'
-import type { Toc, TocEntry } from '../../types'
-import { debug } from '../../site/debug'
+import { normalizeString, replaceLineBreaks } from '../../app/utils/utils'
+import { siteContentSettings } from '../../app/site/content'
+import type { Toc, TocEntry } from '../../app/types'
+import { debug } from '../../app/site/debug'
 import { moduleName } from './common'
 
 /**
@@ -24,8 +32,7 @@ const logger = consola.withTag(moduleName)
 export default defineTransformer({
   name: 'latex',
   extensions: ['.tex'],
-  // @ts-expect-error Custom transformer.
-  parse(_id: string, rawContent: string) {
+  async parse(file: ContentFile) {
     // Absolute path to the source directory.
     const sourceDirectoryPath = path.resolve('./')
 
@@ -33,7 +40,9 @@ export default defineTransformer({
     const contentDirectoryPath = path.resolve(sourceDirectoryPath, 'content')
 
     // Absolute path to the .tex file.
-    const filePath = path.resolve(sourceDirectoryPath, _id.replaceAll(':', '/'))
+    const filePath = path.isAbsolute(file.path)
+      ? file.path
+      : path.resolve(sourceDirectoryPath, 'content', file.path.replace(/^\//, ''))
     logger.info(`Processing ${filePath}...`)
 
     // Extract images from the .tex file content and return the modified content.
@@ -45,21 +54,37 @@ export default defineTransformer({
 
     // Parse the Pandoc HTML output.
     const getResolvedImageCacheDirectoryPath = (resolvedImageTexFilePath: string) => path.resolve(sourceDirectoryPath, siteContentSettings.previousBuildDownloadDirectory, path.dirname(path.relative(moduleDataDirectoryPath, resolvedImageTexFilePath)))
-    const { replacedImages, htmlResult: root } = latex.transformToHtml(
-      filePath,
-      {
-        pandocHeader,
-        pandocArguments: ['--shift-heading-level-by=1'],
-        getIncludeGraphicsDirectories: siteContentSettings.getIncludeGraphicsDirectories,
+    const svgGenerator = new SvgGenerator({
+      generateIfExists: !debug,
+      optimize: true
+    })
+    const transformer = new PandocTransformer({
+      pandoc: new PandocCommand({
+        header: pandocHeader,
+        additionalArguments: ['--shift-heading-level-by=1']
+      }),
+      imageSrcResolver: PandocTransformer.resolveFromAssetsRoot(
         assetsRootDirectoryPath,
-        getExtractedImageTargetDirectory: (_extractedFrom, _assetName) => path.dirname(assetsRootDirectoryPath),
-        getResolvedImageCacheDirectoryPath,
-        renderMathElement,
-        generateIfExists: !debug
-      },
-      true,
-      rawContent
-    )
+        {
+          subdirectories: siteContentSettings.getIncludeGraphicsDirectories(filePath),
+          getImageCacheDirectoryPath: getResolvedImageCacheDirectoryPath
+        }
+      ),
+      imageExtractors: [
+        new LatexImageExtractorInDirectory(
+          'tikzpicture',
+          path.dirname(assetsRootDirectoryPath),
+          (_extractedImageTexFilePath, latexContent) => latexContent,
+          { svgGenerator }
+        )
+      ],
+      mathRenderer: new BacomathiquesKatexRenderer()
+    })
+    const { replacedImages, htmlResult: root } = await transformer.transform(filePath, file.body)
+
+    if (!root) {
+      throw new Error(`Could not transform ${filePath}.`)
+    }
 
     // Handles dark images.
     handleDarkImages(root, replacedImages, assetsRootDirectoryPath, getResolvedImageCacheDirectoryPath)
@@ -83,10 +108,11 @@ export default defineTransformer({
 
     // Return the parsed content object.
     return {
-      _id,
       body,
       summary,
-      ...header
+      ...header,
+      slug: header.id || file.id,
+      id: header.level && header.id ? `${header.level}/${header.id}` : file.id
     }
   }
 })
@@ -143,7 +169,7 @@ const replaceVspaceElements = (root: HTMLElement) => {
  */
 const handleDarkImages = (
   root: HTMLElement,
-  replacedImages: { [key: string]: string },
+  replacedImages: ImageSrcResolverResult[],
   assetsRootDirectoryPath: string,
   getResolvedImageCacheDirectoryPath: (filePath: string) => string
 ) => {
@@ -153,22 +179,20 @@ const handleDarkImages = (
     if (!src) {
       continue
     }
-    let imagePath = replacedImages[src]
+    let imagePath = replacedImages.find(image => image.resolvedSrc === src)?.resolvedToFilePath
+    if (!imagePath) {
+      continue
+    }
     const parts = path.parse(imagePath)
     const darkImagePath = path.resolve(parts.dir, parts.name + '-dark' + parts.ext)
     if (!fs.existsSync(darkImagePath) || parts.ext !== '.tex') {
       continue
     }
     // Generate an SVG from the PDF.
-    const { builtFilePath } = latex.generateSvg(
-      imagePath,
-      {
-        includeGraphicsDirectories: siteContentSettings.getIncludeGraphicsDirectories(darkImagePath),
-        cacheDirectoryPath: getResolvedImageCacheDirectoryPath?.call(this, darkImagePath),
-        optimize: true,
-        generateIfExists: !debug
-      }
-    )
+    const { builtFilePath } = new SvgGenerator({
+      generateIfExists: !debug,
+      optimize: true
+    }).generate(imagePath, getResolvedImageCacheDirectoryPath(darkImagePath))
 
     // If the PDF couldn't be converted to SVG, return null.
     if (!builtFilePath) {
@@ -220,15 +244,24 @@ const addDataAttributes = (root: HTMLElement) => {
  * @param {HTMLElement} element The element.
  * @returns {string} The result.
  */
-const renderMathElement = (element: HTMLElement): string => {
-  // Determine if it's a display math environment.
-  const displayMode = element.getAttribute('env') === 'displaymath'
-  // Replace the math element with the rendered KaTeX HTML.
-  const renderedMath = latex.renderMathElement(element, {
-    '\\parallelslant': '\\mathbin{\\!/\\mkern-5mu/\\!}',
-    '\\ensuremath': '#1'
-  })
-  return `<span class="math-rendered" data-latex="${replaceLineBreaks(element.text.trim())}" data-latex-display="${displayMode}">${renderedMath}</span>`
+class BacomathiquesKatexRenderer extends KatexRenderer {
+  constructor() {
+    super({
+      macros: {
+        '\\parallelslant': '\\mathbin{\\!/\\mkern-5mu/\\!}',
+        '\\ensuremath': '#1'
+      }
+    })
+  }
+
+  override async renderMathElement(element: HTMLElement): Promise<RenderObject> {
+    const displayMode = element.getAttribute('env') === 'displaymath'
+    const renderedMath = await super.renderMathElement(element)
+    return {
+      ...renderedMath,
+      html: `<span class="math-rendered" data-latex="${replaceLineBreaks(element.text.trim())}" data-latex-display="${displayMode}">${renderedMath.html}</span>`
+    }
+  }
 }
 
 /**

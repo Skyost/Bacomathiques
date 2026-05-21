@@ -11,9 +11,3 @@ Enfin, certaines introductions ont été reprises de [Wikipédia](https://fr.wik
 
 Toutes les technologies intégrées dans ce site web sont disponibles sous licence **GNU GPL v3**.
 N'hésitez pas à aller faire un tour sur leurs pages respectives !
-
-## Services tiers
-
-Ce site utilise des services tiers tels que Google AdSense.
-L'application utilise Google AdMob, il vous est donc possible de consulter
-la [Politique de confidentialité](https://github.com/Skyost/Bacomathiques/blob/master/politique-de-confidentialite.md).

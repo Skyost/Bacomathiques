@@ -1,8 +1,8 @@
 // noinspection ES6PreferShortImport
 
 import { parse } from 'node-html-parser'
-import { site } from '../../site/site'
-import type { Lesson, Level, LevelId } from '../../types'
+import { site } from '../../app/site/site'
+import type { Lesson, Level, LevelId } from '../../app/types'
 
 /**
  * The module name.

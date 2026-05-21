@@ -3,16 +3,19 @@ import fs from 'fs'
 import * as yaml from 'yaml'
 import { consola } from 'consola'
 import {
-  type ApiComment, apiDirectory,
-  type ApiLesson, formatHtml,
+  type ApiComment,
+  apiDirectory,
+  type ApiLesson,
+  formatHtml,
   lessonCommentsEndpoint,
   lessonContentEndpoint,
-  lessonListEndpoint, lessonListEndpointItem,
+  lessonListEndpoint,
+  lessonListEndpointItem,
   lessonSummaryEndpoint,
   moduleName
-} from '~/modules/api-v2-generator/common'
-import { getAvatarUrl, site } from '~/site/site'
-import type { Comment } from '~/types'
+} from './common'
+import { getAvatarUrl, site } from '../../app/site/site'
+import type { Comment } from '../../app/types'
 
 /**
  * The logger instance.
@@ -23,8 +26,8 @@ const logger = consola.withTag(moduleName)
  * Nitro plugin to generate API v2 files from parsed LaTeX files.
  */
 export default defineNitroPlugin((nitroApp) => {
-  nitroApp.hooks.hook('content:file:afterParse', (file) => {
-    if (!file._id.endsWith('.tex')) {
+  nitroApp.hooks.hook('content:file:afterParse', ({ file, content }) => {
+    if (file.extension !== '.tex') {
       return
     }
 
@@ -34,11 +37,12 @@ export default defineNitroPlugin((nitroApp) => {
 
     // We create the lesson.
     const lesson: ApiLesson = {
-      ...file,
-      html: file.body,
-      summary: file.summary,
+      ...content,
+      id: content.slug,
+      html: content.body,
+      summary: content.summary,
       comments: []
-    }
+    } as ApiLesson
     lesson.html = formatHtml(lesson, lesson.html)
     lesson.summary = formatHtml(lesson, lesson.summary)
 
@@ -65,9 +69,9 @@ export default defineNitroPlugin((nitroApp) => {
     lesson.comments.sort((a, b) => b.date - a.date)
 
     // Generate the lesson data files.
-    const levelDirectoryPath = path.resolve(sourceDirectoryPath, apiDirectory, file.level)
-    const lessonDirectoryPath = path.resolve(levelDirectoryPath, file.id)
-    logger.info(`Generating API files for ${file.level}/${file.id}...`)
+    const levelDirectoryPath = path.resolve(sourceDirectoryPath, apiDirectory, lesson.level)
+    const lessonDirectoryPath = path.resolve(levelDirectoryPath, lesson.id)
+    logger.info(`Generating API files for ${lesson.level}/${lesson.id}...`)
     fs.mkdirSync(lessonDirectoryPath, { recursive: true })
     fs.writeFileSync(path.resolve(lessonDirectoryPath, 'index.json'), JSON.stringify(lessonContentEndpoint(lesson)))
 
@@ -78,7 +82,7 @@ export default defineNitroPlugin((nitroApp) => {
     const lessonCommentsDirectory = path.resolve(lessonDirectoryPath, 'comments')
     fs.mkdirSync(lessonCommentsDirectory, { recursive: true })
     fs.writeFileSync(path.resolve(lessonCommentsDirectory, 'index.json'), JSON.stringify(lessonCommentsEndpoint(lesson)))
-    logger.success(`Generated API files for ${file.level}/${file.id}.`)
+    logger.success(`Generated API files for ${lesson.level}/${lesson.id}.`)
 
     // Update the lesson index.
     const levelDataFilePath = path.resolve(levelDirectoryPath, 'index.json')
