@@ -8,10 +8,7 @@ on:
 
 jobs:
   configure:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ ubuntu-latest ]
+    runs-on: ubuntu-latest
     outputs:
       containerUser: ${{ steps.get-user.outputs.containerUser }}
     steps:
@@ -19,21 +16,17 @@ jobs:
         run: echo "containerUser=`id -u`:`id -g`" >> $GITHUB_OUTPUT
   build:
     needs: configure
-    runs-on: ${{ matrix.os }}
+    runs-on:  ubuntu-latest
     container:
       image: skyost/latex-docker
       options: --user ${{ needs.configure.outputs.containerUser }}
-    strategy:
-      matrix:
-        os: [ ubuntu-latest ]
-        node: [ latest ]
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@v3
-      - name: Setup Node.js ${{ matrix.node-version }} 🏗
-        uses: actions/setup-node@v3
+        uses: actions/checkout@v6
+      - name: Setup Node.js 🏗
+        uses: actions/setup-node@v6
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: latest
           cache: 'npm'
       - name: Install dependencies 👨🏻‍💻
         run: npm ci
