@@ -2,6 +2,7 @@ import * as fs from 'fs'
 import { createResolver, defineNuxtModule, useLogger } from '@nuxt/kit'
 import { levels as levelsData } from '../../app/site/site'
 import { apiDirectory, type ApiLevel, mainEndpoint, moduleName } from './common'
+import { generateLessonApiFiles } from './plugin'
 
 /**
  * The logger instance.
@@ -19,12 +20,12 @@ export default defineNuxtModule({
   },
   setup: (_, nuxt) => {
     const resolver = createResolver(import.meta.url)
+    const apiDirectoryPath = resolver.resolve(nuxt.options.rootDir, apiDirectory)
 
-    // Update Nitro config.
-    nuxt.hook('nitro:config', (config) => {
-      config.plugins = config.plugins || []
-      config.plugins.push(resolver.resolve('plugin'))
-    })
+    fs.rmSync(apiDirectoryPath, { recursive: true, force: true })
+    if (!nuxt.options.dev) {
+      fs.rmSync(resolver.resolve(nuxt.options.rootDir, '.data/content/contents.sqlite'), { force: true })
+    }
 
     // Create API levels.
     const levels: ApiLevel[] = Object.values(levelsData).map((level) => {
@@ -36,9 +37,15 @@ export default defineNuxtModule({
     levels.sort((a, b) => a.order - b.order)
 
     // Create the API index.
-    const apiDirectoryPath = resolver.resolve(nuxt.options.rootDir, apiDirectory)
     fs.mkdirSync(apiDirectoryPath, { recursive: true })
     fs.writeFileSync(resolver.resolve(apiDirectoryPath, 'index.json'), JSON.stringify(mainEndpoint(levels)))
+
+    nuxt.hook('content:file:afterParse', ({ file, content, collection }) => {
+      if (collection.name !== 'lessons' || file.extension !== '.tex') {
+        return
+      }
+      generateLessonApiFiles(content, nuxt.options.rootDir)
+    })
 
     // Add everything to Nitro.
     nuxt.options.nitro.publicAssets = nuxt.options.nitro.publicAssets || []
