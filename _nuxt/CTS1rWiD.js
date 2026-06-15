@@ -1,0 +1,1 @@
+import{l as s,aA as o,v as r,aJ as a}from"./cskF79re.js";const n={};function t(e,l){return o(),r("ol",null,[a(e.$slots,"default")])}const _=Object.assign(s(n,[["render",t]]),{__name:"ProseOl"});export{_ as default};

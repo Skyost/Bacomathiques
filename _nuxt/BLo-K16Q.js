@@ -1,0 +1,1 @@
+import{l as a,aA as s,v as n,aJ as t}from"./cskF79re.js";const o={},r={id:"page-header",class:"blue"};function _(e,c){return s(),n("header",r,[t(e.$slots,"default")])}const l=Object.assign(a(o,[["render",_]]),{__name:"PageHeader"});export{l as _};

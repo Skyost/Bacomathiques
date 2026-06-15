@@ -1,0 +1,1 @@
+import{l as o,aA as s,v as r,aJ as a}from"./cskF79re.js";const n={};function t(e,c){return s(),r("code",null,[a(e.$slots,"default")])}const _=Object.assign(o(n,[["render",t]]),{__name:"ProseCode"});export{_ as default};

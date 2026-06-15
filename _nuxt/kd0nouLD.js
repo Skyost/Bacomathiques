@@ -1,0 +1,1 @@
+import{l as s,aA as r,v as t,aJ as a}from"./cskF79re.js";const n={};function o(e,c){return r(),t("th",null,[a(e.$slots,"default")])}const _=Object.assign(s(n,[["render",o]]),{__name:"ProseTh"});export{_ as default};
